@@ -120,3 +120,9 @@ public static String lowerify(String s)
 8. Strings with EOF markers buried inside
 
   Can you think of any other possible inputs that might cause an error or an incorrect result?
+
+  External factors could also be a factor.  What happens when...
+
+1. The system runs out of memory while processing the text?
+2. The CPU is running numerous other processes, leaving the system unresponsive?
+3. The network connection is lost midway through processing?
