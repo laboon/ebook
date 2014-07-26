@@ -64,7 +64,30 @@ Customer: "Actually, I just wanted to play solitaire."
 
 #### What is a bug, really?
 
-#### A Real-Life Example
+  It's important to keep in mind that not every problem found with a system is a defect.  A defect is an issue that either breaks the functionality of the system as it's currently understood, or does not meet the requirements of the program.  If a program operates normally and meets all of the requirements, then it does not have a defect.  If the program does not meet the requirements, or does not operate normally (e.g., crashes randomly, does not respond to normal system
+
+  For example, consider a company creating a brand-new Tic-Tac-Toe implementation.  The requirements are as follows:
+
+1. The gameboard shall be three squares by three squares, for a total of nine contiguous squares.
+2. The first player shall be allowed to mark an X in any square.
+3. The second player shall then be allowed to mark an O in any open (that is, not already marked by an X or O) square, following the completion of the first move by the first player.
+4. Players shall then take turns placing X's and O's (by the first and second player, respectively) in open squares, until there are no open squares (in which case the game is a draw) or an entire row, column, or diagonal are filled in with the same marker, in which case the owner of that marker (X for first player, O for second player) shall be the winner and the other player shall be the loser.
+
+  This sums up the game of Tic-Tac-Toe pretty nicely.  Now let's say that after beta testing, a user says that the game is unfair, because it forces one player to use X's and that mark is ugly.  The user suggests changing the X's into W's, because W's are a much more beautiful letter.  Is this a defect or enhancement?
+
+  It's an enhancement, because the system met all of the requirements and operates normally.  The fact that a user did not like it is irrelevant.  This isn't to say that enhancements are bad, or useless, or a lesser class of complaint, just that they're not defects.
+
+  Now let's consider an instance where the first player can mark a square with an O.  This is a defect, because it violates Requirement #2.  Even if the game is perfectly playable (let's say that the second player's marks then become X's), it's still a defect because it violates a requirement.
+
+  Another example of a defect would be if the Tic-Tac-Toe board's display inverted after a player entered a mark in the center square.  There are no specific requirements against this happening, but there are varying "implicit requirements" to programs, such as not crashing, maintaining a display consistent with internal state, being responsive, etc.  These implicit requirements will vary based on the type of system; for example, a video game may need to be responsive 99% of the time, but a batch-processed weather forecasting program (where data is fed in, and the results returned 30 minutes later) may only need to be "responsive" in the sense that an answer will eventually come out.
+
+  There can be disagreement over whether an issue is a defect or an enhancement.  Much of this disagreement can arise due to these implicit requirements.  If a video game character always takes three seconds to respond after hitting a button, one might argue that this is too long, even if there isn't a specific performance problem.  It's just not a good user experience to have a three second lag all the time.  However, at what point the button response latency become no longer an issue?  Two seconds?  One?  One hundred milliseconds?  Similarly, should a program be expected to crash if the system runs out of memory?  For a personal computer, perhaps; for a mainframe running banking transfer software, probably not.
+
+  In some scenarios, the difference between a defect and an enhancement  will be a very big deal.  If your company is writing avionics software for the government, there will most likely be a very rigorous process for determining whether something is an enhancement or a defect.  There will be specified requirements, arbitrators to make decisions, and people whose entire job is to draft and interpret requirements.  If a company is contracted to create a program written "to the letter of the law", that company will fight to say that a request by the customer is not a defect, but something not covered by requirements, and thus an enhancement.
+
+  In other scenarios, the boundary between defects and enhancements is a bit blurry.  If you are working for a startup without much software engineering overhead, and where the only real requirement is the unstated "do whatever the customer wants or we'll go bankrupt", then if the customer wants something, then it should be worked on.
+
+#### A Real-Life Testing Example
 
    Let's say that you are tasked with testing a new program, Lowerify, which takes a string and returns a lower-case version.  The customer didn't give any more details, because it seemed self-explanatory - the input is text which may or may not be lowercase, the output is the same string, but any upper-case letters are turned to lowercase.  The method handling this in the program has the following method signature:
 
@@ -72,7 +95,7 @@ Customer: "Actually, I just wanted to play solitaire."
 public static String lowerify(String s)
 ```
 
-  The customer insists that there is nothing else that you need to know to start testing.  If you were tasked with testing this, though, what kinds of questions would you ask in order to develop a testing plan?
+  The customer insists that there is nothing else that you need to know to start testing.  If you were tasked with testing this, though, what kinds of questions would you ask in order to develop a testing plan?  In other words, what other kinds of requirements would you try to elicit from the customer?
 
 1. What kind of character encoding will this be in - Unicode, ASCII, EBCDIC, something else?
 2. What's the expected maximum character length?  Something that works well for a few words may not work so well if it's fed in ten terabytes of text.
