@@ -41,8 +41,22 @@ Customer: "Actually, I wanted to play solitaire."
 
   Would you say that the program has met the requirements of the customer?  Of course not.  Even though the software has met all of the requirements, doesn't crash, provides the correct answers, etc., if the software doesn't meet the needs of the customer, it's not going to be successful.
 
-  This illustrates the difference between *verification* and *validation*.  Verification is building the software right; validation is building the right software.
+  This illustrates the difference between *verification* and *validation*.  Verification is ensuring that you're building the software right; validation is ensuring that you're building the right software.  In other words, verification is ensuring that the system doesn't crash, that it meets the requirements, that it handles failures gracefully, et cetera.  Validation is ensuring that the requirements are the right requirements - do they actually request what the user wants, and are there any gaps which mean that even if the software meets all the requirements, and all the requirements are correct, there are parts of the program which will not be what the user or customer expected?
+
+  It's more common than one would think to have gaps in requirements, or to have requirements which are ambiguous, incorrect, or even contradictory.  This is mostly due to the fact that if you were describing a program in sufficient detail, you would no longer be describing a program, you'd be *writing* a program.  In that case, you'd have all of the same problems as just writing the code in the first place.
 
 #### Quality Assurance (QA) versus Quality Control (QC)
 
 #### What is a bug, really?
+
+#### A Real-Life Example
+
+   Let's say that you are tasked with testing a new program, Lowerify, which takes a string and returns a lower-case version.  The customer didn't give any more details, because it seemed self-explanatory - the input is text which may or may not be lowercase, the output is the same string, but any upper-case letters are turned to lowercase.  The method handling this in the program has the following method signature:
+
+```java
+public static String lowerify(String s)
+```
+
+  The customer insists that there is nothing else that you need to know to start testing.  If you were tasked with testing this, though, what kinds of questions would you ask in order to develop a testing plan?
+
+1.

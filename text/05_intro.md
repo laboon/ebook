@@ -22,11 +22,13 @@
 
    Once writing manual tests is old hat, we can move on to automated tests - systems-level and unit tests.  Automated tests allow you to very quickly execute tests, from either a very low level (like making sure a sorting algorithm works correctly) to a very high level (ensuring that you can add something to your cart on an e-commerce website).  If you've actually executed some of the manual test plans, you'll see why letting the computer execute all of the tests for you is such a time-saver (and perhaps more importantly, aggravation-saver... repeatedly running manual tests is a great way to drive a tester insane).
 
-   Finally, we get to the really interesting stuff!  This section of the book is where we'll get to read about specialized kinds of testing, like combinatorial and property-based tests, performance testing, security testing, and formal verification.
+   Finally, we get to the really interesting stuff!  This section of the book is where we'll get to read about specialized kinds of testing, like combinatorial and property-based tests, performance testing, security testing, and formal verification.  The world of software testing is quite a large one - testing embedded software is very different from testing web applications, and
 
 #### What this book doesn't cover
 
    This book is an introductory text to the world of software testing; there's definitely lots of room to explore and go into more detail on all of the topics here.  However, the purpose isn't to try to rival War and Peace in length, but to provide a general introduction to the field.  Spending lots of time on the intricacies of each of them might be interesting to me or to a small subset of the people reading the book, but my goals are to provide a good foundation of practical software testing knowledge, and give a taste of some of the various specialties and subfields in the industry.  Consider it a whirlwind tour of Europe instead of studying abroad for a year in Paris.
+
+  This book also does not go deep into topics like embedded or safety-critical software.  If you're testing software which puts people's lives at risk, you will definitely want to go more into depth than this book offers.  However, it's a good start to understand the testing process as a whole.
 
 #### A note on language choice
 
