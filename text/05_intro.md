@@ -11,3 +11,25 @@
    Although I'm now in a more traditional software development role, I still use the concepts in this book on a daily basis.  Understanding how and why software fails, and detecting defects, is a big part of the software development process.  A developer who doesn't care about code quality is not a good developer.
 
    That being said, this book is targeted towards those interested in software testing itself.  If you're interested in quality assurance, or just want to write code with fewer bugs, this book is for you!
+
+#### What this book covers
+
+   This book is intended to provide a relatively comprehensive overview of software testing.  By the end, my expectation is that the reader will have all the skills necessary to enter the workforce as a quality analyst.
+
+   To that end, the book starts with a generalized overview of the field - what is software testing, anyway?  It's difficult to study something without understanding what it is!  We'll then move on to going over some of the theory and terminology used by those in the software testing industry.  I'll let you in on a little secret - this is probably the least interesting part of the book.  However, we really should be speaking the same language when we talk about concepts.  It would be difficult to explain concepts in plumbing if I were forced to avoid using the word "pipe" for fear of someone not understanding it.
+
+   After that, we'll move on to the basics of developing a manual test plan, and dealing with defects that are found in the process of executing it.  Manual tests are rarer now than they used to be; automated tests have relieved much of the tedium of executing them.  There are definite benefits to developing tests qua tests without worrying about a specific language syntax or toolchain, though.
+
+   Once writing manual tests is old hat, we can move on to automated tests - systems-level and unit tests.
+
+#### What this book doesn't cover
+
+   This book is an introductory text to the world of software testing; there's definitely lots of room to explore and go into more detail on all of the topics here.  However, the purpose isn't to try to rival War and Peace in length, but to provide a general introduction to the field.  Spending lots of time on the intricacies of
+
+#### A note on language choice
+
+   The examples I give are in Java and using much of the Java toolchain (e.g., JUnit, Selenium).  This is not due to some love of Java; in fact, as I'll often mention how much easier something is to do in Ruby, or how a particular kind of bug doesn't even exist in Haskell, or how much more elegant the code would be if it were written in Lisp.
+
+   However, Java serves as a kind of lingua franca amongst developers nowadays.  It's a pretty standard, popular, ALGOL-derived programming language, so even if you're not familiar with it, you can probably reason out what's happening.
+
+   Finally, be prepared for other languages to pop up in the text!  I'll be sure to explain what is happening whenever I use a language other than Java, but some languages are just better at illustrating a concept than others (for example, showing how a buffer overrun works is difficult if you're not writing in C or a similar low-level language).
