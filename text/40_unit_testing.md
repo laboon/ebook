@@ -41,6 +41,39 @@
 
   "Create two linked lists, _a_ and _b_, each with data for the nodes equal to 1 -> 2 -> 3.  When there are compared with the equality operator, they should be seen as equal."
 
+  We can see that there are three steps here, which correspond to some of the steps in a manual test.  This should not be surprising.  After all, the basic concepts of testing do not change, despite the level of abstraction of a particular test.  The steps are:
+
+1. _Preconditions_ - First, we need to generate the preconditions of the test.  If you recall from several chapters back, the preconditions are those conditions which must be met before the actual test starts.  In this case, the preconditions are that we have two different linked lists, named _a_ and _b_, and that they contain the exact same data, 1 -> 2 -> 3, all of which are the same data type.
+
+2. _Execution Steps_ - This is what is actually done in the test.  In our example, the equality operator is applied between the two linked lists _a_ and _b_, returning a Boolean value.
+
+3. _Expected Behavior_ - Remember that the key principle to testing software is that expected behavior should equal observed behavior.  The unit test should specify what the expected behavior is, then check if it's equal to the observed behavior (i.e., the actual result of the test).  In the world of unit testing, this is called an _assertion_ - the test _asserts_ that the expected behavior is equal to the observed behavior.  In our case, our test will _assert_ that the returned value of comparing the two linked lists is true.
+
+#### Turning Our Example Into a Unit Test
+
+  It would be entirely possible to unit test this in a "manual" fashion.  Just generate a quick program which creates a linked list a, creates a linked list b, apply the equality operator,and finally add a conditional checking if the result of that value is true.  If it is, print out "test passed!"; otherwise, print out "test failed!".  However, usually we use a testing framework to automate much of the work and ensure that we are testing in a consistent and coherent manner.
+
+  For this book, we will be using the JUnit unit testing framework.  JUnit ( http://junit.org ) is an instance of the xUnit testing framework, which originally comes from SUnit, a testing framework for Smalltalk.  As a side note, Smalltalk is one of those languages that was years ahead of its time.  If you want to see what the future of software engineering will be like, one of the best things to do is to go look at what cool features languages had twenty years ago that were considered too slow or too immature or too "academic".  Usually, these cool features will come back into vogue years later, with the community of whatever language they've ended up in loudly trumpeting their novelty (see: garbage collection, macros, metaprogramming).
+
+  Fuddy-duddy rants aside, the JUnit test framework allows us to create unit tests that have much of the "behind-the-scenes" work taken care of.  The developer can then focus on generating the test logic and understanding what is being tested, and instead of wasting time writing out conditionals printing "yay, test passed!" or "boo, test failed" in the appropriate cases.  The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly.
+
+```java
+import static org.junit.Assert.*;
+
+public class LinkedListTest
+
+       @Test
+       public void testEquals123() {
+       	      LinkedList<Integer> a = new LinkedList<Integer>( [1,2,3] );
+	      LinkedList<Integer> b = new LinkedList<Integer>( [1,2,3] );
+	      boolean result = a.equals(b);
+	      assertEquals(result, true);
+       }
+
+}
+```
+
+#### Preconditions
 
 #### Execution Steps
 
@@ -50,6 +83,49 @@
 
 #### Ensuring that Tests are Testing What You Expect
 
+   One of the simplest ways to do this is to first ensure that your tests fail!  While we'll go into detail on a development strategy that always calls for tests to fail first in the chapter on TDD, a quick change to a test can often prove that it's not just passing all the time because you're mistakenly asserting that `true == true`, for example.
+
+   In the linked list equality test above, what could you change to ensure that your tests are testing what you think they are testing?
+
+  What if you changed the first linked list, _a_, to contain the data 1 -> 2?
+
+```java
+       @Test
+       public void testEquals123() {
+       	      LinkedList<Integer> a = new LinkedList<Integer>( [1, 2] );
+	      LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
+	      boolean result = a.equals(b);
+	      assertEquals(result, true);
+       }
+```
+
+
+  Or 7 -> 8 -> 9?
+
+```java
+       @Test
+       public void testEquals123() {
+       	      LinkedList<Integer> a = new LinkedList<Integer>( [7, 8, 9] );
+	      LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
+	      boolean result = a.equals(b);
+	      assertEquals(result, true);
+       }
+```
+
+
+  Or you changed the equality check to an _inequality_ check?
+
+```java
+       @Test
+       public void testEquals123() {
+       	      LinkedList<Integer> a = new LinkedList<Integer>( [1, 2, 3] );
+	      LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
+	      boolean result = !(a.equals(b);)
+	      assertEquals(result, true);
+       }
+```
+
+  In all of these instances, the test should fail.  You can then rest a little easier, knowing that your test isn't tautological.
 
 #### Stubbing
 
@@ -57,9 +133,11 @@
 
 #### Mocking
 
-
 #### Unit test structure
 
 #### Code Coverage
+
+
+#### Best Practices when Unit Testing
 
 #### Unit Testing as Part of a Complete Testing Plan
