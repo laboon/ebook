@@ -55,7 +55,11 @@
 
   For this book, we will be using the JUnit unit testing framework.  JUnit ( http://junit.org ) is an instance of the xUnit testing framework, which originally comes from SUnit, a testing framework for Smalltalk.  As a side note, Smalltalk is one of those languages that was years ahead of its time.  If you want to see what the future of software engineering will be like, one of the best things to do is to go look at what cool features languages had twenty years ago that were considered too slow or too immature or too "academic".  Usually, these cool features will come back into vogue years later, with the community of whatever language they've ended up in loudly trumpeting their novelty (see: garbage collection, macros, metaprogramming).
 
-  Fuddy-duddy rants aside, the JUnit test framework allows us to create unit tests that have much of the "behind-the-scenes" work taken care of.  The developer can then focus on generating the test logic and understanding what is being tested, and instead of wasting time writing out conditionals printing "yay, test passed!" or "boo, test failed" in the appropriate cases.  The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly.
+  Fuddy-duddy rants aside, the JUnit test framework allows us to create unit tests that have much of the "behind-the-scenes" work taken care of.  The developer can then focus on generating the test logic and understanding what is being tested, and instead of wasting time writing out conditionals printing "yay, test passed!" or "boo, test failed" in the appropriate cases.
+
+  Although we will be covering JUnit, as it is a popular and easy-to-understand testing framework, it is far from the only unit testing framework in existence.  Just in the world of Java testing, there is TestNG, a more fully-featured framework; JTest, which includes the ability to automatically generate unit tests; and cucumber-jvm, which allows us to behavior-driven testing (and which we'll be discussing in our chapter on that topic).
+
+  The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly.
 
 ```java
 import static org.junit.Assert.*;
@@ -64,9 +68,15 @@ public class LinkedListTest
 
        @Test
        public void testEquals123() {
+
+       	      // Preconditions - a and b both have 1 -> 2 -> 3
        	      LinkedList<Integer> a = new LinkedList<Integer>( [1,2,3] );
 	      LinkedList<Integer> b = new LinkedList<Integer>( [1,2,3] );
+
+	      // Execution steps - run equality operator
 	      boolean result = a.equals(b);
+
+	      // Expected behavior - assert that result is true
 	      assertEquals(result, true);
        }
 
@@ -74,6 +84,8 @@ public class LinkedListTest
 ```
 
 #### Preconditions
+
+
 
 #### Execution Steps
 
@@ -125,13 +137,94 @@ public class LinkedListTest
        }
 ```
 
-  In all of these instances, the test should fail.  You can then rest a little easier, knowing that your test isn't tautological.
+  In all of these instances, the test should fail.  You can then rest a little easier, knowing that your test isn't tautological, passing no matter what the code does.
+
+#### Problems?
+
+  Unit testing with the techniques we've learned so far will get us far, but won't get us all the way.  Just using the assertions and testing code that we've gone over so far, there's no way to check, for example, that a
 
 #### Stubbing
+
+
 
 #### Verification
 
 #### Mocking
+
+#### Testing Private Methods
+
+  There's quite an argument on whether or not it makes sense to test private methods.  It's a great way to start a flame war amongst software developers and testers on your favorite social networking site.  I'll provide you with the arguments of both sides, so that you can make a decision yourself, and then I'll let you know my opinion.
+
+   Those who argue that private methods should never be tested say that any calls from the rest of the program (i.e., the rest of the world from the class's standpoint) will have to come in through the public methods of the class.  Those public methods will themselves access private methods; if they don't, then what's the point of having those private methods?  By testing only the public interfaces of classes, you're minimizing the number of tests that you have and focusing on the tests and code that matter.
+
+   Those who argue tha private methods should always be tested point to the fact that private methods are still code, even if they're not called directly from outside the class.  Unit testing is supposed to test functionality at the lowest levels possible, which is usually the method or function call.  If you're going to start testing higher up the abstraction ladder, then why not just do systems-level testing?
+
+   My opinion is that, like most engineering questions, the correct answer depends on what you're trying to do and what the current codebase is like.  As a side note, with most technical questions, saying "it depends" is a great way to be right no matter what.  Let's take a look at a few examples.
+
+  Let's imagine that we're adding a cat picture taking service to Rent-A-Cat.
+
+```java
+
+public class Picture {
+
+       private void setupCamera() {
+       	       // ...
+       }
+
+       private void turnOffCamera() {
+       	       // ...
+       }
+
+       private Image takePicture() {
+               // ...
+       }
+
+       public Image takePicture() {
+       	      setupCamera();
+	      Image i = takePicture();
+	      turnOffCamera();
+	      return i;
+       }
+
+}
+
+
+```
+
+  This code is relatively simple, and it's easy to see that all of the private methods will be called and tested by the public methods.
+
+  Now let's imagine some code inside the image transformation library that's called from the above code.
+
+```java
+
+public class ImageLibrary {
+
+       public Image transform(Image image, int inSize, int outSize, String format, boolean color, boolean reduce, boolean dither) {
+       	      if (inSize < outSize && format.equals("jpg") || dither == false) {
+	      	     return privateMethod1(image, inSize, outSize);
+	      } else if (inSize < outSize && format.equals("png") || dither == true) {
+	      	     return privateMethod2(image, inSize, outSize);
+              } else if (outSize > inSize || (color == false && reduce == false) {
+	             return privateMethod3(image, inSize, outSize);
+	      } else {
+	      	     // Imagine lots more if..then..else if statements here
+		     // You get the idea
+	      }
+       }
+
+       // Lots of private methods here
+
+}
+
+```
+
+   Think of all the complicated tests that would be needed for this one method!  Even then, you're not focusing on the actual image transformations.  Many of your tests would just be focused on ensuring that the right method was called!
+
+  One could argue that this isn't a well-designed piece of code and should be re-factored, ideally with the private methods put into, say, an ImageTransformer class, where the methods would be public and could easily be unit tested.  I wouldn't disagree.  However, the fact of the matter is that in the real world, there is often code like this lying around, and the tester is not always in a position to tell management that the company needs to spend a few months burning off technical debt instead of adding new features.  If your goal is to test the software, and test it well, you'll probably have to test the occasional private method.
+
+#### Using Reflection to Test Private Methods in Java
+
+  In Java, there's no way to directly call private methods from a unit test, although this is definitely not the case in other languages (such as with Ruby's .send(:method_name) method, which bypasses the concept of "private" entirely.  However, using the reflection libary, we can "reflect" what's in the class at runtime.
 
 #### Unit test structure
 
