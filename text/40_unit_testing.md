@@ -57,7 +57,9 @@ For this book, we will be using the JUnit unit testing framework.  JUnit ( http:
 
 Fuddy-duddy rants aside, the JUnit test framework allows us to create unit tests that have much of the "behind-the-scenes" work taken care of.  The developer can then focus on generating the test logic and understanding what is being tested, and instead of wasting time writing out conditionals printing "yay, test passed!" or "boo, test failed" in the appropriate cases.
 
-Although we will be covering JUnit, as it is a popular and easy-to-understand testing framework, it is far from the only unit testing framework in existence.  Just in the world of Java testing, there is TestNG, a more fully-featured framework; JTest, which includes the ability to automatically generate unit tests; and cucumber-jvm, which allows us to behavior-driven testing (and which we'll be discussing in our chapter on that topic).
+Although we will be covering JUnit, as it is a popular and easy-to-understand testing framework, it is far from the only unit testing framework in existence.  Just in the world of Java testing, there is TestNG, a more fully-featured framework; JTest, which includes the ability to automatically generate unit tests; and cucumber-jvm, which allows us to behavior-driven testing (and which we'll be discussing in our chapter on that topic).  If you're really interested, just do a search for "testing frameworks _your language of choice_".
+
+Keep in mind, though, that the particular implementation of testing framework you use isn't nearly as important as the concepts you learn and can apply.  Worry less about the syntax, and more about understanding the concepts of unit testing and how they differ, and how they are similar to, concepts that you have already learned in manual testing.
 
 The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly.
 
@@ -91,7 +93,7 @@ Here
 
 #### Assertions
 
-
+Remember that assertions are checking the expected behavior against the observed behavior of the execution steps.  The assert statements on 
 
 #### Examples
 
@@ -171,11 +173,10 @@ Pure functions are much easier to test, because passing in the same values will 
 This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary (or, at least, you need some clever way around them, like monads in Haskell) if you 
 
 
-#### Stubbing
-
-
-
 #### Verification
+
+
+#### Stubbing
 
 #### Mocking
 
@@ -440,7 +441,8 @@ Quock!
 
 #### Code Coverage
 
-
 #### Best Practices when Unit Testing
 
 #### Unit Testing as Part of a Complete Testing Plan
+
+Just like your favorite nutritionally-suspect cereals, unit testing should not be your entire breakfast, or your entire test plan.  Unit testing is great for checking individual methods and low-level functionality, but it is not good at seeing how everything fits together.  It's even worse when trying to determine what the end product will look like; all of the individual methods may work, but together they form something which doesn't meet any of the requirements.
