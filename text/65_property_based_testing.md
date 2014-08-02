@@ -54,7 +54,12 @@ Now that we have some of the properties we expect from *any* output of the billS
 #### Example
 
 
+#### 
+
+
 #### History of Property-Based Testing
+
+#### Benefits and Drawbacks
 
 #### Code Examples
 
