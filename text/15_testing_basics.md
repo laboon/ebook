@@ -6,6 +6,8 @@ As a caveat, I'd like to state that I have seen conflicting terminology during m
 
 #### Equivalence Classes
 
+
+
 #### Base cases, Edge Cases
 
 #### Success cases, Failure Cases
