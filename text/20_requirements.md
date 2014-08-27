@@ -73,6 +73,17 @@ In order for the requirements to be testable, they must meet five criteria, each
 
 Requirements should cover the entire operation of the system.  This is what we mean by saying that a requirements specification should be __complete__.  Anything that is not covered by the requirements is liable to be interpreted in different ways by developer, designers, testers, and users.  If something is important, it should be specified precisely.
 
+The requirements should be __consistent__.  That is, they should not contradict each other or the laws of the universe (or whatever domain that you are operating in).  Requirements which do not contradict each other are __internally consistent__; requirements which do not contradict the world outside the system are __externally consistent__.
+
+Here is an example of a group of requirements that is not internally consistent:
+REQ-1. The system shall display "WARNING: OVERPRESSURE" on the console whenever the pressure is 100 PSI or greater.
+REQ-2. The system shall turn off the console and display no further information as long as the pressure is less than 200 PSI.
+
+What should the system do if the pressure is between 100 and 200 PSI?  You can use equivalence class partitioning here to determine that the requirements are not internally consistent.
+
+The requirements should be __unambiguous__.
+
+
 #### More Tips on Writing Good Requirements
 
 #### Functional vs Non-Functional Requirements
