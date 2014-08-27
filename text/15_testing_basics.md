@@ -138,4 +138,20 @@ Corner cases often involve a catastrophic failure of some kind (loss of network 
 
 #### Success cases, Failure Cases
 
-#### White / Black / Grey Box Testing
+#### Black / White / Grey Box Testing
+
+There are various ways of testing a system under test, each of which has benefits and drawbacks.  We'll explore three different kinds of testing here, and go into detail on various ways to test using these three paradigms in following chapters.
+
+Perhaps the easiest kind of testing to understand is __black box testing__.  In black box testing, the tester has no knowledge of the internal workings of the system, and accesses the system as a user would.  In other words, the tester does not know about what database is in use, what classes exist, or even what language the program is written in.  Instead, testing occurs as if the tester were an ordinary user of the software.
+
+As an example, let us imagine a desktop email application.  Tasked with testing this, a black box tester would test whether or not it could retrieve and send email, whether the spell check worked, whether files could be saved, etc.  He or she would not check that a particular method on a class was called, or what objects are loaded into memory, or the actual calls to particular functions.  If the tester wanted to ensure that emails could be properly sorted alphabetically by sender, for instance, a proper black box test would be to click on the "Sort Alphabetically by Sender" button or menu option.  A black box tester would neither know nor care that the program was written in Java or Haskell, or whether merge sort, quicksort, or bubble sort was used.  All the black box tester cares about is whether or not the system under test operates as expected from the user's point of view.
+
+One could consider __white box testing__ to be the opposite of black box testing.  In white box testing, the tester has intimate knowledge of the codebase and tests code itself.  White box tests can test individual functions of the code, often looking at much more granular aspects of the system than black box tests.
+
+Continuing the example of a desktop email application, white box tests might check the actual `sort(EmailEntry[] emails)` function, sending in various values to see what the function returns or does.  White box testers would care about what happened specifically if a 0-length array or null reference were passed in, whereas a black box tester would only care about that if they specifically could cause it to happen from the user interface.  White box tests access the code as code - checking that return values from functions are correct, ensuring that objects are instantiated properly, etc. - instead of looking at the system from a user's perspective.
+
+Developers often act as white box testers of their own code, but quality analysts and external testers are also often involved.  Sometimes, there are special engineers (often called "software engineers in test") who will help build frameworks for a specific system under test for white box testing.  
+
+__Grey box testing__, as its name implies, is a hybrid approach between white and black box testing.  Grey box testing involves accessing the system as a user (as a black box tester would do) but has knowledge of the codebase and system (as a white box tester would have).  Using this knowledge, the grey box tester can write more focused black box tests.
+
+Let us assume that our grey box tester is looking at testing the email sorting functionality of the mail application.  Looking at the code, the tester realizes that the system uses insertion sort.  Insertion sort is known to have a worst case scenario of O(n^2) performance when the list is in reverse-sorted order.  Thus, the grey box tester may add a test to check that the system is still able to handle sorting a list of emails which are in reversed order.  Another example would be noticing that there is no null check in the function to do a search, and checking if just hitting "enter" instead of typing something in the search bar causes a null pointer dereference, searching for "" and finding every single email, or some other unexpected behavior. 
