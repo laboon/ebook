@@ -159,3 +159,9 @@ Developers often act as white box testers of their own code, but quality analyst
 __Grey box testing__, as its name implies, is a hybrid approach between white and black box testing.  Grey box testing involves accessing the system as a user (as a black box tester would do) but has knowledge of the codebase and system (as a white box tester would have).  Using this knowledge, the grey box tester can write more focused black box tests.
 
 Let us assume that our grey box tester is looking at testing the email sorting functionality of the mail application.  Looking at the code, the tester realizes that the system uses insertion sort.  Insertion sort is known to have a worst case scenario of O(n^2) performance when the list is in reverse-sorted order.  Thus, the grey box tester may add a test to check that the system is still able to handle sorting a list of emails which are in reversed order.  Another example would be noticing that there is no null check in the function to do a search, and checking if just hitting "enter" instead of typing something in the search bar causes a null pointer dereference, searching for "" and finding every single email, or some other unexpected behavior. 
+
+#### Static vs Dynamic Testing
+
+Another way of categorizing tests is to group them into __static tests__ and __dynamic tests__.  In dynamic tests, the system under test is actually running; the code is executing.  Virtually every test we have discussed so far has been a dynamic test.
+
+A static test, by contrast, does not execute the code.  Rather, it attempts to test aspects of the system without actually running the system.  Examples of static testing would be running a code coverage tool to see what amount of code is actually executed by tests, or having somebody review the code manually without actually running it.
