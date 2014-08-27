@@ -42,9 +42,15 @@ GOODREQ-2. The system shall be able to support a velocity of 0.8c (80% of the sp
 GOODEQ-3. The system shall store the last 100 coordinates of locations that it has sampled.
 
 BAD REQUIREMENTS:
-BADREQ-1. When the user presses the "velocity" button, the system shall access memory location 0x0894BC4012 and display it on the main screen. 
+BADREQ-1. When the user presses the "velocity" button, the system shall access memory location 0x0894BC40 and display it on the main screen. 
 BADREQ-2. The system shall use a antimatter-matter reaction in order to propel it to 0.8c.
 BADREQ-3. The system shall use a relational database to store the last 100 coordinates it has sampled.
+
+Note that the bad requirements all state __how__ something should be done, not __what__ the system needs to do.  What happens if the memory address where the velocity value is stored is changed?  The entire requirement would have to be changed, as well as any that may have depended on it.  Why is it important to use an antimatter-matter reactor, specifically?  The key thing is that the spaceship can move at a specific velocity.  Finally, why is it important that a relational database is used to store coordinates?  From the user's perspective, all that they care about is that the coordinates are stored.
+
+For complex or safety-critical systems, requirements may specify implementations.  In these cases, it is critical that a system not only does something, but does it in a proven and specified way.  For most systems, however, it is overkill and greatly limits flexibility as the software development process continues.
+
+By requiring implementation details, however, you remove the possibility of black-box testing.  Without looking at the code, how can you be sure that the system is displaying the contents ofmemory location 0x0894BC40?  It's impossible (unless you have the incredibly specific superpower of being able to look at a RAM chip and somehow know what is being stored at and where).  All tests would have to be white box tests.
 
 #### Testability
 
@@ -57,9 +63,15 @@ Note that the first requirement is very unambiguous; it states what should be do
 
 Now that we've seen examples of testable and non-testable requirements, can we specify in detail what it means for a requirement to be testable?
 
+In order for the requirements to be testable, they must meet five criteria, each of which we will cover individually.  They should be:
 
+1. Complete
+2. Consistent
+3. Unambiguous
+4. Quantitative
+5. Feasible to test
 
-Requirements should cover the entire operation of the system
+Requirements should cover the entire operation of the system.  This is what we mean by saying that a requirements specification should be __complete__.  Anything that is not covered by the requirements is liable to be interpreted in different ways by developer, designers, testers, and users.  If something is important, it should be specified precisely.
 
 #### More Tips on Writing Good Requirements
 
