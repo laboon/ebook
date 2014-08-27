@@ -138,6 +138,10 @@ Corner cases often involve a catastrophic failure of some kind (loss of network 
 
 #### Success cases, Failure Cases
 
+When discussing test cases, there are two kinds of output that one would expect from a given test.  First, there may be a __success case__; that is, the case returns an expected result given the input given to it.  In general, tests following the "happy path" of what a user would normally do should be success cases.
+
+__Failure cases__ are cases in which we expect the system to "fail" for some reason, such as attempting to write to a read-only disk, getting the square root of a negative number (in systems that don't work with imaginary/complex numbers), or attempting to add an invalid username to a system.  In failure cases, instead of returning a correct result, the system will do... something else.  What this "something else" is will vary from test to test, and with what kind of functionality is being tested.  Some examples might be returning an error code or default value, throwing an exception, shutting the system down, or simply logging the error to a logfile or STDERR.
+
 #### Black / White / Grey Box Testing
 
 There are various ways of testing a system under test, each of which has benefits and drawbacks.  We'll explore three different kinds of testing here, and go into detail on various ways to test using these three paradigms in following chapters.
