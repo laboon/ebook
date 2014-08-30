@@ -38,12 +38,17 @@ When writing requirements, it's important to keep in mind that requirements stat
 GOOD REQUIREMENTS:
 
 GOODREQ-1. When the user presses the "velocity" button, the current velocity of the spaceship shall be displayed on the main screen.
+
 GOODREQ-2. The system shall be able to support a velocity of 0.8c (80% of the speed of light) for at least three hundred days (7,200 hours) without requiring maintenance.
-GOODEQ-3. The system shall store the last 100 coordinates of locations that it has sampled.
+
+GOODREQ-3. The system shall store the last 100 coordinates of locations that it has sampled.
 
 BAD REQUIREMENTS:
+
 BADREQ-1. When the user presses the "velocity" button, the system shall access memory location 0x0894BC40 and display it on the main screen. 
+
 BADREQ-2. The system shall use a antimatter-matter reaction in order to propel it to 0.8c.
+
 BADREQ-3. The system shall use a relational database to store the last 100 coordinates it has sampled.
 
 Note that the bad requirements all state __how__ something should be done, not __what__ the system needs to do.  What happens if the memory address where the velocity value is stored is changed?  The entire requirement would have to be changed, as well as any that may have depended on it.  Why is it important to use an antimatter-matter reactor, specifically?  The key thing is that the spaceship can move at a specific velocity.  Finally, why is it important that a relational database is used to store coordinates?  From the user's perspective, all that they care about is that the coordinates are stored.
@@ -76,13 +81,30 @@ Requirements should cover the entire operation of the system.  This is what we m
 The requirements should be __consistent__.  That is, they should not contradict each other or the laws of the universe (or whatever domain that you are operating in).  Requirements which do not contradict each other are __internally consistent__; requirements which do not contradict the world outside the system are __externally consistent__.
 
 Here is an example of a group of requirements that is not internally consistent:
+
 REQ-1. The system shall display "WARNING: OVERPRESSURE" on the console whenever the pressure is 100 PSI or greater.
+
 REQ-2. The system shall turn off the console and display no further information as long as the pressure is less than 200 PSI.
 
 What should the system do if the pressure is between 100 and 200 PSI?  You can use equivalence class partitioning here to determine that the requirements are not internally consistent.
 
 The requirements should be __unambiguous__.
 
+If at all possible, the requirements should be __quantitative__ as opposed to __qualitative__.  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrum-diddly-umptious."  If you can specifically state what the system is required to do, then do so.  
+
+BADREQ-1. The system shall return results extremely quickly.
+
+What do we mean by this?  It's impossible to test without defining what we mean by "extremely quickly", or what kind of results need to be returned quickly.
+
+Finally, some common sense needs to be applied to the requirements writing.  It' possible to write a requirement which may be theoretically possible to test, but for various reasons, impossible to test in the real world.  A requirement like this is not __feasible to test__.  Let's say that we have the following requirements for testing our air pressure sensor:
+
+REQ-1. The system shall be able to endure pressures of up to 9.5 x 10^11 pounds per square inch.
+
+REQ-2. Under normal operating procedures (defined elsewhere), the system shall remain usable for two hundred years of continuous use.
+
+Both of these requirements are, in fact, possible to test.  In order to test the first, simply place the system at ground zero of a relatively powerful thermonuclear explosion, and determine if system quality degrades after detonation.  The second requirement is even easier to meet; simply drive around with the pressure sensor for two hundred years.  Since the human lifespan is noticeably shorter than that, you'll probably need to do a few generations of testers.  Whether you make "pressure sensor tester" a hereditary position, or use a "master/apprentice" style system, is entirely up to you.
+
+When applied to physical phenomena, it is manifestly clear how silly it would be to test these requirements (if they don't seem silly to you, how many testers do you know who have thermonuclear weapons at their disposal?  Probably fewer than five or so.)  However, oftentimes, it's more difficult to determine that a requirement is not feasible to test when you are dealing with software.  Living in a physical world, the human brain often has difficulty with determining how feasible a software requirement (which deals in the virtual world) may be to test.
 
 #### More Tips on Writing Good Requirements
 
