@@ -88,7 +88,13 @@ REQ-2. The system shall turn off the console and display no further information 
 
 What should the system do if the pressure is between 100 and 200 PSI?  You can use equivalence class partitioning here to determine that the requirements are not internally consistent.
 
-The requirements should be __unambiguous__.
+The requirements should be __unambiguous__.  That is, they should specify things as precisely as possible for working in the particular domain the software is for.  The acceptable level of ambiguity will vary dramatically depending on what kind of software you are developing.  For example, if you are writing software for a children's game, it may be sufficient to state that a particular square should be "red".  If you are describing the requirements for an interface to a nuclear reactor, the exact Pantone shade of red that a warning light should be may need to specified.
+
+That being said, be careful not to paint yourself into a corner with too-restrictive requirements.  If your requirements state that a particular page needs to be a certain number of pixels, you may have difficulties converting to mobile devices, for example.  However, requirements certainly should not be of the form:
+
+REQ-1. The system shall do all of the shutdown stuff whenever the "shutdown" button is pressed.
+
+What is the "shutdown stuff"?  Speaking to our friends, or amongst co-workers, we may use relatively ambiguous terms like that because the human brain is pretty good at filling in ambiguity.  However, ambiguous requirements can lead to different developers or other stakeholders interpreting them in different ways.  The classic example of this is the Mars Climate Orbiter mishap, where one group of software engineers used Imperial measures and another group used metric measures.  Both groups thought the correct way to return results was obvious, but they came up with different implementations.
 
 If at all possible, the requirements should be __quantitative__ as opposed to __qualitative__.  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrum-diddly-umptious."  If you can specifically state what the system is required to do, then do so.  
 
@@ -106,10 +112,32 @@ Both of these requirements are, in fact, possible to test.  In order to test the
 
 When applied to physical phenomena, it is manifestly clear how silly it would be to test these requirements (if they don't seem silly to you, how many testers do you know who have thermonuclear weapons at their disposal?  Probably fewer than five or so.)  However, oftentimes, it's more difficult to determine that a requirement is not feasible to test when you are dealing with software.  Living in a physical world, the human brain often has difficulty with determining how feasible a software requirement (which deals in the virtual world) may be to test.
 
-#### More Tips on Writing Good Requirements
+#### Functional vs Non-Functional Requirements (Quality Attributes)
 
-#### Functional vs Non-Functional Requirements
+
+Functional requirements state what a system should __do__; non-functional requirements state what a system should __be__.
 
 #### Functional Requirements
 
-#### Non-Functional Requirements
+#### Non-Functional Requirements (Quality Attributes)
+
+#### A Note on Naming Requirements
+
+Back in the days of yore, when primitive software engineers chiseled binary trees with stone axes, there was only one way to write requirements.  It was the way that their forefathers had written requirements, and their forefathers before them, unto the dawn of civilization.  This sacred method of requirements naming was as follows:
+
+REQUIREMENTS
+
+1. The system shall do X.
+2. The system shall do Y.
+3. The system shall do Z whenever event A occurs.
+...
+
+This was simple enough for small projects.  As software projects became larger and more specified, however, some problems arose with this scheme.  For example, what happened if a requirement became irrelevant?  There are now "missing" requirements; the list of requirements may be 1, 2, 5, 7, 12, etc.  Conversely, what is software requirements needed to be added?  If the list of requirements is just a straight linear ordering, those new requirements need to be put in at the end, or squeezed in between existing requirements (Requirement-1.5).
+
+Another problem was remembering what each requirement actually specified based solely on the number.  It is not very difficult for the average person to keep a list of a few requirements in their head, but this becomes untenable when there are hundreds, or even thousands, of software requirements.  
+
+Several methods were developed in order to ameliorate the issue.  One method was to group all of the requirements into different sections (e.g., DATABASE-1, DATABASE-2) and continue the traditiona numbering scheme from there.  At least under this scheme, a new DATABASE requirement did not require being placed at the very end of the list of requirements, but rather placed in a loation near other relevant requirements.  This also gave a hint as to what the requirement referred.
+
+Another method is to name the requirements with abbreviations of what the requirement is actually supposed to do.  Prefixes and suffixes 
+
+All that being said, even more important is to use the same requiremensts naming convention as the rest of your team!
