@@ -17,9 +17,9 @@ TOO-HOT:    [175, 176, ... INF - 1, INF] -> "TOO HOT"
 
 Our boundary values are 174 and 175, as they mark the division between the two equivalence classes.  Let's also use two interior values, 135 for the JUST-RIGHT class and 200 for the TOO-HOT class.  For this particular sample test plan, we will ignore the implicit boundary values of infinity and negative infinity (or the system's concept of these, MAXINT and -MAXINT).
 
-Using these values, 
+Using these values, and a general idea of what we would like to test, we can start to create test cases.  Although different tools and companies will have different templates for entering test cases, this is a relatively standard one that can be applied or modified for most software projects.
 
-
+```
 IDENTIFIER:
 TEST CASE: 
 PRECONDITIONS:
@@ -27,6 +27,23 @@ INPUT VALUES:
 EXECUTION STEPS:
 OUTPUT VALUES:
 POSTCONDITIONS:
+```
+
+##### Identifier
+
+Just as requirements have identifiers, test cases do as well.  These provide a short and simple way to refer to the test case.  In many instances, these are just numbers, but also could use more complex systems like the one described in the section on naming requirements.
+
+##### Test Case (or Summary)
+
+##### Preconditions
+
+##### Input Values
+
+##### Execution Steps
+
+##### Output Values
+
+##### Postconditions
 
 
 #### Developing a Test Plan
