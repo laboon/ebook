@@ -45,9 +45,18 @@ Don't worry if you still have some questions on these definitions.  In the follo
 
 Just as requirements have identifiers, test cases do as well.  These provide a short and simple way to refer to the test case.  In many instances, these are just numbers, but also could use more complex systems like the one described in the section on naming requirements.
 
+Test plans are usually not as large as all of the requirements for a program; once they get big enough, individual tests plans are grouped under larger test suites.  Thus, often the identifier is just a number.  If you are using automated test tracking software, then it will usually auto-number these for you.
+
 ##### Test Case (or Summary)
 
-In this field, a succinct summary of what the test case is supposed to test, and how, is provided.
+In this field, a succinct summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell what exactly is meant to be tested, and sometimes how it is to be tested.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.  
+
+__Examples__
+
+1. Ensure that on-sale items can be added to the cart and will have their price automatically reduced.
+2. Ensure that passing a non-numeric string will result in the square root function throwing a InvalidNumber exception.
+3. When the system detects that the internal temperature has reached 150 degrees Fahrenheit, ensure that it displays an error message and shuts down within five seconds.
+4. Ensure that if the operating system switches time zones midway through a computation, that computation will use the original time zone when reporting results.
 
 ##### Preconditions
 
@@ -72,18 +81,105 @@ This may work fine the first time you run the test case.  However, this test is 
 
 There is a drawback from a brevity standpoint, as well.  We have just added three execution steps where there was only one precondition.  Brevity, aside from being the soul of wit, is also helpful in ensuring that the important parts of a test are focused upon.  Boilerplate text is the enemy of attention and focus.
 
-The dividing line between preconditions and execution steps can sometimes be an art rather than a science.  In general, 
+The dividing line between preconditions and execution steps can sometimes be an art rather than a science.  In general, the more safety-critical the domain, the more precise the preconditions will be.  As an example, let's say that you are testing an image-sharing site, where all images are public and visible to any other users.  The test case involves checking that the correct image shows up on the screen when a user goes to the correct URL.   The following preconditions may be enough for this test case:
 
-The amount of detail put in to describing the preconditions of a system will vary wildly based on the domain of the software that you are testing.   
+1. The user has logged in
+2. The image has been posted to the URL /pictures/foo.
+
+However, if we were testing banking software and were using that image display to warn of an invalid transaction, there would probably be more preconditions, and the ones that did exist would be more specific.  
+
+1. User X has logged in with password Y
+1. User X has no warnings or STOP CHECK notices on their account
+1. The savings account of user X contains $0.00.
+2. The checking account of user X contains $50.00.
+2. User has no accounts with the bank other than savings and checkings accounts.
+3. User has attempted to withdraw $50.01 from the user's checking account.
+
+In both cases, the execution steps will be the same, or at least very similar - go to a URL and check that a particular image shows up.  However, the state of the system would have been much more detailed in the case of the banking software.  This is not only because the system itself is much more complex, but also because a failure would be much significant for the bank system than the image-sharing system.  In such a case, it makes sense to specify exactly what should happen and what should be in place before the execution steps.  The more exactly you write the preconditions, the easier it will be to reproduce the same situation exactly, and as we have discussed, reproducibility is the key to fixing a problem.
 
 ##### Input Values
 
+Whereas preconditions are aspects of the system that are set before the test is run, __input values__ are those values passed directly in to the functionality under test.  This difference can be a subtle one, so let's explore a few examples.
+
+Imagine we have a sorting routine, billSort, which we think should be twenty times faster than any sorting algorithm out there.  However, rather than taking it at face value that billSort's assertion that it will always produce the correct result, we are developing tests for it.  Our particular implementation uses a global variable, SORT_ASCENDING.  Depending on whether SORT_ASCENDING (a boolean flag) is set to true or false, it will either sort ascending (from the lowest value to the highest - e.g., 'a', 'b', 'c') or sort descending (from the highest value to the lowest - e.g., 'c', 'b', 'a').  If we are going to test this sorting routine, setting the flag would count as a precondition, as this is something which needs to be set up before the test.  The array ['a', 'c', 'b'] would be the input values; these values are sent directly in for testing.
+
+Another way to think of the difference between input values and preconditions is thinking of the tests as methods.  This is probably a good exercise for you to do anyway - we'll definitely be doing more of it when we get to the chapter on unit tests!
+
+```java
+public boolean testArraySort() {
+
+  // PRECONDITIONS
+  SORT_ASCENDING = true;
+
+  // INPUT VALUES
+  int[] vals = [1, 2, 3];
+
+  // New, improved billSort method! :)
+  billSorted = billSort(vals);
+
+  // Old, busted built-in Java sort. :(
+  normalSorted = Arrays.sort(vals);
+
+  if (Arrays.equals(billSorted, normalSorted)) {
+    // Our arrays are equal, test passes!
+    return true;
+  } else {
+    // Our arrays are not equal, test fails.
+    return false;
+  }
+}
+```
+
+Note that because you aren't sending the SORT_ASCENDING flag in to the functionality under test (specifically, the billSort() method), then it is not considered an input value.  However, the vals array is passed in to the the billSort() method, so it is considered an input value.
+
+Isn't it possible to redesign the system so as to send in the flag as an argument to the billSort() method, though?
+
+```java
+  // Arguments = values array, SORT_ASCENDING flag
+  billSorted = billSort(vals, true);
+```
+
+This is certainly possible, and in this case one could consider SORT_ASCENDING an input value as opposed to a precondition.  Whether something is a precondition or an input value often depends on the implementation of a program.  If we were writing this in a language such as Haskell, for example, where side effects are extremely limited, functions such as this would almost never have any preconditions other than 'the program is running'.
+
+Sorting is a mathematically pure concept, but much of what a tester tests is not so straightforward.  In such cases, it can often be difficult to determine what counts as input values and what counts as preconditions.  As a heuristic, if someone selects or enters a value, as part of the execution of the test case, it should be considered an input value, otherwise it is a precondition.  For example, if the test case checks for a user logging in as different names, then the login name would be an input value.  If the test is checking for the ability to add items to a cart when logged in as a certain user, the login name would be a precondition, as it is not entered directly in the test case, but should be done before the test even starts.
+
 ##### Execution Steps
+
+Now that the preconditions and input values for a test case have been determined, it's time to actually run the test case.  The steps taken when running the test case are called the __execution steps__.  These are what the tester actually does - and must do specifically! - when running the test case.  Whereas with preconditions, it is sufficient to simply get an end result (similar to requirements, where the goal is to specify what is to be done, now how to do it), with execution steps, it is critical to follow them precisely.  Execution steps are often incredibly specific, depending on the domain, as it is of paramount importance to follow them exactly.
+
+Let's start with a simple example.  We are testing an eCommerce software system and checking that adding one item to the cart, when the cart is already empty, will display a "1" as the number of items in the cart.  The precondition is that the cart contains zero items.  This may have been accomplished in a variety of ways: the user has never logged on before; the user is already logged on and  bought any items that were in the cart, resetting the counter; or any existing items that were in the cart have been removed without being bought.  From the point of view of this case, it does not matter how this point (i.e., the cart containing zero items) has been reached, only that it does.
+
+Conversely, the actual execution steps should be spelled out very clearly.
+
+1. Search for item "SAMPLE-BOX" by selecting the "Search" textbox, entering "SAMPLE-BOX", and hitting the "Search" button.  
+2. An item labeled "SAMPLE-BOX" should be displayed.  Click on the button labeled  "Add Item to Cart" next to the picture of the SAMPLE-BOX.
+3. Inspect the "Number of Items in Cart = x" label at the top of the screen.  
+
+Note that these steps are relatively explicit.  It is important to write the steps down in enough detail that if a problem occurs, it will be easily reproducible.  If the execution steps had just mentioned to "Add an item", our tester could have chosen any item from the inventory.  If the problem is with the item selected (say, adding SAMPLE-PLANT never increments the number of items in the cart, but SAMPLE-BOX does), then it may be difficult to figure out exactly what the problem is.  Proper defect reporting can help ameliorate this issue, but it can be prevented entirely by ensuring that the execution steps are specified correctly.  Of course, it's possible to go overboard with this.
+
+1. Move mouse cursor to pixel (170, 934) by moving right hand 0.456" from previous location using the computer mouse.  This location should correspond with a textbox labeled "Search".
+2. Apply one pound of pressure for 200 milliseconds to the left button of the mouse, using your right index finger.
+3. After 200 milliseconds, quickly remove pressure from the left button of the mouse.  Ensure that a cursor now exists and is blinking at a rate of 2 Hz in the textbox... (et cetera)
+
+In general, it's best to set the level of specification to the ability and knowledge of the people who will actually be executing the tests (or, in the case of automated tests, of the programs that will actually be executing the execution steps).  If you have in-house testers that are very familiar with both the software and domain being tested, it may only be necessary to say "Set the frobinator to FOO using the primary dial."  This is specific enough that a user who is familiar with the system will unambiguously be able to follow the steps.  However, not everybody will be as familiar with the system as the writer of the tests.  Many times, the people who actually execute the tests are contractors, outsourced, or simply relatively new testers on the project.  For an outside tester who is not familiar with frobinization (and surprisingly, there are a few people out there who are not), it may be necessary to specify what needs to be done in much more detail.
+
+1. Open the PRIMARY control panel by selecting "Dials... Primary" from the menu at the top of the screen.
+2. Select the purple dial labeled FROBINATOR.  Move the dial to the right from its initial position until the STATUS textbox reads "FOO".
+
+As a final note, please note that there is no such thing as a frobinator or frobinization.
 
 ##### Output Values
 
+Values that are returned directly from the functionality being tested are __output values__.  When dealing with strictly mathematical functions, these are very easy to determine - a mathematical function by definition takes in some input value or values, and sends out some output value or values.  For example, for an absolute value function, the function takes in some number x, and if x < 0, it returns -x; otherwise, it returns x.  Testing the function with -5 and checking that it returns 5, it is obvious that the input value is -5 and the output value is 5.  There are no preconditions; sending in -5 should always return 5, no matter what global variables are set, no matter what is in the database, no matter what is displayed on the screen.  There are no postconditions; the function shouldn't display anything else on the screen, or write something to the database, or set a global variable.
+
+Once again, though, computer programs don't consist solely of mathematical functions, and so we must learn to distinguish postconditions from output values.
+
 ##### Postconditions
 
+
+##### A Note: Expected Behavior vs Observed Behavior
+
+Although we've discussed the difference between output values and postconditions at length, the fact is that in many cases the difference doesn't really matter, or is too academic to make much fuss about.
 
 #### Developing a Test Plan
 
