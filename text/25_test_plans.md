@@ -31,14 +31,15 @@ POSTCONDITIONS:
 
 ##### Overview of the Fields
 
-1. __Identifier__ - This is an identifier, such as 16, DB-7, DATABASE-TABLE-DROP-TEST, which allows you to uniquely refer to the test case.
-2. __Test Case__
-PRECONDITIONS:
-INPUT VALUES:
-EXECUTION STEPS:
-OUTPUT VALUES:
-POSTCONDITIONS:
+1. __Identifier__ - An identifier, such as 16, DB-7, DATABASE-TABLE-DROP-TEST, which uniquely identifies the test case.
+2. __Test Case__ - A description of the test case and what it is testing.
+3. __Preconditions__ - Any preconditions for the state of the system or world before the test begins.
+4. __Input Values__ - Any values input directly to the test.
+5. __Execution Steps__ - The actual steps 
+6. __Output Values__ - Any values output directly by the test.
+7. __Postconditions__ - Any postconditions of the state of the system or world which should hold true after the test has been executed.
 
+Don't worry if you still have some questions on these definitions.  In the following sections, we will go more deeply into all of them and provide examples.
 
 ##### Identifier
 
@@ -50,7 +51,7 @@ In this field, a succinct summary of what the test case is supposed to test, and
 
 ##### Preconditions
 
-A test often requires that the system is in a certain state before the test itself can be run.  While one could theoretically consider putting the system into such a state as part of the execution of the test (see the section on Execution Steps, below), in general it makes more sense that certain __preconditions__ must be met before the test can start.  This will be necessary for most tests which are not testing mathematically pure functions.
+A test often requires that the system is in a certain state before the test itself can be run.  While one could theoretically consider putting the system into such a state as part of the execution of the test (see the section on Execution Steps, below), in general it makes more sense that certain __preconditions__ must be met before the test can start.  This will be necessary for many tests which are not testing mathematically pure functions.
 
 Example preconditions include: 
 
@@ -61,9 +62,17 @@ Example preconditions include:
 
 Let's look a little bit further at the last example, and see why it makes more sense to have this as a precondition rather than an actual part of the test.  We would like to test that adding an item when there are already three items in the cart makes the cart display four items.  Describing the test in English, you can already see that one naturally does not mention adding the first three items.  From the perspective of this particular test, the specific steps for adding these items is irrelevant; all that matters is that at the beginning of the test, there are three items in the cart.
 
-From a pragmatic perspective, being able to place preconditions on the test provides both flexibility and brevity to the tests.  Suppose that instead of putting the precondition that three items needed to be in the cart, we included the following execution steps in the 
+From a pragmatic perspective, being able to place preconditions on the test provides both flexibility and brevity to the tests.  Suppose that instead of putting the precondition that three items needed to be in the cart, we included the following execution steps in the test:
 
-The dividing line between preconditions and execution steps can sometimes be an art rather than a science.
+1. Search for item "1XB"
+2. Select the "1XB" item
+3. Click the "Add to Cart" button three times
+
+This may work fine the first time you run the test case.  However, this test is very fragile - there are numerous ways for it to break if the system changes out from underneath.  What if the "1XB" item no longer exists?  What if the Search functionality has a defect where items that start with 1 cannot be found?  What if the "Add to Cart" button name has changed?
+
+There is a drawback from a brevity standpoint, as well.  We have just added three execution steps where there was only one precondition.  Brevity, aside from being the soul of wit, is also helpful in ensuring that the important parts of a test are focused upon.  Boilerplate text is the enemy of attention and focus.
+
+The dividing line between preconditions and execution steps can sometimes be an art rather than a science.  In general, 
 
 The amount of detail put in to describing the preconditions of a system will vary wildly based on the domain of the software that you are testing.   
 
