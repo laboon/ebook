@@ -29,13 +29,43 @@ OUTPUT VALUES:
 POSTCONDITIONS:
 ```
 
+##### Overview of the Fields
+
+1. __Identifier__ - This is an identifier, such as 16, DB-7, DATABASE-TABLE-DROP-TEST, which allows you to uniquely refer to the test case.
+2. __Test Case__
+PRECONDITIONS:
+INPUT VALUES:
+EXECUTION STEPS:
+OUTPUT VALUES:
+POSTCONDITIONS:
+
+
 ##### Identifier
 
 Just as requirements have identifiers, test cases do as well.  These provide a short and simple way to refer to the test case.  In many instances, these are just numbers, but also could use more complex systems like the one described in the section on naming requirements.
 
 ##### Test Case (or Summary)
 
+In this field, a succinct summary of what the test case is supposed to test, and how, is provided.
+
 ##### Preconditions
+
+A test often requires that the system is in a certain state before the test itself can be run.  While one could theoretically consider putting the system into such a state as part of the execution of the test (see the section on Execution Steps, below), in general it makes more sense that certain __preconditions__ must be met before the test can start.  This will be necessary for most tests which are not testing mathematically pure functions.
+
+Example preconditions include: 
+
+1. The system is already running
+2. The database contains a user "Joe" with password "EXAMPLE"
+3. The SORT_ASCEND flag is set to true
+4. There are already three items in the shopping cart
+
+Let's look a little bit further at the last example, and see why it makes more sense to have this as a precondition rather than an actual part of the test.  We would like to test that adding an item when there are already three items in the cart makes the cart display four items.  Describing the test in English, you can already see that one naturally does not mention adding the first three items.  From the perspective of this particular test, the specific steps for adding these items is irrelevant; all that matters is that at the beginning of the test, there are three items in the cart.
+
+From a pragmatic perspective, being able to place preconditions on the test provides both flexibility and brevity to the tests.  Suppose that instead of putting the precondition that three items needed to be in the cart, we included the following execution steps in the 
+
+The dividing line between preconditions and execution steps can sometimes be an art rather than a science.
+
+The amount of detail put in to describing the preconditions of a system will vary wildly based on the domain of the software that you are testing.   
 
 ##### Input Values
 
