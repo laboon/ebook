@@ -176,10 +176,19 @@ Once again, though, computer programs don't consist solely of mathematical funct
 
 ##### Postconditions
 
+Any side effects or other state of the system that are either caused by the functionality, or should be in effect some other way after the execution steps have been completed, but are not output values,  are __postconditions__.  Postconditions may be directly caused by the functionality under test, such as a warning message being displayed, or some data written to the database, or a global variable being set.  However, a postcondition is any condition which needs to be in place after the execution steps are complete, and may not be directly impacted by the functionality.  For example, a postcondition may be that a global variable was __not__ set, or that the system is still running, or that a thread was not killed.
 
 ##### A Note: Expected Behavior vs Observed Behavior
 
-Although we've discussed the difference between output values and postconditions at length, the fact is that in many cases the difference doesn't really matter, or is too academic to make much fuss about.
+Although we've discussed the difference between output values and postconditions at length, the fact is that in many cases the difference doesn't really matter, or is too academic to make much fuss about.  A similar argument could be made on preconditions and input values.
+
+The principle idea to keep in mind when writing a test case is that the point of the test case is that:
+
+When the system is in state X,  
+And the following actions Y are performed,  
+I expect Z to happen  
+
+That value Z is the crux of the test - it is the expected behavior.  It is impossible to test for something if you don't know what you expect to happen.  Just like Lewis Carroll said, "if you don't know where you're going, any road will get you there."  Similarly, when writing a test case, you need to know where you eventually want the test case to go, otherwise there's no way to check that you got to where the system should be.
 
 #### Developing a Test Plan
 
@@ -187,7 +196,28 @@ Although we've discussed the difference between output values and postconditions
 
 #### Executing a Test Plan
 
+Executing a test plan is called a __test run__.  One way to think of test runs is as the equivalent of an object and a class.  Executing a test plan generates a test run similar to how instantiating a class creates an object.  The test plan is the map of where to go, whereas the test run is the voyage that the traveler makes.
+
+Executing a test plan should be a relatively simple process, assuming that you have developed the test plan appopriately.  After all, you have spent time ensuring that the preconditions are reasonable to set up, that the input values are specified, that the execution steps are deailed enough to follow, and that output values are postconditions are feasible to test.  At this point, actually executing the tests should be a relatively mechanical process (and this is one of the reasons that automated testing is possible).  You should be able to send someone into a room with the software and the appropriate hardware to run it on, and some number of hours later, depending on how long the test plan is, the person will come out of the room with a fully-tested system.
+
+Unfortunately, this beautiful vision does not always come to pass.  In the process of executing a test case, the test case can have different statuses.  There will be a final status for each test case, although the status is liable to change during the execution of the test run.  There is also often a "null" or "untested" status which means that that particular test case has not yet been executed.
+
+Although there is no universal status repository, these are a representative sampling of the kinds of test cases that might be encountered in your testing career.  The names may change, but these six provide good coverage of all the situations that your test case may be in.
+
+1. Passed
+2. Failed
+3. Paused
+4. Running
+5. Blocked 
+6. Error
+
+
+
 #### Test Plan / Run Tracking
+
+Although you could execute a test plan for fun or for your own sense of self-improvement, in most cases you want to record what the results of the test plan were.  
+
+
 
 #### Traceability Matrices
 
