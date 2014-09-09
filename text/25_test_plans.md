@@ -211,13 +211,21 @@ Although there is no universal status repository, these are a representative sam
 5. Blocked 
 6. Error
 
+A __passed__ test is one in which all of the expected behavior (i.e., the output values and postconditions) match the observed behavior.  Colloquially, one could say that it's a test where everything worked.  
 
+Conversely, a __failed__ test in which at least one aspect of the observed behavior was not equal to the expected behavior.  This difference could be in either the output values or the postconditions.  For example, if a square root function returned that the square root of 4 was 322, then that test case would be marked "failed".  If a test case had a postcondition that a message "ERROR: ELEPHANTS CAN'T DANCE" appears on the screen, but the error message in fact reads "ERROR: ELEPHANTS CAN'T DEFENESTRATE", then once again the test case has failed.  Whenever a test case is marked failed, there should be a corresponding defect filed.  This could be a new defect, or it could be that a known defect has caused multiple problems - for example, errors for all animals are saying that they can't defenestrate when the actual issue is that they can't dance.  If there is no defect associated with a failed test case, then either the test case wasn't important enough to test, or the defect found wasn't important enough to file.  If either is the case, you should rethink your test case!
+
+A __paused__ test is one that has started, but had to be put on hold for some period of time.  This allows other testers and managers to know the status of a test and the progress a tester has been made.  It also ensures that another tester doesn't step in and start doing the test that has already been started by another tester.  A test case may be paused for quotidian reasons, like the tester going to lunch, or something directly related to the system under test, such as leaving the lab to get new test data.  In any case, the assumption is that the tester will get back to working on this test as soon as he or she returns, not that it is on hold for a long period of time while the tester performs other tasks (that is covered by the "Blocked" status - see below).
+
+A __running__ test is one which has started, but has not yet completed, and thus the final result is not yet known.  This is usually used in cases where the test takes a long time to complete, and the tester would like other testers to know that it is being executed.  Although technically all tests enter a running state for a brief period of time (when the tester is executing the execution steps), unless there is some sort of automation, this status is only set when the test is long-running.
+
+In some cases, a test cannot be executed at the present time.  This can be due to external factors (such as a piece of testing equipment not being available) or internal factors (such as a piece of functionality not being completed, or impossible to test due to other defects present in the system).  In such cases, the test can be marked as "blocked".  This indicates that the test cannot currently be run, although it may be run in a future test case when the issues blocking its execution have been removed.
+
+Finally, in some cases a test case simply cannot be executed, either now or in the future, due to a problem with the test case itself.  In such cases, the test status can be marked as "error".  Tests marked as in error could have an issue with the test contradicting the requirements, such as a requirement saying that the background color of a web page should be blue, but the system under test is actually a command-line application.  It could be a problem with the expected behavior of a program, for example, saying that the square root of 25 should result in "poodle".  Oftentimes, a test marked "error" may be the result of a simple typo, but it could point to a fundamental problem with the development team's or testing team's understanding of the software.  Test cases marked "error", unlike those marked "blocked", are not expected to be run again until the error is resolved.
 
 #### Test Plan / Run Tracking
 
 Although you could execute a test plan for fun or for your own sense of self-improvement, in most cases you want to record what the results of the test plan were.  
-
-
 
 #### Traceability Matrices
 
