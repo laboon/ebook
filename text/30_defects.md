@@ -1,8 +1,50 @@
 ## Defects
 
+We've spent quite a bit of time up to this point learning how to find defects.  This makes sense, since one of the key goals of testing is to do exactly that.  However, we have not yet done is to rigorously define defects and think about what to do once they are found. 
+
 #### What is a Defect?
 
-#### Reporting a defect
+A defect is any sort of error in a program which causes the system under test to do one of the following:
+
+1. Not meet the specified requirements (functional or non-functional)
+2. Return an incorrect result
+3. Stop execution unexpectedly (system stability is an implicit requirement in all systems under test)
+
+The most obvious kind of defect is a system failing to meet requirements.  If the requirements state that the program should do something, and the program does not do it, then that is a defect.  As discussed in the chapter on requirements, though, anything written in natural language is bound to have some ambiguities.  The developer who implemented the feature may have had a different understanding of what the requirement actually meant than the tester.  
+
+An example of a system returning an incorrect result would be a spreadsheet program showing that the value of 2 + 3 is 23, or a drawing program where every time the user clicks on the color red, the drawing tool starts drawing in blue.  These may or may not be specified by the requirements (and thus may or may not overlap with the second kind of defect).  
+
+The last kind of defect is one common to all programs - a program should not die unexpectedly.  That is, the intent of the user or the original writer or installer of the program is that the system should be running at some point in time, that program should be running at that point in time.  
+
+Software may "shut down hard" without it necessarily being a defect.  For example, sending a SIGKILL (via "kill -9" or a similar command) to a Unix process causes the program to cease execution without running any of its shutdown routines.  However, it did not die unexpectedly - the user wanted it to do so and even sent it a message telling it to do exactly that!  The reason that the user had to send a SIGKILL to the process may be a defect, but the fact that it stopped running under these circumstances is not a defect.  If the system dies to a segmentation fault, an untrapped division by zero, or dereferencing a null pointer, these are all considered defects.  They should never happen in a program, even if the requirements do not specify that "the program shall run without any null pointer exceptions".
+
+Finally, note that the word "bug" is often used interchangeably with the word "defect".  They mean exactly the same thing, but "bug" is much more colloquial.  In this book, the word "defect" will be used, except in those cases where author forgets to do so.  
+
+#### Reporting a defect and the Defect Lifecycle
+
+Upon discovering a defect, the tester (or whoever else finds the defect) should __report__ it.  Reporting may have different meanings depending on the organization and the severity of the defect.  At its root, it means that the specifics of the defect should be marked down in a location where it can be reviewed in the future, by stakeholders of the project - other testers, developers, management, etc.  In most cases, teams will have some sort of defect-tracking software, but defect reporting could be as simple as marking down the error with old-fashioned pen and paper.
+
+When testing software, it is important to keep track of as much information as is practical, for a variety of reasons.  The first is that the more information availble, the more likely the defect will be reproducible.  If you have a system failing only when certain environment variables are set, but don't specify that in the defect report, then the developer assigned to fix the defect may just file it as "works for me", since the system did work as designed no matter what the developer did.  Without knowing about those environment variables, there's no way for the reproduction to take place.
+
+On the other hand, it's possible to take this too far.  There is usually no need to mark down every process running on the system whenever a typo is discovered.  Exactly how much to write down for a defect will vary based on the defect and domain in which you are working.  However, there are certain pieces of data which are useful in many cases.  The following section will outline a defect template so that these items are not forgotten.  By reminding the filer of the defect to include certain information, the filer is much more likely to not miss any important steps or information, thus minimizing superfluous communication about the defect in the process of fixing it.  Checklists and templates like this are extremely powerful tools for situations where the costs of failing to do something are high; see __The Checklist Manifesto__ by Atul Gawande for a detailed explanation.
+
+When a defect is reported, its life is just beginning.  Just as software development as a whole has a "software development lifecycle" - going from requirements, to design, etc., all the way to maintenance, support, and eventual end-of-lifing of the software, defects also have a "defect lifecycle".  The defect lifecyle is as follows:
+
+1. Discovery
+2. Reporting
+3. Triaging / Assignment
+4. Fixing
+5. Verification
+
+When a tester or other user first encounters and recognizes a defect, this is the "Discovery" stage.  In some cases, nothing can happen after this - the user ignores the defect or decides that it's not worth investigating further.  However, for a professional tester, this should not be the case - the job of a tester is to determine the quality of the software, and this includes finding and reporting defects.
+
+The second stage is filing the defect, usually in some sort of standardized way.  This involves spending some time and figuring out exactly what the tester did to expose the issue, what was expected to happen, and what was observed to happen.  Rememember that the role of the tester is to discover the issue and how to reproduce it, not to figure out the root cause of the problem in the code.  This can be done - and often is, depending on the technical knowledge of the tester - but it is not the primary role.  If a tester looks too deeply into the codebase, he or she may be tempted to write what needs to be done to fix the defect as opposed to focusing on what the defect actually is.  Remember, similar to requirements, a defect should be focused on __what__ is wrong, not __how__ to fix it.
+
+After a defect is filed, somebody must determine whether or not to spend resources to fix it, and if so, how to prioritize what may be a large number of defects.  This is called __triaging__.  The word triage comes from a medical term, where 
+
+Developer
+
+Finally, after the defect has been fixed, the software should be returned to the test team to verify that it has been fixed.  The developer or developers may not have tested all the different edge cases, or they may have caused other issues with their fix.  The tester can independently verify that the fix did indeed resolve the defect without causing other defects in the process (or at least not ones worse than the one that was fixed).  In some cases, of course, other defects may arise, especially if the first one was occluding others.  For example, if there is a typo in the "welcome" page which appears after login, but a defect has prevented users from logging in, the tester should still verify a fix that allows users to log in.  The fact that there is a typo on the welcome page has been exposed by the ability to log in, but it is not related.  Even a defect which causes related defects may sometimes be verified.  Continuing the example of a login not working, if a fix comes in that allows users to log in, but never checks the password, this may be seen as an improvement and a second defect filed for the password issue.
 
 #### A Standardized Defect Template
 
@@ -18,6 +60,7 @@ EXPECTED BEHAVIOR:
 OBSERVED BEHAVIOR:
 IMPACT:
 SEVERITY:
+WORKAROUND:
 NOTES:
 ```
 
@@ -97,6 +140,12 @@ Grading the severity of bugs can be art, not a science, although there are some 
 
 Severity should not be mistaken for priority.  Severity is how severe the problem is, whereas priority marks what order the organization would like to see the problem fixed.  For example, a typo on the home page of a web application is of low severity, as it does not impact the functionality of the software.  However, it reflects poorly on the company that created it, and will require only a modicum of developer time to fix.  In such a case, its priority would be very high.  Alternatively, a defect could of low priority, but high severity.  An example would be a serious performance issue with database reads, where they are so slow that it makes the system completely unusable to the user after a half-hour of work.  This is a very severe problem.  However, if fixing it will be a very time-consuming process, and database optimization is already planned for later in the project, it may be of low priority.  With all else being equal, though, defects of a higher severity are usually of higher priority than ones of a lower severity.
 
+##### Workaround
+
+The __workaround__ field describes how the defect can be avoided, or at least ameliorated.  Assuming a defect where special characters don't work in passwords, the workaround is to only use alphanumeric characters in passwords.  It is important to note that workarounds are not always **good** workaround; they may involve not using certain functionality.  For example, if the word count feature of an editor is not working, the workaround may be to not use word count, or to use a different program (e.g., "wc -w" in Unix systems).
+
+In some cases, there may not be any sort of workaround, or at least not a known one.  If the system is crashing at seemingly nondeterministic times, it would be impossible to list a workaround except the trivial case of "don't use the software", which is not generally accepted as a workaround.  This does not mean that a workaround does not exist, only that it's not known; there may be a setting or input value which is causing the issue, but the testing team just has not uncovered it,  If no user can log in to a web application, or the server refuses to start, or a system consistently gives wrong results to every query, then there may be no workaround, as the system is entirely unusable.  In such cases, the severity of the bug is inevitably BLOCKER or its equivalent.
+
 ##### Notes
 
 I like to think of this field as the "miscellaneous" field.  It's where everything which might be useful for tracking down a bug, or that may or may not be releant, goes.  It is also a good place for putting data which is too long to fit in any of the other sections, which should be relatively short and easy to grasp for developers, managers, other testers, and anyone else who may have to look at this defect and try to understand it, but may not be as familiar with that section of the software as the original tester.
@@ -156,6 +205,10 @@ SEVERITY:
 
 Normal - This is an edge case, but the user may not know to hit the back button to retry logging in.
 
+WORKAROUND:
+
+Ensure username field is not blank when logging in.
+
 NOTES:
 
 The text of the page shown is
@@ -174,27 +227,84 @@ Caught NullPointerException in LoginProcedure, Line 38
 
 ----
 
-SUMMARY:
-DESCRIPTION:
+SUMMARY: "Invisible wall" on level 12 of Amazing Bulgarian Plumber 
+
+DESCRIPTION: 
+
+On level 12, three blocks to the right from the first Anaconda Plant, there are three blocks stacked on top of each other.  However, they are the same color as the background and thus invisible to the user.  Per the requirements, there should be no invisible obstacles for players of the game.
+
 REPRODUCTION STEPS:
+
+Start on level 12
+Go to the right three screens
+Jump over Anaconda Plant
+Move three blocks to the right
+Attempt to move one further block to the right
+
 EXPECTED BEHAVIOR:
+
+Player can move onto block
+
 OBSERVED BEHAVIOR:
+
+Player cannot move, as invisible blocks are in the way
+
 IMPACT:
+
+Player of game may be confused by inability to move
+
 SEVERITY:
+
+MAJOR - This is specifically called out by the requirements, and is quite annoying to the player of the game.
+
+WORKAROUND:
+
+Jump over invisible blocks, once you know that they are there
+
 NOTES:
+
+None
 
 ----
 
-SUMMARY:
+SUMMARY: Users cannot log in to system
+
 DESCRIPTION:
+
+When attempting to log in to the system with all user and administrator acconts, the same error message is given: "Login failed, perhaps you mistyped your password?"
+
 REPRODUCTION STEPS:
+
+Go to login page of system
+Type "TestUser1" in "Username" textbox
+Type the password for TestUser1 in "Password" textbox
+Click the "Login" button
+
 EXPECTED BEHAVIOR:
+
+Welcome page is shown
+
 OBSERVED BEHAVIOR:
+
+Error message is displayed "Login failed, perhaps you mistyped your password?"
+
 IMPACT:
+
+No users will be able to use the system
+
 SEVERITY:
+
+BLOCKER - As it is, the system is unusable to all users.
+
+WORKAROUND:
+
+None
+
 NOTES:
 
+If you do not know the password for TestUser1, please see the QA Lead.
 
+The logs do not show any unusual messages when attempting to log in.
 
 #### Tracking, triaging, and prioritizing defects
 
