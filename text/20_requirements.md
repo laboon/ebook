@@ -114,12 +114,25 @@ When applied to physical phenomena, it is manifestly clear how silly it would be
 
 #### Functional vs Non-Functional Requirements (Quality Attributes)
 
-
 Functional requirements state what a system should __do__; non-functional requirements state what a system should __be__.
 
-#### Functional Requirements
+The requirements that we have discussed so far are functional requirements; that is, they say that the software system shall do a particular action under specific circumstances.  For example,
 
-#### Non-Functional Requirements (Quality Attributes)
+1. The system shall display the error message "User Not Found" if a user attempts to log in and the user name entered does not exist in the system.
+2. Upon retrieval of a record from the database, if any field is invalid, the system shall return the string "INVALID" for that field.
+3. Upon startup, the system shall display the message "WELCOME TO THE SYSTEM" to the user's console.
+
+Functional requirements are (relatively) simple to test; they say that a specific behavior should occur under certain circumstances.  There are obviously going to be complexities and variations involved in testing some of them, but the general idea is straighforward.  For example, for the second requirement, tests might check for each of the various fields of the database, and different kinds of invalid values.  This may be quite an involved process, but there is a plan that can be followed to develop the tests that directly grows out of the requirements.
+
+Non-functional requirements describe what a system should be; they describe overall characteristics of the system, as opposed to specific actions that are taken under specific circumstances.  Non-functional requirements are often called quality attributes, because they describe qualites of the system as opposed to what it should do specifically.  Some examples of non-functional attributes include:
+
+1. The system shall be usable by an experienced computer user with less than three hours' training.
+2. The system shall be able to support one hundred simultaneous users.
+3. The system shall be reliable, having less than one hour of unanticipated downtime per month.
+
+Non-functional requirements are often much more difficult to test than functional requirements, because the expected behavior is much more vague.  This is why it is especially important to define the requirement itself clearly.
+
+One of the key ways to clearly define non-functional requirements is to quantify them.
 
 #### A Note on Naming Requirements
 
@@ -138,6 +151,6 @@ Another problem was remembering what each requirement actually specified based s
 
 Several methods were developed in order to ameliorate the issue.  One method was to group all of the requirements into different sections (e.g., DATABASE-1, DATABASE-2) and continue the traditiona numbering scheme from there.  At least under this scheme, a new DATABASE requirement did not require being placed at the very end of the list of requirements, but rather placed in a loation near other relevant requirements.  This also gave a hint as to what the requirement referred.
 
-Another method is to name the requirements with abbreviations of what the requirement is actually supposed to do.  Prefixes and suffixes 
+Another method is to name the requirements with abbreviations of what the requirement is actually supposed to do.  Prefixes and suffixes such as FUN- for functional and NF- for non-functional are commonplace.
 
 All that being said, even more important is to use the same requiremensts naming convention as the rest of your team!

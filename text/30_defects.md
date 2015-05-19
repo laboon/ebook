@@ -273,7 +273,7 @@ SUMMARY: Users cannot log in to system
 
 DESCRIPTION:
 
-When attempting to log in to the system with all user and administrator acconts, the same error message is given: "Login failed, perhaps you mistyped your password?"
+When attempting to log in to the system with all user and administrator accounts, the same error message is given: "Login failed, perhaps you mistyped your password?"
 
 REPRODUCTION STEPS:
 

@@ -162,6 +162,33 @@ Let us assume that our grey box tester is looking at testing the email sorting f
 
 #### Static vs Dynamic Testing
 
-Another way of categorizing tests is to group them into __static tests__ and __dynamic tests__.  In dynamic tests, the system under test is actually running; the code is executing.  Virtually every test we have discussed so far has been a dynamic test.
+Another way of categorizing tests is to group them into __static tests__ and __dynamic tests__.  In dynamic tests, the system under test is actually running; the code is executing.  Virtually every test we have discussed so far has been a dynamic test - the code is doing something with the input provided, and eventually providing some output.
 
 A static test, by contrast, does not execute the code.  Rather, it attempts to test aspects of the system without actually running the system.  Examples of static testing would be running a code coverage tool to see what amount of code is actually executed by tests, or having somebody review the code manually without actually running it.
+
+At first glance, the utility of static testing may not be obvious.  After all, how can testing software without executing it provide any additional benefits?  It's as though you're deliberately removing yourself from the direct effects and looking at it from "one step away".  However, since static analysis looks directly at the code, instead of at the results of the code executing, it can help to find issues of quality in the code itself.
+
+As an example, let's consider the following two methods, both of which accept a string toChirp and append the string "CHIRP!" to the end of it.  For example, passing in the value "foo" will return "fooCHIRP!" for each method.
+
+```java
+public String chirpify(String toChirp) {
+    return toChirp + "CHIRP!";
+}
+```
+
+```java
+public String chirpify(String toChirp) {
+    char[] blub = toChirp.toCharArray();
+    char[] blub2 = char[blub.length + 6];
+    blub2[blub.length + 0] = (char) 0x43;
+    blub2[blub.length + 1] = (char) 0110;
+    blub2[blub.length + 2] = (char) 73;
+    blub2[blub.length + 3] = (char) (0123 - 1);
+    blub2[blub.length + 4] = (char) (40 * 2);
+    blub2[blub.length + 5] = '!';
+    String boxer99 = String.copyValueOf(data2);
+    return boxer99;
+}
+```
+
+The output of both can be observed via dynamic tests, and checked against expected values.  However, would anyone argue that the second method is superior?  It's overly complex; it's difficult to understand what it does; the variable names are meaningless.  Finding all that is wrong with the code is left as an exercise for the reader.  With dynamic tests, it may be difficult or impossible to determine any difference between the two methods.  However, using static testing methods such as code review, it's trivial to find issues in the second method.
