@@ -126,15 +126,15 @@ An example rating system is explained below.
 
 1. __Blocker__ - This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker bugs would be 
 
-2. __Critical__ - Although 
+2. __Critical__ - Although the system could still be released with a bug of this magnitude, it severely impacts the core functionality of the program or makes it almost unusable.  Alternatively, a defect that normally would be marked as a blocker, but that has some sort of workaround, could be classified as critical.
 
-3. __Major__ - 
+3. __Major__ - This is a defect which causes a relatively severe problem, although not so severe as to entirely hobble a system.  It has a good change of being noticed by any user using the feature where the defect exists.
 
-4. __Normal__ -
+4. __Normal__ - This is a defect which inconveniences the user, or a more severe bug with an easy and straightforward workaround.
 
-5. __Minor__ - 
+5. __Minor__ - The defect might or might not be be noticed, but does not cause much issue for the user, or has a simple and straightforward workaround.
 
-6. __Trivial__ - The defect would probably not even be noticed, unless someone is looking specifically for it.
+6. __Trivial__ - The defect would probably not even be noticed, unless someone is looking specifically for it.  An example would be a small typo, such as a transpositioning of letters, in a large block of text.
 
 7. __Enhancement__ - Sometimes a defect isn't really a defect; it's something that the users want, but is not specified by the requirements or is otherwise not in the scope of the current project.  In such a case, the defect can be filed as an enhancement.  Alternatively, a tester may think that a problem is a defect, but management may overrule him or her and mark it as an enhancement.
 

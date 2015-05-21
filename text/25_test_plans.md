@@ -35,7 +35,7 @@ POSTCONDITIONS:
 2. __Test Case__ - A description of the test case and what it is testing.
 3. __Preconditions__ - Any preconditions for the state of the system or world before the test begins.
 4. __Input Values__ - Any values input directly to the test.
-5. __Execution Steps__ - The actual steps 
+5. __Execution Steps__ - The actual steps of the test, to be executed by the tester.
 6. __Output Values__ - Any values output directly by the test.
 7. __Postconditions__ - Any postconditions of the state of the system or world which should hold true after the test has been executed.
 
@@ -184,15 +184,70 @@ Although we've discussed the difference between output values and postconditions
 
 The principle idea to keep in mind when writing a test case is that the point of the test case is that:
 
+```
 When the system is in state X,  
 And the following actions Y are performed,  
 I expect Z to happen  
+```
 
 That value Z is the crux of the test - it is the expected behavior.  It is impossible to test for something if you don't know what you expect to happen.  Just like Lewis Carroll said, "if you don't know where you're going, any road will get you there."  Similarly, when writing a test case, you need to know where you eventually want the test case to go, otherwise there's no way to check that you got to where the system should be.
 
 #### Developing a Test Plan
 
-#### Developing Test Cases
+Before starting to write any test plan, one must think about the end goal.  How detailed the test plan need to be?  What kind of edge cases should be checked?  What are the potential risks of unknown defects?  These answers will be very different when you are testing an online children's game or software for monitoring a nuclear reactor.  Based on the context and domain of the software under test, even software with similar requirements may require very different strategies for designing a test plan.
+
+The simplest - and often the best - way to develop a detailed test plan is to read the requirements and determine ways to test each of them individually.  There is usually quite a bit of thought put into requirements development, and since the goal of the system is to meet the requirements, it makes sense to ensure that all of the requirements are in fact, tested.  It also provides a very straightforward path to generate a test plan.  Here's the first requitement, write some test cases; here's the second requirement, write some more test cases; repeat until all requirements are covered.
+
+For each requirement, you should think of at least the "happy path" for that requirement and at least one test case for it.  That is, what is situation under normal operating parameters that this requirement can be shown to be met?  For example, if you have a requirement that a particular button should be enabled if a value is less than 10, and disabled if 10 or greater, at a bare minimum you would want to have tests that check f the button is enabled for a value less than 10 and one that checks that it is disabled if the value is greater than or equal to 10.  This tests both equivalence classes of the requirement (value < 10 and value >= 10).
+
+You will also want to think of cases that test the various boundaries, as well as all the equivalence classes.  Continuing the above example, let us assume that you have a test case for the value 5 and a test case for the value 15, thus ensuring that you have at least one value for each equivalence class.  You might also want to add test cases to check the boundary between the two equivalence classes, so you add test cases for 9 and 10.
+
+How many of these edge cases and corner cases you'd like to add, as well as how extensive a testing of interior and boundary values you would like to perform, will vary depending on the amount of time and resources that you have available for testing, the software domain, and the level of risk that your organization is comfortable taking.  Remember that testing exhaustively is, for all intents and purposes, impossible.  There is a sliding scale of how much time and energy one wants to put in to writing and executing tests, and no right answer.  Determining a compromise between speed of development and ensuring quality is a key part of the job for a software tester.
+
+Determining test cases for non-functional requirements (quality attributes) of the system can often be difficult.  You should try to ensure that the requirements themselves are testable, and think of ways to quantify any test cases that you can think of for those requirements.
+
+Unfortunately, however, simply having a correspondence between all requirements and a test case for each does not always mean that you have developed a good test plan.  You may have to add additional tests to ensure that requirements work together in tandem, or check for cases from the user's point of view that may not map directly to requirements or flow directly from them.
+
+Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called "catweigher" (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight.  
+
+```bash
+$ catweigher 1.7
+Cat Weighing System
+Cat is underweight
+$ catweigher 83
+Cat Weighing System
+Cat is overweight
+```
+
+As the test cases are developed, take note of the trade-offs that are made, and how decisions about which test cases to include are made.
+
+Requirements:
+
+1. FUN-PARAMETER: The system shall accept a single parameter, CATWEIGHT, which can only be a single positive floating-point value or positive integer.  If the parameter is not one of these two kinds of values, the system shall immediately shut down with only the message "Please enter a valid parameter."
+2. FUN-STARTUP-MESSAGE: Upon startup, the system shall display "Cat Weighing System" upon the console.
+3. FUN-UNDERWEIGHT: If CATWEIGHT is less than 3 kilograms, then the message "Cat is underweight" shall be displayed upon the console.  
+4. FUN-NORMALWEIGHT: If CATWEIGHT is equal to or greater than 3 kilograms and less than 6 kilograms, then "Cat is normal weight" shall be displayed upon the console.  
+5. FUN-OVERWEIGHT: If CATWEIGHT is greater than 6 kilograms, then "Cat is overweight" shall be displayed upon the console.
+6. NF-PERF-TIME: The system shall display the appropriate message within two seconds of the program being executed.
+
+Although this is a relatively simple program, with only a small set of requirements, there is already some ambiguity.  In FUN-PARAMETER, it says that the system should immediately shut down with __only__ the message "Please enter a valid parameter" if an invalid parameter is entered.  The next requirement, FUN-STARTUP-MESSAGE, says that the message "Cat Weighing System" should be displayed upon startup; it does not mention whether or not this includes times when invalid parameters were entered.  In other words, should the expected behavior be:
+
+```bash
+$ catweigher meow
+Please enter a valid parameter
+```
+
+or
+
+```bash
+$ catweigher meow
+Cat Weighing System
+Please enter a valid parameter
+```
+
+We should first determine what the expected behavior is before continuing with writing a test plan.  This can be done by checking with the appropriate requirements analysts, systems engineers, product owners, or whoever is in charge of requirements.  If you are working on a less formal team, the correct path forward may be to make an assumption.  However, these assumptions should be noted as part of the test plan!  If one must make assumptions, they should at least be delineated clearly somewhere.  In general, however, you should avoid making assumptions; you want to know what the expected behavior is as precisely as possible.
+
+
 
 #### Executing a Test Plan
 
@@ -215,17 +270,54 @@ A __passed__ test is one in which all of the expected behavior (i.e., the output
 
 Conversely, a __failed__ test in which at least one aspect of the observed behavior was not equal to the expected behavior.  This difference could be in either the output values or the postconditions.  For example, if a square root function returned that the square root of 4 was 322, then that test case would be marked "failed".  If a test case had a postcondition that a message "ERROR: ELEPHANTS CAN'T DANCE" appears on the screen, but the error message in fact reads "ERROR: ELEPHANTS CAN'T DEFENESTRATE", then once again the test case has failed.  Whenever a test case is marked failed, there should be a corresponding defect filed.  This could be a new defect, or it could be that a known defect has caused multiple problems - for example, errors for all animals are saying that they can't defenestrate when the actual issue is that they can't dance.  If there is no defect associated with a failed test case, then either the test case wasn't important enough to test, or the defect found wasn't important enough to file.  If either is the case, you should rethink your test case!
 
-A __paused__ test is one that has started, but had to be put on hold for some period of time.  This allows other testers and managers to know the status of a test and the progress a tester has been made.  It also ensures that another tester doesn't step in and start doing the test that has already been started by another tester.  A test case may be paused for quotidian reasons, like the tester going to lunch, or something directly related to the system under test, such as leaving the lab to get new test data.  In any case, the assumption is that the tester will get back to working on this test as soon as he or she returns, not that it is on hold for a long period of time while the tester performs other tasks (that is covered by the "Blocked" status - see below).
+A __paused__ test is one that has started, but had to be put on hold for some period of time.  This allows other testers and managers to know the status of a test and the progress a tester has been made.  It also ensures that another tester doesn't step in and start doing the test that has already been started by another tester.  A test case may be paused for quotidian reasons, like the tester going to lunch, or something directly related to the system under test, such as leaving the lab to get new test data.  In any case, the assumption is that the tester will get back to working on this test as soon as he or she returns, not that the test itself cannot be executed (that is covered by the __blocked__ status, below).
 
 A __running__ test is one which has started, but has not yet completed, and thus the final result is not yet known.  This is usually used in cases where the test takes a long time to complete, and the tester would like other testers to know that it is being executed.  Although technically all tests enter a running state for a brief period of time (when the tester is executing the execution steps), unless there is some sort of automation, this status is only set when the test is long-running.
 
-In some cases, a test cannot be executed at the present time.  This can be due to external factors (such as a piece of testing equipment not being available) or internal factors (such as a piece of functionality not being completed, or impossible to test due to other defects present in the system).  In such cases, the test can be marked as "blocked".  This indicates that the test cannot currently be run, although it may be run in a future test case when the issues blocking its execution have been removed.
+In some cases, a test cannot be executed at the present time.  This can be due to external factors (such as a piece of testing equipment not being available) or internal factors (such as a piece of functionality not being completed, or impossible to test due to other defects present in the system).  In such cases, the test can be marked as __blocked__.  This indicates that the test cannot currently be run, although it may be run in a future test case when the issues blocking its execution have been removed.
 
 Finally, in some cases a test case simply cannot be executed, either now or in the future, due to a problem with the test case itself.  In such cases, the test status can be marked as "error".  Tests marked as in error could have an issue with the test contradicting the requirements, such as a requirement saying that the background color of a web page should be blue, but the system under test is actually a command-line application.  It could be a problem with the expected behavior of a program, for example, saying that the square root of 25 should result in "poodle".  Oftentimes, a test marked "error" may be the result of a simple typo, but it could point to a fundamental problem with the development team's or testing team's understanding of the software.  Test cases marked "error", unlike those marked "blocked", are not expected to be run again until the error is resolved.
 
 #### Test Plan / Run Tracking
 
-Although you could execute a test plan for fun or for your own sense of self-improvement, in most cases you want to record what the results of the test plan were.  
+Although you could execute a test plan for fun or for your own sense of self-improvement, in most cases you want to record what the results of the test plan were.  This can be done using custom test tracking software, a simple spreadsheet program, or even just a notebook.  In some cases, this will be necessary due to the regulatory environment, but even if it is not required, keeping track of what tests have passed and which have not will be extremely useful.
+
+When tracking a test run, there are several pieces of information that you will want to include.
+
+1. The date the test was executed
+1. The name or other identifier (e.g., login or ID number) of the tester
+1. The name or other identifier of the system under test
+2. An indication of what code was under test.  This may be a tag, a link, a version number, a build number, or some other form of identification.
+3. The test plan the test run corresponds with
+4. The final status of each test case.  Note that temporary statuses, such as PAUSED, should be changed to the final status before finishing the test run.
+5. A list of any defects filed as a result of the test case, if any, or other reasons for any status that is not PASSED.
+
+An example of a test run might be:
+
+```
+Date: 21 May 2014
+Tester Name: Jane Q. Tester
+System: Meow Recording System (MRS)
+Build Number: 342
+Test Plan: Meow Storage Subsystem Test Plan
+
+Results:
+TEST 1: PASSED
+TEST 2: PASSED
+TEST 3: FAILED (Filed defect #714)
+TEST 4: BLOCKED (feature not yet implemented)
+TEST 5: PASSED
+TEST 6: FAILED (Due to known defect #137)
+TEST 7: ERROR (Apparent typo in test plan; need to verify with Systems Engineering)
+TEST 8: PASSED
+TEST 9: PASSED
+```
+
+If a test fails, then a defect should be filed.  A defect indicates that the system is not operating as designed; the expected behavior does not match the observed behavior.  There are cases where a defect will not be filed despite a test not passing; for example, if the test is failing due to an already-known defect, there is no need to file it again.  More detail on filing defects is included in the following chapter.
+
+If a test is blocked, then the reason that it is blocked should be noted.  This may be something beyond the test team's control, such as the feature not being implemented yet, or it may be something that can be ameliorated, such as not having the proper equipment.  Having the rationale for the reason that a test was not completed included in the test run results not only provides valuable documentation about the status, it also may enable management or others to find a way around the problem in the future.  For example, if part of the test plan requires a specific piece of hardware, having documentation that this lack of equipment is causing tests to not be run may provide an impetus for management to buy more equipment, or for other engineers to provide alternative solutions.
+
+Tests with the status ERROR should hopefully be a rarity.  If an erroneous test is found, however, it behooves the tester to note why he or she thinks that the test is in error.  An idea of how to rectify it - or at least on how to get more information on it - should be included as part of the result of that test case.
 
 #### Traceability Matrices
 

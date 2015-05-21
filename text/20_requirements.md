@@ -4,7 +4,7 @@ Remember that validating software is ensuring that we are building the right sof
 
 One way of determining what software to build is to determine the __requirements__ of the software.  Requirements are statements specifying exactly what it is that a piece of software should do under certain conditions.  This is more or less popular depending on the domain and the kind of software being developed.  For example, when building software to monitor a nuclear reactor, there may be very specific and well-laid-out requirements.  If you are working for a social media startup (hopefully not one with buying and selling, and you know, like hot dogs... for cats, because there is apparently competition), then your "requirements may be something your CEO scribbled on a napkin after one too many bottles of Bordeaux and one too few meetings with actual investors.
 
-Requirements ensure that the developers know what to build, and the testers know what to test.
+Requirements ensure that the developers know what to build, and the testers know what to test.  Note that there other methods of determining what software to build aside from traditional requirements; we will discuss a few of these later in the book.
 
 In our tire air pressure example in the chapter on testing basics, we had some relatively simple requirements, although we did not mention at the time that that is what they were. 
 
@@ -53,9 +53,9 @@ BADREQ-3. The system shall use a relational database to store the last 100 coord
 
 Note that the bad requirements all state __how__ something should be done, not __what__ the system needs to do.  What happens if the memory address where the velocity value is stored is changed?  The entire requirement would have to be changed, as well as any that may have depended on it.  Why is it important to use an antimatter-matter reactor, specifically?  The key thing is that the spaceship can move at a specific velocity.  Finally, why is it important that a relational database is used to store coordinates?  From the user's perspective, all that they care about is that the coordinates are stored.
 
-For complex or safety-critical systems, requirements may specify implementations.  In these cases, it is critical that a system not only does something, but does it in a proven and specified way.  For most systems, however, it is overkill and greatly limits flexibility as the software development process continues.
+For complex or safety-critical systems, requirements may specify implementations.  In these cases, it is critical that a system not only does something, but does it in a proven and specified way.  For most systems, however, it is overkill and greatly limits flexibility as the software development process continues.  It also makes it more difficult to test these requirements, since not only does the tester need to determine whether the expected behavior matched the observed behavior, but also needs to determine how the observed behavior occurred.
 
-By requiring implementation details, however, you remove the possibility of black-box testing.  Without looking at the code, how can you be sure that the system is displaying the contents ofmemory location 0x0894BC40?  It's impossible (unless you have the incredibly specific superpower of being able to look at a RAM chip and somehow know what is being stored at and where).  All tests would have to be white box tests.
+By requiring implementation details, you remove the possibility of black-box testing.  Without looking at the code, how can you be sure that the system is displaying the contents ofmemory location 0x0894BC40?  It's impossible (unless you have the incredibly specific superpower of being able to look at a RAM chip and somehow know what is being stored at and where).  All tests would have to be white box tests.
 
 #### Testability
 
