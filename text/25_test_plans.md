@@ -206,7 +206,30 @@ How many of these edge cases and corner cases you'd like to add, as well as how 
 
 Determining test cases for non-functional requirements (quality attributes) of the system can often be difficult.  You should try to ensure that the requirements themselves are testable, and think of ways to quantify any test cases that you can think of for those requirements.
 
-Unfortunately, however, simply having a correspondence between all requirements and a test case for each does not always mean that you have developed a good test plan.  You may have to add additional tests to ensure that requirements work together in tandem, or check for cases from the user's point of view that may not map directly to requirements or flow directly from them.
+Unfortunately, however, simply having a correspondence between all requirements and a test case for each does not always mean that you have developed a good test plan.  You may have to add additional tests to ensure that requirements work together in tandem, or check for cases from the user's point of view that may not map directly to requirements or flow directly from them.  Even more importantly, you will need to gain an understanding of the context that the software exists in.  Having domain knowledge of the field can help you understand basic use cases, how the system interacts with the environment, and possible failure modes, and how users would expect the system to recover from those failure modes.  If nobody on the team understands the domain of the software, it may be worthwhile to discuss the software with a subject matter expert (SME) before writing a test plan.
+
+Understanding the programming environment that the software is written in can also facilitate writing a test plan.  Although this technically veers into grey-box testing as opposed to black-box testing, since you as a tester will know some of the internal implementation details, it can provide valuable insight in knowing where potential errors may lurk.  Allow me to give an example.  In Java, dividing by zero, as in the code below, will throw a java.lang.ArithmeticException.
+
+```java
+int a = 7 / 0;
+```
+
+Therefore, when testing a program written in Java, you can assume that dividing by zero is essentially one equivalence class; if it occurs, then the same event should happen afterwards, whatever that event happens to be (e.g., perhaps the exception is caught and the message "Error Divide by Zero" is printed to the console).
+
+JavaScript (yes, technically I mean ECMAScript 5, for anyone who wants to know the particulars) does not throw an exception when dividing by zero.  However, depending on the numerator, when the denominator is zero, you may get different results!  
+
+```javascript
+> 1 / 0
+Infinity
+
+> -1 / 0
+-Infinity
+
+> 0 / 0
+NaN
+```
+
+Dividing a positive value by zero returns Infinity, dividing by a negative number returns -Infinity, and dividing zero by zero returns NaN (Not a Number).  This means that dividing by zero, despite being one equivalence class in Java programs, is three different equivalence classes in JavaScript programs.  Knowing this, you would want to test that the program can handle all of these return values, and not assume that you had checked all edge cases simply because you had checked for dividing one by zero.  As a side note, this is an actual example from a test plan that I used, and it was used to find several defects.
 
 Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called "catweigher" (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight.  
 
