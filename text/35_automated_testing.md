@@ -12,39 +12,39 @@ For your software project, should you use manual testing or automatic testing?  
 
 __Benefits of Manual Testing__
 
-1. It's simple and straightforward.  There's a reason that this book discussed manual testing first; it's easier to understand the concepts of testing without worrying about the particular syntax or quirks of tools or languages being used.  You're using the same software setup, or at least a very similar setup, as the user.  Most people, even ones who are not very technical, can follow a well-written test plan.  Most non-technical people would have great difficulty understanding a JUnit test, however.
-2. It's cheap.
-3. It's easy to set up.
-4. There is additional software to learn, purchase, or write.
-5. It's extremely flexible.
-6. You can focus on things that users care about.
-7. Humans testing can catch issues that automated testing does not.
+1. __It's simple and straightforward.__  There's a reason that this book discussed manual testing first; it's easier to understand the concepts of testing without worrying about the particular syntax or quirks of tools or languages being used.  You're using the same software setup, or at least a very similar setup, as the user.  Most people, even ones who are not very technical, can follow a well-written test plan.  Most non-technical people would have great difficulty understanding a JUnit test, however.
+2. __It's cheap.__ At least from a naive perspective, there's n
+3. __It's easy to set up.__  If you can get the software to compile and run - which hopefully you will be able to do anyways, since software which can't do so is usually not appreciated much by users - then you have everything that you need to do some basic manual testing.  Creating test harnesses, 
+4. __There is additional software to learn, purchase, and/or write.__
+5. __It's extremely flexible.__  If a user interface changes, it's relatively straightforward to modify the test plan.  If you are doing exploratory testing or other testing outside of a test plan, as long as the tester knows about the change, he or she can modify the steps taken.  Even if the tester does not know about the interface changes, it may be possible for a human being to figure out the differences just by using the software!  This is not possible in automated testing; if an interface changes, then any automated tests exercising that interface will usually fail unless the testing code has been changed to expect the new interface.  This may be a benefit, though; automated tests are far more rigid, which means that they may be better at catching unanticipated modifications.  Humans may not realize that a chance is actually unexpected and just "go with the flow."
+6. __You are more likely to test things that users care about.__
+7. __Humans testing can catch issues that automated testing does not.__
 
 __Drawbacks of Manual Testing__
 
-1. It's boring.
-2. It's often unrepeatable.
-3. Some tasks are difficult or impossible to test manually.
-4. Human error is a possibility.
-5. It is extremely time- and resource-intensive.
+1. __It's boring.__
+2. __It's often unrepeatable.__
+3. __Some tasks are difficult or impossible to test manually.__
+4. __Human error is a possibility.__
+5. __It is extremely time- and resource-intensive.__
 
 __Benefits of Automated Testing__
 
-1. No chance of human error during test execution.
-2. Extremely fast test execution.
-3. Easy to execute once the system is set up.
-4. Repeatable
-5. Analyzable
-6. Less resource-internsive
-7. Ideal for testing some aspects of the system which manual testing is bad at testing.
+1. __No chance of human error during test execution.__
+2. __Extremely fast test execution.__
+3. __Easy to execute once the system is set up.__
+4. __Repeatable__
+5. __Analyzable__
+6. __Less resource-internsive__
+7. __Ideal for testing some aspects of the system which manual testing is bad at testing.__
 
 __Drawbacks of Automated Testing__
 
-1. Requires extra setup time up-front.
-2. May not catch some user-facing bugs
-3. Require learning more to write tests
-4. Requires more skilled staff
-5. Only tests what it is looking for.
+1. __Requires extra setup time up-front.__
+12. __May not catch some user-facing bugs__
+13. __Require learning more to write tests__
+14. __Requires more skilled staff__
+15. __Only tests what it is looking for.__
 
 #### Concepts of writing automated tests
 
