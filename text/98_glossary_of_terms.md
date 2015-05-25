@@ -90,6 +90,8 @@ __YAGNI__:
 
 __Law of Demeter__:
 
+__Tautological Test Case__:
+
 __Traceability Matrix__:
 
 __Performance Testing__:
