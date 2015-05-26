@@ -32,6 +32,12 @@ __Quality Attribute__:
 
 __-Ility Requirement__:
 
+__Intermittent Failure__:
+
+__Non-deterministic__:
+
+__Deterministic__:
+
 __Test Case__:
 
 __Identifier__:
@@ -147,6 +153,10 @@ __Happy Path__:
 __Unit Testing__:
 
 __System Testing__:
+
+__System Under Test__:
+
+__Application Under Test__:
 
 __Acceptance Testing__:
 
