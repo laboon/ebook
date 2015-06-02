@@ -25,15 +25,15 @@ We have seen earlier that the user will never directly see the aspects of the so
 
 1. _Problems are found earlier_ - Unit tests are normally written along with the code itself.  There's no need to wait for (usually longer-running) systems tests to run, or a manual test to be developer, or even for a build to get into the hands of the testers.  The developer finds problems while still developing.  Like most things, the sooner a problem is found in a process, the cheaper it will be to fix.
 
-2. _Faster turnaround time_ - If a problem is found, there's no need for a build to occur, or to get into testers' hands.  The developer finds a problem when executing the unit test suite, and can immediately go back and start fixing it.  If the developer has to wait for a tester to look at the software, file a defect, and get assigned that defect, it may be quite a while before the developer can actually fix it.  In that time, he or she may have forgotten some implementation details, or at the very least will have probably swapped out some of the information and will require time for a context shift.  The faster a bug can be found, the faster it can be fixed.
+2. __Faster turnaround time__ - If a problem is found, there's no need for a build to occur, or to get into testers' hands.  The developer finds a problem when executing the unit test suite, and can immediately go back and start fixing it.  If the developer has to wait for a tester to look at the software, file a defect, and get assigned that defect, it may be quite a while before the developer can actually fix it.  In that time, he or she may have forgotten some implementation details, or at the very least will have probably swapped out some of the information and will require time for a context shift.  The faster a bug can be found, the faster it can be fixed.
 
-3. _Developer understands his/her code_ - Writing tests allows the developer to understand what the expected behavior of the function is.  It also allows the developer to add tests for things that he or she knows might be problematic for a specific function.  For example, a developer may know that a sort function may not sort numeric strings correctly, because certain flags need to be set to ensure that it treats them as numbers instead of strings (so that "1000" is bigger than "99", which it would not be if the function treated them as strings, since "9" is bigger than "1").  A black-box tester may not realize that this is what is happening "under the hood" and so not think to test this particular edge case.
+3. __Developers understand their code__ - Writing tests allows the developer to understand what the expected behavior of the function is.  It also allows the developer to add tests for things that he or she knows might be problematic for a specific function.  For example, a developer may know that a sort function may not sort numeric strings correctly, because certain flags need to be set to ensure that it treats them as numbers instead of strings (so that "1000" is bigger than "99", which it would not be if the function treated them as strings, since "9" is bigger than "1").  A black-box tester may not realize that this is what is happening "under the hood" and so not think to test this particular edge case.
 
-4. _Living documentation_ - The tests provide a kind of "living documentation" to the code.  They explain what a codebase is supposed to do in a different way than the actual code and any comments or documentation for the software.  Failing tests are updated; they are either removed or changed as the softare itself changes.  Unlike traditional documentation, if unit tests are executed on a regular basis (such as before being merged to baseline), then it's impossible for the tests to become obsolete.  Obsolete tests don't pass, and tests that don't pass should not be merged to baseline.
+4. __Living documentation__ - The tests provide a kind of "living documentation" to the code.  They explain what a codebase is supposed to do in a different way than the actual code and any comments or documentation for the software.  Failing tests are updated; they are either removed or changed as the softare itself changes.  Unlike traditional documentation, if unit tests are executed on a regular basis (such as before being merged to baseline), then it's impossible for the tests to become obsolete.  Obsolete tests don't pass, and tests that don't pass should not be merged to baseline.
 
-5. _Alternative implementation - One way to think of tests is as a different implementation of the software.  In a sense, a program is just a listing of what a computer should do given certain input - *IF* foo is less than five, *THEN* print out "small foo".  *WHEN* a new bar object is created, *SET* the baz variable to false.  A comprehensive test suite provides a similar service, saying what the program should do in a slightly different way.  There's always room for error, but if you're implementing it twice, once as a test and once as code, then there's less chance that both will be written wrong in exactly the same way.
+5. __Alternative implementation__ - One way to think of tests is as a different implementation of the software.  In a sense, a program is just a listing of what a computer should do given certain input - *IF* foo is less than five, *THEN* print out "small foo".  *WHEN* a new bar object is created, *SET* the baz variable to false.  A comprehensive test suite provides a similar service, saying what the program should do in a slightly different way.  There's always room for error, but if you're implementing it twice, once as a test and once as code, then there's less chance that both will be written wrong in exactly the same way.
 
-5. _Able to tell if code changes caused issues elsewhere_ - Programs nowadays can be rather large and complicated, and it's not always easy - or even humanly possible - to know whether a change you're making will have unintended consequences elsewhere.  The author has lost count of how many times he has meant to, say, change the background color of a screen, and caused a stack overflow in some recursive function elsewhere in the code which required the background color to be green for some reason.  However, by having a relatively complete test suite, the developer can check easily if he or she is breaking anything obvious elsewhere in the codebase.  It's not foolproof, but it certainly makes it easier to avoid problems.
+5. __Able to tell if code changes caused issues elsewhere__ - Programs nowadays can be rather large and complicated, and it's not always easy - or even humanly possible - to know whether a change you're making will have unintended consequences elsewhere.  The author has lost count of how many times he has meant to, say, change the background color of a screen, and caused a stack overflow in some recursive function elsewhere in the code which required the background color to be green for some reason.  However, by having a relatively complete test suite, the developer can check easily if he or she is breaking anything obvious elsewhere in the codebase.  It's not foolproof, but it certainly makes it easier to avoid problems.
 
 #### An Example in Natural Language
 
@@ -61,7 +61,7 @@ Although we will be covering JUnit, as it is a popular and easy-to-understand te
 
 Keep in mind, though, that the particular implementation of testing framework you use isn't nearly as important as the concepts you learn and can apply.  Worry less about the syntax, and more about understanding the concepts of unit testing and how they differ, and how they are similar to, concepts that you have already learned in manual testing.
 
-The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly.
+The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly. 
 
 ```java
 import static org.junit.Assert.*;
@@ -78,22 +78,49 @@ public class LinkedListTest
 	      // Execution steps - run equality operator
 	      boolean result = a.equals(b);
 
-	      // Expected behavior - assert that result is true
+	      // Postconditions: Expected behavior - assert that result is true
 	      assertEquals(result, true);
        }
 
 }
 ```
 
+Looking over this test, it is easy to see the parallels with a manual test.  There are some preconditions to set up the test, some execution steps to run the test, and some postconditions, where we can check the observed behavior against the expected behavior.  As mentioned in an earlier chapter, the key concept to keep in mind when software testing is that some behavior is expected under some circumstances, and when those circumstances are reached, a test should check that the observed behavior is in fact the expected behavior.  While unit tests check smaller units of functionality than most black-box tests, the core concept remains the same.
+
 #### Preconditions
 
-Here
+Before the test can be run, you need to set up the necessary preconditions for the test.  These are similar to preconditions in a manual test, only instead of focusing on the system as a whole, you focus on setting things up for the particular method to be called.  In the example above, the unit test is going to check that two linked lists with equal values (specifically 1 -> 2 -> 3) will be regarded as equal by the .equals method of a linked list object.  In order to test that two linked lists are equal, first we must created the two linked lists, and set their nodes to the same set of values.  This code simply creates them and puts them into variables `a` and `b`.  We will use these two linked lists in the next phase of the unit test.
 
 #### Execution Steps
 
+Here is the actual equality check.  We determine whether or not `a.equals(b)` is true or not, and put the Boolean result in the variable `result`.
+
 #### Assertions
 
-Remember that assertions are checking the expected behavior against the observed behavior of the execution steps.  The assert statements on 
+Remember that assertions are checking the expected behavior against the observed behavior of the execution steps.  Specifically, we are using the assertion assertEquals, which checks that the value in result should equal `true`.  If it does, the test passes and we can say that under these circumstances, the .equals() methods works correctly.  If it does not, then the test fails.
+
+There are a variety of assertions one can use.  Some can be interchanged; for example, instead of asserting that `result` should be equal to `true`, we could instead of directly asserted that result should be true.  In Java:
+
+```java
+assertTrue(result);
+```
+
+A list of some of the most commonly-used assertions, along with some trivial examples of their usage, include:
+
+1. __assertEquals__ Assert that two values are equal to each other, e.g. `assertEquals((2 * 2), 4)`.
+2. __assertTrue__ Assert that the expression evaluates to true, e.g. `assertTrue(7 == 7)`.
+3. __assertFalse__ Assert that the expression evaluates to false, e.g. `assertFalse(2 < 1)`.
+3. __assertNull__ Assert that a value is null, e.g. `assertNull(uninitializedVariable)`.
+4. __assertSame__ Assert not only that the two values are equal, but that they point to the exact same object.  Example:
+```java
+Integer a = Integer(7);
+Integer b = Integer(7);
+Integer c = a;
+assertSame(a, b); // This is false; values are same, but point to different object
+assertSame(a, c); // This is true; both point to the exact same object
+```
+
+Additionally, there are several "not" variants of these assertions, such assertNotEquals, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17).  In my experience, these are used much less often, and are usually a code smell.  You want to check for a specific __expected__ behavior, if at all possible, not that it's __not unexpected__ behavior.
 
 #### Examples
 
@@ -170,8 +197,9 @@ public void printStats() {
 
 Pure functions are much easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.
 
-This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary (or, at least, you need some clever way around them, like monads in Haskell) if you 
+This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary (or, at least, you need some clever way around them, like monads in Haskell) if you want to do anything other than make your processor warm.  After all, printing anything to the screen is technically a side effect.  However, by keeping as many functions pure as possible, and limiting impure functions to certain areas, you will make testing the system much easier.  I like to think of it as "quarantining" the impure functions so that I know where difficulties in testing will lie. 
 
+#### Test Doubles
 
 #### Verification
 

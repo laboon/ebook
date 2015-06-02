@@ -56,14 +56,28 @@ Of the two options, manual and automated testing, which is better?  "Better" is 
 The decision on whether or not to use manual or automated testing for a particular system, subsystem, or requirement will be influenced by a variety of factors:
 
 1. __How important are the tests?__
-2. __How much of an impact does user interface or other "intangible" aspects have on the finished product?__
+2. __How much of an impact does user interface or other "intangible" aspects have on the finished product?__ 
 3. __How often will the tests be run?__
 4. __How experienced is the test team?__
 5. __What is the schedule for testing?__
 6. __How difficult is it to automate the tests?__
 
+In general, however, the vast majority of testing, from a strict "number of tests run" perspective, will be automated tests of one sort or another.  Running a well-designed unit test can take as little as a few microseconds of computer time; even the simplest manual test will require much more time than that for even very simple test cases.  Automated tests are much easier to run more often, and more testing - and more rapid testing - is much better than the alternative (less and slower testing).  
+
+When should you, as a tester, automate tests?  If a test can be automated in a reasonable amount of time, you should almost always automate it.  Doing so streamlines your testing and development process, guards against human error in future runs, and makes your life less boring.  However, there are occasional issues which prevent you from writing automated tests; parts of the system may not have a testing framework, a time crunch absolutely prevents you, or you just can't get the automated tools to work under certain conditions you would like to test.  In these cases, it may make sense to simply perform a manual test and come back later to automate it.  A bit of warning, though - in the majority of cases, "later" never comes, and you're stuck performing a rote and repetitive task for the foreseeable future.
+
 In the "real world" of software development, virtually all organizations that I'm familiar with use a mixture of manual and automated tests for their applications, with the emphasis almost always falling more heavily on automated testing.  Overall, automated testing provides many benefits for modern software development, especially being able to quickly run tests after changes are made to ensure that no regression defects have occurred.  Although there is certainly an up-front cost to adding an automated testing framework, for non-trivial projects, the benefits you get from allowing the computer to do the testing work for you will quickly outweigh those drawbacks.  Conversely, releasing software relying solely on the automated tests - without ever checking how the software actually runs for a user - is done only by those organizations whose software is very far removed from user experience, who have an extremely high level of confidence in their automated tests, and/or which are especially foolhardy.
 
-#### Concepts of writing automated tests
+#### Overview of Types of Automated Tests
 
-#### Overview of tools
+The manual tests that we have covered so far follow a general pattern.  They are all black-box (or grey-box) user-facing tests that test the system as a whole.  Automated tests run the gamut - while some automated tests act just like the black-box tests we have covered, there are many other varieties which don't.  In some of these cases, a manual version would be literally impossible, while in others, it may be possible to replicate them manually but it is so rarely done that those cases can be safely ignored.
+
+1. __Unit Tests__
+2. __Integration / Acceptance Tests__
+3. __Performance Testing__
+4. __Property-Based Testing__
+5. __Continuous Integration__
+6. __Fuzz Testing__
+7. __Model-Based Testing__
+
+
