@@ -201,6 +201,27 @@ This does not mean that impure functions are bad!  As we've seen, they're absolu
 
 #### Test Doubles
 
+A unit test should be a localized test; that is, it should check the particular method or function under test, and not worry about other aspects of the system.  If there is a test failure, we want to make sure that the failure is due to the code in that particular method, not on something it relies upon.  Software is often interconnected, however, and a particular method which relies upon other methods or classes may not work correctly if those other units of code do not work correctly.
+
+In the following method, we will have fun at a duck pond.  Calling haveFunAtDuckPond with a Duck d will feed the duck numFeedings number of times, and then return the amount of fun, which directly in proportion to how many times the duck is fed.  The duck will quack each time that it is fed (note: we are feeding the duck pieces of regulation duck chow.  Don't feed ducks bread, it's not actually good for them!).  If a null duck is passed in, or the number of feedings is zero or fewer, then it simply returns 0 as the amount of fun (null ducks and negative feeding are both equally not fun).   However, let us assume that the implementation of Duck is faulty, and calling the `.quack()` method results in a `QuackingException`.
+
+```java
+public int haveFunAtDuckPond(Duck d, int numFeedings) {
+    if (d == null || numFeedings <= 0) { return 0; }
+    int amountOfFun = 0;
+    for (int j=0; j < numFeedings; j++) {
+        amountOfFun++;
+        d.feed();
+        d.quack();
+    }
+    return amountOfFun;
+}
+```
+
+Even though the code in this method works perfectly for all inputs, it requires that a working duck be present.  Otherwise, any non-negative number of feedings with a valid duck will cause an exception to be thrown.  If we see a unit test for this particular method failing, we will naturally think that the problem is in this method.  Only after examining it will we understand that the problem actually lies elsewhere.  How can we test this code when the code it depends upon doesn't work?
+
+I wouldn't have asked the question if I didn't have an answer - test doubles.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.
+
 #### Verification
 
 
