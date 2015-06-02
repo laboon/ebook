@@ -4,7 +4,7 @@ Now that you understand requirements, and the basic theory and terminology of so
 
 #### The Basic Layout of a Test Plan
 
-A test plan is, at is core, simply a collection of __test cases__.  Test cases are the individual tests that make up a test plan.  Let's assume that you are creating a test plan for testing a new app that tells you if a cup of coffee is too hot to drink.  Assuming that the app marketers liked cold coffee and decided not to implement anything about the coffee temperature being too low, there are two requirements:
+A test plan is, at its core, simply a collection of __test cases__.  Test cases are the individual tests that make up a test plan.  Let's assume that you are creating a test plan for testing a new app that tells you if a cup of coffee is too hot to drink.  Assuming that the app marketers liked cold coffee and decided not to implement anything about the coffee temperature being too low, there are two requirements:
 
 FUN-COFFEE-TOO-HOT. If the coffee temperature is measured at 175 degrees or higher, the app shall display the "TOO HOT" message.
 
@@ -54,7 +54,7 @@ In this field, a succinct summary of what the test case is supposed to test, and
 __Examples__
 
 1. Ensure that on-sale items can be added to the cart and will have their price automatically reduced.
-2. Ensure that passing a non-numeric string will result in the square root function throwing a InvalidNumber exception.
+2. Ensure that passing a non-numeric string will result in the square root function throwing an InvalidNumber exception.
 3. When the system detects that the internal temperature has reached 150 degrees Fahrenheit, ensure that it displays an error message and shuts down within five seconds.
 4. Ensure that if the operating system switches time zones midway through a computation, that computation will use the original time zone when reporting results.
 
@@ -194,11 +194,11 @@ That value Z is the crux of the test - it is the expected behavior.  It is impos
 
 #### Developing a Test Plan
 
-Before starting to write any test plan, one must think about the end goal.  How detailed the test plan need to be?  What kind of edge cases should be checked?  What are the potential risks of unknown defects?  These answers will be very different when you are testing an online children's game or software for monitoring a nuclear reactor.  Based on the context and domain of the software under test, even software with similar requirements may require very different strategies for designing a test plan.
+Before starting to write any test plan, one must think about the end goal.  How detailed does the test plan need to be?  What kind of edge cases should be checked?  What are the potential risks of unknown defects?  These answers will be very different when you are testing an online children's game or software for monitoring a nuclear reactor.  Based on the context and domain of the software under test, even software with similar requirements may require very different strategies for designing a test plan.
 
-The simplest - and often the best - way to develop a detailed test plan is to read the requirements and determine ways to test each of them individually.  There is usually quite a bit of thought put into requirements development, and since the goal of the system is to meet the requirements, it makes sense to ensure that all of the requirements are in fact, tested.  It also provides a very straightforward path to generate a test plan.  Here's the first requitement, write some test cases; here's the second requirement, write some more test cases; repeat until all requirements are covered.
+The simplest - and often the best - way to develop a detailed test plan is to read the requirements and determine ways to test each of them individually.  There is usually quite a bit of thought put into requirements development, and since the goal of the system is to meet the requirements, it makes sense to ensure that all of the requirements are in fact, tested.  It also provides a very straightforward path to generate a test plan.  Here's the first requirement, write some test cases; here's the second requirement, write some more test cases; repeat until all requirements are covered.
 
-For each requirement, you should think of at least the "happy path" for that requirement and at least one test case for it.  That is, what is situation under normal operating parameters that this requirement can be shown to be met?  For example, if you have a requirement that a particular button should be enabled if a value is less than 10, and disabled if 10 or greater, at a bare minimum you would want to have tests that check f the button is enabled for a value less than 10 and one that checks that it is disabled if the value is greater than or equal to 10.  This tests both equivalence classes of the requirement (value < 10 and value >= 10).
+For each requirement, you should think of at least the "happy path" for that requirement and at least one test case for it.  That is, what is situation under normal operating parameters that this requirement can be shown to be met?  For example, if you have a requirement that a particular button should be enabled if a value is less than 10, and disabled if 10 or greater, at a bare minimum you would want to have tests that check if the button is enabled for a value less than 10 and one that checks that it is disabled if the value is greater than or equal to 10.  This tests both equivalence classes of the requirement (value < 10 and value >= 10).
 
 You will also want to think of cases that test the various boundaries, as well as all the equivalence classes.  Continuing the above example, let us assume that you have a test case for the value 5 and a test case for the value 15, thus ensuring that you have at least one value for each equivalence class.  You might also want to add test cases to check the boundary between the two equivalence classes, so you add test cases for 9 and 10.
 
