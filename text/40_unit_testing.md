@@ -278,7 +278,7 @@ public class Dog
         df = _df;
     }
 
-    public int eat() {
+    public int eatDinner() {
         _df.eat();
         return 1;
     }
@@ -291,10 +291,10 @@ If we wanted to test this, we would have to create an object and set the value s
 public class DogTest {
 
     @Test
-    public void eatTest() {
+    public void eatDinnerTest() {
         Dog d = new Dog();
         d.setDogFood(Mockito.mock(DogFood.class));
-        int returnVal = d.eat();
+        int returnVal = d.eatDinner();
         assertEquals(returnVal, 1);
     }
 
@@ -316,7 +316,7 @@ public class Dog
         _dw = new DogWater();
     }
 
-    public int eat() {
+    public int eatDinner() {
         _df.eat();
         return 1;
     }
@@ -330,7 +330,7 @@ However, if we just pass in DogFood as a parameter to the method, like so:
 ```java
 public class Dog
 
-    public int eat(DogFood df) {
+    public int eatDinner(DogFood df) {
         df.eat();
         return 1;
     }
@@ -343,9 +343,9 @@ The test would then look like:
 public class DogTest {
 
     @Test
-    public void testEatDogFood() {
+    public void testEatDinner() {
         Dog d = new Dog();
-        int returnVal = d.eat(Mockito.mock(DogFood.class));
+        int returnVal = d.eatDinner(Mockito.mock(DogFood.class));
         assertEquals(returnVal, 1);
     }
 }
@@ -360,29 +360,45 @@ If doubles are fake objects, stubs are fake methods.  In the above examples, we 
 ```java
 public class Dog {
 
-    public int eat(DogFood df) {
-        int tastiness = df.eat();
+    public int eatDinner(DogFood df) {
+        int tastiness = df.eatDinner();
         return tastiness;
     }
 
 }
 ```
 
-If we were just using `df` as a normal test double, then there is no telling what df.eat() will return.  Specifically, the answer varies by test framework - some will always return a default value, some will call out the real object, some will throw an exception.  This should just be a piece of trivia, though - you shouldn't call methods on a double object unless you have stubbed them.  The whole reason for making a test double is so that you have an object that you have specified, instead of relying on external definitions.  
+If we were just using `df` as a normal test double, then there is no telling what df.eat() will return.  Specifically, the answer varies by test framework - some will always return a default value, some will call out the real object, some will throw an exception.  This should just be a piece of trivia, though - you shouldn't call methods on a double object unless you have stubbed them.  The whole reason for making a test double is so that you have an object that you have specified, instead of relying on external definitions.  So let's say that our doubled DogFood object has a (scientifically determined) tastiness level of 13.  We can specify that whenever the .eat() method is called on our doubled object, then just return a value of 13.  We have made a __stub__ of the method.
 
+```java
+public class DogTest {
 
+    @Test
+    public void testEatDinner() {
+        Dog d = new Dog();
+        DogFood mockedDogFood = Mockito.mock(DogFood.class);
+        mockedDogFood.when(mockedDogFood.eat()).thenReturn(13);
+        int returnVal = d.eatDinner(mockedDogFood);
+        assertEquals(returnVal, 13);
+    }
 
-#### Verification
+}
+```
 
+Now when the mockedDogFood object has its .eat() method called, it will return the value 13.  Once again, we have "walled off" other methods by re-creating fakes of them that act as we think they should.  Note that we can even stub methods that don't exist, thus allowing us to not only test classes that have errors, but even ones that don't even have all of their methods written yet.
 
+#### Mocks and Verification
 
-#### Mocking
+"Yes, yes, this is all fine," I can hear you saying, "but you didn't answer the original question!  We are still dependent on asserting on a value that is returned from a method, and thus won't be able to test methods without a return value!"  
 
 #### Setup and Teardown
 
-  Oftentimes, there are particular things that you want the tests for a particular class to do before all of the tests start, and after all of the tests end.  For example, you may set up a mocked database connection, and want to use the same one for all of the tests.
+Oftentimes, there are particular things that you want the tests for a particular class to do before all of the tests start, and after all of the tests end.  For example, you may set up a mocked database connection, and want to use the same one for all of the tests.  JUnit provides the `setUp()` and `tearDown()` methods for cases such as this.  The `setUp()` method will be called before any @Test-specified unit tests are run, and the `tearDown()` will be called after all the unit tests in that class are run.
 
-  JUnit provides the `setUp()` and `tearDown()` methods for cases such as this.  The `setUp()` method will be called before any @Test-specified unit tests are run, and the `tearDown()` will be called after all the unit tests in that class are run.
+Here is an example of using `setUp()` and `tearDown()` methods.
+
+```java
+```
 
 #### Testing Private Methods
 
