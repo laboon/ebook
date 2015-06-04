@@ -116,13 +116,12 @@ A list of some of the most commonly-used assertions, along with some trivial exa
 Integer a = Integer(7);
 Integer b = Integer(7);
 Integer c = a;
-assertSame(a, b); // This is false; values are same, but point to different object
-assertSame(a, c); // This is true; both point to the exact same object
+assertSame(a, b); // False; values are same, but point to different object
+assertSame(a, a); // True; both are the same reference to the same object
+assertSame(a, c); // True; these are different references to the same object
 ```
 
 Additionally, there are several "not" variants of these assertions, such assertNotEquals, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17).  In my experience, these are used much less often, and are usually a code smell.  You want to check for a specific __expected__ behavior, if at all possible, not that it's __not unexpected__ behavior.
-
-#### Examples
 
 #### Ensuring that Tests are Testing What You Expect
 
@@ -193,7 +192,18 @@ public void haveFunAtDuckPond(DuckPond duckPond) {
 }
 ```
 
-Pure functions are much easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.
+Pure functions are much easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against, and they may depend upon or modify parts of the code outside of this particular method!  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with _global are defined and set external to the method.
+
+```java
+public void printAndSave() {
+    String valuesToPrint = DatabaseConnector.getValues(_globalUserId);
+    valuesToSave = ValuesModifier.modify(valuesToPrint);
+    writeToFile(_globalLogFileName, valuesToSave);
+    printToScreen(_globalScreenSettings, valuesToPrint);
+}
+```
+
+As opposed to a square root function, where we know what exactly we're passing in, and thus what values the function has access to, there are dependencies on several external variables.  Running this code once may cause everything to work properly; running it again, when those variables are set to different values, may cause everything to fail.  It's difficult to know where all to check for the expected behavior.  It's writing something to a file, it looks like, but we'll need to figure out the file name and location based on the value of the variable at a particular point in time.  We'll also need to figure out what the _globalUserId is to determine what the right values are, and how it will be displayed by looking at the value of _globalScreenSetting.  In any of these cases, they could be set by a large number of external factors, and the values of the output depend on things that we may not have direct control over.  All of these come together to make testing impure methods a much more difficult task.
 
 This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary (or, at least, you need some clever way around them, like monads in Haskell) if you want to do anything other than make your processor warm.  After all, printing anything to the screen is technically a side effect.  However, by keeping as many functions pure as possible, and limiting impure functions to certain areas, you will make testing the system much easier.  I like to think of it as "quarantining" the impure functions so that I know where difficulties in testing will lie. 
 
@@ -201,7 +211,7 @@ This does not mean that impure functions are bad!  As we've seen, they're absolu
 
 A unit test should be a localized test; that is, it should check the particular method or function under test, and not worry about other aspects of the system.  If there is a test failure, we want to make sure that the failure is due to the code in that particular method, not on something it relies upon.  Software is often interconnected, however, and a particular method which relies upon other methods or classes may not work correctly if those other units of code do not work correctly.
 
-In the following method, we will have fun at a duck pond.  Calling haveFunAtDuckPond with a Duck d will feed the duck numFeedings number of times, and then return the amount of fun, which directly in proportion to how many times the duck is fed.  The duck will quack each time that it is fed (note: we are feeding the duck pieces of regulation duck chow.  Don't feed ducks bread, it's not actually good for them!).  If a null duck is passed in, or the number of feedings is zero or fewer, then it simply returns 0 as the amount of fun (null ducks and negative feeding are both equally not fun).   However, let us assume that the implementation of Duck is faulty, and calling the `.quack()` method results in a `QuackingException`.
+In the following method, we will have fun at a duck pond.  Calling `.haveFunAtDuckPond` with a Duck `d` will feed the duck `numFeedings` number of times, and then return the amount of fun, which directly in proportion to how many times the duck is fed.  The duck will quack each time that it is fed (note: we are feeding the duck pieces of regulation duck chow.  Don't feed ducks bread, it's not actually good for them!).  If a null duck is passed in, or the number of feedings is zero or fewer, then it simply returns 0 as the amount of fun (null ducks and negative feeding are both equally not fun).   However, let us assume that the implementation of Duck is faulty, and calling the `.quack()` method results in a `QuackingException`.
 
 ```java
 public int haveFunAtDuckPond(Duck d, int numFeedings) {
@@ -390,12 +400,25 @@ Now when the mockedDogFood object has its .eat() method called, it will return t
 "Yes, yes, this is all fine," I can hear you saying, "but you didn't answer the original question!  We are still dependent on asserting on a value that is returned from a method, and thus won't be able to test methods without a return value!"  Remember the method that we wanted to test from earlier in the chapter:
 
 ```java
-public void haveFunAtDuckPond(DuckPond duckPond) {
-    duckPond.haveFun();
+public class Person {
+    public void haveFunAtDuckPond(DuckPond duckPond) {
+       duckPond.haveFun();
+    }
 }
 ```
 
-There is no return value and thus nothing on which to assert.  The only way to test this method is to ensure that the `.haveFun()` method on the `duckPond` object was called.  We can do this using a special kind of test double called a __mock__.  A mock object
+There is no return value and thus nothing on which to assert.  The only way to test this method is to ensure that the `.haveFun()` method on the `duckPond` object was called.  We can do this using a special kind of test double called a __mock__.  A mock object will allow you to assert that a particular method was called on the mocked object.  In the above instance, instead of asserting that a particular value is returned (since no value is ever returned), you instead can make a "meta-assertion" that `.haveFun()` is called.  This is called __verification__ since you are __verifying__ that a method has  been called.
+
+```java
+public void testHaveFunAtDuckPond() {
+    Person p = new Person();
+    DuckPond dp = Mockito.mock(DuckPond.class);
+    Mockito.verify(duckPond.haveFun(), times(1));
+    p.haveFunAtDuckPond();
+}            
+```
+
+Note, in this case, that there is no traditional assertion.  The test case ends with the execution steps, viz., calling `.haveFunAtDuckPond()`.  The assertion is actually set when you verify that .haveFun() will be called one time on the mocked DuckPond object.
 
 #### Setup and Teardown
 
