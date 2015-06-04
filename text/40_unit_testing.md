@@ -220,12 +220,161 @@ public int haveFunAtDuckPond(Duck d, int numFeedings) {
 
 Even though the code in this method works perfectly for all inputs, it requires that a working duck be present.  Otherwise, any non-negative number of feedings with a valid duck will cause an exception to be thrown.  If we see a unit test for this particular method failing, we will naturally think that the problem is in this method.  Only after examining it will we understand that the problem actually lies elsewhere.  How can we test this code when the code it depends upon doesn't work?
 
-I wouldn't have asked the question if I didn't have an answer - test doubles.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.
+#### Doubles
+
+I wouldn't have asked the question if I didn't have an answer - test doubles.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to __localize__ the source of errors.  If our tests for haveFunAtTheDuckPond() fail, then the problem should lie in that particular method, not in one of the classes or methods that it depends upon.
+
+JUnit does not support test doubles directly, but you can use other libraries in order to use them.  For this (and the next few sections), we will use Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
+
+Here is an example of using a test double with JUnit and Mockito to test a method which relies on a test double object.  Note that the Mockito calls all test doubles "mocks", even if they don't use the capabilities of a mock object (described later in the chapter).
+
+```java
+// Class to test
+public class Horse {
+
+    public int leadTo(Water w) {
+        w.drink();
+        return 1;
+    }
+
+}
+```
+
+```java
+// Unit test for class
+import static org.junit.Assert.*;
+
+import org.junit.*;
+
+public class HorseTest {
+
+    // Test that a leading a horse to water will return 1
+    @Test
+    public void testWaterDrinkReturnVal() {
+        Horse horse = new Horse();
+        // We are making a test double for water
+        Water mockWater = Mockito.mock(Water.class);
+        int returnVal = h.leadTo(mockWater);
+        assertEquals(returnVal, 1);
+    }
+}
+
+```
+
+We have now created a "fake" object instead of passing in an actual instantiation of the Water class.  Water is now quarantined and cannot cause a failure in our code.  If the test fails, it's the fault of this particular method.  Whenever there is a failure, we'll know exactly where to look in the codebase to determine the issue.
+
+Doubles can also be used to speed up the execution of tests.  Think of a Database object which writes information to out to a database and returns the status code.  Under ordinary circumstances, since the program needs to write out to disk and perhaps even access the network.  Let's say for the sake of argument, that this takes one second.  This may not seem like an incredibly long time to wait, but multiply it by all tests that access the database; even a relatively small program may have hundreds or even thousands of unit tests.
+
+Test doubles should be used, as often as possible, when the code that you are unit testing uses a different object.  Sometimes this will be difficult to do.  In order to minimize issues, you should pass in the object as a parameter whenever possible, as opposed to relying on class-level variables or even worse, global variables.
+
+For example, let's refactor the following class to make it more amenable to use test doubles:
+
+```java
+public class Dog
+
+    DogFood _df = null;
+
+    public void setDogFood(DogFood df) {
+        df = _df;
+    }
+
+    public int eat() {
+        _df.eat();
+        return 1;
+    }
+}
+```
+
+If we wanted to test this, we would have to create an object and set the value separately from the actual test execution.  
+
+```java
+public class DogTest {
+
+    @Test
+    public void eatTest() {
+        Dog d = new Dog();
+        d.setDogFood(Mockito.mock(DogFood.class));
+        int returnVal = d.eat();
+        assertEquals(returnVal, 1);
+    }
+
+}
+```
+
+It would be even more difficult if _df did not have a nice setter function, but instead was created internally or only as a byproduct of an entirely different method.  For example,
+
+```java
+public class Dog
+
+    DogFood _df  = null;
+    DogDish _dd  = null;
+    DogWater _dw = null;
+
+    public void setUpDogStuff() {
+        _dd = new DogDish();
+        _df = new DogFood();
+        _dw = new DogWater();
+    }
+
+    public int eat() {
+        _df.eat();
+        return 1;
+    }
+}
+```
+
+If we were to write a test, we have no way of making doubles for the objects!  Even if we then refactored setUpDogStuff() to accept DogDish, DogFood, and DogWater parameters, we would be forced to work with additional items when all we care about is DogFood.
+
+However, if we just pass in DogFood as a parameter to the method, like so: 
+
+```java
+public class Dog
+
+    public int eat(DogFood df) {
+        df.eat();
+        return 1;
+    }
+}
+```
+
+The test would then look like:
+
+```java
+public class DogTest {
+
+    @Test
+    public void testEatDogFood() {
+        Dog d = new Dog();
+        int returnVal = d.eat(Mockito.mock(DogFood.class));
+        assertEquals(returnVal, 1);
+    }
+}
+```
+
+This will enable much easier and much more focused testing.  You'll also note the code has several other benefits aside from increased testability.  It's easier to read and understand, it's shorter, and there are fewer chances for errors.  In the original version, it would be very easy for a programmer to forget to set the _df variable to a DogFood object at some point, causing a null pointer exception whenever the dog tried to eat.  While still possible, this is less likely when you are passing in the object directly to the method.  We'll discuss more of the benefits of writing testable code - and why testable code is good code, and vice versa - in a later chapter.
+
+#### Stubs
+
+If doubles are fake objects, stubs are fake methods.  In the above examples, we didn't care what calling .eat() on the DogFood object did; we just didn't want it to call an actual DogFood object.  In many cases, though, we expect a certain return value when a method is called.  Let's modify the .eat() method on DogFood so that it returns an integer indicating how tasty the dog food is.
+
+```java
+public class Dog {
+
+    public int eat(DogFood df) {
+        int tastiness = df.eat();
+        return tastiness;
+    }
+
+}
+```
+
+If we were just using `df` as a normal test double, then there is no telling what df.eat() will return.  Specifically, the answer varies by test framework - some will always return a default value, some will call out the real object, some will throw an exception.  This should just be a piece of trivia, though - you shouldn't call methods on a double object unless you have stubbed them.  The whole reason for making a test double is so that you have an object that you have specified, instead of relying on external definitions.  
+
+
 
 #### Verification
 
 
-#### Stubbing
 
 #### Mocking
 
