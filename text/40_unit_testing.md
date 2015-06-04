@@ -71,15 +71,15 @@ public class LinkedListTest
        @Test
        public void testEquals123() {
 
-       	      // Preconditions - a and b both have 1 -> 2 -> 3
-       	      LinkedList<Integer> a = new LinkedList<Integer>( [1,2,3] );
-	      LinkedList<Integer> b = new LinkedList<Integer>( [1,2,3] );
+              // Preconditions - a axnd b both have 1 -> 2 -> 3
+              LinkedList<Integer> a = new LinkedList<Integer>( [1,2,3] );
+              LinkedList<Integer> b = new LinkedList<Integer>( [1,2,3] );
 
-	      // Execution steps - run equality operator
-	      boolean result = a.equals(b);
+              // Execution steps - run equality operator
+              boolean result = a.equals(b);
 
-	      // Postconditions: Expected behavior - assert that result is true
-	      assertEquals(result, true);
+              // Postconditions: Expected behavior - assert that result is true
+              assertEquals(result, true);
        }
 
 }
@@ -135,20 +135,19 @@ In the linked list equality test above, what could you change to ensure that you
 ```java
        @Test
        public void testEquals123() {
-       	      LinkedList<Integer> a = new LinkedList<Integer>( [1, 2] );
+              LinkedList<Integer> a = new LinkedList<Integer>( [1, 2] );
 	      LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
 	      boolean result = a.equals(b);
 	      assertEquals(result, true);
        }
 ```
 
-
 Or 7 -> 8 -> 9?
 
 ```java
        @Test
        public void testEquals123() {
-       	      LinkedList<Integer> a = new LinkedList<Integer>( [7, 8, 9] );
+              LinkedList<Integer> a = new LinkedList<Integer>( [7, 8, 9] );
 	      LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
 	      boolean result = a.equals(b);
 	      assertEquals(result, true);
@@ -161,7 +160,7 @@ Or you changed the equality check to an _inequality_ check?
 ```java
        @Test
        public void testEquals123() {
-       	      LinkedList<Integer> a = new LinkedList<Integer>( [1, 2, 3] );
+              LinkedList<Integer> a = new LinkedList<Integer>( [1, 2, 3] );
 	      LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
 	      boolean result = !(a.equals(b);)
 	      assertEquals(result, true);
@@ -189,9 +188,8 @@ Assuming no floating-point rounding errors or errors of that nature, the square 
 An example of an impure function would be printing out statistics from global variables, or really any method which outputs something to the console or screen, or depends upon variables that are not specifically passed in.  In general, if you see a method with a void return, it's probably impure - a pure function with a void return type would be absolutely useless, since the returned value is its only way of communicating with the rest of the program.  Here is an example of an impure function:
 
 ```java
-public void printStats() {
-       // _connectAttempts is a class-level variable
-       System.out.println("Connection attempts: " + _connectAttempts);
+public void haveFunAtDuckPond(DuckPond duckPond) {
+    duckPond.haveFun();
 }
 ```
 
@@ -389,7 +387,15 @@ Now when the mockedDogFood object has its .eat() method called, it will return t
 
 #### Mocks and Verification
 
-"Yes, yes, this is all fine," I can hear you saying, "but you didn't answer the original question!  We are still dependent on asserting on a value that is returned from a method, and thus won't be able to test methods without a return value!"  
+"Yes, yes, this is all fine," I can hear you saying, "but you didn't answer the original question!  We are still dependent on asserting on a value that is returned from a method, and thus won't be able to test methods without a return value!"  Remember the method that we wanted to test from earlier in the chapter:
+
+```java
+public void haveFunAtDuckPond(DuckPond duckPond) {
+    duckPond.haveFun();
+}
+```
+
+There is no return value and thus nothing on which to assert.  The only way to test this method is to ensure that the `.haveFun()` method on the `duckPond` object was called.  We can do this using a special kind of test double called a __mock__.  A mock object
 
 #### Setup and Teardown
 
