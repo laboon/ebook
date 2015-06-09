@@ -22,7 +22,7 @@ Test-Driven Development is a software development methodology that comprises sev
 
 We work within these constraints by using the "red-green-refactor" loop.  A single cycle in TDD involves the following three steps:
 
-1. __Red__ : The developer writes a failing test for a new piece of piece of functionality or an edge case that should be checked.  The newly written test - and only that test - should fail.  If the newly written test does not fail, that means that the code has already been written for that functionality.  If other tests fail, this means that there is a problem with the test suite - perhaps an intermittent or non-deterministic failure of a test - that should be fixed before moving on.  This phase is called "red" because many unit testing frameworks will show failing tests as a red color.  Since red-green colorblindness affects a good portion of the human population, and humans are by far the most likely animal to program, this may not be the best color selection.  However, we will follow this standardized naming convention.
+1. __Red__ :  TDD is a form of test-first development (TFD), so the first thing to do is write a test.  The developer writes a failing test for a new piece of piece of functionality or an edge case that should be checked.  The newly written test - and only that test - should fail.  If the newly written test does not fail, that means that the code has already been written for that functionality.  If other tests fail, this means that there is a problem with the test suite - perhaps an intermittent or non-deterministic failure of a test - that should be fixed before moving on.  This phase is called "red" because many unit testing frameworks will show failing tests as a red color.  Since red-green colorblindness affects a good portion of the human population, and humans are by far the most likely animal to program, this may not be the best color selection.  However, we will follow this standardized naming convention.
 
 2. __Green__ : The developer now writes code to make this test pass, and only work on making this test pass, while not causing any other tests to fail.  At this point, some "ugly" code is to be expected; the focus is on making it work as opposed to making it pretty.  If other tests fail, then the developer has inadvertently caused a regression and should work on fixing that.  At the end of this phase, all tests should be passing ("green").
 
@@ -30,11 +30,78 @@ We work within these constraints by using the "red-green-refactor" loop.  A sing
 
 After each red-green-refactor cycle, the developer should think what the next piece of functionality that he or she wants to add, and then loop back.  This will continue until the software has done, a path of testing, coding, and refactoring that will eventually culiminate not only in a complete product, but a solid test suite that should be directly relevant to all the functionality of the program.
 
+This could all be re-written as a very simple algorithm.  By doing so, we can see how this helps focus the attention of the person writing the software; there is always a well-defined next step.
+
+1. Write a test for functionality which has not been written yet.
+2. Run test suite - only the newly written test should fail.  If not, first figure out why other tests are failing and fix that problem.
+3. Write enough code to make that test pass, without causing other tests to fail
+4. Run test suite - if any test fails, go back to step 3.  If all tests pass, continue.
+5. Refactor code that you have written, and/or any associated code.
+6. Run test suite - if any tests fail, go back to step 5.  If all tests pass, continue.
+7. If there is any more functionality to add, go to step 1.  If there is no more functionality to add, the application is complete!
+
 #### Concepts
 
+There are several principles to keep in mind when writing in a TDD manner.
+
+__YAGNI (You Ain't Gonna Need It)__
+
+__KISS (Keep It Simple, Stupid)__
+
+__Fake It 'Til You Make It__
+
+__Avoid Test Interdependencies__
+
+__Avoid Slow Running Tests__
+
+__Remember That These Are Principles, Not Laws__
 
 #### Example
 
-#### Benefits and Drawbacks
+#### Benefits of TDD
+
+(automatically create a test suite)
+
+(testing becomes part of workflow)
+
+(when it's easy to write tests, more tests are written)
+
+(tests are relevant)
+
+(forces developer to think about what program should do, not just specifics of code)
+
+(ensures small steps)
+
+(code is testable)
+
+(code is extensible)
+
+(helps avoid defects)
+
+(100% or close to it test coverage)
+
+(confidence in codebase)
+
+(structured methodology / checkbox manifesto)
+
+#### Drawbacks of TDD
+
+(focus on unit testing)
+
+(extra time)
+
+(perhaps less time spent on design/architecture)
+
+(not appropriate for all development, e.g. safety-critical, prototype)
+
+(architecture modifications may be difficult)
+
+(tests become part of the overhead of a project)
+
+(could fall into trap of overtesting)
+
+(may be difficult to implement on legacy systems with other paradigms)
+
+
 
 #### Example: Building FizzBuzz via TDD
