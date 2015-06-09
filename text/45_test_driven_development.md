@@ -56,7 +56,65 @@ __Avoid Slow Running Tests__
 
 __Remember That These Are Principles, Not Laws__
 
-#### Example
+#### Example: Building FizzBuzz via TDD
+
+In order to understand how TDD works, let's write a simple FizzBuzz program using it.  Remember that FizzBuzz consists of printing every number from 1 to 100, except if the number is evenly divisible by three, then the word "Fizz" should be printed instead of the number, if the number is evenly divisible by five, then the word "Buzz" should be printed instead of the number, and if the number is evenly divisible by both three and five, then "FizzBuzz" should be printed instead of the number.
+
+First, let's build a "walking skeleton" of the application.  Assuming we already have JUnit or a similar testing framework installed, and we aren't deploying it anywhere, all we have to do is generate our initial FizzBuzz class.  Since we're iterating through a range of values, each of which is entirely decideable based on its value, let's create a class that has a main method and a "fizzbuzzify" method, which will return the correct string for a given value.
+
+Thinking a little ahead, we know that we're going to have to iterate through the numbers 1 through 100, and there are four cases that we'd like to test for, namely:
+
+1. The number itself should be printed out, if the number is not evenly divisible by 3 or 5
+2. The string "Fizz" should be printed out, if the number is evenly divisible by 3 but not evenly divisibly by 5
+3. The string "Buzz" should be printed out, if the number is evenly divisible by 5, but not evenly divisible by 3
+4. The string "FizzBuzz" should be printed out, if the number is evenly divisible by both 5 and 3
+
+Our testing is helped by the fact that this is a pure function - its return value is entirely determined by the input parameter.  It has no dependence on global values and has no side effects like output, and no other external dependencies.  Sending in 2 will always return "2" and do nothing else, sending in 3 will always return "Buzz" and do nothing else, and so on.
+
+```java
+public class FizzBuzz {
+
+    private static String fizzbuzzify(int num) {
+        return 0;
+    }
+
+    public static void main(String args[]) {
+
+    }
+
+}
+```
+
+Now let's add our first test, using the first case.  The first number that is not evenly divisible by 3 or 5 is 1, so let's use 1 as the first value to test for our `fizzbuzzify()` method.
+
+```java
+public class FizzBuzzTest {
+
+    @Test
+    public void testOneReturnsOne() {
+        String returnedVal = FizzBuzz.fizzbuzzify(1);
+        assertEquals(returnedVal, 1);
+    }
+
+}
+```
+
+If we run this, it will fail - fizzbuzzify returns 0, which is not equal to 1, and thus the assertion fails.  Well, there's a simple fix for that!
+
+```java
+
+    private static String fizzbuzzify(int num) {
+        return 1;
+    }
+
+    public static void main(String args[]) {
+
+    }
+
+}
+```
+
+When we run the test again, it passes!
 
 #### Benefits of TDD
 
@@ -101,7 +159,3 @@ __Remember That These Are Principles, Not Laws__
 (could fall into trap of overtesting)
 
 (may be difficult to implement on legacy systems with other paradigms)
-
-
-
-#### Example: Building FizzBuzz via TDD
