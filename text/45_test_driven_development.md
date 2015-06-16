@@ -44,17 +44,15 @@ This could all be re-written as a very simple algorithm.  By doing so, we can se
 
 There are several principles to keep in mind when writing in a TDD manner.
 
-__YAGNI (You Ain't Gonna Need It)__ Don't write any code that you don't need to in order to make the tests pass!  It's always tempting to make a nice abstract system which can handle all sorts of different future variations on whatever it is you're doing now, but you will also make the code more complex.  What's worse, you will be making it more complex in ways that may not ever help the system's future development.  Avoid complexity until it's absolutely necessary.  
+__YAGNI (You Ain't Gonna Need It)__ Don't write any code that you don't need to in order to make the tests pass!  It's always tempting to make a nice abstract system which can handle all sorts of different future variations on whatever it is you're doing now, but you will also make the code more complex.  What's worse, you will be making it more complex in ways that may not ever help the system's future development.  Avoid complexity until it's absolutely necessary.  If there are more edge cases or equivalence classes that need to be dealt with, add more tests first.
 
-__KISS (Keep It Simple, Stupid)__
+__KISS (Keep It Simple, Stupid)__ One of the goals of TDD is to ensure that the codebase is flexible and extensible, and one of the greatest enemies of those two goals is complexity.  Complex systems are difficult to understand and thus modify; complex systems tend to be overfit to the specific problem they were developed for, and it's difficult to add new features or functionality.  Keep your code simple and your design simple, and consciously avoid adding additional complexity.
 
-__Fake It 'Til You Make It__
+__Fake It 'Til You Make It__ It's okay to use fake methods and objects in your tests, or just use a placeholder such as `return 0;` as the entire body of a method.  You can come back later with additional tests once they are necessary.  
 
-__Avoid Test Interdependencies__
+__Avoid Slow Running Tests__ If you are working with TDD, you are running at least three full test runs each iteration through the red-green-refactor loop.  That's a minimum and assuming that your code never causes problems in other tests or has any defects of its own.  If running your test suite takes two or three seconds, this is a minor price to pay for the extra quality that TDD provides; if it takes several hours, how long before developers are going to start ignoring the process in order to actually get some work done?
 
-__Avoid Slow Running Tests__
-
-__Remember That These Are Principles, Not Laws__
+__Remember That These Are Principles, Not Laws__ It would be counterproductive to entirely ignore what else the software needs to do in the next few iterations of the red-green-refactor loop.  Occasionally, a test may be slow but necessary, or adding a fake version of a method would be just as simple as actually making the method.  Although you should endeavour to follow the principles of TDD, I know of nobody who has never violated one of the principles (although perhaps that speaks more to the type of people that I spend time with).
 
 #### Example: Building FizzBuzz via TDD
 
