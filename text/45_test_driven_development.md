@@ -44,7 +44,7 @@ This could all be re-written as a very simple algorithm.  By doing so, we can se
 
 There are several principles to keep in mind when writing in a TDD manner.
 
-__YAGNI (You Ain't Gonna Need It)__
+__YAGNI (You Ain't Gonna Need It)__ Don't write any code that you don't need to in order to make the tests pass!  It's always tempting to make a nice abstract system which can handle all sorts of different future variations on whatever it is you're doing now, but you will also make the code more complex.  What's worse, you will be making it more complex in ways that may not ever help the system's future development.  Avoid complexity until it's absolutely necessary.  
 
 __KISS (Keep It Simple, Stupid)__
 
@@ -75,7 +75,7 @@ Our testing is helped by the fact that this is a pure function - its return valu
 public class FizzBuzz {
 
     private static String fizzbuzzify(int num) {
-        return 0;
+        return "";
     }
 
     public static void main(String args[]) {
@@ -91,20 +91,20 @@ Now let's add our first test, using the first case.  The first number that is no
 public class FizzBuzzTest {
 
     @Test
-    public void testOneReturnsOne() {
+    public void test1Returns1() {
         String returnedVal = FizzBuzz.fizzbuzzify(1);
-        assertEquals(returnedVal, 1);
+        assertEquals(returnedVal, "1");
     }
 
 }
 ```
 
-If we run this, it will fail - fizzbuzzify returns 0, which is not equal to 1, and thus the assertion fails.  Well, there's a simple fix for that!
+If we run this, it will fail - fizzbuzzify returns an empty string, which is not equal to 1, and thus the assertion fails.  Well, there's a simple fix for that!
 
 ```java
 
     private static String fizzbuzzify(int num) {
-        return 1;
+        return "1";
     }
 
     public static void main(String args[]) {
@@ -114,48 +114,186 @@ If we run this, it will fail - fizzbuzzify returns 0, which is not equal to 1, a
 }
 ```
 
-When we run the test again, it passes!
+When we run the test again, it passes!  So let's move on to the next phase and look for any refactoring opportunities.  In this case, I don't think there are; sure, there's a magic number (well, technically a magic string consisting of a number), but what can you do, replace it with a constant NUMBER_ONE?  That's probably not much more understandable.
+
+Let's add another test, for 2, which should return a non-fizzy, non-buzzy string, "2".
+
+```java
+public class FizzBuzzTest {
+
+    @Test
+    public void test1Returns1() {
+        String returnedVal = FizzBuzz.fizzbuzzify(1);
+        assertEquals(returnedVal, "1");
+    }
+
+    public void test2Returns2() {
+        String returnedVal = FizzBuzz.fizzbuzzify(2);
+        assertEquals(returnedVal, "2");
+    }
+
+}
+```
+
+When we run this, as expected, we get one failure; since our `fizzbuzzify()` method will only ever return 1, it's never going to return 2.  We also note that we didn't cause the initial test to fail by adding this test - the only test that fails is the new one, `test2Returns2()`.  Fixing up the code should be pretty simple, right?
+
+```java
+public class FizzBuzz {
+
+    private static String fizzbuzzify(int num) {
+        if (num == 1) {
+            return "1";
+        } else {
+            return "2";
+        }
+    }
+
+    public static void main(String args[]) {
+
+    }
+
+}
+```
+
+Now all of our tests pass!  We are coding geniuses!  Go ahead and give yourself a pat on the back!
+
+Of course, this pattern is not going to work going forwards.  Let's refactor the code a bit so that it will work with all integers, instead of having to add a new `else if` for each individual value.
+
+```java
+public class FizzBuzz {
+
+    private static String fizzbuzzify(int num) {
+        return String.valueOf(num);
+    }
+
+    public static void main(String args[]) {
+
+    }
+
+}
+```
+
+Much better!  Tests are still passing, so we can move on to the next cycle in the loop.  Let's add a test for `fizzbuzzify(3)`, which should return "Fizz".
+
+```java
+    @Test
+    public void test3ReturnsFizz() {
+        String returnedVal = FizzBuzz.fizzbuzzify(3);
+        assertEquals(returnedVal, "Fizz");
+    }
+```
+
+`fizzbuzzify(3)` will actually return "3", of course, causing our test to fail.  However, that can be fixed quickly!
+
+```java
+    private static String fizzbuzzify(int num) {
+        if (num == 3) {
+            return "Fizz";
+        } else {
+            return String.valueOf(num);
+        }
+    }
+```
+
+Huzzah, our tests pass!  This isn't an ideal solution, though - it will only work with 3, and we know that it should be any number that's evenly divisible by 3.  A bit of refactoring and we should be able to handle any number divisible by 3.
+
+```java
+    private static String fizzbuzzify(int num) {
+        if (num % 3 == 0) {
+            return "Fizz";
+        } else {
+            return String.valueOf(num);
+        }
+    }
+```
+
+This also might give us more ideas for additional unit tests later - perhaps we want to check if 6, 9, or 3000 work.  For now, though, let's just move on to add "Buzz".
+
+```java
+    @Test
+    public void test5ReturnsBuzz() {
+        String returnedVal = FizzBuzz.fizzbuzzify(5);
+        assertEquals(returnedVal, "Buzz");
+    }
+```
+
+Once again, the test will fail, so we add an additional else to our conditional:
+
+```java
+    private static String fizzbuzzify(int num) {
+        if (num % 3 == 0) {
+            return "Fizz";
+        } else if (num % 5 == 0) {
+            return "Buzz";
+        } else {
+            return String.valueOf(num);
+        }
+    }
+```
+
+Tests pass now, and there doesn't seem to be any refactoring to do.  Let's try one final test for the FizzBuzz return value.
+
+```java
+    @Test
+    public void test15ReturnsFizzBuzz() {
+        String returnedVal = FizzBuzz.fizzbuzzify(15);
+        assertEquals(returnedVal, "FizzBuzz");
+    }
+```
+
+This test fails, since the current method  will return "Fizz".
+
+```java
+    private static String fizzbuzzify(int num) {
+        if ((num % 3 == 0) && (num % 5 == 0)) {
+            return "FizzBuzz";
+        } else if (num % 3 == 0) {
+            return "Fizz";
+        } else if (num % 5 == 0) {
+            return "Buzz";
+        } else {
+            return String.valueOf(num);
+        }
+    }
+```
+
+Tests are now passing!  We might go further with refactoring - for example, DRYing up the code by moving `num % 3 == 0` and `num % 5 == 0` to their own methods - but this shows the a simple outline of the TDD process.  Oftentimes, steps are bigger in actual development, but a key tenet to keep in mind is to keep the tests relatively specific and targeted at particular output values.  Grouping the input and output values into equivalence classes, as discussed earlier, can help you to decide what needs to be tested and what order to test things in.
 
 #### Benefits of TDD
 
-(automatically create a test suite)
+One of the biggest benefits of TDD is that it automatically creates a test suite during development.  Instead of having to worry about fitting in time to develop a testing framework and writing tests, the mere act of development will create one for you.  Since testing is, sadly, often relegated to the end of the project (which means that it will be given short shrift or even avoided entirely), using TDD ensures that you will at least have some sort of test suite even if other testing is curtailed.
 
-(testing becomes part of workflow)
+When tests are part of the workflow, people remember to do them.  You probably don't think "ugh, I need to remember to brush my teeth today" every morning when you wake up; it's just a habit that you do as part of your morning routine.  You're more likely to write tests when it's something that you just do all the time, that you have created a habit around doing.  Since more tests are correlated with higher quality code, this is definitely a good thing!  When things are done more often, they are also easier to do.  Any problems with the test suite will be found quickly, and parts which are problematic and code which is difficult to test will be dealt with sooner.
 
-(when it's easy to write tests, more tests are written)
+Yet another benefit is that the tests that you write with TDD are relevant, since new tests must fail first (ensuring that the test is not redundant) and must pass before the cycle of writing a piece of code is considered "complete".  You are unlikely in this case to write tests which are unnecessary or tautological, or overtest one area and undertest another.
 
-(tests are relevant)
+If you are writing tests after the fact, it's easy to fall into the trap of assuming that what the program does is what the program should do.  However, remember that tests are supposed to check expected behavior against the observed behavior.  If you are "expecting" something that you already "observed", your tests run the risk of being tautological!
 
-(forces developer to think about what program should do, not just specifics of code)
+TDD forces you to work in small steps.  This helps to ensure that you don't go too far off the path working on something.  If you wrote four lines of code and introduced a bug, it's much easier to find out where you went wrong than if you find the bug after writing a thousand lines of code.  I like to think of writing code as crossing Antarctica with vicious penguins all around, and tests are fortresses against the penguins.  You can easily cross the entire continent if you only go a mile or two before setting up another fortress, as there is always a place close by to retreat to if the penguins get that mad glint in their eye.  You can then choose another path, perhaps with fewer penguins, and build a fort there.  Crossing the Antarctic without building anti-penguin forts would be a foolhardy maneuever, because any penguin attack might mean re-tracing your steps all the way to your landing craft.  Writing large pieces of code without tests similarly prevents you from making solid progress as any defects may cause you to have to scrap much of the code that you have already written.
 
-(ensures small steps)
+When you are testing code from the beginning, the code is much more likely to be testable.  Not only will you learn how to test the code in this particular application because you are doing it all the time, you are not likely to write code that you can't test.  Why would you?  Your code needs to pass the test that you've already written, so you are going to make it in a way that will make it testable.  Since you are also constantly adding on to the codebase, as opposed to seeing it as one large "version" to be committed as a giant block, your code will also be extensible.  You're extending it with each cycle of the red-green-refactor loop!
 
-(code is testable)
+Using TDD provides 100% test coverage, or at least close to it.  Although code coverage is not a perfect metric - there are plenty of defects that can be hidden in code that is entirely covered by tests - it assures you that you are at least checking each line of code once.  This is much better than many software projects.
 
-(code is extensible)
+Test-Driven Development provides a structured framework to write software with.  Although there are certainly many drawbacks (some of which will be enumerated below) and situations for which it is a suboptimal methodology, it does provide you with a way to move forward.  The strict but flexible steps of the red-green-refactor loop provide developers with a list of things to do next.  You are constantly adding tests, writing code to make them pass, and refactoring.  When you don't have a framework to follow, you may spend lots of time refactoring existing code, or not nearly enough time writing tests, or too much energy writing tests and not writing code.  At a bare minimum, you've got to consider how much time and resources you'd like to spend on each section.  With TDD, you have ready-made answers, so you don't have to think about it, and your mind is clear to work on other things.  There is an excellent book, The Checklist Manifesto by Atul Gawande, which explains how having a checklist (even one as simple as red-green-refactor) can help you in a variety of endeavours.  Software engineering is no exception.
 
-(helps avoid defects)
-
-(100% or close to it test coverage)
-
-(confidence in codebase)
-
-(structured methodology / checkbox manifesto)
+Finally, and most importantly, developing software using TDD can give you confidence in your codebase.  You are walking the tightrope of development with a net; you know that the software you are writing can at least do the things that you ask of it.  You have guard rails that let you know when you've caused problems in other parts of the application.  You have a seasoned team of developers letting you know what the next steps are.  You are not alone.
 
 #### Drawbacks of TDD
 
-(focus on unit testing)
+Of course, as Fred Brooks taught us in __The Mythical Man-Month__, there is no silver bullet.  Developing software using TDD has many benefits, but it's not always the correct methodology to use.  Be aware of the following drawbacks before deciding to use TDD.
 
-(extra time)
+Developing in TDD means writing many unit tests.  If your team needs to be coerced into testing software in the first place, this focus may drive out other kinds of tests, such as performance testing and systems testing.  You need to keep in mind that just because you have written many unit tests for a method which utilizes some functionality, this does not mean that you have thoroughly tested that functionality.
 
-(perhaps less time spent on design/architecture)
+There is no doubt about it - in the short run, writing tests will mean more time spent to get the same amount of features.  There are benefits, to be sure, such as improved code quality.  However, if one had waited until the night before a project is due for a software class (ahem), TDD would probably not be the way to go.  In this case, a bulletproof program which doesn't meet half the requirements for the homework assignment is much worse than a program which does everything it's supposed to do, as long as you don't pass any invalid parameters to it or hit Control-C or breathe too heavily around it.  However, for larger projects or projects without such a small deadline, using TDD or a similar methodology will often be faster in the long run.  A good analogy is that writing software without tests is like riding a go-kart; it seems really fast, but is actually slow.  Writing software with tests is like riding a jet plane; it seems really slow, but is actually much faster than driving a go-kart.
 
-(not appropriate for all development, e.g. safety-critical, prototype)
+Traditionally, TDD provides less time up-front for architecture decisions.  Due to the short cycle time of the red-green-refactor loop, less time may be spent on design and architecture as opposed to writing code which implements user stories.  In many cases, such as simple web applications, this is perfectly fine.  Default architectures may be fine and spending too much time thinking about them may be counterproductive.  In other cases, especially with new kinds or domains of software, architectural choices may be difficult and consequential, and it makes sense to spend time at the beginning of the project thinking about them.
 
-(architecture modifications may be difficult)
+Furthemore, architectural design changes made later in development may be difficult to implement.  Although the metholodogy is meant to be flexible, some design decisions would require numerous modifications once code is written.  It may be easier to spend more time earlier in the software development lifecycle thinking about what is to be done, instead of assuming that you will be able to make changes later.
 
-(tests become part of the overhead of a project)
+Certainly for some application domains, test-driven development is the wrong approach.  If you are building a prototype of something, and are not sure what the expected behavior should be, but you know that it's going to change rapidly and not be used in production, then TDD is overkill.  The ever-growing test suite, which usually acts as a safety net, would become an albatross around your code's neck.  If you are trying to figure out the expected behavior as you go along, it makes little sense to use a methodology which presupposes that you know what the expected behavior is, since you're writing tests for it.  On the other hand, extremely safety-critical applications, such as power systems or avionics controls, will require much more design and forethought than TDD can provide.  In this case, TDD may be a little too flexible.
 
-(could fall into trap of overtesting)
+Remember that when you write automated tests, you are actually writing code.  Sure, the code looks a little different, but you're still adding more and more overhead to your codebase.  This is another place for things to go wrong, another place for refactoring, another place to update any time a change is made to the requirements or direction of the project.  Although this overhead is often compensated for with an increase in the quality of the application, it should be kept in mind, as in some cases it may not.  On especially small projects and scripts, it may be much faster to simply do some manual testing to ensure that it does what it's supposed to do, instead of spending the time on developing an entire framework around the application.
 
-(may be difficult to implement on legacy systems with other paradigms)
+Finally, as an engineer, you often do not start with a greenfield (that is, an entirely new) project.  Often, you are modifying or adding features to already-existing software, much of which has been written using different methodologies or paradigms.  If you start working on a project which uses a very rigid Waterfall methodology, or code which is not easily testable, trying to use TDD may be more trouble than it's worth.  It may also alienate you from team members, or force you to spend too much time to develop your features.
+
