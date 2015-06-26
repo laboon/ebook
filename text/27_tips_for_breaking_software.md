@@ -30,11 +30,15 @@ When testing, check the boundary values and you are likely to run across some of
 
 4. __Errors of Assumption__ 
 
-5. __Missing Data Errors__
+5. __Missing Data Errors__ Whenever data comes in from an external source to the program (e.g., from a CSV file, or an API endpoint, or from direct user input on the terminal), there exists the chance that necessary data will be missing.  This may be as simple as a user just hitting Enter when asked for input, or as complex as a missing attribute somewhere deep within a large JSON respond.  In all cases, though, the system should deal with it appropriately.  Always assume that anything external may or may not send you all of the data that you need.
+
+What to do when data is missing is going to vary by program and by domain.  In some cases, your program can safely ignore it; in others, it should be flagged or logged, or the user alerted; in rae
 
 6. __Bad Data Errors__
 
-6. __Display Errors__ 
+6. __Display Errors__ While a system may compute the correct value, it may be displayed incorrectly.  This may be a problem when a number or string is too large to be displayed in full (e.g., displaying the result of `1 / 3`), and so characters are cut off.  Conversely, there may be no cut-off, so that the display of a value causes problems by overwriting or otherwise distorting other aspects of a display.  If you are displaying values on a chart, an outlier on the X or Y axes may either not be displayed, or be displayed well off the chart, causing issues for other aspects of the display.  Graphics may be displayed incorrectly, or the wrong bitmap or color may be used.  Certain characters printed to a display may cause the terminal to freeze, or a bell to beep, or cause other issues with the display.  Improperly escaped HTML may cause your renderered webpage to no longer appear.
+
+Whenever data is displayed, check not only that the value was computed properly, but also that is being displayed properly.  By sending in data that contains odd characters, or extremely large or small values, or that is missing some normally-expected value, you can ensure that all the time spent determining the right value to display is actually seen by the user.
 
 6. __Injection Errors__ A subset of Bad Data Errors, Injection Errors are when executable code or other instructions are passed in to a program.  If a progra can be tricked into executing them, the consequences can be dire, including loss or corruption of data, unauthorized access to a system, or simply causing the system to crash.
 
