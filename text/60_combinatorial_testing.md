@@ -6,9 +6,24 @@ If you want truly complete test coverage, you'll have to test each of these diff
 
 However, it turns out that this situation is rarer than you might think.  You may not need to test all of these combinations in order to find a large percentage of the defects in the system.  In fact, according to a study by the National Institute of Standards and Technology, up to 90% of all defects in a software system can be found simply by testing all combinations of two variables.  In our example, if you just tested all of the possible pairs (bold and italic, bold and superscript, superscript and 3-D, etc.), you would have found many of the defects in the software but have used only a fraction of the testing tie.  Of all the software projects that they analyzed, the maximum number of variables that interacted to cause a defect that they found was six.  By keeping this in mind when constructing tests, you can find virtually all of the defects that a comprehensive test approach would find while using orders of magnitude less testing time and resources.
 
-This technique is called __combinatorial testing__.  Testing all of the possible pairs of values is a kind of combinatorial testing, but has its own term, __pairwise testing__ or __all-pairs testing__.  At the beginning of this book, we discussed how comprehensively testing a non-trivial program was almost impossible.  By using the techniques in this chapter, however, we can relax our testing only slightly, but still find ourselves able to test extremely thoroughly.
+This technique is called __combinatorial testing__.  Testing all of the possible pairs of values is a kind of combinatorial testing, but has its own term, __pairwise testing__ or __all-pairs testing__.  At the beginning of this book, we discussed how comprehensively testing a non-trivial program was almost impossible.  By using the techniques in this chapter, however, we can reduce the number of tests dramatically (in some cases, by many orders of magnitude), but still find ourselves able to test extremely thoroughly.
 
 ## Example
+
+Let's take a very simple example, a program which has only three variables for a character's formatting: bold, italic, and underline.  These can be combined, so that, for example, a character can be just italic; or italic and underlined; or bold, italic and underlined.  Since each of these variables is a Boolean (they can only be true or false - you can't have a "half-italic" character) The list of possibilities for a character can be expressed as a truth table.
+
+```
+ BOLD       | ITALIC    | UNDERLINE 
+------------+-----------+------------
+ false      | false     | false
+ false      | false     | true 
+ false      | true      | false
+ false      | true      | true 
+ true       | false     | false
+ true       | false     | true 
+ true       | true      | false
+ true       | true      | true 
+```
 
 
 
