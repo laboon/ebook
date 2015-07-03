@@ -183,3 +183,9 @@ __Bug__:
 __Test-Driven Development (TDD)__:
 
 __Regression Failure__:
+
+__Scripted Testing__:
+
+__Unscripted Testing__:
+
+__Media Testing__:
