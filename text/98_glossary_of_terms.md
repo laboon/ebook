@@ -162,9 +162,9 @@ __Application Under Test__:
 
 __Acceptance Testing__:
 
-__Sanity Testing__:
+__Sanity Test__:
 
-__Smoke Testing__:
+__Smoke Test__:
 
 __Sanity Check__:
 
