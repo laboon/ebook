@@ -1,5 +1,7 @@
 ## Glossary of Terms
 
+__Test Artifact__:
+
 __Implicit Boundary Value__:
 
 __Explicit Boundary Value__:
