@@ -1,5 +1,19 @@
 ## Glossary of Terms
 
+__Dogfooding__:
+
+__Dogfood, Eating Your Own__:
+
+__Regulation Acceptance Testing__:
+
+__Operational Testing__:
+
+__User Acceptace Testing__:
+
+__Alpha Testing__:
+
+__Beta Testing__:
+
 __Test Artifact__:
 
 __Implicit Boundary Value__:
