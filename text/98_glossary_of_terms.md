@@ -1,5 +1,17 @@
 ## Glossary of Terms
 
+__Stochastic Testing__:
+
+__Monkey Testing__:
+
+__Chaos Monkey__:
+
+__Evil Monkey__:
+
+__Smart Monkey__:
+
+__Fuzz Testing__:
+
 __Dogfooding__:
 
 __Dogfood, Eating Your Own__:
