@@ -37,9 +37,9 @@ Cat Weighing System
 Please enter a valid parameter
 ```
 
-We should first determine what the expected behavior is before continuing with writing a test plan.  This can be done by checking with the appropriate requirements analysts, systems engineers, product owners, or whoever is in charge of requirements.  If you are working on a less formal team, the correct path forward may be to make an assumption.  However, these assumptions should be noted as part of the test plan!  If one must make assumptions, they should at least be delineated clearly somewhere.  In general, however, you should avoid making assumptions; you want to know what the expected behavior is as precisely as possible.
+We should first determine what the expected behavior is before continuing with writing a test plan.  This can be done by checking with the appropriate requirements analysts, systems engineers, product owners, or whoever is in charge of requirements.  If you are working on a less formal team, the correct path forward may be to make an assumption.  However, these assumptions should be noted as part of the test plan!  If one must make assumptions, they should at least be delineated clearly somewhere.  In general, however, you should avoid making assumptions; you want to know what the expected behavior is as precisely as possible.  In this case, let's assume that we went to the project manager (of __course__ catweigher has a project manager) and determined that "Cat Weighing System" should not be displayed if the parameter is not valid.  In other words, the second string of output is correct.
 
-In general, I have found that a top-down approach of the requirements of the program is of the most help in creating a test plan.  By a "top-down approach", I mean that a general outline of the test plan will be generated first, and then specific details can be filled in.  This contrasts with a "bottom-up approach", where the specific details of small sections are filled in first, and as more and more small details are filled, a larger picture gradually emerges.
+I have found that a top-down approach of the requirements of the program is of the most help in creating a test plan.  By a "top-down approach", I mean that a general outline of the test plan will be generated first, and then specific details can be filled in.  This contrasts with a "bottom-up approach", where the specific details of small sections are filled in first, and as more and more small details are filled, a larger picture gradually emerges.
 
 Looking at the requirements, I can mentally divide them into three sections:
 
@@ -104,5 +104,7 @@ EXECUTION STEPS: At the command line, run "catweigher 5 6 7 8"<br>
 OUTPUT VALUES: N/A<br>
 POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits without further output.<br>
 
-At this point, there's a reasonable
+At this point, there's a reasonable amount of test coverage for this requirement.  On to the next one, which it turns out is very simple to test.  
+
+
 
