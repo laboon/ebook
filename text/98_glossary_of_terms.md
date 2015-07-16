@@ -6,11 +6,11 @@ __Monkey Testing__: Another term for __stochastic testing__.
 
 __Chaos Monkey__: A __stochastic testing__ tool developed by Netflix which tests distributed systems by shutting off random servers in the system.
 
-__Evil Monkey__: A __stochastic testing__ method whereby malicious code or data is sent in to a system.  Simulates an attacker trying to gain access to a system.
+__Evil Monkey__: A __stochastic testing__ method whereby malicious code or data is sent in to a system.  Simulates an attacker trying to gain access or cause damage to a system.
 
-__Smart Monkey__: A __stochastic testing__ method whereby 
+__Smart Monkey__: A __stochastic testing__ method whereby the data passed in mimics how an actual user would use the system.  For example, a smart monkey test for a word processing system might type some letters, format them, and save the file (as an actual user might), as opposed to clicking buttons purely at random.
 
-__Fuzz Testing__:
+__Fuzz Testing__: A form of __stochastic testing__ whereby random but possible data is passed in to a system to see how it responds.
 
 __Dogfooding__: Using your own software while developing it.  For example, running the operating system that you are developing on your own computer.
 
@@ -22,11 +22,11 @@ __Operational Testing__: Testing that a system works under real-world conditions
 
 __Field Testing__: Testing that a system works while actually operating with real users.
 
-__User Acceptace Testing__:
+__User Acceptance Testing__: A particular kind of __acceptance testing__ where the tester is the user of the software.  It ensures that the system under test is acceptable to the user by meeting their needs.
 
-__Alpha Testing__:
+__Alpha Testing__: "Real-world" testing by a small group of test engineers or some other small group of technically proficient personnel.  Often succeeded by beta testing.
 
-__Beta Testing__:
+__Beta Testing__: "Real-world" testing by a subset of the actual user base prior to release of the system.  Often preceeded by alpha testing.
 
 __Test Artifact__: A document or other byproduct of the testing process, such as test plans or results.
 
@@ -48,7 +48,7 @@ __Requirement__: A statement of what the system under development needs to do in
 
 __Requirements Specification__: A list of requirements for a given system.  The system is expected to meet all of the requirements in the requirements specification.
 
-__Testability__:
+__Testability__: A quality of a system that specifies how easy it is to test - having well-designed and coherent methods, pure functions where possible, allowance for dependency injection, etc.
 
 __Internally Consistent (Requirements)__: The property of having no requirements contradict each other.  For example, a requirements specification which has a requirement which states "The system shall always leave the red light on" and another requirement which states that "The system shall turn off the red light if SWITCH1 is enabled" would not be internally consistent.
 
@@ -76,9 +76,9 @@ __Precondition__: All conditions which need to hold true before the execution st
 
 __Postcondition__: All conditions which need to hold true after the execution steps in order for the test to pass.  For example, a postcondition after editing your user name may be that the Account Information page shows the new user name.
 
-__Input Value__:
+__Input Value__: A particular value which will be passed in to a test case.  The distinction between this and precondition can be hazy in manual or other black-box testing; in white-box testing, values that you are passing in to the method under test (e.g. as arguments or parameters) are input values.
 
-__Output Value__:
+__Output Value__: A particular value which will be output by a test case.  The distinction between these and postconditions in manual or other black-box testing can be hazy; in white-box testing, values that are directly returned from a method are output values.
 
 __Execution Steps__: The actual steps that the test will execute after ensuring that all preconditions hold.  
 
@@ -118,17 +118,17 @@ __Statement Coverage__: What percentage of statements in the code are tested, us
 
 __Branch Coverage__: What percentage of branches in the code are tested usually by unit tests.
 
-__Combinatorial Testing__: 
+__Combinatorial Testing__: Testing in such a way so as to ensure that various combinations of variables will work as expected.  For example, testing a 
 
-__Pairwise Testing__:
+__Pairwise Testing__: A particular form of combinatorial testing where you are testing for all two-way interactions.
 
-__All-Pairs Testing__:
+__All-Pairs Testing__: Another term for __pairwise testing__.
 
 __DRY__: Don't Repeat Yourself.  A tenet of writing good, testable code which states that code should not be repeated, for example by having two different methods which do the same thing, or copy/pasting code from one part of the codebase to another instead of making it into a callable method.
 
 __YAGNI__: You Ain't Gonna Need It.  A tenet of __Test-Driven Development__ which states that you should not do work or add features which are not immediately necessary.
 
-__Law of Demeter__:
+__Law of Demeter__: A principle of object-oriented software stating that code should not invoke methods on objects it received from an object of another class.  For example, `tree.getBough().getBranch().setBroken(true);` would be a violation of the Law of Demeter, since you are calling a method on an object from an object received from a different class.
 
 __Tell, Don't Ask__: Another term for the __Law of Demeter__.
 
@@ -154,7 +154,7 @@ __InfoSec Triad__: The three criteria that indicate a secure system - confidenti
 
 __CIA Triad__: Another term for the __InfoSec Triad__.
 
-__Malware__: Software which 
+__Malware__: Software which has pernicious and deliberate effects to the user of the software, such as a computer virus or key logger.
 
 __Vulnerability__: A potential defect that would allow a user to compromise or otherwise gain unauthorized access to a system.
 
@@ -162,29 +162,29 @@ __Exploit__: A program or piece of data which takes advantage of a vulnerability
 
 __Sploit__: Another term for __exploit__.
 
-__Hacker__:
+__Hacker__: According to the Jargon File, "[a] person who enjoys exploring the details of programmable systems and how to stretch their capabilities".  Often used in modern times to mean the same as __cracker__.
 
-__Cracker__:
+__Cracker__: An unauthorized person attempting to access and/or modify a system or data using underhanded techniques.
 
-__Equivalence Class__:
+__Equivalence Class__: A group of input values which provide the same, or similar type, of output.
 
-__Equivalence Class Partitioning__:
+__Equivalence Class Partitioning__: Separating a specific functionality into distinct and non-overlapping equivalence classes based on input values.
 
 __Interior Value__: A value which is not a boundary value in its equivalence class.
 
 __Boundary Value__: A value which is "one the boundary" between equivalence classes.  For example, a system that has two equivalance classes, between 0 and 19, and 20 or higher, would have boundary values at 19 and 20.
 
-__Base Case__: 
+__Base Case__: A test case for the basic expected functionality of a system, or an interior value in an equivalence class.  For example, when testing a calculator, a base case might be a user adding 2 and 2 together.
 
-__Edge Case__:
+__Edge Case__: A test case for functionality of a system which can be expected to happen, but will be rare and may require special work to handle appropriately from a development point of view.  For example, when testing a calculator, an edge case might be ensuring that trying to divide by zero provides a correct error message.
 
-__Corner Case__:
+__Corner Case__: A test case for functionality of a system which is unlikely to occur, or is beyond the real where a user will likely reproduce it.  By analogy with __edge case__ (a corner is where multiple edges intersect).
 
 __Pathological Case__: Another term for __corner case__.
 
-__User Story__:
+__User Story__: A description of what a user would want a system to do; similar to __requirements__, but focusing from the user side as opposed to the technical.  Often written using the __Connextra template__.
 
-__Connextra Template__: A common template for defining user stories, which consists of the phrase "As a <role>, I want <function>, So That <reason>".  Also often referred to as the __Role-Function-Reason Template__.
+__Connextra Template__: A common template for defining user stories, which consists of the phrase "As a <role>, I want <function>, So That <reason>".  Also referred to as the __Role-Function-Reason Template__.
 
 __Role-Function-Reason Template__: Another term for the __Connextra Template__.
 
@@ -206,7 +206,7 @@ __System Under Test__: The system that is actually being tested.
 
 __Application Under Test__: The system which the tester is testing.
 
-__Acceptance Testing__:
+__Acceptance Testing__: Testing by an end user, customer, or other indepedent personnel to verify that the system can be accepted for use.
 
 __Smoke Test__: A small subset of tests which is used as a gateway for further testing.  
 
@@ -214,19 +214,19 @@ __Sanity Test__: A very small set of tests which checks a very minimal amount of
 
 __Sanity Check__: Another term for __sanity test__.
 
-__Behavior-Driven Development (BDD)__:
-
 __Test Plan__: A list of related test cases that are run together.
 
 __Test Run__: An actual iteration (run-through) of a test plan.
 
 __Test Suite__: A grouping of related test plans.
 
-__Defect__:
+__Defect__: A flaw in a system which causes it to behave in an unexpected or incorrect manner.  Much of software testing is involved in finding defects in a system.
 
 __Bug__: Another term for __defect__.
 
-__Test-Driven Development (TDD)__:
+__Test-Driven Development (TDD)__: A particular software development methodology which embraces test-first development along with several other tenets, such as continuous refactoring and expectation of change.
+
+__Test-First Development__: Any software development methodology in which tests are written before the code that makes them pass.
 
 __Regression Failure__: A failure of a previously-working piece of functionality that is caused by (seemingly) unrelated additional functionality or defect fixes.
 
