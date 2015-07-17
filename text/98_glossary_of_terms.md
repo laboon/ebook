@@ -251,3 +251,14 @@ __Target__: In __performance testing__, another term for __performance target__.
 __Performance Threshold__: In __performance testing__, an absolutely minimal value for a given performance indicator for the system to be considered releasable.  Contrast with __performance target__.
 
 __Threshold__: In __performance testing__, another term for __performance threshold__.
+
+__Real time__: The actual amount of time (the same kind of time as measured by a clock) taken for a process to perform some task.  Also referred to as __wall clock time__.  Not to be confused with "real-time system".
+
+__Wall clock time__: Another term for __real time__.
+
+__User time__: The amount of time that user code executes while a system performs a task.
+
+__System time__: The amount of time that kernel code executes while a system performs a task.
+
+__Total time__: The total amount of time that code (user or kernel) executes, without taking into account other factors (such as time spent waiting for input).  Compare to __real time__.
+

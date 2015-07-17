@@ -56,5 +56,9 @@ Although testing in general is using more automation, performance testing specif
 
 #### What Is Time?
 
-Although this may sound like a philosophical question, it actually has very direct ramifications when testing response times.  To a computer, there are actually several different ways of measuring time, and 
+Although this may sound like a philosophical question, it actually has very direct ramifications when testing response times.  To a computer, there are actually several different ways of measuring time.  To a performance tester, how you report and measure time will actually
+
+The first kind of time, and probably the easiest to understand, is __real time__.  This is the kind of time measures by the clock on the wall, and is thus also referred to as __wall clock time__ (and you thought technical terms would be difficult to learn).  This is analogous to stopwatch time - how long does it take, from the user's perspective, for a program to do something?  Thus, this is usually the kind of time that users will care most about.  However, it does not tell the whole story.
+
+Real time takes into account _everything_ that needs to be done by the system to perform the given task.  If this means reading data in from the disk, or over the network, that counts towards the real time total - no matter how slow the disk or bandwidth-restricted the network.  If this means that it's running on a system which is running lots of other processes concurrently, meaning that it only got a chance to use 5% of the CPU's time 
 
