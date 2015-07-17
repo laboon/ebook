@@ -136,7 +136,7 @@ __Tautological Test Case__: A test case which was written so that it will always
 
 __Traceability Matrix__: A two-dimensional matrix displaying test cases and requirements and indicating which test cases test which requirements.
 
-__Performance Testing__: Testing that a system meets the performance indicators designated for it.
+__Performance Testing__: Testing that a system meets the __performance indicators__ designated for it.
 
 __Efficiency-Based Performance__: Performance on metrics related to the efficiency of use of the computational resources available to the system.
 
@@ -235,3 +235,19 @@ __Scripted Testing__: Testing with a rigid script, such as a test plan, where st
 __Unscripted Testing__: Testing without a rigid script, where the tester has broad latitude to use their own volition and knowledge to determine the quality of the system or find defects.
 
 __Media Testing__: Ensuring that the media that the system is stored on (e.g., a CD-ROM or a server's hard drive) is operating correctly and has all of the data in the correct place.
+
+__Utilization__: In __performance testing__, the relative or absolute amount of a given computing resource (e.g., RAM, processor instructions, disk space) is used under certain circumstances.
+
+__Throughput__: In __performance testing__, the number of events or tasks the system can handle in a given timeframe.
+
+__Response Time__: In __performance testing__, how quickly a system responds after user input or other event.
+
+__Availability__: In __performance testing__, what percentage of the time the system is available to the user (not in a failure mode, unresponsive, etc.)
+
+__Performance Target__: In __performance testing__, the target value for a __performance indicator__.  If the indicator value meets or exceed the target, then the system has met the target.  Contrast with __performance threshold__.
+
+__Target__: In __performance testing__, another term for __performance target__.
+
+__Performance Threshold__: In __performance testing__, an absolutely minimal value for a given performance indicator for the system to be considered releasable.  Contrast with __performance target__.
+
+__Threshold__: In __performance testing__, another term for __performance threshold__.
