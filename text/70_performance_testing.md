@@ -52,13 +52,83 @@ While this may be the easiest way to measure response time, it is far from the b
 
 Although testing in general is using more automation, performance testing specifically tends to depend on automated tests.  There can be quite a bit of variation in performance indicators from run to run, due to other variables over which you may have little control.  Examples of these variables include other processes running on a server, how much physical RAM was already being used, garbage collection runs, and virtual machine startup times, among others.  Often the only way to get a truly valid result is running a performance test for numerous iterations and statistically analyzing it (obtaining the mean, median, and maximum response times, for example).  The only way to gain a reasonable number of samples in a reasonable amount of time is to automate the process.
 
-...
-
 #### What Is Time?
 
 Although this may sound like a philosophical question, it actually has very direct ramifications when testing response times.  To a computer, there are actually several different ways of measuring time.  To a performance tester, how you report and measure time will actually
 
 The first kind of time, and probably the easiest to understand, is __real time__.  This is the kind of time measures by the clock on the wall, and is thus also referred to as __wall clock time__ (and you thought technical terms would be difficult to learn).  This is analogous to stopwatch time - how long does it take, from the user's perspective, for a program to do something?  Thus, this is usually the kind of time that users will care most about.  However, it does not tell the whole story.
 
-Real time takes into account _everything_ that needs to be done by the system to perform the given task.  If this means reading data in from the disk, or over the network, that counts towards the real time total - no matter how slow the disk or bandwidth-restricted the network.  If this means that it's running on a system which is running lots of other processes concurrently, meaning that it only got a chance to use 5% of the CPU's time 
+Real time takes into account _everything_ that needs to be done by the system to perform the given task.  If this means reading data in from the disk, or over the network, that counts towards the real time total - no matter how slow the disk or bandwidth-restricted the network.  If this means that it's running on a system which is running lots of other processes concurrently, meaning that it only got a chance to use 5% of the CPU's time, then that counts towards the real time.  Real time is often not a great metric to track because it takes into account many things that are entirely out of the hands of the developers of the system.
 
+__User time__, by contrast, measures specifically how much time was spent executing user code.  This does not count any time waiting for input, or reading from the disk, or time when another process has control of the processor, or even executing system calls.  It is very focused on that section of the system which developers have direct control over.  After all, you can easily change the sorting algorithm you use in your code, but if you need to get the resolution of the clock running on a system, the only way to do that is through a system call whose code you have no control over (unless you want to, for example, fork Linux).  
+
+The time spent in system calls - where code is being executed, but the code that is being executed is in the kernel and not in your program - is known as __system time__.  While developers do not have direct control over system time, since they did not write the code, they do have indirect control since it is possible to reduce the number of system calls the program makes, or change the ordering that they are made, call different functions, or use other techniques to minimize system time.
+
+By adding together user time and system time, you get __total time__ - the amount of time spent executing code, either in user space or kernel space.  This is a good measurement of how much time your code is actually being executed.  It avoids calculating time that other processes were being executed on the processor or the system was waiting for input, and allows focus simply on how long the code was being executed.  However, focusing on system time may blind you to issues related to these external factors.  For example, if you are testing database software, then much of your time will be spent reading from, and writing to, a disk.  It would be foolish to discount all of this time - even if the developers have no direct control over it, it should be taken into account.
+
+Depending on what you're measuring, and how much control you have over the test environment, tracking user, total, or real time might be the optimal indicator.  System time rarely is, unless you are testing a new kernel or operating system, or deeply care about the split for arcane reasons.  Keep in mind that while developers have the most control over user time, indirect control over total time, and only minimal control over real time in most instances, users usually only care about real time!  If a user of your system finds it slow, they will not accept that you can't control how fast disk reads are as an excuse.  From a testing perspective, you should generally focus on measuring real time, avoiding as many extraneous factors, such as other programs running concurrently, as possible.  However, for certain processes which are CPU-bound or tend to operate in the background, focusing on total or user time may be more appropriate.
+
+On most Unix-like systems (e.g. Linux or OS X), you can very easily get these values to benchmark a program.  Simple run `time <command>`, and after the command is finished executing, the real, user, and system times will be displayed (total time is easily calculated by adding user and system time).
+
+```
+$ time wc -w * | tail -n 1
+   66156 total
+
+real	0m0.028s
+user	0m0.009s
+sys	0m0.014s
+$ 
+```
+
+There are various timing programs available for Windows machines, such as timeit.exe which comes with the Windows Server 2003 Resource Kit, but there is no almost universally-installed command such as `time` available.
+
+#### What Events Should Be Timed?
+
+This will depend on what your performance indicator is.  If you have a specific indicator, either spelled out in the requirements or agreed to by the team, then measuring is a straightforward process.  However, if you need to determine this on your own, then your first step should be to figure out which events are important to the user of the system, where slow response times would cause hardship or annoyance.
+
+If you are testing a system which is running on a server, some events you might want to think of checking for response time are:
+
+1. Page load time (for web servers)
+2. Download time
+3. Connection response time
+4. Time for data to appear onscreen on client
+5. Time between connection and readiness for user input
+
+For local programs, some events you may want to check for response time are:
+
+1. Total execution time
+2. Time from start of execution until ready for input
+3. Time between input and response
+4. Time between input and confirmation of input (e.g., a "loading" indicator)
+
+Additionally, you may have some more specific response times to check for based on the program you are using.  For example, imagine a program which allows students to register for classes.  There may be one performance indicator for how long it takes to list all classes in a department, and a separate performance indicator for how long it takes to enroll in a selected course.  Not all response times are created equal, and some may be key performance indicators while others are not.  For example, since students probably list courses much more often than enroll in them, listing all courses may be a KPI, whereas enrolling is measured but does not have any specific threshold or target.
+
+Just because a particular indicator does not have a target or threshold does not mean it cannot be measured.  Oftentimes, especially if the performance indicator measurement is automated, it makes sense to just gather response times for many different events and store them.  These can be analyzed in an exploratory manner to see if there are any oddities or problems.  For example, even if enrollment time was not listed as a performance indicator, but we notice that it takes five minutes on average for a student to enroll in a class, it may be worthwhile to take a look for a chance to lower that time.  Not all performance requirements will be specified clearly before development, so it is often up to the tester to bring problems to the attention of the team even if the tester wasn't specifically looking for those issues.
+
+Determing what kind of target time is acceptable for response time can be difficult.  However, there are some rough guidelines.  These were taken from _Usability Engineering_ by Jakob Neilsen.
+
+* _< 100 ms_ : Response time required to feel that system is instantaneous
+* _< 1 s_ : Response time required for flow of thought to not be interrupted
+* _< 10 s_ : Response time required for user to stay focused on application (and not go see what's happening on the Internet)
+
+Although these are rough guidelines for targets, they are not laws in and of themselves, and good response times will depend on a whole host of factors (what kind of network the system is running over, what kind of calculations the system is running, etc.)  There is empirical evidence, based on studies from Google, that people will choose websites, even if not conciously, based on less than 250 ms difference in load times.  Any load time over 400 milliseconds for a web page causes a drop-off in visitors, and this time has been decreasing steadily.  Users are becoming less patient as time goes on.
+
+As a final note, it is possible for response time to be too fast!  Think of a scroll box that scrolls so fast that the user can't control it, or a screen which changes so quickly that it disorients the reader.  A performance indicator for response time might include an upper bound and a lower bound in some instances.
+
+### Testing Availability
+
+Availability, often referred to as uptime, refers to what percentage of the time that a user can access the system when they expect to be able to do so.  Thus, anytime that a system is down for maintenance, or due to an uncaught exception crashing a process, or a hard drive blowing up, reduces availability.
+
+Many cloud service providers provide a __service level agreement__ (SLA) which specifies the level of availability that they provide.  This is often specified in the __n 9's__ format, which specifies "how many 9's" of reliability they provide.  These "9's" refer to 99% (two 9's), 99.9% (three 9's), 99.99% (four 9's), etc.  At the time of this writing, for example, Amazon S3 promises to have three 9's availability (available 99.9% of time, meaning downtime of less than around 86 minutes per month).  For certain systems, such as autonomous vehicles and space probes, uptime requirements might be much higher.
+
+How do we determine what an appropriate level of availability is, and how do we test it?  A simple answer might be to just run the system for a year, determine what amount of time the system was up and running, divide by the total time, and we have the percentage of uptime.  Just like we determined with using a stopwatch for response time testing, though, the simple version is not feasible to use in practice. 
+
+### General Tips and Advice When Performance Testing
+
+1. Use a tool for any non-trivial performance measurement.  Relying on humans to execute many performance tests will lead to mistakes due to human error, as well as increasing the possibility of demoralized testers.
+2. Compare apples to apples; keep variables the same between runs of the same test!  Don't run the first version of the software on a laptop and the second version on a supercomputer and proclaim a massive increase in speed.
+3. Be mindful of startup and/or shutdown costs.  If a system needs to start up a VM (e.g., a JVM for all Java processes), then you may need a way to standrdize that across all runs, ignore the first result since it will include startup times, or otherwise take it into consideration.
+4. Be mindful of caching.  If a system is caching results, you may see very different performance measurements the first time running a test versus the second and third times.
+5. Have control over the testing system.  You want to make sure that others are not logged in to the system, that settings are the same between runs, that no additional software has been installed, etc.  Remember that performance testing is like running a science experiment - if you can't reduce extraneous variables, you won't be able to trust it.
+6. Have good input data.  If you can, try to test with real, or at least possibly real, data.  Many times the kind of performance that you see on a system will depend upon data.  If you used a bubble sort, but all of your test data was in order, you may not notice the bad performance that comes with normally unordered data, since bubble sort is O(n) for already-sorted data but O(n^2) in the average case.
+7. Don't trust a single test run.  Although you endeavor to remove all extraneous variables from your performance test, there will always be elements you can't control, from how the memory is allocated to which order threads are run.  While these may or may not have a significant impact on the performance of your system, they are always there.  The only way to minimize their impact is to run the test multiple times and hopefully smooth out the data by taking the mean result or otherwise analyzing it statistically.

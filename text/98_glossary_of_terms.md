@@ -262,3 +262,10 @@ __System time__: The amount of time that kernel code executes while a system per
 
 __Total time__: The total amount of time that code (user or kernel) executes, without taking into account other factors (such as time spent waiting for input).  Compare to __real time__.
 
+__Service Level Agreement__: An agreement by a service provider, which often includes a guarantee of __availability__.
+
+__SLA__: An abbreviation for Service Level Agreement.
+
+__9's__: See __n 9's__.
+
+__n 9's__: A way of showing what percentage of the time the system is available, based on the number of 9's in that number, and assuming 9's are the only significant digit.  For example, a system that is available 99.9% of the time has "three 9's" availability, while a system that is available 99.999% of the time has "five 9's" availability.
