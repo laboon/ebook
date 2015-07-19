@@ -104,7 +104,14 @@ EXECUTION STEPS: At the command line, run "catweigher 5 6 7 8"<br>
 OUTPUT VALUES: N/A<br>
 POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits without further output.<br>
 
-At this point, there's a reasonable amount of test coverage for this requirement.  On to the next one, which it turns out is very simple to test.  
+At this point, there's a reasonable amount of test coverage for this requirement.  On to the next one, FUN-STARTUP-MESSAGE, which it turns out is very simple to test.  There are two possibilities - that the system has been passed in a set of valid parameters, and that it was not passed in a set of valid parameters.  In the first case, the startup message should be displayed; in the second case, it should not, as we determined by resolving the ambiguity in the message requirements earlier.  While there are a variety of different 
 
+IDENTIFIER: STARTUP-NO-MESSAGE-TEST<br>
+TEST CASE: Run the program without passing in a parameter, message should not appear.<br>
+PRECONDITIONS: None<br>
+INPUT VALUES: None<br>
+EXECUTION STEPS: At the command line, run "catweigher"<br>
+OUTPUT VALUES: N/A<br>
+POSTCONDITIONS: The program does not display the message ""Cat Weighing System" upon the console before exiting.<br>
 
 
