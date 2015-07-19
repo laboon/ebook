@@ -22,7 +22,7 @@ After that, we'll move on to the basics of developing a manual test plan, and de
 
 Once writing manual tests is old hat, we can move on to automated tests - systems-level and unit tests.  Automated tests allow you to very quickly execute tests, from either a very low level (like making sure a sorting algorithm works correctly) to a very high level (ensuring that you can add something to your cart on an e-commerce website).  If you've actually executed some of the manual test plans, you'll see why letting the computer execute all of the tests for you is such a time-saver (and perhaps more importantly, aggravation-saver... repeatedly running manual tests is a great way to drive a tester insane).
 
-Finally, we get to the really interesting stuff!  This section of the book is where we'll get to read about specialized kinds of testing, like combinatorial and property-based tests, performance testing, security testing, and formal verification.  The world of software testing is quite a large one - testing embedded software is very different from testing web applications, and
+Finally, we get to the really interesting stuff!  This section of the book is where we'll get to read about specialized kinds of testing, like combinatorial and property-based tests, performance testing, and security testing, and formal verification.  The world of software testing is quite a large one - testing embedded software is very different from testing web application, and performance testing is very different from functional testing, and testing for a startup's first prototype product is very different from testing for a large company developing a medical device.
 
 #### What this book doesn't cover
 
@@ -32,7 +32,7 @@ This book also does not go deep into topics like embedded or safety-critical sof
 
 #### A note on language choice
 
-The examples I give are in Java and using much of the Java toolchain (e.g., JUnit, Selenium).  This is not due to some love of Java; in fact, as I'll often mention how much easier something is to do in Ruby, or how a particular kind of bug doesn't even exist in Haskell, or how much more elegant the code would be if it were written in Lisp.
+The examples I give are in Java and using much of the Java toolchain (e.g., JUnit).  This is not due to some particular love of Java; in fact, as I'll often mention how much easier something is to do in Ruby, or how a particular kind of bug doesn't even exist in Haskell, or how much more elegant the code would be if it were written in Lisp.
 
 However, Java serves as a kind of lingua franca amongst developers nowadays.  It's a pretty standard, popular, ALGOL-derived programming language, so even if you're not familiar with it, you can probably reason out what's happening.
 

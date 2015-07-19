@@ -171,7 +171,7 @@ MTBF = (0.1 * MTBF(stress)) + (0.9 * MTBF(stable)) = 649
 ```
 
 
-This is just an example, and it could certainly be further enhanced (and any state of the system that reaches such high levels of unavailability during stress states probably should be looked at further) .  Some systems do have spikes of usage, where others do not.  Some systems will handle lots of small events, others will handle a smaller number of harder-to-process events.  If you are able to gather real-world data and metrics about the usage of your system, you will be able to model its behavior better, and thus produce better availability numbers.  The more realistic the data, the more realistic the model you will be able to create.
+This is just an example, and it could certainly be further enhanced (and any state of the system that reaches such high levels of unavailability during stress states probably should be looked at further) .  Some systems do have spikes of usage, where others do not.  Some systems will handle lots of small events, others will handle a smaller number of harder-to-process events.  If you are able to gather real-world data and metrics about the usage of your system, you will be able to model its behavior better, and thus produce better availability numbers.  The more realistic the data, the more realistic the model you will be able to create.  Even with the most realistic of data, however, be prepared to be wrong - there are so many things that can go wrong with a complex system, it is impossible to take all of them into account in any model.
 
 ### Testing Effiency-Oriented Indicators - Throughput
 
