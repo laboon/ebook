@@ -268,4 +268,26 @@ __SLA__: An abbreviation for Service Level Agreement.
 
 __9's__: See __n 9's__.
 
+__nines__: See __n 9's__/
+
 __n 9's__: A way of showing what percentage of the time the system is available, based on the number of 9's in that number, and assuming 9's are the only significant digit.  For example, a system that is available 99.9% of the time has "three 9's" availability, while a system that is available 99.999% of the time has "five 9's" availability.
+
+__bathtub curve__: A generalized function of failure rates, which start out high (as poor components fail soon after being implemented), stay low throughout much of the life of the system, then start increasing as the system nears it end of life.  So named because it looks like the outline of a bathtub as viewed from the side.
+
+__MTBF__: An acronym  for __mean time between failures__
+
+__MTTR__: An acronym for __mean time to repair__.
+
+__Mean time between failures__: In __availability testing__, the mean (average) amount of time between failures on a system.  Often abbreviated as __MTBF__.
+
+__Mean time to repair__: In __availability testing__, the mean (average) amount of time it takes to repair a failure.  Often abbreviated as __MTTR__.
+
+__Load Testing__: Running a full system with a specified amount of demand (e.g., a certain number of users or events) in order to determine how the system operates under realistic conditions.
+
+__Stability test__: A kind of __load test__ where a small number of events are processed, but over a long period of time, in order to determine how stable the system is for non-trivial time periods.
+
+__Soak test__: Another term for __stability test__.
+
+__Stress test__: A kind of __load test__ where a very high number of events are processed in a small amount of time, in order to determine how the system deals with periods of time where the system is "stressed".
+
+__Baseline test__: A kind of __load test__ where a bare minimum amount of events, perhaps even none, are processed, to provide a "baseline" to show what minimal load on the system looks like.
