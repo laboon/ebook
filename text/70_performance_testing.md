@@ -170,12 +170,34 @@ MTBF = (0.1 * MTBF(stress)) + (0.9 * MTBF(stable)) = 649
 (649 / (649 + 5)) * 100 = 99.23% availability
 ```
 
-
 This is just an example, and it could certainly be further enhanced (and any state of the system that reaches such high levels of unavailability during stress states probably should be looked at further) .  Some systems do have spikes of usage, where others do not.  Some systems will handle lots of small events, others will handle a smaller number of harder-to-process events.  If you are able to gather real-world data and metrics about the usage of your system, you will be able to model its behavior better, and thus produce better availability numbers.  The more realistic the data, the more realistic the model you will be able to create.  Even with the most realistic of data, however, be prepared to be wrong - there are so many things that can go wrong with a complex system, it is impossible to take all of them into account in any model.
 
-### Testing Effiency-Oriented Indicators - Throughput
+### Testing Efficiency-Oriented Indicators - Throughput
+
+If you'll recall from earlier, efficiency-oriented indicators take a view of the sytem from the perspective of the system and how efficiently it makes use of the computation resources available to it.  One measure of efficiency is the amount of __throughput__, or number of events that can be processed in a given amount of time on a specified hardware setup.  Examples would include how many web pages a web server could serve in one minute, or how many SQL queries a database server could perform in one minute.   This may seem similar to response time, or at least its inverse, but it isn't quite so simple.  While response time was measuring the response time from the point of view of a particular user of the system, throughput is how performant the system as a whole is in responding to a number of users.  If I am simply using a web server, I don't care about how fast other users get their data.  If I am an administrator of a web site using a particular server, then I certainly do care!
+
+Just as we did when testing availability, we can use load testing to determine the throughput of the system.  Instead of determining if the system is up however, we can specifically check for what sustained rate of events can occur before some predetermined lower threshold on performance is reached.  For example, in our web server example, how many pages per minute can the web server serve before the average response time dips below 3 seconds?  For a web-based course registration system, how many students can view courses at the same time before the database request queue is saturated?  The exact parameters of what counts as "below the performance threshold" will vary by system, but it is commonly average or maximum response time.  We are using a service-oriented indicator as part of testing an efficiency-oriented indicator!  This goes to show that different aspects of performance are often intertwined; poor throughput could be the cause of slow response time, or poor utilization of resources could directly lead to a lack of availability.
+
+Determining the values for the lowest threshold will be heavily dependent on the KPIs for this particular system.  Once again, these should be determined before testing starts, so as not to cherry-pick the results.  Once they are determined, you should ramp up the number of events until the system can no longer perform within the determined performance threshold.
+
+Remember to track the level of events and the equivalent throughput, and if possible, relevant utilization measures (see next section for more on measuring utilization).  This will allow you to see if there are any patterns in the throughput levels, thus allowing you to extrapolate further than the data points you have collected.  For example, assume that you see that response time is always approximately 500 millisecond up to 100 events per second, but at 150 events per second, response time slows to 800 milliseconds and at 200 events per second, it is measured to be 2500 milliseconds.  We can see some superlinear growth starting at approximately the 100 events per second mark, and developers will then have more information to start tracking down bottlenecks.  Is that the point where data starts being swapped to disk?  Do we have 100 threads, and this is the point where the threadpool runs dry?  Although you may not have these answers up front, having an idea of the growth, and especially a general area where throughput starts to slow down, will make improving the performance much easier.  Just as we discussed regarding filing defects, being more specific is almost always better than being less specific!
+
+Throughput levels are very sensitive to what kind of hardware you are the software on, so even more than with other tests, you will need to ensure that you are running on the same kind of hardware from run to run to ensure valid results.  You may also want to determine throughput using the same software on different hardware configurations, which may also help to track down the cause of any slowdowns.  For example, a system which has extremely reduced throughput when run on a system with slightly less RAM than another may indicate a memory bottleneck.
 
 ### Testing Efficiency-Oriented Indicators - Utilization
+
+Testing __utilization__ means determining what amount of computing resources - on an absolute or relative basis - a particular system when performing some functionality.  Computing resources is a very broad term, covering anything that a program could be "using" on a machine. Common examples include:
+
+1. CPU
+2. GPU
+3. Disk space usage
+4. RAM
+5. Network bandwidth
+
+While these are some of the most common resources measured, there are also very specific ones which can be measured.  The number of disk bytes read?  Standby cache normal priority bytes?  Number of C3 transitions on your CPU in the last second?  All of these can be tested right out of the box on your Windows machine by using a tool called perfmon.  However, these very specific measurements are usually only needed after discovering a problem with the more generalized measurements enumerated above.
+
+
+
 
 ### General Tips and Advice When Performance Testing
 
