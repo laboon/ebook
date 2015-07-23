@@ -291,3 +291,11 @@ __Soak test__: Another term for __stability test__.
 __Stress test__: A kind of __load test__ where a very high number of events are processed in a small amount of time, in order to determine how the system deals with periods of time where the system is "stressed".
 
 __Baseline test__: A kind of __load test__ where a bare minimum amount of events, perhaps even none, are processed, to provide a "baseline" to show what minimal load on the system looks like.
+
+__Profiler__: A tool which allows you to measure the resource utilization and internal events (such as method calls or instantiation of objects) of a running program.
+
+__Packet analyzer__: A tool which allows you to view individual packets that are being transmitted over the network.
+
+__Phone phreak__: A person who explores the telephone system, usually without the permission of relevant authorities.  Famous phone phreaks include John Draper and Joe Engressia.
+
+__Phreaker__: Another term for __phone phreak__.
