@@ -154,6 +154,12 @@ __InfoSec Triad__: The three criteria that indicate a secure system - confidenti
 
 __CIA Triad__: Another term for the __InfoSec Triad__.
 
+__Confidentiality__: An attribute of a system, that only authorized users may read data.  An element of the InfoSec Triad.
+
+__Integrity__: An attribute of a system, that only authorized users may write data.  An element of the InfoSec Triad.
+
+__Avai
+
 __Malware__: Software which has pernicious and deliberate effects to the user of the software, such as a computer virus or key logger.
 
 __Vulnerability__: A potential defect that would allow a user to compromise or otherwise gain unauthorized access to a system.
@@ -242,7 +248,7 @@ __Throughput__: In __performance testing__, the number of events or tasks the sy
 
 __Response Time__: In __performance testing__, how quickly a system responds after user input or other event.
 
-__Availability__: In __performance testing__, what percentage of the time the system is available to the user (not in a failure mode, unresponsive, etc.)
+__Availability__: In __performance testing__, what percentage of the time the system is available to the user (not in a failure mode, unresponsive, etc.)  In __security testing__, one of the elements of the __InfoSec Triad__, an attribute that refers to the ability of authorized users to access a system.
 
 __Performance Target__: In __performance testing__, the target value for a __performance indicator__.  If the indicator value meets or exceed the target, then the system has met the target.  Contrast with __performance threshold__.
 
@@ -299,3 +305,55 @@ __Packet analyzer__: A tool which allows you to view individual packets that are
 __Phone phreak__: A person who explores the telephone system, usually without the permission of relevant authorities.  Famous phone phreaks include John Draper and Joe Engressia.
 
 __Phreaker__: Another term for __phone phreak__.
+
+__Interruption__: In __security testing__, an attack on __availability__, such as a __DDOS attack__ or pulling the plug from a network switch.
+
+__Interception__: In __security testing__, an attack on __confidentiality__, such as eavesdropping on a network with a __packet analyzer__ or on a computer with a __keylogger__.
+
+__Modification__: In __security testing__, an attack on __integrity__, which deliberately modifies data, such as an attack which allows a user to arbitrarily change the balance on their bank account.
+
+__Fabrication__:  In __security testing__, an attack on __integrity__, which deliberately adds data, such as an attack which allows a user to create an entirely new bank account.
+
+__Denial of Service__: A method of attacking __availability__ by sending so many unauthorized packets or other events to a computing resource that no authorized users have access to it.
+
+__DOS__: An acronym for __denial of service__.
+
+__Distributed Denial of Service__: A __denial of service__ attack which consists of many different sources of the unauthorized packets, so as to increase the number of events the sytem must process as well as help disguise the ultimate source.
+
+__packet sniffing__: Using a __packet analyzer__ or similar software to view data being transmitted over a network.
+
+__passive attack__: In __security testing__, an attack on a system which causes no changes to the system, such as eavesdropping on network traffic.
+
+__active attack__: In __security testing__, an attack on a system which causes some changes to the system, such as adding a program or modifying data in a database.
+
+__Bacteria__: A kind of __malware__ which consumes an excess amount of system resources, perhaps taking up all file descriptors or disk space.
+
+__Fork bomb__: A special kind of __bacteria__ which continually forks itself, causing all CPU resources to be used up creating more copies of the fork bomb.
+
+__Logic bomb__: Code within a program which executes an unauthorized function, such as deleting all data on the first day of the month.
+
+__Trapdoor__: A program or piece of a program which provides secret access to a system or application.
+
+__Trojan Horse__: A kind of __malware__ which pretends to be another in order to trick users into installing and executing it.  
+
+__Virus__: A kind of __malware__, often small, that replicates itself with human intervention.  This intervention could be something such as clicking on a link or running a program sent to you as an attachment.
+
+__Worm__: A kind of __malware__, often small, that replicates itself without human intervention.  
+
+__Zombie__: A computer with software installed which allows unauthorized users access to it to perform unauthorized functionality.  For example, a system might have a mailer program built in which will allow other users to send spam from your machine, so that the original users cannot be tracked.
+
+__Bot network__: A collection of zombies controlled by a master.
+
+__Spyware__: A kind of __malware__  which surreptitiously monitors the actions of the user of the system.
+
+__DOS Tools__: Tools which enable denial of service attacks.
+
+__Ransomware__: A kind of __malware__ which performs an unwanted action (e.g., encrypting your hard drive) and asks for money or other compensation in order to undo it. 
+
+__Social engineering__: Manipulating people to underhandedly cause them to perform actions that put security of a system at risk.  For example, an attacker calling an administrative assistant falsely claiming that they are from the IT department and need to know the user's password.
+
+__Phishing__: A common __attack__ which attempts to get personal or other sensitive information via email or other communications.
+
+__Spear Phishing__: A specific kind of __phishing__ which is aimed at highly targeted individuals and is customized for them.  For example, a regular phishing email may be "Dear user, please to reset your email password for linked here" whereas a spear phishing email would be "Dear Mr. Jones, please reset your SuperDuperEmail password here. Sincerely, Jane Smith, SuperDuperCo. Vice President of Security".
+
+__Fishing__: Catching marine animals for food or enjoyment.  Has nothing to do with __security testing__.  If you think it did, you are probably thinking of __phishing__.
