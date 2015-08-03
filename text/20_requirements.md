@@ -15,9 +15,12 @@ In our tire air pressure example in the chapter on testing basics, we had some r
 
 These "informal requirements" show what should happen to the system under certain input values.  The classic way of writing requirements is to say that the system "shall" do something.  When testing, you can mentally translate the "shall" to a "must".  That is, if the requirement says that the system shall do something, then the system must do it in order for you as a tester to say that the system has met the requirement.  Requirements are very exact and should avoid amiguity at almost all costs.  Let us translate these informal requirements to something a little more in line with how requirements are written in the real world.
 
-REQ-1. If an air pressure value of -1 or lower is received by the display sensor, then the ERROR light __shall_ be enabled, and all other lights __shall__ be disabled.
+REQ-1. If an air pressure value of -1 or lower is received by the display sensor, then the ERROR light __shall__ be enabled, and all other lights __shall__ be disabled.
+
 REQ-2. If an air pressure value between 0 and 20 (inclusive) is received by the display sensor, then the UNDERPRESSURE light __shall__ be enabled, and all other lights __shall__ be disabled.
+
 REQ-3. If an air pressure value between 21 and 35 (inclusive) is received by the display sensor, then all lights __shall__ be disabled.
+
 REQ-4. If an air pressure value of 36 or greater is received by the display sensor, then the OVERPRESSURE light __shall__ be enabled, and all other lights __shall__ be disabled.
 
 Note how much more specific this has become compared to our informal requirements listed above.  Requirements engineering is a true engineering discipline, and it can be very difficult to specify a large and/or complex system.  Note also how much denser and how much more text is created in an attempt to remove ambiguity.  It will definitely take much more time to write down formal requirements than to just create something based on a conversation.  Changes are also much more difficult to make.  The trade-off may or may not be worth it, depending on the domain and the system under test.  Ensuring that avionics software controls the plane correctly under all conditions would probably warrant a very thorough and detailed __requirements specification__ (a listing of all the requirements of a system), whereas our social media site mentioned above may not.  Rigidity can provide a very good definition of a system, but at the price of flexibility.
