@@ -1,5 +1,5 @@
-Software Testing: A Comprehensive Approach
+A Comprehensive Approach to Software Testing
 
-Copyright (C) 2014, Bill Laboon
+Copyright (C) 2015, Bill Laboon
 
 For Arrisons and Calvernins
