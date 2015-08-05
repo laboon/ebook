@@ -63,18 +63,73 @@ It is not necessary for malware to be involved for there to be an attack on a sy
 
 #### Injection 
 
+In an __injection attack__, the attacker is attempting to get your computer to run some arbitrary code of their choosing.  One of the most common types of injection attacks is a __SQL injection attack__, since many programmers, especially new ones, do not __sanitize__ their database inputs.  Sanitization involves ensuring that input from a user will not be directly executed, by "cleaning it up" so that it can't run.  As an example, imagine some code that accepts a string from the user asking for their name, and then searches in the database for any users with that name, and will return the unique ID (uid) for the first user with that name.
 
-#### Denial of Service
+```java
+public int findUidByName(String name) {
 
-#### Eavesdropping
+   Result dbResult = DatabaseConnection.executeSQL("SELECT uid FROM users WHERE name = '" + name + "';";
+   if (dbResult == null) {
+       return NO_RESULTS_CODE;
+   } else {
+       return dbResult.get("uid");
+   }
+}
+```
 
-#### Traffic Analysis
+This is relatively simple, but contains a security flaw - there is nothing preventing the user from sending in other SQL commands, and not their name.  These SQL commands will be executed by the machine uncomplainingly, even if the commands say to delete the database, for instance.  Imagine that the user passes in the value "a'; DROP TABLE users;" as their name, for instance.  The following SQL will be executed:
+
+```
+SELECT uid FROM users WHERE name = 'a'; DROP TABLE users;
+```
+
+You can try this out on your local database if you don't believe me, but that will delete the `users` table when it's executed.  This is probably not something you want anyone who can search for a user in your application to be able to do!  There are numerous other kinds of injection attacks, for example by mis-using `eval()` in JavaScript code, or adding `OR 1=1` to a SQL query to show all columns instead of the one that the code would ordinarily be looking for.  However, the common denominator in injection attack is that they all execute code that the designers and administrators of the system do not want to have executed.
+
+As mentioned, this can be avoided by sanitizing input in various ways.  For example, semicolons, tick marks, and spaces may not be allowed in a user name.  A check could be added so that if any of those characters exist in the name parameter, then the NO_RESULTS_CODE would be returned before any SQL could be executed.  This technique is a simple blacklist, and there are more in-depth ways of preventing injection attacks, but they are beyond the scope of this book.
+
+How does one test that injection attacks are not possible?  The most straightforward way is to find all places where user input is accepted and ensure that sending in code will not result in being executed.  This will often be a form of grey-box testing, as it wouldn't be very helpful to check that, say, COBOL code could be executed on a Java-only system.  White-box testing, including unit testing, will also be helpful to ensure that methods that receive user input ensure that it is sanitized before passing it on, or that methods which access the database can never be called with code that can exploit a vulnerability.  Static analysis tools also exist which can check the codebase statically to help guard against possible injection attacks.
+
+Stochastic testing - especially "evil monkey" testing, which passes in executable code - can be helpeful for large systems which request and process input in many different ways and in different places.  By passing in large amounts of random data, you may find kinds of data which cause the system to perform oddly or crash.  These out-of-the-ordinary events may help point you to which specific parts of the system are vulnerable to injection attacks.  For example, if a particular parameter is parsed with an `eval()` at some point, your randomized testing may pass in some invalid code, causing the system under test to crash.  However, closer examination of the code which handles that kind of data will allow you to determine that code injection is possible there.
 
 #### Buffer Overruns
 
+What happens when you try to put ten pounds of data in a five-pound bag?  A __buffer overrun__, that's what.  In many programming languages, you have to allocate a finite amount of space for data to be put into.  In Java, for example, if you wanted to store five integers in an array, you could do something like this:
+
+```java
+int[] _fiveInts = new int[5];
+```
+
+Now let's say that you have a method that accepts a string of integers, separated by comments (e.g. "7,4,29,3,2"), and then puts each of the integers into the `_fiveInts` array.
+
+```java
+public void putDataIntoFiveInts(String data) {
+    int[] intData = data.split(",");
+    for (int j=0; j < intData.length; j++) {
+        _fiveInts[j] = intData[j];
+    }
+}
+```
+
+This works fine if "7,4,29,3,2" is passed in to the method.  However, if "1,2,3,4,5,6,7" is passed in, then an `ArrayIndexOutOfBounds` exception is throwing when trying to write the sixth piece of data to _fiveInts.  This may cause the program to crash if the exception is not properly handled.  In some languages, such as C, no exception is thrown, because there is no __bounds checking__ (checking at run-time that data is not being written outside the bounds of an array) .  The system will keep on merrily writing data past the end of the array, which may overwrite executable code or other system data.  If this data is carefully crafted, it may even allow the attacker to get shell access to the system.  No matter what it does, it's not going to be a good time.
+
+This can be tested for by passing in very large amounts of data to all places where input can be expected into the system.  The amount of data to be passed in will vary, and can often be determined by checking the code (thus making grey- or white-box testing very effective when checking for this particular kind of vulnerability).  Static analysis tools can also help determine where buffer overruns are possible.  Finally, using a language that has built-in bounds checking, like Java, can help mitigate the problem.  It is usually better for a program to stop running due to a missed exception bubbling up than code or data being overwritten.
+
 #### Security Misconfiguration
 
+Although your system may operate in a bulletproof way if it's set up correctly, not everybody is going to be as rigid as you are when setting up their version of the system.  People leave default passwords set, or give everybody read/write access because it's easier that way, or don't turn on two-factor authentication because they hate having a program text them every time they log in.  For complex programs, people may miss the one checkbox that encrypts data, or enables HTTPS, or requires users to log in before modifying data.
+
+In order to avoid these, you want to have a sensible set of defaults for your software, and ensure that users understand the weak points of the application that they have set up.  They should also be able to easily determine how to remedy these weak points that they have created.  If the only way to properly set up the system is to thoroughly read through the 500-page instruction manual and set some obscure command line switches, then virtually every system you ship will not be configured properly.
+
+How do you test for them, though?  Often, you will have to do some form of __user testing__.  User testing involves having a user perform some task, often with minimal - or no - guidance from the development team or their representatives.  While this is usually done in order to determine the best user interface for a system, it can also be done to figure out how typical users configure the system and what parts of the system they do not configure properly.  After seeing that users often forget to change default passwords, for example, perhaps developers add a red warning to all administrative pages warning them that the default password has not yet been changed.  Further user testing can verify that this causes the desired change in behavior.
+
+
 #### Insecure Storage
+
+Even if the code running your system is security itself - free from all known exploits, all input sanitized, formally verified to not contain any buffer overflows - this is of little consolation if its data is not stored properly!  Examples of insecure storage would be writing sensitive data to log files, allowing users direct access to a database, or storing private keys in your code which is stored in a publicly available repository.
+
+Note that this can be more tricky to verify than simply checking the log files or searching for passwords hard-coded into your program.  For example, under normal circumstances, only boring debug data may be sent to a log file, and so you think that that even though the log file is theoretically publicly accessible, it is not a large security risk.  However, if an error occurs when processing a credit card, an exception is thrown which includes debug data.  In this debug data is the credit card information that was attempted to be processed.  Under these circumstances, if this exception is written to the log file, the fact that the log file is publicly accessible is a very big problem.
+
+Testing for insecure storage can be as simple as attempting to access data directly on the database or on the filesystem.  In general, you want to follow the principle of least privilege, ensuring that only authorized users have access to any related data.  This can also involve automated checks, such as before code check-in, that verify that no private keys, passwords, or similar secret information is checked into the repository.
 
 #### Social Engineering
 
@@ -84,12 +139,30 @@ While these may seem ridiculous to many readers of this text (and if they are no
 
 Phishing attacks often seem very poorly prepared, with broken English and technical inaccuracies, but this is actually a part of the plan!  There are usually multiple steps after the initial contact phase in order to achieve the primary goal of the phishing expedition.  For example, let's say that the target received an email stating that their email account was compromised and they have to click [here](http://www.example.com "Fake Company") to verify their password (if you're not reading this online, links don't work as well on dead-tree books, but don't worry, you're not missing much).  If the user clicks the malicious link, they will be taken to a page created by the attackers (and which may not look exactly like the actual, legitimate account information page) that allows them to steal the user's password.  Ideally, the user won't check with their IT department afterwards about the email; the attackers want time to use the email for whatever malicious people do with stolen email accounts (I like to think it's send fan letters to boy bands which they're too embarrased to send from their own account).  In other words, they want people who are not very conscientious or technically literate, who overlook minor issues, who are trusting of whatever they see in front of them.  These are the same people who would overlook the poor grammar and inaccuracy of the original email!  People who are less trusting might be even more work for the attackers, as they may deliberately enter false data or even work on trying to track them down.  The poorly constructed email is actually a screening mechanism.
 
-A much more dangerous variant of phishing is __spear fishing__, in which the user is specifically targeted.  In this case, the attacker goes out of their way to ensure that the user will not be suspicious of the email.  Relevant details will be carefully crafted: any other users mentioned in the email will be verified, grammar will be excellent (or at least appropriate), the user's actual name will be used, its headers will be forged to look like it came from the targeted user's boss, etc.  Spear phishing attacks are much more difficult and time-consuming to set up than a traditional phishing attack, but they also tend to be more effective; think of them as precision-guided munitions compared to the carpet bombing of a regular phishing attack.  Even experienced users may have difficulty determining that the email is not legitimate.  
+A much more dangerous variant of phishing is __spear phishing__, in which the user is specifically targeted.  In this case, the attacker goes out of their way to ensure that the user will not be suspicious of the email.  Relevant details will be carefully crafted: any other users mentioned in the email will be verified, grammar will be excellent (or at least appropriate), the user's actual name will be used, its headers will be forged to look like it came from the targeted user's boss, etc.  Spear phishing attacks are much more difficult and time-consuming to set up than a traditional phishing attack, but they also tend to be more effective; think of them as precision-guided munitions compared to the carpet bombing of a regular phishing attack.  Even experienced users may have difficulty determining that the email is not legitimate.  
 
+Testing that social engineering will not work on a system is difficult.  After all, there is no technical aspect to check; the programmed aspects of the system would work correctly, and by authorized users, but authorized users who are actually doing the bidding of an unauthorized user.   While we have discussed the difficulty of testing impure functions, which may rely on global variables or other external mutable state, people are the ultimate unpredictable external state.  A person who may never fall for a phishing email may be tricked by somebody calling them; someone who would normally never fall for anything may have had a rough night the evening before and isn't thinking clearly; someone else may be overwhelmed with other work and click on a malicious link in an email.
 
+A method of testing that your system is somewhat protected against social engineering is to ensure that users do not have more access than they need to do their job.  Limiting users to the minimal amount of access that they need to do their job is called the __principle of least privilege__.  Ensuring that user accounts follow the principle of least privilege will limit the extent of any damage that can be done by an attacker acting through the authorized user.  For example, an ordinary user of our Rent-A-Cat system should never have access to the payroll system for employees.  Checking if there is any way for a user to access data (read or write access) that they don't need to will help to find possible areas where this access can be compromised.
 
+Running tests on people can be helpful, as well!  Some companies send fake phishing emails and see how many of their people click on suspicious links.  Those who do click on the links are sent to a page warning them that this could have caused unauthorized access to the system, and those employees will be less likely to do so in the future.
 
+### Penetration Testing
+
+While I've gone over various ways in which the security of a system can be compromised, often the best way to test a system is to think like an attacker.  __Penetration testing__ has a user, often external to the development team, attempt to gain unauthorized access to a system using any means at their disposal (tempered by the limits of the contract, e.g. "no deleting data").  This follows the "set a thief to catch a thief" theory - those who are acting like the people who are trying to break into your system will be most effective at finding any holes in your security systems.
+
+During a penetration test, a person will act as though they were a cracker trying to get in to your system.  They may gather data to determine which operating systems you use or what programming languages, scan your networks, try common passwords, or use other tactics and techniques specific to the system that you're running.  These are often external consultants or at least personnel unrelated to the team developing it, so as to avoid preset theories of how the system is "supposed" to work.  The entire _modus operandi_ of people trying to break into systems is that they manipulate systems to do things that they are not "supposed" to do.
+
+A penetration tester will then develop a report of what the weak points of the system are, as well as the ramifications of those weak points.  For example, they may find a SQL injection vulnerability for one particular subsystem which allows access to a particular database.  While this may sound like technical gobbledygook to a manager, explaining the ramifications - that all of the payroll data for the company is available to anybody with an Internet connection - is much clearer (and scarier).
 
 ### General Guidelines When Developing a Security Testing Plan
 
-Before developing a testing plan for security, you should try to determine how much testing will be necessary.  This will depend on the domain in which you are operating, but mostly on what the risks are if an opponent is able to 
+Before developing a testing plan for security, you should try to determine how much testing will be necessary.  This will depend on the domain in which you are operating, but mostly on what the risks are if an opponent is able to compromise the system.  Remember that time and resources spent on security testing are time and resources that are not spent elsewhere.  If you are running a system which controls nuclear weapons launch codes, it makes sense to spend a large percentage of the time testing the system on security testing; if you are running a startup for renting cats, less time and fewer resource are probably necessary.
+
+If you are operating in a regulated field, ensure that you are following all of the standards for that field.  For example, in the United States, if you are storing medical data, you should be familiar with HIPAA; if you are dealing with student data, you should read up on FERPA.  Although these are not the be-all, end-all of security for a system, they are additional parameters you should know about while determining its security.
+
+Determine what are the most important aspects of the system to guard against.  Attacks which may cause data to be overwritten will in most cases be more damaging than those that allow read access to data.  Certain aspects of the system may be more damaging if they are compromised.  If there is an employee-run wiki which is mostly full of in-jokes and Dungeons and Dragons schedules, this is less important than bank account information.  This doesn't mean that the employee wiki should be ignored, but there should definitely be more emphasis put on the bank account data.
+
+Remember the Pareto Principle, as well.  By performing a broad check, spending not much time on each individual component, you may be able to find many more defects, and more easily-found defects, than spending months and months on one particular part.  These will often also be the first vulnerabilities looked for by potential attackers.  Even if a very difficult-to-exploit vulnerability exists on a given system, most attackers will be deterred if many of the common attacks.
+
+The most effective security testing is that which gets done.  If you can, argue for the security tests that you not only believe will be best for the system, but also have a chance to get done and to continue to get done.  In today's networked world, security is becoming more and more of an ongoing practice, as anybody who has gotten a pop-up asking them to upgrade their software is aware.  You should develop a plan which will allow ongoing security maintenance and verification as long as the system is potentially exploitable.

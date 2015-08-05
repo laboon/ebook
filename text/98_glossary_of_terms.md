@@ -357,3 +357,19 @@ __Phishing__: A common __attack__ which attempts to get personal or other sensit
 __Spear Phishing__: A specific kind of __phishing__ which is aimed at highly targeted individuals and is customized for them.  For example, a regular phishing email may be "Dear user, please to reset your email password for linked here" whereas a spear phishing email would be "Dear Mr. Jones, please reset your SuperDuperEmail password here. Sincerely, Jane Smith, SuperDuperCo. Vice President of Security".
 
 __Fishing__: Catching marine animals for food or enjoyment.  Has nothing to do with __security testing__.  If you think it did, you are probably thinking of __phishing__.
+
+__Injection Attack__: A kind of attack where the malicious user tries to get the victim's computer to execute arbitrary code.
+
+__SQL Injection Attack__: A specific, common kind of __injection attack__ where the malicious user attempts to have the victim's computer execute arbitrary SQL commands.
+
+__Sanitization__: "Cleaning up" user input so that it cannot be executed by the running program.
+
+__Principle of Least Privilege__: The principle that states that users should have the minimal amount of access to the system necessary to do their jobs.  For example, a developer should not (in general) have access to payroll data, and HR personnel should not have access to source code.
+
+__Penetration Testing__: Testing the security of the system by attempting to compromise it as an unauthorized user would.
+
+__User Testing__: Having an actual user of the system attempt to perform tasks, often without instruction, in order to determine how users interact with the system.
+
+__Buffer Overrun__: A __vulnerability__ where more data can be written than has been allocated for it.  This can cause system crashes or unauthorized access.
+
+__Bounds checking__: Run-time checking that data is not being written outside of a properly allocated array.
