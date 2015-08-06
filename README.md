@@ -1,7 +1,7 @@
 # A Comprehensive Approach to Software Testing
 Bill Laboon
 
-_for Arrisons and Calvernins_
+_for AKS and CKN_
 
 ## Compiling this e-book
 
