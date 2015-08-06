@@ -357,7 +357,8 @@ Conversely, traceability matrices can allow us to determine if we have any "usel
 ```
 IDENTIFIER: 9
 TEST CASE: Determine if app properly reads poodle temperature.
-PRECONDITIONS: Poodle is alive and in reasonably good health, with a normal poodle body temperature of 101 degrees Fahrenheit.
+PRECONDITIONS: Poodle is alive and in reasonably good health, with a normal poodle
+    body temperature of 101 degrees Fahrenheit.
 INPUT VALUES: None
 EXECUTION STEPS: Point sensor at poodle for five seconds.  Read display.
 OUTPUT VALUES: None

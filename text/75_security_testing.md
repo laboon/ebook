@@ -68,7 +68,8 @@ In an __injection attack__, the attacker is attempting to get your computer to r
 ```java
 public int findUidByName(String name) {
 
-   Result dbResult = DatabaseConnection.executeSQL("SELECT uid FROM users WHERE name = '" + name + "';";
+   Result dbResult = DatabaseConnection.executeSQL(
+     "SELECT uid FROM users WHERE name = '" + name + "';");
    if (dbResult == null) {
        return NO_RESULTS_CODE;
    } else {

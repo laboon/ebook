@@ -556,7 +556,8 @@ Now let's imagine some code inside the image transformation library might be cal
 
 public class ImageLibrary {
 
-    public Image transform(Image image, int inSize, int outSize, String format, boolean color, boolean reduce, boolean dither) {
+    public Image transform(Image image, int inSize, int outSize, String format,
+      boolean color, boolean reduce, boolean dither) {
         if (inSize < outSize && format.equals("jpg") || dither == false) {
             return privateMethod1(image, inSize, outSize);
         } else if (inSize < outSize && format.equals("png") || dither == true) {
