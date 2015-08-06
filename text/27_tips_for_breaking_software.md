@@ -1,4 +1,4 @@
-## Breaking Sofware
+# Breaking Sofware
 
 Thus far, we have focused on how to develop test plans, but there has been little discussion of what to test for, outside of ensuring that the software meets the requirements.  While this is not a bad approach to testing software, it leaves out important aspects in regards to verification, especially in checking for more obscure edge cases.
 
@@ -6,7 +6,7 @@ The reason one tests is to find defects; in order to find defects, you may have 
 
 Okay, maybe not that last one. However, you will have to think of ways to test for the operation of a system when things aren't quite perfect.  Consider this chapter a way of priming your testing brain for how to cause failures and find the cracks in the software under test.
 
-### Errors To Look For
+## Errors To Look For
 
 1. __Logic Errors__ - A logic error is an error in the logic of the program; the developer understood what needed to be done, but in the process of converting the system from its description to its implementation, something went wrong.  This could be as simple as replacing a greater-than (>) with a less-than (<), or a complicated interaction of numerous variables. 
 
@@ -132,7 +132,7 @@ Will your system perform properly under every possible configuration that users 
 
 Be sure that you provide multiple methods of input and output, or at a bare minimum can at least accept and output raw text of some sort.  Not all users can use a mouse, or can view graphics.  Don't assume that the setup that you have will work for everyone who uses the software.
 
-### ... And Oh So Many More Ways
+## ... And Oh So Many More Ways
 
 This chapter is not a complete list of how to break programs and find defects.  It's not even a fairly comprehensive list.  The fact is, computers do exactly what you tell them to do, and one of the challenges of writing software is telling the computer exactly what do under all sorts of circumstances.  While many of these circumstances are relatively common across programs (such as dealing with missing files or network connectivity), many other errors will be specific to the domain you are working in, or the program you are writing.  As a tester, you will need to keep an open mind and constantly be thinking of ways in which defects can manifest themselves in the particular program under test.
 

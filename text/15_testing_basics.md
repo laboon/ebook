@@ -1,10 +1,10 @@
-## Testing Basics
+# Testing Basics
 
 Before we get deep into actually writing tests, it behooves us to make sure that we're all on the same page with the theory and terminology of testing.  This chapter will provide us with both the same vocabulary and the same theoretical underpinnings when discussing testing.
 
 As a caveat, I'd like to state that I have seen conflicting terminology during my career in testing.  Different workplaces and testing teams may call certain things differently, or use the same term in different ways.  I have tried to use the most common expressions, but you may see slightly different terminology in industry.
 
-#### Equivalence Classes and Expected vs Observed Behavior
+## Equivalence Classes and Expected vs Observed Behavior
 
 Imagine that you are in charge of testing a new display for a car tire air pressure sensor.  The air pressure reading comes in from an external sensor, and we can assume that the air pressure value will be passed in to our display as a 32-bit, signed integer.  If the air pressure is greater than 35 pounds per square inch (PSI), the OVERPRESSURE light should turn on and all other lights should be off.  If the air pressure is between 0 and 20 PSI, the UNDERPRESSURE light should turn on, and all other lights should be off.  If the air pressure reading comes in as a negative number, the ERROR light should come on and all other lights should be off; if the air pressure in the tires is lower than the air pressure outside, there's either a sensor error or the sensor has somehow ended up on the surface of Venus.
 
@@ -47,7 +47,7 @@ It is important to note that equivance classes do not have to be the exact same 
 
 Now that our equivalence classes have been determined, it's possible to write tests that cover all of the functionality of this display.  We may decide to send in a value of -2 to test the ERROR equivalence class, a value of 10 to test the UNDERPRESSURE equivalence class, a value of 30 to test the "No lights" equivalence class, and a value of 45 for the OVERPRESSURE equivalence class.  Of course, the values were picked rather arbitrarily.  In the next section, we'll see how one can choose specific values in order to maximize the chances of finding any latent defects.
 
-#### Interior and Boundary Values
+## Interior and Boundary Values
 There's an axiom in testing that defects are more likely to be found near the boundaries of two equivalence classes.  These values - the "last" of one equivalence class and the "first" of a new equivlence class - are called __boundary values__.  Values which are not boundary values are called __interior values__.  For example, let's take a very simple mathematical function, the absolute value of an integer.  This has two equivalence classes:
 
 1. [-MAXINT, -MAXINT + 1, ... -2, -1, 0] -> For input x, outputs -(x)
@@ -106,7 +106,7 @@ Implicit boundary values can also be runtime-dependent.  Let us assume that we h
 
 There's an implicit boundary between the number of rows which fit into memory and that which don't.  Whoever wrote the requirements may not have thought about this, but as a tester, you shuld keep implicit boundary values in mind!
 
-#### Base cases, Edge Cases, Corner Cases
+## Base cases, Edge Cases, Corner Cases
 Let us continue our exploration of the pressure sensor display.  Going over our various test cases, we can see that they vary in how common they will be.  We can assume that the vast majority of the time, the pressure will be normal, or slightly overpressure or underpressure.  Each of these is considered a __base case - the system is operating within expected parameters for normal use.
 
 When input values are outside normal operating parameter or are approaching the limits of what the system can handle, this is called an __edge case__.  An edge case may be the tire popping and air pressure dropping to zero.  Another case would be someone forgetting that they had the air hose attached to the tire, and pumping in air up to a pressure of 200 PSI, the absolute limit to which the tire is rated.  This also might cover error cases which might not be expected in normal operation.
@@ -136,13 +136,13 @@ Finally, corner cases are cases where major disasters are occurring, or obviousl
 
 Corner cases often involve a catastrophic failure of some kind (loss of network connectivity, a key subsystem crashing), entirely invalid data being sent in, or multiple failures occurring at once.
 
-#### Success cases, Failure Cases
+## Success cases, Failure Cases
 
 When discussing test cases, there are two kinds of output that one would expect from a given test.  First, there may be a __success case__; that is, the case returns an expected result given the input given to it.  In general, tests following the "happy path" of what a user would normally do should be success cases.
 
 __Failure cases__ are cases in which we expect the system to "fail" for some reason, such as attempting to write to a read-only disk, getting the square root of a negative number (in systems that don't work with imaginary/complex numbers), or attempting to add an invalid username to a system.  In failure cases, instead of returning a correct result, the system will do... something else.  What this "something else" is will vary from test to test, and with what kind of functionality is being tested.  Some examples might be returning an error code or default value, throwing an exception, shutting the system down, or simply logging the error to a logfile or STDERR.
 
-#### Black / White / Grey Box Testing
+## Black / White / Grey Box Testing
 
 There are various ways of testing a system under test, each of which has benefits and drawbacks.  We'll explore three different kinds of testing here, and go into detail on various ways to test using these three paradigms in following chapters.
 
@@ -160,7 +160,7 @@ __Grey box testing__, as its name implies, is a hybrid approach between white an
 
 Let us assume that our grey box tester is looking at testing the email sorting functionality of the mail application.  Looking at the code, the tester realizes that the system uses insertion sort.  Insertion sort is known to have a worst case scenario of O(n^2) performance when the list is in reverse-sorted order.  Thus, the grey box tester may add a test to check that the system is still able to handle sorting a list of emails which are in reversed order.  Another example would be noticing that there is no null check in the function to do a search, and checking if just hitting "enter" instead of typing something in the search bar causes a null pointer dereference, searching for "" and finding every single email, or some other unexpected behavior. 
 
-#### Static vs Dynamic Testing
+## Static vs Dynamic Testing
 
 Another way of categorizing tests is to group them into __static tests__ and __dynamic tests__.  In dynamic tests, the system under test is actually running; the code is executing.  Virtually every test we have discussed so far has been a dynamic test - the code is doing something with the input provided, and eventually providing some output.
 

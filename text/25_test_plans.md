@@ -1,8 +1,8 @@
-## Test Plans
+# Test Plans
 
 Now that you understand requirements, and the basic theory and terminology of software testing, it's time to work on making __test plans__.  Test plans lay out an entire plan for testing a system under test.  They are then executed - that is, a person or automated testing tool goes through the steps listed in the test plan - and the results are compared to what actually happened.  That is, we will be checking the expected behavior of a system (what we write down in our test plan) against the observed behavior (what we see the system actually doing).
 
-#### The Basic Layout of a Test Plan
+## The Basic Layout of a Test Plan
 
 A test plan is, at its core, simply a collection of __test cases__.  Test cases are the individual tests that make up a test plan.  Let's assume that you are creating a test plan for testing a new app that tells you if a cup of coffee is too hot to drink.  Assuming that the app marketers liked cold coffee and decided not to implement anything about the coffee temperature being too low, there are two requirements:
 
@@ -29,7 +29,7 @@ OUTPUT VALUES:
 POSTCONDITIONS:
 ```
 
-##### Overview of the Fields
+### Overview of the Fields
 
 1. __Identifier__ - An identifier, such as 16, DB-7, DATABASE-TABLE-DROP-TEST, which uniquely identifies the test case.
 2. __Test Case__ - A description of the test case and what it is testing.
@@ -41,13 +41,13 @@ POSTCONDITIONS:
 
 Don't worry if you still have some questions on these definitions.  In the following sections, we will go more deeply into all of them and provide examples.
 
-##### Identifier
+### Identifier
 
 Just as requirements have identifiers, test cases do as well.  These provide a short and simple way to refer to the test case.  In many instances, these are just numbers, but also could use more complex systems like the one described in the section on naming requirements.
 
 Test plans are usually not as large as all of the requirements for a program; once they get big enough, individual tests plans are grouped under larger test suites.  Thus, often the identifier is just a number.  If you are using automated test tracking software, then it will usually auto-number these for you.
 
-##### Test Case (or Summary)
+### Test Case (or Summary)
 
 In this field, a succinct summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell what exactly is meant to be tested, and sometimes how it is to be tested.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.  
 
@@ -58,7 +58,7 @@ __Examples__
 3. When the system detects that the internal temperature has reached 150 degrees Fahrenheit, ensure that it displays an error message and shuts down within five seconds.
 4. Ensure that if the operating system switches time zones midway through a computation, that computation will use the original time zone when reporting results.
 
-##### Preconditions
+### Preconditions
 
 A test often requires that the system is in a certain state before the test itself can be run.  While one could theoretically consider putting the system into such a state as part of the execution of the test (see the section on Execution Steps, below), in general it makes more sense that certain __preconditions__ must be met before the test can start.  This will be necessary for many tests which are not testing mathematically pure functions.
 
@@ -97,7 +97,7 @@ However, if we were testing banking software and were using that image display t
 
 In both cases, the execution steps will be the same, or at least very similar - go to a URL and check that a particular image shows up.  However, the state of the system would have been much more detailed in the case of the banking software.  This is not only because the system itself is much more complex, but also because a failure would be much significant for the bank system than the image-sharing system.  In such a case, it makes sense to specify exactly what should happen and what should be in place before the execution steps.  The more exactly you write the preconditions, the easier it will be to reproduce the same situation exactly, and as we have discussed, reproducibility is the key to fixing a problem.
 
-##### Input Values
+### Input Values
 
 Whereas preconditions are aspects of the system that are set before the test is run, __input values__ are those values passed directly in to the functionality under test.  This difference can be a subtle one, so let's explore a few examples.
 
@@ -143,7 +143,7 @@ This is certainly possible, and in this case one could consider SORT_ASCENDING a
 
 Sorting is a mathematically pure concept, but much of what a tester tests is not so straightforward.  In such cases, it can often be difficult to determine what counts as input values and what counts as preconditions.  As a heuristic, if someone selects or enters a value, as part of the execution of the test case, it should be considered an input value, otherwise it is a precondition.  For example, if the test case checks for a user logging in as different names, then the login name would be an input value.  If the test is checking for the ability to add items to a cart when logged in as a certain user, the login name would be a precondition, as it is not entered directly in the test case, but should be done before the test even starts.
 
-##### Execution Steps
+### Execution Steps
 
 Now that the preconditions and input values for a test case have been determined, it's time to actually run the test case.  The steps taken when running the test case are called the __execution steps__.  These are what the tester actually does - and must do specifically! - when running the test case.  Whereas with preconditions, it is sufficient to simply get an end result (similar to requirements, where the goal is to specify what is to be done, now how to do it), with execution steps, it is critical to follow them precisely.  Execution steps are often incredibly specific, depending on the domain, as it is of paramount importance to follow them exactly.
 
@@ -168,17 +168,17 @@ In general, it's best to set the level of specification to the ability and knowl
 
 As a final note, please note that there is no such thing as a frobinator or frobinization.
 
-##### Output Values
+### Output Values
 
 Values that are returned directly from the functionality being tested are __output values__.  When dealing with strictly mathematical functions, these are very easy to determine - a mathematical function by definition takes in some input value or values, and sends out some output value or values.  For example, for an absolute value function, the function takes in some number x, and if x < 0, it returns -x; otherwise, it returns x.  Testing the function with -5 and checking that it returns 5, it is obvious that the input value is -5 and the output value is 5.  There are no preconditions; sending in -5 should always return 5, no matter what global variables are set, no matter what is in the database, no matter what is displayed on the screen.  There are no postconditions; the function shouldn't display anything else on the screen, or write something to the database, or set a global variable.
 
 Once again, though, computer programs don't consist solely of mathematical functions, and so we must learn to distinguish postconditions from output values.
 
-##### Postconditions
+### Postconditions
 
 Any side effects or other state of the system that are either caused by the functionality, or should be in effect some other way after the execution steps have been completed, but are not output values,  are __postconditions__.  Postconditions may be directly caused by the functionality under test, such as a warning message being displayed, or some data written to the database, or a global variable being set.  However, a postcondition is any condition which needs to be in place after the execution steps are complete, and may not be directly impacted by the functionality.  For example, a postcondition may be that a global variable was __not__ set, or that the system is still running, or that a thread was not killed.
 
-##### A Note: Expected Behavior vs Observed Behavior
+### A Note: Expected Behavior vs Observed Behavior
 
 Although we've discussed the difference between output values and postconditions at length, the fact is that in many cases the difference doesn't really matter, or is too academic to make much fuss about.  A similar argument could be made on preconditions and input values.
 
@@ -192,7 +192,7 @@ I expect Z to happen
 
 That value Z is the crux of the test - it is the expected behavior.  It is impossible to test for something if you don't know what you expect to happen.  Just like Lewis Carroll said, "if you don't know where you're going, any road will get you there."  Similarly, when writing a test case, you need to know where you eventually want the test case to go, otherwise there's no way to check that you got to where the system should be.
 
-#### Developing a Test Plan
+## Developing a Test Plan
 
 Before starting to write any test plan, one must think about the end goal.  How detailed does the test plan need to be?  What kind of edge cases should be checked?  What are the potential risks of unknown defects?  These answers will be very different when you are testing an online children's game or software for monitoring a nuclear reactor.  Based on the context and domain of the software under test, even software with similar requirements may require very different strategies for designing a test plan.
 
@@ -232,7 +232,7 @@ NaN
 Dividing a positive value by zero returns Infinity, dividing by a negative number returns -Infinity, and dividing zero by zero returns NaN (Not a Number).  This means that dividing by zero, despite being one "internal equivalence class" in Java programs, is three different ones in JavaScript programs.  Knowing this, you would want to test that the program can handle all of these return values, and not assume that you had checked all edge cases simply because you had checked for dividing one by zero.  As a side note, this is an actual example from a test plan that I wrote, and it was used to find several defects.
  
 
-#### Executing a Test Plan
+## Executing a Test Plan
 
 Executing a test plan is called a __test run__.  One way to think of test runs is as the equivalent of an object and a class.  Executing a test plan generates a test run similar to how instantiating a class creates an object.  The test plan is the map of where to go, whereas the test run is the voyage that the traveler makes.
 
@@ -261,7 +261,7 @@ In some cases, a test cannot be executed at the present time.  This can be due t
 
 Finally, in some cases a test case simply cannot be executed, either now or in the future, due to a problem with the test case itself.  In such cases, the test status can be marked as "error".  Tests marked as in error could have an issue with the test contradicting the requirements, such as a requirement saying that the background color of a web page should be blue, but the system under test is actually a command-line application.  It could be a problem with the expected behavior of a program, for example, saying that the square root of 25 should result in "poodle".  Oftentimes, a test marked "error" may be the result of a simple typo, but it could point to a fundamental problem with the development team's or testing team's understanding of the software.  Test cases marked "error", unlike those marked "blocked", are not expected to be run again until the error is resolved.
 
-#### Test Plan / Run Tracking
+## Test Plan / Run Tracking
 
 Although you could execute a test plan for fun or for your own sense of self-improvement, in most cases you want to record what the results of the test plan were.  This can be done using custom test tracking software, a simple spreadsheet program, or even just a notebook.  In some cases, this will be necessary due to the regulatory environment, but even if it is not required, keeping track of what tests have passed and which have not will be extremely useful.
 
@@ -302,7 +302,7 @@ If a test is blocked, then the reason that it is blocked should be noted.  This 
 
 Tests with the status ERROR should hopefully be a rarity.  If an erroneous test is found, however, it behooves the tester to note why he or she thinks that the test is in error.  An idea of how to rectify it - or at least on how to get more information on it - should be included as part of the result of that test case.
 
-#### Traceability Matrices
+## Traceability Matrices
 
 Now that we have a list of requirements and a test plan to test them, what else remains?  Surely, we can all go home and enjoy a beverage of our choice after a long day toiling in the data mines.  However, there is one more thing to discuss on the topic.  We have informally developed tests that we suppose will meet requirements, but we can double-check that our requirements and test plan are in sync by building a __traceability matrix__.
 

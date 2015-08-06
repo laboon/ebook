@@ -1,4 +1,4 @@
-## Manual vs Automated Testing
+# Manual vs Automated Testing
 
 So far, we have focused mostly on manual testing; that is, we actually develop and run the test cases.  If you've done any manual testing, though, you'll know that it is time-consuming and often extremely boring for the tester who has to follow a script (it's much more fun to follow a script when acting than when running software).  If only there were some sort of machine which can be used for running repetitive tasks!
 
@@ -6,7 +6,7 @@ If you're testing software, then chances are very good that you have a computer 
 
 With automated testing, you write the tests, using some sort of programming or scripting language or tool, which are then executed by the computer.  These tests can check aspects of the program as specific as individualreturn values from methods all the way up to how an entire graphical interface should look on a screen.
 
-#### Benefits of manual and automated testing
+## Benefits of manual and automated testing
 
 For your software project, should you use manual testing or automatic testing?  There are benefits and drawbacks of each form of testing.
 
@@ -49,7 +49,7 @@ __Drawbacks of Automated Testing__
 5. __Automated tests only test what they are looking for.__ While humans running tests may easily notice that there is a problem with some part of the program even if they are not specifically looking for it, computers will do no such thing.  If you have not written a test to check that entering `5 + 5` on the calculator should equal `10`, then when it equals 11, no error will be reported.
 6. __Tautological tests and other bad tests may creep in.__ Very large test suites can often accumulate cruft, since they may not be looked at by human eyes for long periods of time.  As long as the tests pass, they stay in the code.  However, small modifications and fixes may creep in making tests tautological (that is, they will always pass, as they are checking tautological statements such as `1 == 1`) or are no longer necessary (checking parts of the program that are no longer used or accessible by users).  Without explicit work to ensure that the tests remain up to date, you may find that your computer is spending more time testing than is strictly necessary.
 
-#### The Real World
+## The Real World
 
 Of the two options, manual and automated testing, which is better?  "Better" is a loaded term, of course; numerous other factors will come into play when making a decision.  One of the interesting things about software testing is that automated and manual tests do not have much overlap; things that manual testing is good at doing, automated testing tends not to be good at doing, and vice-versa.  There are certainly a few things that neither traditional automated testing or manual testing are good at catching, such as security testing or probing for many edge cases.  We'll discuss some variations in testing in later chapters that can fill in the weaknesses of the traditional kinds of testing we are discussing now.
 
@@ -68,7 +68,7 @@ When should you, as a tester, automate tests?  If a test can be automated in a r
 
 In the "real world" of software development, virtually all organizations that I'm familiar with use a mixture of manual and automated tests for their applications, with the emphasis almost always falling more heavily on automated testing.  Overall, automated testing provides many benefits for modern software development, especially being able to quickly run tests after changes are made to ensure that no regression defects have occurred.  Although there is certainly an up-front cost to adding an automated testing framework, for non-trivial projects, the benefits you get from allowing the computer to do the testing work for you will quickly outweigh those drawbacks.  Conversely, releasing software relying solely on the automated tests - without ever checking how the software actually runs for a user - is done only by those organizations whose software is very far removed from user experience, who have an extremely high level of confidence in their automated tests, and/or which are especially foolhardy.
 
-#### Overview of Types of Automated Tests
+## Overview of Types of Automated Tests
 
 The manual tests that we have covered so far follow a general pattern.  They are all black-box (or grey-box) user-facing tests that test the system as a whole.  Automated tests run the gamut - while some automated tests act just like the black-box tests we have covered, there are many other varieties which don't.  In some of these cases, a manual version would be literally impossible, while in others, it may be possible to replicate them manually but it is so rarely done that those cases can be safely ignored.
 

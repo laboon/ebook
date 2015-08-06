@@ -1,4 +1,4 @@
-## Requirements
+# Requirements
 
 Remember that validating software is ensuring that we are building the right software; in other words, ensuring that what we are creating is what the users and/or customers want.  In order to validate software, we need to know what it is that users want the software to do, which can be a much more difficult task than you may think.  Users often aren't able to specify exactly what they are looking for.  They may think that they know exactly what they want, but when they see the implementation, immediately know that it is not.  Or they may have no idea - they just want your team to build something "like a social media site, but with buying and selling, and you know, like, hot dogs?  But for cats?"
 
@@ -60,7 +60,7 @@ For complex or safety-critical systems, requirements may specify implementations
 
 By requiring implementation details, you remove the possibility of black-box testing.  Without looking at the code, how can you be sure that the system is displaying the contents ofmemory location 0x0894BC40?  It's impossible (unless you have the incredibly specific superpower of being able to look at a RAM chip and somehow know what is being stored at and where).  All tests would have to be white box tests.
 
-#### Testability
+## Testability
 
 From a tester's perspective, one of the most important aspects of requirements is whether or not they are testable.  From a software development lifecycle perspective, "testable requirements" is actually just another term for "good requirements".  A requirement that cannot be tested cannot be shown to have been met.  Let's take an example of two requirements, and try to determine which is better.  Note that both semantically and syntactically valid, and contain that all-important "shall".
 
@@ -115,7 +115,7 @@ Both of these requirements are, in fact, possible to test.  In order to test the
 
 When applied to physical phenomena, it is manifestly clear how silly it would be to test these requirements (if they don't seem silly to you, how many testers do you know who have thermonuclear weapons at their disposal?  Probably fewer than five or so.)  However, oftentimes, it's more difficult to determine that a requirement is not feasible to test when you are dealing with software.  Living in a physical world, the human brain often has difficulty with determining how feasible a software requirement (which deals in the virtual world) may be to test.
 
-#### Functional vs Non-Functional Requirements (Quality Attributes)
+## Functional vs Non-Functional Requirements (Quality Attributes)
 
 Functional requirements state what a system should __do__; non-functional requirements state what a system should __be__.
 
@@ -137,7 +137,7 @@ Non-functional requirements are often much more difficult to test than functiona
 
 One of the key ways to clearly define non-functional requirements is to quantify them.
 
-#### A Note on Naming Requirements
+## A Note on Naming Requirements
 
 Back in the days of yore, when primitive software engineers chiseled binary trees with stone axes, there was only one way to write requirements.  It was the way that their forefathers had written requirements, and their forefathers before them, unto the dawn of civilization.  This sacred method of requirements naming was as follows:
 

@@ -1,4 +1,4 @@
-## Glossary of Terms
+# Glossary of Terms
 
 __Stochastic Testing__: Testing a system through the use of randomized inputs.  These inputs do not have to be entirely random; for example, they can be a probability distribution of values or generated strings.  Also called __monkey testing__.
 

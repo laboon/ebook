@@ -1,4 +1,4 @@
-## Security Testing
+# Security Testing
 
 When computers were first starting to become a thing (that's a technical term), security was not the key driver behind developing software for them.  Systems were rarely networked, so in order to tamper with the system or view its data, you would have to physically get to the computer.  Even in the 1950's, people knew how to secure physical locations (locks and security guards are pretty useful in the real world). In the rare instances that computers were networked or publicly accessible, there were few users, and they tended to be grad students, developers, or other authorized users.  Supposing somebody was able to break into a system, it was usually not a big deal.  Richard Stallman, the founder of the Free Software Foundation, argued against having passwords in the operating system ITS, and if you wanted to crash a system running ITS, all any user had to do was type `KILL SYSTEM`.  In other words, people generally trusted each other to do the right thing.
 
@@ -8,7 +8,7 @@ As the world became more and more networked, movies such as WarGames, which incl
 
 Today, breaking computer security is big business, with many crackers infiltrating systems in order to blackmail companies, steal credit card information, or shut down websites which they find objectionable.  Conversely, protecting systems from unauthorized access, and helping to find weak points in a system before the "bad guys" do, is also big business.
 
-### Challenges in Security Testing
+## Challenges in Security Testing
 
 Security testing differs from other kinds of software testing in that there is an intelligent adversary - indeed, many adversaries, although not all of them are really "intelligent" - also looking for defects.  You can think of malicious crackers trying to break into your system as just a variant of a tester - they are constantly testing for weak points in your software that they can use to gain access or steal data.  When you're unit testing, you don't need to worry that the system will change from under you or _try_ to cause your tests to fail, but this is definitely the case in security testing.
 
@@ -22,7 +22,7 @@ Security failures can be catastrophic, and tend to have worse impacts than simil
 
 Finally, just because you have found every single vulnerability in your system's code, fixed them until the system is entirely bulletproof, all of your hard work can be undone by somebody calling one of your users, saying that they're the Allegheny County Password Police, and would they mind confirming their password.  This happens more often than you might think - read "Ghost in the Wires" by Kevin Mitnick for some great stories about successfully using similar techniques.  People are often confounded by technology and information security, or simply aren't paying that much attention to what somebody's asking them.  As Georgia Weidman, author of _Penetration Testing_, says, "Users are a vulnerability that can never be patched."
 
-### Basic Concepts in Computer Security
+## Basic Concepts in Computer Security
 
 Although we've already used some of the following terms, it's time to make some formal definitions of security-related terms so that we can discuss them in more detail.
 
@@ -59,9 +59,9 @@ Malware may belong to more than one variety.  For example, a program could propa
 
 It is not necessary for malware to be involved for there to be an attack on a system.  Just as there are automated tests and manual tests, there are automated attacks and manual attacks.  If I can guess the password of a user or send in a string to a textbox which causes the system to crash, I am attacking the system without any kind of program.  While nowadays many of these vulnerabilities are found and exploited with software tools, there is always the possibility of good ol'-fashioned manual exploitation.
 
-### Common Attacks, and How To Test For Them
+## Common Attacks, and How To Test For Them
 
-#### Injection 
+### Injection 
 
 In an __injection attack__, the attacker is attempting to get your computer to run some arbitrary code of their choosing.  One of the most common types of injection attacks is a __SQL injection attack__, since many programmers, especially new ones, do not __sanitize__ their database inputs.  Sanitization involves ensuring that input from a user will not be directly executed, by "cleaning it up" so that it can't run.  As an example, imagine some code that accepts a string from the user asking for their name, and then searches in the database for any users with that name, and will return the unique ID (uid) for the first user with that name.
 
@@ -91,7 +91,7 @@ How does one test that injection attacks are not possible?  The most straightfor
 
 Stochastic testing - especially "evil monkey" testing, which passes in executable code - can be helpeful for large systems which request and process input in many different ways and in different places.  By passing in large amounts of random data, you may find kinds of data which cause the system to perform oddly or crash.  These out-of-the-ordinary events may help point you to which specific parts of the system are vulnerable to injection attacks.  For example, if a particular parameter is parsed with an `eval()` at some point, your randomized testing may pass in some invalid code, causing the system under test to crash.  However, closer examination of the code which handles that kind of data will allow you to determine that code injection is possible there.
 
-#### Buffer Overruns
+### Buffer Overruns
 
 What happens when you try to put ten pounds of data in a five-pound bag?  A __buffer overrun__, that's what.  In many programming languages, you have to allocate a finite amount of space for data to be put into.  In Java, for example, if you wanted to store five integers in an array, you could do something like this:
 
@@ -114,7 +114,7 @@ This works fine if "7,4,29,3,2" is passed in to the method.  However, if "1,2,3,
 
 This can be tested for by passing in very large amounts of data to all places where input can be expected into the system.  The amount of data to be passed in will vary, and can often be determined by checking the code (thus making grey- or white-box testing very effective when checking for this particular kind of vulnerability).  Static analysis tools can also help determine where buffer overruns are possible.  Finally, using a language that has built-in bounds checking, like Java, can help mitigate the problem.  It is usually better for a program to stop running due to a missed exception bubbling up than code or data being overwritten.
 
-#### Security Misconfiguration
+### Security Misconfiguration
 
 Although your system may operate in a bulletproof way if it's set up correctly, not everybody is going to be as rigid as you are when setting up their version of the system.  People leave default passwords set, or give everybody read/write access because it's easier that way, or don't turn on two-factor authentication because they hate having a program text them every time they log in.  For complex programs, people may miss the one checkbox that encrypts data, or enables HTTPS, or requires users to log in before modifying data.
 
@@ -123,7 +123,7 @@ In order to avoid these, you want to have a sensible set of defaults for your so
 How do you test for them, though?  Often, you will have to do some form of __user testing__.  User testing involves having a user perform some task, often with minimal - or no - guidance from the development team or their representatives.  While this is usually done in order to determine the best user interface for a system, it can also be done to figure out how typical users configure the system and what parts of the system they do not configure properly.  After seeing that users often forget to change default passwords, for example, perhaps developers add a red warning to all administrative pages warning them that the default password has not yet been changed.  Further user testing can verify that this causes the desired change in behavior.
 
 
-#### Insecure Storage
+### Insecure Storage
 
 Even if the code running your system is security itself - free from all known exploits, all input sanitized, formally verified to not contain any buffer overflows - this is of little consolation if its data is not stored properly!  Examples of insecure storage would be writing sensitive data to log files, allowing users direct access to a database, or storing private keys in your code which is stored in a publicly available repository.
 
@@ -131,7 +131,7 @@ Note that this can be more tricky to verify than simply checking the log files o
 
 Testing for insecure storage can be as simple as attempting to access data directly on the database or on the filesystem.  In general, you want to follow the principle of least privilege, ensuring that only authorized users have access to any related data.  This can also involve automated checks, such as before code check-in, that verify that no private keys, passwords, or similar secret information is checked into the repository.
 
-#### Social Engineering
+### Social Engineering
 
 This is it, the king of attacks, the most common way of exploiting systems everywhere - going through "the vulnerability that can never be patched", people.  __Social engineering__ involves manipulating people (often authorized users of a systems) to underhandedly cause them to perform actions that put security of a system at risk.  Some examples would be telling a user of a system that they are from the IT department and need to know their password for "routine maintenance", or an email that has a forged "from" field asking the user to run the Unix command `chmod -R 777 *` in their home directory so that testing can commence.
 
@@ -147,7 +147,7 @@ A method of testing that your system is somewhat protected against social engine
 
 Running tests on people can be helpful, as well!  Some companies send fake phishing emails and see how many of their people click on suspicious links.  Those who do click on the links are sent to a page warning them that this could have caused unauthorized access to the system, and those employees will be less likely to do so in the future.
 
-### Penetration Testing
+## Penetration Testing
 
 While I've gone over various ways in which the security of a system can be compromised, often the best way to test a system is to think like an attacker.  __Penetration testing__ has a user, often external to the development team, attempt to gain unauthorized access to a system using any means at their disposal (tempered by the limits of the contract, e.g. "no deleting data").  This follows the "set a thief to catch a thief" theory - those who are acting like the people who are trying to break into your system will be most effective at finding any holes in your security systems.
 
@@ -155,7 +155,7 @@ During a penetration test, a person will act as though they were a cracker tryin
 
 A penetration tester will then develop a report of what the weak points of the system are, as well as the ramifications of those weak points.  For example, they may find a SQL injection vulnerability for one particular subsystem which allows access to a particular database.  While this may sound like technical gobbledygook to a manager, explaining the ramifications - that all of the payroll data for the company is available to anybody with an Internet connection - is much clearer (and scarier).
 
-### General Guidelines When Developing a Security Testing Plan
+## General Guidelines When Developing a Security Testing Plan
 
 Before developing a testing plan for security, you should try to determine how much testing will be necessary.  This will depend on the domain in which you are operating, but mostly on what the risks are if an opponent is able to compromise the system.  Remember that time and resources spent on security testing are time and resources that are not spent elsewhere.  If you are running a system which controls nuclear weapons launch codes, it makes sense to spend a large percentage of the time testing the system on security testing; if you are running a startup for renting cats, less time and fewer resource are probably necessary.
 

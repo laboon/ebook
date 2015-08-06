@@ -1,8 +1,8 @@
-## Testing Templates
+# Testing Templates
 
 This is a reference for various templates used in the book.
 
-### Test Case Template
+## Test Case Template
 
 IDENTIFIER: _A unique identifier for this test case, which ideally will also serve as a simple way to remember what the test case is testing.  Example: VALID-PARAMETER-MESSAGE.<br>
 TEST CASE: _A short description of what the test case does._<br>
@@ -12,7 +12,7 @@ EXECUTION STEPS: _The steps the tester should take to run the test._<br>
 OUTPUT VALUES: _Any specific output values expected after the execution steps._<br>
 POSTCONDITIONS: _Any conditions which must hold true after the execution steps have been completed.  If these conditions are not met, the test fails._<br>
 
-### Defect Reporting Template
+## Defect Reporting Template
 
 SUMMARY: _A short (one sentence or less) summary of what the defect is._<br>
 DESCRIPTION: _A more in-depth (can be a paragraph or more) description of the defect._

@@ -1,8 +1,8 @@
-## Unit Testing
+# Unit Testing
 
 In the last chapter, we discussed the benefits and drawbacks of automated testing compared to to manual testing.  Now, we'll start to dive in to a specific kind of automated testing, unit testing, which will enable you to test the code directly and ensure that individual methods and functions operate in an expected manner.
 
-#### Unit Tests: The Very Idea
+## Unit Tests: The Very Idea
 
 What are unit tests?  In a nutshell, they test the smallest "units" of functionality, which in traditional object-oriented programming, usually means things such as methods, functions, or objects.  It's the ultimate in white-box testing; in order to properly write unit tests, you'll need to understand the implementation of a system at a very deep level.  They allow you to ensure that the code that you write does exactly what you intend it do, given a specific input.
 
@@ -35,7 +35,7 @@ We have seen earlier that the user will never directly see the aspects of the so
 
 5. __Able to tell if code changes caused issues elsewhere__ - Programs nowadays can be rather large and complicated, and it's not always easy - or even humanly possible - to know whether a change you're making will have unintended consequences elsewhere.  The author has lost count of how many times he has meant to, say, change the background color of a screen, and caused a stack overflow in some recursive function elsewhere in the code which required the background color to be green for some reason.  However, by having a relatively complete test suite, the developer can check easily if he or she is breaking anything obvious elsewhere in the codebase.  It's not foolproof, but it certainly makes it easier to avoid problems.
 
-#### An Example in Natural Language
+## An Example in Natural Language
 
 Before diving into the code, let's examine a unit test in natural language.  Let's say that we're implementing a Linked List class, and we would like to test equality.  That way, when we make two lists that have the same data in them, they will show as equal, even though they are not the exact same Linked List in memory.  How could we specify a test for this case?
 
@@ -49,7 +49,7 @@ We can see that there are three steps here, which correspond to some of the step
 
 3. _Expected Behavior_ - Remember that the key principle to testing software is that expected behavior should equal observed behavior.  The unit test should specify what the expected behavior is, then check if it's equal to the observed behavior (i.e., the actual result of the test).  In the world of unit testing, this is called an _assertion_ - the test _asserts_ that the expected behavior is equal to the observed behavior.  In our case, our test will _assert_ that the returned value of comparing the two linked lists is true.
 
-#### Turning Our Example Into a Unit Test
+## Turning Our Example Into a Unit Test
 
 It would be entirely possible to unit test this in a "manual" fashion.  Just generate a quick program which creates a linked list a, creates a linked list b, apply the equality operator,and finally add a conditional checking if the result of that value is true.  If it is, print out "test passed!"; otherwise, print out "test failed!".  However, usually we use a testing framework to automate much of the work and ensure that we are testing in a consistent and coherent manner.
 
@@ -87,15 +87,15 @@ public class LinkedListTest
 
 Looking over this test, it is easy to see the parallels with a manual test.  There are some preconditions to set up the test, some execution steps to run the test, and some postconditions, where we can check the observed behavior against the expected behavior.  As mentioned in an earlier chapter, the key concept to keep in mind when software testing is that some behavior is expected under some circumstances, and when those circumstances are reached, a test should check that the observed behavior is in fact the expected behavior.  While unit tests check smaller units of functionality than most black-box tests, the core concept remains the same.
 
-#### Preconditions
+## Preconditions
 
 Before the test can be run, you need to set up the necessary preconditions for the test.  These are similar to preconditions in a manual test, only instead of focusing on the system as a whole, you focus on setting things up for the particular method to be called.  In the example above, the unit test is going to check that two linked lists with equal values (specifically 1 -> 2 -> 3) will be regarded as equal by the .equals method of a linked list object.  In order to test that two linked lists are equal, first we must created the two linked lists, and set their nodes to the same set of values.  This code simply creates them and puts them into variables `a` and `b`.  We will use these two linked lists in the next phase of the unit test.
 
-#### Execution Steps
+## Execution Steps
 
 Here is the actual equality check.  We determine whether or not `a.equals(b)` is true or not, and put the Boolean result in the variable `result`.
 
-#### Assertions
+## Assertions
 
 Remember that assertions are checking the expected behavior against the observed behavior of the execution steps.  Specifically, we are using the assertion assertEquals, which checks that the value in result should equal `true`.  If it does, the test passes and we can say that under these circumstances, the .equals() methods works correctly.  If it does not, then the test fails.
 
@@ -123,7 +123,7 @@ assertSame(a, c); // True; these are different references to the same object
 
 Additionally, there are several "not" variants of these assertions, such assertNotEquals, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17).  In my experience, these are used much less often, and are usually a code smell.  You want to check for a specific __expected__ behavior, if at all possible, not that it's __not unexpected__ behavior.
 
-#### Ensuring that Tests are Testing What You Expect
+## Ensuring that Tests are Testing What You Expect
 
 One of the simplest ways to do this is to first ensure that your tests fail!  While we'll go into detail on a development strategy that always calls for tests to fail first in the chapter on TDD, a quick change to a test can often prove that it's not just passing all the time because you're mistakenly asserting that `true == true`, for example.
 
@@ -168,7 +168,7 @@ Or you changed the equality check to an _inequality_ check?
 
 In all of these instances, the test should fail.  You can then rest a little easier, knowing that your test isn't tautological, passing no matter what the code does.
 
-#### Problems?
+## Problems?
 
 Unit testing with the techniques we've learned so far will get us far, but won't get us all the way.  Just using the assertions and testing code that we've gone over so far, there's no way to check, for example, that a particular string will be printed out, or that a window will appear, or that another method is called... all very important things.  After all, if all methods did was return different values with different input, never displaying them to the user or interacting with the environment in any way, we'd have no way of knowing what was happening with our programs.  Our only output would be the generally increasing noisiness of the fan and heat of the CPU.
 
@@ -207,7 +207,7 @@ As opposed to a square root function, where we know what exactly we're passing i
 
 This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary (or, at least, you need some clever way around them, like monads in Haskell) if you want to do anything other than make your processor warm.  After all, printing anything to the screen is technically a side effect.  However, by keeping as many functions pure as possible, and limiting impure functions to certain areas, you will make testing the system much easier.  I like to think of it as "quarantining" the impure functions so that I know where difficulties in testing will lie. 
 
-#### Test Doubles
+## Test Doubles
 
 A unit test should be a localized test; that is, it should check the particular method or function under test, and not worry about other aspects of the system.  If there is a test failure, we want to make sure that the failure is due to the code in that particular method, not on something it relies upon.  Software is often interconnected, however, and a particular method which relies upon other methods or classes may not work correctly if those other units of code do not work correctly.
 
@@ -228,7 +228,7 @@ public int haveFunAtDuckPond(Duck d, int numFeedings) {
 
 Even though the code in this method works perfectly for all inputs, it requires that a working duck be present.  Otherwise, any non-negative number of feedings with a valid duck will cause an exception to be thrown.  If we see a unit test for this particular method failing, we will naturally think that the problem is in this method.  Only after examining it will we understand that the problem actually lies elsewhere.  How can we test this code when the code it depends upon doesn't work?
 
-#### Doubles
+## Doubles
 
 I wouldn't have asked the question if I didn't have an answer - test doubles.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to __localize__ the source of errors.  If our tests for haveFunAtTheDuckPond() fail, then the problem should lie in that particular method, not in one of the classes or methods that it depends upon.
 
@@ -363,7 +363,7 @@ public class DogTest {
 
 This will enable much easier and much more focused testing.  You'll also note the code has several other benefits aside from increased testability.  It's easier to read and understand, it's shorter, and there are fewer chances for errors.  In the original version, it would be very easy for a programmer to forget to set the _df variable to a DogFood object at some point, causing a null pointer exception whenever the dog tried to eat.  While still possible, this is less likely when you are passing in the object directly to the method.  We'll discuss more of the benefits of writing testable code - and why testable code is good code, and vice versa - in a later chapter.
 
-#### Stubs
+## Stubs
 
 If doubles are fake objects, stubs are fake methods.  In the above examples, we didn't care what calling .eat() on the DogFood object did; we just didn't want it to call an actual DogFood object.  In many cases, though, we expect a certain return value when a method is called.  Let's modify the .eat() method on DogFood so that it returns an integer indicating how tasty the dog food is.
 
@@ -397,7 +397,7 @@ public class DogTest {
 
 Now when the mockedDogFood object has its .eat() method called, it will return the value 13.  Once again, we have "walled off" other methods by re-creating fakes of them that act as we think they should.  Note that we can even stub methods that don't exist, thus allowing us to not only test classes that have errors, but even ones that don't even have all of their methods written yet.
 
-#### Mocks and Verification
+## Mocks and Verification
 
 "Yes, yes, this is all fine," I can hear you saying, "but you didn't answer the original question!  We are still dependent on asserting on a value that is returned from a method, and thus won't be able to test methods without a return value!"  Remember the method that we wanted to test from earlier in the chapter:
 
@@ -422,7 +422,7 @@ public void testHaveFunAtDuckPond() {
 
 Note, in this case, that there is no traditional assertion.  The test case ends with the execution steps, viz., calling `.haveFunAtDuckPond()`.  The assertion is actually set when you verify that .haveFun() will be called one time on the mocked DuckPond object.
 
-#### Setup and Teardown
+## Setup and Teardown
 
 Oftentimes, there are particular things that you want the tests for a particular class to do before each of the tests start, and after each of the tests end.  For example, you may set up a mocked database connection, and want to use it as a precondition for for all of the tests, instead of repeating the same line of code to create it in each individual test case .  JUnit provides annotations for creating `setUp()` and `tearDown()` methods for cases such as this.  Specifically, you can add an `@Before` annotation for any methods you want to have run before each individual test case, and an `@After` annotation for any methods you want to run after.  Although you could theoretically name these methods something other than `setUp()` and `tearDown()`, these are common terms that you will see very often.
 
@@ -469,7 +469,7 @@ Also note that while there is nothing stopping you from prefacing multiple metho
 
 Getting back to setup and teardown procedures specifically, if you have complicated ones, using multiple annotations is usually unnecessary. You can still use a single method, but call out to other methods as helpers, instead of annotating numerous methods.
 
-#### Testing System Output
+## Testing System Output
 
 One particular use case that `@After` and `@Before` annotations can help you with is checking for system output.  Console output is a very common item to check for, but testing for it in Java is non-intuitive.  Although it's possible to just pass in a System object with each method, which you could then mock and stub, this is not idiomatic Java code and will add lots of additional code (and most likely complexity) to your codebase.  The best solution that I have seen for checking it involves using the `setOut()` methods of System to put the output of System.out and System.err in ByteArrayOutputStream (full disclosure: I saw this on Stack Overflow at [http://stackoverflow.com/questions/1119385/junit-test-for-system-out-println](http://stackoverflow.com/questions/1119385/junit-test-for-system-out-println).  Yes, even authors of books go online to look for answers sometimes.)
 
@@ -508,7 +508,7 @@ public class KangarooTest {
 }
 ```
 
-#### Testing Private Methods
+## Testing Private Methods
 
   There's quite an argument on whether or not it makes sense to test private methods.  It's a great way to start a flame war amongst software developers and testers on your favorite social networking site.  I'll provide you with the arguments of both sides, so that you can make a decision yourself, and then I'll let you know my opinion.
 
@@ -579,7 +579,7 @@ public class ImageLibrary {
 
   One could argue that this isn't a well-designed piece of code and should be re-factored, ideally with the private methods put into, say, an ImageTransformer class, where the methods would be public and could easily be unit tested.  I wouldn't disagree.  However, the fact of the matter is that in the real world, there is often code like this lying around, and the tester is not always in a position to tell management that the company needs to spend a few months burning off technical debt instead of adding new features.  If your goal is to test the software, and test it well, you'll probably have to test the occasional private method.
 
-#### Using Reflection to Test Private Methods in Java
+## Using Reflection to Test Private Methods in Java
 
   In Java, there's no way to directly call private methods from a unit test, although this is definitely not the case in other languages (such as with Ruby's .send(:method_name) method, which bypasses the concept of "private" entirely).  However, using the reflection libary, we can "reflect" what's the structure of the class is at runtime.  The reflection library is built in to the Java language, so you don't need to install anything else to use it.
 
@@ -759,13 +759,13 @@ Quock!
 // TODO: TEST HERE
 ```
 
-#### Unit test structure
+## Unit test structure
 
-##### Basic Outline
+### Basic Outline
 
 Unit tests in Java are usually grouped by class, and further by method; they mirror the structure of the program.  Since unit tests are white-box tests which interact closely with the code, this makes finding errors in the codebase based upon the particular failing test case much easier than with integration or manual tests.
 
-##### What To Test?
+### What To Test?
 
 Exactly what you test will vary based upon the domain of software you are testing and the amount of time you have for testing, as well as organizational standards and other external factors.  Of course, stating this doesn't give you any direction at all, and similar caveats could probably be put in front of every paragraph of this book.  There are definitely some heuristics to follow, many of which follow directly from some of the items discussed when developing a test plan.
 
@@ -774,7 +774,7 @@ Ideally, you should look at the method and think of the various success and fail
 You don't want to create a test suite that takes so long to run that people don't run it often, but a well-designed unit test suite with appropriate doubles, mocks, stubs, and the like should run very fast even when there are many tests.  I would err on the side of creating too many tests rather than too few, at first.  As you determine how many tests are necessary for the particular piece of software you're working on, you can start making trade-offs between the amount of time for development and the amount of testing.
 
 
-##### Unit Tests Should Have Few Assertions (Preferably Only One) And Simple, Direct Names
+### Unit Tests Should Have Few Assertions (Preferably Only One) And Simple, Direct Names
 
 When unit tests fail, they should point you exactly what went wrong, and where.  They should not be large "one size fits all" tests.   It is so fast to run a properly-written unit test (rarely taking more than a few tens of milliseconds) that the extra execution time and work involved in writing more tests is absolutely dwarfed by the amount of time that you will save when unit tests tell you exactly what went wrong when it failed.  A unit test with lots of assertions shows a lack of thought towards what exactly the unit test was supposed to check for.  Consider the following example:
 
@@ -796,7 +796,7 @@ public class CatTest {
 
 When this test fails, what is wrong?  It could be that a newly created cat is not a good kitty, as it should be.  It could be that there's an error with the number of kittens that a newly created cat has.  It could be that the cat was erroneously assigned an owner.  You'd have to track down the particular assertion in the test code, because seeing that "cat stuff" has failed does not tell you anything.  If the name of the test case failing does not let you know what the failure is and preferably give you a very good pointer to where the failure lies, you are probably testing too much in each individual test case.  There are numerous cases where I've gone in and fixed code just based on seeing the name of the test case that failed, without ever looking at the actual test code.  This is a result of well-specified, directed tests.
 
-##### Unit Tests Should Be Independent
+### Unit Tests Should Be Independent
 
 Unit tests should not be dependent on run order.  That is, Test-2 should not depend on any side effects or result from Test-1.  JUnit, and most other unit testing frameworks, will not run individual test cases in a predetermined order.  By avoiding dependencies on each other and allowing each test to run independently, failures are localized to a particular test.  Imagine a testing framework that is just like JUnit but runs tests sequentially.  Now imagine writing the following code:
 
@@ -825,13 +825,13 @@ Now imagine that we run this JUnit, which executes test cases in a random order;
 
 There is yet another benefit to creating tests which have no dependencies on other tests.  Independent tests can be run in parallel, possibly decreasing execution time dramatically.  On a modern multi-core machine, you may find yourself running tests many times more quickly if they ca n be run independently.
 
-##### Try To Make Tests Better Every Time You Touch Them
+### Try To Make Tests Better Every Time You Touch Them
 
 Oftentimes, you will need to work with legacy code, including code which was poorly written or does not have good test coverage.  Although it may be tempting to simply continue working in the same manner that the code was originally written, you should try to do what you can to make the testing of the code better.  Keep your code easily testable, and if necessary, build wrappers around code that is difficult to test.
 
 There is more discussion on writing testable code in the chapter Writing Testable Code (with a title like that, what else did you expect to find in it?)
 
-#### Code Coverage
+## Code Coverage
 
 Code coverage tells you how much of the codebase is actually tested by the code.  Since defining exactly what is meant by "how much of the codebase" can be complex, there are numerous kinds of code coverage.  The simplest form of code coverage is method coverage; this measures what percentage of methods have any tests that call into them.  For example, imagine a class Turtle with two methods, `crawl()` and `eat()`.
 
@@ -922,7 +922,7 @@ From a code coverage perspective, we have 100% code coverage and 100% method cov
 
 Code coverage is a powerful tool, but it's not a silver bullet.  It's a way to see what areas of the codebase might need more testing, but it should not assure you that any code that has been covered is guaranteed free of defects.
 
-#### Unit Testing as Part of a Complete Testing Plan
+## Unit Testing as Part of a Complete Testing Plan
 
 Just like your favorite nutritionally-suspect cereals, unit testing should not be your entire breakfast, or your entire test plan.  Unit testing is great for checking individual methods and low-level functionality, but it is not good at seeing how everything fits together.  It's even worse when trying to determine what the end product will look like; all of the individual methods may work, but together they form something which doesn't meet any of the requirements.
 

@@ -1,10 +1,10 @@
-## Test-Driven Development
+# Test-Driven Development
 
 Although we have covered how to write unit tests from a broad perspective, the question remains - how do we integrate test writing into the software development process?  In the old days, software testing was often an entirely separate process from writing the code, but today, software quality is the job of developers, as well.  Conversely, software testing has acquired many aspects of development; it is the rare tester who never has to write any code.  Even testers who mostly do manual testing will often write integration scripts or other tools.
 
 Test-Driven Development (TDD) is one methodology for writing quality software  with a well-thought-out testing suite.  By following the tenets of TDD, developers will know what to test, in what order, and a way of balancing unit testing and coding the application under test.  It's not a panacea, of course.  In the software world, as Frederick Brooks reminds us, there is no silver bullet.  However, by using TDD properly, the werewolf of software development can at least be tamed a bit.
 
-### What is TDD?
+## What is TDD?
 
 Test-Driven Development is a software development methodology that comprises several key points:
 
@@ -18,7 +18,7 @@ Test-Driven Development is a software development methodology that comprises sev
 
 5. __Refactoring early and often__ : Refactoring is often held off until later in the development process, when it is much more difficult to do, especially if there has not been much time spent on doing it earlier.  That becomes all the more reason not to do it later.  By refactoring often, it becomes a part of the development process and a habit, instead of something that will be done "if there's enough time" (note: there is never enough time).
 
-#### The Red-Green-Refactor Loop
+### The Red-Green-Refactor Loop
 
 We work within these constraints by using the "red-green-refactor" loop.  A single cycle in TDD involves the following three steps:
 
@@ -40,7 +40,7 @@ This could all be re-written as a very simple algorithm.  By doing so, we can se
 6. Run test suite - if any tests fail, go back to step 5.  If all tests pass, continue.
 7. If there is any more functionality to add, go to step 1.  If there is no more functionality to add, the application is complete!
 
-#### Concepts
+### Concepts
 
 There are several principles to keep in mind when writing in a TDD manner.
 
@@ -54,7 +54,7 @@ __Avoid Slow Running Tests__ If you are working with TDD, you are running at lea
 
 __Remember That These Are Principles, Not Laws__ It would be counterproductive to entirely ignore what else the software needs to do in the next few iterations of the red-green-refactor loop.  Occasionally, a test may be slow but necessary, or adding a fake version of a method would be just as simple as actually making the method.  Although you should endeavour to follow the principles of TDD, I know of nobody who has never violated one of the principles (although perhaps that speaks more to the type of people that I spend time with).
 
-#### Example: Building FizzBuzz via TDD
+### Example: Building FizzBuzz via TDD
 
 In order to understand how TDD works, let's write a simple FizzBuzz program using it.  Remember that FizzBuzz consists of printing every number from 1 to 100, except if the number is evenly divisible by three, then the word "Fizz" should be printed instead of the number, if the number is evenly divisible by five, then the word "Buzz" should be printed instead of the number, and if the number is evenly divisible by both three and five, then "FizzBuzz" should be printed instead of the number.
 
@@ -257,7 +257,7 @@ This test fails, since the current method  will return "Fizz".
 
 Tests are now passing!  We might go further with refactoring - for example, DRYing up the code by moving `num % 3 == 0` and `num % 5 == 0` to their own methods - but this shows the a simple outline of the TDD process.  Oftentimes, steps are bigger in actual development, but a key tenet to keep in mind is to keep the tests relatively specific and targeted at particular output values.  Grouping the input and output values into equivalence classes, as discussed earlier, can help you to decide what needs to be tested and what order to test things in.
 
-#### Benefits of TDD
+## Benefits of TDD
 
 One of the biggest benefits of TDD is that it automatically creates a test suite during development.  Instead of having to worry about fitting in time to develop a testing framework and writing tests, the mere act of development will create one for you.  Since testing is, sadly, often relegated to the end of the project (which means that it will be given short shrift or even avoided entirely), using TDD ensures that you will at least have some sort of test suite even if other testing is curtailed.
 
@@ -277,7 +277,7 @@ Test-Driven Development provides a structured framework to write software with. 
 
 Finally, and most importantly, developing software using TDD can give you confidence in your codebase.  You are walking the tightrope of development with a net; you know that the software you are writing can at least do the things that you ask of it.  You have guard rails that let you know when you've caused problems in other parts of the application.  You have a seasoned team of developers letting you know what the next steps are.  You are not alone.
 
-#### Drawbacks of TDD
+## Drawbacks of TDD
 
 Of course, as Fred Brooks taught us in __The Mythical Man-Month__, there is no silver bullet.  Developing software using TDD has many benefits, but it's not always the correct methodology to use.  Be aware of the following drawbacks before deciding to use TDD.
 

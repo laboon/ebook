@@ -1,4 +1,4 @@
-## Pairwise and Combinatorial Testing
+# Pairwise and Combinatorial Testing
 
 Imagine that you're testing a word processor.  Specifically, you're testing the ability to add font effects, e.g., bold, italic, superscript, 3-D, etc.  Of course, in any word processor worth its salt, these effects can also be combined in one region of text, so that you may have a word which is both bold and italic, or a letter which is both subscripted and in 3-D, or even a sentence which is bold, italic, underlined, 3-D, and superscripted.  The number of possible combinations - ranging from absolutely no effects (and thus plain text) all the way to every single effect turned on - is 2 ^ n, where n is the number of effects.  Thus, if there are 10 different kinds of font effects available, the number of tests that you would have to run to fully test all of the possible combinations of font effects is 2 ^ 10, or 1,024.  This is a non-trivial number of tests to write.
 
@@ -8,7 +8,7 @@ However, it turns out that this situation is rarer than you might think.  You ma
 
 This technique is called __combinatorial testing__.  Testing all of the possible pairs of values is a kind of combinatorial testing, but has its own term, __pairwise testing__ or __all-pairs testing__.  At the beginning of this book, we discussed how comprehensively testing a non-trivial program was almost impossible.  By using the techniques in this chapter, however, we can reduce the number of tests dramatically (in some cases, by many orders of magnitude), but still find ourselves able to test extremely thoroughly.
 
-### An Example Of Pairwise Testing
+## An Example Of Pairwise Testing
 
 Let's take a very simple example, a program which has only three variables for a character's formatting: bold, italic, and underline.  These can be combined, so that, for example, a character can be just italic; or italic and underlined; or bold, italic and underlined.  Since each of these variables is a Boolean (they can only be true or false - you can't have a "half-italic" character) The list of possibilities for a character can be expressed as a truth table.
 
@@ -111,7 +111,7 @@ Note that we are still checking all pairs.  Let's check the word/bold pair to ve
 
 As a side note, notice that we are now testing even more combinations and yet there are still only six tests.  This is merely a foreshadowing of how much time can be saved with combinatorial testing.
 
-### _n_-Way Interactions
+## _n_-Way Interactions
 
 Although most errors will be found by ensuring that all pairwise interactions are tested, often we would like to go even further and check for errors in three-way, four-way, or even more interactions.  The same theory holds for doing this: tests should be generated that cover the entire truth table for each 3-way variable interaction.  Just like we checked that all four true/false value combinations were tested for each two-way interaction in the first example, we will check that all eight value combinations for each three-way interaction are tested.
 
@@ -151,7 +151,7 @@ Let's examine a given three-way interaction, bold/italic/underline, and double-c
 
 The number of interactions can be tuned upwards as high as you would like, although if you are planning on testing n-way interactions where n is the number of variables you have, you are just doing exhaustive testing.  According to empirical studies done by NIST, the maximum number of interactions that caused an error was six, so checking for more than that would be overtesting in many situations.
 
-### Working With Larger Variable Sets
+## Working With Larger Variable Sets
 
 Combinatorial testing seems to work well with relatively small data sets, saving us large percentages of time by reducing the number of tests necessary.  However, going from 32 to 12 tests is not that impressive; after all, 32 tests could probably still be run in a reasonable amount of time.  How well does combinatorial testing work for larger numbers of variables or possible values?
 

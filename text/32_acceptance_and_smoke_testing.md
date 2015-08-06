@@ -1,6 +1,6 @@
-## Acceptance and Smoke Testing
+# Acceptance and Smoke Testing
 
-### Smoke Testing
+## Smoke Testing
 
 My father is a plumber.  Before connecting the pipes in a new building to the water main, he sends smoke through the pipes, and looks around to see if any smoke has escaped from the pipes into the building.  Why does he do this?  Well, if there are any leaks, it's much easier to clean up smoke (since you just let it dissipate) than water.  It's much more noticeable if smoke is filling up a room, compared to checking if there is any wetness behind the walls.  It's much faster than inspecting all of the piping inch by inch, yet provides similar information.  Once the smoke test has been passed, the water can come in and further, more specific testing - e.g., ensuring the correct pressure at different floors - can commence.
 
@@ -16,7 +16,7 @@ A variant of smoke testing used in development is __sanity testing__.  Sanity te
 
 An even milder version of smoke testing is __media testing__.  This is a check that all the relevant files have been written to the storage medium correctly and can be read.  It's just a final double-check that the CD was not corrupted before sending it to the customer, or that the files that were put on the server were written to the correct directory.  This can be as simple as checking that the files on the medium are bitwise equivalent to the files in the original location, or could involve some very minor work after that, such as putting the CD in a drive and ensuring that you can start installing the software.
 
-### Acceptance Testing
+## Acceptance Testing
 
 Smoke testing checks if the software is ready to be tested; in other words, can the software be accepted by the testing team in order to perform some other work on it?  It is a subset of __acceptance testing__.  Acceptance testing is any kind of testing that checks that the system is acceptable to continue to the next phase of its lifecycle, be it testing, or delivery to a customer, or making it ready for a user.  
 

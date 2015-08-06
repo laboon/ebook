@@ -1,4 +1,4 @@
-## What is Software Testing, Anyway?
+# What is Software Testing, Anyway?
 
 Let's start with what it's not.
 
@@ -8,7 +8,7 @@ Let's start with what it's not.
 4. It's not something you do after all the programming is complete.
 5. It's really, REALLY not something you don't think about until users start complaining.
 
-#### So what is it?
+## So what is it?
 
 It's actually a variety of things.  At a high level, it's a way of providing an estimate of software quality to stakeholders (that is, people who have a direct interest in the system, such as customers, users, and managers).  By testing software, you can find defects (bugs) before the users stumble across them.
 
@@ -31,7 +31,7 @@ Me: "OK, that's probably wrong.  I only ever tested it with an input of 9, so it
 Keep in mind that I am someone who teaches a class on software testing.  Even I can't help being nice to the poor little functions that I write.  The job of the tester is to be the drill sergeant to my helicopter parent.  I can nurture the poor little function, but it's not going to get any stronger until someone tries to hit it with some discipline.
 
 
-#### What Software Testing Is Not
+## What Software Testing Is Not
 
 There's a common misconception out there that software testing means finding every single bug in a program.  This is similar to saying that the point of running a marathon is to go at the speed of light - after all, that's the fastest that one can go, so if one can do that, then that person is guaranteed to win!  It sounds ridiculous when you apply it to a human running, and to a disciplined software tester, it sounds almost as ridiculous.
 
@@ -47,7 +47,7 @@ Even a formally verified program (that is, a "mathematically proven" program) ca
 
 Software testing can give you an idea of the quality of a piece of software, but it can never tell you that there are no defects, or that it will work under all circumstances.  If someone tries to promise you that, ask them how it would do running on the surface of Venus in a puddle of molten lead.
 
-#### Verification and Validation
+## Verification and Validation
 
 Software testing also involves ensuring that the right software was created.  Imagine the following conversation between a tester and a customer:
 
@@ -60,7 +60,7 @@ This illustrates the difference between *verification* and *validation*.  Verifi
 
 It's more common than one would think to have gaps in requirements, or to have requirements which are ambiguous, incorrect, or even contradictory.  This is mostly due to the fact that if you were describing a program in sufficient detail, you would no longer be describing a program, you'd be *writing* a program.  In that case, you'd have all of the same problems as just writing the code in the first place.
 
-#### What is a bug, really?
+## What is a bug, really?
 
 It's important to keep in mind that not every problem found with a system is a defect.  A defect is an issue that either breaks the functionality of the system as it's currently understood, or does not meet the requirements of the program.  If a program operates normally and meets all of the requirements, then it does not have a defect.  If the program does not meet the requirements, or does not operate normally (e.g., crashes randomly, does not respond to normal system
 
@@ -85,7 +85,7 @@ In some scenarios, the difference between a defect and an enhancement  will be a
 
 In other scenarios, the boundary between defects and enhancements is a bit blurry.  If you are working for a startup without much software engineering overhead, and where the only real requirement is the unstated "do whatever the customer wants or we'll go bankrupt", then if the customer wants something, then it should be worked on.
 
-#### A Real-Life Testing Example
+## A Real-Life Testing Example
 
 Let's say that you are tasked with testing a new program, Lowerify, which takes a string and returns a lower-case version.  The customer didn't give any more details, because it seemed self-explanatory - the input is text which may or may not be lowercase, the output is the same string, but any upper-case letters are turned to lowercase.  The method handling this in the program has the following method signature:
 

@@ -1,10 +1,10 @@
-## Exploratory Testing
+# Exploratory Testing
 
 We've determined how to understand requirements, develop a test plan, and find defects in a variety of different ways.  There has been an underlying assumption for everything we have done so far - that we know what the behavior of the program is supposed to be, or at least that somebody does.  Sometimes, especially at the beginning of development before ideas and software have fully crystalized, nobody may know what should happen under specific circumstances.  These may be input values that no systems engineer thought about, or the software being used for a different purpose than intended, or usability aspects that were not considered when the system was being designed.  Situations may also arise where there is no time in the schedule for a formal test plan, or for the kind of software being developed, it is seen as unnecessary.  Finally, testers may want to check out parts of the system in order to understand them, and find defects only incidentally.
 
 Under such circumstances, you will want to use __exploratory testing__.  This is defined as testing without a specified test plan, where the main goal is to learn about and influence the development of the system, as opposed to specifically determining whether the observed behavior is equal to the expected behavior.  Exploratory testing allows the tester to follow his or her own path, thinking of edge cases on the fly or following leads if something seems like it may cause a problem.  It also allows the tester to learn by doing, instead of reading design documentation or code, which is often a much more effective way to understand a system.
 
-### Concepts, Benefits, and Drawbacks
+## Concepts, Benefits, and Drawbacks
 
 Exploratory testing is sometimes referred to as "ad hoc" testing, but that term can imply carelessness and sloppy work.  However, exploratory testing isn't careless, it's just less rigid.  There is often much thought put into determining whether exploratory testing is appropriate and even more thought put into determining the next things to explore.  
 
@@ -26,7 +26,7 @@ It's difficult to gauge how much coverage the system under test has received whe
 
 Testing as a field has relied more and more upon automation as time goes on, and there's been no signs of that slowing down.  However, since exploratory testing relies so much on the skill of the tester and their familiarity with the system under test, it's basically impossible at this point to automate it.  Barring any unforeseen advances in artificial intelligence applied to testing, you will still require human beings to do this testing.
 
-### Guidelines for Exploratory Testing
+## Guidelines for Exploratory Testing
 
 Here are the two simple steps for exploratory testing:
 

@@ -1,4 +1,4 @@
-## Performance Testing
+# Performance Testing
 
 What, exactly, is performance testing?  Before we can define "performance testing", we first need to define "performance".  I assume that at this point in the book, everybody understands what "testing" means.
 
@@ -8,7 +8,7 @@ Imagine a video game where you play a software tester fighting evil Bugs.  You c
 
 How do you determine which system has better performance?  The short answer is, you can't - the systems are trying to do different, basically incomparable actions.  How you measure performance will be based upon the kind of system you are testing.  That does not mean, however, that there are no rules or heuristics.  In this chapter, we'll go over some different kinds of performance and how one would go about testing them.  It is not an exhaustive list, though!  The system you are testing may have unique performance aspects which no book of finite length (which this book most assuredly is) could reasonably contain.
 
-### Categories of Performance Indicators
+## Categories of Performance Indicators
 
 As mentioned above, defining performance for a particular system means determining which performance indicators the user or customer cares about.  Although there are a large number of possible performance indicators, there are two main categories: service-oriented and efficiency-oriented.
 
@@ -22,7 +22,7 @@ Just like service-oriented indicators, there are two main subcategories in effie
 
 Service-oriented indicators are similar to black-box testing in that they measure the system from an external perspective, without determining the cause of the problem precisely.  They are blunt instruments from broadly effective in finding where problems should be looked for more closely.  Efficiency-oriented indicators are similar to white-box testing in that they require knowledge of the system, as well as general technical knowledge.  Oftentimes, you can use service-oriented indicators to determine general areas where performance might be an issue to users, and then use efficiency-oriented indicators to nail down exactly what is causing the problem.  Long response times from the perspective of the user may result from physical RAM being used up and much of the information needing to be swapped in from disk.  Service-oriented testing would catch the former, but efficiency-oriented testing would be able to figure out the latter.
 
-### Testing Performance - Thresholds and Targets
+## Testing Performance - Thresholds and Targets
 
 In order to determine whether or not a performance test has "passed", you need __performance targets__, or specific quantitative values that the performance indicators are supposed to reach.  For example, you may have an efficiency-oriented performance target that the installer for the software under test should be less than ten megabytes (it seems like a "Hello, world" program takes up over ten megabytes nowadays, but let's leave that complaint to the side for now).  You may have a service-oriented indicator that the system should respond within 500 milliseconds under normal load.  By quantifying a target, you can write a test and determine whether or not the system has met the target.
 
@@ -30,7 +30,7 @@ Targets, though, are the ideal.  Oftentimes, a particular performance indicator 
 
 A system whose performance indicators merely meet the threshold should not be considered as "passing" that particular performance metric.  There is still work to do!  You can see that the standard "pass"/"fail" metric often used for functional testing is often not really appropriate for performance metrics.  There are shades of gray, and they are often able to be manipulated.  What kind of hardware are you running the tests on?  What operating system?  What other processes are running?  Which web browser are you using to access the site?  By changing these, the same system may show very different results on a performance test.  
 
-### Key Performance Indicators
+## Key Performance Indicators
 
 Although there are a very large number of potential performance indicators for a system, there will always be a subset of them that you are most interested in.  A video game may require very fast response time and high availability, but very little need for minimizing disk space, CPU, or RAM usage.  A long-term daemon process running in the background will have very different requirements - minimal RAM and CPU usage are very important, but response time is really not important at all.  Only rarely will a user or another process interact with it, and when it does, it will be via signals and not expecting a near real-time response.
 
@@ -38,7 +38,7 @@ By selecting the most important performance indicators - referred to as __key pe
 
 Selecting key performance indicators should be done before testing begins; you should not test a bunch of indicators, then turn around and note which ones were important.  You should determine which ones are most important ahead of time, when designing the test plan for the system.  If you are following a more lightweight development process, with less significant upfront design, you should at least determine whether or not a particular performance indicator is a KPI before running the appropriate test.  This forces you to keep in mind which aspects of the system's performance are important and which are not before coming up with results.  If you try to pick out the KPIs afterwards, you may be tempted (even if subconsciously) to simple select the indicators that met their targets.  Leave that kind of thinking to advertisers.
 
-### Testing Service Oriented Indicators - Response Time
+## Testing Service Oriented Indicators - Response Time
 
 The easiest way to measure response time, of course, is to simply follow this algorithm:
 
@@ -52,7 +52,7 @@ While this may be the easiest way to measure response time, it is far from the b
 
 Although testing in general is using more automation, performance testing specifically tends to depend on automated tests.  There can be quite a bit of variation in performance indicators from run to run, due to other variables over which you may have little control.  Examples of these variables include other processes running on a server, how much physical RAM was already being used, garbage collection runs, and virtual machine startup times, among others.  Often the only way to get a truly valid result is running a performance test for numerous iterations and statistically analyzing it (obtaining the mean, median, and maximum response times, for example).  The only way to gain a reasonable number of samples in a reasonable amount of time is to automate the process.
 
-#### What Is Time?
+### What Is Time?
 
 Although this may sound like a philosophical question, it actually has very direct ramifications when testing response times.  To a computer, there are actually several different ways of measuring time.  To a performance tester, how you report and measure time will actually
 
@@ -82,7 +82,7 @@ $
 
 There are various timing programs available for Windows machines, such as timeit.exe which comes with the Windows Server 2003 Resource Kit, but there is no almost universally-installed command such as `time` available.
 
-#### What Events Should Be Timed?
+### What Events Should Be Timed?
 
 This will depend on what your performance indicator is.  If you have a specific indicator, either spelled out in the requirements or agreed to by the team, then measuring is a straightforward process.  However, if you need to determine this on your own, then your first step should be to figure out which events are important to the user of the system, where slow response times would cause hardship or annoyance.
 
@@ -115,7 +115,7 @@ Although these are rough guidelines for targets, they are not laws in and of the
 
 As a final note, it is possible for response time to be too fast!  Think of a scroll box that scrolls so fast that the user can't control it, or a screen which changes so quickly that it disorients the reader.  A performance indicator for response time might include an upper bound and a lower bound in some instances.
 
-### Testing Service-Oriented Indicators - Availability
+## Testing Service-Oriented Indicators - Availability
 
 Availability, often referred to as uptime, refers to what percentage of the time that a user can access the system when they expect to be able to do so.  Thus, anytime that a system is down for maintenance, or due to an uncaught exception crashing a process, or a hard drive blowing up, reduces availability.
 
@@ -172,7 +172,7 @@ MTBF = (0.1 * MTBF(stress)) + (0.9 * MTBF(stable)) = 649
 
 This is just an example, and it could certainly be further enhanced (and any state of the system that reaches such high levels of unavailability during stress states probably should be looked at further) .  Some systems do have spikes of usage, where others do not.  Some systems will handle lots of small events, others will handle a smaller number of harder-to-process events.  If you are able to gather real-world data and metrics about the usage of your system, you will be able to model its behavior better, and thus produce better availability numbers.  The more realistic the data, the more realistic the model you will be able to create.  Even with the most realistic of data, however, be prepared to be wrong - there are so many things that can go wrong with a complex system, it is impossible to take all of them into account in any model.
 
-### Testing Efficiency-Oriented Indicators - Throughput
+## Testing Efficiency-Oriented Indicators - Throughput
 
 If you'll recall from earlier, efficiency-oriented indicators take a view of the sytem from the perspective of the system and how efficiently it makes use of the computation resources available to it.  One measure of efficiency is the amount of __throughput__, or number of events that can be processed in a given amount of time on a specified hardware setup.  Examples would include how many web pages a web server could serve in one minute, or how many SQL queries a database server could perform in one minute.   This may seem similar to response time, or at least its inverse, but it isn't quite so simple.  While response time was measuring the response time from the point of view of a particular user of the system, throughput is how performant the system as a whole is in responding to a number of users.  If I am simply using a web server, I don't care about how fast other users get their data.  If I am an administrator of a web site using a particular server, then I certainly do care!
 
@@ -184,7 +184,7 @@ Remember to track the level of events and the equivalent throughput, and if poss
 
 Throughput levels are very sensitive to what kind of hardware you are the software on, so even more than with other tests, you will need to ensure that you are running on the same kind of hardware from run to run to ensure valid results.  You may also want to determine throughput using the same software on different hardware configurations, which may also help to track down the cause of any slowdowns.  For example, a system which has extremely reduced throughput when run on a system with slightly less RAM than another may indicate a memory bottleneck.
 
-### Testing Efficiency-Oriented Indicators - Utilization
+## Testing Efficiency-Oriented Indicators - Utilization
 
 Testing __utilization__ means determining what amount of computing resources - on an absolute or relative basis - a particular system when performing some functionality.  Computing resources is a very broad term, covering anything that a program could be "using" on a machine. Common examples include:
 
@@ -205,7 +205,7 @@ The answer is that you get more specific via a __profiler__ (also known as a __p
 
 If you determine that the problem is with network usage, you can use a __packet analyzer__ such as Wireshark to inspect individual packets or run statistical analyses.  This will allow you to see specifically which packets are being sent or received and may be causing a bottleneck, or if there is superfluous data being sent out which may be a cause of performance degradation.  For example, while timestamps may be necessary to send out on a regular basis, is the inclusion of the timezone of the originating system really necessary?  Could timestamps simply always be in UTC and adjusted locally according to the settings of each receiving system?
 
-### General Tips and Advice When Performance Testing
+## General Tips and Advice When Performance Testing
 
 1. Use a tool for any non-trivial performance measurement.  Relying on humans to execute many performance tests will lead to mistakes due to human error, as well as increasing the possibility of demoralized testers.
 2. Compare apples to apples; keep variables the same between runs of the same test!  Don't run the first version of the software on a laptop and the second version on a supercomputer and proclaim a massive increase in speed.

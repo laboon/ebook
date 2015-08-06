@@ -1,4 +1,4 @@
-## Stochastic and Property-Based Testing
+# Stochastic and Property-Based Testing
 
 The term "stochastic" comes from the Greek _stokhastikos_, which is a form of _stokhazesthai_, which means "aim at" or "guess".  It's a good etymology for __stochastic testing__, which uses random processes that can be analyzed using statistics, but not exactly predicted.  At first blush, it may seem ridiculous to use randomness in software testing; after all, isn't the fundamental concept of testing to determine what the observed behavior is and if it equal to the expected behavior?  If you don't know what the input is, how would you know what the expected output it?
 
@@ -8,13 +8,13 @@ By providing a method for the system to use random data as an input, you also re
 
 Stochastic testing is also referred to as __monkey testing__, by analogy with a monkey banging on computer keys.  However, "stochastic testing" sounds much more impressive if you are talking to your manager, or, say, writing a book on software testing.
 
-### Infinite Monkeys and Infinite Typewriters
+## Infinite Monkeys and Infinite Typewriters
 
 There is an old parable about monkeys and typewriters, which normally would not seem like two things that go together well.  The parable states that given a million monkeys and infinite amount of time, the monkeys will eventually write the works of Shakespeare (NB these are immortal monkeys in this scenario).  Stochastic testing follows a similar principle - given a large enough set of random input (a million monkeys banging on keys) and a large enough period of time, defects will be found.  In this analogy, our tester is William Shakespeare (don't let the comparison go to your head).  He could certainly write the works of Shakespeare in less time than the million monkeys.  However, monkeys (like the computer's random number generator) are much cheaper than re-animating Zombie William Shakespeare.  Similarly, even if the random number generator isn't as good a writer of tests as you (or Shakespeare), by sheer dint of numbers, it's bound to hit on numerous interesting edge cases and perhaps find defects.
 
 Of course, since you - or more precisely, the stochastic testing system - may not know exactly what the expected behavior should be for a given input, you need to check for properties of the system.  At the unit testing level, where you are checking individual methods, this is called __property-based testing__.
 
-### Property-Based Testing
+## Property-Based Testing
 
 Let's say that we are testing a new sort function, billSort.  It's twice as fast as any other sorting algorithm out there, but there are questions about its correctness, and so you have been tasked to test that it works in all cases.  What kind of input values would you test it with?  Assume the method signature looks like this:
 
@@ -42,7 +42,7 @@ We'd definitely want to pass in a wide variety of values that hit different base
 
 Even without any additional wrinkles, there's an absolutely huge number of possible combinations of numbers to test.  That was just a taste.  There's even a huge number of equivalence cases to test, ignoring the fact there could be a problem with, say, a specific number; maybe only sorts with the number 5 don't work, for example.  Writing tests for all of these various kinds of input would be extremely tedious and error-prone.  How can we avoid having to write such a large number of tests?
 
-#### Climbing The Abstraction Ladder
+### Climbing The Abstraction Ladder
 
 Why not hop up a rung on the abstraction ladder and instead of thinking about the specific values that you want as input and output, you think about the *properties* you'd expect of your input and output?  That way, you don't have to consider each individual test.  You can let the computer know that you expect all of the output to have certain properties, and what kind of values you expect as input, and let the computer write and execute the tests for you.
 
@@ -59,12 +59,12 @@ Some invariants for a sort function would be:
 
 Now that we have some of the properties we expect from *any* output of the billSort method, we can let the computer do the grunt work of thinking up random arrays of data, passing them in to our method, and then checking that whatever output array is produced meets all of the properties that we set.  If an output array does not meet one of the invariants, we can then report the error to the tester.  Producing output that does not meet the specified invariant is called *falsifying the invariant*.
 
-#### QuickCheck
+### QuickCheck
 
-#### Using QuickCheck for Checking A Java Method
+### Using QuickCheck for Checking A Java Method
 
-#### Benefits and Drawbacks
+### Benefits and Drawbacks
 
-### Smart, Dumb, Evil, and Chaos Monkeys
+## Smart, Dumb, Evil, and Chaos Monkeys
 
 At the systems level, the terms "stochastic testing" or "monkey testing" are often used instead of property-based testing, even though they are performing similar kinds of operations.
