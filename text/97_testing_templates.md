@@ -38,3 +38,12 @@ WORKAROUND: _How to avoid triggering this defect, if known or possible._
 
 NOTES: _Any other notes that may be useful in fixing or tracking down this defect, such as system configuration, thread dumps, or logging files._
 
+## Red / Yellow / Green Template
+
+_The system should be divided into a reasonable number, usually between three and ten, subsystems or areas of functionality.  Each subsystem or area should then be given a "color rating" of red, yellow, or green, as well as a short description (a few sentences, maximum) of why that rating was given._
+
+RED: _This aspect of the system has major problems, and should not be released in this state.  Substantial additional help in the form of resources, scope reduction, or schedule increase will be necessary in order to get it ready for release._
+
+YELLOW: _There are a few problems with this aspect of the system, some of them substantial.  Some additional help may be necessary to get it to a reasonable level of quality._
+
+GREEN: _There are no major problems with this aspect of the system, and no additional help is necessary to see it to completion._

@@ -371,3 +371,5 @@ __User Testing__: Having an actual user of the system attempt to perform tasks, 
 __Buffer Overrun__: A __vulnerability__ where more data can be written than has been allocated for it.  This can cause system crashes or unauthorized access.
 
 __Bounds checking__: Run-time checking that data is not being written outside of a properly allocated array.
+
+__Stakeholder__: Any person who has a direct interest in the successful completion, execution, or release of the system, such as customers, developers, and project managers.

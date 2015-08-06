@@ -1,2 +1,51 @@
 # Interacting with Stakeholders
 
+Through much of this book, we have spoken of testing as if in a vacuum.  You write the tests, the software either passes or fails (or you realize you wrote the test incorrectly), you file a defect report, and eventually the problem is fixed.  There is another aspect to testing that you will experience working on projects - the human element.  Managers may disagree with you on what the testing priorities are.  Developers may argue that the "defect" you found is actually expected behavior.  Fellow testers may get into shouting matches with you over subtleties in a requirements specification.
+
+Conflict is inevitable on any team, and in fact, it's probably a positive overall.  If everybody agreed about everything all of the time, you are probably working on a pretty trivial project, and your job is likely to be replaced by a small shell script in the near future.  Resolving conflicts, although it can be difficult, is the key to succesfully preparing a product for launch.  Conflicts, as long as they are conducted professionally and productively, are often the fuel that allows a team to perform better as time goes on.
+
+As a software tester, you will have specific challenges when interacting with other members of the development team.  After all, the whole job of a tester is to find problems with software.  They're professional critics, constantly looking for all the weak points of a system in order to make it better.  If this is not done with a gentle touch, it can often be mistaken for being a jerk.  Nobody likes to hear about the problems or shortcomings of the software they wrote, and managers don't like hearing that a product won't be ready.  As a professional fault-finder, it also becomes very easy to sink into a morass of unjustified pessimism about a product.  In this chapter, we'll discuss how to deal with these problems and successfully interact with all the people necessary to bring a project to completion.
+
+## Who and What Are Stakeholders?
+
+A __stakeholder__ is any person who has a direct interest in the product.  The specific kind of interest may vary based on the person and their role.  For example, the customer of a product - that is, the person who pays for it - will have a vested interest in paying as little as possible for the product.  Upper management and marketers have the exact opposite goal - they want customers to pay as much for it as possible, within epsilon of the price where people would choose a competitor.  Developers may have an interest in seeing the product written correctly, or using a language or framework that they prefer.  Quality assurance personnel may care about the quality of a product; assessors may care that the product meets all of its legal requirements; the list goes on and on.
+
+Note that stakeholders have a _direct_ interest in the product.  In the philosophical sense, many others will have an interest in the product, or at least will be impacted by it.  For example, the owners of the coffee shop next door will hope that developers start working late and thus buying more of that sweet, sweet caffeine that comes with their coffee, thus improving their bottom line.  The spouses of the testers may want there to be fewer bugs so that the testers can spend more time with their family.  However, these are not direct interests in the product, and it could be argued that any human being is somehow impacted by the project (the Prime Minister of Luxembourg may hope to have your nation's GDP go up in order to improve their position in trade negotiations, and a successful launch of your product will help that goal!)  Although it can be a fuzzy boundary, in general if a person is not directly familiar with your product, they are in all likelihood not a stakeholder.
+
+As mentioned above, different stakeholders will care about different aspects of the software.  Keep in mind when discussing the product with someone who is in a different stakeholder class than yourself what they are thinking about when they think about the product.  Put yourself in their shoes; does an ordinary user of your system care if the application was written in Haskell, Ruby, or Java?  Does upper management in a Fortune 500 company care about the beautiful symmetry of the icons?  Does a developer care about the latest quarterly earnings report?  Perhaps, in a few cases, or there may be some general curiousity or indirect interest.  After all, if quarterly earnings are negative too many times, there may not be a company to pay the developer's salary, or an ordinary user may also really care about type safety in the programming languages of the applications that they use.  However, in general, people spend enough time worrying about the aspects of the system that they care about that they have very little time for worrying about the rest of it.
+
+The following a non-exhaustive list of groups of stakeholders, and a high-level view of what they are likely to care about.  Depending on the domain in which you are working, there are bound to be additional classifications, or some of these may be combined, but this should give you a general idea.
+
+* _Customers:_ These are the people who will pay for the software.  They will focus on receiving a working system for a low price, and care about cost and the return on investment of purchasing it.
+* _Users:_ These are the people who will use the software.  Note that these are sometimes the same as customers, but sometimes not - for example, when a school purchases class registration software, the school is the customer, but students are the users.  They will care about the usability of the system and if it allows them to easily accomplish their goals.
+* _Project Management:_ These are the people who manage the specific project, ensuring that it is developed at an appropriate rate and released on time and on budget.  They will care about scheduling (from a resource, time, and scope perspective) and software quality.
+* _Upper Management:_ Usually higher up in the management chain, to the point where they will often not be very familiar with a project itself.  They will care about the financials of the project, such as whether or not it is likely to make a profit.
+* _Developers:_ The people who write the software, they will care about the tools that they use, how well the program works from a technological standpoint, and how well it solves the problem and meets the requirements.
+* _Testers / Quality Assurance:_ The people who test the software and determine the quality of the system.  They will focus on finding defects on the software and care about releasing a quality product.
+* _Support Personnel:_ The people who keep the software running, such as field engineers, help desk personnel, and deployment personnel.  They will care about uptime and quality of the system, and its ease of use on behalf of customers.
+* _Assessors:_ These people focus on the assessing the legality of a system, ensuring that it meets all the demands made of it by laws for the domain in which it is operating.  They will care about meeting the legal or other documented requirements.
+
+This is only a rough guide to some of the kinds of stakeholders you will interact with as a software tester.  Remember that these are drawn with very broad strokes!  People are individuals, not faceless members of groups, no matter what your friend who has read too much philosophy has to say.  Although you can use this information to get a general idea of what individual stakeholders are interested in, nothing will take the place of having real interactions, and more importantly, _asking_ what is important to them.  
+
+## Reporting and Communicating
+
+
+## Managing Expectations
+
+## Managing Up
+
+## A Note On Meetings
+
+Very few people really enjoy meetings, outside of those who are probably busy taking courses in the business school instead of reading about software testing.  However, they are often essential to determining the best path forward, and ensuring that the input of all relevant stakeholders is heard.  They often can actually be the most efficient way to get consensus on an issue, as well.
+
+This does not mean that your presence is required at all meetings.  If you find yourself not getting any useful information, or not giving out much information - or at least not enough to justify the time you spend on it - you should consider not going to that meeting any more.  Although it may seem presumptuous to say that you don't think that you belong in a meeting, remember that any time you spend in a meeting is time that you are not spending doing something else.  A good manager will thank you for bringing it to their attention, because it means that you are thinking of your job strategically, and not just doing what is asked of you.
+
+## Clarifying Requirements
+
+## On Disagreeing
+
+## Respect
+
+Much of this chapter can be summarized by the phrase, "be respectful".  Remember that other stakeholders are going to care about different aspects of the system, or they may have a different view of the best path forward.  They may not understand everything that you do, and you may not understand anything that they do.  They may not have the same technical background or domain knowledge as you, leading to different views of what seems to be the same data.
+
+It takes more than one kind of stakeholder to see a program to completion, and there are bound to be disagreements.  You are unlikely to change anybody's mind by treating them disrespectfully or condescendingly, and small bits of bad interaction may poison the entire well.  Keep in mind that you are looking at the problem from a very specific point of view, and you don't always have all of the answers.  If you treat people respectfully and listen dispassionately to what stakeholders have to say, you may even change your mind.  Even if you don't, ensuring peaceful dialogue amongst team members - especially with those with whom you disagree - will go a long way towards releasing a software product.
