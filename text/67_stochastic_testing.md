@@ -16,7 +16,7 @@ Of course, since you - or more precisely, the stochastic testing system - may no
 
 ## Property-Based Testing
 
-Let's say that we are testing a new sort function, billSort.  It's twice as fast as any other sorting algorithm out there, but there are questions about its correctness, and so you have been tasked to test that it works in all cases.  What kind of input values would you test it with?  Assume the method signature looks like this:
+Let's say that we are testing a new sort function, `billSort`.  It's twice as fast as any other sorting algorithm out there, but there are questions about its correctness, and so you have been tasked to test that it works in all cases.  What kind of input values would you test it with?  Assume the method signature looks like this:
 
 ```java
 public int[] billSort(int[] arrToSort) {
@@ -46,7 +46,7 @@ Even without any additional wrinkles, there's an absolutely huge number of possi
 
 Why not hop up a rung on the abstraction ladder and instead of thinking about the specific values that you want as input and output, you think about the *properties* you'd expect of your input and output?  That way, you don't have to consider each individual test.  You can let the computer know that you expect all of the output to have certain properties, and what kind of values you expect as input, and let the computer write and execute the tests for you.
 
-For example, what kinds of properties did all of the correct output values of the billSort method have, in relationship to the input values?  There are quite a few.  These properties should hold for all sorted lists.  Thus, they are called *invariants*.
+For example, what kinds of properties did all of the correct output values of the `billSort` method have, in relationship to the input values?  There are quite a few.  These properties should hold for all sorted lists.  Thus, they are called *invariants*.
 
 Some invariants for a sort function would be:
 
@@ -57,7 +57,7 @@ Some invariants for a sort function would be:
 5. The function is idempotent; that is, running the sort method on a list, and then running the sort again on the output, should produce the same output array as just running it once
 6. The function is pure; running it two times on the same input array should always produce the same output array
 
-Now that we have some of the properties we expect from *any* output of the billSort method, we can let the computer do the grunt work of thinking up random arrays of data, passing them in to our method, and then checking that whatever output array is produced meets all of the properties that we set.  If an output array does not meet one of the invariants, we can then report the error to the tester.  Producing output that does not meet the specified invariant is called *falsifying the invariant*.
+Now that we have some of the properties we expect from *any* output of the `billSort` method, we can let the computer do the grunt work of thinking up random arrays of data, passing them in to our method, and then checking that whatever output array is produced meets all of the properties that we set.  If an output array does not meet one of the invariants, we can then report the error to the tester.  Producing output that does not meet the specified invariant is called *falsifying the invariant*.
 
 ### QuickCheck
 

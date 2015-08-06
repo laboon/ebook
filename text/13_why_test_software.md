@@ -4,7 +4,7 @@ Now that we know what software testing is, it makes sense to ask why one would w
 
 ## Let's Put the Decision in Your Hands
 
-Let's imagine that you're put into the role of CEO of Rent-A-Cat.  A promising young project manager runs up to you in the halls, sweat dripping off of perfectly coifed hair, clutching a printout of an Excel spreadsheet.
+Let's imagine that you're put into the role of CEO of Rent-A-Cat.  A promising young project manager runs up to you in the halls, sweat dripping off of perfectly coiffed hair, clutching a printout of an Excel spreadsheet.
 
 "Ma'am! (or sir)!" the project manager cries.  "I've discovered a way to reduce our project expenses by tens of thousands of dollars!  All we have to do is remove all testing resources from the team.  I've got some good software developers; there's no way they'd ever make a mistake.  This way, we can finally buy a gold-plated sink for the executive washroom!"
 

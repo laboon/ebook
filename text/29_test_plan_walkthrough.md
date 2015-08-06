@@ -1,6 +1,6 @@
 # Developing A Test Plan
 
-Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called "catweigher" (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight.  
+Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called _catweigher_ (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight.  
 
 ```bash
 $ catweigher 1.7
@@ -15,12 +15,12 @@ As the test cases are developed, take note of the trade-offs that are made, and 
 
 Requirements:
 
-1. FUN-PARAMETER: The system shall accept a single parameter, CATWEIGHT, which can only be a single positive floating-point value or positive integer.  If the parameter is not one of these two kinds of values, or if there is not exactly one parameter, the system shall immediately shut down with only the message "Please enter a valid parameter."
-2. FUN-STARTUP-MESSAGE: Upon startup, the system shall display "Cat Weighing System" upon the console.
-3. FUN-UNDERWEIGHT: If CATWEIGHT is less than 3 kilograms, then the message "Cat is underweight" shall be displayed upon the console.  
-4. FUN-NORMALWEIGHT: If CATWEIGHT is equal to or greater than 3 kilograms and less than 6 kilograms, then "Cat is normal weight" shall be displayed upon the console.  
-5. FUN-OVERWEIGHT: If CATWEIGHT is greater than 6 kilograms, then "Cat is overweight" shall be displayed upon the console.
-6. NF-PERF-TIME: The system shall display the appropriate message within two seconds of the program being executed.
+1. __FUN-PARAMETER:__ The system shall accept a single parameter, `CATWEIGHT`, which can only be a single positive floating-point value or positive integer.  If the parameter is not one of these two kinds of values, or if there is not exactly one parameter, the system shall immediately shut down with only the message "Please enter a valid parameter."
+2. __FUN-STARTUP-MESSAGE:__ Upon startup, the system shall display "Cat Weighing System" upon the console.
+3. __FUN-UNDERWEIGHT:__ If `CATWEIGHT` is less than 3 kilograms, then the message "Cat is underweight" shall be displayed upon the console.  
+4. __FUN-NORMALWEIGHT:__ If `CATWEIGHT` is equal to or greater than 3 kilograms and less than 6 kilograms, then "Cat is normal weight" shall be displayed upon the console.  
+5. __FUN-OVERWEIGHT:__ If `CATWEIGHT` is greater than 6 kilograms, then "Cat is overweight" shall be displayed upon the console.
+6. __NF-PERF-TIME:__ The system shall display the appropriate message within two seconds of the program being executed.
 
 Although this is a relatively simple program, with only a small set of requirements, there is already some ambiguity.  In real-world applications, you can expect much more, which will often necessitate discussions with systems engineers, requirements analysts, and/or customers to resolve the various ambiguities.  The particular ambiguity in this case is that in FUN-PARAMETER, it says that the system should immediately shut down with __only__ the message "Please enter a valid parameter" if an invalid parameter is entered.  The next requirement, FUN-STARTUP-MESSAGE, says that the message "Cat Weighing System" should be displayed upon startup; it does not mention whether or not this includes times when invalid parameters were entered.  In other words, should the expected behavior be:
 
@@ -37,7 +37,7 @@ Cat Weighing System
 Please enter a valid parameter
 ```
 
-We should first determine what the expected behavior is before continuing with writing a test plan.  This can be done by checking with the appropriate requirements analysts, systems engineers, product owners, or whoever is in charge of requirements.  If you are working on a less formal team, the correct path forward may be to make an assumption.  However, these assumptions should be noted as part of the test plan!  If one must make assumptions, they should at least be delineated clearly somewhere.  In general, however, you should avoid making assumptions; you want to know what the expected behavior is as precisely as possible.  In this case, let's assume that we went to the project manager (of __course__ catweigher has a project manager) and determined that "Cat Weighing System" should not be displayed if the parameter is not valid.  In other words, the second string of output is correct.
+We should first determine what the expected behavior is before continuing with writing a test plan.  This can be done by checking with the appropriate requirements analysts, systems engineers, product owners, or whoever is in charge of requirements.  If you are working on a less formal team, the correct path forward may be to make an assumption.  However, these assumptions should be noted as part of the test plan!  If one must make assumptions, they should at least be delineated clearly somewhere.  In general, however, you should avoid making assumptions; you want to know what the expected behavior is as precisely as possible.  In this case, let's assume that we went to the project manager (of __course__ _catweigher_ has a project manager) and determined that "Cat Weighing System" should not be displayed if the parameter is not valid.  In other words, the second string of output is correct.
 
 I have found that a top-down approach of the requirements of the program is of the most help in creating a test plan.  By a "top-down approach", I mean that a general outline of the test plan will be generated first, and then specific details can be filled in.  This contrasts with a "bottom-up approach", where the specific details of small sections are filled in first, and as more and more small details are filled, a larger picture gradually emerges.
 
@@ -70,48 +70,58 @@ Use cases 1, 3, and 4 all have variants which could be tested.  There are numero
 
 Depending on the importance of the cat-weighing program, we can decide if we want to test all possible use cases, and how many variants of the particular use case we want to test.  At a bare minimum, you probably want to test the "happy path", that is, the expected use case that a user will follow, which in our case is the user entering one valid parameter.  Other use cases can be considered failure cases, since the expected behavior is to cease execution as an invalid value or set of values has been entered.
 
+```
 IDENTIFIER: VALID-PARAMETER-TEST
 TEST CASE: Run the program with a valid parameter.
 PRECONDITIONS: None
 INPUT VALUES: 5
 EXECUTION STEPS: At the command line, run "catweigher 5"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: The program exits and displays normal output for a 5 kilogram cat.  The program does not display "Please enter a valid parameter".
+POSTCONDITIONS: The program exits and displays normal output for a 5 kilogram cat.
+    The program does not display "Please enter a valid parameter".
+```
 
 The FUN-PARAMETER requirement has three failure cases which I'd also like to add tests for.  These are outside the happy path, as they indicate that the user is not using the program correctly.  However, in such cases, we still need to ensure that the system is following the requirements.  Let's add additional test cases for the three failure modes.
 
-IDENTIFIER: INVALID-PARAMETER-TEST<br>
-TEST CASE: Run the program with an invalid parameter.<br>
-PRECONDITIONS: None<br>
-INPUT VALUES: "dog"<br>
-EXECUTION STEPS: At the command line, run "catweigher dog"<br>
-OUTPUT VALUES: N/A<br>
-POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits without further output.<br>
+```
+IDENTIFIER: INVALID-PARAMETER-TEST
+TEST CASE: Run the program with an invalid parameter.
+PRECONDITIONS: None
+INPUT VALUES: "dog"
+EXECUTION STEPS: At the command line, run "catweigher dog"
+OUTPUT VALUES: N/A
+POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
+    without further output.
 
-IDENTIFIER: NO-PARAMETER-TEST<br>
-TEST CASE: Run the program without passing in a parameter.<br>
-PRECONDITIONS: None<br>
-INPUT VALUES: N/A<br>
-EXECUTION STEPS: At the command line, run "catweigher"<br>
-OUTPUT VALUES: N/A<br>
-POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits without further output.<br>
+IDENTIFIER: NO-PARAMETER-TEST
+TEST CASE: Run the program without passing in a parameter.
+PRECONDITIONS: None
+INPUT VALUES: N/A
+EXECUTION STEPS: At the command line, run "catweigher"
+OUTPUT VALUES: N/A
+POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
+    without further output.
 
-IDENTIFIER: TOO-MANY-PARAMETER-TEST<br>
-TEST CASE: Run the program with too many parameters (specifically, four parameters).<br>
-PRECONDITIONS: None<br>
-INPUT VALUES: 5 6 7 8<br>
-EXECUTION STEPS: At the command line, run "catweigher 5 6 7 8"<br>
-OUTPUT VALUES: N/A<br>
-POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits without further output.<br>
+IDENTIFIER: TOO-MANY-PARAMETER-TEST
+TEST CASE: Run the program with too many parameters (specifically, four parameters).
+PRECONDITIONS: None
+INPUT VALUES: 5 6 7 8
+EXECUTION STEPS: At the command line, run "catweigher 5 6 7 8"
+OUTPUT VALUES: N/A
+POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
+    without further output.
+```
 
-At this point, there's a reasonable amount of test coverage for this requirement.  On to the next one, FUN-STARTUP-MESSAGE, which it turns out is very simple to test.  There are two possibilities - that the system has been passed in a set of valid parameters, and that it was not passed in a set of valid parameters.  In the first case, the startup message should be displayed; in the second case, it should not, as we determined by resolving the ambiguity in the message requirements earlier.  While there are a variety of different 
+At this point, there's a reasonable amount of test coverage for this requirement.  On to the next one, FUN-STARTUP-MESSAGE, which it turns out is very simple to test.  There are two possibilities - that the system has been passed in a set of valid parameters, and that it was not passed in a set of valid parameters.  In the first case, the startup message should be displayed; in the second case, it should not, as we determined by resolving the ambiguity in the message requirements earlier.
 
-IDENTIFIER: STARTUP-NO-MESSAGE-TEST<br>
-TEST CASE: Run the program without passing in a parameter, message should not appear.<br>
-PRECONDITIONS: None<br>
-INPUT VALUES: None<br>
-EXECUTION STEPS: At the command line, run "catweigher"<br>
-OUTPUT VALUES: N/A<br>
-POSTCONDITIONS: The program does not display the message ""Cat Weighing System" upon the console before exiting.<br>
-
+```
+IDENTIFIER: STARTUP-NO-MESSAGE-TEST
+TEST CASE: Run the program without passing in a parameter, message should not appear.
+PRECONDITIONS: None
+INPUT VALUES: None
+EXECUTION STEPS: At the command line, run "catweigher"
+OUTPUT VALUES: N/A
+POSTCONDITIONS: The program does not display the message "Cat Weighing System"
+    upon the console before exiting.
+```
 

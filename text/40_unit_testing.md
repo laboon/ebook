@@ -8,12 +8,12 @@ What are unit tests?  In a nutshell, they test the smallest "units" of functiona
 
 Some examples of unit tests might be:
 
-1. Testing that a .sort method returns [1, 2, 3] when you pass in [3, 2, 1]
+1. Testing that a .sort method returns `[1, 2, 3]` when you pass in `[3, 2, 1]`
 2. Testing that passing in a null reference as an argument to a function throws an exception
-3. Testing that a formatNumber method returns a properly formatted number
+3. Testing that a `formatNumber` method returns a properly formatted number
 4. Checking that passing in a string to a function that returns an integer does not crash the program
-5. Testing that an object has .send and .receive methods
-6. Testing that constructing an object with default parameters sets the .default attribute to true
+5. Testing that an object has `.send` and `.receive` methods
+6. Testing that constructing an object with default parameters sets the `.default` attribute to true
 
 As you can see, these functions are testing things which are invisible to the end user.  A user is never going to be in the position of looking at a particular method or object.  They won't care about what methods an object has, or what value variables are set to, or what happens when a null pointer is passed in as an argument.  They will be able to see the _results_ of those things happening, of course, but they won't be able to specifically see the code that caused it.
 
@@ -29,7 +29,7 @@ We have seen earlier that the user will never directly see the aspects of the so
 
 3. __Developers understand their code__ - Writing tests allows the developer to understand what the expected behavior of the function is.  It also allows the developer to add tests for things that he or she knows might be problematic for a specific function.  For example, a developer may know that a sort function may not sort numeric strings correctly, because certain flags need to be set to ensure that it treats them as numbers instead of strings (so that "1000" is bigger than "99", which it would not be if the function treated them as strings, since "9" is bigger than "1").  A black-box tester may not realize that this is what is happening "under the hood" and so not think to test this particular edge case.
 
-4. __Living documentation__ - The tests provide a kind of "living documentation" to the code.  They explain what a codebase is supposed to do in a different way than the actual code and any comments or documentation for the software.  Failing tests are updated; they are either removed or changed as the softare itself changes.  Unlike traditional documentation, if unit tests are executed on a regular basis (such as before being merged to baseline), then it's impossible for the tests to become obsolete.  Obsolete tests don't pass, and tests that don't pass should not be merged to baseline.
+4. __Living documentation__ - The tests provide a kind of "living documentation" to the code.  They explain what a codebase is supposed to do in a different way than the actual code and any comments or documentation for the software.  Failing tests are updated; they are either removed or changed as the software itself changes.  Unlike traditional documentation, if unit tests are executed on a regular basis (such as before being merged to baseline), then it's impossible for the tests to become obsolete.  Obsolete tests don't pass, and tests that don't pass should not be merged to baseline.
 
 5. __Alternative implementation__ - One way to think of tests is as a different implementation of the software.  In a sense, a program is just a listing of what a computer should do given certain input - *IF* foo is less than five, *THEN* print out "small foo".  *WHEN* a new bar object is created, *SET* the baz variable to false.  A comprehensive test suite provides a similar service, saying what the program should do in a slightly different way.  There's always room for error, but if you're implementing it twice, once as a test and once as code, then there's less chance that both will be written wrong in exactly the same way.
 
@@ -51,9 +51,9 @@ We can see that there are three steps here, which correspond to some of the step
 
 ## Turning Our Example Into a Unit Test
 
-It would be entirely possible to unit test this in a "manual" fashion.  Just generate a quick program which creates a linked list a, creates a linked list b, apply the equality operator,and finally add a conditional checking if the result of that value is true.  If it is, print out "test passed!"; otherwise, print out "test failed!".  However, usually we use a testing framework to automate much of the work and ensure that we are testing in a consistent and coherent manner.
+It would be entirely possible to unit test this in a "manual" fashion.  Just generate a quick program which creates a linked list _a_, creates a linked list _b_, apply the equality operator,and finally add a conditional checking if the result of that value is true.  If it is, print out "test passed!"; otherwise, print out "test failed!".  However, usually we use a testing framework to automate much of the work and ensure that we are testing in a consistent and coherent manner.
 
-For this book, we will be using the JUnit unit testing framework.  JUnit ( http://junit.org ) is an instance of the xUnit testing framework, which originally comes from SUnit, a testing framework for Smalltalk.  As a side note, Smalltalk is one of those languages that was years ahead of its time.  If you want to see what the future of software engineering will be like, one of the best things to do is to go look at what cool features languages had twenty years ago that were considered too slow or too immature or too "academic".  Usually, these cool features will come back into vogue years later, with the community of whatever language they've ended up in loudly trumpeting their novelty (see: garbage collection, macros, metaprogramming).
+For this book, we will be using the JUnit unit testing framework.  JUnit (http://junit.org) is an instance of the xUnit testing framework, which originally comes from SUnit, a testing framework for Smalltalk.  As a side note, Smalltalk is one of those languages that was years ahead of its time.  If you want to see what the future of software engineering will be like, one of the best things to do is to go look at what cool features languages had twenty years ago that were considered too slow or too immature or too "academic".  Usually, these cool features will come back into vogue years later, with the community of whatever language they've ended up in loudly trumpeting their novelty (see: garbage collection, macros, metaprogramming).
 
 Fuddy-duddy rants aside, the JUnit test framework allows us to create unit tests that have much of the "behind-the-scenes" work taken care of.  The developer can then focus on generating the test logic and understanding what is being tested, and instead of wasting time writing out conditionals printing "yay, test passed!" or "boo, test failed" in the appropriate cases.
 
@@ -97,7 +97,7 @@ Here is the actual equality check.  We determine whether or not `a.equals(b)` is
 
 ## Assertions
 
-Remember that assertions are checking the expected behavior against the observed behavior of the execution steps.  Specifically, we are using the assertion assertEquals, which checks that the value in result should equal `true`.  If it does, the test passes and we can say that under these circumstances, the .equals() methods works correctly.  If it does not, then the test fails.
+Remember that assertions are checking the expected behavior against the observed behavior of the execution steps.  Specifically, we are using the assertion `assertEquals`, which checks that the value in result should equal `true`.  If it does, the test passes and we can say that under these circumstances, the `.equals()` methods works correctly.  If it does not, then the test fails.
 
 There are a variety of assertions one can use.  Some can be interchanged; for example, instead of asserting that `result` should be equal to `true`, we could instead of directly asserted that result should be true.  In Java:
 
@@ -121,7 +121,7 @@ assertSame(a, a); // True; both are the same reference to the same object
 assertSame(a, c); // True; these are different references to the same object
 ```
 
-Additionally, there are several "not" variants of these assertions, such assertNotEquals, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17).  In my experience, these are used much less often, and are usually a code smell.  You want to check for a specific __expected__ behavior, if at all possible, not that it's __not unexpected__ behavior.
+Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17)`.  In my experience, these are used much less often, and are usually a code smell.  You want to check for a specific __expected__ behavior, if at all possible, not that it's __not unexpected__ behavior.
 
 ## Ensuring that Tests are Testing What You Expect
 
@@ -192,7 +192,7 @@ public void haveFunAtDuckPond(DuckPond duckPond) {
 }
 ```
 
-Pure functions are much easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against, and they may depend upon or modify parts of the code outside of this particular method!  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with _global are defined and set external to the method.
+Pure functions are much easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against, and they may depend upon or modify parts of the code outside of this particular method!  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with `_global` are defined and set external to the method.
 
 ```java
 public void printAndSave() {
@@ -203,7 +203,7 @@ public void printAndSave() {
 }
 ```
 
-As opposed to a square root function, where we know what exactly we're passing in, and thus what values the function has access to, there are dependencies on several external variables.  Running this code once may cause everything to work properly; running it again, when those variables are set to different values, may cause everything to fail.  It's difficult to know where all to check for the expected behavior.  It's writing something to a file, it looks like, but we'll need to figure out the file name and location based on the value of the variable at a particular point in time.  We'll also need to figure out what the _globalUserId is to determine what the right values are, and how it will be displayed by looking at the value of _globalScreenSetting.  In any of these cases, they could be set by a large number of external factors, and the values of the output depend on things that we may not have direct control over.  All of these come together to make testing impure methods a much more difficult task.
+As opposed to a square root function, where we know what exactly we're passing in, and thus what values the function has access to, there are dependencies on several external variables.  Running this code once may cause everything to work properly; running it again, when those variables are set to different values, may cause everything to fail.  It's difficult to know where all to check for the expected behavior.  It's writing something to a file, it looks like, but we'll need to figure out the file name and location based on the value of the variable at a particular point in time.  We'll also need to figure out what the `_globalUserId` is to determine what the right values are, and how it will be displayed by looking at the value of `_globalScreenSetting`.  In any of these cases, they could be set by a large number of external factors, and the values of the output depend on things that we may not have direct control over.  All of these come together to make testing impure methods a much more difficult task.
 
 This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary (or, at least, you need some clever way around them, like monads in Haskell) if you want to do anything other than make your processor warm.  After all, printing anything to the screen is technically a side effect.  However, by keeping as many functions pure as possible, and limiting impure functions to certain areas, you will make testing the system much easier.  I like to think of it as "quarantining" the impure functions so that I know where difficulties in testing will lie. 
 
@@ -230,7 +230,7 @@ Even though the code in this method works perfectly for all inputs, it requires 
 
 ## Doubles
 
-I wouldn't have asked the question if I didn't have an answer - test doubles.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to __localize__ the source of errors.  If our tests for haveFunAtTheDuckPond() fail, then the problem should lie in that particular method, not in one of the classes or methods that it depends upon.
+I wouldn't have asked the question if I didn't have an answer - test doubles.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to __localize__ the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that it depends upon.
 
 JUnit does not support test doubles directly, but you can use other libraries in order to use them.  For this (and the next few sections), we will use Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
 
@@ -269,7 +269,7 @@ public class HorseTest {
 
 ```
 
-We have now created a "fake" object instead of passing in an actual instantiation of the Water class.  Water is now quarantined and cannot cause a failure in our code.  If the test fails, it's the fault of this particular method.  Therefore, whenever there is a failure, we'll theoreticaly know exactly where to look in the codebase to determine the issue.  Whenever you use doubles, however, you are also dependent upon your assumptions of how the code you depend upon is supposed to work in the actual program.  There is nothing stopping you from, say, creating test doubles that have a method that the actual class does not.  In this case, your tests will work fine but the actual program will not.
+We have now created a "fake" object instead of passing in an actual instantiation of the Water class.  Water is now quarantined and cannot cause a failure in our code.  If the test fails, it's the fault of this particular method.  Therefore, whenever there is a failure, we'll theoretically know exactly where to look in the codebase to determine the issue.  Whenever you use doubles, however, you are also dependent upon your assumptions of how the code you depend upon is supposed to work in the actual program.  There is nothing stopping you from, say, creating test doubles that have a method that the actual class does not.  In this case, your tests will work fine but the actual program will not.
 
 Doubles can also be used to speed up the execution of tests.  Think of a Database object which writes information to out to a database and returns the status code.  Under ordinary circumstances, since the program needs to write out to disk and perhaps even access the network.  Let's say for the sake of argument, that this takes one second.  This may not seem like an incredibly long time to wait, but multiply it by all tests that access the database; even a relatively small program may have hundreds or even thousands of unit tests.
 
@@ -311,7 +311,7 @@ public class DogTest {
 }
 ```
 
-It would be even more difficult if _df did not have a nice setter function, but instead was created internally or only as a byproduct of an entirely different method.  For example,
+It would be even more difficult if `_df` did not have a nice setter function, but instead was created internally or only as a byproduct of an entirely different method.  For example,
 
 ```java
 public class Dog
@@ -333,9 +333,9 @@ public class Dog
 }
 ```
 
-If we were to write a test, we have no way of making doubles for the objects!  Even if we then refactored setUpDogStuff() to accept DogDish, DogFood, and DogWater parameters, we would be forced to work with additional items when all we care about is DogFood.
+If we were to write a test, we have no way of making doubles for the objects!  Even if we then refactored `setUpDogStuff()` to accept `DogDish`, `DogFood`, and `DogWater` parameters, we would be forced to work with additional items when all we care about is `DogFood`.
 
-However, if we just pass in DogFood as a parameter to the method, like so: 
+However, if we just pass in `DogFood` as a parameter to the method, like so: 
 
 ```java
 public class Dog
@@ -361,11 +361,11 @@ public class DogTest {
 }
 ```
 
-This will enable much easier and much more focused testing.  You'll also note the code has several other benefits aside from increased testability.  It's easier to read and understand, it's shorter, and there are fewer chances for errors.  In the original version, it would be very easy for a programmer to forget to set the _df variable to a DogFood object at some point, causing a null pointer exception whenever the dog tried to eat.  While still possible, this is less likely when you are passing in the object directly to the method.  We'll discuss more of the benefits of writing testable code - and why testable code is good code, and vice versa - in a later chapter.
+This will enable much easier and much more focused testing.  You'll also note the code has several other benefits aside from increased testability.  It's easier to read and understand, it's shorter, and there are fewer chances for errors.  In the original version, it would be very easy for a programmer to forget to set the `_df` variable to a `DogFood` object at some point, causing a null pointer exception whenever the dog tried to eat.  While still possible, this is less likely when you are passing in the object directly to the method.  We'll discuss more of the benefits of writing testable code - and why testable code is good code, and vice versa - in a later chapter.
 
 ## Stubs
 
-If doubles are fake objects, stubs are fake methods.  In the above examples, we didn't care what calling .eat() on the DogFood object did; we just didn't want it to call an actual DogFood object.  In many cases, though, we expect a certain return value when a method is called.  Let's modify the .eat() method on DogFood so that it returns an integer indicating how tasty the dog food is.
+If doubles are fake objects, stubs are fake methods.  In the above examples, we didn't care what calling `.eat()` on the `DogFood` object did; we just didn't want it to call an actual `DogFood` object.  In many cases, though, we expect a certain return value when a method is called.  Let's modify the `.eat()` method on `DogFood` so that it returns an integer indicating how tasty the dog food is.
 
 ```java
 public class Dog {
@@ -378,7 +378,7 @@ public class Dog {
 }
 ```
 
-If we were just using `df` as a normal test double, then there is no telling what df.eat() will return.  Specifically, the answer varies by test framework - some will always return a default value, some will call out the real object, some will throw an exception.  This should just be a piece of trivia, though - you shouldn't call methods on a double object unless you have stubbed them.  The whole reason for making a test double is so that you have an object that you have specified, instead of relying on external definitions.  So let's say that our doubled DogFood object has a (scientifically determined) tastiness level of 13.  We can specify that whenever the .eat() method is called on our doubled object, then just return a value of 13.  We have made a __stub__ of the method.
+If we were just using `df` as a normal test double, then there is no telling what `df.eat()` will return.  Specifically, the answer varies by test framework - some will always return a default value, some will call out the real object, some will throw an exception.  This should just be a piece of trivia, though - you shouldn't call methods on a double object unless you have stubbed them.  The whole reason for making a test double is so that you have an object that you have specified, instead of relying on external definitions.  So let's say that our doubled `DogFood` object has a (scientifically determined) tastiness level of 13.  We can specify that whenever the .eat() method is called on our doubled object, then just return a value of 13.  We have made a __stub__ of the method.
 
 ```java
 public class DogTest {
@@ -395,7 +395,7 @@ public class DogTest {
 }
 ```
 
-Now when the mockedDogFood object has its .eat() method called, it will return the value 13.  Once again, we have "walled off" other methods by re-creating fakes of them that act as we think they should.  Note that we can even stub methods that don't exist, thus allowing us to not only test classes that have errors, but even ones that don't even have all of their methods written yet.
+Now when the `mockedDogFood` object has its `.eat()` method called, it will return the value 13.  Once again, we have "walled off" other methods by re-creating fakes of them that act as we think they should.  Note that we can even stub methods that don't exist, thus allowing us to not only test classes that have errors, but even ones that don't even have all of their methods written yet.
 
 ## Mocks and Verification
 
@@ -409,7 +409,7 @@ public class Person {
 }
 ```
 
-There is no return value and thus nothing on which to assert.  The only way to test this method is to ensure that the `.haveFun()` method on the `duckPond` object was called.  We can do this using a special kind of test double called a __mock__.  A mock object will allow you to assert that a particular method was called on the mocked object.  In the above instance, instead of asserting that a particular value is returned (since no value is ever returned), you instead can make a "meta-assertion" that `.haveFun()` is called.  This is called __verification__ since you are __verifying__ that a method has  been called.
+There is no return value and thus nothing on which to assert.  The only way to test this method is to ensure that the `.haveFun()` method on the `duckPond` object was called.  We can do this using a special kind of test double called a __mock__.  A mock object will allow you to assert that a particular method was called on the mocked object.  In the above instance, instead of asserting that a particular value is returned (since no value is ever returned), you instead can make a "meta-assertion" that `.haveFun()` is called.  This is called __verification__ since you are __verifying__ that a method has been called.
 
 ```java
 public void testHaveFunAtDuckPond() {
@@ -420,7 +420,7 @@ public void testHaveFunAtDuckPond() {
 }            
 ```
 
-Note, in this case, that there is no traditional assertion.  The test case ends with the execution steps, viz., calling `.haveFunAtDuckPond()`.  The assertion is actually set when you verify that .haveFun() will be called one time on the mocked DuckPond object.
+Note, in this case, that there is no traditional assertion.  The test case ends with the execution steps, viz., calling `.haveFunAtDuckPond()`.  The assertion is actually set when you verify that `.haveFun()` will be called one time on the mocked `DuckPond` object.
 
 ## Setup and Teardown
 
@@ -463,15 +463,15 @@ public class BirdTest
 }
 ```
 
-Note that @Before and @After methods are called before __each__ test case, not one time before all of them and one time after all of them.  In the above instance, `setUp` will be called twice and `tearDown` will be called twice.
+Note that `@Before` and `@After` methods are called before __each__ test case, not one time before all of them and one time after all of them.  In the above instance, `setUp` will be called twice and `tearDown` will be called twice.
 
-Also note that while there is nothing stopping you from prefacing multiple methods with @Before or @After annotations, it's usually not necessary and will just make it more difficult to follow the code.  If you do make multiple methods with these annotations, they will run in a deterministic order (that is, if you run it again, they will run in the same order).  However, since tests should not depend upon each other, this ordering is not specified and is liable to change whenever you update your code and/or JUnit version.  It is possible to specify the order that tests will run in, using the @FixMethodOrder annotation, but you want to avoid doing that if at all possible.  Honestly, I feel a little guilty even writing down that it is possible.  
+Also note that while there is nothing stopping you from prefacing multiple methods with `@Before` or `@After` annotations, it's usually not necessary and will just make it more difficult to follow the code.  If you do make multiple methods with these annotations, they will run in a deterministic order (that is, if you run it again, they will run in the same order).  However, since tests should not depend upon each other, this ordering is not specified and is liable to change whenever you update your code and/or JUnit version.  It is possible to specify the order that tests will run in, using the `@FixMethodOrder` annotation, but you want to avoid doing that if at all possible.  Honestly, I feel a little guilty even writing down that it is possible.  
 
 Getting back to setup and teardown procedures specifically, if you have complicated ones, using multiple annotations is usually unnecessary. You can still use a single method, but call out to other methods as helpers, instead of annotating numerous methods.
 
 ## Testing System Output
 
-One particular use case that `@After` and `@Before` annotations can help you with is checking for system output.  Console output is a very common item to check for, but testing for it in Java is non-intuitive.  Although it's possible to just pass in a System object with each method, which you could then mock and stub, this is not idiomatic Java code and will add lots of additional code (and most likely complexity) to your codebase.  The best solution that I have seen for checking it involves using the `setOut()` methods of System to put the output of System.out and System.err in ByteArrayOutputStream (full disclosure: I saw this on Stack Overflow at [http://stackoverflow.com/questions/1119385/junit-test-for-system-out-println](http://stackoverflow.com/questions/1119385/junit-test-for-system-out-println).  Yes, even authors of books go online to look for answers sometimes.)
+One particular use case that `@After` and `@Before` annotations can help you with is checking for system output.  Console output is a very common item to check for, but testing for it in Java is non-intuitive.  Although it's possible to just pass in a System object with each method, which you could then mock and stub, this is not idiomatic Java code and will add lots of additional code (and most likely complexity) to your codebase.  The best solution that I have seen for checking it involves using the `setOut()` methods of `System` to put the output of `System.out` and `System.err` in `ByteArrayOutputStream`.  (Full disclosure: I saw this on Stack Overflow at [http://stackoverflow.com/questions/1119385/junit-test-for-system-out-println](http://stackoverflow.com/questions/1119385/junit-test-for-system-out-println).  Yes, even authors of books go online to look for answers sometimes.)
 
 Here is an example of how to check for specific output from a Java program using this technique:
 
@@ -510,15 +510,15 @@ public class KangarooTest {
 
 ## Testing Private Methods
 
-  There's quite an argument on whether or not it makes sense to test private methods.  It's a great way to start a flame war amongst software developers and testers on your favorite social networking site.  I'll provide you with the arguments of both sides, so that you can make a decision yourself, and then I'll let you know my opinion.
+There's quite an argument on whether or not it makes sense to test private methods.  It's a great way to start a flame war amongst software developers and testers on your favorite social networking site.  I'll provide you with the arguments of both sides, so that you can make a decision yourself, and then I'll let you know my opinion.
 
-   Those who argue that private methods should never be tested say that any calls from the rest of the program (i.e., the rest of the world from the class's standpoint) will have to come in through the public methods of the class.  Those public methods will themselves access private methods; if they don't, then what's the point of having those private methods?  By testing only the public interfaces of classes, you're minimizing the number of tests that you have and focusing on the tests and code that matter.
+Those who argue that private methods should never be tested say that any calls from the rest of the program (i.e., the rest of the world from the class's standpoint) will have to come in through the public methods of the class.  Those public methods will themselves access private methods; if they don't, then what's the point of having those private methods?  By testing only the public interfaces of classes, you're minimizing the number of tests that you have and focusing on the tests and code that matter.
 
-   Those who argue tha private methods should always be tested point to the fact that private methods are still code, even if they're not called directly from outside the class.  Unit testing is supposed to test functionality at the lowest levels possible, which is usually the method or function call.  If you're going to start testing higher up the abstraction ladder, then why not just do systems-level testing?
+Those who argue that private methods should always be tested point to the fact that private methods are still code, even if they're not called directly from outside the class.  Unit testing is supposed to test functionality at the lowest levels possible, which is usually the method or function call.  If you're going to start testing higher up the abstraction ladder, then why not just do systems-level testing?
 
-   My opinion is that, like most engineering questions, the correct answer depends on what you're trying to do and what the current codebase is like.  As a side note, with most technical questions, saying "it depends" is a great way to be right, no matter what.  Let's take a look at a few examples.
+My opinion is that, like most engineering questions, the correct answer depends on what you're trying to do and what the current codebase is like.  As a side note, with most technical questions, saying "it depends" is a great way to be right, no matter what.  Let's take a look at a few examples.
 
-  Let's imagine that we're adding a cat picture taking service to Rent-A-Cat.
+Let's imagine that we're adding a cat picture taking service to Rent-A-Cat.
 
 ```java
 
@@ -548,45 +548,44 @@ public class Picture {
 
 ```
 
-  This code is relatively simple, and it's easy to see that all of the private methods will be called and tested by the public methods.  From the standpoint of a user of this class, it's easy to test that things work correctly - if a valid image is returned, then the method worked.
+This code is relatively simple, and it's easy to see that all of the private methods will be called and tested by the public methods.  From the standpoint of a user of this class, it's easy to test that things work correctly - if a valid image is returned, then the method worked.
 
-  Now let's imagine some code inside the image transformation library might be called from the above code.
+Now let's imagine some code inside the image transformation library might be called from the above code.
 
 ```java
 
 public class ImageLibrary {
 
-       public Image transform(Image image, int inSize, int outSize, String format, boolean color, boolean reduce, boolean dither) {
-       	      if (inSize < outSize && format.equals("jpg") || dither == false) {
-	      	     return privateMethod1(image, inSize, outSize);
-	      } else if (inSize < outSize && format.equals("png") || dither == true) {
-	      	     return privateMethod2(image, inSize, outSize);
-              } else if (outSize > inSize || (color == false && reduce == false) {
-	             return privateMethod3(image, inSize, outSize);
-	      } else {
-	      	     // Imagine lots more if..then..else if statements here
-		     // You get the idea
-	      }
-       }
+    public Image transform(Image image, int inSize, int outSize, String format, boolean color, boolean reduce, boolean dither) {
+        if (inSize < outSize && format.equals("jpg") || dither == false) {
+            return privateMethod1(image, inSize, outSize);
+        } else if (inSize < outSize && format.equals("png") || dither == true) {
+            return privateMethod2(image, inSize, outSize);
+        } else if (outSize > inSize || (color == false && reduce == false) {
+            return privateMethod3(image, inSize, outSize);
+        } else {
+            // Imagine lots more if..then..else if statements here
+            // You get the idea
+        }
+    }
 
-       // Lots of private methods here
+    // Lots of private methods here
 
 }
 
 ```
 
-   Think of all the complicated tests that would be needed for this one method!  Even then, you're not focusing on the actual image transformations.  Many of your tests would just be focused on ensuring that the right method was called!
+Think of all the complicated tests that would be needed for this one method!  Even then, you're not focusing on the actual image transformations.  Many of your tests would just be focused on ensuring that the right method was called!
 
-  One could argue that this isn't a well-designed piece of code and should be re-factored, ideally with the private methods put into, say, an ImageTransformer class, where the methods would be public and could easily be unit tested.  I wouldn't disagree.  However, the fact of the matter is that in the real world, there is often code like this lying around, and the tester is not always in a position to tell management that the company needs to spend a few months burning off technical debt instead of adding new features.  If your goal is to test the software, and test it well, you'll probably have to test the occasional private method.
+One could argue that this isn't a well-designed piece of code and should be refactored, ideally with the private methods put into, say, an `ImageTransformer` class, where the methods would be public and could easily be unit tested.  I wouldn't disagree.  However, the fact of the matter is that in the real world, there is often code like this lying around, and the tester is not always in a position to tell management that the company needs to spend a few months burning off technical debt instead of adding new features.  If your goal is to test the software, and test it well, you'll probably have to test the occasional private method.
 
 ## Using Reflection to Test Private Methods in Java
 
-  In Java, there's no way to directly call private methods from a unit test, although this is definitely not the case in other languages (such as with Ruby's .send(:method_name) method, which bypasses the concept of "private" entirely).  However, using the reflection libary, we can "reflect" what's the structure of the class is at runtime.  The reflection library is built in to the Java language, so you don't need to install anything else to use it.
+In Java, there's no way to directly call private methods from a unit test, although this is definitely not the case in other languages (such as with Ruby's `.send(:method_name)` method, which bypasses the concept of "private" entirely).  However, using the reflection library, we can "reflect" what's the structure of the class is at runtime.  The reflection library is built in to the Java language, so you don't need to install anything else to use it.
 
-  Let's give an example - if you've never worked with reflection before, it can be a bit strange.  Say we want to write a class which tells the user what methods are available in that class.  Without reflection, this is impossible in Java; how can you know what other methods exist without hard-coding them into a String or something along those lines?  However, this is very simple using reflection.
+Let's give an example - if you've never worked with reflection before, it can be a bit strange.  Say we want to write a class which tells the user what methods are available in that class.  Without reflection, this is impossible in Java; how can you know what other methods exist without hard-coding them into a String or something along those lines?  However, this is very simple using reflection.
 
 ```java
-
 import java.lang.reflect.Method;
 
 public class ReflectionFun {
@@ -609,7 +608,7 @@ public class ReflectionFun {
 }
 ```
 
-  When we run this program, we get the following output:
+When we run this program, we get the following output:
 
 ```
 All methods:
@@ -626,11 +625,11 @@ notify
 notifyAll
 ```
 
-  This is pretty cool, we can then do things like check to see if a method exists before calling it, or let the programmer know what methods exist.  If you've ever used a language like Ruby, where you can quickly check what methods are available on an object, you can see how useful this can be.  If you're new to a codebase, and you know that you want to do something related to quacking, but you're not sure if you want to call displayQuack(), or quackify(), or quackAlot(), or whatever, you can do a quick method listing and see that the method you are looking for is printQuack.
+This is pretty cool, we can then do things like check to see if a method exists before calling it, or let the programmer know what methods exist.  If you've ever used a language like Ruby, where you can quickly check what methods are available on an object, you can see how useful this can be.  If you're new to a codebase, and you know that you want to do something related to quacking, but you're not sure if you want to call `displayQuack()`, or `quackify()`, or `quackAlot()`, or whatever, you can do a quick method listing and see that the method you are looking for is `printQuack`.
 
-  You may have noticed that there are many more methods here than are listed in the ReflectionFun class.  This is because the getMethods() method returns a list of _all_ methods callable on an object (that is, public methods).  Since all objects in Java descend from the Object class, any of the public methods on the Object class will also appear here.
+You may have noticed that there are many more methods here than are listed in the `ReflectionFun` class.  This is because the `getMethods()` method returns a list of _all_ methods callable on an object (that is, public methods).  Since all objects in Java descend from the `Object` class, any of the public methods on the `Object` class will also appear here.
 
-   You'll also note that there are three different "wait" methods listed.  This is simply because Java considers methods with the same name but different argument lists as different methods.  Reviewing the Java API, we can see that the following three methods exist:
+You'll also note that there are three different `wait` methods listed.  This is simply because Java considers methods with the same name but different argument lists as different methods.  Reviewing the Java API, we can see that the following three methods exist:
 
 ```java
 public void wait();
@@ -638,12 +637,11 @@ public void wait(long timeout);
 public void wait(long timeout, int nanos);
 ```
 
-  Reviewing the code above, you can see that the methods[] array actually contains methods as objects!  This may not seem strange in a functional language, but if you are only used to straightforward Java programming, it may seem a bit weird.  If the concept of a method or function existing as a first-class object seems strange to you, my first recommendation is to learn Haskell or another functional programming language until it seems like second nature.  If you don't particularly have the time for that, just think of them as functions that you can pick up and carry around, then do something with them at a later date, instead of having them only be in one place.
+Reviewing the code above, you can see that the `methods[]` array actually contains methods as objects!  This may not seem strange in a functional language, but if you are only used to straightforward Java programming, it may seem a bit weird.  If the concept of a method or function existing as a first-class object seems strange to you, my first recommendation is to learn Haskell or another functional programming language until it seems like second nature.  If you don't particularly have the time for that, just think of them as functions that you can pick up and carry around, then do something with them at a later date, instead of having them only be in one place.
 
-  Now that we have this list of methods, we can actually invoke them by name, by passing in the name of the method to which we'd like to have a reference to the getMethod() method.
+Now that we have this list of methods, we can actually invoke them by name, by passing in the name of the method to which we'd like to have a reference to the `getMethod()` method:
 
 ```java
-
 import java.lang.reflect.Method;
 
 public class ReflectionFun {
@@ -665,21 +663,21 @@ public class ReflectionFun {
 }
 ```
 
-  This displays:
+This displays:
 
 ```
 Call public method (printQuack):
 Quack!
 ```
 
-   Using this, you could add a way to manually test and call methods, by having the user enter a string and trying to call a method by that name on the object.  The point is, we now have run-time control of what methods to call.  This is very useful for metaprogramming and programmer interfaces such as REPLs (read-eval-print-loop systems, which lets you enter some code, see the results, and repeat).  However, so far, it has not helped us much with testing private methods.  However, now that you understand reflection, some minor tweaks to our existing code and we can access them easily.
+Using this, you could add a way to manually test and call methods, by having the user enter a string and trying to call a method by that name on the object.  The point is, we now have run-time control of what methods to call.  This is very useful for metaprogramming and programmer interfaces such as REPLs (read-eval-print-loop systems, which lets you enter some code, see the results, and repeat).  However, so far, it has not helped us much with testing private methods.  However, now that you understand reflection, some minor tweaks to our existing code and we can access them easily.
 
-  First, you can't use the `getMethod()` or `getMethods()` methods, as they only return publicly available methods.  Instead, you need to use `getDeclaredMethod()` or `getDeclaredMethods()` methods, which have two key differences.
+First, you can't use the `getMethod()` or `getMethods()` methods, as they only return publicly available methods.  Instead, you need to use `getDeclaredMethod()` or `getDeclaredMethods()` methods, which have two key differences.
 
 1. They only return methods declared in that specific class.  They will not return methods defined in superclasses.
 2. They return public, private, and protected methods.
 
-  Therefore, if we wanted a list of _all_ methods defined on ReflectionFun, we could use the getDeclaredMethods() method.  Just for fun, let's also add a private `printQuock()` method to go along with our public `printQuack()` method (my definition of "fun" may be slightly different than yours).
+Therefore, if we wanted a list of _all_ methods defined on `ReflectionFun`, we could use the `getDeclaredMethods()` method.  Just for fun, let's also add a private `printQuock()` method to go along with our public `printQuack()` method (my definition of "fun" may be slightly different than yours):
 
 
 ```java
@@ -708,7 +706,7 @@ public class ReflectionFun {
 }
 ```
 
-  The output of this program is:
+The output of this program is:
 
 ```java
 Declared methods:
@@ -717,7 +715,7 @@ printQuack
 printQuock
 ```
 
-  Since we once again have just a list of Method objects, we can invoke them.  There's only one small snag - we first need to set that method to "accessible" before calling it, using the setAccessible() method.  It accepts a boolean parameter to determine whether or not the method should be accessible outside the class.
+Since we once again have just a list of Method objects, we can invoke them.  There's only one small snag - we first need to set that method to "accessible" before calling it, using the `setAccessible()` method.  It accepts a boolean parameter to determine whether or not the method should be accessible outside the class.
 
 ```java
 
@@ -746,14 +744,14 @@ public class ReflectionFun {
 }
 ```
 
-  This will output:
+This will output:
 
 ```
 Call private method (printQuack):
 Quock!
 ```
 
-  We can combine this with the other unit testing we've learned earlier in the chapter to write a unit test for a private method.
+We can combine this with the other unit testing we've learned earlier in the chapter to write a unit test for a private method.
 
 ```java
 // TODO: TEST HERE
@@ -823,7 +821,7 @@ public class CatTest {
 
 Now imagine that we run this JUnit, which executes test cases in a random order; sometimes the second test would pass, and sometimes it would fail!  
 
-There is yet another benefit to creating tests which have no dependencies on other tests.  Independent tests can be run in parallel, possibly decreasing execution time dramatically.  On a modern multi-core machine, you may find yourself running tests many times more quickly if they ca n be run independently.
+There is yet another benefit to creating tests which have no dependencies on other tests.  Independent tests can be run in parallel, possibly decreasing execution time dramatically.  On a modern multi-core machine, you may find yourself running tests many times more quickly if they can be run independently.
 
 ### Try To Make Tests Better Every Time You Touch Them
 
@@ -918,7 +916,7 @@ public class CowTest {
 }
 ```
 
-From a code coverage perspective, we have 100% code coverage and 100% method coverage - the only method in the class is called from a test, and every statement in the method is executed.  However, calling `moo()` with a mooLevel parameter of 0 will cause a DivideByZeroException to be thrown.  This defect will not be discovered by the test case, despite every statement being executed.  Although not foolproof, ensuring that you've checked every equivalence class may help to ameliorate situations like this somewhat.
+From a code coverage perspective, we have 100% code coverage and 100% method coverage - the only method in the class is called from a test, and every statement in the method is executed.  However, calling `moo()` with a `mooLevel` parameter of 0 will cause a `DivideByZeroException` to be thrown.  This defect will not be discovered by the test case, despite every statement being executed.  Although not foolproof, ensuring that you've checked every equivalence class may help to ameliorate situations like this somewhat.
 
 Code coverage is a powerful tool, but it's not a silver bullet.  It's a way to see what areas of the codebase might need more testing, but it should not assure you that any code that has been covered is guaranteed free of defects.
 
