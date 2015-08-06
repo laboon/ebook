@@ -1,4 +1,4 @@
-## Glossary of Terms
+# Glossary of Terms
 
 __Stochastic Testing__: Testing a system through the use of randomized inputs.  These inputs do not have to be entirely random; for example, they can be a probability distribution of values or generated strings.  Also called __monkey testing__.
 
@@ -26,7 +26,7 @@ __User Acceptance Testing__: A particular kind of __acceptance testing__ where t
 
 __Alpha Testing__: "Real-world" testing by a small group of test engineers or some other small group of technically proficient personnel.  Often succeeded by beta testing.
 
-__Beta Testing__: "Real-world" testing by a subset of the actual user base prior to release of the system.  Often preceeded by alpha testing.
+__Beta Testing__: "Real-world" testing by a subset of the actual user base prior to release of the system.  Often preceded by alpha testing.
 
 __Test Artifact__: A document or other byproduct of the testing process, such as test plans or results.
 
@@ -50,7 +50,7 @@ __Requirements Specification__: A list of requirements for a given system.  The 
 
 __Testability__: A quality of a system that specifies how easy it is to test - having well-designed and coherent methods, pure functions where possible, allowance for dependency injection, etc.
 
-__Internally Consistent (Requirements)__: The property of having no requirements contradict each other.  For example, a requirements specification which has a requirement which states "The system shall always leave the red light on" and another requirement which states that "The system shall turn off the red light if SWITCH1 is enabled" would not be internally consistent.
+__Internally Consistent (Requirements)__: The property of having no requirements contradict each other.  For example, a requirements specification which has a requirement which states "The system shall always leave the red light on" and another requirement which states that "The system shall turn off the red light if `SWITCH1` is enabled" would not be internally consistent.
 
 __Externally Consistent (Requirements)__: The property of having the system be consistent with requirements of other systems or of the Universe.  For example, having a system which mandates that the system will be able to communicate with a base on Pluto instantaneously would require faster-than-light communication, and would thus be inconsistent with the laws of this Universe.
 
@@ -150,15 +150,13 @@ __KPI__: Abbreviation for __Key Performance Indicator__.
 
 __Security Testing__: Testing that the system meets the criteria of the InfoSec Triad, that the system is safe from unauthorized tampering and/or access.
 
-__InfoSec Triad__: The three criteria that indicate a secure system - confidentiaity, integrity, and availability.
+__InfoSec Triad__: The three criteria that indicate a secure system - confidentiality, integrity, and availability.
 
 __CIA Triad__: Another term for the __InfoSec Triad__.
 
 __Confidentiality__: An attribute of a system, that only authorized users may read data.  An element of the InfoSec Triad.
 
 __Integrity__: An attribute of a system, that only authorized users may write data.  An element of the InfoSec Triad.
-
-__Avai
 
 __Malware__: Software which has pernicious and deliberate effects to the user of the software, such as a computer virus or key logger.
 
@@ -178,7 +176,7 @@ __Equivalence Class Partitioning__: Separating a specific functionality into dis
 
 __Interior Value__: A value which is not a boundary value in its equivalence class.
 
-__Boundary Value__: A value which is "one the boundary" between equivalence classes.  For example, a system that has two equivalance classes, between 0 and 19, and 20 or higher, would have boundary values at 19 and 20.
+__Boundary Value__: A value which is "one the boundary" between equivalence classes.  For example, a system that has two equivalence classes, between 0 and 19, and 20 or higher, would have boundary values at 19 and 20.
 
 __Base Case__: A test case for the basic expected functionality of a system, or an interior value in an equivalence class.  For example, when testing a calculator, a base case might be a user adding 2 and 2 together.
 
@@ -212,7 +210,7 @@ __System Under Test__: The system that is actually being tested.
 
 __Application Under Test__: The system which the tester is testing.
 
-__Acceptance Testing__: Testing by an end user, customer, or other indepedent personnel to verify that the system can be accepted for use.
+__Acceptance Testing__: Testing by an end user, customer, or other independent personnel to verify that the system can be accepted for use.
 
 __Smoke Test__: A small subset of tests which is used as a gateway for further testing.  
 
@@ -244,7 +242,7 @@ __Media Testing__: Ensuring that the media that the system is stored on (e.g., a
 
 __Utilization__: In __performance testing__, the relative or absolute amount of a given computing resource (e.g., RAM, processor instructions, disk space) is used under certain circumstances.
 
-__Throughput__: In __performance testing__, the number of events or tasks the system can handle in a given timeframe.
+__Throughput__: In __performance testing__, the number of events or tasks the system can handle in a given time frame.
 
 __Response Time__: In __performance testing__, how quickly a system responds after user input or other event.
 
@@ -272,11 +270,11 @@ __Service Level Agreement__: An agreement by a service provider, which often inc
 
 __SLA__: An abbreviation for Service Level Agreement.
 
-__9's__: See __n 9's__.
+__9's__: See __n nines__.
 
-__nines__: See __n 9's__/
+__nines__: See __n nines__.
 
-__n 9's__: A way of showing what percentage of the time the system is available, based on the number of 9's in that number, and assuming 9's are the only significant digit.  For example, a system that is available 99.9% of the time has "three 9's" availability, while a system that is available 99.999% of the time has "five 9's" availability.
+__n nines__: A way of showing what percentage of the time the system is available, based on the number of nines in that number, and assuming nines are the only significant digit.  For example, a system that is available 99.9% of the time has "3 nines" availability, while a system that is available 99.999% of the time has "5 nines" availability.
 
 __bathtub curve__: A generalized function of failure rates, which start out high (as poor components fail soon after being implemented), stay low throughout much of the life of the system, then start increasing as the system nears it end of life.  So named because it looks like the outline of a bathtub as viewed from the side.
 
@@ -306,7 +304,7 @@ __Phone phreak__: A person who explores the telephone system, usually without th
 
 __Phreaker__: Another term for __phone phreak__.
 
-__Interruption__: In __security testing__, an attack on __availability__, such as a __DDOS attack__ or pulling the plug from a network switch.
+__Interruption__: In __security testing__, an attack on __availability__, such as a __DDoS attack__ or pulling the plug from a network switch.
 
 __Interception__: In __security testing__, an attack on __confidentiality__, such as eavesdropping on a network with a __packet analyzer__ or on a computer with a __keylogger__.
 
@@ -316,9 +314,9 @@ __Fabrication__:  In __security testing__, an attack on __integrity__, which del
 
 __Denial of Service__: A method of attacking __availability__ by sending so many unauthorized packets or other events to a computing resource that no authorized users have access to it.
 
-__DOS__: An acronym for __denial of service__.
+__DoS__: An acronym for __denial of service__.
 
-__Distributed Denial of Service__: A __denial of service__ attack which consists of many different sources of the unauthorized packets, so as to increase the number of events the sytem must process as well as help disguise the ultimate source.
+__Distributed Denial of Service__: A __denial of service__ attack which consists of many different sources of the unauthorized packets, so as to increase the number of events the system must process as well as help disguise the ultimate source.
 
 __packet sniffing__: Using a __packet analyzer__ or similar software to view data being transmitted over a network.
 
@@ -346,7 +344,7 @@ __Bot network__: A collection of zombies controlled by a master.
 
 __Spyware__: A kind of __malware__  which surreptitiously monitors the actions of the user of the system.
 
-__DOS Tools__: Tools which enable denial of service attacks.
+__DoS Tools__: Tools which enable denial of service attacks.
 
 __Ransomware__: A kind of __malware__ which performs an unwanted action (e.g., encrypting your hard drive) and asks for money or other compensation in order to undo it. 
 

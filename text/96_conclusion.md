@@ -1,4 +1,4 @@
-## Conclusion
+# Conclusion
 
 Tens of thousands of words later, hopefully you've learned a little bit about testing software.  You would have to be trying pretty hard not to have learned something in the time you've been reading this.  However, you've only just scratched the surface!  Most topics have only received the most cursory of outlines, when they deserve so much more.  It would be easy to fill up an entire book on performance testing (to which I only dedicated a chapter), penetration testing (to which I devoted a section), or formal verification (to which I only referred to a few times).  Testing software in any specific domain is going to come with its own set of challenges.  If you become involved in testing any non-trivial application, you could probably write a reasonably-sized book on the corner cases specific to it.
 
