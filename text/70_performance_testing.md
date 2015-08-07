@@ -107,9 +107,9 @@ Just because a particular indicator does not have a target or threshold does not
 
 Determining what kind of target time is acceptable for response time can be difficult.  However, there are some rough guidelines.  These were taken from _Usability Engineering_ by Jakob Neilsen.
 
-* _< 100 ms_ : Response time required to feel that system is instantaneous
-* _< 1 s_ : Response time required for flow of thought to not be interrupted
-* _< 10 s_ : Response time required for user to stay focused on application (and not go see what's happening on the Internet)
+* _< 100 ms:_ Response time required to feel that system is instantaneous
+* _< 1 s:_ Response time required for flow of thought to not be interrupted
+* _< 10 s:_ Response time required for user to stay focused on application (and not go see what's happening on the Internet)
 
 Although these are rough guidelines for targets, they are not laws in and of themselves, and good response times will depend on a whole host of factors (what kind of network the system is running over, what kind of calculations the system is running, etc.)  There is empirical evidence, based on studies from Google, that people will choose websites, even if not consciously, based on less than 250 ms difference in load times.  Any load time over 400 milliseconds for a web page causes a drop-off in visitors, and this time has been decreasing steadily.  Users are becoming less patient as time goes on.
 

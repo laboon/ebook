@@ -2,13 +2,13 @@
 
 Thus far, we have focused on how to develop test plans, but there has been little discussion of what to test for, outside of ensuring that the software meets the requirements.  While this is not a bad approach to testing software, it leaves out important aspects in regards to verification, especially in checking for more obscure edge cases.
 
-The reason one tests is to find defects; in order to find defects, you may have to venture a bit from the happy path, where everybody enters data in the format you like, systems have infinite memory and CPU, and networks have zero latency and are always connected.  You'll have to traverse through the dark woods where people try to enter `FORTY-SEVEN` instead of `47`, where the program runs out memory midway through a computation, where a horror movie villain stands poised above the Ethernet cable with a sharpened hatchet.
+The reason one tests is to find defects; in order to find defects, you may have to venture a bit from the happy path, where everybody enters data in the format you like, systems have infinite memory and CPU, and networks have zero latency and are always connected.  You'll have to traverse through the dark woods where people try to enter `FORTY-SEVEN` instead of `47`, where the program runs out of memory midway through a computation, where a horror movie villain stands poised above the Ethernet cable with a sharpened hatchet.
 
 Okay, maybe not that last one. However, you will have to think of ways to test for the operation of a system when things aren't quite perfect.  Consider this chapter a way of priming your testing brain for how to cause failures and find the cracks in the software under test.
 
 ## Errors To Look For
 
-1. __Logic Errors:__ A logic error is an error in the logic of the program; the developer understood what needed to be done, but in the process of converting the system from its description to its implementation, something went wrong.  This could be as simple as replacing a greater-than (>) with a less-than (<), or a complicated interaction of numerous variables. 
+1. __Logic Errors:__ A logic error is an error in the logic of the program; the developer understood what needed to be done, but in the process of converting the system from its description to its implementation, something went wrong.  This could be as simple as replacing a greater-than (`>`) with a less-than (`<`), or a complicated interaction of numerous variables.
 
 In order to check for logic errors, you should ensure that the expected result occurs for a variety of inputs.  Boundaries - explicit and implicit - are often a rich vein to be mined for defects.  If nothing is preventing odd input coming in, at some point it probably will come in, so better to know about it earlier rather than later!
 

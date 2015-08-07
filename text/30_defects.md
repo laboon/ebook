@@ -28,7 +28,7 @@ When testing software, it is important to keep track of as much information as i
 
 On the other hand, it's possible to take this too far.  There is usually no need to mark down every process running on the system whenever a typo is discovered.  Exactly how much to write down for a defect will vary based on the defect and domain in which you are working.  However, there are certain pieces of data which are useful in many cases.  The following section will outline a defect template so that these items are not forgotten.  By reminding the filer of the defect to include certain information, the filer is much more likely to not miss any important steps or information, thus minimizing superfluous communication about the defect in the process of fixing it.  Checklists and templates like this are extremely powerful tools for situations where the costs of failing to do something are high; see _The Checklist Manifesto_ by Atul Gawande for a detailed explanation.
 
-When a defect is reported, its life is just beginning.  Just as software development as a whole has a "software development life cycle" - going from requirements, to design, etc., all the way to maintenance, support, and eventual "end-of-life"-ing of the software, defects also have a "defect life cycle".  The defect life cycle is as follows:
+When a defect is reported, its life is just beginning.  Just as software development as a whole has a "software development life cycle" - going from requirements, to design, etc., all the way to maintenance, support, and eventual "end-of-life"-ing of the software - defects also have a "defect life cycle".  The defect life cycle is as follows:
 
 1. Discovery
 2. Reporting

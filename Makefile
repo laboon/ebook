@@ -1,6 +1,6 @@
 TITLE=A Comprehensive Approach\\\\to Software Testing
 AUTHOR=Bill Laboon
-DEDICATION=for Arrisons and Calvernins
+DEDICATION=for AKS and CKN
 
 
 # If pandoc or xelatex are not in your PATH, specify their locations here:
@@ -11,8 +11,6 @@ MD_FILES=	$(wildcard text/*.md)
 
 
 pdf:	main.tex tex_files
-# Use --latex-engine to point to a PDFLaTeX engine if not accessible from path.
-# pdflatex is available from http://www.tug.org/applications/pdftex/
 # Uses date of most recent commit in repo
 	$(PANDOC) main.tex -o software-testing-laboon-ebook.pdf \
 		--latex-engine $(XELATEX) \

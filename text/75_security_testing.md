@@ -80,7 +80,7 @@ public int findUidByName(String name) {
 
 This is relatively simple, but contains a security flaw - there is nothing preventing the user from sending in other SQL commands, and not their name.  These SQL commands will be executed by the machine uncomplainingly, even if the commands say to delete the database, for instance.  Imagine that the user passes in the value `a'; DROP TABLE users;` as their name, for instance.  The following SQL will be executed:
 
-```
+```sql
 SELECT uid FROM users WHERE name = 'a'; DROP TABLE users;
 ```
 
@@ -100,7 +100,7 @@ What happens when you try to put ten pounds of data in a five-pound bag?  A __bu
 int[] _fiveInts = new int[5];
 ```
 
-Now let's say that you have a method that accepts a string of integers, separated by comments (e.g. "7,4,29,3,2"), and then puts each of the integers into the `_fiveInts` array.
+Now let's say that you have a method that accepts a string of integers, separated by commas (e.g. `7,4,29,3,2`), and then puts each of the integers into the `_fiveInts` array.
 
 ```java
 public void putDataIntoFiveInts(String data) {
