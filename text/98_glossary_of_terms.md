@@ -138,6 +138,8 @@ __Traceability Matrix__: A two-dimensional matrix displaying test cases and requ
 
 __Performance Testing__: Testing that a system meets the __performance indicators__ designated for it.
 
+__Performant__: A program which provides a high level of performance, which is usually measured by it meeting or exceeding its __KPIs__.
+
 __Efficiency-Based Performance__: Performance on metrics related to the efficiency of use of the computational resources available to the system.
 
 __Service-Based Performance__: Performance on metrics related to how the user will interact with the system.
@@ -375,3 +377,5 @@ __Bounds checking__: Run-time checking that data is not being written outside of
 __Stakeholder__: Any person who has a direct interest in the successful completion, execution, or release of the system, such as customers, developers, and project managers.
 
 __UPOD__: An acronym for "UnderPromise, OverDeliver".  Refers to the fact that you should promise less than you think you can deliver, but then endeavor to deliver more.
+
+__Testable Code__: Code which can be easily tested in an automated fashion at multiple levels of abstraction.
