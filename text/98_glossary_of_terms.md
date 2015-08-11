@@ -375,5 +375,3 @@ __Bounds checking__: Run-time checking that data is not being written outside of
 __Stakeholder__: Any person who has a direct interest in the successful completion, execution, or release of the system, such as customers, developers, and project managers.
 
 __UPOD__: An acronym for "UnderPromise, OverDeliver".  Refers to the fact that you should promise less than you think you can deliver, but then endeavor to deliver more.
-
-__Manage Up__: 
