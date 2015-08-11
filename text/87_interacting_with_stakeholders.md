@@ -25,7 +25,7 @@ The following a non-exhaustive list of groups of stakeholders, and a high-level 
 * _Support Personnel:_ The people who keep the software running, such as field engineers, help desk personnel, and deployment personnel.  They will care about uptime and quality of the system, and its ease of use on behalf of customers.
 * _Assessors:_ These people focus on the assessing the legality of a system, ensuring that it meets all the demands made of it by laws for the domain in which it is operating.  They will care about meeting the legal or other documented requirements.
 
-This is only a rough guide to some of the kinds of stakeholders you will interact with as a software tester.  Remember that these are drawn with very broad strokes!  People are individuals, not faceless members of groups, no matter what your friend who has read too much philosophy has to say.  Although you can use this information to get a general idea of what individual stakeholders are interested in, nothing will take the place of having real interactions, and more importantly, _asking_ what is important to them.  
+This is only a rough guide to some of the kinds of stakeholders you will interact with as a software tester.  Remember that these are drawn with very broad strokes!  People are individuals, not faceless members of groups, no matter what your friend who has read too much philosophy has to say.  Although you can use this information to get a general idea of what individual stakeholders are interested in, nothing will take the place of having real interactions, and more importantly, _asking_ what is important to them.
 
 ## Reporting and Communicating
 

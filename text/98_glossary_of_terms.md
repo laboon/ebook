@@ -80,7 +80,7 @@ __Input Value__: A particular value which will be passed in to a test case.  The
 
 __Output Value__: A particular value which will be output by a test case.  The distinction between these and postconditions in manual or other black-box testing can be hazy; in white-box testing, values that are directly returned from a method are output values.
 
-__Execution Steps__: The actual steps that the test will execute after ensuring that all preconditions hold.  
+__Execution Steps__: The actual steps that the test will execute after ensuring that all preconditions hold.
 
 __Reproduction Steps__: The steps necessary for reproducing a defect.  Often included in defect reports so that readers of the defect will understand what causes the defect and how to reproduce it.
 
@@ -118,7 +118,7 @@ __Statement Coverage__: What percentage of statements in the code are tested, us
 
 __Branch Coverage__: What percentage of branches in the code are tested usually by unit tests.
 
-__Combinatorial Testing__: Testing in such a way so as to ensure that various combinations of variables will work as expected.  For example, testing a 
+__Combinatorial Testing__: Testing in such a way so as to ensure that various combinations of variables will work as expected.  For example, testing a
 
 __Pairwise Testing__: A particular form of combinatorial testing where you are testing for all two-way interactions.
 
@@ -200,7 +200,7 @@ __Success Case__: A kind of test case where the expected behavior of the system 
 
 __Failure Case__: A kind of test where the expected behavior of the system is to fail in a certain way.  For example, sending in a negative number to a square root function which does not support complex numbers may be expected to throw an exception.
 
-__Happy Path__: The easiest path a user will take through the system, when the system is operating properly, without attempting to perform anything that is an __edge case__ or __corner case__.  
+__Happy Path__: The easiest path a user will take through the system, when the system is operating properly, without attempting to perform anything that is an __edge case__ or __corner case__.
 
 __Unit Testing__: Testing the smallest individual units of code, such as methods or functions, in a white-box manner.
 
@@ -212,7 +212,7 @@ __Application Under Test__: The system which the tester is testing.
 
 __Acceptance Testing__: Testing by an end user, customer, or other independent personnel to verify that the system can be accepted for use.
 
-__Smoke Test__: A small subset of tests which is used as a gateway for further testing.  
+__Smoke Test__: A small subset of tests which is used as a gateway for further testing.
 
 __Sanity Test__: A very small set of tests which checks a very minimal amount of functionality, to ensure, for example, that a system was installed correctly.
 
@@ -332,11 +332,11 @@ __Logic bomb__: Code within a program which executes an unauthorized function, s
 
 __Trapdoor__: A program or piece of a program which provides secret access to a system or application.
 
-__Trojan Horse__: A kind of __malware__ which pretends to be another in order to trick users into installing and executing it.  
+__Trojan Horse__: A kind of __malware__ which pretends to be another in order to trick users into installing and executing it.
 
 __Virus__: A kind of __malware__, often small, that replicates itself with human intervention.  This intervention could be something such as clicking on a link or running a program sent to you as an attachment.
 
-__Worm__: A kind of __malware__, often small, that replicates itself without human intervention.  
+__Worm__: A kind of __malware__, often small, that replicates itself without human intervention.
 
 __Zombie__: A computer with software installed which allows unauthorized users access to it to perform unauthorized functionality.  For example, a system might have a mailer program built in which will allow other users to send spam from your machine, so that the original users cannot be tracked.
 
@@ -346,7 +346,7 @@ __Spyware__: A kind of __malware__  which surreptitiously monitors the actions o
 
 __DoS Tools__: Tools which enable denial of service attacks.
 
-__Ransomware__: A kind of __malware__ which performs an unwanted action (e.g., encrypting your hard drive) and asks for money or other compensation in order to undo it. 
+__Ransomware__: A kind of __malware__ which performs an unwanted action (e.g., encrypting your hard drive) and asks for money or other compensation in order to undo it.
 
 __Social engineering__: Manipulating people to underhandedly cause them to perform actions that put security of a system at risk.  For example, an attacker calling an administrative assistant falsely claiming that they are from the IT department and need to know the user's password.
 

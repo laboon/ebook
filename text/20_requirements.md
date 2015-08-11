@@ -6,7 +6,7 @@ One way of determining what software to build is to determine the __requirements
 
 Requirements ensure that the developers know what to build, and the testers know what to test.  Note that there other methods of determining what software to build aside from traditional requirements; we will discuss a few of these later in the book.
 
-In our tire air pressure example in the chapter on testing basics, we had some relatively simple requirements, although we did not mention at the time that that is what they were. 
+In our tire air pressure example in the chapter on testing basics, we had some relatively simple requirements, although we did not mention at the time that that is what they were.
 
 1. The `ERROR` light comes on for PSIs of -1 or less
 2. The `UNDERPRESSURE` light comes for PSIs between 0 and 20
@@ -48,7 +48,7 @@ __GOODREQ-3.__ The system shall store the last 100 coordinates of locations that
 
 ___BAD REQUIREMENTS:___
 
-__BADREQ-1.__ When the user presses the "velocity" button, the system shall access memory location 0x0894BC40 and display it on the main screen. 
+__BADREQ-1.__ When the user presses the "velocity" button, the system shall access memory location 0x0894BC40 and display it on the main screen.
 
 __BADREQ-2.__ The system shall use a antimatter-matter reaction in order to propel it to 0.8c.
 
@@ -99,7 +99,7 @@ __REQ-1.__ The system shall do all of the shutdown stuff whenever the "shutdown"
 
 What is the "shutdown stuff"?  Speaking to our friends, or amongst co-workers, we may use relatively ambiguous terms like that because the human brain is pretty good at filling in ambiguity.  However, ambiguous requirements can lead to different developers or other stakeholders interpreting them in different ways.  The classic example of this is the Mars Climate Orbiter mishap, where one group of software engineers used Imperial measures and another group used metric measures.  Both groups thought the correct way to return results was obvious, but they came up with different implementations.
 
-If at all possible, the requirements should be __quantitative__ as opposed to __qualitative__.  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.  
+If at all possible, the requirements should be __quantitative__ as opposed to __qualitative__.  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.
 
 __BADREQ-1.__ The system shall return results extremely quickly.
 
@@ -150,7 +150,7 @@ ___REQUIREMENTS:___
 
 This was simple enough for small projects.  As software projects became larger and more specified, however, some problems arose with this scheme.  For example, what happened if a requirement became irrelevant?  There are now "missing" requirements; the list of requirements may be 1, 2, 5, 7, 12, etc.  Conversely, what is software requirements needed to be added?  If the list of requirements is just a straight linear ordering, those new requirements need to be put in at the end, or squeezed in between existing requirements (Requirement-1.5).
 
-Another problem was remembering what each requirement actually specified based solely on the number.  It is not very difficult for the average person to keep a list of a few requirements in their head, but this becomes untenable when there are hundreds, or even thousands, of software requirements.  
+Another problem was remembering what each requirement actually specified based solely on the number.  It is not very difficult for the average person to keep a list of a few requirements in their head, but this becomes untenable when there are hundreds, or even thousands, of software requirements.
 
 Several methods were developed in order to ameliorate the issue.  One method was to group all of the requirements into different sections (e.g., "DATABASE-1", "DATABASE-2") and continue the traditional numbering scheme from there.  At least under this scheme, a new DATABASE requirement did not require being placed at the very end of the list of requirements, but rather placed in a location near other relevant requirements.  This also gave a hint as to what the requirement referred.
 

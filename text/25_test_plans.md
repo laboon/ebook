@@ -23,7 +23,7 @@ Using these values, and a general idea of what we would like to test, we can sta
 
 ```
 IDENTIFIER:
-TEST CASE: 
+TEST CASE:
 PRECONDITIONS:
 INPUT VALUES:
 EXECUTION STEPS:
@@ -51,7 +51,7 @@ Test plans are usually not as large as all of the requirements for a program; on
 
 ### Test Case (or Summary)
 
-In this field, a succinct summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell what exactly is meant to be tested, and sometimes how it is to be tested.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.  
+In this field, a succinct summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell what exactly is meant to be tested, and sometimes how it is to be tested.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.
 
 __Examples__
 
@@ -64,7 +64,7 @@ __Examples__
 
 A test often requires that the system is in a certain state before the test itself can be run.  While one could theoretically consider putting the system into such a state as part of the execution of the test (see the section on Execution Steps, below), in general it makes more sense that certain __preconditions__ must be met before the test can start.  This will be necessary for many tests which are not testing mathematically pure functions.
 
-Example preconditions include: 
+Example preconditions include:
 
 1. The system is already running
 2. The database contains a user `Joe` with password `EXAMPLE`
@@ -88,7 +88,7 @@ The dividing line between preconditions and execution steps can sometimes be an 
 1. The user has logged in
 2. The image has been posted to the URL `/pictures/foo`.
 
-However, if we were testing banking software and were using that image display to warn of an invalid transaction, there would probably be more preconditions, and the ones that did exist would be more specific.  
+However, if we were testing banking software and were using that image display to warn of an invalid transaction, there would probably be more preconditions, and the ones that did exist would be more specific.
 
 1. User X has logged in with password Y
 2. User X has no warnings or `STOP CHECK` notices on their account
@@ -153,9 +153,9 @@ Let's start with a simple example.  We are testing an e-commerce software system
 
 Conversely, the actual execution steps should be spelled out very clearly.
 
-1. Search for item "SAMPLE-BOX" by selecting the "Search" text box, entering `SAMPLE-BOX`, and hitting the "Search" button.  
+1. Search for item "SAMPLE-BOX" by selecting the "Search" text box, entering `SAMPLE-BOX`, and hitting the "Search" button.
 2. An item labeled "SAMPLE-BOX" should be displayed.  Click on the button labeled  "Add Item to Cart" next to the picture of the SAMPLE-BOX.
-3. Inspect the "Number of Items in Cart = x" label at the top of the screen.  
+3. Inspect the "Number of Items in Cart = x" label at the top of the screen.
 
 Note that these steps are relatively explicit.  It is important to write the steps down in enough detail that if a problem occurs, it will be easily reproducible.  If the execution steps had just mentioned to "Add an item", our tester could have chosen any item from the inventory.  If the problem is with the item selected (say, adding SAMPLE-PLANT never increments the number of items in the cart, but SAMPLE-BOX does), then it may be difficult to figure out exactly what the problem is.  Proper defect reporting can help ameliorate this issue, but it can be prevented entirely by ensuring that the execution steps are specified correctly.  Of course, it's possible to go overboard with this:
 
@@ -187,9 +187,9 @@ Although we've discussed the difference between output values and postconditions
 The principle idea to keep in mind when writing a test case is that the point of the test case is that:
 
 ```
-When the system is in state X,  
-And the following actions Y are performed,  
-I expect Z to happen  
+When the system is in state X,
+And the following actions Y are performed,
+I expect Z to happen
 ```
 
 That value Z is the crux of the test - it is the expected behavior.  It is impossible to test for something if you don't know what you expect to happen.  Just like Lewis Carroll said, "if you don't know where you're going, any road will get you there."  Similarly, when writing a test case, you need to know where you eventually want the test case to go, otherwise there's no way to check that you got to where the system should be.
@@ -218,7 +218,7 @@ int a = 7 / 0;
 
 Therefore, when testing a program written in Java, you can assume that dividing by zero is essentially one equivalence class; if it occurs, then the same event should happen afterwards, whatever that event happens to be (e.g., perhaps the exception is caught and the message "Error Divide by Zero" is printed to the console).
 
-JavaScript (yes, technically I mean ECMAScript 5, for anyone who wants to know the particulars) does not throw an exception when dividing by zero.  However, depending on the numerator, when the denominator is zero, you may get different results!  
+JavaScript (yes, technically I mean ECMAScript 5, for anyone who wants to know the particulars) does not throw an exception when dividing by zero.  However, depending on the numerator, when the denominator is zero, you may get different results!
 
 ```javascript
 > 1 / 0
@@ -232,7 +232,7 @@ NaN
 ```
 
 Dividing a positive value by zero returns `Infinity`, dividing by a negative number returns `-Infinity`, and dividing zero by zero returns `NaN` (Not a Number).  This means that dividing by zero, despite being one "internal equivalence class" in Java programs, is three different ones in JavaScript programs.  Knowing this, you would want to test that the program can handle all of these return values, and not assume that you had checked all edge cases simply because you had checked for dividing one by zero.  As a side note, this is an actual example from a test plan that I wrote, and it was used to find several defects.
- 
+
 
 ## Executing a Test Plan
 
@@ -248,10 +248,10 @@ Although there is no universal status repository, these are a representative sam
 2. Failed
 3. Paused
 4. Running
-5. Blocked 
+5. Blocked
 6. Error
 
-A __passed__ test is one in which all of the expected behavior (i.e., the output values and postconditions) match the observed behavior.  Colloquially, one could say that it's a test where everything worked.  
+A __passed__ test is one in which all of the expected behavior (i.e., the output values and postconditions) match the observed behavior.  Colloquially, one could say that it's a test where everything worked.
 
 Conversely, a __failed__ test in which at least one aspect of the observed behavior was not equal to the expected behavior.  This difference could be in either the output values or the postconditions.  For example, if a square root function returned that the square root of 4 was 322, then that test case would be marked "failed".  If a test case had a postcondition that a message `ERROR: ELEPHANTS CAN'T DANCE` appears on the screen, but the error message in fact reads `ERROR: ELEPHANTS CAN'T DEFENESTRATE`, then once again the test case has failed.  Whenever a test case is marked failed, there should be a corresponding defect filed.  This could be a new defect, or it could be that a known defect has caused multiple problems - for example, errors for all animals are saying that they can't defenestrate when the actual issue is that they can't dance.  If there is no defect associated with a failed test case, then either the test case wasn't important enough to test, or the defect found wasn't important enough to file.  If either is the case, you should rethink your test case!
 
@@ -338,7 +338,7 @@ FUN-COFFEE-TOO-COLD: 6, 7
 FUN-TEA-ERROR: 8
 ```
 
-It's easy to see that for each requirement, there is at least one test covering it.  If there were another requirement, say, 
+It's easy to see that for each requirement, there is at least one test covering it.  If there were another requirement, say,
 
 __FUN-COFFEE-FROZEN.__ If the coffee is in a solid and not a liquid state, then the app shall display `THIS COFFEE CAN ONLY BE EATEN, NOT DRUNK` message.
 
@@ -365,7 +365,7 @@ OUTPUT VALUES: None
 POSTCONDITIONS: "POODLE IS OK" message is displayed upon screen.
 ```
 
-Our traceability matrix will once again have a gap in it, but this time on the requirements side.  Test case 9 does not match up with any of the requirements, and may be a superfluous test.  
+Our traceability matrix will once again have a gap in it, but this time on the requirements side.  Test case 9 does not match up with any of the requirements, and may be a superfluous test.
 
 ```
 FUN-COFFEE-TOO-HOT: 1, 2
@@ -375,7 +375,7 @@ FUN-TEA-ERROR: 8
 ??? : 9
 ```
 
-Occasionally, in the "real world", there may be some sanity checks that may not officially line up with a specific requirement.  For example, if a systems engineer did not put in a specific requirement for reliability, but the test plan may include a test for ensuring that the system works even when running for an entire day.  This is certainly not a best practice, but it does happen occasionally.  If this occurs, the best course of action would be to create a requirement for reliability that it can be tested against.  
+Occasionally, in the "real world", there may be some sanity checks that may not officially line up with a specific requirement.  For example, if a systems engineer did not put in a specific requirement for reliability, but the test plan may include a test for ensuring that the system works even when running for an entire day.  This is certainly not a best practice, but it does happen occasionally.  If this occurs, the best course of action would be to create a requirement for reliability that it can be tested against.
 
 Of course, a traceability matrix provides a very simple overview of the test coverage.  The fact that every requirement has been tested does not mean that each requirement has been tested thoroughly.  For example, what if the system has issues with extremely hot coffee?  The highest temperature we checked for was 200 degrees Fahrenheit, but it may fail at 201 degrees Fahrenheit.  There's no verification in the traceability matrix itself that the tests are good, either.  If we had tested whether or not the system was meeting the FUN-COFFEE-TOO-HOT requirement by dunking the system in ice water, but said that that test case lined up with the FUN-COFFEE-TOO-HOT requirement, there's no way tell just by looking at the traceability matrix.
 

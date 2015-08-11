@@ -1,6 +1,6 @@
 # Defects
 
-We've spent quite a bit of time up to this point learning how to find defects.  This makes sense, since one of the key goals of testing is to do exactly that.  However, we have not yet done is to rigorously define defects and think about what to do once they are found. 
+We've spent quite a bit of time up to this point learning how to find defects.  This makes sense, since one of the key goals of testing is to do exactly that.  However, we have not yet done is to rigorously define defects and think about what to do once they are found.
 
 ## What is a Defect?
 
@@ -10,15 +10,15 @@ A defect is any sort of error in a program which causes the system under test to
 2. Return an incorrect result
 3. Stop execution unexpectedly (system stability is an implicit requirement in all systems under test)
 
-The most obvious kind of defect is a system failing to meet requirements.  If the requirements state that the program should do something, and the program does not do it, then that is a defect.  As discussed in the chapter on requirements, though, anything written in natural language is bound to have some ambiguities.  The developer who implemented the feature may have had a different understanding of what the requirement actually meant than the tester.  
+The most obvious kind of defect is a system failing to meet requirements.  If the requirements state that the program should do something, and the program does not do it, then that is a defect.  As discussed in the chapter on requirements, though, anything written in natural language is bound to have some ambiguities.  The developer who implemented the feature may have had a different understanding of what the requirement actually meant than the tester.
 
-An example of a system returning an incorrect result would be a spreadsheet program showing that the value of 2 + 3 is 23, or a drawing program where every time the user clicks on the color red, the drawing tool starts drawing in blue.  These may or may not be specified by the requirements (and thus may or may not overlap with the second kind of defect).  
+An example of a system returning an incorrect result would be a spreadsheet program showing that the value of 2 + 3 is 23, or a drawing program where every time the user clicks on the color red, the drawing tool starts drawing in blue.  These may or may not be specified by the requirements (and thus may or may not overlap with the second kind of defect).
 
-The last kind of defect is one common to all programs - a program should not die unexpectedly.  That is, the intent of the user or the original writer or installer of the program is that the system should be running at some point in time, that program should be running at that point in time.  
+The last kind of defect is one common to all programs - a program should not die unexpectedly.  That is, the intent of the user or the original writer or installer of the program is that the system should be running at some point in time, that program should be running at that point in time.
 
 Software may "shut down hard" without it necessarily being a defect.  For example, sending a SIGKILL (via "kill -9" or a similar command) to a Unix process causes the program to cease execution without running any of its shutdown routines.  However, it did not die unexpectedly - the user wanted it to do so and even sent it a message telling it to do exactly that!  The reason that the user had to send a SIGKILL to the process may be a defect, but the fact that it stopped running under these circumstances is not a defect.  If the system dies to a segmentation fault, an untrapped division by zero, or dereferencing a null pointer, these are all considered defects.  They should never happen in a program, even if the requirements do not specify that "the program shall run without any null pointer exceptions".
 
-Finally, note that the word "bug" is often used interchangeably with the word "defect".  They mean exactly the same thing, but "bug" is much more colloquial.  In this book, the word "defect" will be used, except in those cases where author forgets to do so.  
+Finally, note that the word "bug" is often used interchangeably with the word "defect".  They mean exactly the same thing, but "bug" is much more colloquial.  In this book, the word "defect" will be used, except in those cases where author forgets to do so.
 
 ## Reporting a defect and the Defect Life Cycle
 
@@ -28,7 +28,7 @@ When testing software, it is important to keep track of as much information as i
 
 On the other hand, it's possible to take this too far.  There is usually no need to mark down every process running on the system whenever a typo is discovered.  Exactly how much to write down for a defect will vary based on the defect and domain in which you are working.  However, there are certain pieces of data which are useful in many cases.  The following section will outline a defect template so that these items are not forgotten.  By reminding the filer of the defect to include certain information, the filer is much more likely to not miss any important steps or information, thus minimizing superfluous communication about the defect in the process of fixing it.  Checklists and templates like this are extremely powerful tools for situations where the costs of failing to do something are high; see _The Checklist Manifesto_ by Atul Gawande for a detailed explanation.
 
-When a defect is reported, its life is just beginning.  Just as software development as a whole has a "software development life cycle" - going from requirements, to design, etc., all the way to maintenance, support, and eventual "end-of-life"-ing of the software, defects also have a "defect life cycle".  The defect life cycle is as follows:
+When a defect is reported, its life is just beginning.  Just as software development as a whole has a "software development life cycle" - going from requirements, to design, etc., all the way to maintenance, support, and eventual "end-of-life"-ing of the software - defects also have a "defect life cycle".  The defect life cycle is as follows:
 
 1. Discovery
 2. Reporting
@@ -40,7 +40,7 @@ When a tester or other user first encounters and recognizes a defect, this is th
 
 The second stage is filing the defect, usually in some sort of standardized way.  This involves spending some time and figuring out exactly what the tester did to expose the issue, what was expected to happen, and what was observed to happen.  Remember that the role of the tester is to discover the issue and how to reproduce it, not to figure out the root cause of the problem in the code.  This can be done - and often is, depending on the technical knowledge of the tester - but it is not the primary role.  If a tester looks too deeply into the codebase, he or she may be tempted to write what needs to be done to fix the defect as opposed to focusing on what the defect actually is.  Remember, similar to requirements, a defect should be focused on __what__ is wrong, not __how__ to fix it.
 
-After a defect is filed, somebody must determine whether or not to spend resources to fix it, and if so, how to prioritize what may be a large number of defects.  This is called __triaging__.  The word triage comes from a medical term from prioritizing the order that patients should be treated based on how badly they've been wounded or how ill they are.  It is often done when there are large numbers of casualties at once, too many for medical personnel to take care of all of them.  For instance, after a major natural disaster, a hospital may be overrun with patients, some of whom have minor injuries, others with serious injuries, and some who are critically wounded and unable to be saved.  In such cases, the hospital may triage the incoming patients and immediately treat those with serious wounds, but deprioritize working on those with minor injuries and those whom they are unlikely to be able to heal.  
+After a defect is filed, somebody must determine whether or not to spend resources to fix it, and if so, how to prioritize what may be a large number of defects.  This is called __triaging__.  The word triage comes from a medical term from prioritizing the order that patients should be treated based on how badly they've been wounded or how ill they are.  It is often done when there are large numbers of casualties at once, too many for medical personnel to take care of all of them.  For instance, after a major natural disaster, a hospital may be overrun with patients, some of whom have minor injuries, others with serious injuries, and some who are critically wounded and unable to be saved.  In such cases, the hospital may triage the incoming patients and immediately treat those with serious wounds, but deprioritize working on those with minor injuries and those whom they are unlikely to be able to heal.
 
 Although this particular scenario is rare in the medical world, in the software development world, it is extremely common.  There are usually far more defects known than the developers have time to fix.  Relevant stakeholders decide which defects can be fixed given the amount of resources available, and prioritize according to how quickly they can be fixed and how much pain they are causing to users of the software.  In some organizations, developers are responsible for choosing which defects to work on, determining for themselves which will be easiest to fix and resolve the most pain for the users of the software.  This kind of system works best when the developers deeply understand the needs of the user, for example when the project is itself a software development tool which they are users of.
 
@@ -104,7 +104,7 @@ It is imperative to write down specific values and steps, especially if there is
 
 The core concept behind testing, and one which we will refer to again and again throughout this book, is checking that the expected behavior of a system matches the observed behavior.  It makes little sense to test something if you don't know what should happen.  In the __expected behavior__ field, the tester should note what the system was expected to do after the execution steps are executed.
 
-Once again, the more specific the behavior listed, the easier it will be for developers and other testers to reproduce the issue, and eventually fix it.  One should never write down that "the system should return the correct value"; instead, write that the "the system should return 6".  
+Once again, the more specific the behavior listed, the easier it will be for developers and other testers to reproduce the issue, and eventually fix it.  One should never write down that "the system should return the correct value"; instead, write that the "the system should return 6".
 
 Aside from saving people from calculating the correct value themselves, another benefit of writing down the expected behavior so precisely is that the tester or test case may not be expecting the correct behavior!  In this case, someone can view the defect and determine that it's actually invalid - the software is performing as intended.  This can happen when the requirements are ambiguous or the reporting tester simple makes a mistake.
 
@@ -114,7 +114,7 @@ Opposed to the expected behavior field is the __observed behavior__ field.  This
 
 ### Impact
 
-The tester should have some idea of what impact this will have on the user.  In the __Impact__ field, this can be specified.  
+The tester should have some idea of what impact this will have on the user.  In the __Impact__ field, this can be specified.
 
 Be careful not to overgeneralize or editorialize in this section.  Let's say that a video game background color changes from blue to purple when the player jumps.  A factual way of describing the impact is that "User will see background color change, but gameplay is unaffected."  An editorialized version would be "User will hate this game and everybody who made it, because the stupid background becomes a stupid color when the stupid user does something stupid."  In general, if you find yourself using the word "stupid" or other derogatory words in your defect reports, there is probably a better way to express the issue.
 
@@ -122,9 +122,9 @@ Be careful not to overgeneralize or editorialize in this section.  Let's say tha
 
 Related to the Impact field is the __Severity__ field, which contains the defect reporter's initial impression of how severe the issue is.  This can either be explained qualitatively (e.g., "this is really, really, bad.  Really, really, really bad." or "This isn't much of an issue, to be honest") or a standardized scale can be used in order to be more quantitative.  The latter is far more popular, but will usually vary from organization to organization.  It may be something as simple as a numeric scale, with "1" being a very minor issue and "10" being an absolute showstopper.  However, oftentimes there will be gradations with descriptors.
 
-An example rating system is explained below.  
+An example rating system is explained below.
 
-1. __Blocker__ - This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker bugs would be 
+1. __Blocker__ - This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker bugs would be
 
 2. __Critical__ - Although the system could still be released with a bug of this magnitude, it severely impacts the core functionality of the program or makes it almost unusable.  Alternatively, a defect that normally would be marked as a blocker, but that has some sort of workaround, could be classified as critical.
 
@@ -165,7 +165,7 @@ What exactly goes here will vary by the type of software you are testing, but it
 
 ### Exceptions to the Template
 
-For some defects, fields may be intentionally left blank.  For example, the defect may be relatively simple and not include any extra detail, so the Notes field may be marked "N/A".  In many cases where the expected behavior is obvious, this field can also be marked "N/A"; if the Observed Behavior is "System crashes", it would be obvious to most reviewers that the Expected Behavior is "System does not crash."  As a best practice, it's better to write "N/A", "None" or some other signifier, so that others who look at the defect report are not under the impression that the tester just forgot to fill in some fields.  
+For some defects, fields may be intentionally left blank.  For example, the defect may be relatively simple and not include any extra detail, so the Notes field may be marked "N/A".  In many cases where the expected behavior is obvious, this field can also be marked "N/A"; if the Observed Behavior is "System crashes", it would be obvious to most reviewers that the Expected Behavior is "System does not crash."  As a best practice, it's better to write "N/A", "None" or some other signifier, so that others who look at the defect report are not under the impression that the tester just forgot to fill in some fields.
 
 In other cases, the field may be marked by "Unknown" or a similar marker that indicates that the filer of the defect does not know what the field should be.  For example, if the system crashed randomly, with no error message or other output, and the tester is unable to reproduce it, the Reproduction Steps field may be marked "Unknown".  If requirements are ambiguous or contradictory, the expected behavior field may be marked "Unknown".  If the tester is not sure what impact the defect would have on the end user, e.g., because the problem is deep in the infrastructure of the system, the Impact field may be marked "Unknown".
 
@@ -199,7 +199,7 @@ User sees error page with "Please fill in both username and password" message
 
 OBSERVED BEHAVIOR:
 
-User sees 500 error. 
+User sees 500 error.
 
 IMPACT:
 
@@ -231,9 +231,9 @@ Caught NullPointerException in LoginProcedure, Line 38
 
 ----
 
-SUMMARY: "Invisible wall" on level 12 of Amazing Bulgarian Plumber 
+SUMMARY: "Invisible wall" on level 12 of Amazing Bulgarian Plumber
 
-DESCRIPTION: 
+DESCRIPTION:
 
 On level 12, three blocks to the right from the first Anaconda Plant, there are three blocks stacked on top of each other.  However, they are the same color as the background and thus invisible to the user.  Per the requirements, there should be no invisible obstacles for players of the game.
 

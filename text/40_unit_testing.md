@@ -61,7 +61,7 @@ Although we will be covering JUnit, as it is a popular and easy-to-understand te
 
 Keep in mind, though, that the particular implementation of testing framework you use isn't nearly as important as the concepts you learn and can apply.  Worry less about the syntax, and more about understanding the concepts of unit testing and how they differ, and how they are similar to, concepts that you have already learned in manual testing.
 
-The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly. 
+The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly.
 
 ```java
 import static org.junit.Assert.*;
@@ -205,7 +205,7 @@ public void printAndSave() {
 
 As opposed to a square root function, where we know what exactly we're passing in, and thus what values the function has access to, there are dependencies on several external variables.  Running this code once may cause everything to work properly; running it again, when those variables are set to different values, may cause everything to fail.  It's difficult to know where all to check for the expected behavior.  It's writing something to a file, it looks like, but we'll need to figure out the file name and location based on the value of the variable at a particular point in time.  We'll also need to figure out what the `_globalUserId` is to determine what the right values are, and how it will be displayed by looking at the value of `_globalScreenSetting`.  In any of these cases, they could be set by a large number of external factors, and the values of the output depend on things that we may not have direct control over.  All of these come together to make testing impure methods a much more difficult task.
 
-This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary (or, at least, you need some clever way around them, like monads in Haskell) if you want to do anything other than make your processor warm.  After all, printing anything to the screen is technically a side effect.  However, by keeping as many functions pure as possible, and limiting impure functions to certain areas, you will make testing the system much easier.  I like to think of it as "quarantining" the impure functions so that I know where difficulties in testing will lie. 
+This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary (or, at least, you need some clever way around them, like monads in Haskell) if you want to do anything other than make your processor warm.  After all, printing anything to the screen is technically a side effect.  However, by keeping as many functions pure as possible, and limiting impure functions to certain areas, you will make testing the system much easier.  I like to think of it as "quarantining" the impure functions so that I know where difficulties in testing will lie.
 
 ## Test Doubles
 
@@ -295,7 +295,7 @@ public class Dog
 }
 ```
 
-If we wanted to test this, we would have to create an object and set the value separately from the actual test execution.  
+If we wanted to test this, we would have to create an object and set the value separately from the actual test execution.
 
 ```java
 public class DogTest {
@@ -335,7 +335,7 @@ public class Dog
 
 If we were to write a test, we have no way of making doubles for the objects!  Even if we then refactored `setUpDogStuff()` to accept `DogDish`, `DogFood`, and `DogWater` parameters, we would be forced to work with additional items when all we care about is `DogFood`.
 
-However, if we just pass in `DogFood` as a parameter to the method, like so: 
+However, if we just pass in `DogFood` as a parameter to the method, like so:
 
 ```java
 public class Dog
@@ -417,7 +417,7 @@ public void testHaveFunAtDuckPond() {
     DuckPond dp = Mockito.mock(DuckPond.class);
     Mockito.verify(duckPond.haveFun(), times(1));
     p.haveFunAtDuckPond();
-}            
+}
 ```
 
 Note, in this case, that there is no traditional assertion.  The test case ends with the execution steps, viz., calling `.haveFunAtDuckPond()`.  The assertion is actually set when you verify that `.haveFun()` will be called one time on the mocked `DuckPond` object.
@@ -434,7 +434,7 @@ public class BirdTest
     DatabaseConnection _dbc = null;
 
     // Set up a mocked database connection
-    @Before	     
+    @Before
     public void setUp() throws Exception {
         mockedDbc = Mockito.mock(DatabaseConnection.class);
         _dbc = setupFakeDbConnection(mockedDbc);
@@ -465,7 +465,7 @@ public class BirdTest
 
 Note that `@Before` and `@After` methods are called before __each__ test case, not one time before all of them and one time after all of them.  In the above instance, `setUp` will be called twice and `tearDown` will be called twice.
 
-Also note that while there is nothing stopping you from prefacing multiple methods with `@Before` or `@After` annotations, it's usually not necessary and will just make it more difficult to follow the code.  If you do make multiple methods with these annotations, they will run in a deterministic order (that is, if you run it again, they will run in the same order).  However, since tests should not depend upon each other, this ordering is not specified and is liable to change whenever you update your code and/or JUnit version.  It is possible to specify the order that tests will run in, using the `@FixMethodOrder` annotation, but you want to avoid doing that if at all possible.  Honestly, I feel a little guilty even writing down that it is possible.  
+Also note that while there is nothing stopping you from prefacing multiple methods with `@Before` or `@After` annotations, it's usually not necessary and will just make it more difficult to follow the code.  If you do make multiple methods with these annotations, they will run in a deterministic order (that is, if you run it again, they will run in the same order).  However, since tests should not depend upon each other, this ordering is not specified and is liable to change whenever you update your code and/or JUnit version.  It is possible to specify the order that tests will run in, using the `@FixMethodOrder` annotation, but you want to avoid doing that if at all possible.  Honestly, I feel a little guilty even writing down that it is possible.
 
 Getting back to setup and teardown procedures specifically, if you have complicated ones, using multiple annotations is usually unnecessary. You can still use a single method, but call out to other methods as helpers, instead of annotating numerous methods.
 
@@ -820,7 +820,7 @@ public class CatTest {
 }
 ```
 
-Now imagine that we run this JUnit, which executes test cases in a random order; sometimes the second test would pass, and sometimes it would fail!  
+Now imagine that we run this JUnit, which executes test cases in a random order; sometimes the second test would pass, and sometimes it would fail!
 
 There is yet another benefit to creating tests which have no dependencies on other tests.  Independent tests can be run in parallel, possibly decreasing execution time dramatically.  On a modern multi-core machine, you may find yourself running tests many times more quickly if they can be run independently.
 
@@ -838,7 +838,7 @@ Code coverage tells you how much of the codebase is actually tested by the code.
 public class Turtle {
 
     public void crawl() { ... }
-    
+
     public void eat() { ... }
 
 }
@@ -879,7 +879,7 @@ public class Turtle {
            move(EVEN_MORE_SLOWLY);
        }
     }
-    
+
     public void eat() {
        System.out.println("Yum yum");
     }
