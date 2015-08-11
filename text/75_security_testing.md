@@ -61,7 +61,7 @@ It is not necessary for malware to be involved for there to be an attack on a sy
 
 ## Common Attacks, and How To Test For Them
 
-### Injection 
+### Injection
 
 In an __injection attack__, the attacker is attempting to get your computer to run some arbitrary code of their choosing.  One of the most common types of injection attacks is a __SQL injection attack__, since many programmers, especially new ones, do not __sanitize__ their database inputs.  Sanitization involves ensuring that input from a user will not be directly executed, by "cleaning it up" so that it can't run.  As an example, imagine some code that accepts a string from the user asking for their name, and then searches in the database for any users with that name, and will return the unique ID (uid) for the first user with that name.
 
@@ -80,7 +80,7 @@ public int findUidByName(String name) {
 
 This is relatively simple, but contains a security flaw - there is nothing preventing the user from sending in other SQL commands, and not their name.  These SQL commands will be executed by the machine uncomplainingly, even if the commands say to delete the database, for instance.  Imagine that the user passes in the value `a'; DROP TABLE users;` as their name, for instance.  The following SQL will be executed:
 
-```
+```sql
 SELECT uid FROM users WHERE name = 'a'; DROP TABLE users;
 ```
 
@@ -100,7 +100,7 @@ What happens when you try to put ten pounds of data in a five-pound bag?  A __bu
 int[] _fiveInts = new int[5];
 ```
 
-Now let's say that you have a method that accepts a string of integers, separated by comments (e.g. "7,4,29,3,2"), and then puts each of the integers into the `_fiveInts` array.
+Now let's say that you have a method that accepts a string of integers, separated by commas (e.g. `7,4,29,3,2`), and then puts each of the integers into the `_fiveInts` array.
 
 ```java
 public void putDataIntoFiveInts(String data) {
@@ -140,7 +140,7 @@ While these may seem ridiculous to many readers of this text (and if they are no
 
 Phishing attacks often seem very poorly prepared, with broken English and technical inaccuracies, but this is actually a part of the plan!  There are usually multiple steps after the initial contact phase in order to achieve the primary goal of the phishing expedition.  For example, let's say that the target received an email stating that their email account was compromised and they have to click [here](http://www.example.com "Fake Company") to verify their password (if you're not reading this online, links don't work as well on dead-tree books, but don't worry, you're not missing much).  If the user clicks the malicious link, they will be taken to a page created by the attackers (and which may not look exactly like the actual, legitimate account information page) that allows them to steal the user's password.  Ideally, the user won't check with their IT department afterwards about the email; the attackers want time to use the email for whatever malicious people do with stolen email accounts (I like to think it's send fan letters to boy bands which they're too embarrassed to send from their own account).  In other words, they want people who are not very conscientious or technically literate, who overlook minor issues, who are trusting of whatever they see in front of them.  These are the same people who would overlook the poor grammar and inaccuracy of the original email!  People who are less trusting might be even more work for the attackers, as they may deliberately enter false data or even work on trying to track them down.  The poorly constructed email is actually a screening mechanism.
 
-A much more dangerous variant of phishing is __spear phishing__, in which the user is specifically targeted.  In this case, the attacker goes out of their way to ensure that the user will not be suspicious of the email.  Relevant details will be carefully crafted: any other users mentioned in the email will be verified, grammar will be excellent (or at least appropriate), the user's actual name will be used, its headers will be forged to look like it came from the targeted user's boss, etc.  Spear phishing attacks are much more difficult and time-consuming to set up than a traditional phishing attack, but they also tend to be more effective; think of them as precision-guided munitions compared to the carpet bombing of a regular phishing attack.  Even experienced users may have difficulty determining that the email is not legitimate.  
+A much more dangerous variant of phishing is __spear phishing__, in which the user is specifically targeted.  In this case, the attacker goes out of their way to ensure that the user will not be suspicious of the email.  Relevant details will be carefully crafted: any other users mentioned in the email will be verified, grammar will be excellent (or at least appropriate), the user's actual name will be used, its headers will be forged to look like it came from the targeted user's boss, etc.  Spear phishing attacks are much more difficult and time-consuming to set up than a traditional phishing attack, but they also tend to be more effective; think of them as precision-guided munitions compared to the carpet bombing of a regular phishing attack.  Even experienced users may have difficulty determining that the email is not legitimate.
 
 Testing that social engineering will not work on a system is difficult.  After all, there is no technical aspect to check; the programmed aspects of the system would work correctly, and by authorized users, but authorized users who are actually doing the bidding of an unauthorized user.   While we have discussed the difficulty of testing impure functions, which may rely on global variables or other external mutable state, people are the ultimate unpredictable external state.  A person who may never fall for a phishing email may be tricked by somebody calling them; someone who would normally never fall for anything may have had a rough night the evening before and isn't thinking clearly; someone else may be overwhelmed with other work and click on a malicious link in an email.
 

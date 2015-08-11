@@ -1,6 +1,6 @@
 # Developing A Test Plan
 
-Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called _catweigher_ (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight.  
+Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called _catweigher_ (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight.
 
 ```bash
 $ catweigher 1.7
@@ -17,8 +17,8 @@ Requirements:
 
 1. __FUN-PARAMETER:__ The system shall accept a single parameter, `CATWEIGHT`, which can only be a single positive floating-point value or positive integer.  If the parameter is not one of these two kinds of values, or if there is not exactly one parameter, the system shall immediately shut down with only the message "Please enter a valid parameter."
 2. __FUN-STARTUP-MESSAGE:__ Upon startup, the system shall display "Cat Weighing System" upon the console.
-3. __FUN-UNDERWEIGHT:__ If `CATWEIGHT` is less than 3 kilograms, then the message "Cat is underweight" shall be displayed upon the console.  
-4. __FUN-NORMALWEIGHT:__ If `CATWEIGHT` is equal to or greater than 3 kilograms and less than 6 kilograms, then "Cat is normal weight" shall be displayed upon the console.  
+3. __FUN-UNDERWEIGHT:__ If `CATWEIGHT` is less than 3 kilograms, then the message "Cat is underweight" shall be displayed upon the console.
+4. __FUN-NORMALWEIGHT:__ If `CATWEIGHT` is equal to or greater than 3 kilograms and less than 6 kilograms, then "Cat is normal weight" shall be displayed upon the console.
 5. __FUN-OVERWEIGHT:__ If `CATWEIGHT` is greater than 6 kilograms, then "Cat is overweight" shall be displayed upon the console.
 6. __NF-PERF-TIME:__ The system shall display the appropriate message within two seconds of the program being executed.
 
@@ -43,15 +43,15 @@ I have found that a top-down approach of the requirements of the program is of t
 
 Looking at the requirements, I can mentally divide them into three sections:
 
-1. Input (accepting the parameter)
-  1. FUN-PARAMETER
-2. Output (displaying messages and results): 
-  1. FUN-STARTUP-MESSAGE
-  2. FUN-UNDERWEIGHT
-  3. FUN-NORMALWEIGHT
-  4. FUN-OVERWEIGHT
+1. Input (accepting the parameter):
+    1. FUN-PARAMETER
+2. Output (displaying messages and results):
+    1. FUN-STARTUP-MESSAGE
+    2. FUN-UNDERWEIGHT
+    3. FUN-NORMALWEIGHT
+    4. FUN-OVERWEIGHT
 3. Performance:
-  1. NF-PERF-TIME
+    1. NF-PERF-TIME
 
 How did I determine how to sort these out?  I looked for requirements which were related to each other and put each in a "cluster".  The program you're working will probably not have these exact same clusters (unless you also happen to be working on a cat-weighing program, lucky you).  For larger programs, these clusters will often revolve around specific features (e.g., shopping cart, item display, and checkout in an online shopping application) or different sub-systems (e.g., user interface, enemy artificial intelligence, and graphics for a video game).  There is really no "right answer" as to how to cluster requirements together for testing, and as you understand the system better, the clustering may change.  However, by providing a general outline, you can start to get a handle on testing the system holistically.
 
@@ -60,9 +60,9 @@ Looking specifically at the test plan outline we developed here, it is apparent 
 Let's start with the first section, Input.  I notice that there are several possible use cases here:
 
 1. The user enters one valid parameter
-1. The user enters no parameters
-2. The user enters one parameter, but it is invalid
-3. The user enters more than one parameter
+2. The user enters no parameters
+3. The user enters one parameter, but it is invalid
+4. The user enters more than one parameter
 
 In the last three use cases, the expected behavior is the same; the system shuts down and the message "Please enter a valid parameter" is displayed.  In the first use case, the system will continue on and have behavior governed by other requirements.  You can already see here that it's important to have a view of the entire system, instead of looking at requirements solely in and of themselves.  This becomes more and more difficult as the number of requirements grows and the system under test becomes more complex.
 
