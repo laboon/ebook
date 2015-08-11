@@ -13,16 +13,16 @@ This technique is called __combinatorial testing__.  Testing all of the possible
 Let's take a very simple example, a program which has only three variables for a character's formatting: bold, italic, and underline.  These can be combined, so that, for example, a character can be just italic; or italic and underlined; or bold, italic and underlined.  Since each of these variables is a Boolean (they can only be true or false - you can't have a "half-italic" character) The list of possibilities for a character can be expressed as a truth table.
 
 ```
-     BOLD       | ITALIC    | UNDERLINE 
+     BOLD       | ITALIC    | UNDERLINE
     ------------+-----------+------------
 1.   false      | false     | false
-2.   false      | false     | true 
+2.   false      | false     | true
 3.   false      | true      | false
-4.   false      | true      | true 
+4.   false      | true      | true
 5.   true       | false     | false
-6.   true       | false     | true 
+6.   true       | false     | true
 7.   true       | true      | false
-8.   true       | true      | true 
+8.   true       | true      | true
 ```
 
 In order to exhaustively test the program, we will need to run the eight tests above.  Let's assume that our manager is extremely strict, however, and insists that we only have time to run six tests.  How can we reduce the number of tests that we run while still maintaining the highest likelihood of finding defects?
@@ -30,7 +30,7 @@ In order to exhaustively test the program, we will need to run the eight tests a
 As explained above, checking that all pairs of variables are checked can help us find a large percentage of defects.  There are three possible pairs of variables in this example: bold and italic, bold and underline, and italic and underline.  For each of these pairs, we want to have an entire truth table of the two elements covering all possibilities.  For example, to ensure that we test all of the possible combinations of bold and italic, we can make the following truth table:
 
 ```
- BOLD       | ITALIC    
+ BOLD       | ITALIC
 ------------+-----------
  false      | false
  false      | true
@@ -41,14 +41,14 @@ As explained above, checking that all pairs of variables are checked can help us
 Now we need to ensure that our tests cover every possibility of bold and italic.  We can see that test 1 provides false/false, test 4 provides false/true, test 5 provides true/false, and test 8 provides true/true.
 
 ```
-     BOLD       | ITALIC    | UNDERLINE 
+     BOLD       | ITALIC    | UNDERLINE
     ------------+-----------+------------
 1.   false      | false     | false       <--
-2.   false      | false     | true 
+2.   false      | false     | true
 3.   false      | true      | false
 4.   false      | true      | true        <--
 5.   true       | false     | false       <--
-6.   true       | false     | true 
+6.   true       | false     | true
 7.   true       | true      | false
 8.   true       | true      | true        <--
 ```
@@ -60,7 +60,7 @@ The next step is to ensure that the other variable pairs have all their combinat
 Finally, we should check the last variable combination, italic/underline.  Test 1 gives us false/false and test 4 gives us true/true.  Unfortunately, though, false/true and true/false are not yet covered by any tests that we're already planning on using, so we need to add some more.  In fact, since there are two different combinations, and these combinations are mutually exclusive, we will need to add two tests.  Let's add test 2 for false/true and test 3 for true/false.  Our final test plan is the following:
 
 ```
-     BOLD       | ITALIC    | UNDERLINE 
+     BOLD       | ITALIC    | UNDERLINE
     ------------+-----------+------------
 1.   false      | false     | false
 2.   false      | false     | true
@@ -75,10 +75,10 @@ We have met our strict manager's demand and reduced the number of tests by 25%. 
 Using NIST ACTS with the IPOG algorithm, I was able to generate the following optimal covering array.  With only four tests, it would literally be impossible to be more efficient, since each pairwise truth table will themselves require four different tests.  Even more importantly, we have now exceeded the manager's expectations, cutting the tests down by 50% instead of the 25% that he demanded, yet still testing all pairwise interactions.
 
 ```
-     BOLD       | ITALIC    | UNDERLINE 
+     BOLD       | ITALIC    | UNDERLINE
     ------------+-----------+------------
 1.   false      | false     | false
-4.   false      | true      | true 
+4.   false      | true      | true
 5.   true       | false     | false
 7.   true       | true      | false
 ```
@@ -86,7 +86,7 @@ Using NIST ACTS with the IPOG algorithm, I was able to generate the following op
 Although this example was done with Boolean variables, any kind of variable can be used as long as it's finite.  If it's a variable with infinite possibilities - say, an arbitrary length string - you can map to a certain number of possibilities (e.g., `a`, `abcde`, and `abcdefghijklmnop`).  When doing so, you should first think of the different equivalence classes, if any, and ensure that you have a value from each equivalence class.  You should also try to check several different edge cases, especially those which may cause problems when interacting in combination with other variables.  Suppose in our previous example that instead of checking a character, we wanted to check a word.  We may add different possibilities for the word to be tested.  Let's start with "a" (a single character) and "bird", a simple word.  Our generated covering array will look similar to the previous one, just using "a" and "bird" as the values for the word variable, instead of true and false as for all of the other variables.
 
 ```
-        WORD   | BOLD       | ITALIC    | UNDERLINE 
+        WORD   | BOLD       | ITALIC    | UNDERLINE
        --------+------------+-----------+------------
 1.      "a"    | true       | false     | false
 2.      "a"    | false      | true      | true
@@ -99,7 +99,7 @@ Although this example was done with Boolean variables, any kind of variable can 
 Note that we are still checking all pairs.  Let's check the word/bold pair to verify that that is the case.  In test 1, we check for the word "a" with bold set to true.  In test 2, we check the word "a" with bold set to false.  In test 3 we check the word "bird" with bold set to true, and in test 4 we check the word "bird" with bold set to false.  However, what if we're worried that special characters may cause an issue when formatting?  We'd want to add a third possibility for the word variable, which is certainly allowed even though all of our possibilities so far have used only two possible values.
 
 ```
-        WORD   | BOLD       | ITALIC    | UNDERLINE 
+        WORD   | BOLD       | ITALIC    | UNDERLINE
        --------+------------+-----------+------------
 1.      "a"    | true       | false     | false
 2       "a"    | false      | true      | true
@@ -147,7 +147,7 @@ Checking for every possible three-way interaction is going to involve more tests
 12.     false      | false     | false     | false       | false
 ```
 
-Let's examine a given three-way interaction, bold/italic/underline, and double-check that we are testing all of the possibilities.  False/false/false is covered by test 12; false/false/true is covered by test 9; false/true/false is covered by test 6; false/true/true is covered by test 5; true/false/false is covered by test 4; true/false/true is covered by test 3; true/true/false is covered by test 10; and true/true/true is covered by test 1.  Note that there are eight possible combinations and ten tests, so there is some repetition (for example, true/true/true is covered by both tests 1 and 11).  
+Let's examine a given three-way interaction, bold/italic/underline, and double-check that we are testing all of the possibilities.  False/false/false is covered by test 12; false/false/true is covered by test 9; false/true/false is covered by test 6; false/true/true is covered by test 5; true/false/false is covered by test 4; true/false/true is covered by test 3; true/true/false is covered by test 10; and true/true/true is covered by test 1.  Note that there are eight possible combinations and ten tests, so there is some repetition (for example, true/true/true is covered by both tests 1 and 11).
 
 The number of interactions can be tuned upwards as high as you would like, although if you are planning on testing n-way interactions where _n_ is the number of variables you have, you are just doing exhaustive testing.  According to empirical studies done by NIST, the maximum number of interactions that caused an error was six, so checking for more than that would be over-testing in many situations.
 

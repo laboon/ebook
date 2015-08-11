@@ -48,7 +48,7 @@ There are several principles to keep in mind when writing in a TDD manner.
 
 * __KISS (Keep It Simple, Stupid):__ One of the goals of TDD is to ensure that the codebase is flexible and extensible, and one of the greatest enemies of those two goals is complexity.  Complex systems are difficult to understand and thus modify; complex systems tend to be overfit to the specific problem they were developed for, and it's difficult to add new features or functionality.  Keep your code simple and your design simple, and consciously avoid adding additional complexity.
 
-* __Fake It 'Til You Make It:__ It's okay to use fake methods and objects in your tests, or just use a placeholder such as `return 0;` as the entire body of a method.  You can come back later with additional tests once they are necessary.  
+* __Fake It 'Til You Make It:__ It's okay to use fake methods and objects in your tests, or just use a placeholder such as `return 0;` as the entire body of a method.  You can come back later with additional tests once they are necessary.
 
 * __Avoid Slow Running Tests:__ If you are working with TDD, you are running at least three full test runs each iteration through the red-green-refactor loop.  That's a minimum and assuming that your code never causes problems in other tests or has any defects of its own.  If running your test suite takes two or three seconds, this is a minor price to pay for the extra quality that TDD provides; if it takes several hours, how long before developers are going to start ignoring the process in order to actually get some work done?
 
