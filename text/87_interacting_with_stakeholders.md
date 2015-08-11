@@ -49,9 +49,41 @@ Similarly, when discussing the system or problems that you are having with your 
 
 ## The Red-Yellow-Green Template
 
+One of the best ways I have found to communicate status to managers higher up on the totem pole is the red-yellow-green template.  This is not my invention, or even unique to the software industry, but has been proven useful throughout different fields because it allows you to provide a very high-level overview of status while still providing hooks to go deeper into detail if necessary.  Remember that managers will often not have the same granularity of knowledge of the system that you as a tester will have, and so putting it into simpler terms will allow the system to be intellectually manageable.
+
+If you're familiar with US traffic lights, you know that they consist of three lights: green meaning "go", yellow meaning "slow down", and red meaning "stop".  The standard OS X Windows manager uses a similar convention: green for "maximize", yellow for "minimize", and red for "close".  In each case, green means to there is nothing stopping you (maximum window size, drive quickly), yellow means that there are some impediments to progress (the light is about to change to red, the window is minimized), and red means that there are some more serious impediments (traffic is coming from the orthogonal direction, the window is closed).
+
+Using this metaphor, we can divide the system into subsystems or aspects, and mark each one with a red, yellow, or green status.  A green status indicates that there are no issues - that particular subsystem is working fine and/or is on track to being completed on target and on budget.  A yellow status indicates that there a few issues, but they are relatively minor and fixable, although that subsystem may have reduced quality or functionality, or additional resources may be necessary to complete it on time.  A red status indicates a major problem or problems, where that particular subsystem will need substantial help in order to be released on time, if it is even possible to do so.  Putting these into colors allows the eye, which has been trained on these particular colors for years (not to mention "trained" by evolution for millions of years), to quickly ascertain a high-level view of the quality of a system.  Partitioning status into the broad categories of "red-yellow-green" means that you are not going to get a very granular view of the status, but the benefit is that it forces you to put the status into very simple terms.  People tend to deal better with a limited number of options for status.
+
+Dividing the system into subsystems is often already done at this point - for example, you can divide up based on how you've already developed test plans, or how different work has been assigned to members of the team.  You can adjust it based on what will work best for reporting, however, and whatever makes logical sense.  Remember when interacting with other stakeholders, especially when you are crossing the technical/non-technical divide, that you should take into consideration what they care about, and reduce the focus on what you care about.  Let's assume that your project manager has divided the system up into Subsystems A, B, and C. You have developed your test plans into Subsystems A, B, C, and D, because you feel that D makes more sense as its own subsystem instead of as a part of C.  In most cases, this means that your best course of action when reporting to the project manager is to group your D and C statuses together into Subsystem C.
+
+Along with each subsystem and its status, there should be a short notes section going into detail about _why_ that specific status was chosen.  This section is usually only a few sentences, but provides insight into what possible problems could crop up.  It also allows for knowledgeable questions to be asked, and does not rely solely on the producer of the status for determining it.  Another stakeholder may see what seems like a minor problem to the tester, but actually has major import for delivering the system.
+
+Let's walk through some examples to see how we can use the red-yellow-green template to quickly display status to a manager.  These two examples both involve a system which accepts customer information via an API, stores it in a database, and then emails weekly reports to the marketing department.
+
+| Subsystem | Status | Notes  |
+|-----------|--------|---|
+| Database | Green | Test plan passed with no defects. Performance meets or exceeds all KPIs. |
+| Input API  | Green | Latest version passed all tests, including all edge cases, without any defects.  |
+| Report Generation | Yellow | Several arithmetic errors found on latest test run.  May need one additional developer to complete all functionality on schedule, but likely to be on target as-is.  |
+| Email | Green | Two minor design defects found, but due to be fixed by tomorrow.  |
+
+In this first instance, we have a system which is going well.  There are no known major problems, and no worries about major schedule slippage or scope reduction.  At a glance, we can see a sea of green, with only one small island of yellow.  Importantly, it's possible to see why these subsystems have the status they do.  If a stakeholder wanted to know more detail about the design defects in the emails, they can ask more questions, or if they want to know what edge cases were checked in the input API, they can do so.  Now let's look at another version of the system which is perhaps not going as well.
+
+| Subsystem | Status | Notes  |
+|-----------|--------|---|
+| Database  | Red | Database cannot store more than one customer's information at a time, and randomly deletes data every Tuesday.  |
+| Input API | Yellow | System takes several minutes to process each (one kilobyte) request.  |
+| Report Generation | Red | All reports just say "LOL" hundreds of times, and the developer in charge of this seems to have fled to Belarus.   |
+| Email | Red | As far as the testing team can determine, there is no email functionality at this time, and no developers scheduled to work on it. |
+
+Well, this is not a project that I would like to be managing.  Note that our nice, green sea above is replaced with a hellish sea of red, bringing to mind the interior of a volcano.  Even the one yellow subsystem, the Input API, is probably going to require some additional work before it's ready to be released.  Note that this yellow status is very different from the yellow status in the previous example.  These statuses are very broad; having a few known arithmetic errors is an issue which we can probably deal with by making some code changes.  Having a performance issue of the magnitude described here may be very difficult to fix, but the program is still releasable with it, just very slow.  Remember that statuses are subjective and how you categorize subsystems will vary based on the domain of the system you are working on.  For example, a program which crashes once per year of normal use may be acceptable for a video game, but it would be unacceptable for avionics software.
+
+Overall, though, the goal of using this template is to report the status of a system under test to others.  It is not meant for an in-depth review or to stand in for a test report, but merely a way to summarize how a system is operating.  Managers and other stakeholders will appreciate having a way to see the status of the system as a whole before diving down into the technical details.
+
 ## Status Reports
 
-In some positions, a daily status report is common.  I found these very useful when dealing with a geographically distributed team, especially if there is little communication during the day (for example, because parts of the team are in different time zones).  Although many agile development shops will have daily stands-ups or similar meetings to discuss status, I have always found a quick email at the end of the day will allow managers to understand what all of their employees are doing.  Additionally, it allows managers to know if there are any problems or if the team members are not spending their time appropriately.
+Although useful for providing the status of a system, the red-yellow-green template is less useful when describing the status of a tester.  In many places of employment, a daily status report is common.  I found these very useful when dealing with a geographically distributed team, especially if there is little communication during the day (for example, because parts of the team are in different time zones).  Although many agile development shops will have daily stands-ups or similar meetings to discuss status, I have always found a quick email at the end of the day will allow managers to understand what all of their employees are doing.  Additionally, it allows managers to know if there are any problems or if the team members are not spending their time appropriately.
 
 ### Example
 
@@ -60,6 +92,7 @@ _DAILY STATUS 7 AUG 2015
 * Finished running Test Plan "Database Subsystem Regression" - recorded as Test Run 471, no new defects
 * Wrote script to convert old tab-delimited test data to new comma-delimited format - available in /scripts directory on server
 * Started writing Test Plan "Graphical Symbology Display" - need to get latest version of symbology standard_
+BLOCKERS: Need to find latest version of symbology standards before finishing test plan
 
 These should not take very long to write; a few sentences should suffice, and I think bullet points allow for a good overall summary instead of worrying about proper grammar and developing a narrative.  This simple email allows the manager to know what the tester is working on (writing a new test plan), what additional resources are available (a script for reformatting data, which may be hepful for other team members), and where the tester may need additional resources (the latest version of the symbology standard).
 
@@ -67,11 +100,13 @@ Armed with this information, a manager can ask the team members to refocus effor
 
 ## Managing Expectations and Managing Up
 
-As a new member of the team, often there is an urge one of the 
+As a new member of the team, often there is an urge to promise more than you can deliver.  Although it seems like this is the way to win hearts and minds, it can actually be very problematic.  Software projects almost inevitably run late, and it's fiendishly difficult to accurately estimate how long anything is going to take while developing software.  A project manager is going to be more upset that you promised them
+
+One of the best things you can do is __manage up__ - that is, 
 
 ## A Note On Meetings
 
-Very few people really enjoy meetings, outside of those who are probably busy taking courses in business school instead of reading about software testing.  However, they are often essential to determining the best path forward, and ensuring that the input of all relevant stakeholders is heard.  They often can actually be the most efficient way to get consensus on an issue, as well.
+Very few people really enjoy meetings, outside of those who are probably busy taking courses in business school instead of reading a book about software testing.  However, they are often essential to determining the best path forward, and ensuring that the input of all relevant stakeholders is heard.  They often can actually be the most efficient way to get consensus on an issue, as well.
 
 This does not mean that your presence is required at all meetings.  If you find yourself not getting any useful information, or not giving out much information - or at least not enough to justify the time you spend on it - you should consider not going to that meeting any more.  Although it may seem presumptuous to say that you don't think that you belong in a meeting, remember that any time you spend in a meeting is time that you are not spending doing something else.  A good manager will thank you for bringing it to their attention, because it means that you are thinking of your job strategically, and not just doing what is asked of you.
 

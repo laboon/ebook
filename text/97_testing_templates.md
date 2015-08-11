@@ -47,3 +47,14 @@ RED: _This aspect of the system has major problems, and should not be released i
 YELLOW: _There are a few problems with this aspect of the system, some of them substantial.  Some additional help may be necessary to get it to a reasonable level of quality._
 
 GREEN: _There are no major problems with this aspect of the system, and no additional help is necessary to see it to completion._
+
+## Daily Status Report
+
+_This is a template for reporting your daily status to a manager or other supervisor._
+
+DATE
+
+* _What you worked on today, and its status.  This can be several different bullet points._
+* _What you plan on working on tomorrow.  This can also be several bullet points._
+
+BLOCKERS: _Anything that is preventing you from getting work done, be that resources, time, or knowledge._
