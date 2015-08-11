@@ -87,7 +87,7 @@ Although useful for providing the status of a system, the red-yellow-green templ
 
 ### Example
 
-_DAILY STATUS 7 AUG 2015
+DAILY STATUS 7 AUG 2015
 
 * Finished running Test Plan "Database Subsystem Regression" - recorded as Test Run 471, no new defects
 * Wrote script to convert old tab-delimited test data to new comma-delimited format - available in /scripts directory on server
