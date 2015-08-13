@@ -29,35 +29,13 @@ public class Bird {
 
 While this may be a straightforward method, this is going to be very difficult to test via unit test.  After all, there are no return values to assert against.  The results will have be checked by looking at class-level variables.  There's no way to tell a specific "right" answer, since there's dependence on a random number generator which you have no way of overriding.  There's no way to check that the Screen was updated without having an actual Screen object available and running.  All of these mean that this code will be difficult to test in isolation, and thus very difficult to unit test.  What if we fixed it up a little bit to make it more testable?
 
-```java
-public class Bird {
-
-    public int _height = 0;
-
-    public int _location = 0;
-
-    private Random _r = new Random();
-
-    private 
-        _height += r.nextInt(10) + 1;
-	_location += r.nextInt(10) + 1;
-    	Screen.updateWithNewValues(_height, _location);
-
-    public fly() {
-        int newHeight = updateHeigh(_r);
-	int newLocation = updateLocation(_r);
-	updateScreen(newHeight, newLocation);
-    }
-
-}
-```
-
-
-
-
 ## The Basic Strategies for Testable Code
 
+
+
 ## DRYing Up Code
+
+The term __DRY__
 
 ## Dependency Injection
 
@@ -65,6 +43,53 @@ public class Bird {
 
 ## The Law of Demeter
 
+## TUFs and TUCs
+
 ## Dealing With Legacy Code
 
+Not everybody has had the opportunity to read an excellent book with a chapter on writing testable code.  Much of the existing codebase out there was written by people who were not familiar with modern software engineering techniques, either through ignorance or because it was not common when it was written.  It would be foolishly optimistic to expect that people writing some FORTRAN IV code in 1966 would be using testing techniques which did not become common until the '90s.  Code that is already existing in production, but which does not follow modern software engineering best practices and often has substandard - or even no - automated test coverage, is known as __legacy code__.
+
+Long story short - working with legacy code is difficult.  There is no getting around it.  You will be missing many of the benefits of a good testing suite; you may not be able to interact with the original developers if there are issues, ambiguities, or undocumented code; and it may be difficult to understand outdated code written in an older style.  However, it is often necessary, especially when you are working for a company which has been writing code for a long time.  It wouldn't make sense to rewrite millions of lines of code every time you want to add a new feature to the software suite you are already using.
+
+When you find yourself having to work with legacy code, one of the most important things you can do is create some __pinning tests__.  Pinning tests are automated tests, usually unit tests, which check for the existing behavior of the system.  Note that the existing behavior is not always the expected, or correct, behavior!  The goal of a pinning test is to simply see how the program reacts before you make any changes to it.  Oftentimes, those weird, unexpected edge cases are actually used by users of the system.  You do not want to unintentionally modify them when adding a feature, unless it is something that you have explicitly set out to do.  Making unintentional changes to a program can be dangerous for yourself and for users of the program.
+
+When working with legacy code, you want to be very explicit about the features you are introducing and bugs you are fixing.  It's very easy to start fixing every error you see, 
+
+For myself, I like to keep a little text file open which has changes that I would like to make in the future, but are beyond the scope of what I am fixing at the moment.  For example, I may be editing a class to add a new method.  I note that there are numerous magic numbers in the file, which are not defined anywhere.  I may make a note to refactor this class later.  This doesn't mean that I won't use appropriate, well-named constants in the method that I have added.  However, if I tried to fix everything in the file as I was going along, I may spend three times as long than if I just did the minimum of what I needed to do.
+
+Doing the minimum isn't normally considered a great way to go through life, but oftentimes when writing software it is.  You want to make small changes to the codebase, little incremental steps, because large changes are fraught with hard-to-find errors.  If you have a 10,000-line code change, and something goes wrong, trying to look through all of that will be a nightmare.  However, let's say you make a thousand 10-line code changes.  At each point, you can run all of the unit tests and see if the problem manifests itself.  Tracking problems down via tiny steps is much easier than tracking it down in one giant commit.
+
+Additionally, doing the minimum can ensure that you are using your time wisely.  It may not be worth your time to add documentation to every method in the class you're working on, especially if you don't think it will be modified again anytime in the near future.  It's not that it's not a good idea, but perhaps that it is not a good prioritization of your time.
+
+If possible, you want to start your search for code to modify by looking for __seams__.  Seams are locations in code where you can modify _behavior_ without modifying _code_.  This is probably easiest to see with examples.  In this first method, there is no seam - there is no way to modify how the program behaves without modifying some code in the method.
+
+```java
+public void createDatabaseTable() {
+    DatabaseConnection db = new DatabaseConnection(DEFAULT_DB);
+    int status = db.executeSql("CREATE TABLE Cats "
+        + "(CatID int, Name varchar(255), Breed varChar(255));");
+}
+```
+
+If you want to change the database this code will update, you will need to modify the constant DEFAULT_DB or otherwise change the line of code.  There's no way to pass in a test double for it, or otherwise use a fake database in your test.  If you want to add a column, you will need to edit the string that is inside the method.  Now let's compare this to a method which is a seam.
+
+```java
+public int executeSql(DatabaseConnection db, String sqlString) {
+    return db.executeSql(sqlString);
+}
+```
+
+If you want to use a doubled database connection, just pass it in when calling the method.  If you want to add a new column, you can just modify the string.  You can check for edge or corner cases, like seeing if an exception is thrown or a particular error status is returned, even if the original documentation is missing.  Since you can explore these cases without directly modifying any code, it will be infinitely easier to determine that you haven't broken anything when writing your tests.  After all, you haven't modified anything!  If you had to manually edit the code to observe the behavior, as in the first example, any original results you got from pinning tests would be suspect.  Code modification would usually not be as straightforward as the example above.  You may have to edit multiple methods, and you would never be entirely sure if the results you see were because that is the way the code executed originally, or if it was a consequence of the edits you made while trying to test it.
+
+Note that having a seam does not mean that the code is good in other ways.  After all, being able to pass in arbitrary SQL to be executed is a pretty big security risk if it hasn't been sanitized elsewhere.  Writing code with too many seams may be overkill, and will certainly make the codebase larger.  Seams are simply where you can start figuring out how the system currently responds to inputs.  Finding seams will allow you to easily start writing comprehensive pinning tests, to ensure that you are catching a variety of edge cases.
+
+Perhaps most importantly, it is important from a psychological point of view not to "give in" to the codebase, and sink to its level.  Just because there are no unit tests for a feature does not mean that it's fine to make some modifications without adding unit tests.  If the code for a particular class is uncommented, that shouldn't give you _carte blanche_ to not comment the code that you add.  As it evolves, code tends to sink towards the lowest common denominator.  You need to actively fight that de-evolution.  Write unit tests, fix things up as you find them, and document code and features appropriately.
+
+If you are interested in more details about how to work with legacy code, there are (at least) two great books on the topic.  The first is _Refactoring: Improving the Design of Existing Code_ by Martin Fowler, and the other is _Working Effectively with Legacy Code_ by Michael Feathers.  The latter is an especially valuable resource for working with code that does not already have a comprehensive test suite.
+
+One of the things I find so interesting about software engineering is that it is a field which is changing extremely quickly.  Many of the techniques that I discuss will probably seem as quaint as GOTO statements and line numbers do at the time of the writing of this book.  If this is the case, then please be gentle in your criticism half a century hence.
+
 ## Conclusion
+
+Software testing is not only about writing the tests, but writing code which will enable the tests to be written easily and well.  In today's world of software engineering, writing code and writing tests are not mutually exclusive.  Many - I would daresay venture to say "most" - developers write their own unit tests along with their code, and many testers will have to write code to automate their tests or develop testing tools.  Even if you do not write code in your role as a tester, you may be asked to review it or to determine how to have more comprehensive automated testing for a software system.  By using the techniques in this chapter, you will be able to provide advice.
+

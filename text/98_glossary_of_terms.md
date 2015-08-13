@@ -1,5 +1,15 @@
 # Glossary of Terms
 
+__TUF__: See __Test-Unfriendly Function__.
+
+__TUC__: See __Test-Unfriendly Construct__.
+
+__Test-Unfriendly Function__: A functional aspect of a program which is difficult to test, such as communicating over a network or writing to disk.
+
+__Test-Unfriendly Construct__: A part of the structure of the code which is difficult to test, such as a constructor, finalizer, or private method.
+
+__Seam__: A place in the codebase where you can modify behavior without modifying the code itself.
+
 __Stochastic Testing__: Testing a system through the use of randomized inputs.  These inputs do not have to be entirely random; for example, they can be a probability distribution of values or generated strings.  Also called __monkey testing__.
 
 __Monkey Testing__: Another term for __stochastic testing__.
@@ -12,9 +22,17 @@ __Smart Monkey__: A __stochastic testing__ method whereby the data passed in mim
 
 __Fuzz Testing__: A form of __stochastic testing__ whereby random but possible data is passed in to a system to see how it responds.
 
+__Greenfield Development__: Writing software from scratch, and thus being able to design the entire system without worrying about previous solutions.  
+
+__Browfield Development__: Writing software which must interactact with already-existing software in production, thus limiting potential design, solutions, architecture, etc.
+
+__Pinning Test__: An automated test (usually a unit test) which checks for the current response of a system, in order to modify code without modifying existing behavior.  Note that pinning tests check for the current response, _not_ the correct response.  Often used when refactoring or adding to __legacy code__.
+
 __Dogfooding__: Using your own software while developing it.  For example, running the operating system that you are developing on your own computer.
 
 __Dogfood, Eating Your Own__: Another term for __dogfooding__.
+
+__Legacy Code__: Code which is running in production, and was written without using modern software engineering techniques and/or has substandard automated test coverage.
 
 __Regulation Acceptance Testing__: Testing that a system meets legal or other regulatory requirements.
 
