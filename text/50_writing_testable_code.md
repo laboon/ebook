@@ -31,7 +31,65 @@ While this may be a straightforward method, this is going to be very difficult t
 
 ## The Basic Strategies for Testable Code
 
+The two key concepts to keep in mind when writing testable code are:
 
+1. Ensure code is segmented
+2. Ensure that events are repeatable
+
+If a particular method relies on only a few other parts (classes, methods, external programs, etc.) of the system to work - and ideally, if its results are affected only by the values passed in as parameters - then it will be relatively easy to test.  However, if it relies on a variety of other parts, then it can get very difficult, very quickly.  You not only have to make sure that the part of the system is working, but any parts that it is dependent upon.  You may be able to provide test doubles, but if the code is not written with them in mind, you may not.  Let's examine some code which is not segmented well, and will be extremely difficult to test:
+
+```java
+public int getNumGiraffesInZoo() {
+    String animalToGet = "Giraffe";
+    DatabaseWorker dbw = DatabaseConnectionPool.getWorker();
+    NetworkConnection nwc = NetworkConnectionFactory.getConnection();
+    dbw.setNetworkConnection(nwc);
+    String sql = SqlGenerator.generate("numberQuery", animalToGet);
+    int numGiraffes = 0;
+    try {
+        numGiraffes = (int) dbw.runSql(sql);
+    } catch (DatabaseException dbex) {
+        numGiraffes = -1;
+    }
+    return numGiraffes;
+}
+```
+
+At first glance, this looks easy to test - after all, you just need to assert that the number of giraffes is the number you expect - but this code is not well-segmented.  Not only does it depend on the DatabaseWorke, NetworkConnection, DatabaseConnectionPool, NetworkConnectionFactory, and SqlGenerator classes to work correctly, along with all of their assorted methods, there is no way to double them since they are all constructed inside of the method.  A problem in any of these will cause your test to fail, and it can be difficult to know why the test failed.  Was it in the actual method you are testing, or one of the numerous dependencies?
+
+Let's restructure this so that the method is well-segmented.
+
+```java
+public int getNumGiraffesInZoo(DatabaseWorker dbw, SqlGenerator sqlg) {
+    int numGiraffes = 0;
+    String sql = sqlg.generate("numberQuery", "giraffe");
+    try {
+        numGiraffes = (int) dbw.runSql(sql);
+    } catch (DatabaseException dbex) {
+        numGiraffes = -1;
+    }
+    return numGiraffes;
+}
+```
+
+While this is still suboptimal, it is at least possible to override all of the dependencies with doubles.  There's less concern in the method on items that are unrelated to the method itself (e.g., connecting network connections to the database worker, which probably belongs in the DatabaseConnectionPool or the DatabaseWorker class itself, certainly not in the `getNumGiraffesInZoo` method.  We could go a bit further and move all of the database workings to their own class, wrapping them all up so that only the important parts are visible to this method.
+
+```java
+public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
+    int numGiraffes = 0;
+    try {
+        numGiraffes = adbw.getNumAnimals("giraffe");
+    } catch (DatabaseException dbex) {
+        numGiraffes = -1;
+    }
+    return numGiraffes;
+}
+
+```
+
+We have now reduced the number of dependencies to that single class AnimalDatabaseWorker, and only call one method on it.
+
+The second concept is to ensure that everything you do is repeatable.  What you don't want is a test which works fine sometimes.  If there is a failure, you should know about it immediately.  If there is not a failure, you do not want to have to have false alarms.
 
 ## DRYing Up Code
 
@@ -45,6 +103,8 @@ The term __DRY__
 
 ## TUFs and TUCs
 
+
+
 ## Dealing With Legacy Code
 
 Not everybody has had the opportunity to read an excellent book with a chapter on writing testable code.  Much of the existing codebase out there was written by people who were not familiar with modern software engineering techniques, either through ignorance or because it was not common when it was written.  It would be foolishly optimistic to expect that people writing some FORTRAN IV code in 1966 would be using testing techniques which did not become common until the '90s.  Code that is already existing in production, but which does not follow modern software engineering best practices and often has substandard - or even no - automated test coverage, is known as __legacy code__.
@@ -53,13 +113,13 @@ Long story short - working with legacy code is difficult.  There is no getting a
 
 When you find yourself having to work with legacy code, one of the most important things you can do is create some __pinning tests__.  Pinning tests are automated tests, usually unit tests, which check for the existing behavior of the system.  Note that the existing behavior is not always the expected, or correct, behavior!  The goal of a pinning test is to simply see how the program reacts before you make any changes to it.  Oftentimes, those weird, unexpected edge cases are actually used by users of the system.  You do not want to unintentionally modify them when adding a feature, unless it is something that you have explicitly set out to do.  Making unintentional changes to a program can be dangerous for yourself and for users of the program.
 
-When working with legacy code, you want to be very explicit about the features you are introducing and bugs you are fixing.  It's very easy to start fixing every error you see, 
+When working with legacy code, you want to be very explicit about the features you are introducing and bugs you are fixing.  It's very easy to start fixing every error you see, but this can easily get you into trouble.  You start forgetting what you came in to fix in the first place, you aren't focused on one thing, you make changes in massive clumps instead of the "one step at a time" pace you should be going.
 
-For myself, I like to keep a little text file open which has changes that I would like to make in the future, but are beyond the scope of what I am fixing at the moment.  For example, I may be editing a class to add a new method.  I note that there are numerous magic numbers in the file, which are not defined anywhere.  I may make a note to refactor this class later.  This doesn't mean that I won't use appropriate, well-named constants in the method that I have added.  However, if I tried to fix everything in the file as I was going along, I may spend three times as long than if I just did the minimum of what I needed to do.
+Personally, I like to keep a little text file open which has changes that I would like to make in the future, but are beyond the scope of what I am fixing at the moment.  For example, I may be editing a class to add a new method.  I note that there are numerous magic numbers in the file, which are not defined anywhere.  I may make a note to refactor this class later.  This doesn't mean that I won't use appropriate, well-named constants in the method that I have added.  However, if I tried to fix everything in the file as I was going along, I may spend three times as long than if I just did the minimum of what I needed to do.
 
 Doing the minimum isn't normally considered a great way to go through life, but oftentimes when writing software it is.  You want to make small changes to the codebase, little incremental steps, because large changes are fraught with hard-to-find errors.  If you have a 10,000-line code change, and something goes wrong, trying to look through all of that will be a nightmare.  However, let's say you make a thousand 10-line code changes.  At each point, you can run all of the unit tests and see if the problem manifests itself.  Tracking problems down via tiny steps is much easier than tracking it down in one giant commit.
 
-Additionally, doing the minimum can ensure that you are using your time wisely.  It may not be worth your time to add documentation to every method in the class you're working on, especially if you don't think it will be modified again anytime in the near future.  It's not that it's not a good idea, but perhaps that it is not a good prioritization of your time.
+Additionally, doing the minimum can ensure that you are using your time wisely.  It may not be worth your time to add documentation to every method in the class you're working on, especially if you don't think it will be modified again anytime in the near future.  It's not that it's not a good idea, but perhaps not a good prioritization of your time.  Remember that you have a limited amount of time available not just on this Earth, but for completing a project.  Spend too much time on the wrong things, and it doesn't get done.  While it's an honorable drive to want to fix all of the problems you see in the codebase, the dirty little secret of the software industry is that there is all sorts of ugly code running behind the scenes, and most of the time, it works.  Your favorite bank has thousands of GOTO statements in its transfer code.  Your favorite three-letter government agency has hundreds of thousands of lines of code that not unit test has ever laid eyes (or mocks or stubs) on.  It is okay to cry about the state of the world, but sometimes you just need to let it be.
 
 If possible, you want to start your search for code to modify by looking for __seams__.  Seams are locations in code where you can modify _behavior_ without modifying _code_.  This is probably easiest to see with examples.  In this first method, there is no seam - there is no way to modify how the program behaves without modifying some code in the method.
 
