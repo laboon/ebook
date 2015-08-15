@@ -27,7 +27,7 @@ public class Bird {
 }
 ```
 
-While this may be a straightforward method, this is going to be very difficult to test via unit test.  After all, there are no return values to assert against.  The results will have be checked by looking at class-level variables.  There's no way to tell a specific "right" answer, since there's dependence on a random number generator which you have no way of overriding.  There's no way to check that the Screen was updated without having an actual Screen object available and running.  All of these mean that this code will be difficult to test in isolation, and thus very difficult to unit test.  What if we fixed it up a little bit to make it more testable?
+While this may be a straightforward method, this is going to be very difficult to test via unit test.  After all, there are no return values to assert against.  The results will have be checked by looking at class-level variables.  There's no way to tell a specific "right" answer, since there's dependence on a random number generator which you have no way of overriding.  There's no way to check that the Screen was updated without having an actual Screen object available and running.  All of these mean that this code will be difficult to test in isolation, and thus very difficult to unit test.  Throughout the rest of this chapter, we will look at different strategies to ensure that our code does not end up like this.
 
 ## The Basic Strategies for Testable Code
 
@@ -91,9 +91,15 @@ We have now reduced the number of dependencies to that single class AnimalDataba
 
 The second concept is to ensure that everything you do is repeatable.  What you don't want is a test which works fine sometimes.  If there is a failure, you should know about it immediately.  If there is not a failure, you do not want to have to have false alarms.
 
+## Write Tests Up-Front
+
+Ideally, you should be using the TDD paradigm (or something similar to it).  However, even if you are not using strict TDD, you should be writing lots of tests at approximately the same time as you are writing code.  You will quickly realize when the code you have written cannot be tested, and you won't continue going down long pathways writing code which you will have trouble testing "later" (note: "later" often means "never").
+
+The longer you go on writing code without writing tests for it, the more likely you are to make code which is difficult to test.  Even if you mean to make it testable, you often won't realize that what you wrote will be difficult to test for one reason or another.  Actually writing the tests gives you confirmation that you are going down the right path.
+
 ## DRYing Up Code
 
-The term __DRY__
+The term __DRY__ means "Don't Repeat Yourself", and it is a key tenet to making your code not only more testable, but better all around.
 
 ## Dependency Injection
 
