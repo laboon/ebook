@@ -154,100 +154,103 @@ Let's move on to the three weight requirements: FUN-UNDERWEIGHT, FUN-NORMALWEIGH
 >= 6 kg -> Overweight
 ```
 
-Assuming that cats are weighed in increments of one tenth of a kilogram (something else we can verify with the systems engineers or other stakeholders), We can select the explicit boundary values: 2.9, 3, 5.9, and 6 kg.  Now let's add an interior value from each equivalence class: 1.6 kg for Underweight, 5.0 kg for Normal Weight, and 10 kg for Overweight.  We'll also  want to add in implicit boundary values, say 0 and MAXINT.  Finally, let's check some corner cases: a negative number (-13) and a non-numeric string ("quackadoodle doo").  Note how much more emphasis is put on determining a variety of input values for these requirements compared to the startup message.  Since determining the weight status of the cat is core of this application, more testing emphasis is given to it.
+Assuming that cats are weighed in increments of one tenth of a kilogram (something else we can verify with the systems engineers or other stakeholders), We can select the explicit boundary values: 2.9, 3, 5.9, and 6 kg.  Now let's add an interior value from each equivalence class: 1.6 kg for Underweight, 5.0 kg for Normal Weight, and 10 kg for Overweight.  We'll also  want to add in implicit boundary values, say 0 and 1,000.  This final values assumes that 1,000 kilograms is the theoretical upper bound for a cat before it collapses into a black hole, which is my understanding of physics (note that the author is not a physicist).  Finally, let's check some corner cases: a negative number (-13) and a non-numeric string ("quackadoodle_doo").  Note how much more emphasis is put on determining a variety of input values for these requirements compared to the startup message.  Since determining the weight status of the cat is core of this application, more testing emphasis is given to it.
 
 ```
 IDENTIFIER: UNDERWEIGHT-INTERNAL
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an underweight cat with a weight of 1.6 kg.
 PRECONDITIONS: None
-INPUT VALUES: 5
-EXECUTION STEPS: At the command line, run "catweigher"
+INPUT VALUES: 0
+EXECUTION STEPS: At the command line, run "catweigher 1.6"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The console shall display "Cat is underweight".
 
 IDENTIFIER: UNDERWEIGHT-LOWER-BOUNDARY
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in a cat with a weight of 0 kg.
 PRECONDITIONS: None
-INPUT VALUES: 5
-EXECUTION STEPS: At the command line, run "catweigher"
+INPUT VALUES: 0
+EXECUTION STEPS: At the command line, run "catweigher 0"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The console shall display "Cat is underweight".
 
 IDENTIFIER: UNDERWEIGHT-UPPER-BOUNDARY
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an underweight cat with a weight of 2.9 kg.
 PRECONDITIONS: None
-INPUT VALUES: 5
-EXECUTION STEPS: At the command line, run "catweigher"
+INPUT VALUES: 2.9
+EXECUTION STEPS: At the command line, run "catweigher 2.9"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The console shall display "Cat is underweight".
 
 IDENTIFIER: NORMALWEIGHT-INTERNAL
 TEST CASE: Run the program passing in a 
 PRECONDITIONS: None
 INPUT VALUES: 5
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher 5"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The console shall display "Cat is normal weight".
 
 IDENTIFIER: NORMALWEIGHT-LOWER-BOUNDARY
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in a normal weight 
 PRECONDITIONS: None
-INPUT VALUES: 5
-EXECUTION STEPS: At the command line, run "catweigher"
+INPUT VALUES: 3
+EXECUTION STEPS: At the command line, run "catweigher 3"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The console shall display "Cat is normal weight".
 
 IDENTIFIER: NORMALWEIGHT-UPPER-BOUNDARY
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in a normal weight cat with a weight of 5.9 kg.
 PRECONDITIONS: None
-INPUT VALUES: 5
-EXECUTION STEPS: At the command line, run "catweigher"
+INPUT VALUES: 5.9
+EXECUTION STEPS: At the command line, run "catweigher 5.9"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The console shall display "Cat is normal weight".
 
 IDENTIFIER: OVERWEIGHT-INTERNAL
 TEST CASE: Run the program passing in a 
 PRECONDITIONS: None
-INPUT VALUES: 5
+INPUT VALUES: 10
 EXECUTION STEPS: At the command line, run "catweigher"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The console shall display "Cat is overweight".
 
 IDENTIFIER: OVERWEIGHT-LOWER-BOUNDARY
 TEST CASE: Run the program passing in a 
 PRECONDITIONS: None
-INPUT VALUES: 5
+INPUT VALUES: 6
 EXECUTION STEPS: At the command line, run "catweigher"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The console shall display "Cat is overweight".
 
 IDENTIFIER: OVERWEIGHT-UPPER-BOUNDARY
 TEST CASE: Run the program passing in a 
 PRECONDITIONS: None
-INPUT VALUES: 5
+INPUT VALUES: 1000
 EXECUTION STEPS: At the command line, run "catweigher"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The console shall display "Cat is overweight".
 
 IDENTIFIER: WEIGHTSTATUS-INVALID-NEGATIVE
 TEST CASE: Run the program passing in a 
 PRECONDITIONS: None
-INPUT VALUES: 5
+INPUT VALUES: -13
 EXECUTION STEPS: At the command line, run "catweigher"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
+POSTCONDITIONS: The system shall not display any cat weight status,
+    and the program will exit.
 
 IDENTIFIER: WEIGHTSTATUS-INVALID-STRING
 TEST CASE: Run the program passing in a 
 PRECONDITIONS: None
-INPUT VALUES: 5
-EXECUTION STEPS: At the command line, run "catweigher"
+INPUT VALUES: "quackadoodle_doo"
+EXECUTION STEPS: At the command line, run "catweigher quackadoodle_doo"
 OUTPUT VALUES: N/A
-POSTCONDITIONS: 
-
+POSTCONDITIONS: The system shall not display any cat weight status,
+    and the program will exit.
 ```
 
 This can seem like a quite a bit of typing for the tests and their relative importance!  Remember, though, that the amount of documentation required will vary based on your company, legal requirements of the system under test, etc.  While this is a relatively in-depth test plan, a plucky start-up may have a simple paragraph listing of various inputs to try and no formally expected behavior of the software.  The onus may be on the tester to realize what is the proper behavior.  While this is going to put more work and require more mental effort on the part of the tester, as well as be ripe for human error to occur, the trade-off is that the test plan will be much more flexible and quick to develop.  In software testing, as in all software engineering, there are very few "absolutely right" answers, just selecting the correct trade-offs.
+
+There is also some overlap between the last two test cases (WEIGHTSTATUS-INVALID-NEGATIVE and WEIGHTSTATUS-INVALID-STRING) and the previous test cases checking the requirement FUN-PARAMETER.  Although they are looking at slightly different aspects of the system, they are doing it through the same black-box methodology.  An argument could definitely be made that they are unnecessary, although white-box testing might show that different parts of the system are tested by each of the various test cases.
 
 Depending on the culture of the company and what is expected from the test plan documentation, we could compress the test cases so that each test case describes multiple values.  While I don't recommend this process - it's relatively easy to copy and paste, and having more test cases allows you to have very specific test cases - it does save time when writing.  It also allows each test case to cover more "territory", but adds an additional step to determining where the problem lies if a test case is seen to fail.  Caveats aside, let's show an example of compressing the three "underweight" test cases into one.
 
@@ -263,7 +266,24 @@ POSTCONDITIONS: For each of the input values, the string "Cat is underweight"
     shall be displayed upon the console.
 ```
 
-
 ## Performance Testing
 
-There's an entire chapter on performance testing later, but for now, let's just go through a very simple performance test.  We want to check
+There's an entire chapter on performance testing later, but for now, let's just go through a very simple performance test.  We want to check that the system completes calculation and information display within two seconds.  An easy way to verify this is by using the Unix tool `time`, which will tell you how long it took for a command to execute.  Although the standard tool will give you several different results, focus only on the "real" time which measures how long something actually took according to the clock on the wall (the other kinds of time that the tool measures will be discussed in the chapter on performance testing).
+
+We want to check that various values will all be calculated and the program exiting within 2 seconds.  Several values are passed in case calculations for one equivalence class are much more time-consuming than others.
+
+```
+IDENTIFIER: PERFORMANCE-RUNTIME
+TEST CASE: Run the program passing in various values and time it, ensuring
+  each iteration takes less than two second.
+PRECONDITIONS: Program has no known functional defects
+INPUT VALUES: 0, 1.5, 5, 7.5, 10
+EXECUTION STEPS: At the command line, run "time catweigher n", where n is equal
+    to one of the input values.
+OUTPUT VALUES: N/A
+POSTCONDITIONS: For each of the input values, the real time measurement as
+    measured by the time command will be less than 2.000 seconds.
+```
+
+Note the addition of a precondition here.  This test case will not be considered valid unless all of the functional defects have already been fixed.  After all, it does not matter how long a program takes to run if it won't tell you the correct cat weight status!  This does not mean that the test case cannot be executed ahead of time, but that the results should not be considered valid unless the software is functionally correct.  This is one of the big problems with performance testing; it is often difficult to do until the program is functionally complete, or close to it.  
+
