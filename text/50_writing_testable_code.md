@@ -31,7 +31,7 @@ While this may be a straightforward method, this is going to be very difficult t
 
 ## The Basic Strategies for Testable Code
 
-The two key concepts to keep in mind when writing testable code are:
+The two key concepts to keep in mind when writing code that is testable at the unit test level are:
 
 1. Ensure code is segmented
 2. Ensure that events are repeatable
@@ -91,6 +91,40 @@ We have now reduced the number of dependencies to that single class AnimalDataba
 
 The second concept is to ensure that everything you do is repeatable.  What you don't want is a test which works fine sometimes.  If there is a failure, you should know about it immediately.  If there is not a failure, you do not want to have to have false alarms.
 
+You can make a test repeatable by ensuring that all of the values that it depends on are able to be replicated.  This is one of the (many, many, many) reasons that global varibles are, in general, a Bad Idea.  Let's consider testing the following method:
+
+```java
+public int[] sortList() {
+   if (_sortingAlgorithm == "MergeSort") {
+       return mergeSort(_list);
+   } else if (_sortingAlgorithm == "QuickSort") {
+       return quickSort(_list);
+   } else {
+       if (getRandomNumber() % 2 == 0) {
+           return bubbleSort(_list);
+       } else {
+           return bogoSort(_list);
+       }
+   }
+}
+```
+
+What happens when we run this?  The execution flow first depends on two variables that were not passed in, so we'd need to add additional checks to make sure that they're the right value before testing if we want to make sure the test is repeatable.  Who knows what other code has modified `_list` and `_sortingAlgorith`?  Even if ensure ahead of time that all the variables are set correctly, how can we test what happens when `_sortingAlgorithm` is set to something other than "MergeSort" or "QuickSort"?  The method will call either `bubbleSort()` or `bogoSort()`, and there is no (reasonable) way for us to tell which one will be called ahead of time.  If there is an error with `bubbleSort()` but not `bogoSort()`, then the test might randomly fail.
+
+In order to test effectively, code should be segmented, and written in such a way that ensuring that the exact same code with the exact same values can be run multiple times.  If this is the case, then the exact output should occur each time, and tests will not randomly fail.  Write your code in such a way as to discourage random test failures, not encourage them.
+
+## Provide A Scriptable Interface
+
+While the previous section described how to ensure code that was testable from a white-box perspective, creating a program that is easily testable from a black-box, systems-level perspective can be even more difficult.  Methods, in general, are meant to be called - there's a built-in interface to do it, and the parameters for each method are generally specified (there are ex
+
+Some interfaces are "automatically" scriptable.  If you are writing a web app, for example, you can use a web testing framework such as Selenium or Capybara to access the various pages, click buttons, enter text, and do all of the other things you can do to a web page.  Text-based interfaces are also relatively easy to script, since they simply accept text and output it.  Output can be redirected to a file or otherwise checked for accuracy.  
+
+Programs which do not provide a method of scripting by virtue of their interface, such as native GUI applications, will ideally have some sort of scripting built into them.  This can be done via __test hooks__, or "hidden" methods which provide a way to input data or receive information about the program.  These are externally accessible, perhaps with a key or other security measure, but usually not publicly advertised.
+
+There are several downsides to adding hooks to your program, or any sort of scriptable interface.  It's a security risk, for one thing - if someone discovers how to access the test hooks, they may be able to determine hidden information, overwrite data, or perform other malicious actions (or simply be curious and make a mistake).  Adding a scriptable interface will require additional complexity in the program, as well as additional program length and size.  The interface may be a drag on performance.  Finally, time spent working on the interface means less time spent writing other features of the software, or improving its quality.
+
+You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  However, there are programs out there which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require manual verification of screenshots.  
+
 ## Write Tests Up-Front
 
 Ideally, you should be using the TDD paradigm (or something similar to it).  However, even if you are not using strict TDD, you should be writing lots of tests at approximately the same time as you are writing code.  You will quickly realize when the code you have written cannot be tested, and you won't continue going down long pathways writing code which you will have trouble testing "later" (note: "later" often means "never").
@@ -99,17 +133,69 @@ The longer you go on writing code without writing tests for it, the more likely 
 
 ## DRYing Up Code
 
-The term __DRY__ means "Don't Repeat Yourself", and it is a key tenet to making your code not only more testable, but better all around.
+The term __DRY__ means "Don't Repeat Yourself", and it is a key tenet to making your code not only more testable, but better all around.  The trivial case of failing to keep code DRY is simply copy and pasting, often with a slightly different method name.
+
+```java
+public int[] sortAllTheNumbers(int[] numsToSort) {
+    return quickSort(numsToSort);
+}
+
+public int[] sortThemThereNumbers(int[] numsToSort) {
+    return quickSort(numsToSort);
+}
+```
+
+In case you think this is a ludicrous contrived example, I have personally seen - and fixed - code like this in the wild.  Although it seems obvious when they're right next to each other, duplicate code loves to hide in little nooks and crannies.  When you have a multi-thousand-line class, things like this happen.  A programmer needs a method and quickly adds one before searching if another exists, someone writes a "test" version of the method, then forgets that there was an original one, or someone just started copying and pasting from some code they found online.  If everything continues to work fine, then there is very little impetus to look for issues like this, let alone fix them.  Even if someone does notice something like this, they may see modifying it as out of scope for whatever they are working on at the time.  It would almost certainly require refactoring other code that depends on it.  However, not having your code DRY means more tests, more danger when refactoring, and just plain redundancy.  Deciding on one method to use instead of having multiple copies will save you time and energy in the long run, as you reduce the ancillary associated costs of extra unit tests and confusion on the part of future maintainers.
+
+What happens when you decide that you are no longer going to use the `quickSort()` method, or decide to support floating-point numbers in addition to integers?  You will have to make changes in two (or more... there's practically no limit to how many times code can be copied and pasted) places, which can be easy to forget to do.  That's double the room for error, or for doing it slightly differently in one place than the other.  Testing for these kind of things can be difficult.  Remove duplicate code sooner rather than later.
+
+While the duplicated method above is a simple example, you may have more complex cases of code duplication.  Any time you find yourself with repeated code, even if it's in the middle of a statement, it may be a good idea to put it into its own method.  Consider the following SQL code which must be called by each of these methods in order to determine how many of a particular kind of breed exists in the database.
+
+```java
+public int getNumberOfCats(String catBreed) {
+    int breedId = DatabaseInterface.execute("SELECT BreedID FROM CatBreeds WHERE BreedName = " + catBreed);
+    int numCats = DatabaseInterface.execute("SELECT COUNT(*) FROM Cats WHERE BreedID = " + breedId);
+    return numCats;
+}
+
+public int getNumberOfPigeons(String pigeonBreed) {
+    int breedId = DatabaseInterface.execute("SELECT BreedID FROM PigeonBreeds WHERE BreedName = " + pigeonBreed);
+    int numPigeons = DatabaseInterface.execute("SELECT COUNT(*) FROM Pigeons WHERE BreedID = " + breedId);
+    return numPigeons;
+}
+```
+
+While the statements aren't exactly the same, they are similar enough that they are a target for the DRYing up the code.  After all, we can always pass in parameters to tweak the behavior to exactly what we want.
+
+```java
+public int getNumAnimals(String animalType, String breed) {
+    int breedId = DatabaseInterface.execute("SELECT BreedID FROM " + animalType + "Breeds WHERE BreedName = " + breed);
+    int numAnimals = DatabaseInterface.execute("SELECT COUNT(*) FROM " + animalType + "s WHERE BreedID = " + breedId);
+    return numAnimals;
+}
+
+public int getNumberOfCats(String catBreed) {
+    return getNumAnimals("Cat", catBreed);
+}
+
+public int getNumberOfPigeons(String pigeonBreed) {
+    return getNumAnimals("Pigeon", pigeonBreed);
+}
+```
+
+The code is now going to be much more flexible and maintainable.  Supporting additional animals will only require ensuring that we add methods that call `getNumAnimals()` with the appropriate parameters.  Directly testing the database, which can be challenging, is now restricted to one particular method.  More effort and energy can be focused on testing the more abstracted method instead of spreading out the testing on multiple methods with broader responsibilities.
 
 ## Dependency Injection
 
-## The SOLID Principles
-
-## The Law of Demeter
+__Dependency injection__ allows you 
 
 ## TUFs and TUCs
 
+TUFs are __test-unfriendly features__, whereas TUCs are __test-unfriendly constructs__.  TUFs are software features that are by their nature difficult to test.  For example, writing to a database requires either some well-thought-out test doubles or dependence on many external factors (database drivers, the database itself, disk usage, etc.)  Other test-unfriendly features would be communicating over the network, using a windowing library, or writing to disk.  In all of these cases, if you do not provide appropriate doubles, it will be very difficult to test these features.  If you do provide doubles, then it only becomes "moderately difficult".
 
+Test-unfriendly constructs are constructs in code where testing is by nature difficult.  In Java, this would include private methods (which require the Reflection API to access), constructors, or final methods.  It can be difficult to override the appropriate methods or provide test doubles easily in many TUCs.  This is an additional layer of complexity which, when combined with a test-unfriendly feature, can make your tests convoluted and difficult to reason about.
+
+One method for keeping the complexity of your tests to a reasonable level is to not put TUFs inside of TUCs.  Move them to their own methods, or otherwise segment and design the code so that TUCs contain only minimal and easily-tested code.
 
 ## Dealing With Legacy Code
 

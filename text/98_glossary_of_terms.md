@@ -1,5 +1,9 @@
 # Glossary of Terms
 
+__Fragile__: A description of a test case or suite which is easily broken by small modifications to the codebase or environment.
+
+__Test Hook__: A "hidden" method which allows input to, or output from, the system in order to make it easier to test.
+
 __TUF__: See __Test-Unfriendly Function__.
 
 __TUC__: See __Test-Unfriendly Construct__.

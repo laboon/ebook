@@ -79,7 +79,7 @@ From a pragmatic perspective, being able to place preconditions on the test prov
 2. Select the "1XB" item
 3. Click the "Add to Cart" button three times
 
-This may work fine the first time you run the test case.  However, this test is very fragile - there are numerous ways for it to break if the system changes out from underneath.  What if the "1XB" item no longer exists?  What if the Search functionality has a defect where items that start with "1" cannot be found?  What if the "Add to Cart" button name has changed?
+This may work fine the first time you run the test case.  However, this test is very __fragile__ - there are numerous ways for it to break if the system changes out from underneath.  What if the "1XB" item no longer exists?  What if the Search functionality has a defect where items that start with "1" cannot be found?  What if the "Add to Cart" button name has changed?
 
 There is a drawback from a brevity standpoint, as well.  We have just added three execution steps where there was only one precondition.  Brevity, aside from being the soul of wit, is also helpful in ensuring that the important parts of a test are focused upon.  Boilerplate text is the enemy of attention and focus.
 
