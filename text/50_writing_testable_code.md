@@ -20,8 +20,8 @@ public class Bird {
     public void fly() {
         Random r = new Random();
         _height += r.nextInt(10) + 1;
-	_location += r.nextInt(10) + 1;
-	Screen.updateWithNewValues(_height, _location);
+        _location += r.nextInt(10) + 1;
+        Screen.updateWithNewValues(_height, _location);
     }
 
 }
@@ -187,7 +187,48 @@ The code is now going to be much more flexible and maintainable.  Supporting add
 
 ## Dependency Injection
 
-__Dependency injection__ allows you 
+As we've seen, having dependencies hard-coded into your methods can make them difficult to test.  Lets assume you have a class-level reference to a `Duck` object that is created by a `Pond` object.  The `Pond` class has a `sayHi()` method which will say "Hi!" to all of the animals in the pond.
+
+```java
+public class Pond {
+
+    Duck _d = new Duck();
+
+    Otter _o = new Otter();
+
+    public void sayHi() {
+       _d.say("Hi!");
+       _o.say("Hi!");
+    }
+    
+}
+```
+
+How can you test this?  There's no easy way to verify that the duck got the "Hi" message.  __Dependency injection__ allows you to avoid this problem.  Although this is an excellent term to use to sound knowledgeable about testing, it's actually a very simple concept that you have probably seen in practice already.  In a nutshell, dependency injection means passing the dependencies in as parameters to a method, as opposed to having hard-coded references to them.  This will make it much easier to pass in test doubles or mocks.
+
+Let's re-write the above `Pond` class allowing for dependency injection.
+
+```java
+public class Pond {
+
+    Duck _d = null;
+
+    Otter _o = null;
+
+    public Pond(Duck d, Otter o) {
+        _d = d;
+	_o = o;
+    }
+
+    public void sayHi() {
+       _d.say("Hi!");
+       _o.say("Hi!");
+    }
+    
+}
+```
+
+Note that you are passing in the Duck and the Otter in the constructor, thus moving the responsibility for creating them outside of the Pond class.  Because of this, you don't have to send in actual ducks and otters, but mocks, which can then verify that the `say()` method was called with the parameter "Hi!"  Dependency injection will allow you to test your methods much more easily than having dependencies automatically created.
 
 ## TUFs and TUCs
 
