@@ -51,7 +51,7 @@ Note that the bad requirements all state _how_ something should be done, not _wh
 
 For complex or safety-critical systems (such as an actual interstellar spaceship), requirements may specify implementations.  In these cases, it is not only critical that a system does something, but that it does so in a proven and specified way.  For most systems, however, such requirements are overkill and would greatly limit flexibility as the software development process continues.  It can also make it more difficult to test these requirements, since not only does the tester need to determine whether the expected behavior matched the observed behavior, but they also need to determine how the observed behavior occurred.
 
-By requiring implementation details, you remove the possibility of black-box testing.  Without looking at the code, how can you be sure that the system is displaying the contents of memory location 0x0894BC40?  It's impossible (unless you have the incredibly specific superpower of being able to look at a RAM chip and know what is being stored and where).  All tests would have to be white box tests.
+By requiring implementation details, you remove the possibility of black-box testing.  Without looking at the code, how can you be sure that the system is displaying the contents of memory location 0x0894BC40?  It's impossible (unless you have the incredibly specific superpower of being able to look at a RAM chip and know what is being stored and where).  All tests would have to be white-box tests.
 
 ## Testability
 
