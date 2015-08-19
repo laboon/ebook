@@ -1,5 +1,7 @@
 # Glossary of Terms
 
+__Enhancement__: A requested modification or additional functionality which was not originally specified in the requirements.
+
 __Fragile__: A description of a test case or suite which is easily broken by small modifications to the codebase or environment.
 
 __Test Hook__: A "hidden" method which allows input to, or output from, the system in order to make it easier to test.
@@ -196,7 +198,11 @@ __Cracker__: An unauthorized person attempting to access and/or modify a system 
 
 __Equivalence Class__: A group of input values which provide the same, or similar type, of output.
 
-__Equivalence Class Partitioning__: Separating a specific functionality into distinct and non-overlapping equivalence classes based on input values.
+__Partitioning__: See __equivalence class partitioning__.
+
+__Equivalence Class Partitioning__: Separating a specific functionality into distinct equivalence classes based on input values.
+
+__Strict Partioning__: Partitioning equivalence classes such that there is no overlap between the input values for any of them.
 
 __Interior Value__: A value which is not a boundary value in its equivalence class.
 
@@ -248,7 +254,7 @@ __Test Run__: An actual iteration (run-through) of a test plan.
 
 __Test Suite__: A grouping of related test plans.
 
-__Defect__: A flaw in a system which causes it to behave in an unexpected or incorrect manner.  Much of software testing is involved in finding defects in a system.
+__Defect__: A flaw in a system which causes it to behave in an unexpected or incorrect manner, or does not meet the requirements of the system.  Much of software testing is involved in finding defects in a system.
 
 __Bug__: Another term for __defect__.
 

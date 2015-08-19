@@ -14,17 +14,17 @@ It's actually a variety of things.  At a high level, it's a way of providing an 
 
 Software testing provides an independent view of the software product.  Developers are notorious for - consciously or unconsciously - taking it easy on the code that they write.  I wish I could say that when I write code, I avoid this, what with my focus on software quality.  However, oftentimes my conversations with someone testing my software go like this:
 
-Me: "I got the square root routine working!  It's twice as fast as it was before!"
-Tester: "Hmm... when I pass in a letter instead of a number, the program crashes."
-Me: "Oh, I'm sure nobody will type in a letter."
-Tester: "When I give it a negative number, the program crashes."
-Me: "Well, we don't really support imaginary numbers.  So I didn't do that."
-Tester: "So I type in 2.0, and it throws an error that it can't deal with decimals."
-Me: "Yeah, it probably should, but right now it only works for integers for input.  But the user probably knows that."
-Tester: "Okay, when I give it 2, the screen just fills up with decimals..."
-Me: "Well, obviously!  The square root of two is irrational, it will keep calculating until the universe ends in heat death!  Just put in a positive integer."
-Tester: "When I type in 25, it gives me the answer 3."
-Me: "OK, that's probably wrong.  I only ever tested it with an input of 9, so it passed all of my tests!"
+Me: "I got the square root routine working!  It's twice as fast as it was before!"  
+Tester: "Hmm... when I pass in a letter instead of a number, the program crashes."  
+Me: "Oh, I'm sure nobody will type in a letter."  
+Tester: "When I give it a negative number, the program crashes."  
+Me: "Well, we don't really support imaginary numbers.  So I didn't do that."  
+Tester: "So I type in 2.0, and it throws an error that it can't deal with decimals."  
+Me: "Yeah, it probably should, but right now it only works for integers for input.  But the user probably knows that."  
+Tester: "Okay, when I give it 2, the screen just fills up with decimals..."  
+Me: "Well, obviously!  The square root of two is irrational, it will keep calculating until the universe ends in heat death!  Just put in a positive integer."  
+Tester: "When I type in 25, it gives me the answer 3."  
+Me: "OK, that's probably wrong.  I only ever tested it with an input of 9, so it passed all of my tests!"  
 
 (and so on)
 
@@ -39,9 +39,9 @@ An old joke goes, "All programs can be reduced by one instruction, and all progr
 
 Let's take a simple calculator program.  It does everything a one dollar calculator you can buy at the drug store does - enter numbers up to eight digits, and then perform the four basic arithmetic operations (add, subtract, multiply, divide) on them.  Let's ignore decimals and negative numbers for now.  If you're the type of person who wants his or her hypothetical examples to be completely specified, let's say that while it can display negative and decimal numbers, you can't input them.
 
-Now we would like to exhaustively test this to ensure that all of the calculations work correctly.  Well, we have 10 ^ 8 (100,000,000, or 100 million) possible values for the first input - anywhere from 0 to 99,999,999.  Now we have four operations which can be done on that first input, and we can enter another number, giving us another 100,000,000 possibilities.  Simple multiplication of (10 ^ 8) * 4 * (10 ^ 8) gives us  40,000,000,000,000,000, or 40 quadrillion tests.  If a human were to run these tests at a rate of one per second, that person would finish in around 1.2 billion years, well past the time that multicellular life is predicted to die out on Earth (around ~800 million years from now, so don't be making any plans after that).  None of this even takes into account the fact that you can chain operations together (e.g., "54,000 * 22 - 98,329 + 17 - 22,000,000"), which makes the number of possible inputs, for all intents and purposes, infinite.  Even if our human tester (who has now gone 1.2 billion years without a bathroom break) could test a trillion times faster than he or she has been doing, all baryonic matter in the Universe would have decayed before the tests are finished.
+Now we would like to exhaustively test this to ensure that all of the calculations work correctly.  Well, we have 10 ^ 8 (100,000,000, or 100 million) possible values for the first input - anywhere from 0 to 99,999,999.  Now we have four operations which can be done on that first input, and we can enter another number, giving us another 100,000,000 possibilities.  Simple multiplication of `(10 ^ 8) * 4 * (10 ^ 8)` gives us 40,000,000,000,000,000, or 40 quadrillion tests.  If a human were to run these tests at a rate of one per second, that person would finish in around 1.2 billion years, well past the time that multicellular life is predicted to die out on Earth (around ~800 million years from now, in case you had any plans after that).  None of this even takes into account the fact that you can chain operations together (e.g., `54,000 * 22 - 98,329 + 17 - 22,000,000`), which makes the number of possible inputs, for all intents and purposes, infinite.  Even if our human tester (who has now gone 1.2 billion years without a bathroom break) could test a trillion times faster than he or she has been doing, all baryonic matter in the Universe would have decayed before the tests are finished.
 
-This is obviously a ridiculous testing plan, but there are definitely times when situations like this occur - the equivalent of only 43,743 * 67,129,003 returning an incorrect answer, despite all other numbers working correctly.  There are so many possibilities in even a moderately-sized program that it's basically impossible to *prove* that a program will work without resorting to extreme measures (if you're interested in those extreme measures, see the chapter in this book on Formal Verification).  This means that, more likely than not, bugs are hiding in those vast, unexplored regions... or at least there is no way to really prove that they are not.
+This is obviously a ridiculous testing plan, but there are definitely times when situations like this occur - the equivalent of only `43,743 * 67,129,003` returning an incorrect answer, despite all other numbers working correctly.  There are so many possibilities in even a moderately-sized program that it's virtually impossible to *prove* that a program will work without resorting to extreme measures.  If you're interested in those extreme measures, do some reading on a concept called "Formal Verification", which in my experience is not used much in industry.  This means that, more likely than not, bugs are hiding in those vast, unexplored regions... or at least there is no way to really prove that they are not.
 
 Even a formally verified program (that is, a "mathematically proven" program) can't be guaranteed to provide the correct answer under all conditions.  A sudden loss of power to the machine on which it's running - perhaps the failure of a power supply - will certainly not allow the right answer to be displayed.  Corrupted memory or storage would give you the wrong answer.  Any program is reliant on the processor of the machine on which it's running, and there have been numerous cases of bugs in processors - see the "F00F" and "FDIV" bugs in various Intel Pentium chips.  It's difficult to prove that something will work when the entire mathematical groundwork of the "universe" the program lives in (viz., the processor) may not work!
 
@@ -51,12 +51,12 @@ Software testing can give you an idea of the quality of a piece of software, but
 
 Software testing also involves ensuring that the right software was created.  Imagine the following conversation between a tester and a customer:
 
-Tester: "I've gone over the product with a fine-toothed comb.  This cryptography engine is absolutely bulletproof, incredibly fast, and uses 8,192-bit encryption - your secrets will be safe for a trillion years."
-Customer: "Actually, I just wanted to play solitaire."
+Tester: "I've gone over the product with a fine-toothed comb.  This cryptography engine is absolutely bulletproof, incredibly fast, and uses 8,192-bit encryption - your secrets will be safe for a trillion years."  
+Customer: "Actually, I just wanted to play solitaire."  
 
 Would you say that the program has met the requirements of the customer?  Of course not.  Even though the software has met all of the requirements of the software, doesn't crash, provides the correct answers, etc., if the software doesn't meet the needs of the customer, it's not going to be successful.
 
-This illustrates the difference between *verification* and *validation*.  Verification is ensuring that you're building the software right; validation is ensuring that you're building the right software.  In other words, verification is ensuring that the system doesn't crash, that it meets the requirements, that it handles failures gracefully, et cetera.  Validation is ensuring that the requirements are the right requirements - do they actually request what the user wants, and are there any gaps which mean that even if the software meets all the requirements, and all the requirements are correct, there are parts of the program which will not be what the user or customer expected?
+This illustrates the difference between __verification__ and __validation__.  Verification is ensuring that you're building the software right; validation is ensuring that you're building the right software.  In other words, verification is ensuring that the system doesn't crash, that it meets the requirements, that it handles failures gracefully, et cetera.  Validation is ensuring that the requirements are the right requirements - do they actually request what the user wants, and are there any gaps which mean that even if the software meets all the requirements, and all the requirements are correct, there are parts of the program which will not be what the user or customer expected?
 
 It's more common than one would think to have gaps in requirements, or to have requirements which are ambiguous, incorrect, or even contradictory.  This is mostly due to the fact that if you were describing a program in sufficient detail, you would no longer be describing a program, you'd be *writing* a program.  In that case, you'd have all of the same problems as just writing the code in the first place.
 
@@ -73,17 +73,17 @@ For example, consider a company creating a brand-new Tic-Tac-Toe implementation.
 
 This sums up the game of Tic-Tac-Toe pretty nicely.  Now let's say that after beta testing, a user says that the game is unfair, because it forces one player to use X's and that mark is ugly.  The user suggests changing the X's into W's, because W's are a much more beautiful letter.  Is this a defect or enhancement?
 
-It's an enhancement, because the system met all of the requirements and operates normally.  The fact that a user did not like it is irrelevant.  This isn't to say that enhancements are bad, or useless, or a lesser class of complaint, just that they're not defects.
+It's an __enhancement__, because the system met all of the requirements and operates normally.  The fact that a user did not like it is irrelevant.  This isn't to say that enhancements are bad, or useless, or a lesser class of complaint, just that they're not defects.
 
 Now let's consider an instance where the first player, who should only be able to mark squares with X's, can mark a square with an O.  This is a defect, because it violates Requirement #2.  Even if the game is perfectly playable (let's say that the second player's marks then become X's), it's still a defect because it violates a requirement.
 
 Another example of a defect would be if the Tic-Tac-Toe board's display inverted after a player entered a mark in the center square.  There are no specific requirements against this happening, but there are varying "implicit requirements" to programs, such as not crashing, maintaining a display consistent with internal state, being responsive, etc.  These implicit requirements will vary based on the type of system; for example, a video game may need to be responsive 99% of the time, but a batch-processed weather forecasting program (where data is fed in, and the results returned 30 minutes later) may only need to be "responsive" in the sense that an answer will eventually come out.
 
-There can be disagreement over whether an issue is a defect or an enhancement.  Much of this disagreement can arise due to these implicit requirements.  If a video game character always takes three seconds to respond after hitting a button, one might argue that this is too long, even if there isn't a specific performance problem.  It's just not a good user experience to have a three second lag all the time.  However, at what point the button response latency become no longer an issue?  Two seconds?  One?  One hundred milliseconds?  Similarly, should a program be expected to crash if the system runs out of memory?  For a personal computer, perhaps; for a mainframe running banking transfer software, probably not.
+There can be disagreement over whether an issue is a defect or an enhancement.  Much of this disagreement can arise due to these implicit requirements.  If a video game character always takes three seconds to respond after hitting a button, one might argue that this is too long, even if there isn't a specific performance problem.  It's just not a good user experience to have a three second lag all the time.  However, at what point the button response latency become no longer an issue?  Two seconds?  One?  One hundred milliseconds?  Similarly, is it acceptable for a program to crash if the system runs out of memory?  For a personal computer, possibly; for a mainframe running banking transfer software, probably not.
 
-In some scenarios, the difference between a defect and an enhancement  will be a very big deal.  If your company is writing avionics software for the government, there will most likely be a very rigorous process for determining whether something is an enhancement or a defect.  There will be specified requirements, arbitrators to make decisions, and people whose entire job is to draft and interpret requirements.  If a company is contracted to create a program written "to the letter of the law", that company will fight to say that a request by the customer is not a defect, but something not covered by requirements, and thus an enhancement.
+In some scenarios, the difference between a defect and an enhancement  will be a very big deal.  If your company is writing avionics software for a new fighter jet, there will most likely be a very rigorous process for determining whether something is an enhancement or a defect.  There will be specified requirements, arbitrators to make decisions, and people whose entire job is to draft and interpret requirements.  If a company is contracted to create a program written "to the letter of the law", that company will fight to say that a request by the customer is not a defect, but something not covered by requirements, and thus an enhancement.
 
-In other scenarios, the boundary between defects and enhancements is a bit blurry.  If you are working for a startup without much software engineering overhead, and where the only real requirement is the unstated "do whatever the customer wants or we'll go bankrupt", then if the customer wants something, then it should be worked on.
+In other scenarios, the boundary between defects and enhancements is a bit blurry.  Let's assume that you are working for a startup without much software engineering overhead, and where the only real requirement is the unstated "do whatever the customer wants or we'll go bankrupt".  In that case, if the customer wants something, then it should be worked on (within reason).
 
 ## A Real-Life Testing Example
 
@@ -125,3 +125,5 @@ External factors could also be a factor.  What happens when...
 1. The system runs out of memory while processing the text?
 2. The CPU is running numerous other processes, leaving the system unresponsive?
 3. The network connection is lost midway through processing?
+
+It's easy to see, even from this very simple example, that testing can be a very involved process, full of ambiguities.  As a tester, not only will you have to resolve these ambiguities, but also determine how much effort and time should be spent on resolving them.  The more energy you put into any particular aspect of testing, the less time you will have for other aspects.  Keep this in mind when you are developing a testing strategy - the amount of time you have to complete the project may be flexible, but it is always finite, and there are always various priorities which you will have to juggle in order to produce quality software.

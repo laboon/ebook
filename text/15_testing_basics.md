@@ -83,11 +83,13 @@ Much better.  However, think how difficult it would be to rewrite this method so
 Getting back to our pressure sensor display, our stingy test manager says that we have time to test more values.  We want to ensure that at a minimum, we test all of the boundary values, and hopefully a good sampling of the interior values.  First, we'll calculate all of the boundary values, and then generate a test plan which tests all of the boundary values and some of the interior values.
 
 Boundary values:
-1. -1, 0 (Boundary between `ERROR` and `UNDERPRESSURE`)
-2. 20, 21 (Boundary between `UNDERPRESSURE` and `NORMAL`)
-3. 35, 36 (Boundary between `NORMAL` and `OVERPRESSURE`)
+
+1. -1, 0 (Boundary between `ERROR` and `UNDERPRESSURE`)  
+2. 20, 21 (Boundary between `UNDERPRESSURE` and `NORMAL`)  
+3. 35, 36 (Boundary between `NORMAL` and `OVERPRESSURE`)  
 
 Values to Test:
+
 1. Interior values, `ERROR` - -3, -100
 2. Boundary values, `ERROR` / `UNDERPRESSURE` - -1, 0
 3. Interior values, `UNDERPRESSURE` - 5, 11
@@ -106,7 +108,7 @@ Implicit boundary values can also be runtime-dependent.  Let us assume that we h
 
 There's an implicit boundary between the number of rows which fit into memory and that which don't.  Whoever wrote the requirements may not have thought about this, but as a tester, you should keep implicit boundary values in mind!
 
-## Base cases, Edge Cases, Corner Cases
+## Base Cases, Edge Cases, Corner Cases
 Let us continue our exploration of the pressure sensor display.  Going over our various test cases, we can see that they vary in how common they will be.  We can assume that the vast majority of the time, the pressure will be normal, or slightly over-pressure or under-pressure.  Each of these is considered a __base case__ - the system is operating within expected parameters for normal use.
 
 When input values are outside normal operating parameter or are approaching the limits of what the system can handle, this is called an __edge case__.  An edge case may be the tire popping and air pressure dropping to zero.  Another case would be someone forgetting that they had the air hose attached to the tire, and pumping in air up to a pressure of 200 PSI, the absolute limit to which the tire is rated.  This also might cover error cases which might not be expected in normal operation.
@@ -136,7 +138,7 @@ Finally, corner cases are cases where major disasters are occurring, or obviousl
 
 Corner cases often involve a catastrophic failure of some kind (loss of network connectivity, a key subsystem crashing), entirely invalid data being sent in, or multiple failures occurring at once.
 
-## Success cases, Failure Cases
+## Success Cases and Failure Cases
 
 When discussing test cases, there are two kinds of output that one would expect from a given test.  First, there may be a __success case__; that is, the case returns an expected result given the input given to it.  In general, tests following the "happy path" of what a user would normally do should be success cases.
 
