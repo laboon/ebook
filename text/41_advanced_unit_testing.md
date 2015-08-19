@@ -530,6 +530,7 @@ public class ReflectionFun {
     public static void main(String[] args) {
         try {
             System.out.println("Call private method (printQuock):");
+            ReflectionFun rf = new ReflectionFun();
             Method method2 = ReflectionFun.class.getDeclaredMethod("printQuock");
             method2.setAccessible(true);
             Object returnValue = method2.invoke(rf);
@@ -552,20 +553,26 @@ We can combine this with the other unit testing we've learned earlier in the cha
 
 ```java
 public class LaboonStuff {
-    private int laboonify(int x) { ... }
+    private int laboonify(int x) { return x; }
 }
 
 @Test
-public void testPrivateSquareRoot() {
+public void testPrivateLaboonify() {
     try {
-        Method method = MathStuff.class.getMethod("laboonify");
-        Object returnValue = method.invoke();
+        Method method = MathStuff.class.getDeclaredMethod("laboonify");
+	method.setAccessible(true);
+	LaboonStuff ls = new LaboonStuff();
+        Object returnValue = method.invoke(ls, 4);
+        int foo = ((Integer) returnValue).intValue();
+	assertEquals(foo, 4);
     } catch (NoSuchMethodException nsmex) {
         // The method does not exist
         fail();
     }
 }
 ```
+
+It is plain to see that testing even simple private methods can include quite a bit of boilerplate code.  In many cases, you will probably want to wrap the private method access code in a separate helper method.
 
 ## Unit test structure
 
