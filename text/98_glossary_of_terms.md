@@ -30,9 +30,9 @@ __Smart Monkey__: A __stochastic testing__ method whereby the data passed in mim
 
 __Fuzz Testing__: A form of __stochastic testing__ whereby random but possible data is passed in to a system to see how it responds.
 
-__Greenfield Development__: Writing software from scratch, and thus being able to design the entire system without worrying about previous solutions.  
+__Greenfield Development__: Writing software from scratch, and thus being able to design the entire system without worrying about previous solutions.
 
-__Browfield Development__: Writing software which must interactact with already-existing software in production, thus limiting potential design, solutions, architecture, etc.
+__Browfield Development__: Writing software which must interact with already-existing software in production, thus limiting potential design, solutions, architecture, etc.
 
 __Pinning Test__: An automated test (usually a unit test) which checks for the current response of a system, in order to modify code without modifying existing behavior.  Note that pinning tests check for the current response, _not_ the correct response.  Often used when refactoring or adding to __legacy code__.
 
@@ -86,7 +86,7 @@ __Internally Consistent (Requirements)__: The property of having no requirements
 
 __Externally Consistent (Requirements)__: The property of having the system be consistent with requirements of other systems or of the Universe.  For example, having a system which mandates that the system will be able to communicate with a base on Pluto instantaneously would require faster-than-light communication, and would thus be inconsistent with the laws of this Universe.
 
-__Functional Requirement_: A requirement that specifies exactly what a system should do under certain circumstances.  For example, "the system shall display ERROR on the console if any parameter is negative."  Contrast with __non-functional requirement__.
+__Functional Requirement__: A requirement that specifies exactly what a system should do under certain circumstances.  For example, "the system shall display ERROR on the console if any parameter is negative."  Contrast with __non-functional requirement__.
 
 __Non-Functional Requirement__: A requirement that specifies how the system should operate, without specifying specific behavior.  For example, "the system shall be extensible, allowing for the addition of plug-ins" or "the system shall be usable by personnel with less than one hour of training".  Contrast with __functional requirement__.
 
@@ -356,7 +356,7 @@ __Blocked__: A test case status indicating that the test case cannot be executed
 
 __Invariant__: In __property-based testing__, a property that should always hold for a function or method.  For example, a sorting method which accepts an unsorted array should always return an array with the same number of elements as the unsorted original.
 
-__Falsifying the Invariant__: Showing an example where an __invariant_ does not hold, such as an invariant for arithmetic method that adding two positive integers should always result in a number greater than one of the numbers, and showing that 1 + 1 = 0.
+__Falsifying the Invariant__: Showing an example where an __invariant__ does not hold, such as an invariant for arithmetic method that adding two positive integers should always result in a number greater than one of the numbers, and showing that 1 + 1 = 0.
 
 __Running__: A test case status indicating the test is currently being executed, but has not yet completed.
 
@@ -452,6 +452,6 @@ __Bounds checking__: Run-time checking that data is not being written outside of
 
 __Stakeholder__: Any person who has a direct interest in the successful completion, execution, or release of the system, such as customers, developers, and project managers.
 
-__UPOD__: An acronym for "UnderPromise, OverDeliver".  Refers to the fact that you should promise less than you think you can deliver, but then endeavor to deliver more.
+__UPOD__: An acronym for "Under-Promise, Over-Deliver".  Refers to the fact that you should promise less than you think you can deliver, but then endeavor to deliver more.
 
 __Testable Code__: Code which can be easily tested in an automated fashion at multiple levels of abstraction.
