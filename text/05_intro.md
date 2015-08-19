@@ -26,6 +26,6 @@ Finally, we get to the really interesting stuff!  This section of the book is wh
 
 This book is an introductory text to the world of software testing; there's definitely lots of room to explore and go into more detail on all of the topics here.  However, the purpose isn't to try to rival War and Peace in length, but to provide a general introduction to the field.  Spending lots of time on the intricacies of each of them might be interesting to me or to a small subset of the people reading the book, but my goals are to provide a good foundation of practical software testing knowledge, and give a taste of some of the various specialties and subfields in the industry.  Consider it a whirlwind tour of Europe instead of studying abroad for a year in Paris.
 
-## A Note On Language Choice
+## A Note on Language Choice
 
 The examples I give are in Java and use much of the Java tool chain (e.g., JUnit).  This is not due to some particular love of Java.  There are certainly other languages out there which have a good claim on being easier to use or more helpful in avoiding defects.  However, Java does serve as a _lingua franca_ amongst developers nowadays.  It is a standard, popular, ALGOL-derived programming language, so even if you're not familiar with it, you can probably reason out what's happening.

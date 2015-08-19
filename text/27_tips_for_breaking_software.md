@@ -136,7 +136,7 @@ Maybe not that last one. However, you will have to think of ways to test for the
 
     Be sure that you provide multiple methods of input and output, or at a bare minimum can at least accept and output raw text of some sort.  Not all users can use a mouse, or can view graphics.  Don't assume that the setup that you have will work for everyone who uses the software.
 
-## The List Goes On And On
+## The List Goes On and On
 
 This chapter is not a complete list of how to break programs and find defects.  It's not even a fairly comprehensive list.  The fact is, computers do exactly what you tell them to do, and one of the challenges of writing software is telling the computer exactly what do under all sorts of circumstances.  While many of these circumstances are relatively common across programs (such as dealing with missing files or network connectivity), many other errors will be specific to the domain you are working in, or the program you are writing.  As a tester, you will need to keep an open mind and constantly be thinking of ways in which defects can manifest themselves in the particular program under test.
 

@@ -8,7 +8,7 @@ However, it turns out that this situation is rarer than you might think.  You ma
 
 This technique is called __combinatorial testing__.  Testing all possible pairs of values is a kind of combinatorial testing, but has its own term, __pairwise testing__ or __all-pairs testing__.  At the beginning of this book, we discussed how comprehensively testing a non-trivial program was almost impossible.  By using the techniques in this chapter, we can reduce the number of tests dramatically (in some cases, by many orders of magnitude), but still find ourselves able to thoroughly test a system.
 
-## An Example Of Pairwise Testing
+## An Example of Pairwise Testing
 
 Let's take a very simple example, a program which has only three variables for a character's formatting: bold, italic, and underline.  These can be combined, so that, for example, a character can be just italic; or italic and underlined; or bold, italic and underlined.  Since each of these variables is a Boolean (they can only be true or false - you can't have a "half-italic" character), the list of possibilities for a character can be expressed as a truth table.
 
@@ -151,7 +151,7 @@ Let's examine a given three-way interaction, bold/italic/underline, and double-c
 
 The number of interactions can be tuned upwards as high as you would like, although if you are planning on testing n-way interactions where _n_ is the number of variables you have, you are just doing exhaustive testing.  According to empirical studies done by NIST, the maximum number of interactions that caused an error was six, so checking for more than that would be over-testing in many situations.
 
-## Working With Larger Variable Sets
+## Working with Larger Variable Sets
 
 Combinatorial testing seems to work well with relatively small data sets, saving us large percentages of time by reducing the number of tests necessary.  However, going from 32 to 12 tests is not that impressive; after all, 32 tests could probably still be run in a reasonable amount of time.  How well does combinatorial testing work for larger numbers of variables or possible values?
 

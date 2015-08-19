@@ -1,4 +1,4 @@
-# A Walkthrough In Creating A Test Plan
+# A Walkthrough in Creating a Test Plan
 
 Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called _catweigher_ (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight.
 
@@ -39,7 +39,7 @@ Please enter a valid parameter
 
 We should first determine what the expected behavior is before continuing with writing a test plan.  This can be done by checking with the appropriate requirements analysts, systems engineers, product owners, or whoever is in charge of requirements.  If you are working on a less formal team, the correct path forward may be to make an assumption.  However, these assumptions should be noted as part of the test plan!  If one must make assumptions, they should at least be delineated clearly somewhere.  In general, however, you should avoid making assumptions; you want to know what the expected behavior is as precisely as possible.  In this case, let's assume that we went to the project manager (of course _catweigher_ has a project manager) and determined that "Cat Weighing System" should not be displayed if the parameter is not valid.  In other words, the first string of output is correct.
 
-## Plotting Out The Test Plan
+## Plotting Out the Test Plan
 
 I have found that a top-down approach of the requirements of the program is of the most help in creating a test plan.  By a "top-down approach", I mean that a general outline of the test plan will be generated first, and then specific details can be filled in.  This contrasts with a "bottom-up approach", where the specific details of small sections are filled in first, and as more and more small details are filled, a larger picture gradually emerges.
 
@@ -59,7 +59,7 @@ How did I determine how to sort these out?  I looked for requirements which were
 
 Looking specifically at the test plan outline we developed here, it is apparent that the second section, Output, has by far the most requirements listed, this does not necessarily mean that it will take the longest amount of time to test, or involve the most work.  In fact, as FUN-STARTUP-MESSAGE is very simple and unchanging, and the three other requirements involve mathematically pure functions, the tests themselves will probably be relatively easy to write.  In real-world instances, some requirements may take orders of magnitude longer to test than others!  Performance and security requirements, among others, can be much more difficult to test than the length of their requirements would suggest.
 
-## Filling Out The Test Plan
+## Filling Out the Test Plan
 
 Let's start with the first section, Input.  I notice that there are several possible use cases here:
 

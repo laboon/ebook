@@ -59,7 +59,7 @@ Malware may belong to more than one variety.  For example, a program could propa
 
 It is not necessary for malware to be involved for there to be an attack on a system.  Just as there are automated tests and manual tests, there are automated attacks and manual attacks.  If I can guess the password of a user or send in a string to a text box which causes the system to crash, I am attacking the system without any kind of program.  While nowadays many of these vulnerabilities are found and exploited with software tools, good ol'-fashioned manual exploitation is still used on a regular basis.
 
-## Common Attacks, and How To Test For Them
+## Common Attacks, and How to Test for Them
 
 ### Injection
 

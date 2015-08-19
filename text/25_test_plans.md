@@ -250,7 +250,7 @@ In some cases, a test cannot be executed at the present time.  This can be due t
 
 Finally, in some cases a test case simply cannot be executed, either now or in the future, due to a problem with the test case itself.  In such cases, the test status can be marked as "__error__".  Tests marked as in error could have an issue with the test contradicting the requirements, such as a requirement saying that the background color of a web page should be blue, but the system under test is actually a command-line application.  It could be a problem with the expected behavior of a program, for example, saying that the square root of 25 should result in "poodle".  Oftentimes, a test marked "error" may be the result of a simple typo, but it could point to a fundamental problem with the development team's or testing team's understanding of the software.  Test cases marked "error", unlike those marked "blocked", are not expected to be run again until the error is resolved.
 
-## Test Plan / Run Tracking
+## Test Run Tracking
 
 Although you could execute a test plan for fun or for your own sense of self-improvement, in most cases you want to record what the results of the test plan were.  This can be done using custom test tracking software, a simple spreadsheet program, or even just a notebook.  In some cases, this will be necessary due to the regulatory environment, but even if it is not required, keeping track of what tests have passed and which have not will be extremely useful.
 

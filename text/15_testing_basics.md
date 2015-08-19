@@ -143,7 +143,7 @@ When discussing test cases, there are two kinds of output that one would expect 
 
 __Failure cases__ (also called __negative test cases__) are cases in which we expect the system to "fail" for some reason, such as attempting to write to a read-only disk, getting the square root of a negative number (in systems that don't work with imaginary/complex numbers), or attempting to add an invalid username to a system.  In failure cases, instead of returning a correct result, the system will do... something else.  What this "something else" is will vary from test to test, and with what kind of functionality is being tested.  Some examples might be returning an error code or default value, throwing an exception, shutting the system down, or simply logging the error to a log file or `stderr`.
 
-## Black / White / Grey Box Testing
+## Black-, White-, and Grey-Box Testing
 
 There are various ways of testing a system, each of which has benefits and drawbacks.  We'll explore three different kinds of testing here, and go into detail on various ways to test using these three paradigms in following chapters.
 

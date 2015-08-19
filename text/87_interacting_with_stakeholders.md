@@ -6,7 +6,7 @@ Conflict is inevitable on any team, and in fact, it's probably a positive overal
 
 As a software tester, you will have specific challenges when interacting with other members of the development team.  After all, the whole job of a tester is to find problems with software.  They're professional critics, constantly looking for all the weak points of a system in order to make it better.  If this is not done with a gentle touch, it can often be mistaken for being a jerk.  Nobody likes to hear about the problems or shortcomings of the software they wrote, and managers don't like hearing that a product won't be ready.  As a professional fault-finder, it also becomes very easy to sink into a morass of unjustified pessimism about a product.  In this chapter, we'll discuss how to deal with these problems and successfully interact with all the people necessary to bring a project to completion.
 
-## Who and What Are Stakeholders?
+## Who and What are Stakeholders?
 
 A __stakeholder__ is any person who has a direct interest in the product.  The specific kind of interest may vary based on the person and their role.  For example, the customer of a product - that is, the person who pays for it - will have a vested interest in paying as little as possible for the product.  Upper management and marketers have the exact opposite goal - they want customers to pay as much for it as possible, within epsilon of the price where people would choose a competitor.  Developers may have an interest in seeing the product written correctly, or using a language or framework that they prefer.  Quality assurance personnel may care about the quality of a product; assessors may care that the product meets all of its legal requirements; the list goes on and on.
 
@@ -136,7 +136,7 @@ A professor once said to me, "if you're ever in doubt over whether or not to com
 
 This does not mean that you should spread the news of everything that happens to you far and wide.  Upper management doesn't need to know about every defect you find, and the software developers don't need to know where you went for lunch.  Use the proper channels of communication, which will vary based on the team you are working with.  A daily status report to your immediate manager is usually very useful, because it will provide a secondary view at what might be considered important to other stakeholders.  For example, you may have found what you think is a minor defect, and include it only as a bullet point in your daily status, but your manager realizes that it could have far-reaching ramifications and announces it to the larger team.
 
-## A Note On Meetings
+## A Note on Meetings
 
 Very few people really enjoy meetings, outside of those who are probably busy taking courses in business school instead of reading a book about software testing.  However, they are often essential to determining the best path forward, and ensuring that the input of all relevant stakeholders is heard.  They often can actually be the most efficient way to get consensus on an issue, as well.
 

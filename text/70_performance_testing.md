@@ -38,7 +38,7 @@ By selecting the most important performance indicators - referred to as __key pe
 
 Selecting key performance indicators should be done before testing begins; you should not test a bunch of indicators, then turn around and note which ones were important.  You should determine which ones are most important ahead of time, when designing the test plan for the system.  If you are following a more lightweight development process, with less significant upfront design, you should at least determine whether or not a particular performance indicator is a KPI before running the appropriate test.  This forces you to keep in mind which aspects of the system's performance are important and which are not before coming up with results.  If you try to pick out the KPIs afterwards, you may be tempted (even if subconsciously) to simply select the indicators that met their targets.  Leave that kind of thinking to advertisers.
 
-## Testing Service Oriented Indicators - Response Time
+## Testing Service Oriented Indicators: Response Time
 
 The easiest way to measure response time, of course, is to simply follow this algorithm:
 
@@ -52,7 +52,7 @@ While this may be the easiest way to measure response time, it is far from the b
 
 Although testing in general is becoming increasingly automated, performance testing in particular tends to depend heavily on automated tests.  There can be quite a bit of variation in performance indicators from run to run, due to other variables over which you may have little control.  Examples of these variables include other processes running on a server, how much physical RAM was already being used, garbage collection runs, and virtual machine startup times, among others.  Often the only way to get a truly valid result is running a performance test for numerous iterations and statistically analyzing it (obtaining the mean, median, and maximum response times, for example).  The only way to gain a reasonable number of samples in a reasonable amount of time is to automate the process.
 
-### What Is Time?
+### What is Time?
 
 Although this may sound like a philosophical question, it actually has very direct ramifications when testing response times.  To a computer, there are actually several different ways of measuring time.  To a performance tester, how you report and measure time will depend upon what factors you are most interested in for the specific performance test.
 
@@ -115,7 +115,7 @@ Although these are rough guidelines for targets, they are not laws in and of the
 
 As a final note, it is possible for response time to be too fast!  Think of a scroll box that scrolls so fast that the user can't control it, or a screen which changes so quickly that it disorients the reader.  A performance indicator for response time might include an upper bound and a lower bound in some instances.
 
-## Testing Service-Oriented Indicators - Availability
+## Testing Service-Oriented Indicators: Availability
 
 Availability, often referred to as uptime, refers to what percentage of the time that a user can access the system when they expect to be able to do so.  Thus, anytime that a system is down for maintenance, or due to an uncaught exception crashing a process, or a hard drive blowing up, reduces availability.
 
@@ -172,7 +172,7 @@ MTBF = (0.1 * MTBF(stress)) + (0.9 * MTBF(stable)) = 649
 
 This is just an example, and it could certainly be further enhanced (and any state of the system that reaches such high levels of unavailability during stress states probably should be looked at further) .  Some systems do have spikes of usage, where others do not.  Some systems will handle lots of small events, others will handle a smaller number of harder-to-process events.  If you are able to gather real-world data and metrics about the usage of your system, you will be able to model its behavior better, and thus produce better availability numbers.  The more realistic the data, the more realistic the model you will be able to create.  Even with the most realistic of data, however, be prepared to be wrong - there are so many things that can go wrong with a complex system, it is impossible to take all of them into account in any model.
 
-## Testing Efficiency-Oriented Indicators - Throughput
+## Testing Efficiency-Oriented Indicators: Throughput
 
 If you'll recall from earlier, efficiency-oriented indicators take a view of the system from the perspective of the system and how efficiently it makes use of the computation resources available to it.  One measure of efficiency is the amount of __throughput__, or number of events that can be processed in a given amount of time on a specified hardware setup.  Examples would include how many web pages a web server could serve in one minute, or how many SQL queries a database server could perform in one minute.   This may seem similar to response time, or at least its inverse, but it isn't quite so simple.  While response time was measuring the response time from the point of view of a particular user of the system, throughput is how performant the system as a whole is in responding to a number of users.  If I am simply using a web server, I don't care about how fast other users get their data.  If I am an administrator of a web site using a particular server, then I certainly do care!
 
@@ -184,7 +184,7 @@ Remember to track the level of events and the equivalent throughput, and if poss
 
 Throughput levels are very sensitive to what kind of hardware you are running the software on, so even more than with other tests, you will need to ensure that you are running on the same kind of hardware from run to run to ensure valid results.  You may also want to determine throughput using the same software on different hardware configurations, which may also help to track down the cause of any slowdowns.  For example, a system which has extremely reduced throughput when run on a system with slightly less RAM than another may indicate a memory bottleneck.
 
-## Testing Efficiency-Oriented Indicators - Utilization
+## Testing Efficiency-Oriented Indicators: Utilization
 
 Testing __utilization__ means determining what amount of computing resources - on an absolute or relative basis - a particular system when performing some functionality.  Computing resources is a very broad term, covering anything that a program could be "using" on a machine. Common examples include:
 

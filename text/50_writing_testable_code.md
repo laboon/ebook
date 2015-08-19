@@ -113,7 +113,7 @@ What happens when we run this?  The execution flow first depends on two variable
 
 In order to test effectively, code should be segmented, and written in such a way that ensuring that the exact same code with the exact same values can be run multiple times.  If this is the case, then the exact output should occur each time, and tests will not randomly fail.  Write your code in such a way as to discourage random test failures, not encourage them.
 
-## Provide A Scriptable Interface
+## Provide a Scriptable Interface
 
 While the previous section described how to ensure code that was testable from a white-box perspective, creating a program that is easily testable from a black-box, systems-level perspective can be even more difficult.  Methods, in general, are meant to be called - there's a built-in interface to do it, and the parameters for each method are generally specified.
 
@@ -244,7 +244,7 @@ Test-unfriendly constructs are constructs in code where testing is by nature dif
 
 One method for keeping the complexity of your tests to a reasonable level is to not put TUFs inside of TUCs.  Move them to their own methods, or otherwise segment and design the code so that TUCs contain only minimal and easily-tested code.
 
-## Dealing With Legacy Code
+## Dealing with Legacy Code
 
 Not everybody has had the opportunity to read an excellent book with a chapter on writing testable code.  Much of the existing codebase out there was written by people who were not familiar with modern software engineering techniques, either through ignorance or because it was not common when it was written.  It would be foolishly optimistic to expect that people writing some FORTRAN IV code in 1966 would be using testing techniques which did not become common until the '90s.  Code that is already existing in production, but which does not follow modern software engineering best practices and often has substandard - or even no - automated test coverage, is known as __legacy code__.
 

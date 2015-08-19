@@ -580,7 +580,7 @@ It is plain to see that testing even simple private methods can include quite a 
 
 Unit tests in Java are usually grouped by class, and further by method; they mirror the structure of the program.  Since unit tests are white-box tests which interact closely with the code, this makes finding errors in the codebase based upon the particular failing test case much easier than with integration or manual tests.
 
-### What To Test?
+### What to Test?
 
 Exactly what you test will vary based upon the domain of software you are testing and the amount of time you have for testing, as well as organizational standards and other external factors.  Of course, stating this doesn't give you any direction at all, and similar caveats could probably be put in front of every paragraph of this book.  There are some heuristics to follow, many of which follow directly from some of the items discussed when developing a test plan.
 
@@ -640,7 +640,7 @@ Now imagine that we run this JUnit, which executes test cases in a random order;
 
 There is yet another benefit to creating tests which have no dependencies on other tests.  Independent tests can be run in parallel, possibly decreasing execution time dramatically.  On a modern multi-core machine, you may find yourself running tests many times more quickly if they can be run independently.
 
-### Try To Make Tests Better Every Time You Touch Them
+### Try to Make Tests Better Every Time You Touch Them
 
 Oftentimes, you will need to work with legacy code, including code which was poorly written or does not have good test coverage.  Although it may be tempting to simply continue working in the same manner that the code was originally written, you should try to do what you can to make the testing of the code better.  Keep your code easily testable, and if necessary, build wrappers around code that is difficult to test.
 
