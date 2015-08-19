@@ -68,15 +68,3 @@ When should you, as a tester, automate tests?  If a test can be automated in a r
 
 In the "real world" of software development, virtually all organizations that I'm familiar with use a mixture of manual and automated tests for their applications, with the emphasis almost always falling more heavily on automated testing.  Overall, automated testing provides many benefits for modern software development, especially being able to quickly run tests after changes are made to ensure that no regression defects have occurred.  Although there is certainly an up-front cost to adding an automated testing framework, for non-trivial projects, the benefits you get from allowing the computer to do the testing work for you will quickly outweigh those drawbacks.  Conversely, releasing software relying solely on the automated tests - without ever checking how the software actually runs for a user - is done only by those organizations whose software is very far removed from user experience, who have an extremely high level of confidence in their automated tests, and/or which are especially foolhardy.
 
-## Overview of Types of Automated Tests
-
-The manual tests that we have covered so far follow a general pattern.  They are all black-box (or grey-box) user-facing tests that test the system as a whole.  Automated tests run the gamut - while some automated tests act just like the black-box tests we have covered, there are many other varieties which don't.  In some of these cases, a manual version would be literally impossible, while in others, it may be possible to replicate them manually but it is so rarely done that those cases can be safely ignored.
-
-1. __Unit Tests__
-2. __Integration / Acceptance Tests__
-3. __Performance Testing__
-4. __Property-Based Testing__
-5. __Continuous Integration__
-6. __Fuzz Testing__
-7. __Model-Based Testing__
-
