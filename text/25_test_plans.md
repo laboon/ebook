@@ -334,7 +334,7 @@ FUN-COFFEE-TOO-COLD: 6, 7
 FUN-TEA-ERROR: 8
 ```
 
-It's easy to see that for each requirement, there is at least one test covering it.  If there were another requirement, say,
+It's easy to see that for each requirement, there is at least one test covering it.  If there were another requirement, say:
 
 __FUN-COFFEE-FROZEN.__ If the coffee is in a solid and not a liquid state, then the app shall display `THIS COFFEE CAN ONLY BE EATEN, NOT DRUNK` message.
 

@@ -2,6 +2,8 @@
 
 __Enhancement__: A requested modification or additional functionality which was not originally specified in the requirements.
 
+__Test case__: The smallest unit of a test plan, these are the individual tests that describe a check for the expected behavior of a system.
+
 __Fragile__: A description of a test case or suite which is easily broken by small modifications to the codebase or environment.
 
 __Test Hook__: A "hidden" method which allows input to, or output from, the system in order to make it easier to test.
@@ -73,6 +75,12 @@ __Requirement__: A statement of what the system under development needs to do in
 __Requirements Specification__: A list of requirements for a given system.  The system is expected to meet all of the requirements in the requirements specification.
 
 __Testability__: A quality of a system that specifies how easy it is to test - having well-designed and coherent methods, pure functions where possible, allowance for dependency injection, etc.
+
+__Complete (Requirements)__: The property of having the requirements specify the entirety of the system.
+
+__Consistent (Requirements)__: The property of having requirements which can all be followed without a paradox (e.g., "the system shall display the message 'Hello' upon startup" and "the system shall not display any message upon startup" are not consistent).
+
+__Unambiguous (Requirements)__: The property of having requirements which can be read and understood in one and only one way.
 
 __Internally Consistent (Requirements)__: The property of having no requirements contradict each other.  For example, a requirements specification which has a requirement which states "The system shall always leave the red light on" and another requirement which states that "The system shall turn off the red light if `SWITCH1` is enabled" would not be internally consistent.
 
@@ -170,6 +178,10 @@ __Service-Based Performance__: Performance on metrics related to how the user wi
 
 __Performance Indicator__: A quantitative measure that indicates the level of performance of the system.  For example, response time or memory usage.
 
+__Quantitative__: Able to be expressed numerically, such as "the system shall respond within 500 milliseconds".  Contrast with __qualititative__.
+
+__Qualitative__: Not able to be expressed numerically, such as "the system shall be _extremely_ cool".  Contrast with __qualitative__.
+
 __Key Performance Indicator__: A __performance indicator__ that is considered of primary importance in the development of the system.
 
 __KPI__: Abbreviation for __Key Performance Indicator__.
@@ -219,6 +231,8 @@ __Pathological Case__: Another term for __corner case__.
 __User Story__: A description of what a user would want a system to do; similar to __requirements__, but focusing from the user side as opposed to the technical.  Often written using the __Connextra template__.
 
 __Connextra Template__: A common template for defining user stories, which consists of the phrase "As a <role>, I want <function>, So That <reason>".  Also referred to as the __Role-Function-Reason Template__.
+
+__Impact__: When reporting defects, how the defect will affect users of the system.
 
 __Role-Function-Reason Template__: Another term for the __Connextra Template__.
 
@@ -328,6 +342,32 @@ __Baseline test__: A kind of __load test__ where a bare minimum amount of events
 
 __Profiler__: A tool which allows you to measure the resource utilization and internal events (such as method calls or instantiation of objects) of a running program.
 
+__Passed__: A test case status indicating that the test was executed without error, and the expected behavior matched the observed behavior.
+
+__Failed__: A test case status indicating that the test was executed without error, but the expected behavior did not match the observed behavior.
+
+__Paused__: A test case status indicating that the test started to be executed, but is currently on hold for external reasons (e.g., the tester went out to lunch).
+
+__Error (Test Case Status)__: A test case status indicating that something appears to be wrong with the test case itself (such as a typo or invalid behavior).
+
+__Blocked__: A test case status indicating that the test case cannot be executed at this time (e.g., because the functionality has not yet been developed).
+
+__Running__: A test case status indicating the test is currently being executed, but has not yet completed.
+
+__Blocker__: A defect of the highest severity, where the system cannot reasonably be released without fixing it or providing a __workaround__.
+
+__Workaround__: A method for avoiding a known __defect__ while still being able to use the system.
+
+__Critical__: A defect of the second-highest level of severity, which severely impacts how a user could use the system.
+
+__Major__: A defect of the third-highest level of severity, which indicates a severe problem but still allows the user to use the system.
+
+__Minor__: A defect of a lower level of severity than __normal__, which causes only a very small problem for use of the system.
+
+__Normal__: A defect of a severity which is noticeable but does not strongly hamper the user's use of the system.
+
+__Trivial__: A defect of a severity which is not noticeable, or hardly noticeable, and only causes the smallest of issues for a user of the system.
+
 __Packet analyzer__: A tool which allows you to view individual packets that are being transmitted over the network.
 
 __Phone phreak__: A person who explores the telephone system, usually without the permission of relevant authorities.  Famous phone phreaks include John Draper and Joe Engressia.
@@ -345,6 +385,8 @@ __Fabrication__:  In __security testing__, an attack on __integrity__, which del
 __Denial of Service__: A method of attacking __availability__ by sending so many unauthorized packets or other events to a computing resource that no authorized users have access to it.
 
 __DoS__: An acronym for __denial of service__.
+
+__Triage__: A meeting or other way (e.g. email discussion) of prioritizing defects.
 
 __Distributed Denial of Service__: A __denial of service__ attack which consists of many different sources of the unauthorized packets, so as to increase the number of events the system must process as well as help disguise the ultimate source.
 

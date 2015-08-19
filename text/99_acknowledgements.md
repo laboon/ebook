@@ -2,6 +2,6 @@
 
 Thanks to everybody who has helped make this book a reality or made it into a better reality, especially:
 
-* Tim Parenti
-* Ross Acheson
-* Robbie McKinstry
+_Ross Acheson, Robbie McKinstry
+
+Special thanks go to __Tim Parenti__, who found more typos and errors than I ever would have thought possible, and even better, did an excellent job fixing many of them.

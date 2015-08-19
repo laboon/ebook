@@ -97,7 +97,7 @@ If at all possible, the requirements should be __quantitative__ as opposed to __
 
 What do we mean by this?  It's impossible to test without defining what we mean by "extremely quickly", or what kind of results need to be returned quickly.
 
-Finally, some common sense needs to be applied to the requirements writing.  It' possible to write a requirement which may be theoretically possible to test, but for various reasons, impossible to test in the real world.  A requirement like this is not __feasible to test__.  Let's say that we have the following requirements for testing our air pressure sensor:
+Finally, some common sense needs to be applied to the requirements writing.  It' possible to write a requirement which may be theoretically possible to test, but for various reasons, impossible to test in the real world.  A requirement like this is not feasible to test.  Let's say that we have the following requirements for testing our air pressure sensor:
 
 * __REQ-1.__ The system shall be able to endure pressures of up to 9.5 x 10^11 pounds per square inch.
 * __REQ-2.__ Under normal operating procedures (defined elsewhere), the system shall remain usable for two hundred years of continuous use.
@@ -108,7 +108,7 @@ When applied to physical phenomena, it is manifestly clear how silly it would be
 
 ## Functional vs Non-Functional Requirements (Quality Attributes)
 
-Functional requirements state what a system should __do__; non-functional requirements state what a system should __be__.
+Functional requirements state what a system should _do_; non-functional requirements state what a system should _be_.
 
 The requirements that we have discussed so far are functional requirements; that is, they say that the software system shall do a particular action under specific circumstances.  For example,
 

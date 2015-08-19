@@ -20,7 +20,7 @@ Software may "shut down hard" without it necessarily being a defect.  For exampl
 
 Finally, note that the word "bug" is often used interchangeably with the word "defect".  They mean exactly the same thing, but "bug" is much more colloquial.  In this book, the word "defect" will be used, except in those cases where author forgets to do so.
 
-## Reporting a defect and the Defect Life Cycle
+## The Defect Life Cycle
 
 Upon discovering a defect, the tester (or whoever else finds the defect) should __report__ it.  Reporting may have different meanings depending on the organization and the severity of the defect.  At its root, it means that the specifics of the defect should be marked down in a location where it can be reviewed in the future, by stakeholders of the project - other testers, developers, management, etc.  In most cases, teams will have some sort of defect-tracking software, but defect reporting could be as simple as marking down the error with old-fashioned pen and paper.
 
@@ -38,7 +38,7 @@ When a defect is reported, its life is just beginning.  Just as software develop
 
 When a tester or other user first encounters and recognizes a defect, this is the "Discovery" stage.  In some cases, nothing can happen after this - the user ignores the defect or decides that it's not worth investigating further.  However, for a professional tester, this should not be the case - the job of a tester is to determine the quality of the software, and this includes finding and reporting defects.
 
-The second stage is filing the defect, usually in some sort of standardized way.  This involves spending some time and figuring out exactly what the tester did to expose the issue, what was expected to happen, and what was observed to happen.  Remember that the role of the tester is to discover the issue and how to reproduce it, not to figure out the root cause of the problem in the code.  This can be done - and often is, depending on the technical knowledge of the tester - but it is not the primary role.  If a tester looks too deeply into the codebase, he or she may be tempted to write what needs to be done to fix the defect as opposed to focusing on what the defect actually is.  Remember, similar to requirements, a defect should be focused on __what__ is wrong, not __how__ to fix it.
+The second stage is filing the defect, usually in some sort of standardized way.  This involves spending some time and figuring out exactly what the tester did to expose the issue, what was expected to happen, and what was observed to happen.  Remember that the role of the tester is to discover the issue and how to reproduce it, not to figure out the root cause of the problem in the code.  This can be done - and often is, depending on the technical knowledge of the tester - but it is not the primary role.  If a tester looks too deeply into the codebase, he or she may be tempted to write what needs to be done to fix the defect as opposed to focusing on what the defect actually is.  Remember, similar to requirements, a defect should be focused on _what_ is wrong, not _how_ to fix it.
 
 After a defect is filed, somebody must determine whether or not to spend resources to fix it, and if so, how to prioritize what may be a large number of defects.  This is called __triaging__.  The word triage comes from a medical term from prioritizing the order that patients should be treated based on how badly they've been wounded or how ill they are.  It is often done when there are large numbers of casualties at once, too many for medical personnel to take care of all of them.  For instance, after a major natural disaster, a hospital may be overrun with patients, some of whom have minor injuries, others with serious injuries, and some who are critically wounded and unable to be saved.  In such cases, the hospital may triage the incoming patients and immediately treat those with serious wounds, but deprioritize working on those with minor injuries and those whom they are unlikely to be able to heal.
 
@@ -76,11 +76,11 @@ The __summary__ is a one sentence or so summary of the defect found.  It's usefu
 3. System exits with `SEGFAULT` error when user selected
 4. Adding three or more items to a cart at the same time clears out other items
 
-All of these describe the problem succinctly, without going into much detail.  Remember that the summary will often be glanced at along with perhaps hundreds of other bug summaries, especially if you are presenting to management.  There is a reason why most books written today have snappy titles, as opposed to titles such as _The Egg, Or The Memoirs Of Gregory Giddy, Esq: With The Lucubrations Of Messrs. Francis Flimsy, Frederick Florid, And Ben Bombast. To Which Are Added, The Private Opinions Of Patty Pout, Lucy Luscious, And Priscilla Positive. Also The Memoirs Of A Right Honourable Puppy. Conceived By A Celebrated Hen, And Laid Before The Public By A Famous Cock-Feeder._  Yes, that is a real book, written in 1772.
+All of these describe the problem succinctly, without going into much detail.  Remember that the summary will often be glanced at along with perhaps hundreds of other bug summaries, especially if you are presenting to management.  There is a reason why most books written today have snappy titles, as opposed to titles such as _The Egg, Or The Memoirs Of Gregory Giddy, Esq: With The Lucubrations Of Messrs. Francis Flimsy, Frederick Florid, And Ben Bombast. To Which Are Added, The Private Opinions Of Patty Pout, Lucy Luscious, And Priscilla Positive. Also The Memoirs Of A Right Honourable Puppy. Conceived By A Celebrated Hen, And Laid Before The Public By A Famous Cock-Feeder._  Yes, that is a real book, written by an anonymous author and published in 1772.
 
 ### Description
 
-In the description, the defect is described in more detail.
+In the description, the defect is described in more detail.  The goal is to allow an in-depth understanding of what the issue and why the behavior is, in fact, a defect.  This is usually a few sentences long, although if the defect is more complicated or requires expository information to understand, it may be longer.  
 
 ### Reproduction Steps
 
@@ -144,7 +144,7 @@ Severity should not be mistaken for priority.  Severity is how severe the proble
 
 ### Workaround
 
-The __workaround__ field describes how the defect can be avoided, or at least ameliorated.  Assuming a defect where special characters don't work in passwords, the workaround is to only use alphanumeric characters in passwords.  It is important to note that workarounds are not always **good** workaround; they may involve not using certain functionality.  For example, if the word count feature of an editor is not working, the workaround may be to not use word count, or to use a different program (e.g., `wc -w` in Unix systems).
+The __workaround__ field describes how the defect can be avoided, or at least ameliorated.  Assuming a defect where special characters don't work in passwords, the workaround is to only use alphanumeric characters in passwords.  It is important to note that workarounds are not always __good__ workarounds; they may involve not using certain functionality.  For example, if the word count feature of an editor is not working, the workaround may be to not use word count, or to use a different program (e.g., `wc -w` in Unix systems).
 
 In some cases, there may not be any sort of workaround, or at least not a known one.  If the system is crashing at seemingly nondeterministic times, it would be impossible to list a workaround except the trivial case of "don't use the software", which is not generally accepted as a workaround.  This does not mean that a workaround does not exist, only that it's not known; there may be a setting or input value which is causing the issue, but the testing team just has not uncovered it,  If no user can log in to a web application, or the server refuses to start, or a system consistently gives wrong results to every query, then there may be no workaround, as the system is entirely unusable.  In such cases, the severity of the bug is inevitably BLOCKER or its equivalent.
 
