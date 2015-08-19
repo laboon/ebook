@@ -109,7 +109,7 @@ Note that we are still checking all pairs.  Let's check the word/bold pair to ve
 6       "!@#$" | false      | false     | false
 ```
 
-As a side note, notice that we are now testing even more combinations and yet there are still only six tests.  This is merely a foreshadowing of how much time can be saved with combinatorial testing.
+As a side note, notice that we are now testing even more pairwise combinations and yet there are still only six tests.  This is merely a foreshadowing of how much time can be saved with combinatorial testing.
 
 ## _n_-Way Interactions
 

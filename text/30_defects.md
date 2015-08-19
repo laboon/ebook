@@ -16,7 +16,7 @@ An example of a system returning an incorrect result would be a spreadsheet prog
 
 The last kind of defect is one common to all programs - a program should not die unexpectedly.  That is, the intent of the user or the original writer or installer of the program is that the system should be running at some point in time, that program should be running at that point in time.
 
-Software may "shut down hard" without it necessarily being a defect.  For example, sending a SIGKILL (via "kill -9" or a similar command) to a Unix process causes the program to cease execution without running any of its shutdown routines.  However, it did not die unexpectedly - the user wanted it to do so and even sent it a message telling it to do exactly that!  The reason that the user had to send a SIGKILL to the process may be a defect, but the fact that it stopped running under these circumstances is not a defect.  If the system dies to a segmentation fault, an untrapped division by zero, or dereferencing a null pointer, these are all considered defects.  They should never happen in a program, even if the requirements do not specify that "the program shall run without any null pointer exceptions".
+Software may "shut down hard" without it necessarily being a defect.  For example, sending a SIGKILL (via `kill -9` or a similar command) to a Unix process causes the program to cease execution without running any of its shutdown routines.  However, it did not die unexpectedly - the user wanted it to do so and even sent it a message telling it to do exactly that!  The reason that the user had to send a SIGKILL to the process may be a defect, but the fact that it stopped running under these circumstances is not a defect.  If the system dies to a segmentation fault, an untrapped division by zero, or dereferencing a null pointer, these are all considered defects.  They should never happen in a program, even if the requirements do not specify that "the program shall run without any null pointer exceptions".
 
 Finally, note that the word "bug" is often used interchangeably with the word "defect".  They mean exactly the same thing, but "bug" is much more colloquial.  In this book, the word "defect" will be used, except in those cases where author forgets to do so.
 
@@ -52,7 +52,7 @@ Thus, after the defect has been fixed, the software should be returned to the te
 
 This is not an industry standard defect reporting template, but I have found it to be very useful.  It ensures that all of the major aspects of a defect, once found, have been reported.  By acting as a kind of checklist for what to put down for a defect, it helps to ensure that a tester will not forget anything (that big blank space after a line has a way of showing up in most people's visual fields).  Note that although there is no identifier specifically listed here, it will often be automatically added by whatever defect tracking software you are using.  If you are not using defect tracking software, and don't want to use defect  tracking software, then you can add an IDENTIFIER field.
 
-Without further ado, here is the template.
+Without further ado, here is the template:
 
 ```
 SUMMARY:
@@ -163,7 +163,7 @@ What exactly goes here will vary by the type of software you are testing, but it
 7. Suspicious or notable behavior of other programs
 8. Copied error message text
 
-### Exceptions to the Template
+## Exceptions to the Template
 
 For some defects, fields may be intentionally left blank.  For example, the defect may be relatively simple and not include any extra detail, so the Notes field may be marked "N/A".  In many cases where the expected behavior is obvious, this field can also be marked "N/A"; if the Observed Behavior is "System crashes", it would be obvious to most reviewers that the Expected Behavior is "System does not crash."  As a best practice, it's better to write "N/A", "None" or some other signifier, so that others who look at the defect report are not under the impression that the tester just forgot to fill in some fields.
 
@@ -179,133 +179,134 @@ Note that a defect error provides a description of the defect, not what should b
 
 ----
 
-SUMMARY: Site returns 500 error when username is blank
+* SUMMARY: Site returns 500 error when username is blank
 
-DESCRIPTION: When a user attempts to log in and fills in a password, but does not fill in a username, the system returns a 500 error page (see NOTES section for text of page).
+* DESCRIPTION:
 
-This was attempted with numerous passwords.  It does not occur if no password is filled in.
+    When a user attempts to log in and fills in a password, but does not fill in a username, the system returns a 500 error page (see NOTES section for text of page).
 
-REPRODUCTION STEPS:
-Preconditions - User is not logged in
+    This was attempted with numerous passwords.  It does not occur if no password is filled in.
 
-1. Using any web browser, navigate to root page of app
-2. In the text box labeled "Password", type `foo`
-3. Ensure that the text box labeled "Username" is blank
-4. Click the "Login" button
+* REPRODUCTION STEPS:
 
-EXPECTED BEHAVIOR:
+    Preconditions - User is not logged in
 
-User sees error page with "Please fill in both username and password" message
+    1. Using any web browser, navigate to root page of app
+    2. In the text box labeled "Password", type `foo`
+    3. Ensure that the text box labeled "Username" is blank
+    4. Click the "Login" button
 
-OBSERVED BEHAVIOR:
+* EXPECTED BEHAVIOR:
 
-User sees 500 error.
+    User sees error page with "Please fill in both username and password" message
 
-IMPACT:
+* OBSERVED BEHAVIOR:
 
-A user who forgets to type in their username, but does type in the password, will not see the expected error page.
+    User sees 500 error.
 
-SEVERITY:
+* IMPACT:
 
-Normal - This is an edge case, but the user may not know to hit the back button to retry logging in.
+    A user who forgets to type in their username, but does type in the password, will not see the expected error page.
 
-WORKAROUND:
+* SEVERITY:
 
-Ensure username field is not blank when logging in.
+    Normal - This is an edge case, but the user may not know to hit the back button to retry logging in.
 
-NOTES:
+* WORKAROUND:
 
-The text of the page shown is
+    Ensure username field is not blank when logging in.
 
-```
-500 Internal Server Error
+* NOTES:
 
-We're sorry, something went wrong.  Please try again later.
-```
+    The text of the page shown is:
+    ```
+    500 Internal Server Error
+    
+    We're sorry, something went wrong.  Please try again later.
+    ```
 
-The server logs report the following error:
-
-```
-Caught NullPointerException in LoginProcedure, Line 38
-```
-
-----
-
-SUMMARY: "Invisible wall" on level 12 of Amazing Bulgarian Plumber
-
-DESCRIPTION:
-
-On level 12, three blocks to the right from the first Anaconda Plant, there are three blocks stacked on top of each other.  However, they are the same color as the background and thus invisible to the user.  Per the requirements, there should be no invisible obstacles for players of the game.
-
-REPRODUCTION STEPS:
-
-1. Start on level 12
-2. Go to the right three screens
-3. Jump over Anaconda Plant
-4. Move three blocks to the right
-5. Attempt to move one further block to the right
-
-EXPECTED BEHAVIOR:
-
-Player can move onto block
-
-OBSERVED BEHAVIOR:
-
-Player cannot move, as invisible blocks are in the way
-
-IMPACT:
-
-Player of game may be confused by inability to move
-
-SEVERITY:
-
-MAJOR - This is specifically called out by the requirements, and is quite annoying to the player of the game.
-
-WORKAROUND:
-
-Jump over invisible blocks, once you know that they are there
-
-NOTES:
-
-None
+    The server logs report the following error:
+    ```
+    Caught NullPointerException in LoginProcedure, Line 38
+    ```
 
 ----
 
-SUMMARY: Users cannot log in to system
+* SUMMARY: "Invisible wall" on level 12 of Amazing Bulgarian Plumber
 
-DESCRIPTION:
+* DESCRIPTION:
 
-When attempting to log in to the system with all user and administrator accounts, the same error message is given: "Login failed, perhaps you mistyped your password?"
+    On level 12, three blocks to the right from the first Anaconda Plant, there are three blocks stacked on top of each other.  However, they are the same color as the background and thus invisible to the user.  Per the requirements, there should be no invisible obstacles for players of the game.
 
-REPRODUCTION STEPS:
+* REPRODUCTION STEPS:
 
-1. Go to login page of system
-2. Type `TestUser1` in "Username" text box
-3. Type the password for TestUser1 in "Password" text box
-4. Click the "Login" button
+    1. Start on level 12
+    2. Go to the right three screens
+    3. Jump over Anaconda Plant
+    4. Move three blocks to the right
+    5. Attempt to move one further block to the right
 
-EXPECTED BEHAVIOR:
+* EXPECTED BEHAVIOR:
 
-Welcome page is shown
+    Player can move onto block
 
-OBSERVED BEHAVIOR:
+* OBSERVED BEHAVIOR:
 
-Error message is displayed "Login failed, perhaps you mistyped your password?"
+    Player cannot move, as invisible blocks are in the way
 
-IMPACT:
+* IMPACT:
 
-No users will be able to use the system
+    Player of game may be confused by inability to move
 
-SEVERITY:
+* SEVERITY:
 
-BLOCKER - As it is, the system is unusable to all users.
+    MAJOR - This is specifically called out by the requirements, and is quite annoying to the player of the game.
 
-WORKAROUND:
+* WORKAROUND:
 
-None
+    Jump over invisible blocks, once you know that they are there
 
-NOTES:
+* NOTES:
 
-If you do not know the password for TestUser1, please see the QA Lead.
+    None
 
-The logs do not show any unusual messages when attempting to log in.
+----
+
+* SUMMARY: Users cannot log in to system
+
+* DESCRIPTION:
+
+    When attempting to log in to the system with all user and administrator accounts, the same error message is given: "Login failed, perhaps you mistyped your password?"
+
+* REPRODUCTION STEPS:
+
+    1. Go to login page of system
+    2. Type `TestUser1` in "Username" text box
+    3. Type the password for TestUser1 in "Password" text box
+    4. Click the "Login" button
+
+* EXPECTED BEHAVIOR:
+
+    Welcome page is shown
+
+* OBSERVED BEHAVIOR:
+
+    Error message is displayed "Login failed, perhaps you mistyped your password?"
+
+* IMPACT:
+
+    No users will be able to use the system
+
+* SEVERITY:
+
+    BLOCKER - As it is, the system is unusable to all users.
+
+* WORKAROUND:
+
+    None
+
+* NOTES:
+
+    If you do not know the password for TestUser1, please see the QA Lead.
+
+    The logs do not show any unusual messages when attempting to log in.
