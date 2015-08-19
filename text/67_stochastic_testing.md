@@ -16,7 +16,7 @@ Of course, since you - or more precisely, the stochastic testing system - may no
 
 ## Property-Based Testing
 
-Let's say that we are testing a new sort function, `billSort`.  It's twice as fast as any other sorting algorithm out there, but there are questions about its correctness, and so you have been tasked to test that it works in all cases.  What kind of input values would you test it with?  Assume the method signature looks like this:
+Let's say once again that we are testing our sorting function, `billSort`.  As you'll recall, it's meant to be twenty times faster than any other sorting algorithm out there, but there are questions about its correctness, and so you have been tasked to test that it works in all cases.  What kind of input values would you test it with?  Assume the method signature looks like this:
 
 ```java
 public int[] billSort(int[] arrToSort) {
