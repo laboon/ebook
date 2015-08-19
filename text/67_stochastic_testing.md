@@ -57,14 +57,10 @@ Some invariants for a sort function would be:
 5. The function is idempotent; that is, running the sort method on a list, and then running the sort again on the output, should produce the same output array as just running it once
 6. The function is pure; running it two times on the same input array should always produce the same output array
 
-Now that we have some of the properties we expect from *any* output of the `billSort` method, we can let the computer do the grunt work of thinking up random arrays of data, passing them in to our method, and then checking that whatever output array is produced meets all of the properties that we set.  If an output array does not meet one of the invariants, we can then report the error to the tester.  Producing output that does not meet the specified invariant is called *falsifying the invariant*.
-
-### QuickCheck
-
-### Using QuickCheck for Checking A Java Method
-
-### Benefits and Drawbacks
+Now that we have some of the properties we expect from *any* output of the `billSort` method, we can let the computer do the grunt work of thinking up random arrays of data, passing them in to our method, and then checking that whatever output array is produced meets all of the properties that we set.  If an output array does not meet one of the invariants, we can then report the error to the tester.  Producing output that does not meet the specified invariant is called __falsifying the invariant__.
 
 ## Smart, Dumb, Evil, and Chaos Monkeys
 
-At the systems level, the terms "stochastic testing" or "monkey testing" are often used instead of property-based testing, even though they are performing similar kinds of operations.
+As mentioned above, stochastic testing is often called 
+
+

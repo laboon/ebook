@@ -354,6 +354,10 @@ __Error (Test Case Status)__: A test case status indicating that something appea
 
 __Blocked__: A test case status indicating that the test case cannot be executed at this time (e.g., because the functionality has not yet been developed).
 
+__Invariant__: In __property-based testing__, a property that should always hold for a function or method.  For example, a sorting method which accepts an unsorted array should always return an array with the same number of elements as the unsorted original.
+
+__Falsifying the Invariant__: Showing an example where an __invariant_ does not hold, such as an invariant for arithmetic method that adding two positive integers should always result in a number greater than one of the numbers, and showing that 1 + 1 = 0.
+
 __Running__: A test case status indicating the test is currently being executed, but has not yet completed.
 
 __Blocker__: A defect of the highest severity, where the system cannot reasonably be released without fixing it or providing a __workaround__.
