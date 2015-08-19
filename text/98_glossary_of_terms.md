@@ -82,9 +82,9 @@ __Dogfood, eating your own__: Another term for __dogfooding__.
 
 __Dogfooding__: Using your own software while developing it.  For example, running the operating system that you are developing on your own computer.
 
-__DoS tools__: Tools which enable denial of service attacks.
-
 __DoS__: An acronym for __denial of service__.
+
+__DoS tools__: Tools which enable denial of service attacks.
 
 __DRY__: Don't Repeat Yourself.  A tenet of writing good, testable code which states that code should not be repeated, for example by having two different methods which do the same thing, or copy/pasting code from one part of the codebase to another instead of making it into a callable method.
 
@@ -96,13 +96,13 @@ __Efficiency-based performance__: Performance on metrics related to the efficien
 
 __Enhancement__: A requested modification or additional functionality which was not originally specified in the requirements.
 
-__Equivalence class partitioning__: Separating a specific functionality into distinct equivalence classes based on input values.
-
 __Equivalence class__: A group of input values which provide the same, or similar type, of output.
 
-__Error (test case status)__: A test case status indicating that something appears to be wrong with the test case itself (such as a typo or invalid behavior).
+__Equivalence class partitioning__: Separating a specific functionality into distinct equivalence classes based on input values.
 
 __Error__: A status for a test case in a test run.  It indicates that there is an issue with the test case itself, and the test cannot be run.  For example, the preconditions indicate an impossible condition.
+
+__Error (test case status)__: A test case status indicating that something appears to be wrong with the test case itself (such as a typo or invalid behavior).
 
 __Evil Monkey__: A __stochastic testing__ method whereby malicious code or data is sent in to a system.  Simulates an attacker trying to gain access or cause damage to a system.
 
@@ -210,11 +210,11 @@ __MTTR__: An acronym for __mean time to repair__.
 
 __n nines__: A way of showing what percentage of the time the system is available, based on the number of nines in that number, and assuming nines are the only significant digit.  For example, a system that is available 99.9% of the time has 3 nines' availability, while a system that is available 99.999% of the time has 5 nines' availability.
 
-__nines__: See __n nines__.
+__Nines__: See __n nines__.
 
 __Non-deterministic__: A test failure which does not occur all of the time, but only on certain runs, and for unknown reasons.
 
-__Non-Functional requirement__: A requirement that specifies how the system should operate, without specifying specific behavior.  For example, "the system shall be extensible, allowing for the addition of plug-ins" or "the system shall be usable by personnel with less than one hour of training".  Contrast with __functional requirement__.
+__Non-functional requirement__: A requirement that specifies how the system should operate, without specifying specific behavior.  For example, "the system shall be extensible, allowing for the addition of plug-ins" or "the system shall be usable by personnel with less than one hour of training".  Contrast with __functional requirement__.
 
 __Normal__: A defect of a severity which is noticeable but does not strongly hamper the user's use of the system.
 
@@ -254,7 +254,7 @@ __Performance target__: In __performance testing__, the target value for a __per
 
 __Performance testing__: Testing that a system meets the __performance indicators__ designated for it.
 
-__Performance Threshold__: In __performance testing__, an absolutely minimal value for a given performance indicator for the system to be considered releasable.  Contrast with __performance target__.
+__Performance threshold__: In __performance testing__, an absolutely minimal value for a given performance indicator for the system to be considered releasable.  Contrast with __performance target__.
 
 __Performant__: A program which provides a high level of performance, which is usually measured by it meeting or exceeding its __KPIs__.
 
@@ -316,9 +316,9 @@ __Seam__: A place in the codebase where you can modify behavior without modifyin
 
 __Security testing__: Testing that the system meets the criteria of the InfoSec Triad, that the system is safe from unauthorized tampering and/or access.
 
-__Service Level Agreement__: An agreement by a service provider, which often includes a guarantee of __availability__.
-
 __Service-based performance__: Performance on metrics related to how the user will interact with the system.
+
+__Service Level Agreement__: An agreement by a service provider, which often includes a guarantee of __availability__.
 
 __SLA__: An abbreviation for Service Level Agreement.
 
