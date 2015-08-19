@@ -59,8 +59,47 @@ Some invariants for a sort function would be:
 
 Now that we have some of the properties we expect from *any* output of the `billSort` method, we can let the computer do the grunt work of thinking up random arrays of data, passing them in to our method, and then checking that whatever output array is produced meets all of the properties that we set.  If an output array does not meet one of the invariants, we can then report the error to the tester.  Producing output that does not meet the specified invariant is called __falsifying the invariant__.
 
+There are multiple libraries for Java which perform property-based testing, but no standard.  Property-based testing is much more popular in the functional programming world, with programs like QuickCheck for Haskell being more used than standard unit tests.  In fact, the concept of automated property-based testing of this sort comes from the functional world, and from the Haskell community in particular.  For more information, check out the paper _QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs_ by Koen Claessen and John Hughes.
+
 ## Smart, Dumb, Evil, and Chaos Monkeys
 
-As mentioned above, stochastic testing is often called 
+As mentioned above, stochastic testing is often called monkey testing.  What is not as well known is that there are different kinds of monkeys out there doing our testing work for us!
+
+__Dumb monkey__ testing is sending in just any old input you can think of.  "Mfdsjbkfd", "1 + snorf", and "(*@()" all seem like good inputs to the dumb monkey.  There is no rhyme or reason, just lots of different randomized input.  This can be helpful for catching edge cases, but it is not very focused.  Remember that the world of possible values is absolutely huge.  The chances of finding a specific defect might be minimal when using dumb monkey testing.
+
+As an example, let us assume that you have a defect where arbitrary JavaScript code can be executed by entering it into a textbox on your web application.  However, if the JavaScript code is not syntactically correct, nothing bad happens.  Think of how long it would take for a dumb monkey to randomly generate a valid JavaScript string that would take advantage of this obvious vulnerability!  It may be years.  Even then, it may be some JavaScript code which does not cause any problems, or even any noticeable output, such as a comment or logging a message to the console.  Meanwhile, even a novice tester is going to try to enter some JavaScript on any textbox they can find.
+
+__Smart monkey__ testing involves using input which a user might conceivably enter, as opposed to being strictly random.  For example, suppose you are testing a calculator program, which accepts a string of numbers and arithmetic operators and displays a result.  It is rational to assume that an ordinary user is much more likely to enter the following input:
+
+```
+> 1 + 2
+3
+> 4 + + 6
+ERROR
+> 4 + 6
+10
+```
+
+than
+
+```
+> jiwh0t34h803h8t32h8t3h8t23
+ERROR
+> aaaaaaaaaaaaa 
+ERROR
+> 084_==wjw2933
+ERROR
+```
+
+While this assumption may not hold when it comes to toddlers, in general it is most likely true.  Thus, in order to focus our testing resources on finding defects which are more likely to occur, we can use smart monkey testing to act as a user.  Since the smart monkey test is automated, however, it will be able to operate much more quickly and on many more possible inputs than manual testing by an actual user.
+
+Creating a smart monkey test can be difficult, because not only do you have to first understand what users would likely do with the application, but then develop a model for it.  However, the benefits are that it is much more likely to discover a defect in the system under test.
+
+__Evil monkey__ testing simulates a malicious user who is actively trying to hurt your system.  This can be through sending very long strings, potential injection attacks, malformed data, or other inputs which are designed to cause havoc in your system.  In today's networked world, systems are almost always under attack if they are connected to the Internet for more than a few milliseconds.  It is much better to have an evil monkey under our control determine that the system is vulnerable than let us some actual malicious user figure it out!
+
+Perhaps the best-named kind of monkey is the __Chaos monkey__.  Chaos Monkey is a tool developed by Netflix which randomly shuts down servers that their system is running on, in order to simulate random outages.  For any large system, servers will go down on a regular basis, and at any given time some percentage of systems will be unavailable.  Chaos monkey testing ensures that the system as a whole will be able to operate effectively even when individual machines are not responding.
+
+You do not have to use the official Chaos Monkey tool to do this kind of testing, however.  Think of all the things that can go wrong with a multiple-server system, and simulate them.  What happens when the network topography changes?  Does the system stay active when somebody pulls out some power or networking cables?  What happens if latency is increased to several seconds?  A distributed system is ripe for problems.  Testing that it can handle them now will allow you to prepare for when they happen in reality.  After all, the best way to avoid a problem is to induce it repeatedly; soon, you will have automated procedures to ameliorate it or ensure that it doesn't happen.
+
 
 
