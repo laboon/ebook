@@ -55,12 +55,12 @@ Of the two options, manual and automated testing, which is better?  "Better" is 
 
 The decision on whether or not to use manual or automated testing for a particular system, subsystem, or requirement will be influenced by a variety of factors:
 
-1. __How important are the tests?__
-2. __How much of an impact does user interface or other "intangible" aspects have on the finished product?__
-3. __How often will the tests be run?__
-4. __How experienced is the test team?__
-5. __What is the schedule for testing?__
-6. __How difficult is it to automate the tests?__
+1. __How important__ are the tests?
+2. __How much of an impact__ does user interface or other "intangible" aspects have on the finished product?
+3. __How often__ will the tests be run?
+4. __How experienced__ is the test team?
+5. __What is the schedule__ for testing?
+6. __How difficult__ is it to automate the tests?
 
 In general, however, the vast majority of testing, from a strict "number of tests run" perspective, will be automated tests of one sort or another.  Running a well-designed unit test can take as little as a few microseconds of computer time; even the simplest manual test will require much more time than that for even very simple test cases.  Automated tests are much easier to run more often, and more testing - and more rapid testing - is much better than the alternative (less and slower testing).
 
@@ -79,5 +79,4 @@ The manual tests that we have covered so far follow a general pattern.  They are
 5. __Continuous Integration__
 6. __Fuzz Testing__
 7. __Model-Based Testing__
-
 

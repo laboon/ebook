@@ -22,7 +22,11 @@ Smoke testing checks if the software is ready to be tested; in other words, can 
 
 Depending on the domain, acceptance tests may be scripted or unscripted.  For large contracting companies or complex projects, there are often several test plans verifying that multiple parts of the system operate correctly, and metrics for quality (e.g., no more than three major defects will be found during the test period) which must be met.  For smaller programs, it may be as simple as allowing the customer or user to sit down with the software for a few minutes and getting a thumbs-up or thumbs-down.
 
-Since software developers are usually also not domain experts in the field of the software they are writing, there are many opportunities for a system to be developed which does not meet the needs of the customer.  Even if the requirements are spelled out clearly, there are often ambiguities and assumptions specific to the domain.  For example, to a software developer, a 0-based index makes perfect sense - many popular programming languages enumerate arrays starting with 0, and few Java developers would write a for loop as `for (int j=1; j <= 10; j++) { ... }`  However, for many non-programmers, having `1` reference the second element of a list is very confusing!
+Since software developers are usually also not domain experts in the field of the software they are writing, there are many opportunities for a system to be developed which does not meet the needs of the customer.  Even if the requirements are spelled out clearly, there are often ambiguities and assumptions specific to the domain.  For example, to a software developer, a zero-based index makes perfect sense - many popular programming languages enumerate arrays starting with 0, and few Java developers would write a `for` loop as:
+```java
+for (int j=1; j <= 10; j++) { ... }
+```
+However, for many non-programmers, having `1` reference the second element of a list is very confusing!
 
 Formal acceptance tests are usually determined ahead of time and agreed upon by both the developer of the software and the customer.  If all the tests pass - or the two parties come to some other solution - then the software is said to be accepted by the customer.  Other possible solutions may be a partial payment, payment to be paid after certain defects are fixed, or an understanding that there is a certain level of quality that does not involve all tests passing (e.g., all major tests pass, and at least 95% of minor tests).
 

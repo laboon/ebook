@@ -113,7 +113,7 @@ public class FizzBuzz {
 }
 ```
 
-When we run the test again, it passes!  So let's move on to the next phase and look for any refactoring opportunities.  In this case, I don't think there are; sure, there's a magic number (well, technically a magic string consisting of a number), but what can you do, replace it with a constant NUMBER_ONE?  That's probably not much more understandable.
+When we run the test again, it passes!  So let's move on to the next phase and look for any refactoring opportunities.  In this case, I don't think there are; sure, there's a magic number (well, technically a magic string consisting of a number), but what can you do, replace it with a constant `NUMBER_ONE`?  That's probably not much more understandable.
 
 Let's add another test, for 2, which should return a non-fizzy, non-buzzy string, "2".
 

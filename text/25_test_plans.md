@@ -6,16 +6,15 @@ Now that you understand requirements, and the basic theory and terminology of so
 
 A test plan is, at its core, simply a collection of __test cases__.  Test cases are the individual tests that make up a test plan.  Let's assume that you are creating a test plan for testing a new app that tells you if a cup of coffee is too hot to drink.  Assuming that the app marketers liked cold coffee and decided not to implement anything about the coffee temperature being too low, there are two requirements:
 
-__FUN-COFFEE-TOO-HOT.__ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
-
-__FUN-COFFEE-JUST-RIGHT.__ If the coffee temperature is measured at less than 175 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
+* __FUN-COFFEE-TOO-HOT.__ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
+* __FUN-COFFEE-JUST-RIGHT.__ If the coffee temperature is measured at less than 175 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
 
 How would we develop a test plan for our coffee temperature app?  There is one input - the coffee temperature measured - and two possible outputs, one of the set `["TOO HOT", "JUST RIGHT"]`.  (We can ignore for now that I think most people would find coffee at 45 degrees Fahrenheit to definitely not be "JUST RIGHT".)
 
 A single input value and one of two possible output values is a simple case of equivalence class partitioning, so let's partition up those equivalence classes.
 
-__JUST-RIGHT:__ [-INF, -INF + 1, ... 173, 174] -> `JUST RIGHT`
-__TOO-HOT:__    [175, 176, ... INF - 1, INF] -> `TOO HOT`
+* __JUST-RIGHT:__ [-INF, -INF + 1, ... 173, 174] -> `JUST RIGHT`
+* __TOO-HOT:__    [175, 176, ... INF - 1, INF] -> `TOO HOT`
 
 Our boundary values are 174 and 175, as they mark the division between the two equivalence classes.  Let's also use two interior values, 135 for the JUST-RIGHT class and 200 for the TOO-HOT class.  For this particular sample test plan, we will ignore the implicit boundary values of infinity and negative infinity (or the system's concept of these, MAXINT and -MAXINT).
 
@@ -53,7 +52,7 @@ Test plans are usually not as large as all of the requirements for a program; on
 
 In this field, a succinct summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell what exactly is meant to be tested, and sometimes how it is to be tested.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.
 
-__Examples__
+__Examples:__
 
 1. Ensure that on-sale items can be added to the cart and will have their price automatically reduced.
 2. Ensure that passing a non-numeric string will result in the square root function throwing an `InvalidNumber` exception.
@@ -103,7 +102,7 @@ In both cases, the execution steps will be the same, or at least very similar - 
 
 Whereas preconditions are aspects of the system that are set before the test is run, __input values__ are those values passed directly in to the functionality under test.  This difference can be a subtle one, so let's explore a few examples.
 
-Imagine we have a sorting routine, `billSort`, which we think should be twenty times faster than any sorting algorithm out there.  However, rather than taking it at face value that `billSort`'s assertion that it will always produce the correct result, we are developing tests for it.  Our particular implementation uses a global variable, `SORT_ASCENDING`.  Depending on whether `SORT_ASCENDING` (a boolean flag) is set to true or false, it will either sort ascending (from the lowest value to the highest - e.g., 'a', 'b', 'c') or sort descending (from the highest value to the lowest - e.g., 'c', 'b', 'a').  If we are going to test this sorting routine, setting the flag would count as a precondition, as this is something which needs to be set up before the test.  The array ['a', 'c', 'b'] would be the input values; these values are sent directly in for testing.
+Imagine we have a sorting routine, `billSort`, which we think should be twenty times faster than any sorting algorithm out there.  However, rather than taking at face value `billSort`'s assertion that it will always produce the correct result, we are developing tests for it.  Our particular implementation uses a global variable, `SORT_ASCENDING`.  Depending on whether `SORT_ASCENDING` (a boolean flag) is set to true or false, it will either sort ascending (from the lowest value to the highest - e.g., 'a', 'b', 'c') or sort descending (from the highest value to the lowest - e.g., 'c', 'b', 'a').  If we are going to test this sorting routine, setting the flag would count as a precondition, as this is something which needs to be set up before the test.  The array `['a', 'c', 'b']` would be the input values; these values are sent directly in for testing.
 
 Another way to think of the difference between input values and preconditions is thinking of the tests as methods.  This is probably a good exercise for you to do anyway - we'll definitely be doing more of it when we get to the chapter on unit tests!
 
@@ -168,7 +167,7 @@ In general, it's best to set the level of specification to the ability and knowl
 1. Open the "PRIMARY" control panel by selecting "Dials... Primary" from the menu at the top of the screen.
 2. Select the purple dial labeled "FROBINATOR".  Move the dial to the right from its initial position until the "STATUS" text box reads "FOO".
 
-As a final note, please note that there is no such thing as a _frobinator_ or _frobinization_.
+As a final note, there is no such thing as a _frobinator_ or _frobinization_.
 
 ### Output Values
 
@@ -312,13 +311,10 @@ A traceability matrix is simply a way of determining which requirements match up
 
 As an example, let's return to our completed requirements specification for the coffee temperature sensing application:
 
-__FUN-COFFEE-TOO-HOT.__ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
-
-__FUN-COFFEE-JUST-RIGHT.__ If the coffee temperature is measured at less than 175 degrees Fahrenheit, but more than 130 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
-
-__FUN-COFFEE-TOO-COLD.__ If the coffee temperature is measured at 130 degrees Fahrenheit or less, the app shall display the `TOO COLD` message.
-
-__FUN-TEA-ERROR.__ If the liquid being measured is actually tea, the app shall display the `SORRY, THIS APP DOES NOT SUPPORT TEA` message.
+* __FUN-COFFEE-TOO-HOT.__ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
+* __FUN-COFFEE-JUST-RIGHT.__ If the coffee temperature is measured at less than 175 degrees Fahrenheit, but more than 130 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
+* __FUN-COFFEE-TOO-COLD.__ If the coffee temperature is measured at 130 degrees Fahrenheit or less, the app shall display the `TOO COLD` message.
+* __FUN-TEA-ERROR.__ If the liquid being measured is actually tea, the app shall display the `SORRY, THIS APP DOES NOT SUPPORT TEA` message.
 
 We write down the identifiers of the requirements, and leave a space for the test plan identifiers.
 
@@ -372,7 +368,7 @@ FUN-COFFEE-TOO-HOT: 1, 2
 FUN-COFFEE-JUST-RIGHT: 3, 4, 5
 FUN-COFFEE-TOO-COLD: 6, 7
 FUN-TEA-ERROR: 8
-??? : 9
+???: 9
 ```
 
 Occasionally, in the "real world", there may be some sanity checks that may not officially line up with a specific requirement.  For example, if a systems engineer did not put in a specific requirement for reliability, but the test plan may include a test for ensuring that the system works even when running for an entire day.  This is certainly not a best practice, but it does happen occasionally.  If this occurs, the best course of action would be to create a requirement for reliability that it can be tested against.

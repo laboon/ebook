@@ -6,7 +6,7 @@ Under such circumstances, you will want to use __exploratory testing__.  This is
 
 ## Concepts, Benefits, and Drawbacks
 
-Exploratory testing is sometimes referred to as "ad hoc" testing, but that term can imply carelessness and sloppy work.  However, exploratory testing isn't careless, it's just less rigid.  There is often much thought put into determining whether exploratory testing is appropriate and even more thought put into determining the next things to explore.
+Exploratory testing is sometimes referred to as "_ad hoc_" testing, but that term can imply carelessness and sloppy work.  However, exploratory testing isn't careless, it's just less rigid.  There is often much thought put into determining whether exploratory testing is appropriate and even more thought put into determining the next things to explore.
 
 Exploratory testing is often the first experience a tester may have with a new feature or system.  Step-by-step instructions - to be added as execution steps to a test plan - may not be determinable only by reading design documents.  Often, some initial exploratory testing is done to understand how things have been implemented.  As a tester gains experience with the system, there may be even more exploratory testing, as they better understand the nooks and crannies which were not covered by their initial test plan.  Occasionally, there's just nothing for a tester to do, and so they spend some time hunting for defects off the beaten path of tests based solely on test plans!
 

@@ -55,7 +55,7 @@ public int getNumGiraffesInZoo() {
 }
 ```
 
-At first glance, this looks easy to test - after all, you just need to assert that the number of giraffes is the number you expect - but this code is not well-segmented.  Not only does it depend on the DatabaseWorke, NetworkConnection, DatabaseConnectionPool, NetworkConnectionFactory, and SqlGenerator classes to work correctly, along with all of their assorted methods, there is no way to double them since they are all constructed inside of the method.  A problem in any of these will cause your test to fail, and it can be difficult to know why the test failed.  Was it in the actual method you are testing, or one of the numerous dependencies?
+At first glance, this looks easy to test - after all, you just need to assert that the number of giraffes is the number you expect - but this code is not well-segmented.  Not only does it depend on the `DatabaseWorker`, `NetworkConnection`, `DatabaseConnectionPool`, `NetworkConnectionFactory`, and `SqlGenerator` classes to work correctly, along with all of their assorted methods, there is no way to double them since they are all constructed inside of the method.  A problem in any of these will cause your test to fail, and it can be difficult to know why the test failed.  Was it in the actual method you are testing, or one of the numerous dependencies?
 
 Let's restructure this so that the method is well-segmented.
 
@@ -72,7 +72,7 @@ public int getNumGiraffesInZoo(DatabaseWorker dbw, SqlGenerator sqlg) {
 }
 ```
 
-While this is still suboptimal, it is at least possible to override all of the dependencies with doubles.  There's less concern in the method on items that are unrelated to the method itself (e.g., connecting network connections to the database worker, which probably belongs in the DatabaseConnectionPool or the DatabaseWorker class itself, certainly not in the `getNumGiraffesInZoo` method.  We could go a bit further and move all of the database workings to their own class, wrapping them all up so that only the important parts are visible to this method.
+While this is still suboptimal, it is at least possible to override all of the dependencies with doubles.  There's less concern in the method on items that are unrelated to the method itself (e.g., connecting network connections to the database worker, which probably belongs in the `DatabaseConnectionPool` or the `DatabaseWorker` class itself, certainly not in the `getNumGiraffesInZoo` method.  We could go a bit further and move all of the database workings to their own class, wrapping them all up so that only the important parts are visible to this method.
 
 ```java
 public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
@@ -87,7 +87,7 @@ public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
 
 ```
 
-We have now reduced the number of dependencies to that single class AnimalDatabaseWorker, and only call one method on it.
+We have now reduced the number of dependencies to that single class `AnimalDatabaseWorker`, and only call one method on it.
 
 The second concept is to ensure that everything you do is repeatable.  What you don't want is a test which works fine sometimes.  If there is a failure, you should know about it immediately.  If there is not a failure, you do not want to have to have false alarms.
 
@@ -127,13 +127,13 @@ You can test graphical and other non-text interfaces without test hooks, but it 
 
 ## Write Tests Up-Front
 
-Ideally, you should be using the TDD paradigm (or something similar to it).  However, even if you are not using strict TDD, you should be writing lots of tests at approximately the same time as you are writing code.  You will quickly realize when the code you have written cannot be tested, and you won't continue going down long pathways writing code which you will have trouble testing "later" (note: "later" often means "never").
+Ideally, you should be using the TDD paradigm (or something similar to it).  However, even if you are not using strict TDD, you should be writing lots of tests at approximately the same time as you are writing code.  You will quickly realize when the code you have written cannot be tested, and you won't continue going down long pathways writing code which you will have trouble testing "later". (Note: "later" often means "never".)
 
 The longer you go on writing code without writing tests for it, the more likely you are to make code which is difficult to test.  Even if you mean to make it testable, you often won't realize that what you wrote will be difficult to test for one reason or another.  Actually writing the tests gives you confirmation that you are going down the right path.
 
 ## DRYing Up Code
 
-The term __DRY__ means "Don't Repeat Yourself", and it is a key tenet to making your code not only more testable, but better all around.  The trivial case of failing to keep code DRY is simply copy and pasting, often with a slightly different method name.
+The term __DRY__ means "Don't Repeat Yourself", and it is a key tenet to making your code not only more testable, but better all around.  The trivial case of failing to keep code DRY is simply copy-and-pasting, often with a slightly different method name.
 
 ```java
 public int[] sortAllTheNumbers(int[] numsToSort) {
@@ -153,14 +153,18 @@ While the duplicated method above is a simple example, you may have more complex
 
 ```java
 public int getNumberOfCats(String catBreed) {
-    int breedId = DatabaseInterface.execute("SELECT BreedID FROM CatBreeds WHERE BreedName = " + catBreed);
-    int numCats = DatabaseInterface.execute("SELECT COUNT(*) FROM Cats WHERE BreedID = " + breedId);
+    int breedId = DatabaseInterface.execute(
+      "SELECT BreedID FROM CatBreeds WHERE BreedName = " + catBreed);
+    int numCats = DatabaseInterface.execute(
+      "SELECT COUNT(*) FROM Cats WHERE BreedID = " + breedId);
     return numCats;
 }
 
 public int getNumberOfPigeons(String pigeonBreed) {
-    int breedId = DatabaseInterface.execute("SELECT BreedID FROM PigeonBreeds WHERE BreedName = " + pigeonBreed);
-    int numPigeons = DatabaseInterface.execute("SELECT COUNT(*) FROM Pigeons WHERE BreedID = " + breedId);
+    int breedId = DatabaseInterface.execute(
+      "SELECT BreedID FROM PigeonBreeds WHERE BreedName = " + pigeonBreed);
+    int numPigeons = DatabaseInterface.execute(
+      "SELECT COUNT(*) FROM Pigeons WHERE BreedID = " + breedId);
     return numPigeons;
 }
 ```
@@ -169,8 +173,10 @@ While the statements aren't exactly the same, they are similar enough that they 
 
 ```java
 public int getNumAnimals(String animalType, String breed) {
-    int breedId = DatabaseInterface.execute("SELECT BreedID FROM " + animalType + "Breeds WHERE BreedName = " + breed);
-    int numAnimals = DatabaseInterface.execute("SELECT COUNT(*) FROM " + animalType + "s WHERE BreedID = " + breedId);
+    int breedId = DatabaseInterface.execute(
+      "SELECT BreedID FROM " + animalType + "Breeds WHERE BreedName = " + breed);
+    int numAnimals = DatabaseInterface.execute(
+      "SELECT COUNT(*) FROM " + animalType + "s WHERE BreedID = " + breedId);
     return numAnimals;
 }
 
@@ -252,7 +258,7 @@ Personally, I like to keep a little text file open which has changes that I woul
 
 Doing the minimum isn't normally considered a great way to go through life, but oftentimes when writing software it is.  You want to make small changes to the codebase, little incremental steps, because large changes are fraught with hard-to-find errors.  If you have a 10,000-line code change, and something goes wrong, trying to look through all of that will be a nightmare.  However, let's say you make a thousand 10-line code changes.  At each point, you can run all of the unit tests and see if the problem manifests itself.  Tracking problems down via tiny steps is much easier than tracking it down in one giant commit.
 
-Additionally, doing the minimum can ensure that you are using your time wisely.  It may not be worth your time to add documentation to every method in the class you're working on, especially if you don't think it will be modified again anytime in the near future.  It's not that it's not a good idea, but perhaps not a good prioritization of your time.  Remember that you have a limited amount of time available not just on this Earth, but for completing a project.  Spend too much time on the wrong things, and it doesn't get done.  While it's an honorable drive to want to fix all of the problems you see in the codebase, the dirty little secret of the software industry is that there is all sorts of ugly code running behind the scenes, and most of the time, it works.  Your favorite bank has thousands of GOTO statements in its transfer code.  Your favorite three-letter government agency has hundreds of thousands of lines of code that not unit test has ever laid eyes (or mocks or stubs) on.  It is okay to cry about the state of the world, but sometimes you just need to let it be.
+Additionally, doing the minimum can ensure that you are using your time wisely.  It may not be worth your time to add documentation to every method in the class you're working on, especially if you don't think it will be modified again anytime in the near future.  It's not that it's not a good idea, but perhaps not a good prioritization of your time.  Remember that you have a limited amount of time available not just on this Earth, but for completing a project.  Spend too much time on the wrong things, and it doesn't get done.  While it's an honorable drive to want to fix all of the problems you see in the codebase, the dirty little secret of the software industry is that there is all sorts of ugly code running behind the scenes, and most of the time, it works.  Your favorite bank has thousands of `GOTO` statements in its transfer code.  Your favorite three-letter government agency has hundreds of thousands of lines of code that not unit test has ever laid eyes (or mocks or stubs) on.  It is okay to cry about the state of the world, but sometimes you just need to let it be.
 
 If possible, you want to start your search for code to modify by looking for __seams__.  Seams are locations in code where you can modify _behavior_ without modifying _code_.  This is probably easiest to see with examples.  In this first method, there is no seam - there is no way to modify how the program behaves without modifying some code in the method.
 
@@ -264,7 +270,7 @@ public void createDatabaseTable() {
 }
 ```
 
-If you want to change the database this code will update, you will need to modify the constant DEFAULT_DB or otherwise change the line of code.  There's no way to pass in a test double for it, or otherwise use a fake database in your test.  If you want to add a column, you will need to edit the string that is inside the method.  Now let's compare this to a method which is a seam.
+If you want to change the database this code will update, you will need to modify the constant `DEFAULT_DB` or otherwise change the line of code.  There's no way to pass in a test double for it, or otherwise use a fake database in your test.  If you want to add a column, you will need to edit the string that is inside the method.  Now let's compare this to a method which is a seam.
 
 ```java
 public int executeSql(DatabaseConnection db, String sqlString) {
@@ -280,7 +286,7 @@ Perhaps most importantly, it is important from a psychological point of view not
 
 If you are interested in more details about how to work with legacy code, there are (at least) two great books on the topic.  The first is _Refactoring: Improving the Design of Existing Code_ by Martin Fowler, and the other is _Working Effectively with Legacy Code_ by Michael Feathers.  The latter is an especially valuable resource for working with code that does not already have a comprehensive test suite.
 
-One of the things I find so interesting about software engineering is that it is a field which is changing extremely quickly.  Many of the techniques that I discuss will probably seem as quaint as GOTO statements and line numbers do at the time of the writing of this book.  If this is the case, then please be gentle in your criticism half a century hence.
+One of the things I find so interesting about software engineering is that it is a field which is changing extremely quickly.  Many of the techniques that I discuss will probably seem as quaint as `GOTO` statements and line numbers do at the time of the writing of this book.  If this is the case, then please be gentle in your criticism half a century hence.
 
 ## Conclusion
 

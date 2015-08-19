@@ -83,11 +83,13 @@ Much better.  However, think how difficult it would be to rewrite this method so
 Getting back to our pressure sensor display, our stingy test manager says that we have time to test more values.  We want to ensure that at a minimum, we test all of the boundary values, and hopefully a good sampling of the interior values.  First, we'll calculate all of the boundary values, and then generate a test plan which tests all of the boundary values and some of the interior values.
 
 Boundary values:
+
 1. -1, 0 (Boundary between `ERROR` and `UNDERPRESSURE`)
 2. 20, 21 (Boundary between `UNDERPRESSURE` and `NORMAL`)
 3. 35, 36 (Boundary between `NORMAL` and `OVERPRESSURE`)
 
 Values to Test:
+
 1. Interior values, `ERROR` - -3, -100
 2. Boundary values, `ERROR` / `UNDERPRESSURE` - -1, 0
 3. Interior values, `UNDERPRESSURE` - 5, 11
@@ -152,7 +154,7 @@ As an example, let us imagine a desktop email application.  Tasked with testing 
 
 One could consider __white box testing__ to be the opposite of black box testing.  In white box testing, the tester has intimate knowledge of the codebase and tests code itself.  White box tests can test individual functions of the code, often looking at much more granular aspects of the system than black box tests.
 
-Continuing the example of a desktop email application, white box tests might check the actual `sort(EmailEntry[] emails)` function, sending in various values to see what the function returns or does.  White box testers would care about what happened specifically if a 0-length array or null reference were passed in, whereas a black box tester would only care about that if they specifically could cause it to happen from the user interface.  White box tests access the code as code - checking that return values from functions are correct, ensuring that objects are instantiated properly, etc. - instead of looking at the system from a user's perspective.
+Continuing the example of a desktop email application, white box tests might check the actual `sort(EmailEntry[] emails)` function, sending in various values to see what the function returns or does.  White box testers would care about what happened specifically if a zero-length array or null reference were passed in, whereas a black box tester would only care about that if they specifically could cause it to happen from the user interface.  White box tests access the code as code - checking that return values from functions are correct, ensuring that objects are instantiated properly, etc. - instead of looking at the system from a user's perspective.
 
 Developers often act as white box testers of their own code, but quality analysts and external testers are also often involved.  Sometimes, there are special engineers (often called "software engineers in test") who will help build frameworks for a specific system under test for white box testing.
 
