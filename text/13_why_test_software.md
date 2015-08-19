@@ -25,13 +25,18 @@ According to the National Institute of Standards and Technology, as of 2002, sof
 
 ## Catching Bugs Sooner Rather than Later
 
-There's a statistic that
+The Golden Rule of Testing is that you should find defects as early as you can.  If you find problems with the software early on, it is often trivial for a developer to add a fix, and nobody external to the team may ever know that for a while your application crashed if anybody entered their username as a number.  A defect like this that a user stumbles across in production may be much more damaging - the company loses money since the application is down, users are upset, and it will be more difficult to fix when people are under stress.  
 
-Golden Rule of Testing - Find defects earlier rather than later
-
-## Metrics
-
-## Business Sense
-Ensuring that customers see software of higher quality
+Software testing allows you to find these errors before users see them, when your team will do a better job of fixing them, with less impact to the bottom line.
 
 ## Ensuring Quality
+
+Although testing software can provide you with many valuable benefits, it is not the sole way to improve the quality of your software.  Code reviews and inspections by independent developers have been shown to greatly increase the level of quality of software.  Pair programming, where two people work at the same time at one computer, has also been shown to have remarkable positive effects on software quality.  While it's easy for someone to overlook their own mistakes, another person looking at the same thing independently will often see something instaneously.  Trust me, I have overlooked numerous embarassing typos that were caught as soon as this book went out for review.
+
+Allowing a proper amount of time for testing, development, and other aspects of the software development life cycle can also improve quality.  Very few pieces of software are written perfectly, and software written under a crushing deadline is even more rarely of acceptable quality.  By providing adequate time and resources for engineers to develop the software, the level of quality will generally improve.
+
+The choice of language, framework, and design of the program can also make a big difference in the quality of the program.  While every language has its partisans, there is definitely a reason that most web applications are not written in Assembly language, or that most embedded real-time software is not written with Ruby.  Different languages, libraries, etc. have different benefits, and using one that is appropriate for the system you are designing will pay dividends in terms of quality.
+
+While this book focuses on testing, it should be recognized that it is only one part of producing software quality.  Quality on a modern software project is the responsibility of everybody on the team, not just the testers.
+
+

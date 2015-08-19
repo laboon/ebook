@@ -328,6 +328,8 @@ __MTTR__: An acronym for __mean time to repair__.
 
 __Mean time between failures__: In __availability testing__, the mean (average) amount of time between failures on a system.  Often abbreviated as __MTBF__.
 
+__Pair programming__: Two people working at the same time on a problem on a single computer.  Can be a white-box tester and developer, looking at the code together.
+
 __Mean time to repair__: In __availability testing__, the mean (average) amount of time it takes to repair a failure.  Often abbreviated as __MTTR__.
 
 __Load Testing__: Running a full system with a specified amount of demand (e.g., a certain number of users or events) in order to determine how the system operates under realistic conditions.
