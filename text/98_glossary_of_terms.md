@@ -28,9 +28,7 @@ __Beta testing__: "Real-world" testing by a subset of the actual user base prior
 
 __Black-box testing__: Testing the code as a user would, with no knowledge of the codebase.  Most manual tests are black-box tests.
 
-__Blocked__: A status for a test case in a test run.  It indicates that this particular test case cannot be run, for reasons outside the tester's control.  For example, the functionality is tests is not yet at a testable state.
-
-__Blocked__: A test case status indicating that the test case cannot be executed at this time (e.g., because the functionality has not yet been developed).
+__Blocked__: A status for a test case in a test run.  It indicates that the test case cannot be executed at this time, for reasons outside the tester's control.  For example, the functionality it tests is not yet at a testable state, perhaps because it has not yet been developed.
 
 __Blocker__: A defect of the highest severity, where the system cannot reasonably be released without fixing it or providing a __workaround__.
 
@@ -100,9 +98,7 @@ __Equivalence class__: A group of input values which provide the same, or simila
 
 __Equivalence class partitioning__: Separating a specific functionality into distinct equivalence classes based on input values.
 
-__Error__: A status for a test case in a test run.  It indicates that there is an issue with the test case itself, and the test cannot be run.  For example, the preconditions indicate an impossible condition.
-
-__Error (test case status)__: A test case status indicating that something appears to be wrong with the test case itself (such as a typo or invalid behavior).
+__Error__: A status for a test case in a test run.  It indicates that there is an issue with the test case itself, and the test cannot be run.  For example, the preconditions indicate an impossible condition, which could simply be the result of a typo.
 
 __Evil Monkey__: A __stochastic testing__ method whereby malicious code or data is sent in to a system.  Simulates an attacker trying to gain access or cause damage to a system.
 
@@ -118,9 +114,7 @@ __Externally consistent (requirements)__: The property of having the system be c
 
 __Fabrication__:  In __security testing__, an attack on __integrity__, which deliberately adds data, such as an attack which allows a user to create an entirely new bank account.
 
-__Failed__: A status for a test case in a test run.  It indicates that the system has not met at least one postcondition or expected output value, or some other unexpected behavior has taken place.  In other words, the observed behavior was not the expected behavior.
-
-__Failed__: A test case status indicating that the test was executed without error, but the expected behavior did not match the observed behavior.
+__Failed__: A status for a test case in a test run.  It indicates that, while the test itself was executed without error, the system has not met at least one postcondition or expected output value, or some other unexpected behavior has taken place.  In other words, the observed behavior was not the expected behavior.
 
 __Failure case__: A kind of test where the expected behavior of the system is to fail in a certain way.  For example, sending in a negative number to a square root function which does not support complex numbers may be expected to throw an exception.
 
@@ -234,17 +228,13 @@ __Pairwise testing__: A particular form of combinatorial testing where you are t
 
 __Partitioning__: See __equivalence class partitioning__.
 
-__Passed__: A status for a test case in a test run.  It indicates that the system has met all postconditions and/or expected output values - the observed behavior was equal to the expected behavior.
-
-__Passed__: A test case status indicating that the test was executed without error, and the expected behavior matched the observed behavior.
+__Passed__: A status for a test case in a test run.  It indicates that the test was executed without error, and that the system has met all postconditions and/or expected output values - the observed behavior was equal to the expected behavior.
 
 __Passive attack__: In __security testing__, an attack on a system which causes no changes to the system, such as eavesdropping on network traffic.
 
 __Pathological case__: Another term for __corner case__.
 
-__Paused__: A status for a test case in a test run.  The tester has started to run the test, but it is temporarily on hold.
-
-__Paused__: A test case status indicating that the test started to be executed, but is currently on hold for external reasons (e.g., the tester went out to lunch).
+__Paused__: A status for a test case in a test run.  It indicates that the tester has started to run the test, but it is temporarily on hold for external reasons (e.g., the tester went out to lunch).
 
 __Penetration testing__: Testing the security of the system by attempting to compromise it as an unauthorized user would.
 
@@ -300,9 +290,7 @@ __Response time__: In __performance testing__, how quickly a system responds aft
 
 __Role-Function-Reason Template__: Another term for the __Connextra Template__.
 
-__Running__: A status for a test case in a test run.  The tester is currently running the test.
-
-__Running__: A test case status indicating the test is currently being executed, but has not yet completed.
+__Running__: A status for a test case in a test run.  It indicates that the test is currently being executed, but has not yet completed.
 
 __Sanitization__: "Cleaning up" user input so that it cannot be executed by the running program.
 
@@ -370,9 +358,7 @@ __Tell, Don't Ask__: Another term for the __Law of Demeter__.
 
 __Test artifact__: A document or other byproduct of the testing process, such as test plans or results.
 
-__Test case__: The smallest unit of a test plan, these are the individual tests that describe a check for the expected behavior of a system.
-
-__Test case__: The smallest unit of a test plan, which describes what is to be tested and what the expected behavior is.
+__Test case__: The smallest unit of a test plan, these are the individual tests which describe what is to be tested and a check for the expected behavior of a system.
 
 __Test coverage__: A general term for which aspects or parts of the system are covered by tests.
 
@@ -455,4 +441,3 @@ __Worm__: A kind of __malware__, often small, that replicates itself without hum
 __YAGNI__: You Ain't Gonna Need It.  A tenet of __Test-Driven Development__ which states that you should not do work or add features which are not immediately necessary.
 
 __Zombie__: A computer with software installed which allows unauthorized users access to it to perform unauthorized functionality.  For example, a system might have a mailer program built in which will allow other users to send spam from your machine, so that the original users cannot be tracked.
-
