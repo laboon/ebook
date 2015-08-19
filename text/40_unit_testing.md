@@ -87,15 +87,15 @@ public class LinkedListTest
 
 Looking over this test, it is easy to see the parallels with a manual test.  There are some preconditions to set up the test, some execution steps to run the test, and some postconditions, where we can check the observed behavior against the expected behavior.  As mentioned in an earlier chapter, the key concept to keep in mind when software testing is that some behavior is expected under some circumstances, and when those circumstances are reached, a test should check that the observed behavior is in fact the expected behavior.  While unit tests check smaller units of functionality than most black-box tests, the core concept remains the same.
 
-## Preconditions
+### Preconditions
 
 Before the test can be run, you need to set up the necessary preconditions for the test.  These are similar to preconditions in a manual test, only instead of focusing on the system as a whole, you focus on setting things up for the particular method to be called.  In the example above, the unit test is going to check that two linked lists with equal values (specifically 1 -> 2 -> 3) will be regarded as equal by the .equals method of a linked list object.  In order to test that two linked lists are equal, first we must created the two linked lists, and set their nodes to the same set of values.  This code simply creates them and puts them into variables `a` and `b`.  We will use these two linked lists in the next phase of the unit test.
 
-## Execution Steps
+### Execution Steps
 
 Here is the actual equality check.  We determine whether or not `a.equals(b)` is true or not, and put the Boolean result in the variable `result`.
 
-## Assertions
+### Assertions
 
 Remember that assertions are checking the expected behavior against the observed behavior of the execution steps.  Specifically, we are using the assertion `assertEquals`, which checks that the value in result should equal `true`.  If it does, the test passes and we can say that under these circumstances, the `.equals()` methods works correctly.  If it does not, then the test fails.
 
@@ -123,7 +123,7 @@ assertSame(a, c); // True; these are different references to the same object
 
 Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17)`.  In my experience, these are used much less often, and are usually a code smell.  You want to check for a specific __expected__ behavior, if at all possible, not that it's __not unexpected__ behavior.
 
-## Ensuring that Tests are Testing What You Expect
+### Ensuring that Tests are Testing What You Expect
 
 One of the simplest ways to do this is to first ensure that your tests fail!  While we'll go into detail on a development strategy that always calls for tests to fail first in the chapter on TDD, a quick change to a test can often prove that it's not just passing all the time because you're mistakenly asserting that `true == true`, for example.
 
@@ -228,9 +228,7 @@ public int haveFunAtDuckPond(Duck d, int numFeedings) {
 
 Even though the code in this method works perfectly for all inputs, it requires that a working duck be present.  Otherwise, any non-negative number of feedings with a valid duck will cause an exception to be thrown.  If we see a unit test for this particular method failing, we will naturally think that the problem is in this method.  Only after examining it will we understand that the problem actually lies elsewhere.  How can we test this code when the code it depends upon doesn't work?
 
-## Doubles
-
-I wouldn't have asked the question if I didn't have an answer - test doubles.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to __localize__ the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that it depends upon.
+I wouldn't have asked the question if I didn't have an answer - __test doubles__.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to __localize__ the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that it depends upon.
 
 JUnit does not support test doubles directly, but you can use other libraries in order to use them.  For this (and the next few sections), we will use Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
 
