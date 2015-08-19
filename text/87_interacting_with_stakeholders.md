@@ -61,21 +61,48 @@ Along with each subsystem and its status, there should be a short notes section 
 
 Let's walk through some examples to see how we can use the red-yellow-green template to quickly display status to a manager.  These two examples both involve a system which accepts customer information via an API, stores it in a database, and then emails weekly reports to the marketing department.
 
-| Subsystem | Status | Notes  |
-|-----------|--------|---|
-| Database | Green | Test plan passed with no defects. Performance meets or exceeds all KPIs. |
-| Input API  | Green | Latest version passed all tests, including all edge cases, without any defects.  |
-| Report Generation | Yellow | Several arithmetic errors found on latest test run.  May need one additional developer to complete all functionality on schedule, but likely to be on target as-is.  |
-| Email | Green | Two minor design defects found, but due to be fixed by tomorrow.  |
+```
+--------------------------------------------------------------------------------
+ Subsystem    Status   Notes
+----------- ---------- ---------------------------------------------------------
+ Database     Green    Test plan passed with no defects. Performance meets or
+                       exceeds all KPIs.
+
+ Input API    Green    Latest version passed all tests, including all edge
+                       cases, without any defects.
+
+ Report       Yellow   Several arithmetic errors found on latest test run.
+ Generation            May need one additional developer to complete all
+                       functionality on schedule, but likely to be on target
+                       as-is.
+
+ Email        Green    Two minor design defects found, but due to be fixed by
+                       tomorrow.
+--------------------------------------------------------------------------------
+```
 
 In this first instance, we have a system which is going well.  There are no known major problems, and no worries about major schedule slippage or scope reduction.  At a glance, we can see a sea of green, with only one small island of yellow.  Importantly, it's possible to see why these subsystems have the status they do.  If a stakeholder wanted to know more detail about the design defects in the emails, they can ask more questions, or if they want to know what edge cases were checked in the input API, they can do so.  Now let's look at another version of the system which is perhaps not going as well.
 
-| Subsystem | Status | Notes  |
-|-----------|--------|---|
-| Database  | Red | Database cannot store more than one customer's information at a time, and randomly deletes data every Tuesday.  |
-| Input API | Yellow | System takes several minutes to process each (one kilobyte) request.  |
-| Report Generation | Red | All reports just say "LOL" hundreds of times, and the developer in charge of this seems to have fled to Belarus.   |
-| Email | Red | As far as the testing team can determine, there is no email functionality at this time, and no developers scheduled to work on it. |
+```
+--------------------------------------------------------------------------------
+ Subsystem    Status   Notes
+----------- ---------- ---------------------------------------------------------
+ Database     Red      Database cannot store more than one customer's
+                       information at a time, and randomly deletes data every
+                       Thursday.
+
+ Input API    Yellow   System takes several minutes to process each (one
+                       kilobyte) request.
+
+ Report       Red      All reports just say "LOL" hundreds of times, and the
+ Generation            developer in charge of this seems to have fled to
+                       Belarus.
+
+ Email        Red      As far as the testing team can determine, there is no
+                       email functionality at this time, and no developers
+                       scheduled to work on it.
+--------------------------------------------------------------------------------
+```
 
 Well, this is not a project that I would like to be managing.  Note that our nice, green sea above is replaced with a hellish sea of red, bringing to mind the interior of a volcano.  Even the one yellow subsystem, the Input API, is probably going to require some additional work before it's ready to be released.  Note that this yellow status is very different from the yellow status in the previous example.  These statuses are very broad; having a few known arithmetic errors is an issue which we can probably deal with by making some code changes.  Having a performance issue of the magnitude described here may be very difficult to fix, but the program is still releasable with it, just very slow.  Remember that statuses are subjective and how you categorize subsystems will vary based on the domain of the system you are working on.  For example, a program which crashes once per year of normal use may be acceptable for a video game, but it would be unacceptable for avionics software.
 
