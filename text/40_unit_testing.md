@@ -8,9 +8,9 @@ What are unit tests?  In a nutshell, they test the smallest "units" of functiona
 
 Some examples of unit tests might be:
 
-1. Testing that a .sort method returns `[1, 2, 3]` when you pass in `[3, 2, 1]`
+1. Testing that a `.sort` method returns `[1, 2, 3]` when you pass in `[3, 2, 1]`
 2. Testing that passing in a null reference as an argument to a function throws an exception
-3. Testing that a `formatNumber` method returns a properly formatted number
+3. Testing that a `.formatNumber` method returns a properly formatted number
 4. Checking that passing in a string to a function that returns an integer does not crash the program
 5. Testing that an object has `.send` and `.receive` methods
 6. Testing that constructing an object with default parameters sets the `.default` attribute to true
@@ -23,17 +23,17 @@ However, it's very important to understand unit testing, even if you are not a d
 
 We have seen earlier that the user will never directly see the aspects of the software that unit tests are testing.  What's the point, then?  Wouldn't it make more sense to just test everything from a user perspective?  That way, we'd only catch bugs that impact the user.  We wouldn't have to waste time worrying about things at a low level.  It would probably be more time efficient if we didn't have to write unit tests, right?  Unfortunately, that's not the case.  There are numerous reasons for writing unit tests in addition to systems-level tests (note that this said "in addition to"... there are quite a few problems that unit testing would almost certainly not catch, which is why like all testing strategies, it isn't a silver bullet).
 
-1. _Problems are found earlier_ - Unit tests are normally written along with the code itself.  There's no need to wait for (usually longer-running) systems tests to run, or a manual test to be developer, or even for a build to get into the hands of the testers.  The developer finds problems while still developing.  Like most things, the sooner a problem is found in a process, the cheaper it will be to fix.
+1. __Problems are found earlier.__ Unit tests are normally written along with the code itself.  There's no need to wait for (usually longer-running) systems tests to run, or a manual test to be developer, or even for a build to get into the hands of the testers.  The developer finds problems while still developing.  Like most things, the sooner a problem is found in a process, the cheaper it will be to fix.
 
-2. __Faster turnaround time__ - If a problem is found, there's no need for a build to occur, or to get into testers' hands.  The developer finds a problem when executing the unit test suite, and can immediately go back and start fixing it.  If the developer has to wait for a tester to look at the software, file a defect, and get assigned that defect, it may be quite a while before the developer can actually fix it.  In that time, he or she may have forgotten some implementation details, or at the very least will have probably swapped out some of the information and will require time for a context shift.  The faster a bug can be found, the faster it can be fixed.
+2. __Faster turnaround time.__ If a problem is found, there's no need for a build to occur, or to get into testers' hands.  The developer finds a problem when executing the unit test suite, and can immediately go back and start fixing it.  If the developer has to wait for a tester to look at the software, file a defect, and get assigned that defect, it may be quite a while before the developer can actually fix it.  In that time, he or she may have forgotten some implementation details, or at the very least will have probably swapped out some of the information and will require time for a context shift.  The faster a bug can be found, the faster it can be fixed.
 
-3. __Developers understand their code__ - Writing tests allows the developer to understand what the expected behavior of the function is.  It also allows the developer to add tests for things that he or she knows might be problematic for a specific function.  For example, a developer may know that a sort function may not sort numeric strings correctly, because certain flags need to be set to ensure that it treats them as numbers instead of strings (so that "1000" is bigger than "99", which it would not be if the function treated them as strings, since "9" is bigger than "1").  A black-box tester may not realize that this is what is happening "under the hood" and so not think to test this particular edge case.
+3. __Developers understand their code.__ Writing tests allows the developer to understand what the expected behavior of the function is.  It also allows the developer to add tests for things that he or she knows might be problematic for a specific function.  For example, a developer may know that a sort function may not sort numeric strings correctly, because certain flags need to be set to ensure that it treats them as numbers instead of strings (so that "1000" is bigger than "99", which it would not be if the function treated them as strings, since "9" is bigger than "1").  A black-box tester may not realize that this is what is happening "under the hood" and so not think to test this particular edge case.
 
-4. __Living documentation__ - The tests provide a kind of "living documentation" to the code.  They explain what a codebase is supposed to do in a different way than the actual code and any comments or documentation for the software.  Failing tests are updated; they are either removed or changed as the software itself changes.  Unlike traditional documentation, if unit tests are executed on a regular basis (such as before being merged to baseline), then it's impossible for the tests to become obsolete.  Obsolete tests don't pass, and tests that don't pass should not be merged to baseline.
+4. __Living documentation.__ The tests provide a kind of "living documentation" to the code.  They explain what a codebase is supposed to do in a different way than the actual code and any comments or documentation for the software.  Failing tests are updated; they are either removed or changed as the software itself changes.  Unlike traditional documentation, if unit tests are executed on a regular basis (such as before being merged to baseline), then it's impossible for the tests to become obsolete.  Obsolete tests don't pass, and tests that don't pass should not be merged to baseline.
 
-5. __Alternative implementation__ - One way to think of tests is as a different implementation of the software.  In a sense, a program is just a listing of what a computer should do given certain input - *IF* foo is less than five, *THEN* print out "small foo".  *WHEN* a new bar object is created, *SET* the baz variable to false.  A comprehensive test suite provides a similar service, saying what the program should do in a slightly different way.  There's always room for error, but if you're implementing it twice, once as a test and once as code, then there's less chance that both will be written wrong in exactly the same way.
+5. __Alternative implementation.__ One way to think of tests is as a different implementation of the software.  In a sense, a program is just a listing of what a computer should do given certain input - *IF* `foo` is less than five, *THEN* print out "`small foo`".  *WHEN* a new bar object is created, *SET* the `baz` variable to false.  A comprehensive test suite provides a similar service, saying what the program should do in a slightly different way.  There's always room for error, but if you're implementing it twice, once as a test and once as code, then there's less chance that both will be written wrong in exactly the same way.
 
-5. __Able to tell if code changes caused issues elsewhere__ - Programs nowadays can be rather large and complicated, and it's not always easy - or even humanly possible - to know whether a change you're making will have unintended consequences elsewhere.  The author has lost count of how many times he has meant to, say, change the background color of a screen, and caused a stack overflow in some recursive function elsewhere in the code which required the background color to be green for some reason.  However, by having a relatively complete test suite, the developer can check easily if he or she is breaking anything obvious elsewhere in the codebase.  It's not foolproof, but it certainly makes it easier to avoid problems.
+5. __Able to tell if code changes caused issues elsewhere.__ Programs nowadays can be rather large and complicated, and it's not always easy - or even humanly possible - to know whether a change you're making will have unintended consequences elsewhere.  The author has lost count of how many times he has meant to, say, change the background color of a screen, and caused a stack overflow in some recursive function elsewhere in the code which required the background color to be green for some reason.  However, by having a relatively complete test suite, the developer can check easily if he or she is breaking anything obvious elsewhere in the codebase.  It's not foolproof, but it certainly makes it easier to avoid problems.
 
 ## An Example in Natural Language
 
@@ -43,11 +43,11 @@ Before diving into the code, let's examine a unit test in natural language.  Let
 
 We can see that there are three steps here, which correspond to some of the steps in a manual test.  This should not be surprising.  After all, the basic concepts of testing do not change, despite the level of abstraction of a particular test.  The steps are:
 
-1. _Preconditions_ - First, we need to generate the preconditions of the test.  If you recall from several chapters back, the preconditions are those conditions which must be met before the actual test starts.  In this case, the preconditions are that we have two different linked lists, named _a_ and _b_, and that they contain the exact same data, 1 -> 2 -> 3, all of which are the same data type.
+1. __Preconditions:__ First, we need to generate the preconditions of the test.  If you recall from several chapters back, the preconditions are those conditions which must be met before the actual test starts.  In this case, the preconditions are that we have two different linked lists, named _a_ and _b_, and that they contain the exact same data, 1 -> 2 -> 3, all of which are the same data type.
 
-2. _Execution Steps_ - This is what is actually done in the test.  In our example, the equality operator is applied between the two linked lists _a_ and _b_, returning a Boolean value.
+2. __Execution Steps:__ This is what is actually done in the test.  In our example, the equality operator is applied between the two linked lists _a_ and _b_, returning a Boolean value.
 
-3. _Expected Behavior_ - Remember that the key principle to testing software is that expected behavior should equal observed behavior.  The unit test should specify what the expected behavior is, then check if it's equal to the observed behavior (i.e., the actual result of the test).  In the world of unit testing, this is called an _assertion_ - the test _asserts_ that the expected behavior is equal to the observed behavior.  In our case, our test will _assert_ that the returned value of comparing the two linked lists is true.
+3. __Expected Behavior:__ Remember that the key principle to testing software is that expected behavior should equal observed behavior.  The unit test should specify what the expected behavior is, then check if it's equal to the observed behavior (i.e., the actual result of the test).  In the world of unit testing, this is called an _assertion_ - the test _asserts_ that the expected behavior is equal to the observed behavior.  In our case, our test will _assert_ that the returned value of comparing the two linked lists is true.
 
 ## Turning Our Example Into a Unit Test
 
@@ -66,36 +66,35 @@ The following is an implementation of a unit test checking for linked list equal
 ```java
 import static org.junit.Assert.*;
 
-public class LinkedListTest
+public class LinkedListTest {
 
-       @Test
-       public void testEquals123() {
+    @Test
+    public void testEquals123() {
+        // Preconditions - a axnd b both have 1 -> 2 -> 3
+        LinkedList<Integer> a = new LinkedList<Integer>( [1,2,3] );
+        LinkedList<Integer> b = new LinkedList<Integer>( [1,2,3] );
 
-              // Preconditions - a axnd b both have 1 -> 2 -> 3
-              LinkedList<Integer> a = new LinkedList<Integer>( [1,2,3] );
-              LinkedList<Integer> b = new LinkedList<Integer>( [1,2,3] );
+        // Execution steps - run equality operator
+        boolean result = a.equals(b);
 
-              // Execution steps - run equality operator
-              boolean result = a.equals(b);
-
-              // Postconditions: Expected behavior - assert that result is true
-              assertEquals(result, true);
-       }
+        // Postconditions: Expected behavior - assert that result is true
+        assertEquals(result, true);
+    }
 
 }
 ```
 
 Looking over this test, it is easy to see the parallels with a manual test.  There are some preconditions to set up the test, some execution steps to run the test, and some postconditions, where we can check the observed behavior against the expected behavior.  As mentioned in an earlier chapter, the key concept to keep in mind when software testing is that some behavior is expected under some circumstances, and when those circumstances are reached, a test should check that the observed behavior is in fact the expected behavior.  While unit tests check smaller units of functionality than most black-box tests, the core concept remains the same.
 
-## Preconditions
+### Preconditions
 
 Before the test can be run, you need to set up the necessary preconditions for the test.  These are similar to preconditions in a manual test, only instead of focusing on the system as a whole, you focus on setting things up for the particular method to be called.  In the example above, the unit test is going to check that two linked lists with equal values (specifically 1 -> 2 -> 3) will be regarded as equal by the .equals method of a linked list object.  In order to test that two linked lists are equal, first we must created the two linked lists, and set their nodes to the same set of values.  This code simply creates them and puts them into variables `a` and `b`.  We will use these two linked lists in the next phase of the unit test.
 
-## Execution Steps
+### Execution Steps
 
 Here is the actual equality check.  We determine whether or not `a.equals(b)` is true or not, and put the Boolean result in the variable `result`.
 
-## Assertions
+### Assertions
 
 Remember that assertions are checking the expected behavior against the observed behavior of the execution steps.  Specifically, we are using the assertion `assertEquals`, which checks that the value in result should equal `true`.  If it does, the test passes and we can say that under these circumstances, the `.equals()` methods works correctly.  If it does not, then the test fails.
 
@@ -107,11 +106,11 @@ assertTrue(result);
 
 A list of some of the most commonly-used assertions, along with some trivial examples of their usage, include:
 
-1. __assertEquals__ Assert that two values are equal to each other, e.g. `assertEquals((2 * 2), 4)`.
-2. __assertTrue__ Assert that the expression evaluates to true, e.g. `assertTrue(7 == 7)`.
-3. __assertFalse__ Assert that the expression evaluates to false, e.g. `assertFalse(2 < 1)`.
-3. __assertNull__ Assert that a value is null, e.g. `assertNull(uninitializedVariable)`.
-4. __assertSame__ Assert not only that the two values are equal, but that they point to the exact same object.  Example:
+1. __assertEquals:__ Assert that two values are equal to each other, e.g. `assertEquals((2 * 2), 4)`.
+2. __assertTrue:__ Assert that the expression evaluates to true, e.g. `assertTrue(7 == 7)`.
+3. __assertFalse:__ Assert that the expression evaluates to false, e.g. `assertFalse(2 < 1)`.
+4. __assertNull:__ Assert that a value is null, e.g. `assertNull(uninitializedVariable)`.
+5. __assertSame:__ Assert not only that the two values are equal, but that they point to the exact same object.  Example:
 ```java
 Integer a = Integer(7);
 Integer b = Integer(7);
@@ -123,7 +122,7 @@ assertSame(a, c); // True; these are different references to the same object
 
 Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17)`.  In my experience, these are used much less often, and are usually a code smell.  You want to check for a specific __expected__ behavior, if at all possible, not that it's __not unexpected__ behavior.
 
-## Ensuring that Tests are Testing What You Expect
+### Ensuring that Tests are Testing What You Expect
 
 One of the simplest ways to do this is to first ensure that your tests fail!  While we'll go into detail on a development strategy that always calls for tests to fail first in the chapter on TDD, a quick change to a test can often prove that it's not just passing all the time because you're mistakenly asserting that `true == true`, for example.
 
@@ -132,38 +131,38 @@ In the linked list equality test above, what could you change to ensure that you
   What if you changed the first linked list, _a_, to contain the data 1 -> 2?
 
 ```java
-       @Test
-       public void testEquals123() {
-              LinkedList<Integer> a = new LinkedList<Integer>( [1, 2] );
-	      LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
-	      boolean result = a.equals(b);
-	      assertEquals(result, true);
-       }
+    @Test
+    public void testEquals123() {
+        LinkedList<Integer> a = new LinkedList<Integer>( [1, 2] );
+        LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
+        boolean result = a.equals(b);
+        assertEquals(result, true);
+    }
 ```
 
 Or 7 -> 8 -> 9?
 
 ```java
-       @Test
-       public void testEquals123() {
-              LinkedList<Integer> a = new LinkedList<Integer>( [7, 8, 9] );
-	      LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
-	      boolean result = a.equals(b);
-	      assertEquals(result, true);
-       }
+    @Test
+    public void testEquals123() {
+        LinkedList<Integer> a = new LinkedList<Integer>( [7, 8, 9] );
+        LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
+        boolean result = a.equals(b);
+        assertEquals(result, true);
+    }
 ```
 
 
 Or you changed the equality check to an _inequality_ check?
 
 ```java
-       @Test
-       public void testEquals123() {
-              LinkedList<Integer> a = new LinkedList<Integer>( [1, 2, 3] );
-	      LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
-	      boolean result = !(a.equals(b);)
-	      assertEquals(result, true);
-       }
+    @Test
+    public void testEquals123() {
+        LinkedList<Integer> a = new LinkedList<Integer>( [1, 2, 3] );
+        LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
+        boolean result = !(a.equals(b);)
+        assertEquals(result, true);
+    }
 ```
 
 In all of these instances, the test should fail.  You can then rest a little easier, knowing that your test isn't tautological, passing no matter what the code does.
@@ -178,7 +177,7 @@ An example of a pure function would be a mathematical function, such as the squa
 
 ```java
 public double getSquareRoot(double val) {
-       return Math.sqrt(val);
+    return Math.sqrt(val);
 }
 ```
 
@@ -228,9 +227,7 @@ public int haveFunAtDuckPond(Duck d, int numFeedings) {
 
 Even though the code in this method works perfectly for all inputs, it requires that a working duck be present.  Otherwise, any non-negative number of feedings with a valid duck will cause an exception to be thrown.  If we see a unit test for this particular method failing, we will naturally think that the problem is in this method.  Only after examining it will we understand that the problem actually lies elsewhere.  How can we test this code when the code it depends upon doesn't work?
 
-## Doubles
-
-I wouldn't have asked the question if I didn't have an answer - test doubles.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to __localize__ the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that it depends upon.
+I wouldn't have asked the question if I didn't have an answer - __test doubles__.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to __localize__ the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that it depends upon.
 
 JUnit does not support test doubles directly, but you can use other libraries in order to use them.  For this (and the next few sections), we will use Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
 
@@ -251,7 +248,6 @@ public class Horse {
 ```java
 // Unit test for class
 import static org.junit.Assert.*;
-
 import org.junit.*;
 
 public class HorseTest {
@@ -265,8 +261,8 @@ public class HorseTest {
         int returnVal = h.leadTo(mockWater);
         assertEquals(returnVal, 1);
     }
-}
 
+}
 ```
 
 We have now created a "fake" object instead of passing in an actual instantiation of the Water class.  Water is now quarantined and cannot cause a failure in our code.  If the test fails, it's the fault of this particular method.  Therefore, whenever there is a failure, we'll theoretically know exactly where to look in the codebase to determine the issue.  Whenever you use doubles, however, you are also dependent upon your assumptions of how the code you depend upon is supposed to work in the actual program.  There is nothing stopping you from, say, creating test doubles that have a method that the actual class does not.  In this case, your tests will work fine but the actual program will not.
@@ -280,7 +276,7 @@ Test doubles should be used, as often as possible, when the code that you are un
 For example, let's refactor the following class to make it more amenable to use test doubles:
 
 ```java
-public class Dog
+public class Dog {
 
     DogFood _df = null;
 
@@ -292,6 +288,7 @@ public class Dog
         _df.eat();
         return 1;
     }
+
 }
 ```
 
@@ -314,7 +311,7 @@ public class DogTest {
 It would be even more difficult if `_df` did not have a nice setter function, but instead was created internally or only as a byproduct of an entirely different method.  For example,
 
 ```java
-public class Dog
+public class Dog {
 
     DogFood _df  = null;
     DogDish _dd  = null;
@@ -330,6 +327,7 @@ public class Dog
         _df.eat();
         return 1;
     }
+
 }
 ```
 
@@ -338,12 +336,13 @@ If we were to write a test, we have no way of making doubles for the objects!  E
 However, if we just pass in `DogFood` as a parameter to the method, like so:
 
 ```java
-public class Dog
+public class Dog {
 
     public int eatDinner(DogFood df) {
         df.eat();
         return 1;
     }
+
 }
 ```
 
@@ -358,6 +357,7 @@ public class DogTest {
         int returnVal = d.eatDinner(Mockito.mock(DogFood.class));
         assertEquals(returnVal, 1);
     }
+
 }
 ```
 
@@ -403,9 +403,11 @@ Now when the `mockedDogFood` object has its `.eat()` method called, it will retu
 
 ```java
 public class Person {
+
     public void haveFunAtDuckPond(DuckPond duckPond) {
-       duckPond.haveFun();
+        duckPond.haveFun();
     }
+
 }
 ```
 
@@ -413,10 +415,12 @@ There is no return value and thus nothing on which to assert.  The only way to t
 
 ```java
 public void testHaveFunAtDuckPond() {
+
     Person p = new Person();
     DuckPond dp = Mockito.mock(DuckPond.class);
     Mockito.verify(duckPond.haveFun(), times(1));
     p.haveFunAtDuckPond();
+
 }
 ```
 
@@ -429,7 +433,7 @@ Oftentimes, there are particular things that you want the tests for a particular
 Here is an example of using `setUp()` and `tearDown()` methods.
 
 ```java
-public class BirdTest
+public class BirdTest {
 
     DatabaseConnection _dbc = null;
 
@@ -460,6 +464,7 @@ public class BirdTest
         Bird b = new Bird(_dbc);
         assertTrue(b.isPretty());
     }
+
 }
 ```
 
@@ -476,7 +481,6 @@ One particular use case that `@After` and `@Before` annotations can help you wit
 Here is an example of how to check for specific output from a Java program using this technique:
 
 ```java
-
 public class Kangaroo {
 
     public void hop() {
@@ -486,12 +490,12 @@ public class Kangaroo {
 }
 
 public class KangarooTest {
-    private ByteArrayOutputStream out = new ByteArrayOutputStream();
 
+    private ByteArrayOutputStream out = new ByteArrayOutputStream();
 
     @Before
     public void setUp() {
-	System.setOut(new PrintStream(out));
+    System.setOut(new PrintStream(out));
     }
 
     @After
@@ -505,6 +509,7 @@ public class KangarooTest {
         k.hop();
         assertEquals("Hoppity hop!", out.toString());
     }
+
 }
 ```
 
@@ -521,27 +526,26 @@ My opinion is that, like most engineering questions, the correct answer depends 
 Let's imagine that we're adding a cat picture taking service to Rent-A-Cat.
 
 ```java
-
 public class Picture {
 
-       private void setupCamera() {
-       	       // ...
-       }
+    private void setupCamera() {
+        // ...
+    }
 
-       private void turnOffCamera() {
-       	       // ...
-       }
+    private void turnOffCamera() {
+        // ...
+    }
 
-       private Image takePicture() {
-               // ...
-       }
+    private Image takePicture() {
+        // ...
+    }
 
-       public Image takePicture() {
-       	      setupCamera();
-	      Image i = takePicture();
-	      turnOffCamera();
-	      return i;
-       }
+    public Image takePicture() {
+        setupCamera();
+        Image i = takePicture();
+        turnOffCamera();
+        return i;
+    }
 
 }
 
@@ -553,7 +557,6 @@ This code is relatively simple, and it's easy to see that all of the private met
 Now let's imagine some code inside the image transformation library might be called from the above code.
 
 ```java
-
 public class ImageLibrary {
 
     public Image transform(Image image, int inSize, int outSize, String format,
@@ -591,21 +594,21 @@ import java.lang.reflect.Method;
 
 public class ReflectionFun {
 
-	public void printQuack() {
-		System.out.println("Quack!");
-	}
+    public void printQuack() {
+        System.out.println("Quack!");
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        Method[] methods = ReflectionFun.class.getMethods();
 
-		Method[] methods = ReflectionFun.class.getMethods();
+        // Get all methods from class and any from superclasses callable
+        // on this class.
+        System.out.println("All methods:");
+        for (Method method : methods){
+            System.out.println(method.getName());
+        }
+    }
 
-		// Get all methods from class and any from superclasses callable
-		// on this class.
-		System.out.println("All methods:");
-		for (Method method : methods){
-		    System.out.println(method.getName());
-		}
-	}
 }
 ```
 
@@ -647,20 +650,20 @@ import java.lang.reflect.Method;
 
 public class ReflectionFun {
 
-	public void printQuack() {
-		System.out.println("Quack!");
-	}
+    public void printQuack() {
+        System.out.println("Quack!");
+    }
 
-	public static void main(String[] args) {
-	       try {
-			System.out.println("Call public method (printQuack):");
-			Method method = ReflectionFun.class.getMethod("printQuack");
-			Object returnValue = method.invoke(rf);
+    public static void main(String[] args) {
+        try {
+            System.out.println("Call public method (printQuack):");
+            Method method = ReflectionFun.class.getMethod("printQuack");
+            Object returnValue = method.invoke(rf);
+        } catch (NoSuchMethodException nsmex) {
+            System.err.println("No such method!");
+        }
+    }
 
-		} catch (NoSuchMethodException nsmex) {
-			System.err.println("No such method!");
-		}
-	}
 }
 ```
 
@@ -680,36 +683,33 @@ First, you can't use the `getMethod()` or `getMethods()` methods, as they only r
 
 Therefore, if we wanted a list of _all_ methods defined on `ReflectionFun`, we could use the `getDeclaredMethods()` method.  Just for fun, let's also add a private `printQuock()` method to go along with our public `printQuack()` method (my definition of "fun" may be slightly different than yours):
 
-
 ```java
-
 import java.lang.reflect.Method;
 
 public class ReflectionFun {
 
-	public void printQuack() {
-		System.out.println("Quack!");
-	}
+    public void printQuack() {
+        System.out.println("Quack!");
+    }
 
-	public void printQuock() {
-	       System.out.println("Quock!");
-	}
+    public void printQuock() {
+        System.out.println("Quock!");
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        System.out.println("Declared methods:");
+        Method[] methods = ReflectionFun.class.getDeclaredMethods();
+        for(Method method : methods){
+            System.out.println(method.getName());
+        }
+    }
 
-	       System.out.println("Declared methods:");
-	       Method[] methods = ReflectionFun.class.getDeclaredMethods();
-	       for(Method method : methods){
-	       	       System.out.println(method.getName());
-	       }
-
-	}
 }
 ```
 
 The output of this program is:
 
-```java
+```
 Declared methods:
 main
 printQuack
@@ -719,29 +719,29 @@ printQuock
 Since we once again have just a list of Method objects, we can invoke them.  There's only one small snag - we first need to set that method to "accessible" before calling it, using the `setAccessible()` method.  It accepts a boolean parameter to determine whether or not the method should be accessible outside the class.
 
 ```java
-
 import java.lang.reflect.Method;
 
 public class ReflectionFun {
 
-	public void printQuack() {
-		System.out.println("Quack!");
-	}
+    public void printQuack() {
+        System.out.println("Quack!");
+    }
 
-	private void printQuock() {
-		System.out.println("Quock!");
-	}
+    private void printQuock() {
+        System.out.println("Quock!");
+    }
 
-	public static void main(String[] args) {
-	       try {
-			System.out.println("Call private method (printQuock):");
-			Method method2 = ReflectionFun.class.getDeclaredMethod("printQuock");
-			method2.setAccessible(true);
-			Object returnValue = method2.invoke(rf);
-		} catch (NoSuchMethodException nsmex) {
-			System.err.println("No such method!");
-		}
-	}
+    public static void main(String[] args) {
+        try {
+            System.out.println("Call private method (printQuock):");
+            Method method2 = ReflectionFun.class.getDeclaredMethod("printQuock");
+            method2.setAccessible(true);
+            Object returnValue = method2.invoke(rf);
+        } catch (NoSuchMethodException nsmex) {
+            System.err.println("No such method!");
+        }
+    }
+
 }
 ```
 
@@ -866,7 +866,6 @@ When developers discuss "code coverage", they usually mean specifically "stateme
 public class Turtle {
 
     CurrentLocation _loc = World.getCurrentLocation();
-
     GroundType _g = World.getGroundType(_loc);
 
     public void crawl() {
@@ -903,6 +902,7 @@ public class Cow {
         }
         return timesToMoo;
     }
+
 }
 
 public class CowTest {

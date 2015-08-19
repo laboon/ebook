@@ -2,7 +2,7 @@
 
 Through much of this book, we have spoken of testing as if in a vacuum.  You write the tests, the software either passes or fails (or you realize you wrote the test incorrectly), you file a defect report, and eventually the problem is fixed.  There is another aspect to testing that you will experience working on projects - the human element.  Managers may disagree with you on what the testing priorities are.  Developers may argue that the "defect" you found is actually expected behavior.  Fellow testers may get into shouting matches with you over subtleties in a requirements specification.
 
-Conflict is inevitable on any team, and in fact, it's probably a positive overall.  If everybody agreed about everything all of the time, you are probably working on a pretty trivial project, and your job is likely to be replaced by a small shell script in the near future.  Resolving conflicts, although it can be difficult, is the key to succesfully preparing a product for launch.  Conflicts, as long as they are conducted professionally and productively, are often the fuel that allows a team to perform better as time goes on.
+Conflict is inevitable on any team, and in fact, it's probably a positive overall.  If everybody agreed about everything all of the time, you are probably working on a pretty trivial project, and your job is likely to be replaced by a small shell script in the near future.  Resolving conflicts, although it can be difficult, is the key to successfully preparing a product for launch.  Conflicts, as long as they are conducted professionally and productively, are often the fuel that allows a team to perform better as time goes on.
 
 As a software tester, you will have specific challenges when interacting with other members of the development team.  After all, the whole job of a tester is to find problems with software.  They're professional critics, constantly looking for all the weak points of a system in order to make it better.  If this is not done with a gentle touch, it can often be mistaken for being a jerk.  Nobody likes to hear about the problems or shortcomings of the software they wrote, and managers don't like hearing that a product won't be ready.  As a professional fault-finder, it also becomes very easy to sink into a morass of unjustified pessimism about a product.  In this chapter, we'll discuss how to deal with these problems and successfully interact with all the people necessary to bring a project to completion.
 
@@ -16,14 +16,14 @@ As mentioned above, different stakeholders will care about different aspects of 
 
 The following a non-exhaustive list of groups of stakeholders, and a high-level view of what they are likely to care about.  Depending on the domain in which you are working, there are bound to be additional classifications, or some of these may be combined, but this should give you a general idea.
 
-* _Customers:_ These are the people who will pay for the software.  They will focus on receiving a working system for a low price, and care about cost and the return on investment of purchasing it.
-* _Users:_ These are the people who will use the software.  Note that these are sometimes the same as customers, but sometimes not - for example, when a school purchases class registration software, the school is the customer, but students are the users.  They will care about the usability of the system and if it allows them to easily accomplish their goals.
-* _Project Management:_ These are the people who manage the specific project, ensuring that it is developed at an appropriate rate and released on time and on budget.  They will care about scheduling (from a resource, time, and scope perspective) and software quality.
-* _Upper Management:_ Usually higher up in the management chain, to the point where they will often not be very familiar with a project itself.  They will care about the financials of the project, such as whether or not it is likely to make a profit.
-* _Developers:_ The people who write the software, they will care about the tools that they use, how well the program works from a technological standpoint, and how well it solves the problem and meets the requirements.
-* _Testers / Quality Assurance:_ The people who test the software and determine the quality of the system.  They will focus on finding defects on the software and care about releasing a quality product.
-* _Support Personnel:_ The people who keep the software running, such as field engineers, help desk personnel, and deployment personnel.  They will care about uptime and quality of the system, and its ease of use on behalf of customers.
-* _Assessors:_ These people focus on the assessing the legality of a system, ensuring that it meets all the demands made of it by laws for the domain in which it is operating.  They will care about meeting the legal or other documented requirements.
+* __Customers:__ These are the people who will pay for the software.  They will focus on receiving a working system for a low price, and care about cost and the return on investment of purchasing it.
+* __Users:__ These are the people who will use the software.  Note that these are sometimes the same as customers, but sometimes not - for example, when a school purchases class registration software, the school is the customer, but students are the users.  They will care about the usability of the system and if it allows them to easily accomplish their goals.
+* __Project Management:__ These are the people who manage the specific project, ensuring that it is developed at an appropriate rate and released on time and on budget.  They will care about scheduling (from a resource, time, and scope perspective) and software quality.
+* __Upper Management:__ Usually higher up in the management chain, to the point where they will often not be very familiar with a project itself.  They will care about the financials of the project, such as whether or not it is likely to make a profit.
+* __Developers:__ The people who write the software, they will care about the tools that they use, how well the program works from a technological standpoint, and how well it solves the problem and meets the requirements.
+* __Testers / Quality Assurance:__ The people who test the software and determine the quality of the system.  They will focus on finding defects on the software and care about releasing a quality product.
+* __Support Personnel:__ The people who keep the software running, such as field engineers, help desk personnel, and deployment personnel.  They will care about uptime and quality of the system, and its ease of use on behalf of customers.
+* __Assessors:__ These people focus on the assessing the legality of a system, ensuring that it meets all the demands made of it by laws for the domain in which it is operating.  They will care about meeting the legal or other documented requirements.
 
 This is only a rough guide to some of the kinds of stakeholders you will interact with as a software tester.  Remember that these are drawn with very broad strokes!  People are individuals, not faceless members of groups, no matter what your friend who has read too much philosophy has to say.  Although you can use this information to get a general idea of what individual stakeholders are interested in, nothing will take the place of having real interactions, and more importantly, _asking_ what is important to them.
 
@@ -61,21 +61,48 @@ Along with each subsystem and its status, there should be a short notes section 
 
 Let's walk through some examples to see how we can use the red-yellow-green template to quickly display status to a manager.  These two examples both involve a system which accepts customer information via an API, stores it in a database, and then emails weekly reports to the marketing department.
 
-| Subsystem | Status | Notes  |
-|-----------|--------|---|
-| Database | Green | Test plan passed with no defects. Performance meets or exceeds all KPIs. |
-| Input API  | Green | Latest version passed all tests, including all edge cases, without any defects.  |
-| Report Generation | Yellow | Several arithmetic errors found on latest test run.  May need one additional developer to complete all functionality on schedule, but likely to be on target as-is.  |
-| Email | Green | Two minor design defects found, but due to be fixed by tomorrow.  |
+```
+--------------------------------------------------------------------------------
+ Subsystem    Status   Notes
+----------- ---------- ---------------------------------------------------------
+ Database     Green    Test plan passed with no defects. Performance meets or
+                       exceeds all KPIs.
+
+ Input API    Green    Latest version passed all tests, including all edge
+                       cases, without any defects.
+
+ Report       Yellow   Several arithmetic errors found on latest test run.
+ Generation            May need one additional developer to complete all
+                       functionality on schedule, but likely to be on target
+                       as-is.
+
+ Email        Green    Two minor design defects found, but due to be fixed by
+                       tomorrow.
+--------------------------------------------------------------------------------
+```
 
 In this first instance, we have a system which is going well.  There are no known major problems, and no worries about major schedule slippage or scope reduction.  At a glance, we can see a sea of green, with only one small island of yellow.  Importantly, it's possible to see why these subsystems have the status they do.  If a stakeholder wanted to know more detail about the design defects in the emails, they can ask more questions, or if they want to know what edge cases were checked in the input API, they can do so.  Now let's look at another version of the system which is perhaps not going as well.
 
-| Subsystem | Status | Notes  |
-|-----------|--------|---|
-| Database  | Red | Database cannot store more than one customer's information at a time, and randomly deletes data every Tuesday.  |
-| Input API | Yellow | System takes several minutes to process each (one kilobyte) request.  |
-| Report Generation | Red | All reports just say "LOL" hundreds of times, and the developer in charge of this seems to have fled to Belarus.   |
-| Email | Red | As far as the testing team can determine, there is no email functionality at this time, and no developers scheduled to work on it. |
+```
+--------------------------------------------------------------------------------
+ Subsystem    Status   Notes
+----------- ---------- ---------------------------------------------------------
+ Database     Red      Database cannot store more than one customer's
+                       information at a time, and randomly deletes data every
+                       Thursday.
+
+ Input API    Yellow   System takes several minutes to process each (one
+                       kilobyte) request.
+
+ Report       Red      All reports just say "LOL" hundreds of times, and the
+ Generation            developer in charge of this seems to have fled to
+                       Belarus.
+
+ Email        Red      As far as the testing team can determine, there is no
+                       email functionality at this time, and no developers
+                       scheduled to work on it.
+--------------------------------------------------------------------------------
+```
 
 Well, this is not a project that I would like to be managing.  Note that our nice, green sea above is replaced with a hellish sea of red, bringing to mind the interior of a volcano.  Even the one yellow subsystem, the Input API, is probably going to require some additional work before it's ready to be released.  Note that this yellow status is very different from the yellow status in the previous example.  These statuses are very broad; having a few known arithmetic errors is an issue which we can probably deal with by making some code changes.  Having a performance issue of the magnitude described here may be very difficult to fix, but the program is still releasable with it, just very slow.  Remember that statuses are subjective and how you categorize subsystems will vary based on the domain of the system you are working on.  For example, a program which crashes once per year of normal use may be acceptable for a video game, but it would be unacceptable for avionics software.
 
@@ -87,11 +114,12 @@ Although useful for providing the status of a system, the red-yellow-green templ
 
 ### Example
 
-DAILY STATUS 7 AUG 2015
+**DAILY STATUS: 7 AUG 2015**
 
 * Finished running Test Plan "Database Subsystem Regression" - recorded as Test Run 471, no new defects
 * Wrote script to convert old tab-delimited test data to new comma-delimited format - available in /scripts directory on server
-* Started writing Test Plan "Graphical Symbology Display" - need to get latest version of symbology standard_
+* Started writing Test Plan "Graphical Symbology Display" - need to get latest version of symbology standard
+
 BLOCKERS: Need to find latest version of symbology standards before finishing test plan
 
 These should not take very long to write; a few sentences should suffice, and I think bullet points allow for a good overall summary instead of worrying about proper grammar and developing a narrative.  This simple email allows the manager to know what the tester is working on (writing a new test plan), what additional resources are available (a script for reformatting data, which may be hepful for other team members), and where the tester may need additional resources (the latest version of the symbology standard).
