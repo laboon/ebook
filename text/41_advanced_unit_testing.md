@@ -574,7 +574,7 @@ public void testPrivateLaboonify() {
 
 It is plain to see that testing even simple private methods can include quite a bit of boilerplate code.  In many cases, you will probably want to wrap the private method access code in a separate helper method.
 
-## Unit test structure
+## Unit Test Structure
 
 ### Basic Outline
 

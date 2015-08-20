@@ -302,6 +302,8 @@ __Scripted testing__: Testing with a rigid script, such as a test plan, where st
 
 __Seam__: A place in the codebase where you can modify behavior without modifying the code itself.
 
+__Seat of Your Pants Testing__: Testing where the expected behavior is known to the tester through experience with the software or its domain, instead of being formally specified.
+
 __Security testing__: Testing that the system meets the criteria of the InfoSec Triad, that the system is safe from unauthorized tampering and/or access.
 
 __Service-based performance__: Performance on metrics related to how the user will interact with the system.
