@@ -1,4 +1,4 @@
-# Acceptance and Smoke Testing
+# Smoke And Acceptance Testing
 
 ## Smoke Testing
 

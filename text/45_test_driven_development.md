@@ -18,7 +18,7 @@ Test-Driven Development is a software development methodology that comprises sev
 
 5. __Refactoring early and often:__ Refactoring is often held off until later in the development process, when it is much more difficult to do, especially if there has not been much time spent on doing it earlier.  That becomes all the more reason not to do it later.  By refactoring often, it becomes a part of the development process and a habit, instead of something that will be done "if there's enough time" (note: there is never enough time).
 
-### The Red-Green-Refactor Loop
+## The Red-Green-Refactor Loop
 
 We work within these constraints by using the "red-green-refactor" loop.  A single cycle in TDD involves the following three steps:
 
@@ -40,7 +40,7 @@ This could all be re-written as a very simple algorithm.  By doing so, we can se
 6. Run test suite - if any tests fail, go back to step 5.  If all tests pass, continue.
 7. If there is any more functionality to add, go to step 1.  If there is no more functionality to add, the application is complete!
 
-### Concepts
+## Concepts
 
 There are several principles to keep in mind when writing in a TDD manner.
 
@@ -54,7 +54,7 @@ There are several principles to keep in mind when writing in a TDD manner.
 
 * __Remember That These Are Principles, Not Laws:__ It would be counterproductive to entirely ignore what else the software needs to do in the next few iterations of the red-green-refactor loop.  Occasionally, a test may be slow but necessary, or adding a fake version of a method would be just as simple as actually making the method.  Although you should endeavor to follow the principles of TDD, I know of nobody who has never violated one of the principles (although perhaps that speaks more to the type of people that I spend time with).
 
-### Example: Building FizzBuzz via TDD
+## Example: Building FizzBuzz via TDD
 
 In order to understand how TDD works, let's write a simple `FizzBuzz` program using it.  Remember that `FizzBuzz` consists of printing every number from 1 to 100, except if the number is evenly divisible by three, then the word "Fizz" should be printed instead of the number, if the number is evenly divisible by five, then the word "Buzz" should be printed instead of the number, and if the number is evenly divisible by both three and five, then "FizzBuzz" should be printed instead of the number.
 

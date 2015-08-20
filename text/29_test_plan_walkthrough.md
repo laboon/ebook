@@ -13,7 +13,7 @@ Cat is overweight
 
 As the test cases are developed, take note of the trade-offs that are made, and how decisions about which test cases to include are made.  Also note how we use the ideas which we explored in earlier chapters - especially in equivalence class partitioning and thinking of failure cases - are used to make a well-rounded test plan.
 
-## Requirements
+## Examining The Requirements
 
 1. __FUN-PARAMETER:__ The system shall accept a single parameter, `CATWEIGHT`, which can only be a single positive floating-point value or positive integer.  If the parameter is not one of these two kinds of values, or if there is not exactly one parameter, the system shall immediately shut down with only the message "Please enter a valid parameter."
 2. __FUN-STARTUP-MESSAGE:__ Upon startup, the system shall display "Cat Weighing System" upon the console.
@@ -59,7 +59,7 @@ How did I determine how to sort these out?  I looked for requirements which were
 
 Looking specifically at the test plan outline we developed here, it is apparent that the second section, Output, has by far the most requirements listed, this does not necessarily mean that it will take the longest amount of time to test, or involve the most work.  In fact, as FUN-STARTUP-MESSAGE is very simple and unchanging, and the three other requirements involve mathematically pure functions, the tests themselves will probably be relatively easy to write.  In real-world instances, some requirements may take orders of magnitude longer to test than others!  Performance and security requirements, among others, can be much more difficult to test than the length of their requirements would suggest.
 
-## Fleshing Out The Test Plan
+## Filling Out The Test Plan
 
 Let's start with the first section, Input.  I notice that there are several possible use cases here:
 
@@ -144,7 +144,7 @@ We now have both possibilities covered.  Note that the postconditions focus on t
 
 It would be simple to add more edge cases, such as additional invalid and valid inputs, running on different operating systems, running with other programs in the background... the list goes on and on.  However, discretion is the better part of valor.  Spending too much time on a simple requirement like this would in all likelihood be a suboptimal use of resources.  Of course, there is always the chance that displaying a message is of the utmost important, such as a legal requirement or safety notice.  In such cases, obviously more attention would be focused on it.  While this may seem like I am avoiding giving clear rules for how much emphasis to place on each requirement, the point I want to get across is that there are no clear rules.  As a tester, you will have to decide how much to focus on each requirement, subsystem, feature, or other aspect of the system under test.  This will vary based on domain and the particular software project, and you may get it wrong.  I can provide examples and heuristics, but no book can replace the grey matter between your ears.
 
-## The Focus of the Test Plan
+## Determining Focus
 
 Let's move on to the three weight requirements: FUN-UNDERWEIGHT, FUN-NORMALWEIGHT, and FUN-OVERWEIGHT.  This seems like a perfect time to partition the inputs and outputs into equivalence classes, as explained earlier.
 
@@ -266,7 +266,7 @@ POSTCONDITIONS: For each of the input values, the string "Cat is underweight"
     shall be displayed upon the console.
 ```
 
-## Performance Testing
+## Test Cases For A Non-Functional Requirement
 
 There's an entire chapter on performance testing later, but for now, let's just go through a very simple performance test.  We want to check that the system completes calculation and information display within two seconds.  An easy way to verify this is by using the Unix tool `time`, which will tell you how long it took for a command to execute.  Although the standard tool will give you several different results, focus only on the "real" time which measures how long something actually took according to the clock on the wall (the other kinds of time that the tool measures will be discussed in the chapter on performance testing).
 

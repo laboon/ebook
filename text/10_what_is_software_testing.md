@@ -8,7 +8,7 @@ Let's start with what it's not.
 4. It's not something you do after all the programming is complete.
 5. It's really, REALLY not something you don't think about until users start complaining.
 
-## So what is it?
+## What Is It?
 
 It's actually a variety of things.  At a high level, it's a way of providing an estimate of software quality to stakeholders (that is, people who have a direct interest in the system, such as customers, users, and managers).  By testing software, you can find defects (bugs) before the users stumble across them.
 
@@ -41,7 +41,7 @@ _Me:_ "OK, that's probably wrong.  I only ever tested it with an input of `9`, s
 Keep in mind that I am someone who teaches a class on software testing.  Even I can't help being nice to the poor little functions that I write.  The job of the tester is to be the drill sergeant to my helicopter parent.  I can nurture the poor little function, but it's not going to get any stronger until someone tries to hit it with some discipline.
 
 
-## What Software Testing Is Not
+## What It Is Not
 
 There's a common misconception out there that software testing means finding every single bug in a program.  This is similar to saying that the point of running a marathon is to go at the speed of light - after all, that's the fastest that one can go, so if one can do that, then that person is guaranteed to win!  It sounds ridiculous when you apply it to a human running, and to a disciplined software tester, it sounds almost as ridiculous.
 
@@ -71,7 +71,7 @@ This illustrates the difference between *verification* and *validation*.  Verifi
 
 It's more common than one would think to have gaps in requirements, or to have requirements which are ambiguous, incorrect, or even contradictory.  This is mostly due to the fact that if you were describing a program in sufficient detail, you would no longer be describing a program, you'd be *writing* a program.  In that case, you'd have all of the same problems as just writing the code in the first place.
 
-## What is a bug, really?
+## What Is a Bug, Really?
 
 It's important to keep in mind that not every problem found with a system is a defect.  A defect is an issue that either breaks the functionality of the system as it's currently understood, or does not meet the requirements of the program.  If a program operates normally and meets all of the requirements, then it does not have a defect.  If the program does not meet the requirements, or does not operate normally (e.g., crashes randomly, does not respond to normal system
 

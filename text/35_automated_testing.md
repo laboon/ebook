@@ -6,7 +6,7 @@ If you're testing software, then chances are very good that you have a computer 
 
 With automated testing, you write the tests, using some sort of programming or scripting language or tool, which are then executed by the computer.  These tests can check aspects of the program as specific as individual return values from methods all the way up to how an entire graphical interface should look on a screen.
 
-## Benefits of manual and automated testing
+## Benefits and Drawbacks of Manual and Automated Testing
 
 For your software project, should you use manual testing or automatic testing?  There are benefits and drawbacks of each form of testing.
 
