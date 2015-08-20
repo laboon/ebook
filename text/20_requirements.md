@@ -44,7 +44,7 @@ __GOOD REQUIREMENTS:__
 __BAD REQUIREMENTS:__
 
 * __BADREQ-1.__ When the user presses the "velocity" button, the system shall access memory location 0x0894BC40 and display it on the main screen.
-* __BADREQ-2.__ The system shall use a antimatter-matter reaction in order to propel it to 0.8c.
+* __BADREQ-2.__ The system shall use an antimatter-matter reaction in order to propel it to 0.8c.
 * __BADREQ-3.__ The system shall use a relational database to store the last 100 coordinates it has sampled.
 
 Note that the bad requirements all state _how_ something should be done, not _what_ the system needs to do.  What happens if the memory address where the velocity value is stored is changed?  The entire requirement would have to be changed, as well as any that may have depended on it.  Why is it important to use an antimatter-matter reactor, specifically?  The key thing is that the spaceship can move at a specific velocity.  Finally, why is it important that a relational database is used to store coordinates?  From the user's perspective, all that they care about is that the coordinates are stored.
