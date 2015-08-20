@@ -4,12 +4,12 @@ Now that you understand requirements, and the basic theory and terminology of so
 
 ## The Basic Layout of a Test Plan
 
-A test plan is, at its core, simply a collection of __test cases__.  Test cases are the individual tests that make up a test plan.  Let's assume that you are creating a test plan for testing a new app that tells you if a cup of coffee is too hot to drink.  Assuming that the app marketers liked cold coffee and decided not to implement anything about the coffee temperature being too low, there are two requirements:
+A test plan is, at its core, simply a collection of __test cases__.  Test cases are the individual tests that make up a test plan.  Let's assume that you are creating a test plan for testing a new app that tells you if a cup of coffee is too hot to drink.  Let's also assume that the app marketers really like cold coffee, and decided not to implement any functionality about reporting the coffee temperature being too low.  There are two requirements:
 
-* __FUN-COFFEE-TOO-HOT.__ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
-* __FUN-COFFEE-JUST-RIGHT.__ If the coffee temperature is measured at less than 175 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
+* __FUN-COFFEE-TOO-HOT__: If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
+* __FUN-COFFEE-JUST-RIGHT__: If the coffee temperature is measured at less than 175 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
 
-How would we develop a test plan for our coffee temperature app?  There is one input - the coffee temperature measured - and two possible outputs, one of the set `["TOO HOT", "JUST RIGHT"]`.  (We can ignore for now that I think most people would find coffee at 45 degrees Fahrenheit to definitely not be "JUST RIGHT".)
+How would we develop a test plan for our coffee temperature app?  There is one input - the coffee temperature measured - and two possible outputs, one of the set `["TOO HOT", "JUST RIGHT"]`.  We can ignore for now that I think most people would find coffee at 45 degrees Fahrenheit to definitely not be "JUST RIGHT".
 
 A single input value and one of two possible output values is a simple case of equivalence class partitioning, so let's partition up those equivalence classes.
 
@@ -46,11 +46,11 @@ Don't worry if you still have some questions on these definitions.  In the follo
 
 Just as requirements have identifiers, test cases do as well.  These provide a short and simple way to refer to the test case.  In many instances, these are just numbers, but also could use more complex systems like the one described in the section on naming requirements.
 
-Test plans are usually not as large as all of the requirements for a program; once they get big enough, individual tests plans are grouped under larger test suites.  Thus, often the identifier is just a number.  If you are using automated test tracking software, then it will usually auto-number these for you.
+Test plans are usually not as large as all of the requirements for a program; once they get big enough, individual tests plans are grouped under larger test suites.  Often the identifier is just a number.  If you are using automated test tracking software, then it will usually auto-number these for you.
 
 ### Test Case (or Summary)
 
-In this field, a succinct summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell what exactly is meant to be tested, and sometimes how it is to be tested.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.
+In this field, a summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell at a glance what is meant to be tested, and sometimes how.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.
 
 __Examples:__
 
@@ -61,7 +61,7 @@ __Examples:__
 
 ### Preconditions
 
-A test often requires that the system is in a certain state before the test itself can be run.  While one could theoretically consider putting the system into such a state as part of the execution of the test (see the section on Execution Steps, below), in general it makes more sense that certain __preconditions__ must be met before the test can start.  This will be necessary for many tests which are not testing mathematically pure functions.
+A test often requires that the system be in a certain state before the test itself can be run.  While one could theoretically consider putting the system into such a state as part of the execution of the test (see the section on Execution Steps, below), in general it makes more sense that certain __preconditions__ must be met before the test can start.  This will be necessary for many tests which are not testing mathematically pure functions.
 
 Example preconditions include:
 
@@ -148,7 +148,7 @@ Sorting is a mathematically pure concept, but much of what a tester tests is not
 
 Now that the preconditions and input values for a test case have been determined, it's time to actually run the test case.  The steps taken when running the test case are called the __execution steps__.  These are what the tester actually does - and must do specifically! - when running the test case.  Whereas with preconditions, it is sufficient to simply get an end result (similar to requirements, where the goal is to specify what is to be done, now how to do it), with execution steps, it is critical to follow them precisely.  Execution steps are often incredibly specific, depending on the domain, as it is of paramount importance to follow them exactly.
 
-Let's start with a simple example.  We are testing an e-commerce software system and checking that adding one item to the cart, when the cart is already empty, will display a "1" as the number of items in the cart.  The precondition is that the cart contains zero items.  This may have been accomplished in a variety of ways: the user has never logged on before; the user is already logged on and  bought any items that were in the cart, resetting the counter; or any existing items that were in the cart have been removed without being bought.  From the point of view of this case, it does not matter how this point (i.e., the cart containing zero items) has been reached, only that it does.
+Let's start with a simple example.  We are testing an e-commerce software system and checking that adding one item to the cart, when the cart is already empty, will display "1" as the number of items in the cart.  The precondition is that the cart contains zero items.  This may have been accomplished in a variety of ways: the user has never logged on before; the user is already logged on and  bought any items that were in the cart, resetting the counter; or any existing items that were in the cart have been removed without being bought.  From the point of view of this case, it does not matter how this point (i.e., the cart containing zero items) has been reached, only that it does.
 
 Conversely, the actual execution steps should be spelled out very clearly.
 
@@ -177,7 +177,7 @@ Once again, though, computer programs don't consist solely of mathematical funct
 
 ### Postconditions
 
-Any side effects or other state of the system that are either caused by the functionality, or should be in effect some other way after the execution steps have been completed, but are not output values,  are __postconditions__.  Postconditions may be directly caused by the functionality under test, such as a warning message being displayed, or some data written to the database, or a global variable being set.  However, a postcondition is any condition which needs to be in place after the execution steps are complete, and may not be directly impacted by the functionality.  For example, a postcondition may be that a global variable was __not__ set, or that the system is still running, or that a thread was not killed.
+Any side effects or other state of the system that are either caused by the functionality, or should be in effect some other way after the execution steps have been completed, but are not output values,  are __postconditions__.  Postconditions may be directly caused by the functionality under test, such as a warning message being displayed, or some data written to the database, or a global variable being set.  However, a postcondition is any condition which needs to be in place after the execution steps are complete, and may not be directly impacted by the functionality.  For example, a postcondition may be that a global variable was set, or that the system is still running, or that a thread was not killed.
 
 ### A Note: Expected Behavior vs Observed Behavior
 
@@ -191,7 +191,7 @@ And the following actions Y are performed,
 I expect Z to happen
 ```
 
-That value Z is the crux of the test - it is the expected behavior.  It is impossible to test for something if you don't know what you expect to happen.  Just like Lewis Carroll said, "if you don't know where you're going, any road will get you there."  Similarly, when writing a test case, you need to know where you eventually want the test case to go, otherwise there's no way to check that you got to where the system should be.
+That value Z is the crux of the test - it is the expected behavior.  It is impossible to test for something if you don't know what you expect to happen.  As Lewis Carroll said, "if you don't know where you're going, any road will get you there."  Similarly, when writing a test case, you need to know where you eventually want the test case to go, otherwise there's no way to check that you got to where the system should be.
 
 ## Developing a Test Plan
 
@@ -203,11 +203,11 @@ For each requirement, you should think of at least the "happy path" for that req
 
 You will also want to think of cases that test the various boundaries, as well as all the equivalence classes.  Continuing the above example, let us assume that you have a test case for the value 5 and a test case for the value 15, thus ensuring that you have at least one value for each equivalence class.  You might also want to add test cases to check the boundary between the two equivalence classes, so you add test cases for 9 and 10.
 
-How many of these edge cases and corner cases you'd like to add, as well as how extensive a testing of interior and boundary values you would like to perform, will vary depending on the amount of time and resources that you have available for testing, the software domain, and the level of risk that your organization is comfortable taking.  Remember that testing exhaustively is, for all intents and purposes, impossible.  There is a sliding scale of how much time and energy one wants to put in to writing and executing tests, and no right answer.  Determining a compromise between speed of development and ensuring quality is a key part of the job for a software tester.
+How many of these edge cases and corner cases you'd like to add, as well as how extensively you test interior and boundary values, will vary depending on the amount of time and resources that you have available for testing, the software domain, and the level of risk that your organization is comfortable taking.  Remember that testing exhaustively is, for all intents and purposes, impossible.  There is a sliding scale of how much time and energy one wants to put in to writing and executing tests, and no right answer.  Determining a compromise between speed of development and ensuring quality is a key part of the job for a software tester.
 
 Determining test cases for non-functional requirements (quality attributes) of the system can often be difficult.  You should try to ensure that the requirements themselves are testable, and think of ways to quantify any test cases that you can think of for those requirements.
 
-Unfortunately, however, simply having a correspondence between all requirements and a test case for each does not always mean that you have developed a good test plan.  You may have to add additional tests to ensure that requirements work together in tandem, or check for cases from the user's point of view that may not map directly to requirements or flow directly from them.  Even more importantly, you will need to gain an understanding of the context that the software exists in.  Having domain knowledge of the field can help you understand basic use cases, how the system interacts with the environment, and possible failure modes, and how users would expect the system to recover from those failure modes.  If nobody on the team understands the domain of the software, it may be worthwhile to discuss the software with a subject matter expert (SME) before writing a test plan.
+Unfortunately, simply having a correspondence between all requirements and a test case for each does not always mean that you have developed a good test plan.  You may have to add additional tests to ensure that requirements work together in tandem, or check for cases from the user's point of view that may not map directly to requirements or flow directly from them.  Even more importantly, you will need to gain an understanding of the context that the software exists in.  Having domain knowledge of the field can help you understand basic use cases, how the system interacts with the environment, and possible failure modes, and how users would expect the system to recover from those failure modes.  If nobody on the team understands the domain of the software, it may be worthwhile to discuss the software with a subject matter expert (SME) before writing a test plan.
 
 Understanding the programming environment that the software is written in can also facilitate writing a test plan.  Although this technically veers into grey-box testing as opposed to black-box testing, since you as a tester will know some of the internal implementation details, it can provide valuable insight in knowing where potential errors may lurk.  Allow me to give an example.  In Java, dividing by zero, as in the code below, will throw a `java.lang.ArithmeticException`.
 
@@ -230,7 +230,7 @@ Infinity
 NaN
 ```
 
-Dividing a positive value by zero returns `Infinity`, dividing by a negative number returns `-Infinity`, and dividing zero by zero returns `NaN` (Not a Number).  This means that dividing by zero, despite being one "internal equivalence class" in Java programs, is three different ones in JavaScript programs.  Knowing this, you would want to test that the program can handle all of these return values, and not assume that you had checked all edge cases simply because you had checked for dividing one by zero.  As a side note, this is an actual example from a test plan that I wrote, and it was used to find several defects.
+Dividing a positive value by zero returns `Infinity`, dividing by a negative number returns `-Infinity`, and dividing zero by zero returns `NaN` (Not a Number).  This means that dividing by zero, despite being one "internal equivalence class" in Java programs, is three different ones in JavaScript programs.  Knowing this, you would want to test that the program can handle all of these return values, and not assume that you had checked all edge cases simply because you had checked for dividing one by zero.  This is an actual example from a test plan that I wrote, and it was used to find several defects.
 
 
 ## Executing a Test Plan
@@ -256,7 +256,7 @@ Conversely, a __failed__ test in which at least one aspect of the observed behav
 
 A __paused__ test is one that has started, but had to be put on hold for some period of time.  This allows other testers and managers to know the status of a test and the progress a tester has been made.  It also ensures that another tester doesn't step in and start doing the test that has already been started by another tester.  A test case may be paused for quotidian reasons, like the tester going to lunch, or something directly related to the system under test, such as leaving the lab to get new test data.  In any case, the assumption is that the tester will get back to working on this test as soon as he or she returns, not that the test itself cannot be executed (that is covered by the "blocked" status, below).
 
-A __running__ test is one which has started, but has not yet completed, and thus the final result is not yet known.  This is usually used in cases where the test takes a long time to complete, and the tester would like other testers to know that it is being executed.  Although technically all tests enter a running state for a brief period of time (when the tester is executing the execution steps), unless there is some sort of automation, this status is only set when the test is long-running.
+A __running__ test is one which has started, but has not yet completed, and thus the final result is not yet known.  This is usually used in cases where the test takes a long time to complete, and the tester would like other testers to know that it is being executed.  Although technically all tests enter a running state for a brief period of time (when the tester is executing the execution steps), unless there is some sort of automation, this status is usually only set when the test is long-running.
 
 In some cases, a test cannot be executed at the present time.  This can be due to external factors (such as a piece of testing equipment not being available) or internal factors (such as a piece of functionality not being completed, or impossible to test due to other defects present in the system).  In such cases, the test can be marked as __blocked__.  This indicates that the test cannot currently be run, although it may be run in a future test case when the issues blocking its execution have been removed.
 
@@ -297,7 +297,7 @@ TEST 8: PASSED
 TEST 9: PASSED
 ```
 
-If a test fails, then a defect should be filed.  A defect indicates that the system is not operating as designed; the expected behavior does not match the observed behavior.  There are cases where a defect will not be filed despite a test not passing; for example, if the test is failing due to an already-known defect, there is no need to file it again.  More detail on filing defects is included in the following chapter.
+If a test fails, then one of two things should happen.  Either a new defect should be filed, or the already-known defect that is causing the failure should be noted.  A defect indicates that the system is not operating as designed; the expected behavior does not match the observed behavior.  More detail on filing defects is included in the following chapter.
 
 If a test is blocked, then the reason that it is blocked should be noted.  This may be something beyond the test team's control, such as the feature not being implemented yet, or it may be something that can be ameliorated, such as not having the proper equipment.  Having the rationale for the reason that a test was not completed included in the test run results not only provides valuable documentation about the status, it also may enable management or others to find a way around the problem in the future.  For example, if part of the test plan requires a specific piece of hardware, having documentation that this lack of equipment is causing tests to not be run may provide an impetus for management to buy more equipment, or for other engineers to provide alternative solutions.
 
@@ -309,7 +309,7 @@ Now that we have a list of requirements and a test plan to test them, what else 
 
 A traceability matrix is simply a way of determining which requirements match up with which test plans, and displaying it as an easy-to-understand diagram.  They consist of a list of the requirements (usually just the requirement identifiers) and a list of the test case numbers which correspond to those requirements (i.e., the ones that test specific aspects of that requirement).
 
-As an example, let's return to our completed requirements specification for the coffee temperature sensing application:
+As an example, let's return to the requirements specification for the coffee temperature sensing application.  You will note that the requirements list has changed a bit - this is not uncommon when developing software!
 
 * __FUN-COFFEE-TOO-HOT.__ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
 * __FUN-COFFEE-JUST-RIGHT.__ If the coffee temperature is measured at less than 175 degrees Fahrenheit, but more than 130 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
