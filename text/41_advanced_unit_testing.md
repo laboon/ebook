@@ -104,7 +104,7 @@ public class DogTest {
 }
 ```
 
-It would be even more difficult if `_df` did not have a nice setter function, but instead was created internally or only as a byproduct of an entirely different method.  For example,
+It would be even more difficult if `_df` did not have a nice setter function, but instead was created internally or only as a byproduct of an entirely different method.  For example:
 
 ```java
 public class Dog {

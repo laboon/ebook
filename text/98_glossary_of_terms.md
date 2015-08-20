@@ -232,7 +232,7 @@ __Modification__: In __security testing__, an attack on __integrity__, which del
 
 __Monkey testing__: Another term for __stochastic testing__.
 
-__MTBF__: An acronym  for __mean time between failures__
+__MTBF__: An acronym  for __mean time between failures__.
 
 __MTTR__: An acronym for __mean time to repair__.
 

@@ -36,7 +36,7 @@ _Tester:_ "When I type in `25`, it gives me the answer 3."
 
 _Me:_ "OK, that's probably wrong.  I only ever tested it with an input of `9`, so it passed all of my tests!"
 
-(...and so on)
+(...and so on.)
 
 Keep in mind that I am someone who teaches a class on software testing.  Even I can't help being nice to the poor little functions that I write.  The job of the tester is to be the drill sergeant to my helicopter parent.  I can nurture the poor little function, but it's not going to know what it's capable of until it experiences some discipline.
 
@@ -103,7 +103,7 @@ Ensuring that you have the correct answers to these questions is part of validat
 
 Once you've established what the user wants, however, there's still work to be done.  You will need to verify that the program works under normal conditions and with a wide variety of input.
 
-For this example, a few ideas of possible input to test that it works under a variety of cases -
+For this example, a few ideas of possible input to test that it works under a variety of cases:
 
 1. A string of all capitalized letters, e.g., `ABCDEFG`
 2. A string of already lowercase letters, e.g., `lmnop`

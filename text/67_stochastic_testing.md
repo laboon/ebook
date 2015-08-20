@@ -80,7 +80,7 @@ ERROR
 10
 ```
 
-than
+than:
 
 ```
 > jiwh0t34h803h8t32h8t3h8t23

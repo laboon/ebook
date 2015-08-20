@@ -29,7 +29,7 @@ $ catweigher meow
 Please enter a valid parameter
 ```
 
-or
+or:
 
 ```
 $ catweigher meow

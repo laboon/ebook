@@ -110,7 +110,7 @@ When applied to physical phenomena, it is manifestly clear how silly it would be
 
 __Functional requirements__ state what a system should _do_; __non-functional requirements__ state what a system should _be_.
 
-The requirements that we have discussed so far are functional requirements; that is, they say that the software system shall do a particular action under specific circumstances.  For example,
+The requirements that we have discussed so far are functional requirements; that is, they say that the software system shall do a particular action under specific circumstances.  For example:
 
 1. The system shall display the error message "User Not Found" if a user attempts to log in and the user name entered does not exist in the system.
 2. Upon retrieval of a record from the database, if any field is invalid, the system shall return the string "INVALID" for that field.

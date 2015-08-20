@@ -29,7 +29,7 @@ Mathematically, one could think of this as a mapping between a group of input va
 3. [21, 22, ... 34, 35] -> No lights
 4. [36, 37, ... MAXINT - 1, MAXINT] -> `OVERPRESSURE` light only
 
-(where MAXINT and -MAXINT are the maximum and minimum 32-bit integers)
+(where MAXINT and -MAXINT are the maximum and minimum 32-bit integers.)
 
 We have now __partitioned__ our equivalence classes.  Equivalence class partitioning is the act of determining our equivalence classes and ensuring that they do not overlap at all, but do cover all possible input values.  In other words, they must maintain a __strict partitioning__.  For example, let's say that, due to bad or misread requirements, we had generated an equivalence class partitioning such as the following:
 
