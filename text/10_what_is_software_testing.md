@@ -82,7 +82,7 @@ For example, consider a company creating a brand-new Tic-Tac-Toe implementation.
 3. The second player shall then be allowed to mark an O in any open (that is, not already marked by an X or O) square, following the completion of the first move by the first player.
 4. Players shall then take turns placing X's and O's (by the first and second player, respectively) in open squares, until there are no open squares (in which case the game is a draw) or an entire row, column, or diagonal are filled in with the same marker, in which case the owner of that marker (X for first player, O for second player) shall be the winner and the other player shall be the loser.
 
-This sums up the game of Tic-Tac-Toe pretty nicely.  Now let's say that after beta testing, a user says that the game is unfair, because it forces one player to use X's and that mark is ugly.  The user suggests changing the X's into W's, because W's are a much more beautiful letter.  Is this a defect or enhancement?
+This sums up the game of Tic-Tac-Toe pretty nicely.  Now let's say that after beta testing, a user says that the game is unfair, because it forces one player to use X's and that mark is ugly.  The user suggests changing the X's into W's, because W is a much more beautiful letter.  Is this a defect or enhancement?
 
 It's an __enhancement__, because the system met all of the requirements and operates normally.  The fact that a user did not like it is irrelevant.  This isn't to say that enhancements are bad, or useless, or a lesser class of complaint, just that they're not defects.
 
