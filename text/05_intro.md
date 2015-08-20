@@ -8,7 +8,7 @@ A long time ago, in a company far, far away, I was a test lead.  One of my respo
 
 I figured that I could complain about it, or do something about it.  I was able to convince the Computer Science department at the University of Pittsburgh to allow me to develop and teach a class on software testing, which has grown to cover many different aspects of software quality, and become a popular, ongoing course (CS 1632: Software Quality Assurance, if you're interested in taking it!).  I had to develop my own curriculum, as I couldn't find a good book or syllabus on the subject that struck the right balance between theory and application.  Once again, I figured I could either complain about it, or do something about it, and once again, I chose the latter.
 
-Understanding how and why software fails, and detecting defects, is a big part of the software development process.  A developer who doesn't care about code quality is not a good developer.  This book is targeted towards those interested in software testing or writing tests as a developer.  If you're interested in quality assurance, or just want to write code with fewer bugs, this book is for you!
+Understanding how and why software fails, and detecting defects, is a big part of the software development process.  A developer who doesn't care about software quality is not a good developer.  This book is targeted towards those interested in software testing or writing tests as a developer.  If you're interested in quality assurance, or just want to write code with fewer bugs, this book is for you!
 
 ## What this book covers
 
