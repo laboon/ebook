@@ -4,6 +4,8 @@ __9's__: See __n nines__.
 
 __Acceptance testing__: Testing by an end user, customer, or other independent personnel to verify that the system can be accepted for use.
 
+__Accessibility error__: An error resulting from a user employing a non-standard input or output device, where the system is not usable for those who do not access the system using "standard" devices.
+
 __Active attack__: In __security testing__, an attack on a system which causes some changes to the system, such as adding a program or modifying data in a database.
 
 __All-pairs testing__: Another term for __pairwise testing__.
@@ -17,6 +19,8 @@ __Assertion__: In a unit test, a statement which states that a certain condition
 __Availability__: In __performance testing__, what percentage of the time the system is available to the user (not in a failure mode, unresponsive, etc.)  In __security testing__, one of the elements of the __InfoSec Triad__, an attribute that refers to the ability of authorized users to access a system.
 
 __Bacteria__: A kind of __malware__ which consumes an excess amount of system resources, perhaps taking up all file descriptors or disk space.
+
+__Bad data error__: An error resulting from the system receiving malformed, corrupt, or otherwise invalid data.
 
 __Base case__: A test case for the basic expected functionality of a system, or an interior value in an equivalence class.  For example, when testing a calculator, a base case might be a user adding 2 and 2 together.
 
@@ -58,6 +62,8 @@ __Complete (requirements)__: The property of having the requirements specify the
 
 __Confidentiality__: An attribute of a system, that only authorized users may read data.  An element of the InfoSec Triad.
 
+__Configuration error__: An error resulting from a misconfiguration of the system, as opposed to the code making up the system itself.
+
 __Connextra Template__: A common template for defining user stories, which consists of the phrase "As a _<role>_, I want _<function>_, So That _<reason>_".  Also referred to as the __Role-Function-Reason Template__.
 
 __Consistent (requirements)__: The property of having requirements which can all be followed without a paradox (e.g., "the system shall display the message 'Hello' upon startup" and "the system shall not display any message upon startup" are not consistent).
@@ -74,7 +80,11 @@ __Denial of Service__: A method of attacking __availability__ by sending so many
 
 __Deterministic__: Something for which the causal behaviors are entirely known and reproducible.
 
+__Display error__: An error whre the correct value was computed, but it was not displayed correctly.
+
 __Distributed Denial of Service__: A __denial of service__ attack which consists of many different sources of the unauthorized packets, so as to increase the number of events the system must process as well as help disguise the ultimate source.
+
+__Distributed system error__: An error arising as a consequence of the system being distributed, as opposed to running entirely on one computer.
 
 __Dogfood, eating your own__: Another term for __dogfooding__.
 
@@ -100,7 +110,9 @@ __Equivalence class partitioning__: Separating a specific functionality into dis
 
 __Error__: A status for a test case in a test run.  It indicates that there is an issue with the test case itself, and the test cannot be run.  For example, the preconditions indicate an impossible condition, which could simply be the result of a typo.
 
-__Evil Monkey__: A __stochastic testing__ method whereby malicious code or data is sent in to a system.  Simulates an attacker trying to gain access or cause damage to a system.
+__Error of assumption__: An error resulting from a developer or other person making an incorrect assumption about how the system should work.
+
+__Evil monkey__: A __stochastic testing__ method whereby malicious code or data is sent in to a system.  Simulates an attacker trying to gain access or cause damage to a system.
 
 __Execution steps__: The actual steps that the test will execute after ensuring that all preconditions hold.
 
@@ -123,6 +135,8 @@ __Falsifying the invariant__: Showing an example where an __invariant__ does not
 __Field testing__: Testing that a system works while actually operating with real users.
 
 __Fishing__: Catching marine animals for food or enjoyment.  Has nothing to do with __security testing__.  If you think it did, you are probably thinking of __phishing__.
+
+__Floating-point error__: An error caused by a floating-point number being rounded or being inaccurate due to the incomplete mapping between actual decimal numbers and floating-point values.
 
 __Fork bomb__: A special kind of __bacteria__ which continually forks itself, causing all CPU resources to be used up creating more copies of the fork bomb.
 
@@ -152,7 +166,15 @@ __InfoSec Triad__: The three criteria that indicate a secure system - confidenti
 
 __Injection attack__: A kind of attack where the malicious user tries to get the victim's computer to execute arbitrary code.
 
+__Injection error__: An error where the system accidentally allows arbitrary code to be executed.  Leaves the system vulnerable to an __injection attack__.
+
 __Input value__: A particular value which will be passed in to a test case.  The distinction between this and precondition can be hazy in manual or other black-box testing; in white-box testing, values that you are passing in to the method under test (e.g. as arguments or parameters) are input values.
+
+__Integration__: Connecting multiple systems or subsystems to work together.
+
+__Integration error__: A type of error resulting from the incompatibilities or other problems at the boundary between different systems or subsystems.
+
+__Interface error__: An error where the interface to another system is defined incorrectly, or system accessing it does not do so correctly, 
 
 __Integrity__: An attribute of a system, that only authorized users may write data.  An element of the InfoSec Triad.
 
@@ -180,6 +202,8 @@ __Load testing__: Running a full system with a specified amount of demand (e.g.,
 
 __Logic bomb__: Code within a program which executes an unauthorized function, such as deleting all data on the first day of the month.
 
+__Logic error__: An error in a program due to faulty logic being programmed.
+
 __Major__: A defect of the third-highest level of severity, which indicates a severe problem but still allows the user to use the system.
 
 __Malware__: Software which has pernicious and deliberate effects to the user of the software, such as a computer virus or key logger.
@@ -191,6 +215,8 @@ __Mean time to repair__: In __availability testing__, the mean (average) amount 
 __Media testing__: Ensuring that the media that the system is stored on (e.g., a CD-ROM or a server's hard drive) is operating correctly and has all of the data in the correct place.
 
 __Minor__: A defect of a lower level of severity than __normal__, which causes only a very small problem for use of the system.
+
+__Missing data error__: An error resulting from the system not receiving necessary data.
 
 __Mock__: A particular kind of __test double__ which keeps track of which methods on it have been called.
 
@@ -212,7 +238,11 @@ __Non-functional requirement__: A requirement that specifies how the system shou
 
 __Normal__: A defect of a severity which is noticeable but does not strongly hamper the user's use of the system.
 
+__Null pointer error__: An error resulting from the code trying to dereference a null pointer, or access a null object.
+
 __Observed behavior__: What the system actually does under certain circumstances.  For example, if I type in `2 + 2 =` on a calculator, the __expected behavior__ may be that I see 4, but if I instead see `WALLA WALLA`, then `WALLA WALLA` is the observed behavior.
+
+__Off-By-One Error__: A specific kind of __logic error__ where a program does something wrong because a value is off by one unit.
 
 __Operational testing__: Testing that a system works under real-world conditions.
 
@@ -289,6 +319,8 @@ __Requirements specification__: A list of requirements for a given system.  The 
 __Response time__: In __performance testing__, how quickly a system responds after user input or other event.
 
 __Role-Function-Reason Template__: Another term for the __Connextra Template__.
+
+__Rounding error__: An error in a program caused by the system rounding a number.
 
 __Running__: A status for a test case in a test run.  It indicates that the test is currently being executed, but has not yet completed.
 
