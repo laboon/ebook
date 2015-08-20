@@ -19,7 +19,7 @@ Remember that a CEO is in charge of an entire corporation, not just engineering 
 
 ## No Software Developer is Perfect
 
-Assuming you've programmed before, Hands up if you've never written a piece of incorrect code before.  If you have your hand up, then you need to test your software.  If you don't, then please stop lying and raise your hand.  It's a good thing to remember that software development is one of the most intellectually complicated things that human beings do, stretching the very limits of what the human mind is capable of.  Thinking in those terms, that off-by-one error you made retrieving an index doesn't seem like so much of a big deal.
+Assuming you've programmed before, hands up if you've never written a piece of incorrect code.  If you have your hand up, then you need to test your software.  If you don't, then please stop lying and raise your hand.  It's a good thing to remember that software development is one of the most intellectually complicated things that human beings do, stretching the very limits of what the human mind is capable of.  Thinking in those terms, that off-by-one error you made retrieving an index doesn't seem like so much of a big deal.
 
 According to the National Institute of Standards and Technology, as of 2002, software defects cost the US economy almost $60 billion annually.  That's approximately 0.6% of gross domestic product.  As more and more software is written, and our daily lives become more and more connected with software, this figure has probably increased dramatically by now.  Even going with the low 2002 number, however, this means that software defects have caused problems worth about 1/3 of the entire US agricultural output.
 
