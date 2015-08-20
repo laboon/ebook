@@ -32,7 +32,7 @@ One could think of this more mathematically as a mapping between a group of inpu
 
 (where MAXINT and -MAXINT are the maximum and minimum 32-bit integers)
 
-We have now __partitioned__ our equivalence classes.  Equivalence class partitioning is the act of determining our equivalence classes and ensuring that they do not overlap at all, and should cover all possible input values.  In other words, they must maintain a __strict partitioning__.  For example, let's say that, due to bad or misread requirements, we had generated an equivalence class partitioning such as the following:
+We have now __partitioned__ our equivalence classes.  Equivalence class partitioning is the act of determining our equivalence classes and ensuring that they do not overlap at all but do cover all possible input values.  In other words, they must maintain a __strict partitioning__.  For example, let's say that, due to bad or misread requirements, we had generated an equivalence class partitioning such as the following:
 
 1. [-2, -1, 0, 1, 2] -> `ERROR` light only
 2. [3, 4, ... 21, 22] -> `UNDERPRESSURE` light only
