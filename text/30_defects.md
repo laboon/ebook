@@ -1,6 +1,6 @@
 # Defects
 
-We've spent quite a bit of time up to this point learning how to find defects.  This makes sense, since one of the key goals of testing is to do exactly that.  However, we have not yet done is to rigorously define defects and think about what to do once they are found.
+We've spent quite a bit of time up to this point learning how to find defects.  This makes sense, since one of the key goals of testing is to do exactly that.  However, what we have not yet done is define defects and discuss what to do about them once they are found.
 
 ## What is a Defect?
 
@@ -16,7 +16,7 @@ An example of a system returning an incorrect result would be a spreadsheet prog
 
 The last kind of defect is one common to all programs - a program should not die unexpectedly.  That is, the intent of the user or the original writer or installer of the program is that the system should be running at some point in time, that program should be running at that point in time.
 
-Software may "shut down hard" without it necessarily being a defect.  For example, sending a SIGKILL (via `kill -9` or a similar command) to a Unix process causes the program to cease execution without running any of its shutdown routines.  However, it did not die unexpectedly - the user wanted it to do so and even sent it a message telling it to do exactly that!  The reason that the user had to send a SIGKILL to the process may be a defect, but the fact that it stopped running under these circumstances is not a defect.  If the system dies to a segmentation fault, an untrapped division by zero, or dereferencing a null pointer, these are all considered defects.  They should never happen in a program, even if the requirements do not specify that "the program shall run without any null pointer exceptions".
+Software may "shut down hard" without it necessarily being a defect.  For example, sending a SIGKILL (via `kill -9` or a similar command) to a Unix process causes the program to cease execution without running any of its shutdown routines.  However, it did not die unexpectedly - the user wanted it to do so and even sent it a message telling it to do exactly that!  The reason that the user had to send a SIGKILL to the process may be a defect, but the fact that it stopped running under these circumstances is not a defect.  If the system dies due to a segmentation fault, an untrapped division by zero, or dereferencing a null pointer, these are all considered defects.  They should never happen in a program, even if the requirements do not specify that "the program shall run without any null pointer exceptions".
 
 Finally, note that the word "bug" is often used interchangeably with the word "defect".  They mean exactly the same thing, but "bug" is much more colloquial.  In this book, the word "defect" will be used, except in those cases where author forgets to do so.
 
@@ -24,7 +24,7 @@ Finally, note that the word "bug" is often used interchangeably with the word "d
 
 Upon discovering a defect, the tester (or whoever else finds the defect) should __report__ it.  Reporting may have different meanings depending on the organization and the severity of the defect.  At its root, it means that the specifics of the defect should be marked down in a location where it can be reviewed in the future, by stakeholders of the project - other testers, developers, management, etc.  In most cases, teams will have some sort of defect-tracking software, but defect reporting could be as simple as marking down the error with old-fashioned pen and paper.
 
-When testing software, it is important to keep track of as much information as is practical, for a variety of reasons.  The first is that the more information available, the more likely the defect will be reproducible.  If you have a system failing only when certain environment variables are set, but don't specify that in the defect report, then the developer assigned to fix the defect may just file it as "works for me", since the system did work as designed no matter what the developer did.  Without knowing about those environment variables, there's no way for the reproduction to take place.
+When testing software, it is important to keep track of as much information as is practical, for a variety of reasons.  The first is that the more information available, the more likely it will be that the defect is reproducible.  If you have a system failing only when certain environment variables are set, but don't specify that in the defect report, then the developer assigned to fix the defect may just file it as "works for me", since the system did work as designed no matter what the developer did.  Without knowing about those environment variables, there's no way for the reproduction to take place.
 
 On the other hand, it's possible to take this too far.  There is usually no need to mark down every process running on the system whenever a typo is discovered.  Exactly how much to write down for a defect will vary based on the defect and domain in which you are working.  However, there are certain pieces of data which are useful in many cases.  The following section will outline a defect template so that these items are not forgotten.  By reminding the filer of the defect to include certain information, the filer is much more likely to not miss any important steps or information, thus minimizing superfluous communication about the defect in the process of fixing it.  Checklists and templates like this are extremely powerful tools for situations where the costs of failing to do something are high; see _The Checklist Manifesto_ by Atul Gawande for a detailed explanation.
 
@@ -32,7 +32,7 @@ When a defect is reported, its life is just beginning.  Just as software develop
 
 1. Discovery
 2. Reporting
-3. Triaging / Assignment
+3. Triage / Assignment
 4. Fixing
 5. Verification
 
@@ -42,11 +42,11 @@ The second stage is filing the defect, usually in some sort of standardized way.
 
 After a defect is filed, somebody must determine whether or not to spend resources to fix it, and if so, how to prioritize what may be a large number of defects.  This is called __triaging__.  The word triage comes from a medical term from prioritizing the order that patients should be treated based on how badly they've been wounded or how ill they are.  It is often done when there are large numbers of casualties at once, too many for medical personnel to take care of all of them.  For instance, after a major natural disaster, a hospital may be overrun with patients, some of whom have minor injuries, others with serious injuries, and some who are critically wounded and unable to be saved.  In such cases, the hospital may triage the incoming patients and immediately treat those with serious wounds, but deprioritize working on those with minor injuries and those whom they are unlikely to be able to heal.
 
-Although this particular scenario is rare in the medical world, in the software development world, it is extremely common.  There are usually far more defects known than the developers have time to fix.  Relevant stakeholders decide which defects can be fixed given the amount of resources available, and prioritize according to how quickly they can be fixed and how much pain they are causing to users of the software.  In some organizations, developers are responsible for choosing which defects to work on, determining for themselves which will be easiest to fix and resolve the most pain for the users of the software.  This kind of system works best when the developers deeply understand the needs of the user, for example when the project is itself a software development tool which they are users of.
+Although a dramatic triage like this is rare in the medical world, in the software development world, it is extremely common.  There are usually far more defects known than the developers have time to fix.  Relevant stakeholders decide which defects can be fixed given the amount of resources available, and prioritize according to how quickly they can be fixed and how much pain they are causing to users of the software.  In some organizations, developers are responsible for choosing which defects to work on, determining for themselves which will be easiest to fix and resolve the most pain for the users of the software.  This kind of system works best when the developers deeply understand the needs of the user, for example when the project is itself a software development tool which they are users of.
 
 After the defect is assigned to a developer or group of developers to work on, the developer fixes it.  Oftentimes, an automated test will be added to cover the case where the defect occurred, so as to avoid it happening again in the future.  As the developer is very close to the software being written, however, the final determination on whether or not a defect has been fixed is not up to them.  In the same way that a person has trouble seeing typos in a paper that they have written themselves, a developer may not see that a different error was introduced by the fix, or that some edge cases were not covered.  Mandatory code reviews can help ameliorate this somewhat, but usually a tester is used for the final verification that a defect has been fixed, as one of the key aspects of their job is to be an independent observer of the quality of the software under development.
 
-Thus, after the defect has been fixed, the software should be returned to the test team to verify that it has been fixed.  The developer or developers may not have tested all the different edge cases, or they may have caused other issues with their fix.  The tester can independently verify that the fix did indeed resolve the defect without causing other defects in the process (or at least not ones worse than the one that was fixed).  In some cases, of course, other defects may arise, especially if the first one was occluding others.  For example, if there is a typo in the "welcome" page which appears after login, but a defect has prevented users from logging in, the tester should still verify a fix that allows users to log in.  The fact that there is a typo on the welcome page has been exposed by the ability to log in, but it is not related.  Even a defect which causes related defects may sometimes be verified.  Continuing the example of a login not working, if a fix comes in that allows users to log in, but never checks the password, this may be seen as an improvement and a second defect filed for the password issue.
+Thus, after the defect has been fixed, the software should be returned to the test team to verify that it has been fixed.  The developer or developers may not have tested all the different edge cases, or they may have caused other issues with their fix.  The tester can independently verify that the fix did indeed resolve the defect without causing other defects in the process.  In some cases, of course, other defects may arise, especially if the first one was occluding others.  For example, if there is a typo in the "welcome" page which appears after login, but a defect has prevented users from logging in, the tester should still verify a fix that allows users to log in.  The fact that there is a typo on the welcome page has been exposed by the ability to log in, but it is not related.  Even a defect which causes related defects may sometimes be verified.  Continuing the example of a login not working, if a fix comes in that allows users to log in, but never checks the password, this may be seen as an improvement and a second defect filed for the password issue.
 
 ## A Standardized Defect Template
 
@@ -110,7 +110,7 @@ Aside from saving people from calculating the correct value themselves, another 
 
 ### Observed Behavior
 
-Opposed to the expected behavior field is the __observed behavior__ field.  This describes what actually happened after the execution steps were executed.  Just as in all of the fields of the defect report template, this should be filled in as precisely as possible.
+Opposed to the expected behavior field is the __observed behavior__ field.  This describes what actually happened after the execution steps were executed.  Just as in all of the fields of the defect report template, this should be filled in as precisely as possible.  If necessary, some detail should be added explaining why it is different from the expected behavior (for example, if it is a long string with only a single letter in the middle modified).
 
 ### Impact
 
@@ -124,7 +124,7 @@ Related to the Impact field is the __Severity__ field, which contains the defect
 
 An example rating system is explained below.
 
-1. __Blocker__ - This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker bugs would be
+1. __Blocker__ - This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker bugs would be the system not allowing any user to log in, or a system that crashes whenever somebody presses the "A" key.
 
 2. __Critical__ - Although the system could still be released with a bug of this magnitude, it severely impacts the core functionality of the program or makes it almost unusable.  Alternatively, a defect that normally would be marked as a blocker, but that has some sort of workaround, could be classified as critical.
 
@@ -144,9 +144,9 @@ Severity should not be mistaken for priority.  Severity is how severe the proble
 
 ### Workaround
 
-The __workaround__ field describes how the defect can be avoided, or at least ameliorated.  Assuming a defect where special characters don't work in passwords, the workaround is to only use alphanumeric characters in passwords.  It is important to note that workarounds are not always __good__ workarounds; they may involve not using certain functionality.  For example, if the word count feature of an editor is not working, the workaround may be to not use word count, or to use a different program (e.g., `wc -w` in Unix systems).
+The __workaround__ field describes how the defect can be avoided, or at least ameliorated.  Assuming a defect where special characters don't work in passwords, the workaround is to only use alphanumeric characters in passwords.  It is important to note that workarounds are not always _good_ workarounds; they may involve not using certain functionality.  For example, if the word count feature of an editor is not working, the workaround may be to not use word count, or to use a different program (e.g., `wc -w` in Unix systems).  This may cause the user some distress or inconvenience, but it does allow the functionality to be accessed.
 
-In some cases, there may not be any sort of workaround, or at least not a known one.  If the system is crashing at seemingly nondeterministic times, it would be impossible to list a workaround except the trivial case of "don't use the software", which is not generally accepted as a workaround.  This does not mean that a workaround does not exist, only that it's not known; there may be a setting or input value which is causing the issue, but the testing team just has not uncovered it,  If no user can log in to a web application, or the server refuses to start, or a system consistently gives wrong results to every query, then there may be no workaround, as the system is entirely unusable.  In such cases, the severity of the bug is inevitably BLOCKER or its equivalent.
+In some cases, there may not be any sort of workaround, or at least not a known one.  If the system is crashing at seemingly nondeterministic times, it would be impossible to list a workaround except the trivial case of "don't use the software".  This is generally not accepted as a workaround.  This does not mean that a workaround does not exist, only that it's not known; there may be a setting or input value which is causing the issue, but the testing team just has not uncovered it,  If no user can log in to a web application, or the server refuses to start, or a system consistently gives wrong results to every query, then there may be no workaround, as the system is entirely unusable.  In such cases, the severity of the bug is inevitably BLOCKER or its equivalent.
 
 ### Notes
 
@@ -158,7 +158,7 @@ What exactly goes here will vary by the type of software you are testing, but it
 2. Copies of relevant sections of the program log
 3. System or environment variables
 4. Technical specifications of where it was discovered (e.g., operating system, CPU, amount of RAM, etc.)
-5. Other applications running the computer at the same time
+5. Other applications running on the computer at the same time
 6. Particular settings, flags, or arguments passed into the program
 7. Suspicious or notable behavior of other programs
 8. Copied error message text

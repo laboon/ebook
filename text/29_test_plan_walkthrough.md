@@ -2,7 +2,7 @@
 
 Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called _catweigher_ (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight.
 
-```bash
+```
 $ catweigher 1.7
 Cat Weighing System
 Cat is underweight
@@ -22,16 +22,16 @@ As the test cases are developed, take note of the trade-offs that are made, and 
 5. __FUN-OVERWEIGHT:__ If `CATWEIGHT` is greater than or equal to 6 kilograms, then "Cat is overweight" shall be displayed upon the console.
 6. __NF-PERF-TIME:__ The system shall display the appropriate message within two seconds of the program being executed.
 
-Although this is a relatively simple program, with only a small set of requirements, there is already some ambiguity.  In real-world applications, you can expect much more, which will often necessitate discussions with systems engineers, requirements analysts, and/or customers to resolve the various ambiguities.  The particular ambiguity in this case is that in FUN-PARAMETER, it says that the system should immediately shut down with __only__ the message "Please enter a valid parameter" if an invalid parameter is entered.  The next requirement, FUN-STARTUP-MESSAGE, says that the message "Cat Weighing System" should be displayed upon startup; it does not mention whether or not this includes times when invalid parameters were entered.  In other words, should the expected behavior be:
+Although this is a relatively simple program, with only a small set of requirements, there is already some ambiguity.  In real-world applications, you can expect much more.  This will often necessitate discussions with systems engineers, requirements analysts, and/or customers to resolve the various ambiguities.  The particular ambiguity in this case is that in FUN-PARAMETER, it says that the system should immediately shut down with __only__ the message "Please enter a valid parameter" if an invalid parameter is entered.  The next requirement, FUN-STARTUP-MESSAGE, says that the message "Cat Weighing System" should be displayed upon startup; it does not mention whether or not this includes times when invalid parameters were entered.  In other words, should the expected behavior be:
 
-```bash
+```
 $ catweigher meow
 Please enter a valid parameter
 ```
 
 or
 
-```bash
+```
 $ catweigher meow
 Cat Weighing System
 Please enter a valid parameter
@@ -55,7 +55,7 @@ Looking at the requirements, I can mentally divide them into three sections:
 3. Performance:
     1. NF-PERF-TIME
 
-How did I determine how to sort these out?  I looked for requirements which were related to each other and put each in a "cluster".  The program you're working will probably not have these exact same clusters (unless you also happen to be working on a cat-weighing program, lucky you).  For larger programs, these clusters will often revolve around specific features (e.g., shopping cart, item display, and checkout in an online shopping application) or different sub-systems (e.g., user interface, enemy artificial intelligence, and graphics for a video game).  There is really no "right answer" as to how to cluster requirements together for testing, and as you understand the system better, the clustering may change.  However, by providing a general outline, you can start to get a handle on testing the system holistically.
+How did I determine how to sort these out?  I looked for requirements which were related to each other and put each in a "cluster".  The program you're working will probably not have these exact same clusters (unless you also happen to be working on a cat-weighing program... in which case, lucky you).  For larger programs, these clusters will often revolve around specific features (e.g., shopping cart, item display, and checkout in an online shopping application) or different sub-systems (e.g., user interface, enemy artificial intelligence, and graphics for a video game).  There is really no "right answer" as to how to cluster requirements together for testing, and as you understand the system better, the clustering may change.  However, by providing a general outline, you can start to get a handle on testing the system holistically.
 
 Looking specifically at the test plan outline we developed here, it is apparent that the second section, Output, has by far the most requirements listed, this does not necessarily mean that it will take the longest amount of time to test, or involve the most work.  In fact, as FUN-STARTUP-MESSAGE is very simple and unchanging, and the three other requirements involve mathematically pure functions, the tests themselves will probably be relatively easy to write.  In real-world instances, some requirements may take orders of magnitude longer to test than others!  Performance and security requirements, among others, can be much more difficult to test than the length of their requirements would suggest.
 
@@ -70,9 +70,9 @@ Let's start with the first section, Input.  I notice that there are several poss
 
 In the last three use cases, the expected behavior is the same; the system shuts down and the message "Please enter a valid parameter" is displayed.  In the first use case, the system will continue on and have behavior governed by other requirements.  You can already see here that it's important to have a view of the entire system, instead of looking at requirements solely in and of themselves.  This becomes more and more difficult as the number of requirements grows and the system under test becomes more complex.
 
-Use cases 1, 3, and 4 all have variants which could be tested.  There are numerous values for valid parameters, in the first case, which will have different behaviors as enumerated in the other requirements.  There are an essentially infinite number of single invalid parameters, anything from negative values, to imaginary numbers, to random strings of any length.  For the fourth use case, the only limit to how many parameters the user can enter is up to the operating system; he or she can enter two, three, four or more.  The second use case has no variants; there are no different ways to enter no parameters, there are no different flavors of null.
+Use cases 1, 3, and 4 all have variants which could be tested.  There are numerous values for valid parameters, in the first case, which will have different behaviors as enumerated in the other requirements.  There are an essentially infinite number of single invalid parameters, anything from negative values, to imaginary numbers, to random strings of any length.  For the fourth use case, the only limit to how many parameters the user can enter is up to the operating system; he or she can enter two, three, four or more.  The second use case has no variants; there are no different ways to enter no parameters; there are no different flavors of null.
 
-Depending on the importance of the cat-weighing program, we can decide if we want to test all possible use cases, and how many variants of the particular use case we want to test.  At a bare minimum, you probably want to test the "happy path", that is, the expected use case that a user will follow, which in our case is the user entering one valid parameter.  Other use cases can be considered failure cases, since the expected behavior is to cease execution as an invalid value or set of values has been entered.
+Depending on the importance of the cat-weighing program, we can decide if we want to test all possible use cases, and how many variants of the particular use case we want to test.  At a bare minimum, you probably want to test the happy path, that is, the expected use case that a user will follow, which in our case is the user entering one valid parameter.  Other use cases can be considered failure cases, since the expected behavior is to cease execution as an invalid value or set of values has been entered.
 
 ```
 IDENTIFIER: VALID-PARAMETER-TEST
@@ -154,7 +154,7 @@ Let's move on to the three weight requirements: FUN-UNDERWEIGHT, FUN-NORMALWEIGH
 >= 6 kg -> Overweight
 ```
 
-Assuming that cats are weighed in increments of one-tenth of a kilogram (something else we can verify with the systems engineers or other stakeholders), We can select the explicit boundary values: 2.9, 3.0, 5.9, and 6.0 kg.  Now let's add an interior value from each equivalence class: 1.6 kg for Underweight, 5.0 kg for Normal Weight, and 10 kg for Overweight.  We'll also want to add in implicit boundary values, say 0 and 1,000.  This final value assumes that 1,000 kilograms is the theoretical upper bound for a cat before it collapses into a black hole, which is my understanding of physics.  (Note that the author is not a physicist.)  Finally, let's check some corner cases: a negative number (-13) and a non-numeric string (`quackadoodle_doo`).  Note how much more emphasis is put on determining a variety of input values for these requirements compared to the startup message.  Since determining the weight status of the cat is core of this application, more testing emphasis is given to it.
+Let's assume that cats are weighed in increments of one-tenth of a kilogram.  This can be verified by discussing with the systems engineers or other appropriate stakeholders.  We can select the explicit boundary values: 2.9, 3.0, 5.9, and 6.0 kg.  Now let's add an interior value from each equivalence class: 1.6 kg for Underweight, 5.0 kg for Normal Weight, and 10 kg for Overweight.  We'll also want to add in implicit boundary values, say 0 and 1,000.  This final value assumes that 1,000 kilograms is the theoretical upper bound for a cat before it collapses into a black hole, which is my understanding of physics (note that the author is not a physicist).  Finally, let's check some corner cases: a negative number (-13) and a non-numeric string (`quackadoodle_doo`).  Note how much more emphasis is put on determining a variety of input values for these requirements compared to the startup message.  Since determining the weight status of the cat is core of this application, more testing emphasis is given to it.
 
 ```
 IDENTIFIER: UNDERWEIGHT-INTERNAL
@@ -270,7 +270,7 @@ POSTCONDITIONS: For each of the input values, the string "Cat is underweight"
 
 There's an entire chapter on performance testing later, but for now, let's just go through a very simple performance test.  We want to check that the system completes calculation and information display within two seconds.  An easy way to verify this is by using the Unix tool `time`, which will tell you how long it took for a command to execute.  Although the standard tool will give you several different results, focus only on the "real" time which measures how long something actually took according to the clock on the wall (the other kinds of time that the tool measures will be discussed in the chapter on performance testing).
 
-We want to check that various values will all be calculated and the program exiting within 2 seconds.  Several values are passed in case calculations for one equivalence class are much more time-consuming than others.
+We want to check that various values will all be calculated and the program exited within 2 seconds.  Several values are tested, in case calculations for one equivalence class are much more time-consuming than others.
 
 ```
 IDENTIFIER: PERFORMANCE-RUNTIME
@@ -285,5 +285,5 @@ POSTCONDITIONS: For each of the input values, the real time measurement as
     measured by the time command will be less than 2.000 seconds.
 ```
 
-Note the addition of a precondition here.  This test case will not be considered valid unless all of the functional defects have already been fixed.  After all, it does not matter how long a program takes to run if it won't tell you the correct cat weight status!  This does not mean that the test case cannot be executed ahead of time, but that the results should not be considered valid unless the software is functionally correct.  This is one of the big problems with performance testing; it is often difficult to do until the program is functionally complete, or close to it.  
+Note the addition of a precondition here.  This test case will not be considered valid unless all of the functional defects have already been fixed.  After all, it does not matter how long a program takes to run if it won't give you the correct cat weight status!  This does not mean that the test case cannot be executed ahead of time, but that the results should not be considered valid unless the software is functionally correct.  This is one of the big problems with performance testing; it is often difficult to do until the program is functionally complete, or close to it.  
 
