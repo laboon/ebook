@@ -1,25 +1,25 @@
 # Why Test Software?
 
-Now that we know what software testing is, it makes sense to ask why one would want to do it.  After all, you're definitely adding some extra work, since you'll have to write the tests.  You'll also have to ensure that you write code that's testable, and possibly create testing frameworks around the system.  Depending on how you test it, you may have to learn other frameworks or even other programming languages.
+Now that we know what software testing is, it makes sense to ask why one would want to do it.  After all, you're definitely adding some extra work, since you'll have to write the tests.  You'll also have to ensure that you write code that's testable, and possibly create testing frameworks for the system.  Depending on how you test it, you may have to learn other frameworks or even other programming languages.
 
-## Let's Put the Decision in Your Hands
+## To Test Or Not To Test
 
 Let's imagine that you're put into the role of CEO of Rent-A-Cat.  A promising young project manager runs up to you in the halls, sweat dripping off of perfectly coiffed hair, clutching a printout of an Excel spreadsheet.
 
-"Ma'am! (or sir)!" the project manager cries.  "I've discovered a way to reduce our project expenses by tens of thousands of dollars!  All we have to do is remove all testing resources from the team.  I've got some good software developers; there's no way they'd ever make a mistake.  This way, we can finally buy a gold-plated sink for the executive washroom!"
+"Ma'am! (or sir)!" the project manager cries.  "I've discovered a way to reduce our project expenses by tens of thousands of dollars!  All we have to do is remove all testing resources from the team.  I've got some good software developers; there's no way they'd ever make a mistake.  This way, we can finally buy that gold-plated sink for the executive washroom!"
 
 At this point, you have two options.
 
 1. Cackle maniacally, and look forward to the feel of that distilled water on your manicured hands in the only sink regal enough for your presence.
 2. Explain to the project manager the reasons for testing, and why it's important to test the software prior to release.
 
-As you're already a couple chapters in to a book on software testing, I'll assume that you're going to choose option #2.  At first glance, though, you might think that it would make sense not to test your software.  From an organizational standpoint, a corporation exists in order to enrich its shareholders.  If you can reduce the cost of developing software by removing part of the software development process, then you may owe it to your shareholders to think long and hard about whether it would be a good idea to do so.
+As you're already a few chapters in to a book on software testing, I'll assume that you will choose option #2.  At first glance, though, you might think that it would make sense not to test your software.  From an organizational standpoint, a corporation exists in order to enrich its shareholders.  If you can reduce the cost of developing software by removing part of the software development process, then you may owe it to your shareholders to think long and hard about whether it makes sense financially to keep the test team on.
 
-Remember that a CEO is in charge of an entire corporation, not just engineering or IT or sales or any one particular part.  There's an entire company to run, and even for a tech company, software testing will be a relatively minuscule part of that in most cases.  If a company doesn't come up with good ideas for products, it will fail.  If it can't market them appropriately, it will fail.  If it can't sell them at a reasonable profit, it will fail.  All that being said, there are numerous reasons for that CEO to turn down the project manager's plan.
+Remember that a CEO is in charge of an entire corporation, not just engineering, IT or any other particular part.  There's an entire company to run, and even for a tech company, software testing will be a relatively minuscule part of the company in most cases.  There are many other areas asking for resources, often with good reason.  The marketing department is asking for more marketers, and a company that  doesn't come up with good ideas for products will fail.  Operations is asking for more help desk personnel; if people can't figure out to use the product, they will stop buying it and the company will fail.  All that being said, there are numerous reasons for that CEO to turn down the project manager's plan.
 
 ## No Software Developer is Perfect
 
-Assuming you've programmed before, Hands up if you've never written a piece of incorrect code before.  If you have your hand up, then you need to test your software.  If you don't, then please stop lying and raise your hand.  It's a good thing to remember that software development is one of the most intellectually complicated things that human beings do, stretching the very limits of what the human mind is capable of.  Thinking in those terms, that off-by-one error you made retrieving an index doesn't seem like so much of a big deal.
+Hands up if you've never written a piece of incorrect code before.  If you have your hand up, then you need to test your software.  If you don't, then I can assume that you've never written any code before.  It's a good thing to remember that software development is one of the most intellectually complicated things that human beings do, stretching the very limits of what the human mind is capable of.  Thinking in those terms, that off-by-one error you made retrieving an index doesn't seem like so much of a big deal.
 
 According to the paper _The Economic Impact of Inadequate Infrastructure for Software Testing_, written by the  National Institute of Standards and Technology in 2002, software defects cost the US economy almost $60 billion annually.  That's approximately 0.6% of gross domestic product.  As more and more software is written, and our daily lives become more and more connected with software, this figure has probably increased dramatically by now.  Even going with the low 2002 number, however, this means that software defects have caused problems worth about 1/3 of the entire US agricultural output.
 
@@ -37,6 +37,6 @@ Allowing a proper amount of time for testing, development, and other aspects of 
 
 The choice of language, framework, and design of the program can also make a big difference in the quality of the program.  While every language has its partisans, there is definitely a reason that most web applications are not written in Assembly language, or that most embedded real-time software is not written with Ruby.  Different languages, libraries, etc. have different benefits, and using one that is appropriate for the system you are designing will pay dividends in terms of quality.
 
-While this book focuses on testing, it should be recognized that it is only one part of producing software quality.  Quality on a modern software project is the responsibility of everybody on the team, not just the testers.
+While this book focuses on testing, it should be recognized that it is only one part of producing quality software.  Quality on a modern software project is the responsibility of everybody on the team, not just the testers.
 
 
