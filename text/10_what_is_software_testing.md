@@ -1,6 +1,6 @@
 # What is Software Testing, Anyway?
 
-Let's start with what it's not.
+Let's start with a few things that it's not.
 
 1. It's not finding every single bug.
 2. It's not randomly pressing buttons, hoping that something will break.
