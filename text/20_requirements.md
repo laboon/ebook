@@ -91,7 +91,7 @@ That being said, be careful not to paint yourself into a corner with too-restric
 
 What is the "shutdown stuff"?  Speaking to our friends, or amongst co-workers, we may use relatively ambiguous terms like that because the human brain is pretty good at filling in ambiguity.  However, ambiguous requirements can lead to different developers or other stakeholders interpreting them in different ways.  The classic example of this is the Mars Climate Orbiter mishap, where one group of software engineers used Imperial measures and another group used metric measures.  Both groups thought the correct way to return results was obvious, but they came up with different implementations.
 
-If at all possible, the requirements should be __quantitative__ as opposed to __qualitative__.  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.
+If at all possible, the requirements should be __quantitative__ (as opposed to qualitative).  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.
 
 * __BADREQ-1.__ The system shall return results extremely quickly.
 
