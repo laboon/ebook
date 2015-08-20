@@ -131,7 +131,7 @@ For this example, a few ideas of possible input to test that it works under a va
 
 Can you think of any other possible inputs that might cause an error or an incorrect result?
 
-External factors could also be a factor.  What happens when...
+External factors could also be relevant.  What happens when...
 
 1. The system runs out of memory while processing the text?
 2. The CPU is running numerous other processes, leaving the system unresponsive?
