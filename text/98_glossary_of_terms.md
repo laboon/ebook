@@ -152,11 +152,11 @@ __Grey-box testing__: Testing the code as a user would, but with knowledge of th
 
 __Hacker__: According to the Jargon File, "[a] person who enjoys exploring the details of programmable systems and how to stretch their capabilities".  Often used in modern times to mean the same as __cracker__.
 
-__Happy Path__: The easiest path a user will take through the system, when the system is operating properly, without attempting to perform anything that is an __edge case__ or __corner case__.
+__Happy path__: The easiest path a user will take through the system, when the system is operating properly, without attempting to perform anything that is an __edge case__ or __corner case__.
 
 __Identifier__: A number or string which uniquely identifies a test case, defect, or anything else.
 
-__-ility requirement__: Another term for __non-functional requirement__.  So named because many of these requirements use words ending in -ility to describe them (e.g., usability, scalability, maintainability).
+__-ility requirement__: Another term for __non-functional requirement__, so named because many of these requirements use words ending in "-ility" to describe them (e.g., usability, scalability, maintainability).
 
 __Impact__: When reporting defects, how the defect will affect users of the system.
 
@@ -334,7 +334,7 @@ __Scripted testing__: Testing with a rigid script, such as a test plan, where st
 
 __Seam__: A place in the codebase where you can modify behavior without modifying the code itself.
 
-__Seat of Your Pants Testing__: Testing where the expected behavior is known to the tester through experience with the software or its domain, instead of being formally specified.
+__"Seat of your pants" testing__: Testing where the expected behavior is known to the tester through experience with the software or its domain, instead of being formally specified.
 
 __Security testing__: Testing that the system meets the criteria of the InfoSec Triad, that the system is safe from unauthorized tampering and/or access.
 
@@ -344,7 +344,7 @@ __Service Level Agreement__: An agreement by a service provider, which often inc
 
 __SLA__: An abbreviation for Service Level Agreement.
 
-__Smart Monkey__: A __stochastic testing__ method whereby the data passed in mimics how an actual user would use the system.  For example, a smart monkey test for a word processing system might type some letters, format them, and save the file (as an actual user might), as opposed to clicking buttons purely at random.
+__Smart monkey__: A __stochastic testing__ method whereby the data passed in mimics how an actual user would use the system.  For example, a smart monkey test for a word processing system might type some letters, format them, and save the file (as an actual user might), as opposed to clicking buttons purely at random.
 
 __Smoke test__: A small subset of tests which is used as a gateway for further testing.
 

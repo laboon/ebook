@@ -1,10 +1,10 @@
 # Testing Basics
 
-Before we get deep into actually writing tests, it behooves us to make sure that we're all on the same page with the theory and terminology of testing.  This chapter will provide us with the same vocabulary and the theoreticalfoundation for discussing testing.
+Before we get deep into actually writing tests, it behooves us to make sure that we're all on the same page with the theory and terminology of testing.  This chapter will provide us with the same vocabulary and the theoretical foundation for discussing testing.
 
 As a caveat, I'd like to state that I have seen conflicting terminology during my career in testing.  Different workplaces and testing teams may call certain things differently, or use the same term in different ways.  I have tried to use the most common expressions, but you may see slightly different terminology in industry.
 
-## Equivalence Classes and Expected vs Observed Behavior
+## Equivalence Classes and Expected versus Observed Behavior
 
 Imagine that you are in charge of testing a new display for a car tire air pressure sensor.  The air pressure reading comes in from an external sensor, and we are guaranteed that the air pressure value will be passed in to our display as a 32-bit, signed integer.  If the air pressure is greater than 35 pounds per square inch (PSI), the `OVERPRESSURE` light should turn on and all other lights should be off.  If the air pressure is between 0 and 20 PSI, the `UNDERPRESSURE` light should turn on, and all other lights should be off.  If the air pressure reading comes in as a negative number, the `ERROR` light should come on and all other lights should be off; if the air pressure in the tires is lower than the air pressure outside, there's either a sensor error or the sensor has somehow ended up on the surface of Venus.
 
@@ -12,11 +12,11 @@ This should be a relatively simple test.  There's only one input, the type is kn
 
 Where does one start when testing this?  You will need to develop some inputs and expected outputs (e.g., "send in 15 PSI -> see the `UNDERPRESSURE` light come on and all other lights go out").  You can then execute the test and see if what you see happening lines up with what you expected to see.  This is the core concept of testing - checking __expected behavior__ against __observed behavior__.  That is, ensuring that the software does what you expect it to under certain circumstances.  There will be lots of adjustments, wrinkles, and caveats to that, but the root of all testing is comparing expected behavior with observed behavior.
 
-Your manager would like this tested as quickly as possible, and asks you to create four tests.  Armed with the information that you should check expected vs observed behavior, you decide to send in -1, -111, -900, and -5 to see if the `ERROR` light comes on in each case, and none of the other lights do.  Excited to have written your first tests, you show your manager, who frowns and says "You're only testing one equivalence class!"
+Your manager would like this tested as quickly as possible, and asks you to create four tests.  Armed with the information that you should check expected versus observed behavior, you decide to send in -1, -111, -900, and -5 to see if the `ERROR` light comes on in each case, and none of the other lights do.  Excited to have written your first tests, you show your manager, who frowns and says, "You're only testing one equivalence class!"
 
-An equivalence class (also called an __equivalence partition__) is one set of input values that maps to an output value.  You can think of them as different "groups" of input values that do something similar.  This enables testers to create tests which cover all parts of functionality, and avoid over-testing just one part (like in our example above, where the `ERROR` equivalence class was tested four times and the other three, not at all).
+An __equivalence class__ (also called an equivalence partition) is one set of input values that maps to an output value.  You can think of them as different "groups" of input values that do something similar.  This enables testers to create tests which cover all parts of functionality, and avoid over-testing just one part (like in our example above, where the `ERROR` equivalence class was tested four times, while others weren't tested at all).
 
-What are the other three equivalence classes?  In order to answer this, think of all of the different kinds of output you would expect:
+What are the other equivalence classes here?  In order to answer this, think of all of the different kinds of output you would expect:
 
 1. The `ERROR` light comes on for PSIs of -1 or less
 2. The `UNDERPRESSURE` light comes for PSIs between 0 and 20
@@ -78,7 +78,7 @@ public static int absoluteValue (int x) {
 }
 ```
 
-Much better.  However, think how difficult it would be to rewrite this method so that it failed only when you pass in 57 - not 56, not 58, but only 57.  It's possible, of course, but much less likely.  Since it's very rare to be able to exhaustively test every possible input value for a program (or even a function), it makes sense to focus on values which are more likely to uncover defects.
+Much better.  However, think how difficult it would be to rewrite this method so that it failed only when you pass in 57 - not 56, not 58, but only 57.  It's possible, of course, but much less likely.  Since it's very rare to be able to exhaustively test every possible input value for a program (or even a single function), it makes sense to focus on values which are more likely to uncover defects.
 
 Getting back to our pressure sensor display, our test manager says that we have time to test a few more values.  We want to ensure that at a minimum, we test all of the boundary values, and hopefully a good sampling of the interior values.  First, we'll calculate all of the boundary values, and then generate a test plan which tests all of the boundary values and some of the interior values.
 

@@ -1,4 +1,4 @@
-# Manual vs Automated Testing
+# Manual versus Automated Testing
 
 So far, we have focused mostly on manual testing; that is, we actually develop and run the test cases ourselves.  If you've done any manual testing, though, you'll know that it is time-consuming and often extremely boring for the tester who has to follow a script (it's much more fun to follow a script when acting than when running software).  If only there were some sort of machine which can be used for running repetitive tasks!
 

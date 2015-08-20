@@ -6,8 +6,8 @@ Now that you understand requirements, and the basic theory and terminology of so
 
 A test plan is, at its core, simply a collection of __test cases__.  Test cases are the individual tests that make up a test plan.  Let's assume that you are creating a test plan for testing a new app that tells you if a cup of coffee is too hot to drink.  Let's also assume that the app marketers really like cold coffee, and decided not to implement any functionality about reporting the coffee temperature being too low.  There are two requirements:
 
-* __FUN-COFFEE-TOO-HOT__: If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
-* __FUN-COFFEE-JUST-RIGHT__: If the coffee temperature is measured at less than 175 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
+* __FUN-COFFEE-TOO-HOT:__ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
+* __FUN-COFFEE-JUST-RIGHT:__ If the coffee temperature is measured at less than 175 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
 
 How would we develop a test plan for our coffee temperature app?  There is one input - the coffee temperature measured - and two possible outputs, one of the set `["TOO HOT", "JUST RIGHT"]`.  We can ignore for now that I think most people would find coffee at 45 degrees Fahrenheit to definitely not be "JUST RIGHT".
 
@@ -179,7 +179,7 @@ Once again, though, computer programs don't consist solely of mathematical funct
 
 Any side effects or other state of the system that are either caused by the functionality, or should be in effect some other way after the execution steps have been completed, but are not output values,  are __postconditions__.  Postconditions may be directly caused by the functionality under test, such as a warning message being displayed, or some data written to the database, or a global variable being set.  However, a postcondition is any condition which needs to be in place after the execution steps are complete, and may not be directly impacted by the functionality.  For example, a postcondition may be that a global variable was set, or that the system is still running, or that a thread was not killed.
 
-### A Note: Expected Behavior vs Observed Behavior
+### A Note: Expected Behavior versus Observed Behavior
 
 Although we've discussed the difference between output values and postconditions at length, the fact is that in many cases the difference doesn't really matter, or is too academic to make much fuss about.  A similar argument could be made on preconditions and input values.
 
@@ -191,7 +191,7 @@ And the following actions Y are performed,
 I expect Z to happen
 ```
 
-That value Z is the crux of the test - it is the expected behavior.  It is impossible to test for something if you don't know what you expect to happen.  As Lewis Carroll said, "if you don't know where you're going, any road will get you there."  Similarly, when writing a test case, you need to know where you eventually want the test case to go, otherwise there's no way to check that you got to where the system should be.
+That value Z is the crux of the test - it is the expected behavior.  It is impossible to test for something if you don't know what you expect to happen.  As Lewis Carroll said, "if you don't know where you are going, any road will get you there."  Similarly, when writing a test case, you need to know where you eventually want the test case to go, otherwise there's no way to check that you got to where the system should be.
 
 ## Developing a Test Plan
 
@@ -297,7 +297,7 @@ TEST 8: PASSED
 TEST 9: PASSED
 ```
 
-If a test fails, then one of two things should happen.  Either a new defect should be filed, or the already-known defect that is causing the failure should be noted.  A defect indicates that the system is not operating as designed; the expected behavior does not match the observed behavior.  More detail on filing defects is included in the following chapter.
+If a test fails, then one of two things should happen: Either a new defect should be filed, or the already-known defect that is causing the failure should be noted.  A defect indicates that the system is not operating as designed; the expected behavior does not match the observed behavior.  More detail on filing defects is included in the following chapter.
 
 If a test is blocked, then the reason that it is blocked should be noted.  This may be something beyond the test team's control, such as the feature not being implemented yet, or it may be something that can be ameliorated, such as not having the proper equipment.  Having the rationale for the reason that a test was not completed included in the test run results not only provides valuable documentation about the status, it also may enable management or others to find a way around the problem in the future.  For example, if part of the test plan requires a specific piece of hardware, having documentation that this lack of equipment is causing tests to not be run may provide an impetus for management to buy more equipment, or for other engineers to provide alternative solutions.
 
