@@ -146,7 +146,7 @@ __Failure cases__ are cases in which we expect the system to "fail" for some rea
 
 ## Black / White / Grey Box Testing
 
-There are various ways of testing a system under test, each of which has benefits and drawbacks.  We'll explore three different kinds of testing here, and go into detail on various ways to test using these three paradigms in following chapters.
+There are various ways of testing a system, each of which has benefits and drawbacks.  We'll explore three different kinds of testing here, and go into detail on various ways to test using these three paradigms in following chapters.
 
 Perhaps the easiest kind of testing to understand is __black box testing__.  In black box testing, the tester has no knowledge of the internal workings of the system, and accesses the system as a user would.  In other words, the tester does not know about what database is in use, what classes exist, or even what language the program is written in.  Instead, testing occurs as if the tester were an ordinary user of the software.
 
