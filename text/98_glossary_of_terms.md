@@ -70,6 +70,8 @@ __Consistent (requirements)__: The property of having requirements which can all
 
 __Corner case__: A test case for functionality of a system which is unlikely to occur, or is beyond the real where a user will likely reproduce it.  By analogy with __edge case__ (a corner is where multiple edges intersect).
 
+__Covering array__: An array which covers all possible combinations of variable values.
+
 __Cracker__: An unauthorized person attempting to access and/or modify a system or data using underhanded techniques.
 
 __Critical__: A defect of the second-highest level of severity, which severely impacts how a user could use the system.
