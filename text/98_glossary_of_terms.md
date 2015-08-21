@@ -416,7 +416,7 @@ __Testability__: A quality of a system that specifies how easy it is to test - h
 
 __Testable code__: Code which can be easily tested in an automated fashion at multiple levels of abstraction.
 
-__Test-Driven Development (TDD)__: A particular software development methodology which embraces test-first development along with several other tenets, such as continuous refactoring and expectation of change.
+__Test-Driven Development (TDD)__: A particular software development methodology which embraces __test-first__ development along with several other tenets, such as continuous refactoring and expectation of change.
 
 __Test-First Development__: Any software development methodology in which tests are written before the code that makes them pass.
 
