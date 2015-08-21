@@ -50,7 +50,7 @@ Test plans are usually not as large as all of the requirements for a program; on
 
 ### Test Case (or Summary)
 
-In this field, a summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell at a glance what is meant to be tested, and sometimes how.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.
+In this field, a summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell at a glance what the test is for, and why it is included.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.
 
 __Examples:__
 
