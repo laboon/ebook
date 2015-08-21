@@ -15,7 +15,9 @@ At this point, you have two options:
 
 As you're already reading a book on software testing, I'll assume that you will choose Option 2.  At first glance, though, you might think that it would make sense not to test your software.  From an organizational standpoint, a corporation exists in order to enrich its shareholders.  If you can reduce the cost of developing software by removing part of the software development process, then you may owe it to your shareholders to think long and hard about whether it makes sense financially to keep the test team.
 
-Remember, though, that a CEO is in charge of an entire corporation, not just engineering, IT or any other particular part.  There's an entire company to run, and even for a tech company, software testing will be a relatively minuscule part of the company in most cases.  There are many other areas asking for resources, often with good reason.  The marketing department is asking for more marketers, and a company that doesn't come up with good ideas for products will fail.  Operations is asking for more help desk personnel; if people can't figure out to use the product, they will stop buying it and the company will fail.  All that being said, there are numerous reasons for that CEO to turn down the project manager's plan.
+Remember that a CEO is in charge of an entire corporation, not just engineering, IT or any other particular part.  Even for a tech company, software testing will be a relatively minuscule part of the company in most cases.  There are many other areas asking for resources, often with good reason.  The marketing department is asking for more marketers, and a company that doesn't come up with good ideas for products will fail.  Operations is asking for more help desk personnel; if people can't figure out to use the product, they will stop buying it and the company will fail.  All of these other parts of the company could probably use some of the financial resources currently being used to pay for software testing personnel.
+
+All that being said, there are numerous reasons for that CEO to turn down the project manager's plan.
 
 ## No Software Developer is Perfect
 
