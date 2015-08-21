@@ -4,9 +4,9 @@ Although you can go relatively far with the skills learned in the last chapter, 
 
 ## Test Doubles
 
-A unit test should be a localized test; that is, it should check the particular method or function under test, and not worry about other aspects of the system.  If there is a test failure, we want to make sure that the failure is due to the code in that particular method, not on something it relies upon.  Software is often interconnected, however, and a particular method which relies upon other methods or classes may not work correctly if those other units of code do not work correctly.
+A unit test should be a localized test; that is, it should check the particular method or function under test, and not worry about other aspects of the system.  If there is a test failure, we want to make sure that the failure is due to the code in that particular method, not something that that method relies upon.  Software is often interconnected, and a particular method which relies upon other methods or classes may not work correctly if those other units of code do not work correctly.
 
-In the following method, we will have fun at a duck pond.  Calling `.haveFunAtDuckPond` with a Duck `d` will feed the duck `numFeedings` number of times, and then return the amount of fun, which directly in proportion to how many times the duck is fed.  The duck will quack each time that it is fed (note: we are feeding the duck pieces of regulation duck chow.  Don't feed ducks bread, it's not actually good for them!).  If a null duck is passed in, or the number of feedings is zero or fewer, then it simply returns 0 as the amount of fun (null ducks and negative feeding are both equally not fun).   However, let us assume that the implementation of Duck is faulty, and calling the `.quack()` method results in a `QuackingException`.
+In the following method, we will have fun at a duck pond.  Calling `.haveFunAtDuckPond()` with a Duck `d` will feed the duck `numFeedings` number of times.  The method will then return the amount of fun, which directly in proportion to how many times the duck is fed.  The duck will quack each time that it is fed.   Note that we are feeding the duck pieces of regulation duck chow.  Don't feed ducks bread, it's not actually good for them!.  If a null duck is passed in, or the number of feedings is zero or fewer, then it simply returns 0 as the amount of fun (null ducks and negative feeding are both equally not fun).   Let us further assume that the implementation of Duck is faulty, and calling the `.quack()` method results in a `QuackingException`.
 
 ```java
 public int haveFunAtDuckPond(Duck d, int numFeedings) {
@@ -23,7 +23,7 @@ public int haveFunAtDuckPond(Duck d, int numFeedings) {
 
 Even though the code in this method works perfectly for all inputs, it requires that a working duck be present.  Otherwise, any non-negative number of feedings with a valid duck will cause an exception to be thrown.  If we see a unit test for this particular method failing, we will naturally think that the problem is in this method.  Only after examining it will we understand that the problem actually lies elsewhere.  How can we test this code when the code it depends upon doesn't work?
 
-I wouldn't have asked the question if I didn't have an answer - __test doubles__.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to __localize__ the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that it depends upon.
+I wouldn't have asked the question if I didn't have an answer - __test doubles__.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to localize the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that the method depends upon.
 
 JUnit does not support test doubles directly, but you can use other libraries in order to use them.  For this (and the next few sections), we will use Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
 
@@ -61,15 +61,15 @@ public class HorseTest {
 }
 ```
 
-We have now created a "fake" object instead of passing in an actual instantiation of the Water class.  Water is now quarantined and cannot cause a failure in our code.  If the test fails, it's the fault of this particular method.  Therefore, whenever there is a failure, we'll theoretically know exactly where to look in the codebase to determine the issue.  Whenever you use doubles, however, you are also dependent upon your assumptions of how the code you depend upon is supposed to work in the actual program.  There is nothing stopping you from, say, creating test doubles that have a method that the actual class does not.  In this case, your tests will work fine but the actual program will not.
+We have now created a "fake" object instead of passing in an actual instantiation of the Water class.  Water is now "quarantined" and cannot cause a failure in our code.  If the test fails, it's the fault of this particular method.  Therefore, whenever there is a failure, we'll know exactly where to look in the codebase to determine the issue.  Whenever you use doubles, however, you are also dependent upon your assumptions of how the code you depend upon is supposed to work in the actual program.  There is nothing stopping you from, say, creating test doubles that have a method that the actual class does not.  In this case, your tests will work fine but the actual program will not.
 
-Doubles can also be used to speed up the execution of tests.  Think of a Database object which writes information to out to a database and returns the status code.  Under ordinary circumstances, since the program needs to write out to disk and perhaps even access the network.  Let's say for the sake of argument, that this takes one second.  This may not seem like an incredibly long time to wait, but multiply it by all tests that access the database; even a relatively small program may have hundreds or even thousands of unit tests.
+Doubles can also be used to speed up the execution of tests.  Think of a Database object which writes information to out to a database and returns the status code.  Under ordinary circumstances, the program needs to write out to disk and perhaps even access the network.  Let's say that this takes one second.  This may not seem like an incredibly long time to wait, but multiply it by all the tests that access the database.  Even a relatively small program may have hundreds or even thousands of unit tests, adding minutes to the amount of time it takes for each test run.
 
 You should never, ever, ever use a double for the current class under test!  If you do this, you're no longer testing anything, really, as you are creating a fake object for the actual thing that you are testing.
 
 Test doubles should be used, as often as possible, when the code that you are unit testing uses a different class than the class under test.  Sometimes it will be difficult to do.  In order to minimize issues, you should pass in the object as a parameter whenever possible, as opposed to relying on class-level variables or even worse, global variables.
 
-For example, let's refactor the following class to make it more amenable to use test doubles:
+For example, let's refactor the following class to make it more amenable to test doubles:
 
 ```java
 public class Dog {
@@ -191,7 +191,7 @@ public class DogTest {
 }
 ```
 
-Now when the `mockedDogFood` object has its `.eat()` method called, it will return the value 13.  Once again, we have "walled off" other methods by re-creating fakes of them that act as we think they should.  Note that we can even stub methods that don't exist, thus allowing us to not only test classes that have errors, but even ones that don't even have all of their methods written yet.
+Now when the `mockedDogFood` object has its `.eat()` method called, it will return the value 13.  Once again, we have quarantined the other methods by re-creating fakes of them that act as we think they should.  Note that we can even stub methods that don't exist, thus allowing us to not only test classes that have errors, but even ones that don't have all of their methods written yet.
 
 ## Mocks and Verification
 
@@ -207,7 +207,7 @@ public class Person {
 }
 ```
 
-There is no return value and thus nothing on which to assert.  The only way to test this method is to ensure that the `.haveFun()` method on the `duckPond` object was called.  We can do this using a special kind of test double called a __mock__.  A mock object will allow you to assert that a particular method was called on the mocked object.  In the above instance, instead of asserting that a particular value is returned (since no value is ever returned), you instead can make a "meta-assertion" that `.haveFun()` is called.  This is called __verification__ since you are __verifying__ that a method has been called.
+There is no return value and thus nothing on which to assert.  The only way to test this method is to ensure that the `.haveFun()` method on the `duckPond` object was called.  We can do this using a special kind of test double called a __mock__.  A mock object will allow you to assert that a particular method was called on the mocked object.  In the above instance, instead of asserting that a particular value is returned (since no value is ever returned), you instead can make a "meta-assertion" that `.haveFun()` is called.  This is called __verification__ since you are _verifying_ that a method has been called.  Note that this kind of verification has nothing to do with the kind of verification that means "checking that the software is right".  They are two different concepts that happen to share the same word.
 
 ```java
 public void testHaveFunAtDuckPond() {
@@ -319,7 +319,7 @@ Those who argue that private methods should always be tested point to the fact t
 
 My opinion is that, like most engineering questions, the correct answer depends on what you're trying to do and what the current codebase is like.  As a side note, with most technical questions, saying "it depends" is a great way to be right, no matter what.  Let's take a look at a few examples.
 
-Let's imagine that we're adding a cat picture taking service to Rent-A-Cat.
+Let's imagine that we're adding a service to Rent-A-Cat to automate taking pictures of cats.
 
 ```java
 public class Picture {
@@ -383,7 +383,7 @@ One could argue that this isn't a well-designed piece of code and should be refa
 
 In Java, there's no way to directly call private methods from a unit test, although this is definitely not the case in other languages (such as with Ruby's `.send(:method_name)` method, which bypasses the concept of "private" entirely).  However, using the reflection library, we can "reflect" what's the structure of the class is at runtime.  The reflection library is built in to the Java language, so you don't need to install anything else to use it.
 
-Let's give an example - if you've never worked with reflection before, it can be a bit strange.  Say we want to write a class which tells the user what methods are available in that class.  Without reflection, this is impossible in Java; how can you know what other methods exist without hard-coding them into a String or something along those lines?  However, this is very simple using reflection.
+Let's give an example - if you've never worked with reflection before, it can be a bit strange.  Say we want to write a class which tells the user what methods are available in that class.  Without reflection, this is impossible in Java; how can you know what other methods exist without hard-coding them into a String or something along those lines?  It's actually relatively simple to do using reflection.
 
 ```java
 import java.lang.reflect.Method;
@@ -425,7 +425,7 @@ notify
 notifyAll
 ```
 
-This is pretty cool, we can then do things like check to see if a method exists before calling it, or let the programmer know what methods exist.  If you've ever used a language like Ruby, where you can quickly check what methods are available on an object, you can see how useful this can be.  If you're new to a codebase, and you know that you want to do something related to quacking, but you're not sure if you want to call `displayQuack()`, or `quackify()`, or `quackAlot()`, or whatever, you can do a quick method listing and see that the method you are looking for is `printQuack`.
+We can then do things like check to see if a method exists before calling it, or let the programmer know what methods exist.  If you've ever used a language like Ruby, where you can quickly check what methods are available on an object, you can see how useful this can be.  If you're new to a codebase, and you know that you want to do something related to quacking, but you're not sure if you want to call `displayQuack()`, or `quackify()`, or `quackAlot()`, or whatever, you can do a quick method listing and see that the method you are looking for is `printQuack`.
 
 You may have noticed that there are many more methods here than are listed in the `ReflectionFun` class.  This is because the `getMethods()` method returns a list of _all_ methods callable on an object (that is, public methods).  Since all objects in Java descend from the `Object` class, any of the public methods on the `Object` class will also appear here.
 
@@ -470,9 +470,9 @@ Call public method (printQuack):
 Quack!
 ```
 
-Using this, you could add a way to manually test and call methods, by having the user enter a string and trying to call a method by that name on the object.  The point is, we now have run-time control of what methods to call.  This is very useful for metaprogramming and programmer interfaces such as REPLs (read-eval-print-loop systems, which lets you enter some code, see the results, and repeat).  However, so far, it has not helped us much with testing private methods.  However, now that you understand reflection, some minor tweaks to our existing code and we can access them easily.
+Using this, you could add a way to manually test and call methods, by having the user enter a string and trying to call a method by that name on the object.  We now have run-time control of what methods to call.  This is very useful for metaprogramming and programmer interfaces such as REPLs (read-eval-print-loop systems, which lets you enter some code, see the results, and repeat).  Now that you understand reflection, some minor tweaks to our existing code and we can access and test them easily.
 
-First, you can't use the `getMethod()` or `getMethods()` methods, as they only return publicly available methods.  Instead, you need to use `getDeclaredMethod()` or `getDeclaredMethods()` methods, which have two key differences.
+You can't use the `getMethod()` or `getMethods()` methods, as they only return publicly available methods.  Instead, you need to use either the `getDeclaredMethod()` or `getDeclaredMethods()` method.  These have have two key differences from the `getMethod()`-style methods listed above.
 
 1. They only return methods declared in that specific class.  They will not return methods defined in superclasses.
 2. They return public, private, and protected methods.
@@ -512,7 +512,7 @@ printQuack
 printQuock
 ```
 
-Since we once again have just a list of Method objects, we can invoke them.  There's only one small snag - we first need to set that method to "accessible" before calling it, using the `setAccessible()` method.  It accepts a boolean parameter to determine whether or not the method should be accessible outside the class.
+We once again have a list of Method objects, and we can now invoke them.  There's only one small snag - we first need to set that method to "accessible" before calling it, using the `setAccessible()` method.  It accepts a Boolean parameter to determine whether or not the method should be accessible outside the class.
 
 ```java
 import java.lang.reflect.Method;
@@ -560,11 +560,11 @@ public class LaboonStuff {
 public void testPrivateLaboonify() {
     try {
         Method method = MathStuff.class.getDeclaredMethod("laboonify");
-	method.setAccessible(true);
-	LaboonStuff ls = new LaboonStuff();
+        method.setAccessible(true);
+        LaboonStuff ls = new LaboonStuff();
         Object returnValue = method.invoke(ls, 4);
         int foo = ((Integer) returnValue).intValue();
-	assertEquals(foo, 4);
+        assertEquals(foo, 4);
     } catch (NoSuchMethodException nsmex) {
         // The method does not exist
         fail();
@@ -582,11 +582,11 @@ Unit tests in Java are usually grouped by class, and further by method; they mir
 
 ### What To Test?
 
-Exactly what you test will vary based upon the domain of software you are testing and the amount of time you have for testing, as well as organizational standards and other external factors.  Of course, stating this doesn't give you any direction at all, and similar caveats could probably be put in front of every paragraph of this book.  There are definitely some heuristics to follow, many of which follow directly from some of the items discussed when developing a test plan.
+Exactly what you test will vary based upon the domain of software you are testing and the amount of time you have for testing, as well as organizational standards and other external factors.  Of course, stating this doesn't give you any direction at all, and similar caveats could probably be put in front of every paragraph of this book.  There are some heuristics to follow, many of which follow directly from some of the items discussed when developing a test plan.
 
-Ideally, you should look at the method and think of the various success and failure cases, determine the equivalence classes, and think about some good boundary and interior values might be to test from those equivalence classes.  You want to also focus on testing common use cases over use cases which rarely occur, at least at first.  If you are writing more safety-critical software, often it makes sense to focus on testing for failure before checking the happy path.  Personally, I often work on a base case first, and then think of possible failure cases after that.  Oftentimes, I will go back with a profiler to see what code is executed is most often and add extra test cases for that.  I may try to construct a mental model of what is called often instead of using a profiler.  I will definitely think of from where the inputs to the method are coming.  If they are from a system that I have no control over (note that this definition includes users as "systems I have no control over, and thus any kind of user input), and may be sending unanticipated values, I will definitely spend more time thinking of possible failure cases and checking for edge cases.
+Ideally, you should look at the method and think of the various success and failure cases, determine the equivalence classes, and think about some good boundary and interior values might be to test from those equivalence classes.  You want to also focus on testing common use cases over use cases which rarely occur, at least at first.  If you are writing more safety-critical software, often it makes sense to focus on testing for failure before checking the happy path.  Personally, I often work on a base case first, and then think of possible failure cases after that.  Oftentimes, I will go back, somtimes with a profiler, and see what code is executed is most often and add extra test cases for that.  I may try to construct a mental model of what is called often instead of using a profiler.  I will definitely think of from where the inputs to the method are coming.  If they are from a system that I have no control over (including users, the ultimate example of systems I have no control over), and may be sending unanticipated values, I will definitely spend more time thinking of possible failure cases and checking for edge cases.
 
-You don't want to create a test suite that takes so long to run that people don't run it often, but a well-designed unit test suite with appropriate doubles, mocks, stubs, and the like should run very fast even when there are many tests.  I would err on the side of creating too many tests rather than too few, at first.  As you determine how many tests are necessary for the particular piece of software you're working on, you can start making trade-offs between the amount of time for development and the amount of testing.
+You don't want to create a test suite that takes so long to run that people don't run it often, but a well-designed unit test suite with appropriate doubles, mocks, stubs, and the like should run very fast even when there are many tests.  I would err on the side of creating too many tests rather than too few, at first.  As you determine how many tests are necessary for the particular piece of software you're working on, you can start making trade-offs between the amount of time for development and for testing.
 
 
 ### Unit Tests Should Have Few Assertions (Preferably Only One) And Simple, Direct Names
@@ -609,7 +609,7 @@ public class CatTest {
 }
 ```
 
-When this test fails, what is wrong?  It could be that a newly created cat is not a good kitty, as it should be.  It could be that there's an error with the number of kittens that a newly created cat has.  It could be that the cat was erroneously assigned an owner.  You'd have to track down the particular assertion in the test code, because seeing that "cat stuff" has failed does not tell you anything.  If the name of the test case failing does not let you know what the failure is and preferably give you a very good pointer to where the failure lies, you are probably testing too much in each individual test case.  There are numerous cases where I've gone in and fixed code just based on seeing the name of the test case that failed, without ever looking at the actual test code.  This is a result of well-specified, directed tests.
+When this test fails, what is wrong?  It could be that a newly created cat is not a good kitty, as it should be.  It could be that there's an error with the number of kittens that a newly created cat has.  It could be that the cat was erroneously assigned an owner.  You'd have to track down the particular assertion in the test code, because seeing that "cat stuff" has failed does not tell you anything.  If the name of the test case failing does not let you know what the failure is and preferably give you a very good pointer to where the failure lies, you are probably testing too much in each individual test case.  There are numerous cases where I've gone in and fixed code just based on seeing the name of the test case that failed, without ever looking at the actual test code.  This is a common consequence of well-specified, directed tests.
 
 ### Unit Tests Should Be Independent
 
@@ -660,7 +660,7 @@ public class Turtle {
 }
 ```
 
-If we have a test calling `crawl()`, but none calling `eat()`, then we have 50% code coverage (one of two methods are tested).  Even if we had a hundred tests calling `crawl()`, checking out all of the various different ways that a turtle can crawl, but none testing `eat()`, we still have 50% code coverage.  Only once we add at least one test checking `eat()` will we have 100% code coverage.
+If we have a test calling `crawl()`, but none calling `eat()`, then we have 50% code coverage (one of two methods was tested).  Even if we had a hundred tests calling `crawl()`, checking out all of the various different ways that a turtle can crawl, but none testing `eat()`, we still have 50% code coverage.  Only once we add at least one test checking `eat()` will we have 100% code coverage.
 
 A more detailed form of code coverage is statement coverage.  This measures what percentage of programming statements were actually executed by at least one test.  A programming statement is the smallest "chunk" of code that still makes sense as an individual unit of code; in Java, these are generally the pieces of code separated by semicolons.  Some examples of statements include:
 
@@ -674,9 +674,9 @@ Note that "statement" does not mean "a line of code"!  For example, in Java, you
 doSomething(k); k++;
 ```
 
-This is actually two statements, they just happen to be on the same line.
+This is actually multiple statements, they just happen to be on the same line.
 
-When developers discuss "code coverage", they usually mean specifically "statement coverage".  Compared to method coverage, using statement coverage provides vastly more granularity in knowing what parts of the codebase have actually been tested.  For example, let's extend out our Turtle class so that we can see what the code is like inside the various methods.
+When developers discuss "code coverage", they usually mean specifically "statement coverage".  Compared to method coverage, using statement coverage provides vastly more granularity in knowing what parts of the codebase have actually been tested.  For example, let's add some detail to our Turtle class so that we can see what the code is like inside the various methods.
 
 ```java
 public class Turtle {
@@ -733,9 +733,9 @@ public class CowTest {
 }
 ```
 
-From a code coverage perspective, we have 100% code coverage and 100% method coverage - the only method in the class is called from a test, and every statement in the method is executed.  However, calling `moo()` with a `mooLevel` parameter of 0 will cause a `DivideByZeroException` to be thrown.  This defect will not be discovered by the test case, despite every statement being executed.  Although not foolproof, ensuring that you've checked every equivalence class may help to ameliorate situations like this somewhat.
+From a code coverage perspective, we have 100% code coverage and 100% method coverage - the only method in the class is called from a test, and every statement in the method is executed.  However, calling `moo()` with a `mooLevel` parameter of 0 will cause a `DivideByZeroException` to be thrown.  This defect will not be discovered by the test case, despite every statement being executed.  Although not foolproof, ensuring that you've checked every equivalence class will help to ameliorate situations like this.
 
-Code coverage is a powerful tool, but it's not a silver bullet.  It's a way to see what areas of the codebase might need more testing, but it should not assure you that any code that has been covered is guaranteed free of defects.
+Code coverage is a powerful tool, but like anything else in software development, it is not a silver bullet.  It's an excellent way to see what areas of the codebase might need more testing, but it should not assure you that any code that has been covered is guaranteed free of defects.
 
 ## Unit Testing as Part of a Complete Testing Plan
 
