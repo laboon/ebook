@@ -105,13 +105,13 @@ Once you've established what the user wants, however, there's still work to be d
 
 For this example, a few ideas of possible input to test that it works under a variety of cases:
 
-1. A string of all capitalized letters, e.g., `ABCDEFG`
-2. A string of already lowercase letters, e.g., `lmnop`
-3. A string of non-alphabetic characters, e.g. `78 &^% 0() []`
-4. A string of mixed capital and lowercase letters, e.g. `VwXyZ`
-5. A string of special characters such a carriage returns and nulls, e.g. `\r\n\0`
+1. A string of all capitalized letters, e.g., "`ABCDEFG`"
+2. A string of already lowercase letters, e.g., "`lmnop`"
+3. A string of non-alphabetic characters, e.g., "`78 &^% 0() []`"
+4. A string of mixed capital and lowercase letters, e.g., "`VwXyZ`"
+5. A string of special characters such as carriage returns and nulls, e.g., "`\r\n\0`"
 6. An empty string
-7. A very long string, say the text of a long book from Project Gutenberg
+7. A very long string; say, the text of a long book from Project Gutenberg
 8. Executable code
 9. Binary input
 10. Strings with EOF markers buried inside
