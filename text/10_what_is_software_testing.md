@@ -14,27 +14,27 @@ At a high level, it's a way of providing an estimate of software quality to stak
 
 Software testing provides an independent view of the software product.  Developers are notorious for - consciously or unconsciously - taking it easy on the code that they write.  I wish I could say that when I write code, I avoid this, what with my focus on software quality.  However, oftentimes my conversations with someone testing my software go like this:
 
-_Me:_ "I got the square root routine working!  It's twice as fast as it was before!"
-
-_Tester:_ "Hmm... when I pass in a letter instead of a number, the program crashes."
-
-_Me:_ "Oh, I'm sure nobody will type in a letter."
-
-_Tester:_ "When I give it a negative number, the program crashes."
-
-_Me:_ "Well, we don't really support imaginary numbers.  So I didn't do that."
-
-_Tester:_ "So I type in `2.0`, and it throws an error that it can't deal with decimals."
-
-_Me:_ "Yeah, it probably should, but right now it only works for integers for input.  But the user probably knows that."
-
-_Tester:_ "Okay, when I give it `2`, the screen just fills up with decimals..."
-
-_Me:_ "Well, obviously!  The square root of two is irrational, it will keep calculating until the universe ends in heat death!  Just put in the square of a positive integer."
-
-_Tester:_ "When I type in `25`, it gives me the answer 3."
-
-_Me:_ "OK, that's probably wrong.  I only ever tested it with an input of `9`, so it passed all of my tests!"
+> _Me:_ "I got the square root routine working!  It's twice as fast as it was before!"
+>
+> _Tester:_ "Hmm... when I pass in a letter instead of a number, the program crashes."
+>
+> _Me:_ "Oh, I'm sure nobody will type in a letter."
+>
+> _Tester:_ "When I give it a negative number, the program crashes."
+>
+> _Me:_ "Well, we don't really support imaginary numbers.  So I didn't do that."
+>
+> _Tester:_ "So I type in `2.0`, and it throws an error that it can't deal with decimals."
+>
+> _Me:_ "Yeah, it probably should, but right now it only works for integers for input.  But the user probably knows that."
+>
+> _Tester:_ "Okay, when I give it `2`, the screen just fills up with decimals..."
+>
+> _Me:_ "Well, obviously!  The square root of two is irrational, it will keep calculating until the universe ends in heat death!  Just put in the square of a positive integer."
+>
+> _Tester:_ "When I type in `25`, it gives me the answer 3."
+>
+> _Me:_ "OK, that's probably wrong.  I only ever tested it with an input of `9`, so it passed all of my tests!"
 
 (...and so on.)
 
@@ -44,9 +44,9 @@ Keep in mind that I am someone who teaches a class on software testing.  Even I 
 
 Software testing also involves ensuring that the right software was created.  Imagine the following conversation between a project manager and a customer:
 
-_Project Manager:_ "I've gone over the product with a fine-toothed comb.  This cryptography engine is absolutely bulletproof, incredibly fast, and uses 8,192-bit encryption - your secrets will be safe for a trillion years."
-
-_Customer:_ "Actually, I just wanted to play solitaire."
+> _Project Manager:_ "I've gone over the product with a fine-toothed comb.  This cryptography engine is absolutely bulletproof, incredibly fast, and uses 8,192-bit encryption - your secrets will be safe for a trillion years."
+>
+> _Customer:_ "Actually, I just wanted to play solitaire."
 
 Would you say that the program has met the requirements of the customer?  Of course not.  Even though the software has met all of the requirements of the software, doesn't crash, provides the correct answers, etc., if the software doesn't meet the needs of the customer, it's not going to be successful.
 
