@@ -62,7 +62,7 @@ __Complete (requirements)__: The property of having the requirements specify the
 
 __Confidentiality__: An attribute of a system, that only authorized users may read data.  An element of the InfoSec Triad.
 
-__Configuration error__: An error resulting from a misconfiguration of the system, as opposed to the code making up the system itself.
+__Configuration error__: An error resulting from a misconfiguration of the system, as opposed to an error in the code which comprises the system itself.
 
 __Connextra Template__: A common template for defining user stories, which consists of the phrase "As a _<role>_, I want _<function>_, So That _<reason>_".  Also referred to as the __Role-Function-Reason Template__.
 
@@ -80,7 +80,7 @@ __Denial of Service__: A method of attacking __availability__ by sending so many
 
 __Deterministic__: Something for which the causal behaviors are entirely known and reproducible.
 
-__Display error__: An error whre the correct value was computed, but it was not displayed correctly.
+__Display error__: An error where the correct value was computed, but it was not displayed correctly.
 
 __Distributed Denial of Service__: A __denial of service__ attack which consists of many different sources of the unauthorized packets, so as to increase the number of events the system must process as well as help disguise the ultimate source.
 
@@ -116,7 +116,7 @@ __Evil monkey__: A __stochastic testing__ method whereby malicious code or data 
 
 __Execution steps__: The actual steps that the test will execute after ensuring that all preconditions hold.
 
-__Expected behavior__: What the system is expected to do under certain circumstances.  For example, after typing in `2 + 2 =` on a calculator, the expected behavior is that the system will display `4` on the screen.
+__Expected behavior__: What the system is expected to do under certain circumstances.  For example, after typing in "`2 + 2 =`" on a calculator, the expected behavior is that the system will display "`4`" on the screen.
 
 __Explicit boundary value__: A __boundary value__ explicitly called out by the system requirements.  For example, requirements for an automated thermometer may state the system will turn on the DANGER light when the registered temperature is 102 degrees or over.  The boundary values would be 101 and 102.
 
@@ -152,11 +152,11 @@ __Grey-box testing__: Testing the code as a user would, but with knowledge of th
 
 __Hacker__: According to the Jargon File, "[a] person who enjoys exploring the details of programmable systems and how to stretch their capabilities".  Often used in modern times to mean the same as __cracker__.
 
-__Happy Path__: The easiest path a user will take through the system, when the system is operating properly, without attempting to perform anything that is an __edge case__ or __corner case__.
+__Happy path__: The easiest path a user will take through the system, when the system is operating properly, without attempting to perform anything that is an __edge case__ or __corner case__.
 
 __Identifier__: A number or string which uniquely identifies a test case, defect, or anything else.
 
-__-ility requirement__: Another term for __non-functional requirement__.  So named because many of these requirements use words ending in -ility to describe them (e.g., usability, scalability, maintainability).
+__-ility requirement__: Another term for __non-functional requirement__, so named because many of these requirements use words ending in "-ility" to describe them (e.g., usability, scalability, maintainability).
 
 __Impact__: When reporting defects, how the defect will affect users of the system.
 
@@ -172,9 +172,9 @@ __Input value__: A particular value which will be passed in to a test case.  The
 
 __Integration__: Connecting multiple systems or subsystems to work together.
 
-__Integration error__: A type of error resulting from the incompatibilities or other problems at the boundary between different systems or subsystems.
+__Integration error__: A type of error resulting from incompatibilities or other problems at the boundary between different systems or subsystems.
 
-__Interface error__: An error where the interface to another system is defined incorrectly, or system accessing it does not do so correctly, 
+__Interface error__: An error where the interface to another system is defined incorrectly, or the system accessing it does not do so correctly.
 
 __Integrity__: An attribute of a system, that only authorized users may write data.  An element of the InfoSec Triad.
 
@@ -240,9 +240,9 @@ __Normal__: A defect of a severity which is noticeable but does not strongly ham
 
 __Null pointer error__: An error resulting from the code trying to dereference a null pointer, or access a null object.
 
-__Observed behavior__: What the system actually does under certain circumstances.  For example, if I type in `2 + 2 =` on a calculator, the __expected behavior__ may be that I see 4, but if I instead see `WALLA WALLA`, then `WALLA WALLA` is the observed behavior.
+__Observed behavior__: What the system actually does under certain circumstances.  For example, if I type in "`2 + 2 =`" on a calculator, the __expected behavior__ may be that I see "`4`", but if I instead see "`WALLA WALLA`", then "`WALLA WALLA`" is the observed behavior.
 
-__Off-By-One Error__: A specific kind of __logic error__ where a program does something wrong because a value is off by one unit.
+__Off-by-one error__: A specific kind of __logic error__ where a program does something wrong because a value is off by one unit.
 
 __Operational testing__: Testing that a system works under real-world conditions.
 
@@ -334,7 +334,7 @@ __Scripted testing__: Testing with a rigid script, such as a test plan, where st
 
 __Seam__: A place in the codebase where you can modify behavior without modifying the code itself.
 
-__Seat of Your Pants Testing__: Testing where the expected behavior is known to the tester through experience with the software or its domain, instead of being formally specified.
+__"Seat of your pants" testing__: Testing where the expected behavior is known to the tester through experience with the software or its domain, instead of being formally specified.
 
 __Security testing__: Testing that the system meets the criteria of the InfoSec Triad, that the system is safe from unauthorized tampering and/or access.
 
@@ -344,7 +344,7 @@ __Service Level Agreement__: An agreement by a service provider, which often inc
 
 __SLA__: An abbreviation for Service Level Agreement.
 
-__Smart Monkey__: A __stochastic testing__ method whereby the data passed in mimics how an actual user would use the system.  For example, a smart monkey test for a word processing system might type some letters, format them, and save the file (as an actual user might), as opposed to clicking buttons purely at random.
+__Smart monkey__: A __stochastic testing__ method whereby the data passed in mimics how an actual user would use the system.  For example, a smart monkey test for a word processing system might type some letters, format them, and save the file (as an actual user might), as opposed to clicking buttons purely at random.
 
 __Smoke test__: A small subset of tests which is used as a gateway for further testing.
 
