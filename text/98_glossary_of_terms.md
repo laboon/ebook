@@ -168,6 +168,8 @@ __Implicit boundary value__: A __boundary value__ that is not explicitly called 
 
 __Impure__: The opposite of __pure__, a method or function which produces at least one __side effect__.
 
+__Information Security__: The field of ensuring that computer systems successfully exhibit all three aspects of the __InfoSec Triad__.
+
 __InfoSec Triad__: The three criteria that indicate a secure system - confidentiality, integrity, and availability.
 
 __Injection attack__: A kind of attack where the malicious user tries to get the victim's computer to execute arbitrary code.
@@ -195,6 +197,8 @@ __Internally consistent (requirements)__: The property of having no requirements
 __Interruption__: In __security testing__, an attack on __availability__, such as a __DDoS attack__ or pulling the plug from a network switch.
 
 __Invariant__: In __property-based testing__, a property that should always hold for a function or method.  For example, a sorting method which accepts an unsorted array should always return an array with the same number of elements as the unsorted original.
+
+__Keylogger__: Software which stores all keys that were pressed by the user, usually to be transmitted to, or retrieved by, an attacker.
 
 __Key Performance Indicator__: A __performance indicator__ that is considered of primary importance in the development of the system.
 
@@ -332,7 +336,7 @@ __Rounding error__: An error in a program caused by the system rounding a number
 
 __Running__: A status for a test case in a test run.  It indicates that the test is currently being executed, but has not yet completed.
 
-__Sanitization__: "Cleaning up" user input so that it cannot be executed by the running program.
+__Sanitization__: "Cleaning up" user input so that it cannot be executed by the running program or otherwise cause harm to the system.
 
 __Sanity check__: Another term for __sanity test__.
 
