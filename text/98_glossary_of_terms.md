@@ -132,6 +132,8 @@ __Failure case__: A kind of test where the expected behavior of the system is to
 
 __Falsifying the invariant__: Showing an example where an __invariant__ does not hold, such as an invariant for arithmetic method that adding two positive integers should always result in a number greater than one of the numbers, and showing that 1 + 1 = 0.
 
+__Feasible__: In the concept of requirements, possible to test within a realistic timeframe and allocation of resources.
+
 __Field testing__: Testing that a system works while actually operating with real users.
 
 __Fishing__: Catching marine animals for food or enjoyment.  Has nothing to do with __security testing__.  If you think it did, you are probably thinking of __phishing__.
