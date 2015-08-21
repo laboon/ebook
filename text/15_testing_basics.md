@@ -32,7 +32,7 @@ Mathematically, one could think of this as a mapping between a group of input va
 
 (where MAXINT and -MAXINT are the maximum and minimum 32-bit integers)
 
-We have now __partitioned__ our equivalence classes.  Equivalence class partitioning is the act of determining our equivalence classes and ensuring that they do not overlap at all, and should cover all possible input values.  In other words, they must maintain a __strict partitioning__.  For example, let's say that, due to bad or misread requirements, we had generated an equivalence class partitioning such as the following:
+We have now __partitioned__ our equivalence classes.  Equivalence class partitioning is the act of determining our equivalence classes and ensuring that they do not overlap at all, but do cover all possible input values.  In other words, they must maintain a __strict partitioning__.  For example, let's say that, due to bad or misread requirements, we had generated an equivalence class partitioning such as the following:
 
 1. [-2, -1, 0, 1, 2] -> `ERROR` light only
 2. [3, 4, ... 21, 22] -> `UNDERPRESSURE` light only
@@ -41,9 +41,9 @@ We have now __partitioned__ our equivalence classes.  Equivalence class partitio
 
 There are two problems here.  The first is that all values less than -2 and greater than 50 are not mapped to an equivalence class.  What is the expected behavior if the sensor sends a value of 51?  Is that also considered an error?  Is it considered `OVERPRESSURE`?  In this case, it is __undefined__.  There is often undefined behavior in a reasonably complex software system under test, but the software tester should help find these gaps in coverage and find out what should (or, at least, does) happen in these gaps.
 
-The second, and much worse, problem is that a contradiction has arisen for values 20, 21, and 22.  These belong to both the "`UNDERPRESSURE`" and "No lights" equivalence classes.  What is the expected behavior for an input value of 21?  Depending on which equivalence class you look at it, it could be no lights or an `UNDERPRESSURE` light.  This is a violation of strict partitioning, and you can easily see how problematic it can be.
+The second, and much worse, problem is that a contradiction has arisen for values 20, 21, and 22.  These belong to both the "`UNDERPRESSURE`" and "No lights" equivalence classes.  What is the expected behavior for an input value of 21?  Depending on which equivalence class you look at, it could be no lights or an `UNDERPRESSURE` light.  This is a violation of strict partitioning, and you can easily see how problematic it can be.
 
-It is important to note that equivalence classes do not have to be the exact same output value!  For example, let's say that you are testing an e-commerce site.  Sales of less than $100.00 get 10% off, and sales of $100.01 or greater get 20% off the final sale price.  Even though there are going to be a wide range of output values, the output behavior will be similar for all values of $100.00 or less and for all values of $100.01 or more.  Those would be the two equivalence classes; there won't be a separate equivalence class for each individual output value (e.g. $10.00 -> $9.00, $10.10 -> $9.01, etc.).
+It is important to note that equivalence classes do not have to be comprised of the exact same output value!  For example, let's say that you are testing an e-commerce site.  Sales of less than $100.00 get 10% off, and sales of $100.01 or greater get 20% off the final sale price.  Even though there are going to be a wide range of output values, the output behavior will be similar for all values of $100.00 or less and for all values of $100.01 or more.  Those would be the two equivalence classes; there won't be a separate equivalence class for each individual output value (e.g. $10.00 -> $9.00, $10.10 -> $9.01, etc.).
 
 Now that our equivalence classes have been determined, it's possible to write tests that cover all of the functionality of this display.  We may decide to send in a value of -2 to test the `ERROR` equivalence class, a value of 10 to test the `UNDERPRESSURE` equivalence class, a value of 30 to test the "No lights" equivalence class, and a value of 45 for the `OVERPRESSURE` equivalence class.  Of course, the values were picked rather arbitrarily.  In the next section, we'll see how one can choose specific values in order to maximize the chances of finding defects.
 
@@ -146,7 +146,7 @@ __Failure cases__ are cases in which we expect the system to "fail" for some rea
 
 ## Black / White / Grey Box Testing
 
-There are various ways of testing a system under test, each of which has benefits and drawbacks.  We'll explore three different kinds of testing here, and go into detail on various ways to test using these three paradigms in following chapters.
+There are various ways of testing a system, each of which has benefits and drawbacks.  We'll explore three different kinds of testing here, and go into detail on various ways to test using these three paradigms in following chapters.
 
 Perhaps the easiest kind of testing to understand is __black box testing__.  In black box testing, the tester has no knowledge of the internal workings of the system, and accesses the system as a user would.  In other words, the tester does not know about what database is in use, what classes exist, or even what language the program is written in.  Instead, testing occurs as if the tester were an ordinary user of the software.
 

@@ -83,7 +83,7 @@ Here is an example of a group of requirements that is not internally consistent:
 
 What should the system do if the pressure is between 100 and 200 PSI?  You can use equivalence class partitioning here to determine that the requirements are not internally consistent.
 
-The requirements should be __unambiguous__.  That is, they should specify things as precisely as possible for working in the particular domain the software is for.  The acceptable level of ambiguity will vary dramatically depending on what kind of software you are developing.  For example, if you are writing software for a children's game, it may be sufficient to state that a particular square should be "red".  If you are describing the requirements for an interface to a nuclear reactor, the exact PANTONE® shade of red that a warning light should be may need to specified.
+The requirements should be __unambiguous__.  That is, they should specify things as precisely as possible for working in the particular domain the software is for.  The acceptable level of ambiguity will vary dramatically depending on what kind of software you are developing.  For example, if you are writing software for a children's game, it may be sufficient to state that a particular square should be "red".  If you are describing the requirements for an interface to a nuclear reactor, the exact PANTONE® shade of red that a warning light should be may need to be specified.
 
 That being said, be careful not to paint yourself into a corner with too-restrictive requirements.  If your requirements state that a particular page needs to be a certain number of pixels, you may have difficulties converting to mobile devices, for example.  However, requirements certainly should not be of the form:
 
@@ -91,13 +91,13 @@ That being said, be careful not to paint yourself into a corner with too-restric
 
 What is the "shutdown stuff"?  Speaking to our friends, or amongst co-workers, we may use relatively ambiguous terms like that because the human brain is remarkably good at filling in ambiguity.  However, ambiguous requirements can lead to different developers or other stakeholders interpreting them in different ways.  The classic example of this is the Mars Climate Orbiter mishap, where one group of software engineers used Imperial measures and another group used metric measures.  Both groups thought the correct way to return results was obvious, but they came up with different implementations.
 
-If at all possible, the requirements should be __quantitative__ as opposed to __qualitative__.  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.
+If at all possible, the requirements should be __quantitative__ (as opposed to qualitative).  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.
 
 * __BADREQ-1.__ The system shall return results extremely quickly.
 
 What do we mean by this?  It's impossible to test without defining what we mean by "extremely quickly", or what kind of results need to be returned quickly.
 
-Finally, some common sense needs to be applied to the requirements writing.  It's possible to write a requirement which may be theoretically possible to test, but for various reasons, impossible to test in the real world.  A requirement like this is not feasible to test.  Let's say that we have the following requirements for testing our air pressure sensor:
+Finally, some common sense needs to be applied to the requirements writing.  It's possible to write a requirement which may be theoretically possible to test, but for various reasons, impossible to test in the real world.  A requirement like this is not __feasible__ to test.  Let's say that we have the following requirements for testing our air pressure sensor:
 
 * __REQ-1.__ The system shall be able to endure pressures of up to 9.5 x 10^11 pounds per square inch.
 * __REQ-2.__ Under normal operating procedures (defined elsewhere), the system shall remain usable for two hundred years of continuous use.

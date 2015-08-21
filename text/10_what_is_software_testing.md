@@ -1,6 +1,6 @@
 # What is Software Testing?
 
-Let's start with what it's not.
+Let's start with a few things that it is not.
 
 1. It's not finding every single defect.
 2. It's not randomly pressing buttons, hoping that something will break.
@@ -67,7 +67,7 @@ For example, consider a company creating a brand-new Tic-Tac-Toe implementation.
 3. The second player shall then be allowed to mark an O in any open (that is, not already marked by an X or O) square, following the completion of the first move by the first player.
 4. Players shall then take turns placing X's and O's (by the first and second player, respectively) in open squares, until there are no open squares (in which case the game is a draw) or an entire row, column, or diagonal are filled in with the same marker, in which case the owner of that marker (X for first player, O for second player) shall be the winner and the other player shall be the loser.
 
-This sums up the game of Tic-Tac-Toe pretty nicely.  Now let's say that after beta testing, a user says that the game is unfair, because it forces one player to use X's and that mark is ugly.  The user suggests changing the X's into W's, because W's are a much more beautiful letter.  Is this a defect or enhancement?
+This sums up the game of Tic-Tac-Toe pretty nicely.  Now let's say that after beta testing, a user says that the game is unfair, because it forces one player to use X's and that mark is ugly.  The user suggests changing the X's into W's, because W is a much more beautiful letter.  Is this a defect or enhancement?
 
 It's an __enhancement__, because the system met all of the requirements and operates normally.  The fact that a user does not like it does not make it a defect!  It may be very important to make this change, perhaps even more important than fixing actual defects.  Enhancements are not bad, or useless, or a lesser class of complaint.  They just require modifying the requirements of the system.
 
@@ -75,7 +75,7 @@ Now let's consider an instance where the first player, who should only be able t
 
 Another example of a defect would be if the Tic-Tac-Toe board's display disappears after a player entered a mark in the center square.  There are no specific requirements against this happening, but there are varying "implicit requirements" to programs, such as not crashing, maintaining a display consistent with internal state, being responsive, etc.  These implicit requirements will vary based on the type of system; for example, a video game may need to be responsive 99% of the time, but a batch-processed weather forecasting program (where data is fed in, and the results returned 30 minutes later) may only need to be "responsive" in the sense that an answer will eventually come out.
 
-There can be disagreement over whether an issue is a defect or an enhancement.  Much of this disagreement can arise due to these implicit requirements.  If a video game character always takes three seconds to respond after hitting a button, one might argue that this is too long, even if there isn't a specific performance requirement.  It's just not a good user experience to have a three second lag all the time.  However, at what point the button response latency become no longer an issue?  Two seconds?  One?  One hundred milliseconds?  Similarly, is it acceptable for a program to crash and lose data if the system runs out of memory?  For a simple application running on your phone, possibly; it may be considered a rare enough event, and with such small impact for the average user, that adding support for it would be an enhancement.  For a mainframe running banking transfer software, this would almost certainly be a defect; preventing loss of data, even if not explicitly called out in the requirements, is extremely important in this domain.  Being familiar with the __system under test__ and its domain can allow you to perform __"seat of your pants" testing__; that is, testing against expected behavior that is not formally specified, but based on your knowledge of the system, is observed to behave incorrectly.
+There can be disagreement over whether an issue is a defect or an enhancement.  Much of this disagreement can arise due to these implicit requirements.  If a video game character always takes three seconds to respond after hitting a button, one might argue that this is too long, even if there isn't a specific performance requirement.  It's just not a good user experience to have a three second lag all the time.  However, at what point is the button response latency no longer an issue?  Two seconds?  One?  One hundred milliseconds?  Similarly, is it acceptable for a program to crash and lose data if the system runs out of memory?  For a simple application running on your phone, possibly; it may be considered a rare enough event, and with such small impact for the average user, that adding support for it would be an enhancement.  For a mainframe running banking transfer software, this would almost certainly be a defect; preventing loss of data, even if not explicitly called out in the requirements, is extremely important in this domain.  Being familiar with the __system under test__ and its domain can allow you to perform __"seat of your pants" testing__; that is, testing against expected behavior that is not formally specified, but based on your knowledge of the system, is observed to behave incorrectly.
 
 In some scenarios, the difference between a defect and an enhancement will be a very big deal.  If your company is writing avionics software for a new fighter jet, there will most likely be a very rigorous process for determining whether something is an enhancement or a defect.  There will be specified requirements, arbitrators to make decisions, and people whose entire job is to draft and interpret requirements.  If a company is contracted to create a program written "to the letter of the law", that company will fight to say that a request by the customer is not a defect, but something not covered by requirements, and thus an enhancement.
 
@@ -118,7 +118,7 @@ For this example, a few ideas of possible input to test that it works under a va
 
 Can you think of any other possible inputs that might cause an error or an incorrect result?
 
-External factors could also be a factor.  What happens when...
+External factors could also be relevant.  What happens when...
 
 1. The system runs out of memory while processing the text?
 2. The CPU is running numerous other processes, leaving the system unresponsive?

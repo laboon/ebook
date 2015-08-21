@@ -8,7 +8,7 @@ A long time ago, in a company far, far away, I was a test lead.  One of my respo
 
 I figured that I could complain about it, or do something about it.  I was able to convince the Computer Science department at the University of Pittsburgh to allow me to develop and teach a class on software testing, which has grown to cover many different aspects of software quality, and become a popular, ongoing course (CS 1632: Software Quality Assurance, if you're interested in taking it!).  I developed my own curriculum, as I couldn't find a good book or syllabus on the subject that struck the right balance between theory and application.  Finding a good book to use was even more difficult than finding a good Quality Assurance (QA) Engineer to interview!  Once again, I figured I could either complain about it, or do something about it, and once again, I chose the latter.
 
-Testing software is a big part of the software development process, and useful not just for those looking specifically for a career in QA.  A developer who doesn't care about code quality is not a good developer.  This book is targeted to those interested in software testing or writing tests as a developer.
+Testing software is a big part of the software development process, and useful not just for those looking specifically for a career in QA.  A developer who doesn't care about software quality is not a good developer.  This book is targeted to those interested in software testing or writing tests as a developer.
 
 ## What This Book Covers
 
