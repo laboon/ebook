@@ -162,6 +162,8 @@ __Impact__: When reporting defects, how the defect will affect users of the syst
 
 __Implicit boundary value__: A __boundary value__ that is not explicitly called out by the system requirements, but may have an impact on the system's operation.  For example, code written using 32-bit signed integers (such as `int` in Java) has an implicit boundary at 2,147,483,647, the maximum integer size.  Adding one to this will cause the number to overflow.
 
+__Impure__: The opposite of __pure__, a method or function which produces at least one __side effect__.
+
 __InfoSec Triad__: The three criteria that indicate a secure system - confidentiality, integrity, and availability.
 
 __Injection attack__: A kind of attack where the malicious user tries to get the victim's computer to execute arbitrary code.
@@ -294,6 +296,8 @@ __Principle of Least Privilege__: The principle that states that users should ha
 
 __Profiler__: A tool which allows you to measure the resource utilization and internal events (such as method calls or instantiation of objects) of a running program.
 
+__Pure__: A method or function which does not produce any __side effects__, but simply returns the result of a computation.
+
 __Qualitative__: Not able to be expressed numerically, such as "the system shall be _extremely_ cool".  Contrast with __qualitative__.
 
 __Quality attribute__: Another (probably better) term for __non-functional requirement__.
@@ -341,6 +345,8 @@ __Security testing__: Testing that the system meets the criteria of the InfoSec 
 __Service-based performance__: Performance on metrics related to how the user will interact with the system.
 
 __Service Level Agreement__: An agreement by a service provider, which often includes a guarantee of __availability__.
+
+__Side effect__: Anything which is not strictly the returned result of a computation, such as displaying a message or setting a variable value.
 
 __SLA__: An abbreviation for Service Level Agreement.
 
