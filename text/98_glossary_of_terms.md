@@ -56,7 +56,7 @@ __CIA Triad__: Another term for the __InfoSec Triad__.
 
 __Code coverage__: How much of the codebase is actually tested, usually via unit tests.  Although there are different kinds of code coverage, the majority of time that non-specialists use it, they are referring to __statement coverage__.
 
-__Combinatorial testing__: Testing in such a way so as to ensure that various combinations of variables will work as expected.  For example, testing a
+__Combinatorial testing__: Testing in such a way so as to ensure that various combinations of variables will work as expected.
 
 __Complete (requirements)__: The property of having the requirements specify the entirety of the system.
 
