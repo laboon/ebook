@@ -25,7 +25,7 @@ Hands up if you've never written a piece of incorrect code before.  If you don't
 
 According to the paper [_The Economic Impact of Inadequate Infrastructure for Software Testing_](http://www.nist.gov/director/planning/upload/report02-3.pdf), written by the National Institute of Standards and Technology in 2002, software defects cost the US economy almost $60 billion annually.  That's approximately 0.6% of the country's gross domestic product.  As more and more software is written, and our daily lives become more and more connected with software, this figure has probably increased dramatically by now.  Even going with the low 2002 number, however, this means that software defects have caused problems worth the same as about one-third of all US agricultural output.
 
-## Catching Bugs Sooner Rather than Later
+## Catching Defects Sooner Rather than Later
 
 The Golden Rule of Testing is that you should find defects as early as you can.  If you find problems with the software early on, it is often trivial for a developer to add a fix, and nobody external to the team may ever know that for a while your application crashed if users entered numbers as their usernames.  A defect such as this one that a user stumbles across in production may be much more damaging - the company loses money since the application is down, users are upset, and it will be more difficult to fix when people are under stress.  
 
