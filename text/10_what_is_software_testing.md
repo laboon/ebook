@@ -1,4 +1,4 @@
-# What is Software Testing, Anyway?
+# What is Software Testing?
 
 Let's start with what it's not.
 
@@ -56,7 +56,7 @@ Both verification and validation are part of the software testing process.  Alth
 
 Interestingly, as more time and resources are spent on fixing defects or improving quality in other ways, money is often saved in the long run.  Developing on a system which has fewer bugs, or at least has one that you know about already, is easier than adding features to software which fails intermittently and seemingly randomly.  A system with a good automated test suite will allow you to make changes with the assurance that you have not created additional defects in so doing.  This is the paradox of software quality - you may end up spending _less_ money for a _better_ product by properly testing.
 
-## What Is a Bug, Really?
+## A Preliminary Definition of "Defect"
 
 It's important to keep in mind that not every problem found with a system is a defect.  A defect is an issue that either breaks the functionality of the system as it's currently understood, or does not meet the requirements of the program.  If a program operates normally and meets all of the requirements, then it does not have a defect.  If the program does not meet the requirements, or does not operate normally (e.g., crashes randomly, does not respond to user input, etc.), then a defect has been found.
 
