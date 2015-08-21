@@ -163,7 +163,6 @@ Or 7 -> 8 -> 9?
     }
 ```
 
-
 Or you changed the equality check to an _inequality_ check?
 
 ```java

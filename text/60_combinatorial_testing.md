@@ -159,4 +159,3 @@ The answer is, incredibly well.  Instead of five Boolean variables, let's assume
 
 You can see that not only does the number of tests you need grow sublinearly, the more variables you have, the higher percentage of time you will be saving by using combinatorial testing.  In the beginning of this book, we talked about how exhaustive testing was, for many programs, essentially impossible.  Using combinatorial testing is one way to ameliorate that problem.  With only a small percentage of the effort needed for exhaustive testing, we can find the vast majority of defects that would have been caught by it.
 
-

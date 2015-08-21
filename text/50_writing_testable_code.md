@@ -84,7 +84,6 @@ public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
     }
     return numGiraffes;
 }
-
 ```
 
 We have now reduced the number of dependencies to that single class `AnimalDatabaseWorker`, and only call one method on it.

@@ -220,7 +220,6 @@ NaN
 
 Dividing a positive value by zero returns `Infinity`, dividing by a negative number returns `-Infinity`, and dividing zero by zero returns `NaN` (Not a Number).  This means that dividing by zero, despite being one "internal equivalence class" in Java programs, is three different ones in JavaScript programs.  Knowing this, you would want to test that the program can handle all of these return values, and not assume that you had checked all edge cases simply because you had checked for dividing one by zero.  This is an actual example from a test plan that I wrote, and it was used to find several defects.
 
-
 ## Executing a Test Plan
 
 Executing a test plan is called a __test run__.  One way to think of test runs is as the equivalent of an object and a class.  Executing a test plan generates a test run similar to how instantiating a class creates an object.  The test plan is the map of where to go, whereas the test run is the voyage that the traveler makes.

@@ -2,7 +2,6 @@
 
 Before we get deep into actually writing tests, it behooves us to make sure that we're all on the same page with the theory and terminology of testing.  This chapter will provide us with the same vocabulary and the theoretical foundation for discussing testing.
 
-
 ## Equivalence Classes and Behavior
 
 Imagine that you are in charge of testing a new display for a car tire air pressure sensor.  The air pressure reading comes in from an external sensor, and it is guaranteed that the air pressure value will be passed in to our display as a 32-bit, signed integer.  If the air pressure is greater than 35 pounds per square inch (PSI), the `OVERPRESSURE` light should turn on and all other lights should be off.  If the air pressure is between 0 and 20 PSI, the `UNDERPRESSURE` light should turn on, and all other lights should be off.  If the air pressure reading comes in as a negative number, the `ERROR` light should come on and all other lights should be off.
@@ -47,6 +46,7 @@ It is important to note that equivalence classes do not have to be comprised of 
 Now that our equivalence classes have been determined, it's possible to write tests that cover all of the functionality of this display.  We may decide to send in a value of -2 to test the `ERROR` equivalence class, a value of 10 to test the `UNDERPRESSURE` equivalence class, a value of 30 to test the "No lights" equivalence class, and a value of 45 for the `OVERPRESSURE` equivalence class.  Of course, the values were picked rather arbitrarily.  In the next section, we'll see how one can choose specific values in order to maximize the chances of finding defects.
 
 ## Interior and Boundary Values
+
 There's an axiom in testing that defects are more likely to be found near the boundaries of two equivalence classes.  These values - the "last" of one equivalence class and the "first" of a new equivalence class - are called __boundary values__.  Values which are not boundary values are called __interior values__.  For example, let's take a very simple mathematical function, the absolute value of an integer.  This has two equivalence classes:
 
 1. [-MAXINT, -MAXINT + 1, ... -2, -1] -> For input x, outputs -(x)
@@ -66,7 +66,6 @@ public static int absoluteValue (int x) {
 ```
 
 Did you see the coding error?  There's a simple off-by-one error in the first line of the method.  Since it's checking if the argument x is greater than one, sending in the input value 1 will return -1.  Since boundary values are often explicitly mentioned in code, that's more reason for them to potentially fail or be put into the "wrong" equivalence class.  Let's rewrite it correctly, now that we have found the error:
-
 
 ```java
 public static int absoluteValue (int x) {
@@ -108,6 +107,7 @@ Implicit boundary values can also be runtime-dependent.  Suppose that we have a 
 There's an implicit boundary between the number of rows which fit into memory and that which don't.  Whoever wrote the requirements may not have thought about this, but as a tester, you should keep implicit boundary values in mind.
 
 ## Base Cases, Edge Cases, Corner Cases
+
 Let us continue our exploration of the pressure sensor display.  Going over our various test cases, we can see that they vary in how common they will be.  The vast majority of the time, the pressure will be normal, or slightly over-pressure or under-pressure.  Each of these is considered a __base case__ - the system is operating within expected parameters for normal use.
 
 When input values are outside normal operating parameter or are approaching the limits of what the system can handle, this is called an __edge case__.  An edge case may be the tire popping and air pressure dropping to zero.  Another case would be someone forgetting that they had the air hose attached to the tire, and pumping in air up to a pressure of 200 PSI, the absolute limit to which the tire is rated.

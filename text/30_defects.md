@@ -66,7 +66,6 @@ WORKAROUND:
 NOTES:
 ```
 
-
 ### Summary
 
 The __summary__ is a one sentence or so summary of the defect found.  It's useful when people are scrolling through long lists of defects, or to make sure that people understand the gist of the defect.  Some examples of good summaries would be:

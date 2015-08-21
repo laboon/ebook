@@ -123,7 +123,6 @@ In order to avoid these, you want to have a sensible set of defaults for your so
 
 How do you test for them, though?  Often, you will have to do some form of __user testing__.  User testing involves having a user perform some task, often with minimal - or no - guidance from the development team or their representatives.  While this is usually done in order to determine the best user interface for a system, it can also be done to figure out how typical users configure the system and what parts of the system they do not configure properly.  After seeing that users often forget to change default passwords, for example, perhaps developers add a red warning to all administrative pages warning them that the default password has not yet been changed.  Further user testing can verify that this causes the desired change in behavior.
 
-
 ### Insecure Storage
 
 Even if the code running your system is security itself - free from all known exploits, all input sanitized, formally verified to not contain any buffer overflows - this is of little consolation if its data is not stored properly!  Examples of insecure storage would be writing sensitive data to log files, allowing users direct access to a database, or storing private keys in your code which is stored in a publicly available repository.
