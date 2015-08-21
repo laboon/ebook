@@ -36,7 +36,7 @@ __Blocked__: A status for a test case in a test run.  It indicates that the test
 
 __Blocker__: A defect of the highest severity, where the system cannot reasonably be released without fixing it or providing a __workaround__.
 
-__Bot network__: A collection of zombies controlled by a master.
+__Bot network__: A collection of __zombies__ controlled by a master.
 
 __Boundary value__: A value which is "one the boundary" between equivalence classes.  For example, a system that has two equivalence classes, between 0 and 19, and 20 or higher, would have boundary values at 19 and 20.
 
@@ -60,11 +60,9 @@ __Combinatorial testing__: Testing in such a way so as to ensure that various co
 
 __Complete (requirements)__: The property of having the requirements specify the entirety of the system.
 
-__Confidentiality__: An attribute of a system, that only authorized users may read data.  An element of the InfoSec Triad.
+__Confidentiality__: An attribute of a system, that only authorized users may read data.  An element of the __InfoSec Triad__.
 
 __Configuration error__: An error resulting from a misconfiguration of the system, as opposed to an error in the code which comprises the system itself.
-
-__Connextra Template__: A common template for defining user stories, which consists of the phrase "As a _<role>_, I want _<function>_, So That _<reason>_".  Also referred to as the __Role-Function-Reason Template__.
 
 __Consistent (requirements)__: The property of having requirements which can all be followed without a paradox (e.g., "the system shall display the message 'Hello' upon startup" and "the system shall not display any message upon startup" are not consistent).
 
@@ -203,8 +201,6 @@ __Keylogger__: Software which stores all keys that were pressed by the user, usu
 __Key Performance Indicator__: A __performance indicator__ that is considered of primary importance in the development of the system.
 
 __KPI__: Abbreviation for __Key Performance Indicator__.
-
-__Law of Demeter__: A principle of object-oriented software stating that code should not invoke methods on objects it received from an object of another class.  For example, `tree.getBough().getBranch().setBroken(true);` would be a violation of the Law of Demeter, since you are calling a method on an object from an object received from a different class.
 
 __Legacy code__: Code which is running in production, and was written without using modern software engineering techniques and/or has substandard automated test coverage.
 
@@ -402,8 +398,6 @@ __Target__: In __performance testing__, another term for __performance target__.
 
 __Tautological test case__: A test case which was written so that it will always pass, for example `boolean foo = true; assertTrue(foo);`.  This is usually done inadvertently.
 
-__Tell, Don't Ask__: Another term for the __Law of Demeter__.
-
 __Test artifact__: A document or other byproduct of the testing process, such as test plans or results.
 
 __Test case__: The smallest unit of a test plan, these are the individual tests which describe what is to be tested and a check for the expected behavior of a system.
@@ -461,8 +455,6 @@ __Unscripted testing__: Testing without a rigid script, where the tester has bro
 __UPOD__: An acronym for "Under-Promise, Over-Deliver".  Refers to the fact that you should promise less than you think you can deliver, but then endeavor to deliver more.
 
 __User acceptance testing__: A particular kind of __acceptance testing__ where the tester is the user of the software.  It ensures that the system under test is acceptable to the user by meeting their needs.
-
-__User story__: A description of what a user would want a system to do; similar to __requirements__, but focusing from the user side as opposed to the technical.  Often written using the __Connextra template__.
 
 __User testing__: Having an actual user of the system attempt to perform tasks, often without instruction, in order to determine how users interact with the system.
 
