@@ -76,7 +76,7 @@ The __summary__ is a one sentence or so summary of the defect found.  It's usefu
 3. System exits with `SEGFAULT` error when user selected
 4. Adding three or more items to a cart at the same time clears out other items
 
-All of these describe the problem succinctly, without going into much detail.  Remember that the summary will often be glanced at along with perhaps hundreds of other bug summaries, especially if you are presenting to management.  There is a reason why most books written today have snappy titles, as opposed to titles such as _The Egg, Or The Memoirs Of Gregory Giddy, Esq: With The Lucubrations Of Messrs. Francis Flimsy, Frederick Florid, And Ben Bombast. To Which Are Added, The Private Opinions Of Patty Pout, Lucy Luscious, And Priscilla Positive. Also The Memoirs Of A Right Honourable Puppy. Conceived By A Celebrated Hen, And Laid Before The Public By A Famous Cock-Feeder._  Yes, that is a real book, written by an anonymous author and published in 1772.
+All of these describe the problem succinctly, without going into much detail.  Remember that the summary will often be glanced at along with perhaps hundreds of other defect summaries, especially if you are presenting to management.  There is a reason why most books written today have snappy titles, as opposed to titles such as _The Egg, Or The Memoirs Of Gregory Giddy, Esq: With The Lucubrations Of Messrs. Francis Flimsy, Frederick Florid, And Ben Bombast. To Which Are Added, The Private Opinions Of Patty Pout, Lucy Luscious, And Priscilla Positive. Also The Memoirs Of A Right Honourable Puppy. Conceived By A Celebrated Hen, And Laid Before The Public By A Famous Cock-Feeder._  Yes, that is a real book, written by an anonymous author and published in 1772.
 
 ### Description
 
@@ -124,13 +124,13 @@ Related to the Impact field is the __Severity__ field, which contains the defect
 
 An example rating system is explained below.
 
-1. __Blocker__ - This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker bugs would be the system not allowing any user to log in, or a system that crashes whenever somebody presses the "A" key.
+1. __Blocker__ - This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker defects would be the system not allowing any user to log in, or a system that crashes whenever somebody presses the "A" key.
 
-2. __Critical__ - Although the system could still be released with a bug of this magnitude, it severely impacts the core functionality of the program or makes it almost unusable.  Alternatively, a defect that normally would be marked as a blocker, but that has some sort of workaround, could be classified as critical.
+2. __Critical__ - Although the system could still be released with a defect of this magnitude, it severely impacts the core functionality of the program or makes it almost unusable.  Alternatively, a defect that normally would be marked as a blocker, but that has some sort of workaround, could be classified as critical.
 
 3. __Major__ - This is a defect which causes a relatively severe problem, although not so severe as to entirely hobble a system.  It has a good change of being noticed by any user using the feature where the defect exists.
 
-4. __Normal__ - This is a defect which inconveniences the user, or a more severe bug with an easy and straightforward workaround.
+4. __Normal__ - This is a defect which inconveniences the user, or a more severe defect with an easy and straightforward workaround.
 
 5. __Minor__ - The defect might or might not be be noticed, but does not cause much issue for the user, or has a simple and straightforward workaround.
 
@@ -138,7 +138,7 @@ An example rating system is explained below.
 
 7. __Enhancement__ - Sometimes a defect isn't really a defect; it's something that the users want, but is not specified by the requirements or is otherwise not in the scope of the current project.  In such a case, the defect can be filed as an enhancement.  Alternatively, a tester may think that a problem is a defect, but management may overrule them and mark it as an enhancement.
 
-Grading the severity of bugs can be art, not a science, although there are some heuristics for determining how severe an issue is.  Depending on the domain of software in which the tester is working, as well as the organization's own rules for testing, the severity of a defect may be marked dramatically differently.  Even within organizations, there can be conflicts between engineers, managers, testers, and other stakeholders on exactly how severe a defect is.
+Grading the severity of defects can be art, not a science, although there are some heuristics for determining how severe an issue is.  Depending on the domain of software in which the tester is working, as well as the organization's own rules for testing, the severity of a defect may be marked dramatically differently.  Even within organizations, there can be conflicts between engineers, managers, testers, and other stakeholders on exactly how severe a defect is.
 
 Severity should not be mistaken for priority.  Severity is how severe the problem is, whereas priority marks what order the organization would like to see the problem fixed.  For example, a typo on the home page of a web application is of low severity, as it does not impact the functionality of the software.  However, it reflects poorly on the company that created it, and will require only a modicum of developer time to fix.  In such a case, its priority would be very high.  Alternatively, a defect could of low priority, but high severity.  An example would be a serious performance issue with database reads, where they are so slow that it makes the system completely unusable to the user after a half-hour of work.  This is a very severe problem.  However, if fixing it will be a very time-consuming process, and database optimization is already planned for later in the project, it may be of low priority.  With all else being equal, though, defects of a higher severity are usually of higher priority than ones of a lower severity.
 
@@ -146,11 +146,11 @@ Severity should not be mistaken for priority.  Severity is how severe the proble
 
 The __workaround__ field describes how the defect can be avoided, or at least ameliorated.  Assuming a defect where special characters don't work in passwords, the workaround is to only use alphanumeric characters in passwords.  It is important to note that workarounds are not always _good_ workarounds; they may involve not using certain functionality.  For example, if the word count feature of an editor is not working, the workaround may be to not use word count, or to use a different program (e.g., `wc -w` in Unix systems).  This may cause the user some distress or inconvenience, but it does allow the functionality to be accessed.
 
-In some cases, there may not be any sort of workaround, or at least not a known one.  If the system is crashing at seemingly nondeterministic times, it would be impossible to list a workaround except the trivial case of "don't use the software".  This is generally not accepted as a workaround.  This does not mean that a workaround does not exist, only that one is not known; there may be a setting or input value which is causing the issue, but the testing team just has not uncovered it.  If no user can log in to a web application, or the server refuses to start, or a system consistently gives wrong results to every query, then there may be no workaround, as the system is entirely unusable.  In such cases, the severity of the bug is inevitably BLOCKER or its equivalent.
+In some cases, there may not be any sort of workaround, or at least not a known one.  If the system is crashing at seemingly nondeterministic times, it would be impossible to list a workaround except the trivial case of "don't use the software".  This is generally not accepted as a workaround.  This does not mean that a workaround does not exist, only that one is not known; there may be a setting or input value which is causing the issue, but the testing team just has not uncovered it.  If no user can log in to a web application, or the server refuses to start, or a system consistently gives wrong results to every query, then there may be no workaround, as the system is entirely unusable.  In such cases, the severity of the defect is inevitably BLOCKER or its equivalent.
 
 ### Notes
 
-I like to think of this field as the "miscellaneous" field.  It's where everything which might be useful for tracking down a bug, or that may or may not be relevant, goes.  It is also a good place for putting data which is too long to fit in any of the other sections, which should be relatively short and easy to grasp for developers, managers, other testers, and anyone else who may have to look at this defect and try to understand it, but may not be as familiar with that section of the software as the original tester.
+I like to think of this field as the "miscellaneous" field.  It's where everything which might be useful for tracking down a defect, or that may or may not be relevant, goes.  It is also a good place for putting data which is too long to fit in any of the other sections, which should be relatively short and easy to grasp for developers, managers, other testers, and anyone else who may have to look at this defect and try to understand it, but may not be as familiar with that section of the software as the original tester.
 
 What exactly goes here will vary by the type of software you are testing, but it will usually be technical details of the program or its environment, or factors which may or may not be relevant.  Some examples include:
 
@@ -169,7 +169,7 @@ For some defects, fields may be intentionally left blank.  For example, the defe
 
 In other cases, the field may be marked by "Unknown" or a similar marker that indicates that the filer of the defect does not know what the field should be.  For example, if the system crashed randomly, with no error message or other output, and the tester is unable to reproduce it, the Reproduction Steps field may be marked "Unknown".  If requirements are ambiguous or contradictory, the expected behavior field may be marked "Unknown".  If the tester is not sure what impact the defect would have on the end user, e.g., because the problem is deep in the infrastructure of the system, the Impact field may be marked "Unknown".
 
-Depending on how much focus is spent on testing in an organization, some of the fields may be omitted, or some added.  For example, in some organizations, testers may not have the domain knowledge to be able to determine the impact or severity of a defect.  At a minimum, any defect report should at a minimum include reproduction steps, the expected behavior, and the observed behavior.  Anything beyond that is the icing on the bug cake.
+Depending on how much focus is spent on testing in an organization, some of the fields may be omitted, or some added.  For example, in some organizations, testers may not have the domain knowledge to be able to determine the impact or severity of a defect.  At a minimum, any defect report should at a minimum include reproduction steps, the expected behavior, and the observed behavior.  Anything beyond that is the icing on the defect cake.
 
 ## Defect Examples
 

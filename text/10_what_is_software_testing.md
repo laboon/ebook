@@ -2,7 +2,7 @@
 
 Let's start with what it's not.
 
-1. It's not finding every single bug.
+1. It's not finding every single defect.
 2. It's not randomly pressing buttons, hoping that something will break.
 3. It's not hoping that something will break, period.
 4. It's not something you do after all the programming is complete.
@@ -54,7 +54,7 @@ This illustrates the difference between __verification__ and __validation__.  Ve
 
 Both verification and validation are part of the software testing process.  Although most testers will be spend much of their time concerned with verification, a software tester does not simply and blindly test that the software meets the requirements.  Testers can be thought of as defenders of the user experience, even pushing back against other internal stakeholders to develop software which meets the needs of users instead of simply meeting the bottom line.
 
-Interestingly, as more time and resources are spent on fixing defects or improving quality in other ways, money is often saved in the long run.  Developing on a system which has fewer bugs, or at least which has bugs you already know about, is far easier than adding features to software which fails intermittently and seemingly randomly.  A system with a good automated test suite will allow you to make changes with the assurance that you have not created additional defects in so doing.  This is the paradox of software quality - you may end up spending _less_ money for a _better_ product by properly testing.
+Interestingly, as more time and resources are spent on fixing defects or improving quality in other ways, money is often saved in the long run.  Developing on a system which has fewer defects, or at least which has defects you already know about, is far easier than adding features to software which fails intermittently and seemingly randomly.  A system with a good automated test suite will allow you to make changes with the assurance that you have not created additional defects in so doing.  This is the paradox of software quality - you may end up spending _less_ money for a _better_ product by properly testing.
 
 ## A Preliminary Definition of "Defect"
 

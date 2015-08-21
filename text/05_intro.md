@@ -28,4 +28,4 @@ This book is an introductory text to the world of software testing; there's defi
 
 ## A Note On Language Choice
 
-The examples I give are in Java and use much of the Java tool chain (e.g., JUnit).  This is not due to some particular love of Java.  I'll often mention how much easier something is to do in Ruby, or how a particular kind of bug doesn't even exist in Haskell, or other references along those lines.  Java does serve as a _lingua franca_ amongst developers nowadays.  It is a pretty standard, popular, ALGOL-derived programming language, so even if you're not familiar with it, you can probably reason out what's happening.
+The examples I give are in Java and use much of the Java tool chain (e.g., JUnit).  This is not due to some particular love of Java.  I'll often mention how much easier something is to do in Ruby, or how a particular kind of defect doesn't even exist in Haskell, or other references along those lines.  Java does serve as a _lingua franca_ amongst developers nowadays.  It is a pretty standard, popular, ALGOL-derived programming language, so even if you're not familiar with it, you can probably reason out what's happening.
