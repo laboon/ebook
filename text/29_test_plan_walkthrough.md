@@ -134,7 +134,7 @@ TEST CASE: Run the program passing in a valid parameter,
     startup message should appear.
 PRECONDITIONS: None
 INPUT VALUES: 5
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher 5"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The program displays the message "Cat Weighing System"
     upon the console before displaying the cat's weight status.
