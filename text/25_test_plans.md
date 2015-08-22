@@ -365,4 +365,4 @@ Of course, a traceability matrix provides a very simple overview of the test cov
 
 Traceability matrices are a good way to double-check your work and report to others outside of your team how well covered the system is from a test perspective.  In time crunches, you or your manager may decide that certain parts or functions of the system are more important to test than others, and so you may not even write tests for these less-important aspects.  Again, this is not a good practice, but at least you can use a traceability matrix to keep track of where the gaps in your testing coverage are.
 
-Customers and management, especially in highly regulated fields such as defense contracting and medicine, may also requirement traceability matrices as a way of proving that the systems have been tested to at least a baseline level.
+Customers and management, especially in highly regulated fields such as defense contracting and medicine, may also require traceability matrices as a way of proving that the systems have been tested to at least a baseline level.
