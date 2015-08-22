@@ -100,7 +100,7 @@ POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
 IDENTIFIER: NO-PARAMETER-TEST
 TEST CASE: Run the program without passing in a parameter.
 PRECONDITIONS: None
-INPUT VALUES: N/A
+INPUT VALUES: None
 EXECUTION STEPS: At the command line, run "catweigher"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
