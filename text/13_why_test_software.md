@@ -33,7 +33,9 @@ Software testing allows you to find these errors before users see them, when you
 
 ## Stability
 
-Developing software is a complex process.  At times, on some teams, it can even devolve into chaos.  A testing team can help alleviate this by providing stability.  By 
+Developing software is a complex process.  At times, on some teams, it can even devolve into chaos.  A testing team can help alleviate this by providing stability.  By ensuring that developers continue to work on software that contains fewer defects, the software can stay on a more stable footing.  Additional functionality is less likely to be built on top of a shaky foundation.
+
+A quality assurance team can also keep track of known existing defects, and allow prioritization to take place.  Instead of developers and managers dropping everything and working on every recently-found defect, or ignoring any new ones while they work on old ones, a test team can help determine what is worth working on.  This leads to a more rigorous and smoothly-flowing software development process.
 
 ## Customer Advocacy
 
@@ -41,18 +43,11 @@ Software developers, managers, and others working on a software project often ha
 
 QA engineers have a special role to play - they act as a representative of the customers and users of the software.  Their role is to ensure that the customer gets high-quality software that is what the customer wants.  In fact, in many organizations, software testers have the power to halt development or allocate resources in order to ensure that the customer receives the right software, built right.  Having somebody whose job is to act as an agent of the customer is a powerful force.  Used wisely, it can help to produce software which delights the user.
 
-## Reputation Defense
-
-
-
 ## Whole-System Perspective
 
 Developers are focused on very small parts of a system, with which they become intimately familiar.  It is the rare developer who has an understanding of the entire system under development.  Testers may not have the depth of knowledge of any one piece of the software, but do tend to have a broad perspective of the system as a whole.  They are testing various aspects of the system, trying out new functionality, and installing it on different kinds of systems.
 
 This whole-system perspective provides a valuable counterpoint to those who are heads-down on one area of the software.  Understanding how different subsystems work together, and how functionality works from a user perspective, lets QA personnel provide information on the status of the system as a system.  This also makes testers a valuable resource when new functionality is added or modified, as they will understand how this might impact the system.
-
-## Risk Management
-
 
 ## Ensuring Quality
 
