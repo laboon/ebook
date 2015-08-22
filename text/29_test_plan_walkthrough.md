@@ -11,7 +11,7 @@ Cat Weighing System
 Cat is overweight
 ```
 
-As the test cases are developed, take note of the trade-offs that are made, and how decisions about which test cases to include are made.  Also note how we use the ideas which we explored in earlier chapters - especially in equivalence class partitioning and thinking of failure cases - are used to make a well-rounded test plan.
+As the test cases are developed, take note of the trade-offs that are made, and how decisions about which test cases to include are made.  Also note how we use the ideas which we explored in earlier chapters - especially in equivalence class partitioning and thinking of failure cases - to make a well-rounded test plan.
 
 ## Examining The Requirements
 
