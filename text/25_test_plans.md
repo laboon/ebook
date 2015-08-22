@@ -20,18 +20,6 @@ Our boundary values are 174 and 175, as they mark the division between the two e
 
 Using these values, and a general idea of what we would like to test, we can start to create test cases.  Although different tools and companies will have different templates for entering test cases, this is a relatively standard one that can be applied or modified for most software projects.
 
-```
-IDENTIFIER:
-TEST CASE:
-PRECONDITIONS:
-INPUT VALUES:
-EXECUTION STEPS:
-OUTPUT VALUES:
-POSTCONDITIONS:
-```
-
-### Overview of the Fields
-
 1. __Identifier__ - An identifier, such as "16", "DB-7", or "DATABASE-TABLE-DROP-TEST", which uniquely identifies the test case.
 2. __Test Case__ - A description of the test case and what it is testing.
 3. __Preconditions__ - Any preconditions for the state of the system or world before the test begins.
