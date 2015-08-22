@@ -2,11 +2,10 @@
 
 Before we get deep into actually writing tests, it behooves us to make sure that we're all on the same page with the theory and terminology of testing.  This chapter will provide us with the same vocabulary and the theoretical foundation for discussing testing.
 
-As a caveat, I'd like to state that I have seen conflicting terminology during my career in testing.  Different workplaces and testing teams may call certain things differently, or use the same term in different ways.  I have tried to use the most common expressions, but you may see slightly different terminology in industry.
 
 ## Equivalence Classes and Expected versus Observed Behavior
 
-Imagine that you are in charge of testing a new display for a car tire air pressure sensor.  The air pressure reading comes in from an external sensor, and we are guaranteed that the air pressure value will be passed in to our display as a 32-bit, signed integer.  If the air pressure is greater than 35 pounds per square inch (PSI), the `OVERPRESSURE` light should turn on and all other lights should be off.  If the air pressure is between 0 and 20 PSI, the `UNDERPRESSURE` light should turn on, and all other lights should be off.  If the air pressure reading comes in as a negative number, the `ERROR` light should come on and all other lights should be off; if the air pressure in the tires is lower than the air pressure outside, there's either a sensor error or the sensor has somehow ended up on the surface of Venus.
+Imagine that you are in charge of testing a new display for a car tire air pressure sensor.  The air pressure reading comes in from an external sensor, and it is guaranteed that the air pressure value will be passed in to our display as a 32-bit, signed integer.  If the air pressure is greater than 35 pounds per square inch (PSI), the `OVERPRESSURE` light should turn on and all other lights should be off.  If the air pressure is between 0 and 20 PSI, the `UNDERPRESSURE` light should turn on, and all other lights should be off.  If the air pressure reading comes in as a negative number, the `ERROR` light should come on and all other lights should be off.
 
 This should be a relatively simple test.  There's only one input, the type is known and all possible input and output values are known.  We are ignoring exogenous factors, of course - a hardware tester would want to know what happens if, say, the wire between the sensor and display is cut, or if overvoltage occurs, or... well, use your imagination.
 
@@ -50,8 +49,8 @@ Now that our equivalence classes have been determined, it's possible to write te
 ## Interior and Boundary Values
 There's an axiom in testing that defects are more likely to be found near the boundaries of two equivalence classes.  These values - the "last" of one equivalence class and the "first" of a new equivalence class - are called __boundary values__.  Values which are not boundary values are called __interior values__.  For example, let's take a very simple mathematical function, the absolute value of an integer.  This has two equivalence classes:
 
-1. [-MAXINT, -MAXINT + 1, ... -2, -1, 0] -> For input x, outputs -(x)
-2. [1, 2, ... MAXINT - 1, MAXINT] -> For input x, outputs x
+1. [-MAXINT, -MAXINT + 1, ... -2, -1] -> For input x, outputs -(x)
+2. [0, 1, ... MAXINT - 1, MAXINT] -> For input x, outputs x
 
 The boundary values are 0 and 1; they are the dividing line between the two equivalence classes.  Every other value (e.g., 7, 62, -190) is an interior value; it is in the "middle" of an equivalence class.
 
@@ -100,7 +99,7 @@ Values to Test:
 
 One could also consider __implicit boundary values__.  In contrast to __explicit boundary values__, which are a natural outgrowth of requirements (such as the ones calculated above), implicit values grow out of the system under test or the environment under which the system operates.  For example, MAXINT and -MAXINT would both be implicit boundary values; adding one to MAXINT would cause an integer overflow and set the value to -MAXINT, and decrementing one from -MAXINT would lead to the value being MAXINT.  In each case, the equivalence class would change.
 
-Implicit boundary values can also be runtime-dependent.  Let us assume that we have a system with 2 gigabytes of memory free, and are running a database system.  Furthermore, let us assume that the system is an in-memory database; it cannot write any information to the disk (before you say that that's a ridiculous database design, check out Redis).  The equivalence classes for testing a function which inserts a number of rows may be as follows:
+Implicit boundary values can also be runtime-dependent.  Suppose that we have a system with 2 gigabytes of memory free, and are running an in-memory database system.  The equivalence classes for testing a function which inserts a number of rows may be as follows:
 
 1. Negative number of rows -> Error condition
 2. 0 rows or tables does not exist -> Returns NULL
@@ -109,9 +108,9 @@ Implicit boundary values can also be runtime-dependent.  Let us assume that we h
 There's an implicit boundary between the number of rows which fit into memory and that which don't.  Whoever wrote the requirements may not have thought about this, but as a tester, you should keep implicit boundary values in mind.
 
 ## Base Cases, Edge Cases, Corner Cases
-Let us continue our exploration of the pressure sensor display.  Going over our various test cases, we can see that they vary in how common they will be.  We can assume that the vast majority of the time, the pressure will be normal, or slightly over-pressure or under-pressure.  Each of these is considered a __base case__ - the system is operating within expected parameters for normal use.
+Let us continue our exploration of the pressure sensor display.  Going over our various test cases, we can see that they vary in how common they will be.  The vast majority of the time, the pressure will be normal, or slightly over-pressure or under-pressure.  Each of these is considered a __base case__ - the system is operating within expected parameters for normal use.
 
-When input values are outside normal operating parameter or are approaching the limits of what the system can handle, this is called an __edge case__.  An edge case may be the tire popping and air pressure dropping to zero.  Another case would be someone forgetting that they had the air hose attached to the tire, and pumping in air up to a pressure of 200 PSI, the absolute limit to which the tire is rated.  This also might cover error cases which might not be expected in normal operation.
+When input values are outside normal operating parameter or are approaching the limits of what the system can handle, this is called an __edge case__.  An edge case may be the tire popping and air pressure dropping to zero.  Another case would be someone forgetting that they had the air hose attached to the tire, and pumping in air up to a pressure of 200 PSI, the absolute limit to which the tire is rated.
 
 __Corner cases__ (often also called __pathological cases__) refer to situations where multiple things go wrong at the same time, or where a value is, to put it bluntly, ridiculously out of range from what is expected.  An example would be a tire pressure sensor receiving a value of 2,000,000,000 (2 billion) PSI, which is quite a bit higher than pressure in the core of the Earth.  Another example would be the tire popping at the same time that the sensor fails and attempts to send an error code.
 
@@ -132,7 +131,7 @@ These are all things that certainly may happen, but are not "normal".  They may 
 
 Finally, corner cases are cases where major disasters are occurring, or obviously bad data is sent in.  A few examples would be:
 
-1. The database goes down immediately after a user adds an item
+1. An item that was in stock when the page loads is out of stock by the time the user clicks the "Add To Cart" button
 2. The system receives a request to add 10^80 items (approximately equal to the number of atoms in the universe) to the shopping cart
 3. The memory in which the shopping cart is stored has been corrupted
 
@@ -140,9 +139,9 @@ Corner cases often involve a catastrophic failure of some kind (loss of network 
 
 ## Success Cases and Failure Cases
 
-When discussing test cases, there are two kinds of output that one would expect from a given test.  First, there may be a __success case__; that is, the case returns an expected result given the input given to it.  In general, tests following the happy path of what a user would normally do should be success cases.
+When discussing test cases, there are two kinds of output that one would expect from a given test.  First, there may be a __success case__ (also called a __positive test case__; that is, the case returns an expected result given the input given to it.  In general, tests following the happy path of what a user would normally do should be success cases.
 
-__Failure cases__ are cases in which we expect the system to "fail" for some reason, such as attempting to write to a read-only disk, getting the square root of a negative number (in systems that don't work with imaginary/complex numbers), or attempting to add an invalid username to a system.  In failure cases, instead of returning a correct result, the system will do... something else.  What this "something else" is will vary from test to test, and with what kind of functionality is being tested.  Some examples might be returning an error code or default value, throwing an exception, shutting the system down, or simply logging the error to a log file or `stderr`.
+__Failure cases__ (also called __negative test cases__) are cases in which we expect the system to "fail" for some reason, such as attempting to write to a read-only disk, getting the square root of a negative number (in systems that don't work with imaginary/complex numbers), or attempting to add an invalid username to a system.  In failure cases, instead of returning a correct result, the system will do... something else.  What this "something else" is will vary from test to test, and with what kind of functionality is being tested.  Some examples might be returning an error code or default value, throwing an exception, shutting the system down, or simply logging the error to a log file or `stderr`.
 
 ## Black / White / Grey Box Testing
 
@@ -150,13 +149,13 @@ There are various ways of testing a system, each of which has benefits and drawb
 
 Perhaps the easiest kind of testing to understand is __black box testing__.  In black box testing, the tester has no knowledge of the internal workings of the system, and accesses the system as a user would.  In other words, the tester does not know about what database is in use, what classes exist, or even what language the program is written in.  Instead, testing occurs as if the tester were an ordinary user of the software.
 
-As an example, let us imagine a desktop email application.  Tasked with testing this, a black box tester would test whether or not it could retrieve and send email, whether the spell check worked, whether files could be saved, etc.  The tester would not check that a particular method on a class was called, or what objects are loaded into memory, or the actual calls to particular functions.  If the tester wanted to ensure that emails could be properly sorted alphabetically by sender, for instance, a proper black box test would be to click on the "Sort Alphabetically by Sender" button or menu option.  A black box tester would neither know nor care that the program was written in Java or Haskell, or whether merge sort, quicksort, or bubble sort was used.  All the black box tester cares about is whether or not the system under test operates as expected from the user's point of view.
+Consider a desktop email application.  Tasked with testing this, a black box tester would test whether or not it could retrieve and send email, whether the spell check worked, whether files could be saved, etc.  The tester would not check that a particular method on a class was called, or what objects are loaded into memory, or the actual calls to particular functions.  If the tester wanted to ensure that emails could be properly sorted alphabetically by sender, for instance, a proper black box test would be to click on the "Sort Alphabetically by Sender" button or menu option.  A black box tester would not know that the program was written in Java or Haskell, or whether merge sort, quicksort, or bubble sort was used.  All the black box tester cares about is whether or not the system under test operates as expected from the user's point of view.
+
+Aspects of the system, such as what algorithm was used or what kind of memory allocation scheme is used, can be inferred by the black-box tester, but their concern is focused on the results of the system running.  For example, a black-box tester might notice that the system gets extremely slow when sorting a user's inbox when the user has thousands of messages.  The reason for this is a poor algorithm choice, but the tester is concerned with reporting the result that it is slow, not looking up or analyzing the algorithm.
 
 One could consider __white box testing__ to be the opposite of black box testing.  In white box testing, the tester has intimate knowledge of the codebase and tests code itself.  White box tests can test individual functions of the code, often looking at much more granular aspects of the system than black box tests.
 
 Continuing the example of a desktop email application, white box tests might check the actual `sort(EmailEntry[] emails)` function, sending in various values to see what the function returns or does.  White box testers would care about what happened specifically if a zero-length array or null reference were passed in, whereas a black box tester would only care about that if they specifically could cause it to happen from the user interface.  White box tests access the code as code - checking that return values from functions are correct, ensuring that objects are instantiated properly, etc. - instead of looking at the system from a user's perspective.
-
-Developers often act as white box testers of their own code, but quality analysts and external testers are sometimes involved.  In some organizations, there are special engineers (often called "software engineers in test") who will help build frameworks for a specific system under test for white box testing.
 
 __Grey box testing__, as its name implies, is a hybrid approach between white and black box testing.  Grey box testing involves accessing the system as a user (as a black box tester would do), but with knowledge of the codebase and system (as a white box tester would have).  Using this knowledge, the grey box tester can write more focused black box tests.
 
@@ -166,7 +165,7 @@ Let us assume that our grey box tester is looking at testing the email sorting f
 
 Another way of categorizing tests is to group them into __static tests__ and __dynamic tests__.  In dynamic tests, the system under test is actually running; the code is executed.  Virtually every test we have discussed so far has been a dynamic test.  Even if we don't see the code itself, the computer is running it, doing something with the input provided, and eventually providing some output.
 
-A static test, by contrast, does not execute the code.  Rather, it attempts to test aspects of the system without actually running the system.  Examples of static testing would be running a code coverage tool to see what amount of code is actually executed by tests, or having somebody review the code manually without actually running it.
+A static test, by contrast, does not execute the code.  Rather, it attempts to test aspects of the system without actually running the system.  Examples of static testing would be running a __linter__ (which flag code smells, such as trying to use a variable before any value is assigned to it), or having somebody review the code manually without actually running it.
 
 At first glance, the benefit of static testing may not be obvious.  After all, how can testing software without executing it provide any additional benefits?  It's as though you're deliberately removing yourself from the direct effects and looking at it from "one step away".  However, since static analysis looks directly at the code, instead of at the results of the code executing, it can help to find issues of quality in the code itself.
 

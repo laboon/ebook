@@ -204,6 +204,8 @@ __KPI__: Abbreviation for __Key Performance Indicator__.
 
 __Legacy code__: Code which is running in production, and was written without using modern software engineering techniques and/or has substandard automated test coverage.
 
+__Linter__: A static analysis tool which informs the user of potential issues with code.
+
 __Load testing__: Running a full system with a specified amount of demand (e.g., a certain number of users or events) in order to determine how the system operates under realistic conditions.
 
 __Logic bomb__: Code within a program which executes an unauthorized function, such as deleting all data on the first day of the month.
@@ -235,6 +237,8 @@ __MTBF__: An acronym  for __mean time between failures__
 __MTTR__: An acronym for __mean time to repair__.
 
 __n nines__: A way of showing what percentage of the time the system is available, based on the number of nines in that number, and assuming nines are the only significant digit.  For example, a system that is available 99.9% of the time has 3 nines' availability, while a system that is available 99.999% of the time has 5 nines' availability.
+
+__Negative test case__: See __failure case__.
 
 __Nines__: See __n nines__.
 
@@ -292,6 +296,8 @@ __Phreaker__: Another term for __phone phreak__.
 
 __Pinning test__: An automated test (usually a unit test) which checks for the current response of a system, in order to modify code without modifying existing behavior.  Note that pinning tests check for the current response, _not_ the correct response.  Often used when refactoring or adding to __legacy code__.
 
+__Positive test case__: See __success case__.
+
 __Postcondition__: All conditions which need to hold true after the execution steps in order for the test to pass.  For example, a postcondition after editing your user name may be that the Account Information page shows the new user name.
 
 __Precondition__: All conditions which need to hold true before the execution steps of a test case can begin.  For example, when testing the Account Information of a website, a precondition may be that the user is already logged in.
@@ -302,7 +308,11 @@ __Profiler__: A tool which allows you to measure the resource utilization and in
 
 __Pure__: A method or function which does not produce any __side effects__, but simply returns the result of a computation.
 
+_QA__: See __quality assurance__.
+
 __Qualitative__: Not able to be expressed numerically, such as "the system shall be _extremely_ cool".  Contrast with __qualitative__.
+
+__Quality assurance__: Ensuring the quality of software, by a variety of methods.  Software testing is an important, but not the only, part of.
 
 __Quality attribute__: Another (probably better) term for __non-functional requirement__.
 
