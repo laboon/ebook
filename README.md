@@ -1,4 +1,4 @@
-# A Comprehensive Approach to Software Testing
+# A Friendly Introduction to Software Testing
 Bill Laboon
 
 _for AKS and CKN_

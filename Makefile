@@ -1,4 +1,4 @@
-TITLE=A Comprehensive Approach\\\\to Software Testing
+TITLE=A Friendly Introduction\\\\to Software Testing
 AUTHOR=Bill Laboon
 DEDICATION=for AKS and CKN
 
