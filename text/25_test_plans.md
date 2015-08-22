@@ -148,7 +148,7 @@ Note that these steps are relatively explicit.  It is important to write the ste
 
 1. Move mouse cursor to pixel (170, 934) by moving right hand 0.456 inches from previous location using the computer mouse.  This location should correspond with a text box labeled "Search".
 2. Apply one pound of pressure for 200 milliseconds to the left button of the mouse, using your right index finger.
-3. After 200 milliseconds, quickly remove pressure from the left button of the mouse.  Ensure that a cursor now exists and is blinking at a rate of 2 Hz in the text box... (et cetera)
+3. After 200 milliseconds, quickly remove pressure from the left button of the mouse.  Ensure that a cursor now exists and is blinking at a rate of 2 Hz in the text box... (etc.)
 
 In general, it's best to set the level of specification to the ability and knowledge of the people who will actually be executing the tests (or, in the case of automated tests, of the programs that will actually be executing the execution steps).  If you have in-house testers that are very familiar with both the software and domain being tested, it may only be necessary to say "Set the _frobinator_ to 'FOO' using the primary dial."  This is specific enough that a user who is familiar with the system will unambiguously be able to follow the steps.  However, not everybody will be as familiar with the system as the writer of the tests.  Many times, the people who actually execute the tests are contractors, outsourced, or simply relatively new testers on the project.  For an outside tester who is not familiar with "frobinization" (and surprisingly, there are a few people out there who are not), it may be necessary to specify what needs to be done in much more detail:
 
