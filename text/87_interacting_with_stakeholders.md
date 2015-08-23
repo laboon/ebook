@@ -122,6 +122,8 @@ Although useful for providing the status of a system, the red-yellow-green templ
 
 BLOCKERS: Need to find latest version of symbology standards before finishing test plan
 
+----
+
 These should not take very long to write; a few sentences should suffice, and bullet points allow for a good overall summary instead of focusing on developing a narrative.  This simple email allows the manager to know what the tester is working on (writing a new test plan), what additional resources are available (a script for reformatting data, which may be hepful for other team members), and where the tester may need additional resources (the latest version of the symbology standard).
 
 Armed with this information, a manager can ask the team members to refocus efforts, or report up their own manager that there are problems.  They may be able to help with any problems that the tester is experiencing; perhaps they have a copy of the symbology standard the tester can borrow.  Finally, the team can be run more effectively when knowledge is shared in such a manner.  If the entire team can run the script that the tester has developed, they may save hours of time that would have been spent updating the test data files manually.
