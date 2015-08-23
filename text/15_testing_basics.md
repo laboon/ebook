@@ -21,7 +21,7 @@ What are the other equivalence classes here?  In order to answer this, think of 
 3. No light comes on for PSIs between 21 and 35 (normal operating conditions)
 4. The `OVERPRESSURE` light comes on for PSIs of 36 or greater
 
-Mathematically, one could think of this as a mapping between a group of input values and expected output conditions.
+Mathematically, one could think of this as a mapping between a group of input values and expected output conditions:
 
 1. [-MAXINT, -MAXINT + 1, ... -2, -1] -> `ERROR` light only
 2. [0, 1, ... 19, 20] -> `UNDERPRESSURE` light only
@@ -169,7 +169,7 @@ A static test, by contrast, does not execute the code.  Rather, it attempts to t
 
 At first glance, the benefit of static testing may not be obvious.  After all, how can testing software without executing it provide any additional benefits?  It's as though you're deliberately removing yourself from the direct effects and looking at it from "one step away".  However, since static analysis looks directly at the code, instead of at the results of the code executing, it can help to find issues of quality in the code itself.
 
-As an example, let's consider the following two methods, both of which accept a string `toChirp` and append the string `CHIRP!` to the end of it.  For example, passing in the value `foo` will return `fooCHIRP!` for each method.
+As an example, let's consider the following two methods, both of which accept a string `toChirp` and append the string `CHIRP!` to the end of it.  For example, passing in the value `foo` will return `fooCHIRP!` for each method:
 
 ```java
 public String chirpify(String toChirp) {

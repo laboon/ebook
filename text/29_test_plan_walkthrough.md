@@ -1,11 +1,12 @@
 # A Walkthrough in Creating a Test Plan
 
-Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called _catweigher_ (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight.
+Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called _catweigher_ (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight:
 
 ```
 $ catweigher 1.7
 Cat Weighing System
 Cat is underweight
+
 $ catweigher 83
 Cat Weighing System
 Cat is overweight
@@ -72,7 +73,7 @@ In the last three use cases, the expected behavior is the same; the system shuts
 
 Use cases 1, 3, and 4 all have variants which could be tested.  There are numerous values for valid parameters, in the first case, which will have different behaviors as enumerated in the other requirements.  There are an essentially infinite number of single invalid parameters, anything from negative values, to imaginary numbers, to random strings of any length.  For the fourth use case, the only limit to how many parameters the user can enter is up to the operating system; he or she can enter two, three, four or more.  The second use case has no variants; there are no different ways to enter no parameters; there are no different flavors of null.
 
-Depending on the importance of the cat-weighing program, we can decide if we want to test all possible use cases, and how many variants of the particular use case we want to test.  At a bare minimum, you probably want to test the happy path, that is, the expected use case that a user will follow, which in our case is the user entering one valid parameter.  Other use cases can be considered failure cases, since the expected behavior is to cease execution as an invalid value or set of values has been entered.
+Depending on the importance of the cat-weighing program, we can decide if we want to test all possible use cases, and how many variants of the particular use case we want to test.  At a bare minimum, you probably want to test the happy path, that is, the expected use case that a user will follow, which in our case is the user entering one valid parameter.  Other use cases can be considered failure cases, since the expected behavior is to cease execution as an invalid value or set of values has been entered:
 
 ```
 IDENTIFIER: VALID-PARAMETER-TEST
@@ -85,7 +86,7 @@ POSTCONDITIONS: The program exits and displays normal output for a 5 kilogram ca
     The program does not display "Please enter a valid parameter".
 ```
 
-The FUN-PARAMETER requirement has three failure cases which I'd also like to add tests for.  These are outside the happy path, as they indicate that the user is not using the program correctly.  However, in such cases, we still need to ensure that the system is following the requirements.  Let's add additional test cases for the three failure modes.
+The FUN-PARAMETER requirement has three failure cases which I'd also like to add tests for.  These are outside the happy path, as they indicate that the user is not using the program correctly.  However, in such cases, we still need to ensure that the system is following the requirements.  Let's add additional test cases for the three failure modes:
 
 ```
 IDENTIFIER: INVALID-PARAMETER-TEST
@@ -116,7 +117,7 @@ POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
     without further output.
 ```
 
-At this point, there's a reasonable amount of test coverage for this requirement.  On to the next one, FUN-STARTUP-MESSAGE, which it turns out is very simple to test.  There are two possibilities---that the system has been passed in a set of valid parameters, and that it was not passed in a set of valid parameters.  In the first case, the startup message should be displayed; in the second case, it should not, as we determined by resolving the ambiguity in the message requirements earlier.
+At this point, there's a reasonable amount of test coverage for this requirement.  On to the next one, FUN-STARTUP-MESSAGE, which it turns out is very simple to test.  There are two possibilities---that the system has been passed in a set of valid parameters, and that it was not passed in a set of valid parameters.  In the first case, the startup message should be displayed; in the second case, it should not, as we determined by resolving the ambiguity in the message requirements earlier:
 
 ```
 IDENTIFIER: STARTUP-NO-MESSAGE-TEST
@@ -146,7 +147,7 @@ It would be simple to add more edge cases, such as additional invalid and valid 
 
 ## Determining Focus
 
-Let's move on to the three weight requirements: FUN-UNDERWEIGHT, FUN-NORMALWEIGHT, and FUN-OVERWEIGHT.  This seems like a perfect time to partition the inputs and outputs into equivalence classes, as explained earlier.
+Let's move on to the three weight requirements: FUN-UNDERWEIGHT, FUN-NORMALWEIGHT, and FUN-OVERWEIGHT.  This seems like a perfect time to partition the inputs and outputs into equivalence classes, as explained earlier:
 
 ```
 < 3 kg -> Underweight
@@ -154,7 +155,7 @@ Let's move on to the three weight requirements: FUN-UNDERWEIGHT, FUN-NORMALWEIGH
 >= 6 kg -> Overweight
 ```
 
-Let's assume that cats are weighed in increments of one-tenth of a kilogram.  This can be verified by discussing with the systems engineers or other appropriate stakeholders.  We can select the explicit boundary values: 2.9, 3.0, 5.9, and 6.0 kg.  Now let's add an interior value from each equivalence class: 1.6 kg for Underweight, 5.0 kg for Normal Weight, and 10 kg for Overweight.  We'll also want to add in implicit boundary values, say 0 and 1,000.  This final value assumes that 1,000 kilograms is the theoretical upper bound for a cat before it collapses into a black hole, which is my understanding of physics (note that the author is not a physicist).  Finally, let's check some corner cases: a negative number (-13) and a non-numeric string (`quackadoodle_doo`).  Note how much more emphasis is put on determining a variety of input values for these requirements compared to the startup message.  Since determining the weight status of the cat is the core of this application, more testing emphasis is given to it.
+Let's assume that cats are weighed in increments of one-tenth of a kilogram.  This can be verified by discussing with the systems engineers or other appropriate stakeholders.  We can select the explicit boundary values: 2.9, 3.0, 5.9, and 6.0 kg.  Now let's add an interior value from each equivalence class: 1.6 kg for Underweight, 5.0 kg for Normal Weight, and 10 kg for Overweight.  We'll also want to add in implicit boundary values, say 0 and 1,000.  This final value assumes that 1,000 kilograms is the theoretical upper bound for a cat before it collapses into a black hole, which is my understanding of physics (note that the author is not a physicist).  Finally, let's check some corner cases: a negative number (-13) and a non-numeric string (`quackadoodle_doo`).  Note how much more emphasis is put on determining a variety of input values for these requirements compared to the startup message.  Since determining the weight status of the cat is the core of this application, more testing emphasis is given to it:
 
 ```
 IDENTIFIER: UNDERWEIGHT-INTERNAL
@@ -252,7 +253,7 @@ This can seem like a quite a bit of typing for the tests and their relative impo
 
 There is also some overlap between the last two test cases (WEIGHTSTATUS-INVALID-NEGATIVE and WEIGHTSTATUS-INVALID-STRING) and the previous test cases checking the requirement FUN-PARAMETER.  Although they are looking at slightly different aspects of the system, they are doing it through the same black-box methodology.  An argument could definitely be made that they are unnecessary, although white-box testing might show that different parts of the system are tested by each of the various test cases.
 
-Depending on the culture of the company and what is expected from the test plan documentation, we could compress the test cases so that each test case describes multiple values.  While I don't recommend this process---it's relatively easy to copy and paste, and having more test cases allows you to have very specific test cases---it does save time when writing.  It also allows each test case to cover more "territory", but adds an additional step to determining where the problem lies if a test case is seen to fail.  Caveats aside, let's show an example of compressing the three "underweight" test cases into one.
+Depending on the culture of the company and what is expected from the test plan documentation, we could compress the test cases so that each test case describes multiple values.  While I don't recommend this process---it's relatively easy to copy and paste, and having more test cases allows you to have very specific test cases---it does save time when writing.  It also allows each test case to cover more "territory", but adds an additional step to determining where the problem lies if a test case is seen to fail.  Caveats aside, let's show an example of compressing the three "underweight" test cases into one:
 
 ```
 IDENTIFIER: UNDERWEIGHT-INTERNAL
@@ -270,7 +271,7 @@ POSTCONDITIONS: For each of the input values, the string "Cat is underweight"
 
 There's an entire chapter on performance testing later, but for now, let's just go through a very simple performance test.  We want to check that the system completes calculation and information display within two seconds.  An easy way to verify this is by using the Unix tool `time`, which will tell you how long it took for a command to execute.  Although the standard tool will give you several different results, focus only on the "real" time which measures how long something actually took according to the clock on the wall (the other kinds of time that the tool measures will be discussed in the chapter on performance testing).
 
-We want to check that various values will all be calculated and the program exited within 2 seconds.  Several values are tested, in case calculations for one equivalence class are much more time-consuming than others.
+We want to check that various values will all be calculated and the program exited within 2 seconds.  Several values are tested, in case calculations for one equivalence class are much more time-consuming than others:
 
 ```
 IDENTIFIER: PERFORMANCE-RUNTIME

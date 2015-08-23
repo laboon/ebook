@@ -121,7 +121,7 @@ Be careful not to overgeneralize or editorialize in this section.  Let's say tha
 
 Related to the Impact field is the __Severity__ field, which contains the defect reporter's initial impression of how severe the issue is.  This can either be explained qualitatively (e.g., "this is really, really, bad.  Really, really, really bad." or "This isn't much of an issue, to be honest") or a standardized scale can be used in order to be more quantitative.  The latter is far more popular, but will usually vary from organization to organization.  It may be something as simple as a numeric scale, with "1" being a very minor issue and "10" being an absolute showstopper.  However, oftentimes there will be gradations with descriptors.
 
-An example rating system is explained below.
+An example rating system is explained below:
 
 1. __Blocker:__ This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker defects would be the system not allowing any user to log in, or a system that crashes whenever somebody presses the "A" key.
 

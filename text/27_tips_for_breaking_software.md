@@ -14,7 +14,7 @@ Maybe not that last one. However, you will have to think of ways to test for the
 
     For complex output (e.g., generating a large web page from a template), it may not be feasible to check the output directly.  However, you can check that there are valid properties of the output, and that those properties are expected.  For example, you can check that the generated page data can be parsed and that it displays and shows data correctly.  You can also look at the data from a higher abstraction level---instead of checking that there is an HTML `<strong>` tag around every occurrence of the word "cat" on a page, it may be easier to look at the page, search for cat, and check that each time it is displayed, it is in bold.
 
-2. __Off-By-One Errors:__ Although technically a logic error, these are so common that they will be addressed separately.  An off-by-one error is when a program does something wrong because a value is off by just one unit.  This is the reason that there was a focus on determining boundary values in a previous chapter---boundary values are a focused way of looking for off-by-one errors.  Why are these so common?  Let's imagine a very simple method which returns whether or not a person is a minor or not.
+2. __Off-By-One Errors:__ Although technically a logic error, these are so common that they will be addressed separately.  An off-by-one error is when a program does something wrong because a value is off by just one unit.  This is the reason that there was a focus on determining boundary values in a previous chapter---boundary values are a focused way of looking for off-by-one errors.  Why are these so common?  Let's imagine a very simple method which returns whether or not a person is a minor or not:
 
     ```java
     public boolean isMinor(int personAge) {
@@ -102,7 +102,7 @@ Maybe not that last one. However, you will have to think of ways to test for the
 
 12. __Interface Errors:__ Systems often need to communicate with other systems, and they will need some sort of interface to do so.  This interface may be more or less well-defined, from simply accepting text as input and providing text as output (such as with most Unix utilities such as `more` or `grep`) up to complex binary formats.  However, this interface does need to be defined at some level, and there exists the possibility that the definition is specified ambiguously, or different parts of the definition contradict each other, or each side of the interface team had different assumptions when creating it (see Errors of Assumption, above).  There also exists the possibility that it was just programmed incorrectly!
 
-    These interfaces do not have to be inter-process or inter-computer.  They can be as low-level as an interface between two classes.  The interface to a method is usually easy to understand; in Java, for instance, it's trivial to see what the following method accepts as arguments and what it outputs, even without comments.
+    These interfaces do not have to be inter-process or inter-computer.  They can be as low-level as an interface between two classes.  The interface to a method is usually easy to understand; in Java, for instance, it's trivial to see what the following method accepts as arguments and what it outputs, even without comments:
 
     ```java
     public boolean greaterThanTen(int a, int b) {

@@ -6,7 +6,7 @@ One way of determining what software to build is to determine the __requirements
 
 Requirements ensure that the developers know what to build, and the testers know what to test.  While requirements are important, they are not inviolable!  Common sense should be used when interpreting requirements, and requirements are often subject to change.   Note that there other methods of determining what software to build aside from traditional requirements, such as user stories.  
 
-In our tire air pressure example in the chapter on testing basics, we had some relatively simple requirements, although we did not mention at the time that that is what they were.
+In our tire air pressure example in the chapter on testing basics, we had some relatively simple requirements, although we did not mention at the time that that is what they were:
 
 1. The `ERROR` light comes on for PSIs of -1 or less
 2. The `UNDERPRESSURE` light comes for PSIs between 0 and 20

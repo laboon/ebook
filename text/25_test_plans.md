@@ -18,7 +18,7 @@ A single input value and one of two possible output values is a simple case of e
 
 Our boundary values are 174 and 175, as they mark the division between the two equivalence classes.  Let's also use two interior values, 135 for the JUST-RIGHT class and 200 for the TOO-HOT class.  For this particular sample test plan, we will ignore the implicit boundary values of infinity and negative infinity (or the system's concept of these, MAXINT and -MAXINT).
 
-Using these values, and a general idea of what we would like to test, we can start to create test cases.  Although different tools and companies will have different templates for entering test cases, this is a relatively standard one that can be applied or modified for most software projects.
+Using these values, and a general idea of what we would like to test, we can start to create test cases.  Although different tools and companies will have different templates for entering test cases, this is a relatively standard one that can be applied or modified for most software projects:
 
 1. __Identifier:__ An identifier, such as "16", "DB-7", or "DATABASE-TABLE-DROP-TEST", which uniquely identifies the test case.
 2. __Test Case:__ A description of the test case and what it is testing.
@@ -75,7 +75,7 @@ The dividing line between preconditions and execution steps can sometimes be an 
 1. The user has logged in
 2. The image has been posted to the URL `/pictures/foo`.
 
-However, if we were testing banking software and were using that image display to warn of an invalid transaction, there would probably be more preconditions, and the ones that did exist would be more specific.
+However, if we were testing banking software and were using that image display to warn of an invalid transaction, there would probably be more preconditions, and the ones that did exist would be more specific:
 
 1. User X has logged in with password Y
 2. User X has no warnings or `STOP CHECK` notices on their account
@@ -138,7 +138,7 @@ Now that the preconditions and input values for a test case have been determined
 
 Let's start with a simple example.  We are testing an e-commerce software system and checking that adding one item to the cart, when the cart is already empty, will display "1" as the number of items in the cart.  The precondition is that the cart contains zero items.  This may have been accomplished in a variety of ways: the user has never logged in before; the user is already logged in and bought any items that were in the cart, resetting the counter; or any existing items that were in the cart have been removed without being bought.  From the point of view of this case, it does not matter how this point (i.e., the cart containing zero items) has been reached, only that it does.
 
-Conversely, the actual execution steps should be spelled out very clearly.
+Conversely, the actual execution steps should be spelled out very clearly:
 
 1. Search for item "SAMPLE-BOX" by selecting the "Search" text box, entering `SAMPLE-BOX`, and hitting the "Search" button.
 2. An item labeled "SAMPLE-BOX" should be displayed.  Click on the button labeled  "Add Item to Cart" next to the picture of the SAMPLE-BOX.
@@ -197,7 +197,7 @@ Determining test cases for non-functional requirements (quality attributes) of t
 
 Unfortunately, simply having a correspondence between all requirements and a test case for each does not always mean that you have developed a good test plan.  You may have to add additional tests to ensure that requirements work together in tandem, or check for cases from the user's point of view that may not map directly to requirements or flow directly from them.  Even more importantly, you will need to gain an understanding of the context that the software exists in.  Having domain knowledge of the field can help you understand basic use cases, how the system interacts with the environment, possible failure modes, and how users would expect the system to recover from those failure modes.  If nobody on the team understands the domain of the software, it may be worthwhile to discuss the software with a subject matter expert (SME) before writing a test plan.
 
-Understanding the programming environment that the software is written in can also facilitate writing a test plan.  Although this technically veers into grey-box testing as opposed to black-box testing, since you as a tester will know some of the internal implementation details, it can provide valuable insight in knowing where potential errors may lurk.  Allow me to give an example.  In Java, dividing by zero, as in the code below, will throw a `java.lang.ArithmeticException`.
+Understanding the programming environment that the software is written in can also facilitate writing a test plan.  Although this technically veers into grey-box testing as opposed to black-box testing, since you as a tester will know some of the internal implementation details, it can provide valuable insight in knowing where potential errors may lurk.  Allow me to give an example.  In Java, dividing by zero, as in the code below, will throw a `java.lang.ArithmeticException`:
 
 ```java
 int a = 7 / 0;
@@ -228,7 +228,7 @@ Executing a test plan should be a relatively simple process, assuming that you h
 
 Unfortunately, this beautiful vision does not always come to pass.  In the process of executing a test case, the test case can have different statuses.  There will be a final status for each test case, although the status is liable to change during the execution of the test run.  There is also often a "null" or "untested" status which means that that particular test case has not yet been executed.
 
-Although there is no universal status repository, these are a representative sampling of the kinds of test cases that might be encountered in your testing career.  The names may change, but these six provide good coverage of all the situations that your test case may be in.
+Although there is no universal status repository, these are a representative sampling of the kinds of test cases that might be encountered in your testing career.  The names may change, but these six provide good coverage of all the situations that your test case may be in:
 
 1. Passed
 2. Failed
@@ -253,7 +253,7 @@ Finally, in some cases a test case simply cannot be executed, either now or in t
 
 Although you could execute a test plan for fun or for your own sense of self-improvement, in most cases you want to record what the results of the test plan were.  This can be done using custom test tracking software, a simple spreadsheet program, or even just a notebook.  In some cases, this will be necessary due to the regulatory environment, but even if it is not required, keeping track of what tests have passed and which have not will be extremely useful.
 
-When tracking a test run, there are several pieces of information that you will want to include.
+When tracking a test run, there are several pieces of information that you will want to include:
 
 1. The date the test was executed
 1. The name or other identifier (e.g., login or ID number) of the tester
@@ -303,7 +303,7 @@ As an example, let's return to the requirements specification for the coffee tem
 * __FUN-COFFEE-TOO-COLD.__ If the coffee temperature is measured at 130 degrees Fahrenheit or less, the app shall display the `TOO COLD` message.
 * __FUN-TEA-ERROR.__ If the liquid being measured is actually tea, the app shall display the `SORRY, THIS APP DOES NOT SUPPORT TEA` message.
 
-We write down the identifiers of the requirements, and leave a space for the test plan identifiers.
+We write down the identifiers of the requirements, and leave a space for the test plan identifiers:
 
 ```
 FUN-COFFEE-TOO-HOT:
@@ -312,7 +312,7 @@ FUN-COFFEE-TOO-COLD:
 FUN-TEA-ERROR:
 ```
 
-Now look through the completed test plan, and determine which test cases correspond to testing these specific requirements.  For each test case which does, write down its identifier next to the requirement.
+Now look through the completed test plan, and determine which test cases correspond to testing these specific requirements.  For each test case which does, write down its identifier next to the requirement:
 
 ```
 FUN-COFFEE-TOO-HOT: 1, 2
@@ -321,11 +321,11 @@ FUN-COFFEE-TOO-COLD: 6, 7
 FUN-TEA-ERROR: 8
 ```
 
-It's easy to see that for each requirement, there is at least one test covering it.  If there were another requirement, say:
+It's easy to see that for each requirement, there is at least one test covering it.  If there were another requirement, say,
 
 * __FUN-COFFEE-FROZEN.__ If the coffee is in a solid and not a liquid state, then the app shall display `THIS COFFEE CAN ONLY BE EATEN, NOT DRUNK` message.
 
-and we tried to create a traceability matrix, it would be very easy to see that there were no tests checking for this requirement.
+and we tried to create a traceability matrix, it would be very easy to see that there were no tests checking for this requirement:
 
 ```
 FUN-COFFEE-TOO-HOT: 1, 2
@@ -348,7 +348,7 @@ OUTPUT VALUES: None
 POSTCONDITIONS: "POODLE IS OK" message is displayed upon screen.
 ```
 
-Our traceability matrix will once again have a gap in it, but this time on the requirements side.  Test case 9 does not match up with any of the requirements, and may be a superfluous test.
+Our traceability matrix will once again have a gap in it, but this time on the requirements side.  Test case 9 does not match up with any of the requirements, and may be a superfluous test:
 
 ```
 FUN-COFFEE-TOO-HOT: 1, 2

@@ -120,7 +120,7 @@ assertSame(a, a); // True; both are the same reference to the same object
 assertSame(a, c); // True; these are different references to the same object
 ```
 
-Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17)`.  In my experience, these are used much less often.  You want to check for a specific _expected_ behavior, if at all possible, not that it's _not unexpected_ behavior.  Checking that something does not exist could be an indication that the test is fragile or not thought through.  Imagine that you have written a method which will generate 19th-century Romantic poems.  You know that these poems should never start with the word "homoiconicity", so you write a test to that effect.
+Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17)`.  In my experience, these are used much less often.  You want to check for a specific _expected_ behavior, if at all possible, not that it's _not unexpected_ behavior.  Checking that something does not exist could be an indication that the test is fragile or not thought through.  Imagine that you have written a method which will generate 19th-century Romantic poems.  You know that these poems should never start with the word "homoiconicity", so you write a test to that effect:
 
 ```java
 @Test
@@ -139,7 +139,7 @@ One of the simplest ways to do this is to first ensure that your tests fail!  Wh
 
 In the linked list equality test above, what could you change to ensure that your tests are testing what you think they are testing?
 
-  What if you changed the first linked list, _a_, to contain the data 1 -> 2?
+What if you changed the first linked list, _a_, to contain the data 1 -> 2?
 
 ```java
     @Test
@@ -202,7 +202,7 @@ public void haveFunAtDuckPond(DuckPond duckPond) {
 }
 ```
 
-Pure functions are usually easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against.   Additionally, they may depend upon or modify parts of the code outside of this particular method.  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with `_global` are defined and set external to the method.
+Pure functions are usually easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against.   Additionally, they may depend upon or modify parts of the code outside of this particular method.  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with `_global` are defined and set external to the method:
 
 ```java
 public void printAndSave() {

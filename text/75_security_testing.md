@@ -63,7 +63,7 @@ It is not necessary for malware to be involved for there to be an attack on a sy
 
 ### Injection
 
-In an __injection attack__, the attacker is attempting to get your computer to run some arbitrary code of their choosing.  One of the most common types of injection attacks is a __SQL injection attack__, since many programmers, especially new ones, do not __sanitize__ their database inputs.  Sanitization involves ensuring that input from a user will not be directly executed, by "cleaning it up" so that it can't run.  As an example, imagine some code that accepts a string from the user asking for their name, searches in the database for any users with that name, and returns the unique ID (uid) for the first user with that name.
+In an __injection attack__, the attacker is attempting to get your computer to run some arbitrary code of their choosing.  One of the most common types of injection attacks is a __SQL injection attack__, since many programmers, especially new ones, do not __sanitize__ their database inputs.  Sanitization involves ensuring that input from a user will not be directly executed, by "cleaning it up" so that it can't run.  As an example, imagine some code that accepts a string from the user asking for their name, searches in the database for any users with that name, and returns the unique ID (uid) for the first user with that name:
 
 ```java
 public int findUidByName(String name) {
@@ -100,7 +100,7 @@ What happens when you try to put ten pounds of data in a five-pound bag?  A __bu
 int[] _fiveInts = new int[5];
 ```
 
-Now let's say that you have a method that accepts a string of integers, separated by commas (e.g. `7,4,29,3,2`), and then puts each of the integers into the `_fiveInts` array.
+Now let's say that you have a method that accepts a string of integers, separated by commas (e.g. `7,4,29,3,2`), and then puts each of the integers into the `_fiveInts` array:
 
 ```java
 public void putDataIntoFiveInts(String data) {

@@ -30,7 +30,7 @@ We work within these constraints by using the "red-green-refactor" loop.  A sing
 
 After each red-green-refactor cycle, the developer should think of the next piece of functionality that to add, and then loop back.  This cycling will continue until the software has done, a path of testing, coding, and refactoring that will eventually culminate in a complete product.  As a side effect, it will also include a solid test suite that is directly relevant to all the functionality of the program.
 
-This could all be re-written as a very simple algorithm.  By doing so, we can see how this helps focus the attention of the person writing the software; there is always a well-defined next step.
+This could all be re-written as a very simple algorithm.  By doing so, we can see how this helps focus the attention of the person writing the software; there is always a well-defined next step:
 
 1. Write a test for functionality which has not been written yet.
 2. Run test suite---only the newly written test should fail.  If not, first figure out why other tests are failing and fix that problem.
@@ -83,7 +83,7 @@ public class FizzBuzz {
 }
 ```
 
-Now let's add our first test, using the first case.  The first number that is not evenly divisible by 3 or 5 is 1, so let's use 1 as the first value to test for our `fizzbuzzify()` method.
+Now let's add our first test, using the first case.  The first number that is not evenly divisible by 3 or 5 is 1, so let's use 1 as the first value to test for our `fizzbuzzify()` method:
 
 ```java
 public class FizzBuzzTest {
@@ -115,7 +115,7 @@ public class FizzBuzz {
 
 When we run the test again, it passes!  Let's move on to the next phase and look for any refactoring opportunities.  In this case, I don't think there are; sure, there's a magic number (well, technically a magic string consisting of a number), but what can you do, replace it with a constant `NUMBER_ONE`?  That's not any more understandable.
 
-Let's add another test, for 2, which should return a non-fizzy, non-buzzy string, "2".
+Let's add another test, for 2, which should return a non-fizzy, non-buzzy string, "2":
 
 ```java
 public class FizzBuzzTest {
@@ -156,7 +156,7 @@ public class FizzBuzz {
 
 Now all of our tests pass!  We are coding geniuses!  Go ahead and give yourself a pat on the back!
 
-Of course, this pattern is not going to work going forwards.  Let's refactor the code a bit so that it will work with all integers, instead of having to add a new `else if` for each individual value.
+Of course, this pattern is not going to work going forwards.  Let's refactor the code a bit so that it will work with all integers, instead of having to add a new `else if` for each individual value:
 
 ```java
 public class FizzBuzz {
@@ -172,7 +172,7 @@ public class FizzBuzz {
 }
 ```
 
-Much better!  Tests are still passing, so we can move on to the next cycle in the loop.  Let's add a test for `fizzbuzzify(3)`, which should return "Fizz".
+Much better!  Tests are still passing, so we can move on to the next cycle in the loop.  Let's add a test for `fizzbuzzify(3)`, which should return "Fizz":
 
 ```java
     @Test
@@ -194,7 +194,7 @@ Much better!  Tests are still passing, so we can move on to the next cycle in th
     }
 ```
 
-Huzzah, our tests pass!  This isn't an ideal solution, though---it will only work with 3, and we know that it should be any number that's evenly divisible by 3.  A bit of refactoring and we should be able to handle any number divisible by 3.
+Huzzah, our tests pass!  This isn't an ideal solution, though---it will only work with 3, and we know that it should be any number that's evenly divisible by 3.  A bit of refactoring and we should be able to handle any number divisible by 3:
 
 ```java
     private static String fizzbuzzify(int num) {
@@ -206,7 +206,7 @@ Huzzah, our tests pass!  This isn't an ideal solution, though---it will only wor
     }
 ```
 
-This also might give us more ideas for additional unit tests later---perhaps we want to check if 6, 9, or 3000 work.  For now, though, let's just move on to add "Buzz".
+This also might give us more ideas for additional unit tests later---perhaps we want to check if 6, 9, or 3000 work.  For now, though, let's just move on to add "Buzz":
 
 ```java
     @Test
@@ -230,7 +230,7 @@ Once again, the test will fail, so we add an additional else to our conditional:
     }
 ```
 
-Tests pass now, and there doesn't seem to be any refactoring to do.  Let's try one final test for the "FizzBuzz" return value.
+Tests pass now, and there doesn't seem to be any refactoring to do.  Let's try one final test for the "FizzBuzz" return value:
 
 ```java
     @Test
@@ -240,7 +240,7 @@ Tests pass now, and there doesn't seem to be any refactoring to do.  Let's try o
     }
 ```
 
-This test fails, since the current method  will return "Fizz".
+This test fails, since the current method will return "Fizz":
 
 ```java
     private static String fizzbuzzify(int num) {

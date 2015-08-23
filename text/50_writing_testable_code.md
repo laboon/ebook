@@ -57,7 +57,7 @@ public int getNumGiraffesInZoo() {
 
 At first glance, this looks easy to test---after all, you just need to assert that the number of giraffes is the number you expect---but this code is not well-segmented.  Not only does it depend on the `DatabaseWorker`, `NetworkConnection`, `DatabaseConnectionPool`, `NetworkConnectionFactory`, and `SqlGenerator` classes to work correctly, along with all of their assorted methods, there is no way to double them since they are all constructed inside of the method.  A problem in any of these will cause your test to fail, and it can be difficult to know why the test failed.  Was it in the actual method you are testing, or one of the numerous dependencies?
 
-Let's restructure this so that the method is well-segmented.
+Let's restructure this so that the method is well-segmented:
 
 ```java
 public int getNumGiraffesInZoo(DatabaseWorker dbw, SqlGenerator sqlg) {
@@ -72,7 +72,7 @@ public int getNumGiraffesInZoo(DatabaseWorker dbw, SqlGenerator sqlg) {
 }
 ```
 
-While this is still suboptimal, it is at least possible to override all of the dependencies with doubles.  There's less concern in the method on items that are unrelated to the method itself (e.g., connecting network connections to the database worker, which probably belongs in the `DatabaseConnectionPool` or the `DatabaseWorker` class itself, certainly not in the `getNumGiraffesInZoo` method.  We could go a bit further and move all of the database workings to their own class, wrapping them all up so that only the important parts are visible to this method.
+While this is still suboptimal, it is at least possible to override all of the dependencies with doubles.  There's less concern in the method on items that are unrelated to the method itself (e.g., connecting network connections to the database worker, which probably belongs in the `DatabaseConnectionPool` or the `DatabaseWorker` class itself, certainly not in the `getNumGiraffesInZoo` method.  We could go a bit further and move all of the database workings to their own class, wrapping them all up so that only the important parts are visible to this method:
 
 ```java
 public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
@@ -132,7 +132,7 @@ The longer you go on writing code without writing tests for it, the more likely 
 
 ## DRYing Up Code
 
-The acronym __DRY__ stands for "Don't Repeat Yourself", and it is a key tenet to making your code not only more testable, but better all around.  The trivial case of failing to keep code DRY is simply copy-and-pasting, often with a slightly different method name.
+The acronym __DRY__ stands for "Don't Repeat Yourself", and it is a key tenet to making your code not only more testable, but better all around.  The trivial case of failing to keep code DRY is simply copy-and-pasting, often with a slightly different method name:
 
 ```java
 public int[] sortAllTheNumbers(int[] numsToSort) {
@@ -148,7 +148,7 @@ In case you think this is a ludicrous contrived example, I have personally seen-
 
 What happens when you decide that you are no longer going to use the `quickSort()` method, or decide to support floating-point numbers in addition to integers?  You will have to make changes in two (or more... there's practically no limit to how many times code can be copied and pasted) places, which can be easy to forget to do.  That's double the room for error, or for doing it slightly differently in one place than the other.  Testing for these kind of things can be difficult.  Remove duplicate code sooner rather than later.
 
-While the duplicated method above is a simple example, you may have more complex cases of code duplication.  Any time you find yourself with repeated code, even if it's in the middle of a statement, it may be a good idea to put it into its own method.  Consider the following SQL code which must be called by each of these methods in order to determine how many of a particular kind of breed exists in the database.
+While the duplicated method above is a simple example, you may have more complex cases of code duplication.  Any time you find yourself with repeated code, even if it's in the middle of a statement, it may be a good idea to put it into its own method.  Consider the following SQL code which must be called by each of these methods in order to determine how many of a particular kind of breed exists in the database:
 
 ```java
 public int getNumberOfCats(String catBreed) {
@@ -168,7 +168,7 @@ public int getNumberOfPigeons(String pigeonBreed) {
 }
 ```
 
-While the statements aren't exactly the same, they are similar enough that they are a target for the DRYing up the code.  After all, we can always pass in parameters to tweak the behavior to exactly what we want.
+While the statements aren't exactly the same, they are similar enough that they are a target for the DRYing up the code.  After all, we can always pass in parameters to tweak the behavior to exactly what we want:
 
 ```java
 public int getNumAnimals(String animalType, String breed) {
@@ -192,7 +192,7 @@ The code is now going to be much more flexible and maintainable.  Supporting add
 
 ## Dependency Injection
 
-As we've seen, having dependencies hard-coded into your methods can make them difficult to test.  Lets assume you have a class-level reference to a `Duck` object that is created by a `Pond` object.  The `Pond` class has a `sayHi()` method which will say "Hi!" to all of the animals in the pond.
+As we've seen, having dependencies hard-coded into your methods can make them difficult to test.  Lets assume you have a class-level reference to a `Duck` object that is created by a `Pond` object.  The `Pond` class has a `sayHi()` method which will say "Hi!" to all of the animals in the pond:
 
 ```java
 public class Pond {
@@ -211,7 +211,7 @@ public class Pond {
 
 How can you test this?  There's no easy way to verify that the duck got the "Hi" message.  __Dependency injection__ allows you to avoid this problem.  Although this is an excellent term to use to sound knowledgeable about testing, it's actually a very simple concept that you have probably seen in practice already.  In a nutshell, dependency injection means passing the dependencies in as parameters to a method, as opposed to having hard-coded references to them.  This will make it much easier to pass in test doubles or mocks.
 
-Let's re-write the above `Pond` class allowing for dependency injection.
+Let's re-write the above `Pond` class allowing for dependency injection:
 
 ```java
 public class Pond {
@@ -259,7 +259,7 @@ Doing the minimum isn't normally considered a great way to go through life, but 
 
 Additionally, doing the minimum can ensure that you are using your time wisely.  It may not be worth your time to add documentation to every method in the class you're working on, especially if you don't think it will be modified again anytime in the near future.  It's not that it's not a good idea, but perhaps not a good prioritization of your time.  Remember that you have a limited amount of time available not just on this Earth, but for completing a project.  Spend too much time on the wrong things, and it doesn't get done.  While it's an honorable drive to want to fix all of the problems you see in the codebase, the dirty little secret of the software industry is that there is all sorts of ugly code running behind the scenes, and most of the time, it works.  Your favorite bank has thousands of `GOTO` statements in its transfer code.  Your favorite three-letter government agency has hundreds of thousands of lines of code that not unit test has ever laid eyes (or mocks or stubs) on.  It is okay to cry about the state of the world, but sometimes you just need to let it be.
 
-If possible, you want to start your search for code to modify by looking for __seams__.  Seams are locations in code where you can modify _behavior_ without modifying _code_.  This is probably easiest to see with examples.  In this first method, there is no seam---there is no way to modify how the program behaves without modifying some code in the method.
+If possible, you want to start your search for code to modify by looking for __seams__.  Seams are locations in code where you can modify _behavior_ without modifying _code_.  This is probably easiest to see with examples.  In this first method, there is no seam---there is no way to modify how the program behaves without modifying some code in the method:
 
 ```java
 public void createDatabaseTable() {
@@ -269,7 +269,7 @@ public void createDatabaseTable() {
 }
 ```
 
-If you want to change the database this code will update, you will need to modify the constant `DEFAULT_DB` or otherwise change the line of code.  There's no way to pass in a test double for it, or otherwise use a fake database in your test.  If you want to add a column, you will need to edit the string that is inside the method.  Now let's compare this to a method which is a seam.
+If you want to change the database this code will update, you will need to modify the constant `DEFAULT_DB` or otherwise change the line of code.  There's no way to pass in a test double for it, or otherwise use a fake database in your test.  If you want to add a column, you will need to edit the string that is inside the method.  Now let's compare this to a method which is a seam:
 
 ```java
 public int executeSql(DatabaseConnection db, String sqlString) {

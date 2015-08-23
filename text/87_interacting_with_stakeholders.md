@@ -59,7 +59,7 @@ Dividing the system into subsystems is often already done at this point---for ex
 
 Along with each subsystem and its status, there should be a short notes section going into detail about _why_ that specific status was chosen.  This section is usually only a few sentences, but provides insight into what possible problems could crop up.  It also allows for knowledgeable questions to be asked, and does not rely solely on the producer of the status for determining it.  Another stakeholder may see what seems like a minor problem to the tester, but actually has major import for delivering the system.
 
-Let's walk through some examples to see how we can use the red-yellow-green template to quickly display status to a manager.  These two examples both involve a system which accepts customer information via an API, stores it in a database, and then emails weekly reports to the marketing department.
+Let's walk through some examples to see how we can use the red-yellow-green template to quickly display status to a manager.  These two examples both involve a system which accepts customer information via an API, stores it in a database, and then emails weekly reports to the marketing department:
 
 ```
 --------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ Let's walk through some examples to see how we can use the red-yellow-green temp
 --------------------------------------------------------------------------------
 ```
 
-In this first instance, we have a system which is going well.  There are no known major problems, and no worries about major schedule slippage or scope reduction.  At a glance, we can see a sea of green, with only one small island of yellow.  Importantly, it's possible to see why these subsystems have the status they do.  If a stakeholder wanted to know more detail about the design defects in the emails, they can ask more questions, or if they want to know what edge cases were checked in the input API, they can do so.  Now let's look at another version of the system which is perhaps not going as well.
+In this first instance, we have a system which is going well.  There are no known major problems, and no worries about major schedule slippage or scope reduction.  At a glance, we can see a sea of green, with only one small island of yellow.  Importantly, it's possible to see why these subsystems have the status they do.  If a stakeholder wanted to know more detail about the design defects in the emails, they can ask more questions, or if they want to know what edge cases were checked in the input API, they can do so.  Now let's look at another version of the system which is perhaps not going as well:
 
 ```
 --------------------------------------------------------------------------------

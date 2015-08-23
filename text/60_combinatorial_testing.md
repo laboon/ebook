@@ -10,7 +10,7 @@ This technique is called __combinatorial testing__.  Testing all possible pairs 
 
 ## An Example of Pairwise Testing
 
-Let's take a very simple example, a program which has only three variables for a character's formatting: bold, italic, and underline.  These can be combined, so that, for example, a character can be just italic; or italic and underlined; or bold, italic and underlined.  Since each of these variables is a Boolean (they can only be true or false---you can't have a "half-italic" character), the list of possibilities for a character can be expressed as a truth table.
+Let's take a very simple example, a program which has only three variables for a character's formatting: bold, italic, and underline.  These can be combined, so that, for example, a character can be just italic; or italic and underlined; or bold, italic and underlined.  Since each of these variables is a Boolean (they can only be true or false---you can't have a "half-italic" character), the list of possibilities for a character can be expressed as a truth table:
 
 ```
      BOLD       | ITALIC    | UNDERLINE
@@ -38,7 +38,7 @@ As explained above, checking that all pairs of variables are checked can help us
  true       | true
 ```
 
-Now we need to ensure that our tests cover every possibility of bold and italic.  We can see that test 1 provides false/false, test 4 provides false/true, test 5 provides true/false, and test 8 provides true/true.
+Now we need to ensure that our tests cover every possibility of bold and italic.  We can see that test 1 provides false/false, test 4 provides false/true, test 5 provides true/false, and test 8 provides true/true:
 
 ```
      BOLD       | ITALIC    | UNDERLINE
@@ -72,7 +72,7 @@ Finally, we should check the last variable combination, italic/underline.  Test 
 
 We have met our strict manager's demand and reduced the number of tests by 25%.  We have used a __covering array__ to determine a smaller way to check all 2-way (pairwise) interactions.  This is actually not the optimal configuration for testing all combinations, as we used a naïve algorithm and did not check other possibilities (perhaps by selecting different tests whenever we had a choice, we could have covered even more cases).  Although the particular algorithms and heuristics used are beyond the scope of this book, there are tools that will generate these covering arrays quickly and automatically.  These combinatorial test generators---such as the free Advanced Combinatorial Testing System from NIST---are invaluable when attempting to generate covering arrays for a non-trivial number of variables.
 
-Using NIST ACTS with the IPOG algorithm, I was able to generate the following optimal covering array.  With only four tests, it would literally be impossible to be more efficient, since each pairwise truth table will themselves require four different tests.  Even more importantly, we have now exceeded the manager's expectations, cutting the tests down by 50% instead of the 25% that he demanded, yet still testing all pairwise interactions.
+Using NIST ACTS with the IPOG algorithm, I was able to generate the following optimal covering array.  With only four tests, it would literally be impossible to be more efficient, since each pairwise truth table will themselves require four different tests.  Even more importantly, we have now exceeded the manager's expectations, cutting the tests down by 50% instead of the 25% that he demanded, yet still testing all pairwise interactions:
 
 ```
      BOLD       | ITALIC    | UNDERLINE
@@ -83,7 +83,7 @@ Using NIST ACTS with the IPOG algorithm, I was able to generate the following op
 7.   true       | true      | false
 ```
 
-Although this example was done with Boolean variables, any kind of variable can be used as long as it's finite.  If it's a variable with infinite possibilities---say, an arbitrary length string---you can map to a certain number of possibilities (e.g., `a`, `abcde`, and `abcdefghijklmnop`).  When doing so, you should first think of the different equivalence classes, if any, and ensure that you have a value from each equivalence class.  You should also try to check several different edge cases, especially those which may cause problems when interacting in combination with other variables.  Suppose in our previous example that instead of checking a character, we wanted to check a word.  We may add different possibilities for the word to be tested.  Let's start with "a" (a single character) and "bird", a simple word.  Our generated covering array will look similar to the previous one, just using "a" and "bird" as the values for the word variable, instead of true and false as for all of the other variables.
+Although this example was done with Boolean variables, any kind of variable can be used as long as it's finite.  If it's a variable with infinite possibilities---say, an arbitrary length string---you can map to a certain number of possibilities (e.g., `a`, `abcde`, and `abcdefghijklmnop`).  When doing so, you should first think of the different equivalence classes, if any, and ensure that you have a value from each equivalence class.  You should also try to check several different edge cases, especially those which may cause problems when interacting in combination with other variables.  Suppose in our previous example that instead of checking a character, we wanted to check a word.  We may add different possibilities for the word to be tested.  Let's start with "a" (a single character) and "bird", a simple word.  Our generated covering array will look similar to the previous one, just using "a" and "bird" as the values for the word variable, instead of true and false as for all of the other variables:
 
 ```
         WORD   | BOLD       | ITALIC    | UNDERLINE
@@ -96,7 +96,7 @@ Although this example was done with Boolean variables, any kind of variable can 
 6.      "a"    | false      | false     | false
 ```
 
-Note that we are still checking all pairs.  Let's check the word/bold pair to verify that that is the case.  In test 1, we check for the word "a" with bold set to true.  In test 2, we check the word "a" with bold set to false.  In test 3 we check the word "bird" with bold set to true, and in test 4 we check the word "bird" with bold set to false.  What if we're worried that special characters may cause an issue when formatting?  We'd want to add a third possibility for the word variable, which is certainly allowed even though all of our possibilities so far have used only two possible values.
+Note that we are still checking all pairs.  Let's check the word/bold pair to verify that that is the case.  In test 1, we check for the word "a" with bold set to true.  In test 2, we check the word "a" with bold set to false.  In test 3 we check the word "bird" with bold set to true, and in test 4 we check the word "bird" with bold set to false.  What if we're worried that special characters may cause an issue when formatting?  We'd want to add a third possibility for the word variable, which is certainly allowed even though all of our possibilities so far have used only two possible values:
 
 ```
         WORD   | BOLD       | ITALIC    | UNDERLINE
@@ -115,7 +115,7 @@ As a side note, notice that we are now testing even more pairwise combinations a
 
 Although many errors will be found by ensuring that all pairwise interactions are tested, often we would like to go even further and check for errors in three-way, four-way, or even more interactions.  The same theory holds for doing this: tests should be generated that cover the entire truth table for each 3-way variable interaction.  Just like we checked that all four true/false value combinations were tested for each two-way interaction in the first example, we will check that all eight value combinations for each three-way interaction are tested.
 
-Let's expand the number of formatting variables in our system, adding SUPERSCRIPT and STRIKETHROUGH as possibilities.  In order to exhaustively test this, we will need 2 ^ 5, or 32, tests.  Generating a covering array for all pairwise interactions creates a six case test plan.  Once again, notice how we are testing even more variables than in the last case, but we are using the same number of tests.  In this case, we are running only 18.75% of the tests we would need for exhaustive testing, yet still testing all pairwise interactions.
+Let's expand the number of formatting variables in our system, adding SUPERSCRIPT and STRIKETHROUGH as possibilities.  In order to exhaustively test this, we will need 2 ^ 5, or 32, tests.  Generating a covering array for all pairwise interactions creates a six case test plan.  Once again, notice how we are testing even more variables than in the last case, but we are using the same number of tests.  In this case, we are running only 18.75% of the tests we would need for exhaustive testing, yet still testing all pairwise interactions:
 
 ```
         BOLD       | ITALIC    | UNDERLINE | SUPERSCRIPT | STRIKETHROUGH
@@ -128,7 +128,7 @@ Let's expand the number of formatting variables in our system, adding SUPERSCRIP
 6.      false      | false     | true      | false       | false
 ```
 
-Checking for every possible three-way interaction is going to involve more tests.  If you think about it, this is logically necessary.  Since there are eight possible combinations for each three-way interaction, it would be impossible to cover any combination using only six tests.
+Checking for every possible three-way interaction is going to involve more tests.  If you think about it, this is logically necessary.  Since there are eight possible combinations for each three-way interaction, it would be impossible to cover any combination using only six tests:
 
 ```
         BOLD       | ITALIC    | UNDERLINE | SUPERSCRIPT | STRIKETHROUGH
