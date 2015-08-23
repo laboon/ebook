@@ -149,11 +149,9 @@ It would be simple to add more edge cases, such as additional invalid and valid 
 
 Let's move on to the three weight requirements: FUN-UNDERWEIGHT, FUN-NORMALWEIGHT, and FUN-OVERWEIGHT.  This seems like a perfect time to partition the inputs and outputs into equivalence classes, as explained earlier:
 
-```
-< 3 kg -> Underweight
->= 3 kg and < 6 kg -> Normal Weight
->= 6 kg -> Overweight
-```
+* `< 3 kg` &rarr; Underweight
+* `>= 3 kg and < 6 kg` &rarr; Normal Weight
+* `>= 6 kg` &rarr; Overweight
 
 Let's assume that cats are weighed in increments of one-tenth of a kilogram.  This can be verified by discussing with the systems engineers or other appropriate stakeholders.  We can select the explicit boundary values: 2.9, 3.0, 5.9, and 6.0 kg.  Now let's add an interior value from each equivalence class: 1.6 kg for Underweight, 5.0 kg for Normal Weight, and 10 kg for Overweight.  We'll also want to add in implicit boundary values, say 0 and 1,000.  This final value assumes that 1,000 kilograms is the theoretical upper bound for a cat before it collapses into a black hole, which is my understanding of physics (note that the author is not a physicist).  Finally, let's check some corner cases: a negative number (-13) and a non-numeric string (`quackadoodle_doo`).  Note how much more emphasis is put on determining a variety of input values for these requirements compared to the startup message.  Since determining the weight status of the cat is the core of this application, more testing emphasis is given to it:
 

@@ -13,8 +13,8 @@ How would we develop a test plan for our coffee temperature app?  There is one i
 
 A single input value and one of two possible output values is a simple case of equivalence class partitioning, so let's partition up those equivalence classes.
 
-* __JUST-RIGHT:__ [-INF, -INF + 1, ... 173, 174] -> `JUST RIGHT`
-* __TOO-HOT:__    [175, 176, ... INF - 1, INF] -> `TOO HOT`
+* __JUST-RIGHT:__ [-INF, -INF + 1, ... 173, 174] &rarr; `JUST RIGHT`
+* __TOO-HOT:__    [175, 176, ... INF - 1, INF] &rarr; `TOO HOT`
 
 Our boundary values are 174 and 175, as they mark the division between the two equivalence classes.  Let's also use two interior values, 135 for the JUST-RIGHT class and 200 for the TOO-HOT class.  For this particular sample test plan, we will ignore the implicit boundary values of infinity and negative infinity (or the system's concept of these, MAXINT and -MAXINT).
 

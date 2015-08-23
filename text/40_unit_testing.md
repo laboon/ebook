@@ -39,11 +39,11 @@ We have seen earlier that the user will never directly see the aspects of the so
 
 Before diving into the code, let's examine a unit test in natural language.  Let's say that we're implementing a Linked List class, and we would like to test equality.  When we make two lists that have the same data in them, they will show as equal, even though they are not the exact same Linked List in object.  How could we specify a test for this case?
 
-"Create two linked lists, _a_ and _b_, each with data for the nodes equal to 1 -> 2 -> 3.  When they are compared with the equality operator, they should be seen as equal."
+"Create two linked lists, _a_ and _b_, each with data for the nodes equal to 1 &rarr; 2 &rarr; 3.  When they are compared with the equality operator, they should be seen as equal."
 
 We can see that there are three steps here, which correspond to some of the steps in a manual test.  This should not be surprising.  After all, the basic concepts of testing do not change, despite the level of abstraction of a particular test.  The steps are:
 
-1. __Preconditions:__ First, we need to generate the preconditions of the test.  If you recall from several chapters back, the preconditions are those conditions which must be met before the actual test starts.  In this case, the preconditions are that we have two different linked lists, named _a_ and _b_, and that they contain the exact same data, 1 -> 2 -> 3, all of which are the same data type.
+1. __Preconditions:__ First, we need to generate the preconditions of the test.  If you recall from several chapters back, the preconditions are those conditions which must be met before the actual test starts.  In this case, the preconditions are that we have two different linked lists, named _a_ and _b_, and that they contain the exact same data, 1 &rarr; 2 &rarr; 3, all of which are the same data type.
 
 2. __Execution Steps:__ This is what is actually done in the test.  In our example, the equality operator is applied between the two linked lists _a_ and _b_, and will return a Boolean value.
 
@@ -88,7 +88,7 @@ Looking over this test, it is easy to see the parallels with a manual test.  The
 
 ### Preconditions
 
-Before the test can be run, you need to set up the necessary preconditions for the test.  These are similar to preconditions in a manual test, only instead of focusing on the system as a whole, you focus on setting things up for the particular method to be called.  In the example above, the unit test is going to check that two linked lists with equal values (specifically 1 -> 2 -> 3) will be regarded as equal by the .equals method of a linked list object.  In order to test that two linked lists are equal, first we must created the two linked lists, and set their nodes to the same set of values.  This code simply creates them and puts them into variables `a` and `b`.  We will use these two linked lists in the next phase of the unit test.
+Before the test can be run, you need to set up the necessary preconditions for the test.  These are similar to preconditions in a manual test, only instead of focusing on the system as a whole, you focus on setting things up for the particular method to be called.  In the example above, the unit test is going to check that two linked lists with equal values (specifically 1 &rarr; 2 &rarr; 3) will be regarded as equal by the .equals method of a linked list object.  In order to test that two linked lists are equal, first we must created the two linked lists, and set their nodes to the same set of values.  This code simply creates them and puts them into variables `a` and `b`.  We will use these two linked lists in the next phase of the unit test.
 
 ### Execution Steps
 
@@ -139,7 +139,7 @@ One of the simplest ways to do this is to first ensure that your tests fail!  Wh
 
 In the linked list equality test above, what could you change to ensure that your tests are testing what you think they are testing?
 
-What if you changed the first linked list, _a_, to contain the data 1 -> 2?
+What if you changed the first linked list, _a_, to contain the data 1 &rarr; 2?
 
 ```java
     @Test
@@ -151,7 +151,7 @@ What if you changed the first linked list, _a_, to contain the data 1 -> 2?
     }
 ```
 
-Or 7 -> 8 -> 9?
+Or 7 &rarr; 8 &rarr; 9?
 
 ```java
     @Test

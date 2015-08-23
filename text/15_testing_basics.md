@@ -8,7 +8,7 @@ Imagine that you are in charge of testing a new display for a car tire air press
 
 This should be a relatively simple test.  There's only one input, the type is known and all possible input and output values are known.  We are ignoring exogenous factors, of course---a hardware tester would want to know what happens if, say, the wire between the sensor and display is cut, or if overvoltage occurs, or... well, use your imagination.
 
-Where does one start when testing this?  You will need to develop some inputs and expected outputs (e.g., "send in 15 PSI -> see the `UNDERPRESSURE` light come on and all other lights go out").  You can then execute the test and see if what you see happening lines up with what you expected to see.  This is the core concept of testing---checking __expected behavior__ against __observed behavior__.  That is, ensuring that the software does what you expect it to under certain circumstances.  There will be lots of adjustments, wrinkles, and caveats to that, but the root of all testing is comparing expected behavior with observed behavior.
+Where does one start when testing this?  You will need to develop some inputs and expected outputs (e.g., "send in 15 PSI &rarr; see the `UNDERPRESSURE` light come on and all other lights go out").  You can then execute the test and see if what you see happening lines up with what you expected to see.  This is the core concept of testing---checking __expected behavior__ against __observed behavior__.  That is, ensuring that the software does what you expect it to under certain circumstances.  There will be lots of adjustments, wrinkles, and caveats to that, but the root of all testing is comparing expected behavior with observed behavior.
 
 Your manager would like this tested as quickly as possible, and asks you to create four tests.  Armed with the information that you should check expected versus observed behavior, you decide to send in -1, -111, -900, and -5 to see if the `ERROR` light comes on in each case, and none of the other lights do.  Excited to have written your first tests, you show your manager, who frowns and says, "You're only testing one equivalence class!"
 
@@ -23,25 +23,25 @@ What are the other equivalence classes here?  In order to answer this, think of 
 
 Mathematically, one could think of this as a mapping between a group of input values and expected output conditions:
 
-1. [-MAXINT, -MAXINT + 1, ... -2, -1] -> `ERROR` light only
-2. [0, 1, ... 19, 20] -> `UNDERPRESSURE` light only
-3. [21, 22, ... 34, 35] -> No lights
-4. [36, 37, ... MAXINT - 1, MAXINT] -> `OVERPRESSURE` light only
+1. [-MAXINT, -MAXINT + 1, ... -2, -1] &rarr; `ERROR` light only
+2. [0, 1, ... 19, 20] &rarr; `UNDERPRESSURE` light only
+3. [21, 22, ... 34, 35] &rarr; No lights
+4. [36, 37, ... MAXINT - 1, MAXINT] &rarr; `OVERPRESSURE` light only
 
 (where MAXINT and -MAXINT are the maximum and minimum 32-bit integers.)
 
 We have now __partitioned__ our equivalence classes.  Equivalence class partitioning is the act of determining our equivalence classes and ensuring that they do not overlap at all, but do cover all possible input values.  In other words, they must maintain a __strict partitioning__.  For example, let's say that, due to bad or misread requirements, we had generated an equivalence class partitioning such as the following:
 
-1. [-2, -1, 0, 1, 2] -> `ERROR` light only
-2. [3, 4, ... 21, 22] -> `UNDERPRESSURE` light only
-3. [20, 21, ... 34, 35] -> No light
-4. [36, 37, ... 49, 50] -> `OVERPRESSURE` light only
+1. [-2, -1, 0, 1, 2] &rarr; `ERROR` light only
+2. [3, 4, ... 21, 22] &rarr; `UNDERPRESSURE` light only
+3. [20, 21, ... 34, 35] &rarr; No light
+4. [36, 37, ... 49, 50] &rarr; `OVERPRESSURE` light only
 
 There are two problems here.  The first is that all values less than -2 and greater than 50 are not mapped to an equivalence class.  What is the expected behavior if the sensor sends a value of 51?  Is that also considered an error?  Is it considered `OVERPRESSURE`?  In this case, it is __undefined__.  There is often undefined behavior in a reasonably complex software system under test, but the software tester should help find these gaps in coverage and find out what should (or, at least, does) happen in these gaps.
 
 The second, and much worse, problem is that a contradiction has arisen for values 20, 21, and 22.  These belong to both the "`UNDERPRESSURE`" and "No lights" equivalence classes.  What is the expected behavior for an input value of 21?  Depending on which equivalence class you look at, it could be no lights or an `UNDERPRESSURE` light.  This is a violation of strict partitioning, and you can easily see how problematic it can be.
 
-It is important to note that equivalence classes do not have to be comprised of the exact same output value!  For example, let's say that you are testing an e-commerce site.  Sales of less than $100.00 get 10% off, and sales of $100.01 or greater get 20% off the final sale price.  Even though there are going to be a wide range of output values, the output behavior will be similar for all values of $100.00 or less and for all values of $100.01 or more.  Those would be the two equivalence classes; there won't be a separate equivalence class for each individual output value (e.g. $10.00 -> $9.00, $10.10 -> $9.01, etc.).
+It is important to note that equivalence classes do not have to be comprised of the exact same output value!  For example, let's say that you are testing an e-commerce site.  Sales of less than $100.00 get 10% off, and sales of $100.01 or greater get 20% off the final sale price.  Even though there are going to be a wide range of output values, the output behavior will be similar for all values of $100.00 or less and for all values of $100.01 or more.  Those would be the two equivalence classes; there won't be a separate equivalence class for each individual output value (e.g. $10.00 &rarr; $9.00, $10.10 &rarr; $9.01, etc.).
 
 Now that our equivalence classes have been determined, it's possible to write tests that cover all of the functionality of this display.  We may decide to send in a value of -2 to test the `ERROR` equivalence class, a value of 10 to test the `UNDERPRESSURE` equivalence class, a value of 30 to test the "No lights" equivalence class, and a value of 45 for the `OVERPRESSURE` equivalence class.  Of course, the values were picked rather arbitrarily.  In the next section, we'll see how one can choose specific values in order to maximize the chances of finding defects.
 
@@ -49,8 +49,8 @@ Now that our equivalence classes have been determined, it's possible to write te
 
 There's an axiom in testing that defects are more likely to be found near the boundaries of two equivalence classes.  These values---the "last" of one equivalence class and the "first" of a new equivalence class---are called __boundary values__.  Values which are not boundary values are called __interior values__.  For example, let's take a very simple mathematical function, the absolute value of an integer.  This has two equivalence classes:
 
-1. [-MAXINT, -MAXINT + 1, ... -2, -1] -> For input x, outputs -(x)
-2. [0, 1, ... MAXINT - 1, MAXINT] -> For input x, outputs x
+1. [-MAXINT, -MAXINT + 1, ... -2, -1] &rarr; For input x, outputs -(x)
+2. [0, 1, ... MAXINT - 1, MAXINT] &rarr; For input x, outputs x
 
 The boundary values are 0 and 1; they are the dividing line between the two equivalence classes.  Every other value (e.g., 7, 62, -190) is an interior value; it is in the "middle" of an equivalence class.
 
@@ -100,9 +100,9 @@ One could also consider __implicit boundary values__.  In contrast to __explicit
 
 Implicit boundary values can also be runtime-dependent.  Suppose that we have a system with 2 gigabytes of memory free, and are running an in-memory database system.  The equivalence classes for testing a function which inserts a number of rows may be as follows:
 
-1. Negative number of rows -> Error condition
-2. 0 rows or tables does not exist -> Returns NULL
-3. One or more rows -> Returns number of rows inserted
+1. Negative number of rows &rarr; Error condition
+2. 0 rows or tables does not exist &rarr; Returns NULL
+3. One or more rows &rarr; Returns number of rows inserted
 
 There's an implicit boundary between the number of rows which fit into memory and that which don't.  Whoever wrote the requirements may not have thought about this, but as a tester, you should keep implicit boundary values in mind.
 
