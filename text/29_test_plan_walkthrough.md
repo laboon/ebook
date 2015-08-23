@@ -160,13 +160,13 @@ Let's assume that cats are weighed in increments of one-tenth of a kilogram.  Th
 IDENTIFIER: UNDERWEIGHT-INTERNAL
 TEST CASE: Run the program passing in an underweight cat with a weight of 1.6 kg.
 PRECONDITIONS: None
-INPUT VALUES: 0
+INPUT VALUES: 1.6
 EXECUTION STEPS: At the command line, run "catweigher 1.6"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is underweight".
 
 IDENTIFIER: UNDERWEIGHT-LOWER-BOUNDARY
-TEST CASE: Run the program passing in a cat with a weight of 0 kg.
+TEST CASE: Run the program passing in a weightless cat with a weight of 0 kg.
 PRECONDITIONS: None
 INPUT VALUES: 0
 EXECUTION STEPS: At the command line, run "catweigher 0"
@@ -182,7 +182,7 @@ OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is underweight".
 
 IDENTIFIER: NORMALWEIGHT-INTERNAL
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in a normal weight cat with a weight of 5 kg.
 PRECONDITIONS: None
 INPUT VALUES: 5
 EXECUTION STEPS: At the command line, run "catweigher 5"
@@ -190,7 +190,7 @@ OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is normal weight".
 
 IDENTIFIER: NORMALWEIGHT-LOWER-BOUNDARY
-TEST CASE: Run the program passing in a normal weight 
+TEST CASE: Run the program passing in a normal weight cat with a weight of 3 kg.
 PRECONDITIONS: None
 INPUT VALUES: 3
 EXECUTION STEPS: At the command line, run "catweigher 3"
@@ -206,40 +206,40 @@ OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is normal weight".
 
 IDENTIFIER: OVERWEIGHT-INTERNAL
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an overweight cat with a weight of 10 kg.
 PRECONDITIONS: None
 INPUT VALUES: 10
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher 10"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is overweight".
 
 IDENTIFIER: OVERWEIGHT-LOWER-BOUNDARY
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an overweight cat with a weight of 6 kg.
 PRECONDITIONS: None
 INPUT VALUES: 6
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher 6"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is overweight".
 
 IDENTIFIER: OVERWEIGHT-UPPER-BOUNDARY
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an overweight cat with a weight of 1000 kg.
 PRECONDITIONS: None
 INPUT VALUES: 1000
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher 1000"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is overweight".
 
 IDENTIFIER: WEIGHTSTATUS-INVALID-NEGATIVE
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an invalid negative weight cat of -13 kg.
 PRECONDITIONS: None
 INPUT VALUES: -13
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher -13"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The system shall not display any cat weight status,
     and the program will exit.
 
 IDENTIFIER: WEIGHTSTATUS-INVALID-STRING
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an invalid string argument.
 PRECONDITIONS: None
 INPUT VALUES: "quackadoodle_doo"
 EXECUTION STEPS: At the command line, run "catweigher quackadoodle_doo"
