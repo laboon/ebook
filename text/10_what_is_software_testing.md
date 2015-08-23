@@ -42,9 +42,9 @@ Keep in mind that I am someone who teaches a class on software testing.  Even I 
 
 ## Verification and Validation
 
-Software testing also involves ensuring that the right software was created.  Imagine the following conversation between a tester and a customer:
+Software testing also involves ensuring that the right software was created.  Imagine the following conversation between a project manager and a customer:
 
-_Tester:_ "I've gone over the product with a fine-toothed comb.  This cryptography engine is absolutely bulletproof, incredibly fast, and uses 8,192-bit encryption - your secrets will be safe for a trillion years."
+_Project Manager:_ "I've gone over the product with a fine-toothed comb.  This cryptography engine is absolutely bulletproof, incredibly fast, and uses 8,192-bit encryption - your secrets will be safe for a trillion years."
 
 _Customer:_ "Actually, I just wanted to play solitaire."
 
