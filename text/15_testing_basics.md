@@ -88,13 +88,13 @@ Boundary values:
 
 Values to Test:
 
-1. Interior values, `ERROR` - -3, -100
-2. Boundary values, `ERROR` / `UNDERPRESSURE` - -1, 0
-3. Interior values, `UNDERPRESSURE` - 5, 11
-4. Boundary values, `UNDERPRESSURE` / `NORMAL` - 20, 21
-5. Interior values, `NORMAL` - 25, 31
-6. Boundary values, `NORMAL` / `OVERPRESSURE` - 35, 36
-7. Interior values, `OVERPRESSURE` - 40, 95
+1. Interior values, `ERROR`: -3, -100
+2. Boundary values, `ERROR` / `UNDERPRESSURE`: -1, 0
+3. Interior values, `UNDERPRESSURE`: 5, 11
+4. Boundary values, `UNDERPRESSURE` / `NORMAL`: 20, 21
+5. Interior values, `NORMAL`: 25, 31
+6. Boundary values, `NORMAL` / `OVERPRESSURE`: 35, 36
+7. Interior values, `OVERPRESSURE`: 40, 95
 
 One could also consider __implicit boundary values__.  In contrast to __explicit boundary values__, which are a natural outgrowth of requirements (such as the ones calculated above), implicit values grow out of the system under test or the environment under which the system operates.  For example, MAXINT and -MAXINT would both be implicit boundary values; adding one to MAXINT would cause an integer overflow and set the value to -MAXINT, and decrementing one from -MAXINT would lead to the value being MAXINT.  In each case, the equivalence class would change.
 

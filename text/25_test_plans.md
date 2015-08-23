@@ -20,13 +20,13 @@ Our boundary values are 174 and 175, as they mark the division between the two e
 
 Using these values, and a general idea of what we would like to test, we can start to create test cases.  Although different tools and companies will have different templates for entering test cases, this is a relatively standard one that can be applied or modified for most software projects.
 
-1. __Identifier__ - An identifier, such as "16", "DB-7", or "DATABASE-TABLE-DROP-TEST", which uniquely identifies the test case.
-2. __Test Case__ - A description of the test case and what it is testing.
-3. __Preconditions__ - Any preconditions for the state of the system or world before the test begins.
-4. __Input Values__ - Any values input directly to the test.
-5. __Execution Steps__ - The actual steps of the test, to be executed by the tester.
-6. __Output Values__ - Any values output directly by the test.
-7. __Postconditions__ - Any postconditions of the state of the system or world which should hold true after the test has been executed.
+1. __Identifier:__ An identifier, such as "16", "DB-7", or "DATABASE-TABLE-DROP-TEST", which uniquely identifies the test case.
+2. __Test Case:__ A description of the test case and what it is testing.
+3. __Preconditions:__ Any preconditions for the state of the system or world before the test begins.
+4. __Input Values:__ Any values input directly to the test.
+5. __Execution Steps:__ The actual steps of the test, to be executed by the tester.
+6. __Output Values:__ Any values output directly by the test.
+7. __Postconditions:__ Any postconditions of the state of the system or world which should hold true after the test has been executed.
 
 Don't worry if you still have some questions on these definitions.  In the following sections, we will go more deeply into all of them and provide examples.
 
