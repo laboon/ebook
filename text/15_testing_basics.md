@@ -6,9 +6,9 @@ Before we get deep into actually writing tests, it behooves us to make sure that
 
 Imagine that you are in charge of testing a new display for a car tire air pressure sensor.  The air pressure reading comes in from an external sensor, and it is guaranteed that the air pressure value will be passed in to our display as a 32-bit, signed integer.  If the air pressure is greater than 35 pounds per square inch (PSI), the `OVERPRESSURE` light should turn on and all other lights should be off.  If the air pressure is between 0 and 20 PSI, the `UNDERPRESSURE` light should turn on, and all other lights should be off.  If the air pressure reading comes in as a negative number, the `ERROR` light should come on and all other lights should be off.
 
-This should be a relatively simple test.  There's only one input, the type is known and all possible input and output values are known.  We are ignoring exogenous factors, of course - a hardware tester would want to know what happens if, say, the wire between the sensor and display is cut, or if overvoltage occurs, or... well, use your imagination.
+This should be a relatively simple test.  There's only one input, the type is known and all possible input and output values are known.  We are ignoring exogenous factors, of course---a hardware tester would want to know what happens if, say, the wire between the sensor and display is cut, or if overvoltage occurs, or... well, use your imagination.
 
-Where does one start when testing this?  You will need to develop some inputs and expected outputs (e.g., "send in 15 PSI -> see the `UNDERPRESSURE` light come on and all other lights go out").  You can then execute the test and see if what you see happening lines up with what you expected to see.  This is the core concept of testing - checking __expected behavior__ against __observed behavior__.  That is, ensuring that the software does what you expect it to under certain circumstances.  There will be lots of adjustments, wrinkles, and caveats to that, but the root of all testing is comparing expected behavior with observed behavior.
+Where does one start when testing this?  You will need to develop some inputs and expected outputs (e.g., "send in 15 PSI -> see the `UNDERPRESSURE` light come on and all other lights go out").  You can then execute the test and see if what you see happening lines up with what you expected to see.  This is the core concept of testing---checking __expected behavior__ against __observed behavior__.  That is, ensuring that the software does what you expect it to under certain circumstances.  There will be lots of adjustments, wrinkles, and caveats to that, but the root of all testing is comparing expected behavior with observed behavior.
 
 Your manager would like this tested as quickly as possible, and asks you to create four tests.  Armed with the information that you should check expected versus observed behavior, you decide to send in -1, -111, -900, and -5 to see if the `ERROR` light comes on in each case, and none of the other lights do.  Excited to have written your first tests, you show your manager, who frowns and says, "You're only testing one equivalence class!"
 
@@ -47,7 +47,7 @@ Now that our equivalence classes have been determined, it's possible to write te
 
 ## Interior and Boundary Values
 
-There's an axiom in testing that defects are more likely to be found near the boundaries of two equivalence classes.  These values - the "last" of one equivalence class and the "first" of a new equivalence class - are called __boundary values__.  Values which are not boundary values are called __interior values__.  For example, let's take a very simple mathematical function, the absolute value of an integer.  This has two equivalence classes:
+There's an axiom in testing that defects are more likely to be found near the boundaries of two equivalence classes.  These values---the "last" of one equivalence class and the "first" of a new equivalence class---are called __boundary values__.  Values which are not boundary values are called __interior values__.  For example, let's take a very simple mathematical function, the absolute value of an integer.  This has two equivalence classes:
 
 1. [-MAXINT, -MAXINT + 1, ... -2, -1] -> For input x, outputs -(x)
 2. [0, 1, ... MAXINT - 1, MAXINT] -> For input x, outputs x
@@ -76,7 +76,7 @@ public static int absoluteValue (int x) {
 }
 ```
 
-Much better.  However, think how difficult it would be to rewrite this method so that it failed only when you pass in 57 - not 56, not 58, but only 57.  It's possible, of course, but much less likely.  Since it's very rare to be able to exhaustively test every possible input value for a program (or even a single function), it makes sense to focus on values which are more likely to uncover defects.
+Much better.  However, think how difficult it would be to rewrite this method so that it failed only when you pass in 57---not 56, not 58, but only 57.  It's possible, of course, but much less likely.  Since it's very rare to be able to exhaustively test every possible input value for a program (or even a single function), it makes sense to focus on values which are more likely to uncover defects.
 
 Getting back to our pressure sensor display, our test manager says that we have time to test a few more values.  We want to ensure that at a minimum, we test all of the boundary values, and hopefully a good sampling of the interior values.  First, we'll calculate all of the boundary values, and then generate a test plan which tests all of the boundary values and some of the interior values.
 
@@ -108,7 +108,7 @@ There's an implicit boundary between the number of rows which fit into memory an
 
 ## Base Cases, Edge Cases, Corner Cases
 
-Let us continue our exploration of the pressure sensor display.  Going over our various test cases, we can see that they vary in how common they will be.  The vast majority of the time, the pressure will be normal, or slightly over-pressure or under-pressure.  Each of these is considered a __base case__ - the system is operating within expected parameters for normal use.
+Let us continue our exploration of the pressure sensor display.  Going over our various test cases, we can see that they vary in how common they will be.  The vast majority of the time, the pressure will be normal, or slightly over-pressure or under-pressure.  Each of these is considered a __base case__---the system is operating within expected parameters for normal use.
 
 When input values are outside normal operating parameter or are approaching the limits of what the system can handle, this is called an __edge case__.  An edge case may be the tire popping and air pressure dropping to zero.  Another case would be someone forgetting that they had the air hose attached to the tire, and pumping in air up to a pressure of 200 PSI, the absolute limit to which the tire is rated.
 
@@ -155,7 +155,7 @@ Aspects of the system, such as what algorithm was used or what kind of memory al
 
 In regards to knowledge of the system under test, __white-box testing__ is the opposite of black-box testing.  In white-box testing, the tester has intimate knowledge of the codebase and tests code itself.  White-box tests can test individual functions of the code, often looking at much more granular aspects of the system than black-box tests.
 
-Continuing the example of a desktop email application, white-box tests might check the actual `sort(EmailEntry[] emails)` function, sending in various values to see what the function returns or does.  White-box testers would care about what happened specifically if a zero-length array or null reference were passed in, whereas a black-box tester would only care about what happens if they attempt to sort an empty list of emails in the application itself.  White-box tests access the code as code - checking that return values from functions are correct, ensuring that objects are instantiated properly, etc. - instead of looking at the system from a user's perspective.
+Continuing the example of a desktop email application, white-box tests might check the actual `sort(EmailEntry[] emails)` function, sending in various values to see what the function returns or does.  White-box testers would care about what happened specifically if a zero-length array or null reference were passed in, whereas a black-box tester would only care about what happens if they attempt to sort an empty list of emails in the application itself.  White-box tests access the code as code---checking that return values from functions are correct, ensuring that objects are instantiated properly, etc.---instead of looking at the system from a user's perspective.
 
 __Grey-box testing__, as its name implies, is a hybrid approach between white and black-box testing.  Grey-box testing involves accessing the system as a user (as a black-box tester would do), but with knowledge of the codebase and system (as a white-box tester would have).  Using this knowledge, the grey-box tester can write more focused black-box tests.
 

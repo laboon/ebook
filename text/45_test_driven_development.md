@@ -1,6 +1,6 @@
 # Test-Driven Development
 
-Although we have covered how to write unit tests from a broad perspective, the question remains - how do we integrate test writing into the software development process?  In the old days, software testing was often an entirely separate process from writing the code, but today, software quality is the job of developers, as well.  Conversely, software testing has acquired many aspects of development; it is the rare tester who never has to write any code.  Even testers who mostly do manual testing will often write integration scripts or other tools.
+Although we have covered how to write unit tests from a broad perspective, the question remains---how do we integrate test writing into the software development process?  In the old days, software testing was often an entirely separate process from writing the code, but today, software quality is the job of developers, as well.  Conversely, software testing has acquired many aspects of development; it is the rare tester who never has to write any code.  Even testers who mostly do manual testing will often write integration scripts or other tools.
 
 Test-Driven Development (TDD) is one methodology for writing quality software  with a well-thought-out testing suite.  By following the tenets of TDD, developers will know what to test, in what order, and a way of balancing unit testing and coding the application under test.  It's not a panacea, of course.  In the software world, as Frederick Brooks reminds us, there is no silver bullet.  However, by using TDD properly, the werewolf of software development can be tamed a little bit.
 
@@ -22,7 +22,7 @@ Test-Driven Development is a software development methodology that comprises sev
 
 We work within these constraints by using the "red-green-refactor" loop.  A single cycle in TDD involves the following three steps:
 
-1. __Red:__ TDD is a form of __test-first development__ (TFD), so the first thing to do is write a test.  The developer writes a failing test for a new piece of piece of functionality or an edge case that should be checked.  The newly written test - and only that test - should fail.  If the newly written test does not fail, that means that the code has already been written for that functionality.  If other tests fail, this means that there is a problem with the test suite - perhaps an intermittent or non-deterministic failure of a test - that should be fixed before moving on.  This phase is called "red" because many unit testing frameworks will display failing tests as red.  Since red-green colorblindness affects a good portion of the human population, and humans are by far the most likely animal to program, this may not be the best color selection.  Regardless, we will follow this standardized naming convention.
+1. __Red:__ TDD is a form of __test-first development__ (TFD), so the first thing to do is write a test.  The developer writes a failing test for a new piece of piece of functionality or an edge case that should be checked.  The newly written test---and only that test---should fail.  If the newly written test does not fail, that means that the code has already been written for that functionality.  If other tests fail, this means that there is a problem with the test suite---perhaps an intermittent or non-deterministic failure of a test---that should be fixed before moving on.  This phase is called "red" because many unit testing frameworks will display failing tests as red.  Since red-green colorblindness affects a good portion of the human population, and humans are by far the most likely animal to program, this may not be the best color selection.  Regardless, we will follow this standardized naming convention.
 
 2. __Green:__ The developer now writes code to make this test pass. This work will focus only on making this test pass, while not causing any other tests to fail.  At this point, some "ugly" code is to be expected; the focus is on making it work as opposed to making it pretty.  If other tests fail, then the developer has inadvertently caused a regression and should work on fixing that.  At the end of this phase, all tests should be passing ("green").
 
@@ -33,11 +33,11 @@ After each red-green-refactor cycle, the developer should think of the next piec
 This could all be re-written as a very simple algorithm.  By doing so, we can see how this helps focus the attention of the person writing the software; there is always a well-defined next step.
 
 1. Write a test for functionality which has not been written yet.
-2. Run test suite - only the newly written test should fail.  If not, first figure out why other tests are failing and fix that problem.
+2. Run test suite---only the newly written test should fail.  If not, first figure out why other tests are failing and fix that problem.
 3. Write enough code to make that test pass, without causing other tests to fail
-4. Run test suite - if any test fails, go back to step 3.  If all tests pass, continue.
+4. Run test suite---if any test fails, go back to step 3.  If all tests pass, continue.
 5. Refactor code that you have written, and/or any associated code.
-6. Run test suite - if any tests fail, go back to step 5.  If all tests pass, continue.
+6. Run test suite---if any tests fail, go back to step 5.  If all tests pass, continue.
 7. If there is any more functionality to add, go to step 1.  If there is no more functionality to add, the application is complete!
 
 ## Concepts
@@ -67,7 +67,7 @@ Thinking a little ahead, we know that we're going to have to iterate through the
 3. The string "Buzz" should be returned, if the number is evenly divisible by 5, but not evenly divisible by 3
 4. The string "FizzBuzz" should be returned, if the number is evenly divisible by both 5 and 3
 
-Our testing is helped by the fact that this is a pure function - its return value is entirely determined by the input parameter.  It has no dependence on global values and has no side effects like output, and no other external dependencies.  Sending in 2 will always return "2" and do nothing else, sending in 3 will always return "Buzz" and do nothing else, and so on.
+Our testing is helped by the fact that this is a pure function---its return value is entirely determined by the input parameter.  It has no dependence on global values and has no side effects like output, and no other external dependencies.  Sending in 2 will always return "2" and do nothing else, sending in 3 will always return "Buzz" and do nothing else, and so on.
 
 ```java
 public class FizzBuzz {
@@ -97,7 +97,7 @@ public class FizzBuzzTest {
 }
 ```
 
-If we run this, it will fail - `fizzbuzzify` returns an empty string, which is not equal to 1, and thus the assertion fails.  Well, there's a simple fix for that!
+If we run this, it will fail---`fizzbuzzify` returns an empty string, which is not equal to 1, and thus the assertion fails.  Well, there's a simple fix for that!
 
 ```java
 public class FizzBuzz {
@@ -134,7 +134,7 @@ public class FizzBuzzTest {
 }
 ```
 
-When we run this, as expected, we get one failure; since our `fizzbuzzify()` method will only ever return 1, it's never going to return 2.  We also note that we didn't cause the initial test to fail by adding this test - the only test that fails is the new one, `test2Returns2()`.  Fixing up the code should be pretty simple, right?
+When we run this, as expected, we get one failure; since our `fizzbuzzify()` method will only ever return 1, it's never going to return 2.  We also note that we didn't cause the initial test to fail by adding this test---the only test that fails is the new one, `test2Returns2()`.  Fixing up the code should be pretty simple, right?
 
 ```java
 public class FizzBuzz {
@@ -194,7 +194,7 @@ Much better!  Tests are still passing, so we can move on to the next cycle in th
     }
 ```
 
-Huzzah, our tests pass!  This isn't an ideal solution, though - it will only work with 3, and we know that it should be any number that's evenly divisible by 3.  A bit of refactoring and we should be able to handle any number divisible by 3.
+Huzzah, our tests pass!  This isn't an ideal solution, though---it will only work with 3, and we know that it should be any number that's evenly divisible by 3.  A bit of refactoring and we should be able to handle any number divisible by 3.
 
 ```java
     private static String fizzbuzzify(int num) {
@@ -206,7 +206,7 @@ Huzzah, our tests pass!  This isn't an ideal solution, though - it will only wor
     }
 ```
 
-This also might give us more ideas for additional unit tests later - perhaps we want to check if 6, 9, or 3000 work.  For now, though, let's just move on to add "Buzz".
+This also might give us more ideas for additional unit tests later---perhaps we want to check if 6, 9, or 3000 work.  For now, though, let's just move on to add "Buzz".
 
 ```java
     @Test
@@ -256,7 +256,7 @@ This test fails, since the current method  will return "Fizz".
     }
 ```
 
-Tests are now passing!  We might go further with refactoring - for example,  moving `num % 3 == 0` and `num % 5 == 0` to their own methods - but this shows a simple outline of the TDD process.  Oftentimes, steps are bigger in actual development, but a key tenet to keep in mind is to keep the tests relatively specific and targeted at particular output values.  Grouping the input and output values into equivalence classes, as discussed earlier, can help you to decide what needs to be tested and what order to test things in.
+Tests are now passing!  We might go further with refactoring---for example,  moving `num % 3 == 0` and `num % 5 == 0` to their own methods---but this shows a simple outline of the TDD process.  Oftentimes, steps are bigger in actual development, but a key tenet to keep in mind is to keep the tests relatively specific and targeted at particular output values.  Grouping the input and output values into equivalence classes, as discussed earlier, can help you to decide what needs to be tested and what order to test things in.
 
 ## Benefits of TDD
 
@@ -272,7 +272,7 @@ TDD forces you to work in small steps.  This helps to ensure that you don't go t
 
 When you are testing code from the beginning, the code is much more likely to be testable.  Not only will you learn how to test the code in this particular application because you are doing it all the time, you are not likely to write code that you can't test.  Why would you?  Your code needs to pass the test that you've already written, so you are going to make it in a way that will make it testable.  Since you are also constantly adding on to the codebase, as opposed to seeing it as one large "version" to be committed as a giant block, your code will also be extensible.  You're extending it with each cycle of the red-green-refactor loop!
 
-Using TDD provides 100% test coverage, or at least close to it.  Although code coverage is not a perfect metric - there are plenty of defects that can be hidden in code that is entirely covered by tests - it assures you that you are at least checking each line of code once.  This is much better than many software projects.
+Using TDD provides 100% test coverage, or at least close to it.  Although code coverage is not a perfect metric---there are plenty of defects that can be hidden in code that is entirely covered by tests---it assures you that you are at least checking each line of code once.  This is much better than many software projects.
 
 Test-Driven Development provides a structured framework to write software with.  Although there are certainly many drawbacks (some of which will be enumerated below) and situations for which it is a suboptimal methodology, it does provide you with a way to move forward.  The strict but flexible steps of the red-green-refactor loop provide developers with a list of things to do next.  You are constantly adding tests, writing code to make them pass, and refactoring.  When you don't have a framework to follow, you may spend lots of time refactoring existing code, or not nearly enough time writing tests, or too much energy writing tests and not writing code.  At a bare minimum, you've got to consider how much time and resources you'd like to spend on each section.  With TDD, you have ready-made answers, so you don't have to think about it, and your mind is clear to work on other things.  There is an excellent book, _The Checklist Manifesto_ by Atul Gawande, which explains how having a checklist (even one as simple as red-green-refactor) can help you in a variety of endeavors.  Software engineering is no exception.
 
@@ -284,7 +284,7 @@ As mentioned above, there is no silver bullet in software development.  Developi
 
 Developing in TDD means writing many unit tests.  If your team needs to be coerced into testing software in the first place, this focus may drive out other kinds of tests, such as performance testing and systems testing.  You need to keep in mind that just because you have written many unit tests for a method which utilizes some functionality, this does not mean that you have thoroughly tested that functionality.
 
-There is no doubt about it - in the short run, writing tests will mean more time spent to get the same amount of features.  There are benefits, to be sure, such as improved code quality.  However, if one had waited until the night before a project is due for a software class (ahem), TDD would probably not be the way to go.  In this case, a bulletproof program which doesn't meet half the requirements for the homework assignment is much worse than a program which does everything it's supposed to do, as long as you don't pass any invalid parameters to it or hit Control-C or breathe too heavily around it.  However, for larger projects or projects without such a small deadline, using TDD or a similar methodology will often be faster in the long run.  A good analogy is that writing software without tests is like riding a go-kart; it seems really fast, but is actually slow.  Writing software with tests is like riding a jet plane; it seems really slow, but is actually very fast.
+There is no doubt about it---in the short run, writing tests will mean more time spent to get the same amount of features.  There are benefits, to be sure, such as improved code quality.  However, if one had waited until the night before a project is due for a software class (ahem), TDD would probably not be the way to go.  In this case, a bulletproof program which doesn't meet half the requirements for the homework assignment is much worse than a program which does everything it's supposed to do, as long as you don't pass any invalid parameters to it or hit Control-C or breathe too heavily around it.  However, for larger projects or projects without such a small deadline, using TDD or a similar methodology will often be faster in the long run.  A good analogy is that writing software without tests is like riding a go-kart; it seems really fast, but is actually slow.  Writing software with tests is like riding a jet plane; it seems really slow, but is actually very fast.
 
 Traditionally, TDD provides less time up-front for architecture decisions.  Due to the short cycle time of the red-green-refactor loop, less time may be spent on design and architecture as opposed to writing code which implements user stories.  In many cases, such as simple web applications, this is perfectly valid.  Default architectures may be fine and spending too much time thinking about them may be counterproductive.  In other cases, especially with new kinds or domains of software, architectural choices may be difficult and consequential, and it makes sense to spend time at the beginning of the project thinking about them.
 

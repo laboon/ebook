@@ -12,7 +12,7 @@ Let's start with a few things that it is not.
 
 At a high level, it's a way of providing an estimate of software quality to stakeholders (that is, people who have a direct interest in the system, such as customers, users, and managers).  While stakeholders may not directly care about the quality of software, they are interested in managing risk.  This risk can take many forms.  For customers, using software involves risks that they will lose data, risks that their operations will fail, risks that they will spend more money on the software than it will save them.  For internal stakeholders, risks may include not releasing a software system on time (or at all), losing customers by releasing a substandard product, or even facing a lawsuit.  By testing software, you can provide a better estimate of how much risk the stakeholders will have to take on.
 
-Software testing provides an independent view of the software product.  Developers are notorious for - consciously or unconsciously - taking it easy on the code that they write.  I wish I could say that when I write code, I avoid this, what with my focus on software quality.  However, oftentimes my conversations with someone testing my software go like this:
+Software testing provides an independent view of the software product.  Developers are notorious for---consciously or unconsciously---taking it easy on the code that they write.  I wish I could say that when I write code, I avoid this, what with my focus on software quality.  However, oftentimes my conversations with someone testing my software go like this:
 
 > _Me:_ "I got the square root routine working!  It's twice as fast as it was before!"
 >
@@ -44,7 +44,7 @@ Keep in mind that I am someone who teaches a class on software testing.  Even I 
 
 Software testing also involves ensuring that the right software was created.  Imagine the following conversation between a project manager and a customer:
 
-> _Project Manager:_ "I've gone over the product with a fine-toothed comb.  This cryptography engine is absolutely bulletproof, incredibly fast, and uses 8,192-bit encryption - your secrets will be safe for a trillion years."
+> _Project Manager:_ "I've gone over the product with a fine-toothed comb.  This cryptography engine is absolutely bulletproof, incredibly fast, and uses 8,192-bit encryption---your secrets will be safe for a trillion years."
 >
 > _Customer:_ "Actually, I just wanted to play solitaire."
 
@@ -54,7 +54,7 @@ This illustrates the difference between __verification__ and __validation__.  Ve
 
 Both verification and validation are part of the software testing process.  Although most testers will be spend much of their time concerned with verification, a software tester does not simply and blindly test that the software meets the requirements.  Testers can be thought of as defenders of the user experience, even pushing back against other internal stakeholders to develop software which meets the needs of users instead of simply meeting the bottom line.
 
-Interestingly, as more time and resources are spent on fixing defects or improving quality in other ways, money is often saved in the long run.  Developing on a system which has fewer defects, or at least which has defects you already know about, is far easier than adding features to software which fails intermittently and seemingly randomly.  A system with a good automated test suite will allow you to make changes with the assurance that you have not created additional defects in so doing.  This is the paradox of software quality - you may end up spending _less_ money for a _better_ product by properly testing.
+Interestingly, as more time and resources are spent on fixing defects or improving quality in other ways, money is often saved in the long run.  Developing on a system which has fewer defects, or at least which has defects you already know about, is far easier than adding features to software which fails intermittently and seemingly randomly.  A system with a good automated test suite will allow you to make changes with the assurance that you have not created additional defects in so doing.  This is the paradox of software quality---you may end up spending _less_ money for a _better_ product by properly testing.
 
 ## A Preliminary Definition of "Defect"
 
@@ -85,7 +85,7 @@ While deciding which defects or enhancements should be worked on is almost alway
 
 ## A Real-Life Testing Example
 
-Let's say that you are tasked with testing a new program, "Lowerify", which takes a string and returns a lower-case version.  The customer didn't give any more details, because it seemed self-explanatory - the input is text that may or may not be lowercase, the output is the same string, but any upper-case letters are turned to lowercase.  The method handling this in the program has the following method signature:
+Let's say that you are tasked with testing a new program, "Lowerify", which takes a string and returns a lower-case version.  The customer didn't give any more details, because it seemed self-explanatory---the input is text that may or may not be lowercase, the output is the same string, but any upper-case letters are turned to lowercase.  The method handling this in the program has the following method signature:
 
 ```java
 public String lowerify(String s)
@@ -93,11 +93,11 @@ public String lowerify(String s)
 
 The customer insists that there is nothing else that you need to know to start testing.  If you were tasked with testing this, though, what kinds of questions would you ask in order to develop a testing plan?  In other words, what other kinds of requirements would you try to elicit from the customer?
 
-1. What kind of character encoding will this be in - Unicode, ASCII, EBCDIC, something else?
+1. What kind of character encoding will this be in---Unicode, ASCII, EBCDIC, something else?
 2. What's the expected maximum character length?  Something that works well for a few words may not work so well if it's fed in ten terabytes of text.
 3. What is the expected behavior if the input text is in a language other than English?  Especially, what if it's a language that doesn't have the concept of uppercase and lowercase letters?
 4. What should the program do if a Control-C or other cancel command occurs midway through?
-5. Will this system be required to read data off the network?  If so, what should occur if there is a network failure - retry, shut down, show an error message, something else?
+5. Will this system be required to read data off the network?  If so, what should occur if there is a network failure---retry, shut down, show an error message, something else?
 
 Ensuring that you have the correct answers to these questions is part of validation of the program.  You want to test against what the user wants the program to do.
 
@@ -126,6 +126,6 @@ External factors could also be relevant.  What happens when...
 
 It is important to note that it would be literally impossible to exhaustively test every combination of input.  Even if we were just to test alphanumeric inputs of exactly 10 characters, and ignore all external factors, you are already looking at over 3 quadrillion test cases.  Since strings can be of arbitrary length (up to the storage limits of the computer), and there are plenty of external factors to consider, an exhaustive test plan for this function would take billions of years to execute!
 
-It's easy to see, even from this very simple example, that testing can be a very involved process, full of ambiguity and hard decisions about what to focus on.  As a tester, not only will you have to resolve these ambiguities, but also determine how much effort and time should be spent on resolving them.  The more energy you put into any particular aspect of testing, the less time you will have for other aspects.  Keep this in mind when you are developing a testing strategy - the amount of time you have to complete the project may be flexible, but it is always finite, and there are always various priorities which you will have to juggle in order to produce quality software.
+It's easy to see, even from this very simple example, that testing can be a very involved process, full of ambiguity and hard decisions about what to focus on.  As a tester, not only will you have to resolve these ambiguities, but also determine how much effort and time should be spent on resolving them.  The more energy you put into any particular aspect of testing, the less time you will have for other aspects.  Keep this in mind when you are developing a testing strategy---the amount of time you have to complete the project may be flexible, but it is always finite, and there are always various priorities which you will have to juggle in order to produce quality software.
 
-Remember that the reason behind testing software is to estimate - and if possible, reduce - the risk to stakeholders.  Understanding the possible risks can itself help to reduce risk.  After all, untested software which was never run could (theoretically, at least) be perfect, or it could not work at all.  Testing helps calculate where between those two extremes the software _actually_ is.  It can help us figure out whether there are issues with the software which are trivial, or problems which should stop the product from shipping because major functionality does not work.  By helping to determine the level of risk, software testers allow the other stakeholders involved to make appropriate decisions.
+Remember that the reason behind testing software is to estimate---and if possible, reduce---the risk to stakeholders.  Understanding the possible risks can itself help to reduce risk.  After all, untested software which was never run could (theoretically, at least) be perfect, or it could not work at all.  Testing helps calculate where between those two extremes the software _actually_ is.  It can help us figure out whether there are issues with the software which are trivial, or problems which should stop the product from shipping because major functionality does not work.  By helping to determine the level of risk, software testers allow the other stakeholders involved to make appropriate decisions.

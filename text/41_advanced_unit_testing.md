@@ -23,7 +23,7 @@ public int haveFunAtDuckPond(Duck d, int numFeedings) {
 
 Even though the code in this method works perfectly for all inputs, it requires that a working duck be present.  Otherwise, any non-negative number of feedings with a valid duck will cause an exception to be thrown.  If we see a unit test for this particular method failing, we will naturally think that the problem is in this method.  Only after examining it will we understand that the problem actually lies elsewhere.  How can we test this code when the code it depends upon doesn't work?
 
-I wouldn't have asked the question if I didn't have an answer - __test doubles__.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to localize the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that the method depends upon.
+I wouldn't have asked the question if I didn't have an answer---__test doubles__.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to localize the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that the method depends upon.
 
 JUnit does not support test doubles directly, but you can use other libraries in order to use them.  For this (and the next few sections), we will use Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
 
@@ -157,7 +157,7 @@ public class DogTest {
 }
 ```
 
-This will enable much easier and much more focused testing.  You'll also note the code has several other benefits aside from increased testability.  It's easier to read and understand, it's shorter, and there are fewer chances for errors.  In the original version, it would be very easy for a programmer to forget to set the `_df` variable to a `DogFood` object at some point, causing a null pointer exception whenever the dog tried to eat.  While still possible, this is less likely when you are passing in the object directly to the method.  We'll discuss more of the benefits of writing testable code - and why testable code is good code, and vice versa - in a later chapter.
+This will enable much easier and much more focused testing.  You'll also note the code has several other benefits aside from increased testability.  It's easier to read and understand, it's shorter, and there are fewer chances for errors.  In the original version, it would be very easy for a programmer to forget to set the `_df` variable to a `DogFood` object at some point, causing a null pointer exception whenever the dog tried to eat.  While still possible, this is less likely when you are passing in the object directly to the method.  We'll discuss more of the benefits of writing testable code---and why testable code is good code, and vice versa---in a later chapter.
 
 ## Stubs
 
@@ -174,7 +174,7 @@ public class Dog {
 }
 ```
 
-If we were just using `df` as a normal test double, then there is no telling what `df.eat()` will return.  Specifically, the answer varies by test framework - some will always return a default value, some will call out the real object, some will throw an exception.  This should just be a piece of trivia, though - you shouldn't call methods on a double object unless you have stubbed them.  The whole reason for making a test double is so that you have an object that you have specified, instead of relying on external definitions.  So let's say that our doubled `DogFood` object has a (scientifically determined) tastiness level of 13.  We can specify that whenever the .eat() method is called on our doubled object, then just return a value of 13.  We have made a __stub__ of the method.
+If we were just using `df` as a normal test double, then there is no telling what `df.eat()` will return.  Specifically, the answer varies by test framework---some will always return a default value, some will call out the real object, some will throw an exception.  This should just be a piece of trivia, though---you shouldn't call methods on a double object unless you have stubbed them.  The whole reason for making a test double is so that you have an object that you have specified, instead of relying on external definitions.  So let's say that our doubled `DogFood` object has a (scientifically determined) tastiness level of 13.  We can specify that whenever the .eat() method is called on our doubled object, then just return a value of 13.  We have made a __stub__ of the method.
 
 ```java
 public class DogTest {
@@ -346,7 +346,7 @@ public class Picture {
 }
 ```
 
-This code is relatively simple, and it's easy to see that all of the private methods will be called and tested by the public methods.  From the standpoint of a user of this class, it's easy to test that things work correctly - if a valid image is returned, then the method worked.
+This code is relatively simple, and it's easy to see that all of the private methods will be called and tested by the public methods.  From the standpoint of a user of this class, it's easy to test that things work correctly---if a valid image is returned, then the method worked.
 
 Now let's imagine some code inside the image transformation library might be called from the above code.
 
@@ -380,7 +380,7 @@ One could argue that this isn't a well-designed piece of code and should be refa
 
 In Java, there's no way to directly call private methods from a unit test, although this is definitely not the case in other languages (such as with Ruby's `.send(:method_name)` method, which bypasses the concept of "private" entirely).  However, using the reflection library, we can "reflect" what's the structure of the class is at runtime.  The reflection library is built in to the Java language, so you don't need to install anything else to use it.
 
-Let's give an example - if you've never worked with reflection before, it can be a bit strange.  Say we want to write a class which tells the user what methods are available in that class.  Without reflection, this is impossible in Java; how can you know what other methods exist without hard-coding them into a String or something along those lines?  It's actually relatively simple to do using reflection.
+Let's give an example---if you've never worked with reflection before, it can be a bit strange.  Say we want to write a class which tells the user what methods are available in that class.  Without reflection, this is impossible in Java; how can you know what other methods exist without hard-coding them into a String or something along those lines?  It's actually relatively simple to do using reflection.
 
 ```java
 import java.lang.reflect.Method;
@@ -509,7 +509,7 @@ printQuack
 printQuock
 ```
 
-We once again have a list of Method objects, and we can now invoke them.  There's only one small snag - we first need to set that method to "accessible" before calling it, using the `setAccessible()` method.  It accepts a Boolean parameter to determine whether or not the method should be accessible outside the class.
+We once again have a list of Method objects, and we can now invoke them.  There's only one small snag---we first need to set that method to "accessible" before calling it, using the `setAccessible()` method.  It accepts a Boolean parameter to determine whether or not the method should be accessible outside the class.
 
 ```java
 import java.lang.reflect.Method;
@@ -698,7 +698,7 @@ public class Turtle {
 }
 ```
 
-Using method coverage, having just one test for `eat()` or just one for `crawl()` would show 50% code coverage.  This hides the fact that `crawl()` is much more complicated than `eat()` and any single test would miss several different possible outcomes, whereas eat() can be tested very well with just one test.  It also would not let us know what particular lines were not tested - we would have to examine the test code to determine whether it was testing that the turtle could move on dirt, grass, or whatever else.  Statement coverage output can tell us exactly which lines were never executed during a test run, so we know exactly what kinds of tests to add to ensure that we are checking that each line has been tested at least once.
+Using method coverage, having just one test for `eat()` or just one for `crawl()` would show 50% code coverage.  This hides the fact that `crawl()` is much more complicated than `eat()` and any single test would miss several different possible outcomes, whereas eat() can be tested very well with just one test.  It also would not let us know what particular lines were not tested---we would have to examine the test code to determine whether it was testing that the turtle could move on dirt, grass, or whatever else.  Statement coverage output can tell us exactly which lines were never executed during a test run, so we know exactly what kinds of tests to add to ensure that we are checking that each line has been tested at least once.
 
 There are other variants of code coverage such as branch coverage, which measures which percentage of conditionals (if statements, case statements, etc.) have been tested.  However, these other kinds of code coverage are usually only used for much more specialized testing.  Chances are that you will deal with the statement and method coverage much more often.
 
@@ -729,7 +729,7 @@ public class CowTest {
 }
 ```
 
-From a code coverage perspective, we have 100% code coverage and 100% method coverage - the only method in the class is called from a test, and every statement in the method is executed.  However, calling `moo()` with a `mooLevel` parameter of 0 will cause a `DivideByZeroException` to be thrown.  This defect will not be discovered by the test case, despite every statement being executed.  Although not foolproof, ensuring that you've checked every equivalence class will help to ameliorate situations like this.
+From a code coverage perspective, we have 100% code coverage and 100% method coverage---the only method in the class is called from a test, and every statement in the method is executed.  However, calling `moo()` with a `mooLevel` parameter of 0 will cause a `DivideByZeroException` to be thrown.  This defect will not be discovered by the test case, despite every statement being executed.  Although not foolproof, ensuring that you've checked every equivalence class will help to ameliorate situations like this.
 
 Code coverage is a powerful tool, but like anything else in software development, it is not a silver bullet.  It's an excellent way to see what areas of the codebase might need more testing, but it should not assure you that any code that has been covered is guaranteed free of defects.
 

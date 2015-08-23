@@ -168,7 +168,7 @@ __Impure__: The opposite of __pure__, a method or function which produces at lea
 
 __Information Security__: The field of ensuring that computer systems successfully exhibit all three aspects of the __InfoSec Triad__.
 
-__InfoSec Triad__: The three criteria that indicate a secure system - confidentiality, integrity, and availability.
+__InfoSec Triad__: The three criteria that indicate a secure system---confidentiality, integrity, and availability.
 
 __Injection attack__: A kind of attack where the malicious user tries to get the victim's computer to execute arbitrary code.
 
@@ -268,7 +268,7 @@ __Pairwise testing__: A particular form of combinatorial testing where you are t
 
 __Partitioning__: See __equivalence class partitioning__.
 
-__Passed__: A status for a test case in a test run.  It indicates that the test was executed without error, and that the system has met all postconditions and/or expected output values - the observed behavior was equal to the expected behavior.
+__Passed__: A status for a test case in a test run.  It indicates that the test was executed without error, and that the system has met all postconditions and/or expected output values---the observed behavior was equal to the expected behavior.
 
 __Passive attack__: In __security testing__, an attack on a system which causes no changes to the system, such as eavesdropping on network traffic.
 
@@ -424,7 +424,7 @@ __Test run__: An actual iteration (run-through) of a test plan.
 
 __Test suite__: A grouping of related test plans.
 
-__Testability__: A quality of a system that specifies how easy it is to test - having well-designed and coherent methods, pure functions where possible, allowance for dependency injection, etc.
+__Testability__: A quality of a system that specifies how easy it is to test---having well-designed and coherent methods, pure functions where possible, allowance for dependency injection, etc.
 
 __Testable code__: Code which can be easily tested in an automated fashion at multiple levels of abstraction.
 
