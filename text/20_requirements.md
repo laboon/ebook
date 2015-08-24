@@ -83,7 +83,7 @@ Here is an example of a group of requirements that is not internally consistent:
 
 What should the system do if the pressure is between 100 and 200 PSI?  You can use equivalence class partitioning here to determine that the requirements are not internally consistent.
 
-The requirements should be __unambiguous__.  That is, they should specify things as precisely as possible for working in the particular domain the software is for.  The acceptable level of ambiguity will vary dramatically depending on what kind of software you are developing.  For example, if you are writing software for a children's game, it may be sufficient to state that a particular square should be "red".  If you are describing the requirements for an interface to a nuclear reactor, the exact PANTONE® shade of red that a warning light should be may need to be specified.
+The requirements should be __unambiguous__.  That is, they should specify things as precisely as possible for working in the particular domain the software is for.  The acceptable level of ambiguity will vary dramatically depending on what kind of software you are developing.  For example, if you are writing software for a children's game, it may be sufficient to state that a particular square should be "red".  If you are describing the requirements for an interface to a nuclear reactor, the exact PANTONE® shade of red that a warning light may need to be specified.
 
 That being said, be careful not to paint yourself into a corner with too-restrictive requirements.  If your requirements state that a particular page needs to be a certain number of pixels, you may have difficulties converting to mobile devices, for example.  However, requirements certainly should not be of the form:
 
