@@ -38,7 +38,7 @@ _Me:_ "OK, that's probably wrong.  I only ever tested it with an input of `9`, s
 
 (...and so on)
 
-Keep in mind that I am someone who teaches a class on software testing.  Even I can't help being nice to the poor little functions that I write.  The job of the tester is to be the drill sergeant to my helicopter parent.  I can nurture the poor little function, but it's not going to get any stronger until someone tries to hit it with some discipline.
+Keep in mind that I am someone who teaches a class on software testing.  Even I can't help being nice to the poor little functions that I write.  The job of the tester is to be the drill sergeant to my helicopter parent.  I can nurture the poor little function, but it's not going to know what it's capable of until it experiences some discipline.
 
 ## Verification and Validation
 
