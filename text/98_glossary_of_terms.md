@@ -416,6 +416,8 @@ __Test coverage__: A general term for which aspects or parts of the system are c
 
 __Test double__: A "fake object" which can be used in unit testing to limit dependencies on other classes, which may have problems of their own, not yet developed, or simply be time- or resource-intensive to actually instantiate.
 
+__Test fixture__: A procedure or program which puts a system into a state ready for testing.
+
 __Test hook__: A "hidden" method which allows input to, or output from, the system in order to make it easier to test.
 
 __Test plan__: A list of related test cases that are run together.

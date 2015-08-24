@@ -167,7 +167,7 @@ Once again, though, computer programs don't consist solely of mathematical funct
 
 Any side effects or other state of the system that are either caused by the functionality, or should be in effect some other way after the execution steps have been completed, but are not output values,  are __postconditions__.  Postconditions may be directly caused by the functionality under test, such as a warning message being displayed, or some data written to the database, or a global variable being set.  However, a postcondition is any condition which needs to be in place after the execution steps are complete, and may not be directly impacted by the functionality.  For example, a postcondition may be that a global variable was set, or that the system is still running, or that a thread was not killed.
 
-### A Note: Expected Behavior versus Observed Behavior
+### Expected Behavior versus Observed Behavior
 
 Although we've discussed the difference between output values and postconditions at length, the fact is that in many cases the difference doesn't really matter, or is too academic to make much fuss about.  A similar argument could be made on preconditions and input values.
 
@@ -219,6 +219,14 @@ NaN
 ```
 
 Dividing a positive value by zero returns `Infinity`, dividing by a negative number returns `-Infinity`, and dividing zero by zero returns `NaN` (Not a Number).  This means that dividing by zero, despite being one "internal equivalence class" in Java programs, is three different ones in JavaScript programs.  Knowing this, you would want to test that the program can handle all of these return values, and not assume that you had checked all edge cases simply because you had checked for dividing one by zero.  This is an actual example from a test plan that I wrote, and it was used to find several defects.
+
+## Test Fixtures
+
+As you write your a plan, you may find that you wish to test situations which are difficult to replicate.  For example, you may want to check that the coffee temperature app mentioned above works when changing time zones.  It would probably be prohibitively expensive to actually move the system from one time zone to another.  Remember that you are the master of this testing world!  You can simply change the time zone of the system the program is running on.  If you're testing that software will work in Russia, you can just change the locality settings to Russia instead of hopping on a flight.  If you require ten users in the database for a test, you can just add them manually to the dabase .  Although these fake situations may not catch all of the defects that may occur in reality under these conditions, they will tend to catch many of them.
+
+A script or program used to put the system under test into a state that is ready for testing is known as a __test fixture__.  Test fixtures can be as simple as a series of steps to type into the program.  There is no real limit on the complexity of test fixtures, however.  The Lunar Landing Training Vehicle was by astronauts on Earth to practice for landing on the Moon, using a complex feedback mechanism to simulate lunar gravity.  For more examples of how testing and test fixtures helped astronauts reach the Moon, see _Digital Apollo: Human and Machine in Spaceflight_ by David Mindell.
+
+Test fixtures are often used to simulate external systems.  As a personal anecdote, I was testing a subsystem that communicated with several other subsystems via JSON.  At first, the other systems were manually configured at the beginning of each test run.  I soon realized that this was time-consuming and error-prone.  The result was `simple_respond`, a Ruby gem that would accept a given JSON file and always respond with the data in the file for any request.  Instead of setting up the other subsystems - which I was not testing - I could focus on what the subsystem I was testing would do given certain responses.  Not only did this save time and reduce human error, but the tests were no longer dependent on other parts of the system working correctly.  Test fixtures like this could also be re-used when interacting with external systems, when there is no way to modify their state for a given test case.
 
 ## Executing a Test Plan
 
