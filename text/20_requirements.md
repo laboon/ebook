@@ -108,7 +108,7 @@ When applied to physical phenomena, it is manifestly clear how silly it would be
 
 ## Functional versus Non-Functional
 
-Functional requirements state what a system should _do_; non-functional requirements state what a system should _be_.
+__Functional requirements__ state what a system should _do_; __non-functional requirements__ state what a system should _be_.
 
 The requirements that we have discussed so far are functional requirements; that is, they say that the software system shall do a particular action under specific circumstances.  For example,
 
