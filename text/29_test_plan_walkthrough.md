@@ -11,7 +11,7 @@ Cat Weighing System
 Cat is overweight
 ```
 
-As the test cases are developed, take note of the trade-offs that are made, and how decisions about which test cases to include are made.  Also note how we use the ideas which we explored in earlier chapters - especially in equivalence class partitioning and thinking of failure cases - are used to make a well-rounded test plan.
+As the test cases are developed, take note of the trade-offs that are made, and how decisions about which test cases to include are made.  Also note how we use the ideas which we explored in earlier chapters - especially in equivalence class partitioning and thinking of failure cases - to make a well-rounded test plan.
 
 ## Examining The Requirements
 
@@ -37,7 +37,7 @@ Cat Weighing System
 Please enter a valid parameter
 ```
 
-We should first determine what the expected behavior is before continuing with writing a test plan.  This can be done by checking with the appropriate requirements analysts, systems engineers, product owners, or whoever is in charge of requirements.  If you are working on a less formal team, the correct path forward may be to make an assumption.  However, these assumptions should be noted as part of the test plan!  If one must make assumptions, they should at least be delineated clearly somewhere.  In general, however, you should avoid making assumptions; you want to know what the expected behavior is as precisely as possible.  In this case, let's assume that we went to the project manager (of course _catweigher_ has a project manager) and determined that "Cat Weighing System" should not be displayed if the parameter is not valid.  In other words, the second string of output is correct.
+We should first determine what the expected behavior is before continuing with writing a test plan.  This can be done by checking with the appropriate requirements analysts, systems engineers, product owners, or whoever is in charge of requirements.  If you are working on a less formal team, the correct path forward may be to make an assumption.  However, these assumptions should be noted as part of the test plan!  If one must make assumptions, they should at least be delineated clearly somewhere.  In general, however, you should avoid making assumptions; you want to know what the expected behavior is as precisely as possible.  In this case, let's assume that we went to the project manager (of course _catweigher_ has a project manager) and determined that "Cat Weighing System" should not be displayed if the parameter is not valid.  In other words, the first string of output is correct.
 
 ## Plotting Out The Test Plan
 
@@ -100,7 +100,7 @@ POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
 IDENTIFIER: NO-PARAMETER-TEST
 TEST CASE: Run the program without passing in a parameter.
 PRECONDITIONS: None
-INPUT VALUES: N/A
+INPUT VALUES: None
 EXECUTION STEPS: At the command line, run "catweigher"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
@@ -134,15 +134,15 @@ TEST CASE: Run the program passing in a valid parameter,
     startup message should appear.
 PRECONDITIONS: None
 INPUT VALUES: 5
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher 5"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The program displays the message "Cat Weighing System"
     upon the console before displaying the cat's weight status.
 ```
 
-We now have both possibilities covered.  Note that the postconditions focus on the specific aspect of output to be tested, instead of checking all of the output.  For example, STARTUP-MESSAGE-TEST only checks that the message is displayed, instead of what the specific weight status of a 5-kilogram cat would be.  Although it seems like a minor issue to include more detail - and might even catch a defect or two - this could lead us down a rathole in more complex programs.  If we decide to change the definition of "overweight" in the future.   If you think this is far-fetched, it has already happened for humans, at least in the United States.  In 1998, tens of millions of people suddenly became overweight due to a redefinition of the term "overweight" in regards to body-mass index (BMI).  How easy it would be to happen to our poor cats as well!  If it did, we would have to go through all of our tests one by one, ensuring that even unrelated tests did not accidentally depend upon the old weight status definitions.  By keeping our tests focused on the specific expected behavior, we ensure that our test suite does not become fragile, and easily allow future growth and modification of the software system.
+We now have both possibilities covered.  Note that the postconditions focus on the specific aspect of output to be tested, instead of checking all of the output.  For example, STARTUP-MESSAGE-TEST only checks that the message is displayed, instead of what the specific weight status of a 5-kilogram cat would be.  Although it seems like a minor issue to include more detail - and might even catch a defect or two - this could lead us down a rathole in more complex programs.  Imagine if we decide to change the definition of "overweight" in the future.   If you think this is far-fetched, it has already happened for humans, at least in the United States.  In 1998, tens of millions of people suddenly became overweight due to a redefinition of the term "overweight" in regards to body-mass index (BMI).  How easy it would be to happen to our poor cats as well!  If it did, we would have to go through all of our tests one by one, ensuring that even unrelated tests did not accidentally depend upon the old weight status definitions.  By keeping our tests focused on the specific expected behavior, we ensure that our test suite does not become fragile, and easily allows future growth and modification of the software system.
 
-It would be simple to add more edge cases, such as additional invalid and valid inputs, running on different operating systems, running with other programs in the background... the list goes on and on.  However, discretion is the better part of valor.  Spending too much time on a simple requirement like this would in all likelihood be a suboptimal use of resources.  Of course, there is always the chance that displaying a message is of the utmost important, such as a legal requirement or safety notice.  In such cases, obviously more attention would be focused on it.  While this may seem like I am avoiding giving clear rules for how much emphasis to place on each requirement, the point I want to get across is that there are no clear rules.  As a tester, you will have to decide how much to focus on each requirement, subsystem, feature, or other aspect of the system under test.  This will vary based on domain and the particular software project, and you may get it wrong.  I can provide examples and heuristics, but no book can replace the grey matter between your ears.
+It would be simple to add more edge cases, such as additional invalid and valid inputs, running on different operating systems, running with other programs in the background... the list goes on and on.  However, discretion is the better part of valor.  Spending too much time on a simple requirement like this would in all likelihood be a suboptimal use of resources.  Of course, there is always the chance that displaying a message is of the utmost importance, such as a legal requirement or safety notice.  In such cases, obviously more attention would be focused on it.  While this may seem like I am avoiding giving clear rules for how much emphasis to place on each requirement, the point I want to get across is that there are no clear rules.  As a tester, you will have to decide how much to focus on each requirement, subsystem, feature, or other aspect of the system under test.  This will vary based on domain and the particular software project, and you may get it wrong.  I can provide examples and heuristics, but no book can replace the grey matter between your ears.
 
 ## Determining Focus
 
@@ -154,19 +154,19 @@ Let's move on to the three weight requirements: FUN-UNDERWEIGHT, FUN-NORMALWEIGH
 >= 6 kg -> Overweight
 ```
 
-Let's assume that cats are weighed in increments of one-tenth of a kilogram.  This can be verified by discussing with the systems engineers or other appropriate stakeholders.  We can select the explicit boundary values: 2.9, 3.0, 5.9, and 6.0 kg.  Now let's add an interior value from each equivalence class: 1.6 kg for Underweight, 5.0 kg for Normal Weight, and 10 kg for Overweight.  We'll also want to add in implicit boundary values, say 0 and 1,000.  This final value assumes that 1,000 kilograms is the theoretical upper bound for a cat before it collapses into a black hole, which is my understanding of physics (note that the author is not a physicist).  Finally, let's check some corner cases: a negative number (-13) and a non-numeric string (`quackadoodle_doo`).  Note how much more emphasis is put on determining a variety of input values for these requirements compared to the startup message.  Since determining the weight status of the cat is core of this application, more testing emphasis is given to it.
+Let's assume that cats are weighed in increments of one-tenth of a kilogram.  This can be verified by discussing with the systems engineers or other appropriate stakeholders.  We can select the explicit boundary values: 2.9, 3.0, 5.9, and 6.0 kg.  Now let's add an interior value from each equivalence class: 1.6 kg for Underweight, 5.0 kg for Normal Weight, and 10 kg for Overweight.  We'll also want to add in implicit boundary values, say 0 and 1,000.  This final value assumes that 1,000 kilograms is the theoretical upper bound for a cat before it collapses into a black hole, which is my understanding of physics (note that the author is not a physicist).  Finally, let's check some corner cases: a negative number (-13) and a non-numeric string (`quackadoodle_doo`).  Note how much more emphasis is put on determining a variety of input values for these requirements compared to the startup message.  Since determining the weight status of the cat is the core of this application, more testing emphasis is given to it.
 
 ```
 IDENTIFIER: UNDERWEIGHT-INTERNAL
 TEST CASE: Run the program passing in an underweight cat with a weight of 1.6 kg.
 PRECONDITIONS: None
-INPUT VALUES: 0
+INPUT VALUES: 1.6
 EXECUTION STEPS: At the command line, run "catweigher 1.6"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is underweight".
 
 IDENTIFIER: UNDERWEIGHT-LOWER-BOUNDARY
-TEST CASE: Run the program passing in a cat with a weight of 0 kg.
+TEST CASE: Run the program passing in a weightless cat with a weight of 0 kg.
 PRECONDITIONS: None
 INPUT VALUES: 0
 EXECUTION STEPS: At the command line, run "catweigher 0"
@@ -182,7 +182,7 @@ OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is underweight".
 
 IDENTIFIER: NORMALWEIGHT-INTERNAL
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in a normal weight cat with a weight of 5 kg.
 PRECONDITIONS: None
 INPUT VALUES: 5
 EXECUTION STEPS: At the command line, run "catweigher 5"
@@ -190,7 +190,7 @@ OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is normal weight".
 
 IDENTIFIER: NORMALWEIGHT-LOWER-BOUNDARY
-TEST CASE: Run the program passing in a normal weight 
+TEST CASE: Run the program passing in a normal weight cat with a weight of 3 kg.
 PRECONDITIONS: None
 INPUT VALUES: 3
 EXECUTION STEPS: At the command line, run "catweigher 3"
@@ -206,40 +206,40 @@ OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is normal weight".
 
 IDENTIFIER: OVERWEIGHT-INTERNAL
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an overweight cat with a weight of 10 kg.
 PRECONDITIONS: None
 INPUT VALUES: 10
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher 10"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is overweight".
 
 IDENTIFIER: OVERWEIGHT-LOWER-BOUNDARY
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an overweight cat with a weight of 6 kg.
 PRECONDITIONS: None
 INPUT VALUES: 6
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher 6"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is overweight".
 
 IDENTIFIER: OVERWEIGHT-UPPER-BOUNDARY
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an overweight cat with a weight of 1000 kg.
 PRECONDITIONS: None
 INPUT VALUES: 1000
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher 1000"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The console shall display "Cat is overweight".
 
 IDENTIFIER: WEIGHTSTATUS-INVALID-NEGATIVE
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an invalid negative weight cat of -13 kg.
 PRECONDITIONS: None
 INPUT VALUES: -13
-EXECUTION STEPS: At the command line, run "catweigher"
+EXECUTION STEPS: At the command line, run "catweigher -13"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The system shall not display any cat weight status,
     and the program will exit.
 
 IDENTIFIER: WEIGHTSTATUS-INVALID-STRING
-TEST CASE: Run the program passing in a 
+TEST CASE: Run the program passing in an invalid string argument.
 PRECONDITIONS: None
 INPUT VALUES: "quackadoodle_doo"
 EXECUTION STEPS: At the command line, run "catweigher quackadoodle_doo"
