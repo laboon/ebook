@@ -43,15 +43,19 @@ Software developers, managers, and others working on a software project often ha
 
 QA engineers have a special role to play---they act as a representative of the customers and users of the software.  Their role is to ensure that the customer gets high-quality software that is what the customer wants.  In fact, in many organizations, software testers have the power to halt development or allocate resources in order to ensure that the customer receives the right software, built right.  Having somebody whose job is to act as an agent of the customer is a powerful force.  Used wisely, it can help to produce software which delights the user.
 
-## Whole-System Perspective
+## An Independent, Whole-System Perspective
 
 Developers are focused on very small parts of a system, with which they become intimately familiar.  It is the rare developer who has an understanding of the entire system under development.  Testers may not have the depth of knowledge of any one piece of the software, but do tend to have a broad perspective of the system as a whole.  They are testing various aspects of the system, trying out new functionality, and installing it on different kinds of systems.
 
 This whole-system perspective provides a valuable counterpoint to those who are heads-down on one area of the software.  Understanding how different subsystems work together, and how functionality works from a user perspective, lets QA personnel provide information on the status of the system as a system.  This also makes testers a valuable resource when new functionality is added or modified, as they will understand how this might impact the system.
 
+While other stakeholders have a direct stake in the development of the software, the role of a tester is to provide an independent view of the software.  By viewing the system separately and without the biases (conscious and unconscious) of the developers and managers, software testers can provide a more realistic and objective status of the system.
+
 ## Ensuring Quality
 
 Although testing software can provide you with many valuable benefits, it is not the sole way to improve the quality of your software.  One of the bibles of software engineering, _Code Complete_ by Steve McConnell, lists the defect detection rates of developers using different techniques.  Code reviews, formal design inspections, and software modeling have all been shown to increase the level of quality of software.  __Pair programming__, where two people work at the same time at one computer, has also been shown to have remarkable positive effects on software quality.  While it's easy for people to overlook their own mistakes, another person looking at the same code or text independently will often see something instantly.  I know of what I speak; I overlooked numerous embarrassing typos that were caught as soon as this book went out for review.
+
+While quality does not only mean "reducing the number of defects", it is certainly an important part.  By finding defects, software testers directly improve the quality of software.  Users of the software will receive a better product
 
 Allowing a proper amount of time for testing, development, and other aspects of the software development life cycle can also improve quality.  Very few pieces of software are written perfectly, and software written under a crushing deadline may not be of acceptable quality.  By providing adequate time and resources for engineers to develop the software, the level of quality will generally improve.
 
@@ -59,3 +63,6 @@ The choice of language, framework, and design of the program can also make a big
 
 While this book focuses on testing, it should be recognized that it is only one part of producing quality software.  Quality on a modern software project is the responsibility of everybody on the team, not just the testers.
 
+## Risk
+
+The reason for testing software boils down to minimizing risk, for everybody involved: customers, users, developers, etc.  Independent testing of the software allow for objective analysis of the quality of the system.  This reduces risk by providing information on the status of the system, both at a high level (e.g., "the system is ready to be released") and a low level (e.g., "if a username contains the symbol `!`, the system will crash").  Software development is a complex and risky process.  If the CEO wants to help ensure that risk is at a minimum, it is essential that software testers are part of the team.
