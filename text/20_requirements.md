@@ -37,17 +37,17 @@ When writing requirements, it's important to keep in mind that requirements stat
 
 __GOOD REQUIREMENTS:__
 
-* __GOODREQ-1.__ When the user presses the "velocity" button, the current velocity of the spaceship shall be displayed on the main screen.
-* __GOODREQ-2.__ The system shall be able to support a velocity of 0.8c (80% of the speed of light) for at least three hundred days (7,200 hours) without requiring maintenance.
-* __GOODREQ-3.__ The system shall store the last 100 coordinates of locations that it has sampled.
+* __GOOD-REQ-1.__ When the user presses the "velocity" button, the current velocity of the spaceship shall be displayed on the main screen.
+* __GOOD-REQ-2.__ The system shall be able to support a velocity of 0.8c (80% of the speed of light) for at least three hundred days (7,200 hours) without requiring maintenance.
+* __GOOD-REQ-3.__ The system shall store the last 100 coordinates of locations that it has sampled.
 
 __BAD REQUIREMENTS:__
 
-* __BADREQ-1.__ When the user presses the "velocity" button, the system shall access memory location 0x0894BC40 and display it on the main screen.
-* __BADREQ-2.__ The system shall use a simulated antimatter-matter reaction in order to propel it to 0.8c.
-* __BADREQ-3.__ The system shall use a relational database to store the last 100 coordinates it has sampled.
+* __BAD-REQ-1.__ When the user presses the "velocity" button, the system shall access memory location 0x0894BC40 and display it on the main screen.
+* __BAD-REQ-2.__ The system shall use a simulated antimatter-matter reaction in order to propel it to 0.8c.
+* __BAD-REQ-3.__ The system shall use a relational database to store the last 100 coordinates it has sampled.
 
-Note that the bad requirements all state _how_ something should be done, not _what_ the system needs to do.  What happens if the memory layout on the system is changed?  BADREQ-1 would have to be changed, as well as any other requirements that may have depended on data being in a specific memory location.  Why is it important to use an antimatter-matter reactor, specifically?  After all, the key thing is that the spaceship can move at a specific velocity.  Finally, why is it important that a relational database is used to store coordinates?  From the user's perspective, all that they care about is that the coordinates are stored.
+Note that the bad requirements all state _how_ something should be done, not _what_ the system needs to do.  What happens if the memory layout on the system is changed?  BAD-REQ-1 would have to be changed, as well as any other requirements that may have depended on data being in a specific memory location.  Why is it important to use an antimatter-matter reactor, specifically?  After all, the key thing is that the spaceship can move at a specific velocity.  Finally, why is it important that a relational database is used to store coordinates?  From the user's perspective, all that they care about is that the coordinates are stored.
 
 For complex or safety-critical systems (such as an actual interstellar spaceship), requirements may specify implementations.  In these cases, it is not only critical that a system does something, but that it does so in a proven and specified way.  For most systems, however, such requirements are overkill and would greatly limit flexibility as the software development process continues.  It can also make it more difficult to test these requirements, since not only does the tester need to determine whether the expected behavior matched the observed behavior, but they also need to determine how the observed behavior occurred.
 
@@ -78,8 +78,8 @@ The requirements should be __consistent__.  That is, they should not contradict 
 
 Here is an example of a group of requirements that is not internally consistent:
 
-* __REQ-1.__ The system shall display "WARNING: `OVERPRESSURE`" on the console whenever the pressure is 100 PSI or greater.
-* __REQ-2.__ The system shall turn off the console and display no further information as long as the pressure is less than 200 PSI.
+* __INCONSISTENT-REQ-1.__ The system shall display "WARNING: `OVERPRESSURE`" on the console whenever the pressure is 100 PSI or greater.
+* __INCONSISTENT-REQ-2.__ The system shall turn off the console and display no further information as long as the pressure is less than 200 PSI.
 
 What should the system do if the pressure is between 100 and 200 PSI?  You can use equivalence class partitioning here to determine that the requirements are not internally consistent.
 
@@ -87,20 +87,20 @@ The requirements should be __unambiguous__.  That is, they should specify things
 
 That being said, be careful not to paint yourself into a corner with too-restrictive requirements.  If your requirements state that a particular page needs to be a certain number of pixels, you may have difficulties converting to mobile devices, for example.  However, requirements certainly should not be of the form:
 
-* __REQ-1.__ The system shall do all of the shutdown stuff whenever the "shutdown" button is pressed.
+* __AMBIGUOUS-REQ-1.__ The system shall do all of the shutdown stuff whenever the "shutdown" button is pressed.
 
 What is the "shutdown stuff"?  Speaking to our friends, or amongst co-workers, we may use relatively ambiguous terms like that because the human brain is remarkably good at filling in ambiguity.  However, ambiguous requirements can lead to different developers or other stakeholders interpreting them in different ways.  The classic example of this is the Mars Climate Orbiter mishap, where one group of software engineers used Imperial measures and another group used metric measures.  Both groups thought the correct way to return results was obvious, but they came up with different implementations.
 
 If at all possible, the requirements should be __quantitative__ (as opposed to qualitative).  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.
 
-* __BADREQ-1.__ The system shall return results extremely quickly.
+* __QUALITATIVE-REQ-1.__ The system shall return results extremely quickly.
 
 What do we mean by this?  It's impossible to test without defining what we mean by "extremely quickly", or what kind of results need to be returned quickly.
 
 Finally, some common sense needs to be applied to the requirements writing.  It's possible to write a requirement which may be theoretically possible to test, but for various reasons, impossible to test in the real world.  A requirement like this is not __feasible__ to test.  Let's say that we have the following requirements for testing our air pressure sensor:
 
-* __REQ-1.__ The system shall be able to endure pressures of up to 9.5 x 10^11 pounds per square inch.
-* __REQ-2.__ Under normal operating procedures (defined elsewhere), the system shall remain usable for two hundred years of continuous use.
+* __INFEASIBLE-REQ-1.__ The system shall be able to endure pressures of up to 9.5 x 10^11 pounds per square inch.
+* __INFEASIBLE-REQ-2.__ Under normal operating procedures (defined elsewhere), the system shall remain usable for two hundred years of continuous use.
 
 Both of these requirements are, in fact, possible to test.  In order to test the first, simply place the system at ground zero of a relatively powerful thermonuclear explosion, and determine if system quality degrades after detonation.  The second requirement is even easier to meet; simply drive around with the pressure sensor for two hundred years.  Since the human lifespan is noticeably shorter than that, you'll probably need a few generations of testers.  Whether you make "pressure sensor tester" a hereditary position, or use a "master/apprentice" style system, is entirely up to you.
 
