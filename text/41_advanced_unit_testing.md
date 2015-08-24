@@ -589,7 +589,7 @@ Ideally, you should look at the method and think of the various success and fail
 You don't want to create a test suite that takes so long to run that people don't run it often, but a well-designed unit test suite with appropriate doubles, mocks, stubs, and the like should run very fast even when there are many tests.  I would err on the side of creating too many tests rather than too few, at first.  As you determine how many tests are necessary for the particular piece of software you're working on, you can start making trade-offs between the amount of time for development and for testing.
 
 
-### Unit Tests Should Have Few Assertions (Preferably Only One) And Simple, Direct Names
+### Assert Less, Name Directly
 
 When unit tests fail, they should point you exactly what went wrong, and where.  They should not be large "one size fits all" tests.   It is so fast to run a properly-written unit test (rarely taking more than a few tens of milliseconds) that the extra execution time and work involved in writing more tests is absolutely dwarfed by the amount of time that you will save when unit tests tell you exactly what went wrong when it failed.  A unit test with lots of assertions shows a lack of thought towards what exactly the unit test was supposed to check for.  Consider the following example:
 

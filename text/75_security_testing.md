@@ -156,7 +156,7 @@ During a penetration test, a person will act as though they were a cracker tryin
 
 A penetration tester will then develop a report of what the weak points of the system are, as well as the ramifications of those weak points.  For example, they may find a SQL injection vulnerability for one particular subsystem which allows access to a particular database.  While this may sound like technical gobbledygook to a manager, explaining the ramifications - that all of the payroll data for the company is available to anybody with an Internet connection - is much clearer (and scarier).
 
-## General Guidelines When Developing a Security Testing Plan
+## General Guidelines
 
 Before developing a testing plan for security, you should try to determine how much testing will be necessary.  This will depend on the domain in which you are operating, but mostly on what the risks are if an opponent is able to compromise the system.  Remember that time and resources spent on security testing are time and resources that are not spent elsewhere.  If you are running a system which controls nuclear weapons launch codes, it makes sense to spend a large percentage of the time testing the system on security testing; if you are running a startup for renting cats, less time and fewer resource are probably necessary.
 

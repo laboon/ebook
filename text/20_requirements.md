@@ -106,7 +106,7 @@ Both of these requirements are, in fact, possible to test.  In order to test the
 
 When applied to physical phenomena, it is manifestly clear how silly it would be to test these requirements.  (If they don't seem silly to you, how many testers do you know who have thermonuclear weapons at their disposal?  Probably fewer than five.)  However, oftentimes, it's more difficult to determine that a requirement is not feasible to test when you are dealing with software.  Living in a physical world, the human brain often has difficulty with determining how feasible a software requirement (which deals in the virtual world) may be to test.
 
-## Functional versus Non-Functional Requirements (Quality Attributes)
+## Functional versus Non-Functional
 
 Functional requirements state what a system should _do_; non-functional requirements state what a system should _be_.
 
