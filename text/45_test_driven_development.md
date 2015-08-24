@@ -256,7 +256,7 @@ This test fails, since the current method  will return "Fizz".
     }
 ```
 
-Tests are now passing!  We might go further with refactoring - for example, "DRY"-ing up the code by moving `num % 3 == 0` and `num % 5 == 0` to their own methods - but this shows a simple outline of the TDD process.  Oftentimes, steps are bigger in actual development, but a key tenet to keep in mind is to keep the tests relatively specific and targeted at particular output values.  Grouping the input and output values into equivalence classes, as discussed earlier, can help you to decide what needs to be tested and what order to test things in.
+Tests are now passing!  We might go further with refactoring - for example,  moving `num % 3 == 0` and `num % 5 == 0` to their own methods - but this shows a simple outline of the TDD process.  Oftentimes, steps are bigger in actual development, but a key tenet to keep in mind is to keep the tests relatively specific and targeted at particular output values.  Grouping the input and output values into equivalence classes, as discussed earlier, can help you to decide what needs to be tested and what order to test things in.
 
 ## Benefits of TDD
 
