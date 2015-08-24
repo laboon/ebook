@@ -1,6 +1,6 @@
 # Pairwise and Combinatorial Testing
 
-Imagine that you're testing a word processor.  Specifically, you're testing the ability to add font effects, e.g., bold, italic, superscript, 3-D, etc.  Of course, in any word processor worth its salt, these effects can also be combined in one region of text, so that you may have a word which is both bold and italic, or a letter which is both subscripted and in 3-D, or even a sentence which is bold, italic, underlined, 3-D, and superscripted.  The number of possible combinations - ranging from absolutely no effects (and thus plain text) all the way to every single effect turned on - is 2^n, where _n_ is the number of effects.  Thus, if there are 10 different kinds of font effects available, the number of tests that you would have to run to fully test all of the possible combinations of font effects is 2^10, or 1,024.  This is a non-trivial number of tests to write.
+Imagine that you're testing a word processor.  Specifically, you're testing the ability to add font effects, e.g., bold, italic, superscript, 3-D, etc.  Of course, in any word processor worth its salt, these effects can also be combined in one region of text, so that you may have a word which is both bold and italic, or a letter which is both subscripted and in 3-D, or even a sentence which is bold, italic, underlined, 3-D, and superscripted.  The number of possible combinations---ranging from absolutely no effects (and thus plain text) all the way to every single effect turned on---is 2^n, where _n_ is the number of effects.  Thus, if there are 10 different kinds of font effects available, the number of tests that you would have to run to fully test all of the possible combinations of font effects is 2^10, or 1,024.  This is a non-trivial number of tests to write.
 
 If you want truly complete test coverage, you'll have to test each of these different combinations (e.g., only bold; bold and italic; bold and superscript; bold, superscripted, italic, strikethrough, 3-D; etc.).  Imagine if there is an issue that only shows up when a letter is italic, underlined, bold, subscripted, and struck-through.  You won't find that defect unless you take the time to go through a comprehensive test of all combinations!
 
@@ -8,9 +8,9 @@ However, it turns out that this situation is rarer than you might think.  You ma
 
 This technique is called __combinatorial testing__.  Testing all possible pairs of values is a kind of combinatorial testing, but has its own term, __pairwise testing__ or __all-pairs testing__.  At the beginning of this book, we discussed how comprehensively testing a non-trivial program was almost impossible.  By using the techniques in this chapter, we can reduce the number of tests dramatically (in some cases, by many orders of magnitude), but still find ourselves able to thoroughly test a system.
 
-## An Example Of Pairwise Testing
+## An Example of Pairwise Testing
 
-Let's take a very simple example, a program which has only three variables for a character's formatting: bold, italic, and underline.  These can be combined, so that, for example, a character can be just italic; or italic and underlined; or bold, italic and underlined.  Since each of these variables is a Boolean (they can only be true or false - you can't have a "half-italic" character), the list of possibilities for a character can be expressed as a truth table.
+Let's take a very simple example, a program which has only three variables for a character's formatting: bold, italic, and underline.  These can be combined, so that, for example, a character can be just italic; or italic and underlined; or bold, italic and underlined.  Since each of these variables is a Boolean (they can only be true or false---you can't have a "half-italic" character), the list of possibilities for a character can be expressed as a truth table:
 
 ```
      BOLD       | ITALIC    | UNDERLINE
@@ -38,7 +38,7 @@ As explained above, checking that all pairs of variables are checked can help us
  true       | true
 ```
 
-Now we need to ensure that our tests cover every possibility of bold and italic.  We can see that test 1 provides false/false, test 4 provides false/true, test 5 provides true/false, and test 8 provides true/true.
+Now we need to ensure that our tests cover every possibility of bold and italic.  We can see that test 1 provides false/false, test 4 provides false/true, test 5 provides true/false, and test 8 provides true/true:
 
 ```
      BOLD       | ITALIC    | UNDERLINE
@@ -70,9 +70,9 @@ Finally, we should check the last variable combination, italic/underline.  Test 
 8.   true       | true      | true
 ```
 
-We have met our strict manager's demand and reduced the number of tests by 25%.  We have used a __covering array__ to determine a smaller way to check all 2-way (pairwise) interactions.  This is actually not the optimal configuration for testing all combinations, as we used a naive algorithm and did not check other possibilities (perhaps by selecting different tests whenever we had a choice, we could have covered even more cases).  Although the particular algorithms and heuristics used are beyond the scope of this book, there are tools that will generate these covering arrays quickly and automatically.  These combinatorial test generators - such as the free Advanced Combinatorial Testing System from NIST - are invaluable when attempting to generate covering arrays for a non-trivial number of variables.
+We have met our strict manager's demand and reduced the number of tests by 25%.  We have used a __covering array__ to determine a smaller way to check all 2-way (pairwise) interactions.  This is actually not the optimal configuration for testing all combinations, as we used a naïve algorithm and did not check other possibilities (perhaps by selecting different tests whenever we had a choice, we could have covered even more cases).  Although the particular algorithms and heuristics used are beyond the scope of this book, there are tools that will generate these covering arrays quickly and automatically.  These combinatorial test generators---such as the free Advanced Combinatorial Testing System from NIST---are invaluable when attempting to generate covering arrays for a non-trivial number of variables.
 
-Using NIST ACTS with the IPOG algorithm, I was able to generate the following optimal covering array.  With only four tests, it would literally be impossible to be more efficient, since each pairwise truth table will themselves require four different tests.  Even more importantly, we have now exceeded the manager's expectations, cutting the tests down by 50% instead of the 25% that he demanded, yet still testing all pairwise interactions.
+Using NIST ACTS with the IPOG algorithm, I was able to generate the following optimal covering array.  With only four tests, it would literally be impossible to be more efficient, since each pairwise truth table will themselves require four different tests.  Even more importantly, we have now exceeded the manager's expectations, cutting the tests down by 50% instead of the 25% that he demanded, yet still testing all pairwise interactions:
 
 ```
      BOLD       | ITALIC    | UNDERLINE
@@ -83,7 +83,7 @@ Using NIST ACTS with the IPOG algorithm, I was able to generate the following op
 7.   true       | true      | false
 ```
 
-Although this example was done with Boolean variables, any kind of variable can be used as long as it's finite.  If it's a variable with infinite possibilities - say, an arbitrary length string - you can map to a certain number of possibilities (e.g., `a`, `abcde`, and `abcdefghijklmnop`).  When doing so, you should first think of the different equivalence classes, if any, and ensure that you have a value from each equivalence class.  You should also try to check several different edge cases, especially those which may cause problems when interacting in combination with other variables.  Suppose in our previous example that instead of checking a character, we wanted to check a word.  We may add different possibilities for the word to be tested.  Let's start with "a" (a single character) and "bird", a simple word.  Our generated covering array will look similar to the previous one, just using "a" and "bird" as the values for the word variable, instead of true and false as for all of the other variables.
+Although this example was done with Boolean variables, any kind of variable can be used as long as it's finite.  If it's a variable with infinite possibilities---say, an arbitrary length string---you can map to a certain number of possibilities (e.g., `a`, `abcde`, and `abcdefghijklmnop`).  When doing so, you should first think of the different equivalence classes, if any, and ensure that you have a value from each equivalence class.  You should also try to check several different edge cases, especially those which may cause problems when interacting in combination with other variables.  Suppose in our previous example that instead of checking a character, we wanted to check a word.  We may add different possibilities for the word to be tested.  Let's start with "a" (a single character) and "bird", a simple word.  Our generated covering array will look similar to the previous one, just using "a" and "bird" as the values for the word variable, instead of true and false as for all of the other variables:
 
 ```
         WORD   | BOLD       | ITALIC    | UNDERLINE
@@ -96,7 +96,7 @@ Although this example was done with Boolean variables, any kind of variable can 
 6.      "a"    | false      | false     | false
 ```
 
-Note that we are still checking all pairs.  Let's check the word/bold pair to verify that that is the case.  In test 1, we check for the word "a" with bold set to true.  In test 2, we check the word "a" with bold set to false.  In test 3 we check the word "bird" with bold set to true, and in test 4 we check the word "bird" with bold set to false.  What if we're worried that special characters may cause an issue when formatting?  We'd want to add a third possibility for the word variable, which is certainly allowed even though all of our possibilities so far have used only two possible values.
+Note that we are still checking all pairs.  Let's check the word/bold pair to verify that that is the case.  In test 1, we check for the word "a" with bold set to true.  In test 2, we check the word "a" with bold set to false.  In test 3 we check the word "bird" with bold set to true, and in test 4 we check the word "bird" with bold set to false.  What if we're worried that special characters may cause an issue when formatting?  We'd want to add a third possibility for the word variable, which is certainly allowed even though all of our possibilities so far have used only two possible values:
 
 ```
         WORD   | BOLD       | ITALIC    | UNDERLINE
@@ -115,7 +115,7 @@ As a side note, notice that we are now testing even more pairwise combinations a
 
 Although many errors will be found by ensuring that all pairwise interactions are tested, often we would like to go even further and check for errors in three-way, four-way, or even more interactions.  The same theory holds for doing this: tests should be generated that cover the entire truth table for each 3-way variable interaction.  Just like we checked that all four true/false value combinations were tested for each two-way interaction in the first example, we will check that all eight value combinations for each three-way interaction are tested.
 
-Let's expand the number of formatting variables in our system, adding SUPERSCRIPT and STRIKETHROUGH as possibilities.  In order to exhaustively test this, we will need 2 ^ 5, or 32, tests.  Generating a covering array for all pairwise interactions creates a six case test plan.  Once again, notice how we are testing even more variables than in the last case, but we are using the same number of tests.  In this case, we are running only 18.75% of the tests we would need for exhaustive testing, yet still testing all pairwise interactions.
+Let's expand the number of formatting variables in our system, adding SUPERSCRIPT and STRIKETHROUGH as possibilities.  In order to exhaustively test this, we will need 2 ^ 5, or 32, tests.  Generating a covering array for all pairwise interactions creates a six case test plan.  Once again, notice how we are testing even more variables than in the last case, but we are using the same number of tests.  In this case, we are running only 18.75% of the tests we would need for exhaustive testing, yet still testing all pairwise interactions:
 
 ```
         BOLD       | ITALIC    | UNDERLINE | SUPERSCRIPT | STRIKETHROUGH
@@ -128,7 +128,7 @@ Let's expand the number of formatting variables in our system, adding SUPERSCRIP
 6.      false      | false     | true      | false       | false
 ```
 
-Checking for every possible three-way interaction is going to involve more tests.  If you think about it, this is logically necessary.  Since there are eight possible combinations for each three-way interaction, it would be impossible to cover any combination using only six tests.
+Checking for every possible three-way interaction is going to involve more tests.  If you think about it, this is logically necessary.  Since there are eight possible combinations for each three-way interaction, it would be impossible to cover any combination using only six tests:
 
 ```
         BOLD       | ITALIC    | UNDERLINE | SUPERSCRIPT | STRIKETHROUGH
@@ -151,12 +151,11 @@ Let's examine a given three-way interaction, bold/italic/underline, and double-c
 
 The number of interactions can be tuned upwards as high as you would like, although if you are planning on testing n-way interactions where _n_ is the number of variables you have, you are just doing exhaustive testing.  According to empirical studies done by NIST, the maximum number of interactions that caused an error was six, so checking for more than that would be over-testing in many situations.
 
-## Working With Larger Variable Sets
+## Working with Larger Variable Sets
 
 Combinatorial testing seems to work well with relatively small data sets, saving us large percentages of time by reducing the number of tests necessary.  However, going from 32 to 12 tests is not that impressive; after all, 32 tests could probably still be run in a reasonable amount of time.  How well does combinatorial testing work for larger numbers of variables or possible values?
 
-The answer is, incredibly well.  Instead of five Boolean variables, let's assume that we have fifty.  In order to exhaustively test all possible combinations, you'd need to run 2^50 (1,125,899,906,842,624) tests.  That's over a quintillion tests - you could do a test per second for the rest of your life and not make a dent.  However, if you're content with just checking each 2-way interaction, you can reduce that to 14 tests!  That's a savings in tests that is really incomprehensible using percentages; you're talking many, many orders of magnitude.  What once looked to be daunting is now easily attainable.  Increasing the number of interactions does not increase the amount of tests that greatly, either: testing all three-way interactions requires forty tests, and testing all four-way interactions only requires one hundred tests.  Even better, NIST ACTS was able to generate these test plans, even on my underpowered laptop, in less than a few seconds.
+The answer is, incredibly well.  Instead of five Boolean variables, let's assume that we have fifty.  In order to exhaustively test all possible combinations, you'd need to run 2^50 (1,125,899,906,842,624) tests.  That's over a quintillion tests---you could do a test per second for the rest of your life and not make a dent.  However, if you're content with just checking each 2-way interaction, you can reduce that to 14 tests!  That's a savings in tests that is really incomprehensible using percentages; you're talking many, many orders of magnitude.  What once looked to be daunting is now easily attainable.  Increasing the number of interactions does not increase the amount of tests that greatly, either: testing all three-way interactions requires forty tests, and testing all four-way interactions only requires one hundred tests.  Even better, NIST ACTS was able to generate these test plans, even on my underpowered laptop, in less than a few seconds.
 
 You can see that not only does the number of tests you need grow sublinearly, the more variables you have, the higher percentage of time you will be saving by using combinatorial testing.  In the beginning of this book, we talked about how exhaustive testing was, for many programs, essentially impossible.  Using combinatorial testing is one way to ameliorate that problem.  With only a small percentage of the effort needed for exhaustive testing, we can find the vast majority of defects that would have been caught by it.
-
 

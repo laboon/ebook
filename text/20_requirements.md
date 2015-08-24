@@ -1,12 +1,12 @@
 # Requirements
 
-Remember that validating software is ensuring that we are building the right software; in other words, ensuring that what we are creating is what the users and/or customers want.  In order to validate software, we need to know what it is that users want the software to do, which can be a much more difficult task than you may think.  Users often aren't able to specify exactly what they are looking for.  They may think that they know exactly what they want, but when they see the implementation, immediately know that it is not.  Or they may have no idea - they just want your team to build something "like a social media site, but with buying and selling, and you know, like, hot dogs?  But for cats?"
+Remember that validating software is ensuring that we are building the right software; in other words, ensuring that what we are creating is what the users and/or customers want.  In order to validate software, we need to know what it is that users want the software to do, which can be a much more difficult task than you may think.  Users often aren't able to specify exactly what they are looking for.  They may think that they know exactly what they want, but when they see the implementation, immediately know that it is not.  Or they may have no idea---they just want your team to build something "like a social media site, but with buying and selling, and you know, like, hot dogs?  But for cats?"
 
 One way of determining what software to build is to determine the __requirements__ of the software.  Requirements are statements specifying exactly what it is that a piece of software should do under certain conditions.  This is more or less popular depending on the domain and the kind of software being developed.  For example, when building software to monitor a nuclear reactor, there may be very specific and well-laid-out requirements.  If you are working for a social media startup (hopefully not one with "buying and selling, and you know, like hot dogs... for cats", because there is apparently competition), then your "requirements" may be something your CEO scribbled on a napkin after one too many bottles of wine and one too few meetings with actual investors.
 
 Requirements ensure that the developers know what to build, and the testers know what to test.  While requirements are important, they are not inviolable!  Common sense should be used when interpreting requirements, and requirements are often subject to change.   Note that there other methods of determining what software to build aside from traditional requirements, such as user stories.  
 
-In our tire air pressure example in the chapter on testing basics, we had some relatively simple requirements, although we did not mention at the time that that is what they were.
+In our tire air pressure example in the chapter on testing basics, we had some relatively simple requirements, although we did not mention at the time that that is what they were:
 
 1. The `ERROR` light comes on for PSIs of -1 or less
 2. The `UNDERPRESSURE` light comes for PSIs between 0 and 20
@@ -51,7 +51,7 @@ Note that the bad requirements all state _how_ something should be done, not _wh
 
 For complex or safety-critical systems (such as an actual interstellar spaceship), requirements may specify implementations.  In these cases, it is not only critical that a system does something, but that it does so in a proven and specified way.  For most systems, however, such requirements are overkill and would greatly limit flexibility as the software development process continues.  It can also make it more difficult to test these requirements, since not only does the tester need to determine whether the expected behavior matched the observed behavior, but they also need to determine how the observed behavior occurred.
 
-By requiring implementation details, you remove the possibility of black-box testing.  Without looking at the code, how can you be sure that the system is displaying the contents of memory location 0x0894BC40?  It's impossible (unless you have the incredibly specific superpower of being able to look at a RAM chip and know what is being stored and where).  All tests would have to be white box tests.
+By requiring implementation details, you remove the possibility of black-box testing.  Without looking at the code, how can you be sure that the system is displaying the contents of memory location 0x0894BC40?  It's impossible (unless you have the incredibly specific superpower of being able to look at a RAM chip and know what is being stored and where).  All tests would have to be white-box tests.
 
 ## Testability
 
@@ -60,7 +60,7 @@ From a tester's perspective, one of the most important aspects of requirements i
 1. The system shall increment the PATRONS counter upon every time the TURNSTILE sensor is activated without error.
 2. The system shall do the things with the counter every time someone walks through.
 
-Note that the first requirement is very unambiguous; it states what should be done, what input to monitor, and what behavior to expect.  Specifically, whenever the TURNSTILE sensor is activated, we expect the PATRONS counter (which may be a variable, a display, or something else - it should be specified elsewhere in a complete requirements specification) to be incremented by one.  The second requirement is ambiguous in several ways.  What shall it do with the counter?  How can it tell when someone walks through?  What is it referring to that someone can walk through?  It would be impossible to set up a test for this requirement.
+Note that the first requirement is very unambiguous; it states what should be done, what input to monitor, and what behavior to expect.  Specifically, whenever the TURNSTILE sensor is activated, we expect the PATRONS counter (which may be a variable, a display, or something else---it should be specified elsewhere in a complete requirements specification) to be incremented by one.  The second requirement is ambiguous in several ways.  What shall it do with the counter?  How can it tell when someone walks through?  What is it referring to that someone can walk through?  It would be impossible to set up a test for this requirement.
 
 Now that we've seen examples of testable and non-testable requirements, can we specify in detail what it means for a requirement to be testable?
 
@@ -110,7 +110,7 @@ When applied to physical phenomena, it is manifestly clear how silly it would be
 
 __Functional requirements__ state what a system should _do_; __non-functional requirements__ state what a system should _be_.
 
-The requirements that we have discussed so far are functional requirements; that is, they say that the software system shall do a particular action under specific circumstances.  For example,
+The requirements that we have discussed so far are functional requirements; that is, they say that the software system shall do a particular action under specific circumstances.  For example:
 
 1. The system shall display the error message "User Not Found" if a user attempts to log in and the user name entered does not exist in the system.
 2. Upon retrieval of a record from the database, if any field is invalid, the system shall return the string "INVALID" for that field.

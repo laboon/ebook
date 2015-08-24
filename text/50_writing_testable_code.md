@@ -6,7 +6,7 @@ By writing the code in a testable way, not only will you make it easier to write
 
 ## What Do We Mean By "Testable Code"?
 
-In some sense, virtually all code is testable.  As long as you can control the inputs and observe the outputs, you can test any piece of software.  By __testable code__, we mean code that is easy to test in an automated fashion at multiple levels of abstraction.  This means that writing black-box systems tests is simple, that writing unit tests (for classes, methods, or other units of code) is not unreasonably complex, and that more advanced testing such as performance and security testing are possible.  Not all testable code is good code - it's possible to write a horrible mess of non-performant spaghetti code which is nevertheless easy to test.  However, all good code is testable code.  Being able to write tests for a particular piece of code is an integral part of the code being well-written.
+In some sense, virtually all code is testable.  As long as you can control the inputs and observe the outputs, you can test any piece of software.  By __testable code__, we mean code that is easy to test in an automated fashion at multiple levels of abstraction.  This means that writing black-box systems tests is simple, that writing unit tests (for classes, methods, or other units of code) is not unreasonably complex, and that more advanced testing such as performance and security testing are possible.  Not all testable code is good code---it's possible to write a horrible mess of non-performant spaghetti code which is nevertheless easy to test.  However, all good code is testable code.  Being able to write tests for a particular piece of code is an integral part of the code being well-written.
 
 Let's imagine that we're testing the following piece of code.  It's part of a video game which simulates a bird moving across a landscape.  Pressing a button makes the bird fly and updates its height and location on the screen.
 
@@ -36,7 +36,7 @@ The two key concepts to keep in mind when writing code that is testable at the u
 1. Ensure code is segmented
 2. Ensure that events are repeatable
 
-If a particular method relies on only a few other parts (classes, methods, external programs, etc.) of the system to work - and ideally, if its results are affected only by the values passed in as parameters - then it will be relatively easy to test.  However, if it relies on a variety of other parts, then it can get very difficult, very quickly.  You not only have to make sure that the part of the system is working, but any parts that it is dependent upon.  You may be able to provide test doubles, but if the code is not written with them in mind, it may not be possible.  Let's examine some code which is not segmented well, and will be extremely difficult to test:
+If a particular method relies on only a few other parts (classes, methods, external programs, etc.) of the system to work---and ideally, if its results are affected only by the values passed in as parameters---then it will be relatively easy to test.  However, if it relies on a variety of other parts, then it can get very difficult, very quickly.  You not only have to make sure that the part of the system is working, but any parts that it is dependent upon.  You may be able to provide test doubles, but if the code is not written with them in mind, it may not be possible.  Let's examine some code which is not segmented well, and will be extremely difficult to test:
 
 ```java
 public int getNumGiraffesInZoo() {
@@ -55,9 +55,9 @@ public int getNumGiraffesInZoo() {
 }
 ```
 
-At first glance, this looks easy to test - after all, you just need to assert that the number of giraffes is the number you expect - but this code is not well-segmented.  Not only does it depend on the `DatabaseWorker`, `NetworkConnection`, `DatabaseConnectionPool`, `NetworkConnectionFactory`, and `SqlGenerator` classes to work correctly, along with all of their assorted methods, there is no way to double them since they are all constructed inside of the method.  A problem in any of these will cause your test to fail, and it can be difficult to know why the test failed.  Was it in the actual method you are testing, or one of the numerous dependencies?
+At first glance, this looks easy to test---after all, you just need to assert that the number of giraffes is the number you expect---but this code is not well-segmented.  Not only does it depend on the `DatabaseWorker`, `NetworkConnection`, `DatabaseConnectionPool`, `NetworkConnectionFactory`, and `SqlGenerator` classes to work correctly, along with all of their assorted methods, there is no way to double them since they are all constructed inside of the method.  A problem in any of these will cause your test to fail, and it can be difficult to know why the test failed.  Was it in the actual method you are testing, or one of the numerous dependencies?
 
-Let's restructure this so that the method is well-segmented.
+Let's restructure this so that the method is well-segmented:
 
 ```java
 public int getNumGiraffesInZoo(DatabaseWorker dbw, SqlGenerator sqlg) {
@@ -72,7 +72,7 @@ public int getNumGiraffesInZoo(DatabaseWorker dbw, SqlGenerator sqlg) {
 }
 ```
 
-While this is still suboptimal, it is at least possible to override all of the dependencies with doubles.  There's less concern in the method on items that are unrelated to the method itself (e.g., connecting network connections to the database worker, which probably belongs in the `DatabaseConnectionPool` or the `DatabaseWorker` class itself, certainly not in the `getNumGiraffesInZoo` method.  We could go a bit further and move all of the database workings to their own class, wrapping them all up so that only the important parts are visible to this method.
+While this is still suboptimal, it is at least possible to override all of the dependencies with doubles.  There's less concern in the method on items that are unrelated to the method itself (e.g., connecting network connections to the database worker, which probably belongs in the `DatabaseConnectionPool` or the `DatabaseWorker` class itself, certainly not in the `getNumGiraffesInZoo` method.  We could go a bit further and move all of the database workings to their own class, wrapping them all up so that only the important parts are visible to this method:
 
 ```java
 public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
@@ -84,7 +84,6 @@ public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
     }
     return numGiraffes;
 }
-
 ```
 
 We have now reduced the number of dependencies to that single class `AnimalDatabaseWorker`, and only call one method on it.
@@ -113,15 +112,15 @@ What happens when we run this?  The execution flow first depends on two variable
 
 In order to test effectively, code should be segmented, and written in such a way that ensuring that the exact same code with the exact same values can be run multiple times.  If this is the case, then the exact output should occur each time, and tests will not randomly fail.  Write your code in such a way as to discourage random test failures, not encourage them.
 
-## Provide A Scriptable Interface
+## Provide a Scriptable Interface
 
-While the previous section described how to ensure code that was testable from a white-box perspective, creating a program that is easily testable from a black-box, systems-level perspective can be even more difficult.  Methods, in general, are meant to be called - there's a built-in interface to do it, and the parameters for each method are generally specified.
+While the previous section described how to ensure code that was testable from a white-box perspective, creating a program that is easily testable from a black-box, systems-level perspective can be even more difficult.  Methods, in general, are meant to be called---there's a built-in interface to do it, and the parameters for each method are generally specified.
 
 Some interfaces are "automatically" scriptable.  If you are writing a web app, for example, you can use a web testing framework such as Selenium or Capybara to access the various pages, click buttons, enter text, and do all of the other things you can do to a web page.  Text-based interfaces are also relatively easy to script, since they simply accept text and output it.  Output can be redirected to a file or otherwise checked for accuracy.  
 
 Programs which do not provide a method of scripting by virtue of their interface, such as native GUI applications, will ideally have some sort of scripting built into them.  This can be done via __test hooks__, or "hidden" methods which provide a way to input data or receive information about the program.  These are externally accessible, perhaps with a key or other security measure, but usually not publicly advertised.
 
-There are several downsides to adding hooks to your program, or any sort of scriptable interface.  It's a security risk, for one thing - if someone discovers how to access the test hooks, they may be able to determine hidden information, overwrite data, or perform other malicious actions (or simply be curious and make a mistake).  Adding a scriptable interface will require additional complexity in the program, as well as additional program length and size.  The interface may be a drag on performance.  Finally, time spent working on the interface means less time spent writing other features of the software, or improving its quality.
+There are several downsides to adding hooks to your program, or any sort of scriptable interface.  It's a security risk, for one thing---if someone discovers how to access the test hooks, they may be able to determine hidden information, overwrite data, or perform other malicious actions (or simply be curious and make a mistake).  Adding a scriptable interface will require additional complexity in the program, as well as additional program length and size.  The interface may be a drag on performance.  Finally, time spent working on the interface means less time spent writing other features of the software, or improving its quality.
 
 You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  However, there are programs out there which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require manual verification of screenshots.  
 
@@ -133,7 +132,7 @@ The longer you go on writing code without writing tests for it, the more likely 
 
 ## DRYing Up Code
 
-The acronym __DRY__ stands for "Don't Repeat Yourself", and it is a key tenet to making your code not only more testable, but better all around.  The trivial case of failing to keep code DRY is simply copy-and-pasting, often with a slightly different method name.
+The acronym __DRY__ stands for "Don't Repeat Yourself", and it is a key tenet to making your code not only more testable, but better all around.  The trivial case of failing to keep code DRY is simply copy-and-pasting, often with a slightly different method name:
 
 ```java
 public int[] sortAllTheNumbers(int[] numsToSort) {
@@ -145,11 +144,11 @@ public int[] sortThemThereNumbers(int[] numsToSort) {
 }
 ```
 
-In case you think this is a ludicrous contrived example, I have personally seen - and fixed - code like this in the wild.  Although it seems obvious when they're right next to each other, duplicate code loves to hide in little nooks and crannies.  When you have a multi-thousand-line class, things like this happen.  A programmer needs a method and quickly adds one before searching if another exists, someone writes a "test" version of the method, then forgets that there was an original one, or someone just started copying and pasting from some code they found online.  If everything continues to work fine, then there is very little impetus to look for issues like this, let alone fix them.  Even if someone does notice it, modifying it may be seen as out of scope for whatever they are working on.  It would almost certainly require refactoring other code that depends on it.  However, not having your code DRY means more tests, more danger when refactoring, and just plain redundancy.  Deciding on one method to use instead of having multiple copies will save you time and energy in the long run, as you reduce the ancillary associated costs of extra unit tests and confusion on the part of future maintainers.
+In case you think this is a ludicrous contrived example, I have personally seen---and fixed---code like this in the wild.  Although it seems obvious when they're right next to each other, duplicate code loves to hide in little nooks and crannies.  When you have a multi-thousand-line class, things like this happen.  A programmer needs a method and quickly adds one before searching if another exists, someone writes a "test" version of the method, then forgets that there was an original one, or someone just started copying and pasting from some code they found online.  If everything continues to work fine, then there is very little impetus to look for issues like this, let alone fix them.  Even if someone does notice it, modifying it may be seen as out of scope for whatever they are working on.  It would almost certainly require refactoring other code that depends on it.  However, not having your code DRY means more tests, more danger when refactoring, and just plain redundancy.  Deciding on one method to use instead of having multiple copies will save you time and energy in the long run, as you reduce the ancillary associated costs of extra unit tests and confusion on the part of future maintainers.
 
 What happens when you decide that you are no longer going to use the `quickSort()` method, or decide to support floating-point numbers in addition to integers?  You will have to make changes in two (or more... there's practically no limit to how many times code can be copied and pasted) places, which can be easy to forget to do.  That's double the room for error, or for doing it slightly differently in one place than the other.  Testing for these kind of things can be difficult.  Remove duplicate code sooner rather than later.
 
-While the duplicated method above is a simple example, you may have more complex cases of code duplication.  Any time you find yourself with repeated code, even if it's in the middle of a statement, it may be a good idea to put it into its own method.  Consider the following SQL code which must be called by each of these methods in order to determine how many of a particular kind of breed exists in the database.
+While the duplicated method above is a simple example, you may have more complex cases of code duplication.  Any time you find yourself with repeated code, even if it's in the middle of a statement, it may be a good idea to put it into its own method.  Consider the following SQL code which must be called by each of these methods in order to determine how many of a particular kind of breed exists in the database:
 
 ```java
 public int getNumberOfCats(String catBreed) {
@@ -169,7 +168,7 @@ public int getNumberOfPigeons(String pigeonBreed) {
 }
 ```
 
-While the statements aren't exactly the same, they are similar enough that they are a target for the DRYing up the code.  After all, we can always pass in parameters to tweak the behavior to exactly what we want.
+While the statements aren't exactly the same, they are similar enough that they are a target for the DRYing up the code.  After all, we can always pass in parameters to tweak the behavior to exactly what we want:
 
 ```java
 public int getNumAnimals(String animalType, String breed) {
@@ -193,7 +192,7 @@ The code is now going to be much more flexible and maintainable.  Supporting add
 
 ## Dependency Injection
 
-As we've seen, having dependencies hard-coded into your methods can make them difficult to test.  Lets assume you have a class-level reference to a `Duck` object that is created by a `Pond` object.  The `Pond` class has a `sayHi()` method which will say "Hi!" to all of the animals in the pond.
+As we've seen, having dependencies hard-coded into your methods can make them difficult to test.  Lets assume you have a class-level reference to a `Duck` object that is created by a `Pond` object.  The `Pond` class has a `sayHi()` method which will say "Hi!" to all of the animals in the pond:
 
 ```java
 public class Pond {
@@ -212,7 +211,7 @@ public class Pond {
 
 How can you test this?  There's no easy way to verify that the duck got the "Hi" message.  __Dependency injection__ allows you to avoid this problem.  Although this is an excellent term to use to sound knowledgeable about testing, it's actually a very simple concept that you have probably seen in practice already.  In a nutshell, dependency injection means passing the dependencies in as parameters to a method, as opposed to having hard-coded references to them.  This will make it much easier to pass in test doubles or mocks.
 
-Let's re-write the above `Pond` class allowing for dependency injection.
+Let's re-write the above `Pond` class allowing for dependency injection:
 
 ```java
 public class Pond {
@@ -244,11 +243,11 @@ Test-unfriendly constructs are constructs in code where testing is by nature dif
 
 One method for keeping the complexity of your tests to a reasonable level is to not put TUFs inside of TUCs.  Move them to their own methods, or otherwise segment and design the code so that TUCs contain only minimal and easily-tested code.
 
-## Dealing With Legacy Code
+## Dealing with Legacy Code
 
-Not everybody has had the opportunity to read an excellent book with a chapter on writing testable code.  Much of the existing codebase out there was written by people who were not familiar with modern software engineering techniques, either through ignorance or because it was not common when it was written.  It would be foolishly optimistic to expect that people writing some FORTRAN IV code in 1966 would be using testing techniques which did not become common until the '90s.  Code that is already existing in production, but which does not follow modern software engineering best practices and often has substandard - or even no - automated test coverage, is known as __legacy code__.
+Not everybody has had the opportunity to read an excellent book with a chapter on writing testable code.  Much of the existing codebase out there was written by people who were not familiar with modern software engineering techniques, either through ignorance or because it was not common when it was written.  It would be foolishly optimistic to expect that people writing some FORTRAN IV code in 1966 would be using testing techniques which did not become common until the '90s.  Code that is already existing in production, but which does not follow modern software engineering best practices and often has substandard---or even no---automated test coverage, is known as __legacy code__.
 
-Long story short - working with legacy code is difficult.  There is no getting around it.  You will be missing many of the benefits of a good testing suite; you may not be able to interact with the original developers if there are issues, ambiguities, or undocumented code; and it may be difficult to understand outdated code written in an older style.  However, it is often necessary, especially when you are working for a company which has been writing code for a long time.  It wouldn't make sense to rewrite millions of lines of code every time you want to add a new feature to the software suite you are already using.
+Long story short---working with legacy code is difficult.  There is no getting around it.  You will be missing many of the benefits of a good testing suite; you may not be able to interact with the original developers if there are issues, ambiguities, or undocumented code; and it may be difficult to understand outdated code written in an older style.  However, it is often necessary, especially when you are working for a company which has been writing code for a long time.  It wouldn't make sense to rewrite millions of lines of code every time you want to add a new feature to the software suite you are already using.
 
 When you find yourself having to work with legacy code, one of the most important things you can do is create some __pinning tests__.  Pinning tests are automated tests, usually unit tests, which check for the existing behavior of the system.  Note that the existing behavior is not always the expected, or correct, behavior.  The goal of a pinning test is to simply see how the program reacts before you make any changes to it.  Oftentimes, those weird, unexpected edge cases are actually used by users of the system.  You do not want to unintentionally modify them when adding a feature, unless it is something that you have explicitly set out to do.  Making unintentional changes to a program can be dangerous for yourself and for users of the program.  Note that this does not mean that you simply ignore the fact that the program is not working correctly.  However, fixing it should be seen as a different process than creating the pinning test.
 
@@ -260,7 +259,7 @@ Doing the minimum isn't normally considered a great way to go through life, but 
 
 Additionally, doing the minimum can ensure that you are using your time wisely.  It may not be worth your time to add documentation to every method in the class you're working on, especially if you don't think it will be modified again anytime in the near future.  It's not that it's not a good idea, but perhaps not a good prioritization of your time.  Remember that you have a limited amount of time available not just on this Earth, but for completing a project.  Spend too much time on the wrong things, and it doesn't get done.  While it's an honorable drive to want to fix all of the problems you see in the codebase, the dirty little secret of the software industry is that there is all sorts of ugly code running behind the scenes, and most of the time, it works.  Your favorite bank has thousands of `GOTO` statements in its transfer code.  Your favorite three-letter government agency has hundreds of thousands of lines of code that not unit test has ever laid eyes (or mocks or stubs) on.  It is okay to cry about the state of the world, but sometimes you just need to let it be.
 
-If possible, you want to start your search for code to modify by looking for __seams__.  Seams are locations in code where you can modify _behavior_ without modifying _code_.  This is probably easiest to see with examples.  In this first method, there is no seam - there is no way to modify how the program behaves without modifying some code in the method.
+If possible, you want to start your search for code to modify by looking for __seams__.  Seams are locations in code where you can modify _behavior_ without modifying _code_.  This is probably easiest to see with examples.  In this first method, there is no seam---there is no way to modify how the program behaves without modifying some code in the method:
 
 ```java
 public void createDatabaseTable() {
@@ -270,7 +269,7 @@ public void createDatabaseTable() {
 }
 ```
 
-If you want to change the database this code will update, you will need to modify the constant `DEFAULT_DB` or otherwise change the line of code.  There's no way to pass in a test double for it, or otherwise use a fake database in your test.  If you want to add a column, you will need to edit the string that is inside the method.  Now let's compare this to a method which is a seam.
+If you want to change the database this code will update, you will need to modify the constant `DEFAULT_DB` or otherwise change the line of code.  There's no way to pass in a test double for it, or otherwise use a fake database in your test.  If you want to add a column, you will need to edit the string that is inside the method.  Now let's compare this to a method which is a seam:
 
 ```java
 public int executeSql(DatabaseConnection db, String sqlString) {
@@ -290,5 +289,5 @@ One of the things I find so interesting about software engineering is that it is
 
 ## Conclusion
 
-Software testing is not only about writing the tests, but writing code which will enable the tests to be written easily and well.  In today's world of software engineering, writing code and writing tests are not mutually exclusive.  Many - I would daresay venture to say "most" - developers write their own unit tests along with their code, and many testers will have to write code to automate their tests or develop testing tools.  Even if you do not write code in your role as a tester, you may be asked to review it or to determine how to have more comprehensive automated testing for a software system.
+Software testing is not only about writing the tests, but writing code which will enable the tests to be written easily and well.  In today's world of software engineering, writing code and writing tests are not mutually exclusive.  Many---I would daresay venture to say "most"---developers write their own unit tests along with their code, and many testers will have to write code to automate their tests or develop testing tools.  Even if you do not write code in your role as a tester, you may be asked to review it or to determine how to have more comprehensive automated testing for a software system.
 

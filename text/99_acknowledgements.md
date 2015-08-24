@@ -2,7 +2,7 @@
 
 Thanks to everybody who has helped make this book a reality or made it into a better reality, especially:
 
-_Ross Acheson, Will Engler, Robbie McKinstry, Steve Robbibaro, Sheridan Zivanovich_
+_Ross Acheson, Will Engler, Robbie McKinstry, Steve Robbibaro, Sheridan Zivanovich._
 
 Special thanks go to:
 

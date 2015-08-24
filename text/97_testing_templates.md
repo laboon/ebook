@@ -38,7 +38,7 @@ WORKAROUND: _How to avoid triggering this defect, if known or possible._
 
 NOTES: _Any other notes that may be useful in fixing or tracking down this defect, such as system configuration, thread dumps, or logging files._
 
-## Red / Yellow / Green Template
+## Red-Yellow-Green Template
 
 _The system should be divided into a reasonable number, usually between three and ten, subsystems or areas of functionality.  Each subsystem or area should then be given a "color rating" of red, yellow, or green, as well as a short description (a few sentences, maximum) of why that rating was given._
 

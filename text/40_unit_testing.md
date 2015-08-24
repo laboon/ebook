@@ -31,23 +31,23 @@ We have seen earlier that the user will never directly see the aspects of the so
 
 4. __Living documentation.__ The tests provide a kind of "living documentation" to the code.  They explain what a codebase is supposed to do in a different way than the actual code and any comments or documentation for the software.  Failing tests are updated; they are either removed or changed as the software itself changes.  Unlike traditional documentation, if unit tests are executed on a regular basis (such as before being merged to baseline), then it's impossible for the tests to become obsolete.  Obsolete tests generally do not pass, and this is a giant indicator to get them fixed.
 
-5. __Alternative implementation.__ One way to think of tests is as a different implementation of the software.  In a sense, a program is just a listing of what a computer should do given certain input - *IF* `foo` is less than five, *THEN* print out "`small foo`".  *WHEN* a new bar object is created, *SET* the `baz` variable to false.  A comprehensive test suite provides a similar service, saying what the program should do in a slightly different way.  There's always room for error, but if you're implementing it twice, once as a test and once as code, then there's less chance that both will be written incorrectly.
+5. __Alternative implementation.__ One way to think of tests is as a different implementation of the software.  In a sense, a program is just a listing of what a computer should do given certain input---*IF* `foo` is less than five, *THEN* print out "`small foo`".  *WHEN* a new bar object is created, *SET* the `baz` variable to false.  A comprehensive test suite provides a similar service, saying what the program should do in a slightly different way.  There's always room for error, but if you're implementing it twice, once as a test and once as code, then there's less chance that both will be written incorrectly.
 
-5. __Able to tell if code changes caused issues elsewhere.__ Programs nowadays can be rather large and complicated, and it's not always easy - or even humanly possible - to know whether a change you're making will have unintended consequences elsewhere.  The author has lost count of how many times he has meant to, say, change the background color of a screen, and caused a stack overflow in some recursive function elsewhere in the code which required the background color to be green for some reason.  However, by having a relatively complete test suite, the developer can check easily if he or she is breaking anything obvious elsewhere in the codebase.  It's not foolproof, but it certainly makes it easier to avoid problems.
+5. __Able to tell if code changes caused issues elsewhere.__ Programs nowadays can be rather large and complicated, and it's not always easy---or even humanly possible---to know whether a change you're making will have unintended consequences elsewhere.  The author has lost count of how many times he has meant to, say, change the background color of a screen, and caused a stack overflow in some recursive function elsewhere in the code which required the background color to be green for some reason.  However, by having a relatively complete test suite, the developer can check easily if he or she is breaking anything obvious elsewhere in the codebase.  It's not foolproof, but it certainly makes it easier to avoid problems.
 
 ## An Example in Natural Language
 
 Before diving into the code, let's examine a unit test in natural language.  Let's say that we're implementing a Linked List class, and we would like to test equality.  When we make two lists that have the same data in them, they will show as equal, even though they are not the exact same Linked List in object.  How could we specify a test for this case?
 
-"Create two linked lists, _a_ and _b_, each with data for the nodes equal to 1 -> 2 -> 3.  When they are compared with the equality operator, they should be seen as equal."
+"Create two linked lists, _a_ and _b_, each with data for the nodes equal to 1 &rarr; 2 &rarr; 3.  When they are compared with the equality operator, they should be seen as equal."
 
 We can see that there are three steps here, which correspond to some of the steps in a manual test.  This should not be surprising.  After all, the basic concepts of testing do not change, despite the level of abstraction of a particular test.  The steps are:
 
-1. __Preconditions:__ First, we need to generate the preconditions of the test.  If you recall from several chapters back, the preconditions are those conditions which must be met before the actual test starts.  In this case, the preconditions are that we have two different linked lists, named _a_ and _b_, and that they contain the exact same data, 1 -> 2 -> 3, all of which are the same data type.
+1. __Preconditions:__ First, we need to generate the preconditions of the test.  If you recall from several chapters back, the preconditions are those conditions which must be met before the actual test starts.  In this case, the preconditions are that we have two different linked lists, named _a_ and _b_, and that they contain the exact same data, 1 &rarr; 2 &rarr; 3, all of which are the same data type.
 
 2. __Execution Steps:__ This is what is actually done in the test.  In our example, the equality operator is applied between the two linked lists _a_ and _b_, and will return a Boolean value.
 
-3. __Expected Behavior:__ Remember that the key principle to testing software is that expected behavior should equal observed behavior.  The unit test should specify what the expected behavior is, then check if it's equal to the observed behavior (i.e., the actual result of the test).  In the world of unit testing, this is called an __assertion__ - the test _asserts_ that the expected behavior is equal to the observed behavior.  In our case, our test will assert that the returned value of comparing the two linked lists is true.
+3. __Expected Behavior:__ Remember that the key principle to testing software is that expected behavior should equal observed behavior.  The unit test should specify what the expected behavior is, then check if it's equal to the observed behavior (i.e., the actual result of the test).  In the world of unit testing, this is called an __assertion__---the test _asserts_ that the expected behavior is equal to the observed behavior.  In our case, our test will assert that the returned value of comparing the two linked lists is true.
 
 ## Turning Our Example Into a Unit Test
 
@@ -88,7 +88,7 @@ Looking over this test, it is easy to see the parallels with a manual test.  The
 
 ### Preconditions
 
-Before the test can be run, you need to set up the necessary preconditions for the test.  These are similar to preconditions in a manual test, only instead of focusing on the system as a whole, you focus on setting things up for the particular method to be called.  In the example above, the unit test is going to check that two linked lists with equal values (specifically 1 -> 2 -> 3) will be regarded as equal by the .equals method of a linked list object.  In order to test that two linked lists are equal, first we must created the two linked lists, and set their nodes to the same set of values.  This code simply creates them and puts them into variables `a` and `b`.  We will use these two linked lists in the next phase of the unit test.
+Before the test can be run, you need to set up the necessary preconditions for the test.  These are similar to preconditions in a manual test, only instead of focusing on the system as a whole, you focus on setting things up for the particular method to be called.  In the example above, the unit test is going to check that two linked lists with equal values (specifically 1 &rarr; 2 &rarr; 3) will be regarded as equal by the .equals method of a linked list object.  In order to test that two linked lists are equal, first we must created the two linked lists, and set their nodes to the same set of values.  This code simply creates them and puts them into variables `a` and `b`.  We will use these two linked lists in the next phase of the unit test.
 
 ### Execution Steps
 
@@ -120,7 +120,7 @@ assertSame(a, a); // True; both are the same reference to the same object
 assertSame(a, c); // True; these are different references to the same object
 ```
 
-Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17)`.  In my experience, these are used much less often.  You want to check for a specific _expected_ behavior, if at all possible, not that it's _not unexpected_ behavior.  Checking that something does not exist could be an indication that the test is fragile or not thought through.  Imagine that you have written a method which will generate 19th-century Romantic poems.  You know that these poems should never start with the word "homoiconicity", so you write a test to that effect.
+Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17)`.  In my experience, these are used much less often.  You want to check for a specific _expected_ behavior, if at all possible, not that it's _not unexpected_ behavior.  Checking that something does not exist could be an indication that the test is fragile or not thought through.  Imagine that you have written a method which will generate 19th-century Romantic poems.  You know that these poems should never start with the word "homoiconicity", so you write a test to that effect:
 
 ```java
 @Test
@@ -139,7 +139,7 @@ One of the simplest ways to do this is to first ensure that your tests fail!  Wh
 
 In the linked list equality test above, what could you change to ensure that your tests are testing what you think they are testing?
 
-  What if you changed the first linked list, _a_, to contain the data 1 -> 2?
+What if you changed the first linked list, _a_, to contain the data 1 &rarr; 2?
 
 ```java
     @Test
@@ -151,7 +151,7 @@ In the linked list equality test above, what could you change to ensure that you
     }
 ```
 
-Or 7 -> 8 -> 9?
+Or 7 &rarr; 8 &rarr; 9?
 
 ```java
     @Test
@@ -162,7 +162,6 @@ Or 7 -> 8 -> 9?
         assertEquals(result, true);
     }
 ```
-
 
 Or you changed the equality check to an _inequality_ check?
 
@@ -182,7 +181,7 @@ In all of these instances, the test should fail.  You can then rest a little eas
 
 Unit testing with the techniques we've learned so far will get us far, but won't get us all the way.  Just using the assertions and testing code that we've gone over so far, there's no way to check, for example, that a particular string will be printed out, or that a window will appear, or that another method is called... all very important things.  After all, if all methods did was return different values with different input, never displaying them to the user or interacting with the environment in any way, we'd have no way of knowing what was happening with our programs.  Our only output would be the generally increasing noisiness of the fan and heat of the CPU.
 
-Any behavior aside from returning a value is called a __side effect__.  Displaying a window, printing some text, connecting to another computer over the network - all of these are, from a terminological perspective, side effects of computation.  Even setting a variable or writing data to disk are side effects.  Functions and methods without side effects, that only receive input from parameters, are called __pure__.  Pure functions will always return the same result given the same input values, and may be called an infinite number of times without modifying any other aspects of the system.  Functions and method with side effects, or who may present different results based on something other than values passed in as parameters, are __impure__.  Some languages, such as Haskell, make a strong differentiation between pure and impure functions, but Java does not.
+Any behavior aside from returning a value is called a __side effect__.  Displaying a window, printing some text, connecting to another computer over the network---all of these are, from a terminological perspective, side effects of computation.  Even setting a variable or writing data to disk are side effects.  Functions and methods without side effects, that only receive input from parameters, are called __pure__.  Pure functions will always return the same result given the same input values, and may be called an infinite number of times without modifying any other aspects of the system.  Functions and method with side effects, or who may present different results based on something other than values passed in as parameters, are __impure__.  Some languages, such as Haskell, make a strong differentiation between pure and impure functions, but Java does not.
 
 An example of a pure function would be a mathematical function, such as the square root function, as in the following Java code:
 
@@ -194,7 +193,7 @@ public double getSquareRoot(double val) {
 
 Assuming no floating-point rounding errors or errors of that nature, the square root of 25 will always be 5, no matter what global variables are set, no matter what time or date it is, no matter what.  There are also no side effects from calling a square root function; it's not as though a window pops up every time your system calculates a square root.
 
-An example of an impure function would be printing out statistics from global variables, or any method which outputs something to the console or screen, or depends upon variables that are not specifically passed in.  In general, if you see a method with a void return, it's probably impure - a pure function with a void return type would be absolutely useless, since the returned value is its only way of communicating with the rest of the program.  Here is an example of an impure function:
+An example of an impure function would be printing out statistics from global variables, or any method which outputs something to the console or screen, or depends upon variables that are not specifically passed in.  In general, if you see a method with a void return, it's probably impure---a pure function with a void return type would be absolutely useless, since the returned value is its only way of communicating with the rest of the program.  Here is an example of an impure function:
 
 ```java
 public void haveFunAtDuckPond(DuckPond duckPond) {
@@ -203,7 +202,7 @@ public void haveFunAtDuckPond(DuckPond duckPond) {
 }
 ```
 
-Pure functions are usually easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against.   Additionally, they may depend upon or modify parts of the code outside of this particular method.  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with `_global` are defined and set external to the method.
+Pure functions are usually easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against.   Additionally, they may depend upon or modify parts of the code outside of this particular method.  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with `_global` are defined and set external to the method:
 
 ```java
 public void printAndSave() {

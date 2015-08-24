@@ -10,9 +10,9 @@ Stochastic testing is also referred to as __monkey testing__, by analogy with a 
 
 ## Infinite Monkeys and Infinite Typewriters
 
-There is an old parable about monkeys and typewriters, which normally would not seem like two things that go together well.  The parable states that given a million monkeys and infinite amount of time, the monkeys will eventually write the works of Shakespeare (the monkeys in this scenario are immortal).  Stochastic testing follows a similar principle - given a large enough set of random input (a million monkeys banging on keys) and a large enough period of time, defects will be found.  In this analogy, our tester is William Shakespeare (don't let the comparison go to your head).  The tester could certainly write the works of Shakespeare in less time than the million monkeys.  However, monkeys (like the computer's random number generator) are much cheaper than re-animating Zombie William Shakespeare.  Even if the random number generator isn't as good a writer of tests as you (or Shakespeare), by sheer dint of numbers, it's bound to hit on numerous interesting edge cases and perhaps find defects.
+There is an old parable about monkeys and typewriters, which normally would not seem like two things that go together well.  The parable states that given a million monkeys and infinite amount of time, the monkeys will eventually write the works of Shakespeare (the monkeys in this scenario are immortal).  Stochastic testing follows a similar principle---given a large enough set of random input (a million monkeys banging on keys) and a large enough period of time, defects will be found.  In this analogy, our tester is William Shakespeare (don't let the comparison go to your head).  The tester could certainly write the works of Shakespeare in less time than the million monkeys.  However, monkeys (like the computer's random number generator) are much cheaper than re-animating Zombie William Shakespeare.  Even if the random number generator isn't as good a writer of tests as you (or Shakespeare), by sheer dint of numbers, it's bound to hit on numerous interesting edge cases and perhaps find defects.
 
-Since you - or more precisely, the stochastic testing system - may not know exactly what the expected behavior should be for a given input, you need to check for properties of the system.  At the unit testing level, where you are checking individual methods, this is called __property-based testing__.
+Since you---or more precisely, the stochastic testing system---may not know exactly what the expected behavior should be for a given input, you need to check for properties of the system.  At the unit testing level, where you are checking individual methods, this is called __property-based testing__.
 
 ## Property-Based Testing
 
@@ -42,7 +42,7 @@ We'd definitely want to pass in a wide variety of values that hit different base
 
 Even without any additional wrinkles, there's an absolutely huge number of possible combinations of numbers to test.  That was just a taste.  There's even a huge number of equivalence cases to test, ignoring the fact there could be a problem with, say, a specific number; maybe only sorts with the number 5 don't work, for example.  Writing tests for all of these various kinds of input would be extremely tedious and error-prone.  How can we avoid having to write such a large number of tests?
 
-### Climbing The Abstraction Ladder
+### Climbing the Abstraction Ladder
 
 Why not hop up a rung on the abstraction ladder and instead of thinking about the specific values that you want as input and output, you think about the *properties* you'd expect of your input and output?  That way, you don't have to consider each individual test.  You can let the computer know that you expect all of the output to have certain properties, and what kind of values you expect as input, and let the computer write and execute the tests for you.
 
@@ -80,7 +80,7 @@ ERROR
 10
 ```
 
-than
+than:
 
 ```
 > jiwh0t34h803h8t32h8t3h8t23
@@ -100,6 +100,4 @@ __Evil monkey__ testing simulates a malicious user who is actively trying to hur
 Perhaps the best-named kind of monkey is the __Chaos Monkey__.  Chaos Monkey is a tool developed by Netflix which randomly shuts down servers that their system is running on, in order to simulate random outages.  For any large system, servers will go down on a regular basis, and at any given time some percentage of systems will be unavailable.  Chaos monkey testing ensures that the system as a whole will be able to operate effectively even when individual machines are not responding.
 
 You do not have to use the official Chaos Monkey tool to do this kind of testing, however.  Think of all the things that can go wrong with a multiple-server system, and simulate them.  What happens when the network topography changes?  Does the system stay active when somebody pulls out some power or networking cables?  What happens if latency is increased to several seconds?  A distributed system is ripe for problems.  Testing that it can handle them now will allow you to prepare for when they happen in reality.  After all, the best way to avoid a problem is to induce it repeatedly; soon, you will have automated procedures to ameliorate it or ensure that it doesn't happen.
-
-
 
