@@ -214,8 +214,8 @@ public void testHaveFunAtDuckPond() {
 
     Person p = new Person();
     DuckPond dp = Mockito.mock(DuckPond.class);
-    Mockito.verify(duckPond.haveFun(), times(1));
     p.haveFunAtDuckPond();
+    Mockito.verify(duckPond.haveFun(), times(1));
 
 }
 ```
