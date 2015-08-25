@@ -274,7 +274,7 @@ We want to check that various values will all be calculated and the program exit
 ```
 IDENTIFIER: PERFORMANCE-RUNTIME
 TEST CASE: Run the program passing in various values and time it, ensuring
-  each iteration takes less than two second.
+  each iteration takes less than two seconds.
 PRECONDITIONS: Program has no known functional defects
 INPUT VALUES: 0, 1.5, 5, 7.5, 10
 EXECUTION STEPS: At the command line, run "time catweigher n", where n is equal
