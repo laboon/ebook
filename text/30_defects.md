@@ -113,9 +113,11 @@ Opposed to the expected behavior field is the __observed behavior__ field.  This
 
 ### Impact
 
-The tester should have some idea of what impact this will have on the user.  In the __Impact__ field, this can be specified.
+The tester should have some idea of what impact this will have on the user base.  In the __Impact__ field, this can be specified.
 
 Be careful not to overgeneralize or editorialize in this section.  Let's say that a video game background color changes from blue to purple when the player jumps.  A factual way of describing the impact is that "User will see background color change, but gameplay is unaffected."  An editorialized version would be "User will hate this game and everybody who made it, because the stupid background becomes a stupid color when the stupid user does something stupid."  In general, if you find yourself using the word "stupid" or other derogatory words in your defect reports, there is probably a better way to express the issue.
+
+Keep in mind that, when possible, this should note what the impact is on the user base as a whole, not just a particular user.  For example, if a problem occurs on all browsers, that will make it more serious than the same problem which only affects users of one particular browser.  If a defect only happens to power users editing system configuration files, then it is probably of less importance than if it happens mostly to new users of a system.  The power users are more likely to be accepting of problems resulting from their modifications than new users.  By indicating how the defect impacts the user base, the defect can be more effectively triaged.
 
 ### Severity
 
