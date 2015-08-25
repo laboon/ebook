@@ -45,7 +45,7 @@ We can see that there are three steps here, which correspond to some of the step
 
 1. __Preconditions:__ First, we need to generate the preconditions of the test.  If you recall from several chapters back, the preconditions are those conditions which must be met before the actual test starts.  In this case, the preconditions are that we have two different linked lists, named _a_ and _b_, and that they contain the exact same data, 1 &rarr; 2 &rarr; 3, all of which are the same data type.
 
-2. __Execution Steps:__ This is what is actually done in the test.  In our example, the equality operator is applied between the two linked lists _a_ and _b_, and will return a Boolean value.
+2. __Execution Steps:__ These make up the behavior we intend to test in the unit test. In our example, the equality operator is applied between the two linked lists _a_ and _b_, and will return a Boolean value.
 
 3. __Expected Behavior:__ Remember that the key principle to testing software is that expected behavior should equal observed behavior.  The unit test should specify what the expected behavior is, then check if it's equal to the observed behavior (i.e., the actual result of the test).  In the world of unit testing, this is called an __assertion__---the test _asserts_ that the expected behavior is equal to the observed behavior.  In our case, our test will assert that the returned value of comparing the two linked lists is true.
 
