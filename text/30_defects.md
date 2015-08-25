@@ -1,6 +1,6 @@
 # Defects
 
-We've spent quite a bit of time up to this point learning how to find defects.  This makes sense, since one of the key goals of testing is to do exactly that.  However, what we have not yet done is defining defects and discussing what to do about them once they are found.
+We've spent quite a bit of time up to this point learning how to find defects.  This makes sense, since one of the key goals of testing is to do exactly that.  However, what we have not yet done is define defect and discuss what to do about them once they are found.
 
 ## What is a Defect?
 
@@ -14,7 +14,7 @@ The most obvious kind of defect is a system failing to meet requirements.  If th
 
 An example of a system returning an incorrect result would be a spreadsheet program showing that the value of 2 + 3 is 23, or a drawing program where every time the user clicks on the color red, the drawing tool starts drawing in blue.  These may or may not be specified by the requirements (and thus may or may not overlap with the second kind of defect).
 
-The last kind of defect is one common to all programs---a program should not die unexpectedly.  That is, the intent of the user or the original writer or installer of the program is that the system should be running at some point in time, that program should be running at that point in time.
+The last kind of defect is one common to all programs---a program should not die unexpectedly.  That is, if the intent of the user or the original writer or installer of the program is that the system should be running at some point in time, that program should be running at that point in time.
 
 Software may "shut down hard" without it necessarily being a defect.  For example, sending a SIGKILL (via `kill -9` or a similar command) to a Unix process causes the program to cease execution without running any of its shutdown routines.  However, it did not die unexpectedly---the user wanted it to do so and even sent it a message telling it to do exactly that!  The reason that the user had to send a SIGKILL to the process may be a defect, but the fact that it stopped running under these circumstances is not a defect.  If the system dies due to a segmentation fault, an untrapped division by zero, or dereferencing a null pointer, these are all considered defects.  They should never happen in a program, even if the requirements do not specify that "the program shall run without any null pointer exceptions".
 
@@ -105,7 +105,7 @@ The core concept behind testing, and one which we will refer to again and again 
 
 Once again, the more specific the behavior listed, the easier it will be for developers and other testers to reproduce the issue, and eventually fix it.  One should never write down that "the system should return the correct value"; instead, write that the "the system should return 6".
 
-Aside from saving people from calculating the correct value themselves, another benefit of writing down the expected behavior so precisely is that the tester or test case may not be expecting the correct behavior!  In this case, someone can view the defect and determine that it's actually invalid---the software is performing as intended.  This can happen when the requirements are ambiguous or the reporting tester simple makes a mistake.
+Aside from saving people from calculating the correct value themselves, another benefit of writing down the expected behavior so precisely is that the tester or test case may not be expecting the correct behavior!  In this case, someone can view the defect and determine that it's actually invalid---the software is performing as intended.  This can happen when the requirements are ambiguous or the reporting tester simply makes a mistake.
 
 ### Observed Behavior
 
@@ -127,7 +127,7 @@ An example rating system is explained below:
 
 2. __Critical:__ Although the system could still be released with a defect of this magnitude, it severely impacts the core functionality of the program or makes it almost unusable.  Alternatively, a defect that normally would be marked as a blocker, but that has some sort of workaround, could be classified as critical.
 
-3. __Major:__ This is a defect which causes a relatively severe problem, although not so severe as to entirely hobble a system.  It has a good change of being noticed by any user using the feature where the defect exists.
+3. __Major:__ This is a defect which causes a relatively severe problem, although not so severe as to entirely hobble a system.  It has a good chance of being noticed by any user using the feature where the defect exists.
 
 4. __Normal:__ This is a defect which inconveniences the user, or a more severe defect with an easy and straightforward workaround.
 
@@ -174,7 +174,7 @@ Depending on how much focus is spent on testing in an organization, some of the 
 
 In this section, several examples of defects will be provided.
 
-Note that a defect error provides a description of the defect, not what should be done to fix it.  In the first example, there are numerous ways that the defect could be resolved---the default error message for a 500 screen may be changed to include a message such as "Press the back button to retry", or a null check could be added to the code so that the exception is never thrown, or additional error handling could occur inside the exception handler.  From the point of view of someone filing a defect, it doesn't matter; the problem is that the defect exists, and it is the job of the filer to report it accurately, not to say how it should be fixed.  This is similar to writing requirements, which are supposed to say what should be done, not how to do it.
+Note that a defect report provides a description of the defect, not what should be done to fix it.  In the first example, there are numerous ways that the defect could be resolved---the default error message for an HTTP 500 Internal Server Error screen may be changed to include a message such as "Press the back button to retry", or a null check could be added to the code so that the exception is never thrown, or additional error handling could occur inside the exception handler.  From the point of view of someone filing a defect, it doesn't matter; the problem is that the defect exists, and it is the job of the filer to report it accurately, not to say how it should be fixed.  This is similar to writing requirements, which are supposed to say what should be done, not how to do it.
 
 ----
 
