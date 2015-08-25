@@ -127,7 +127,7 @@ An example rating system is explained below:
 
 2. __Critical:__ Although the system could still be released with a defect of this magnitude, it severely impacts the core functionality of the program or makes it almost unusable.  Alternatively, a defect that normally would be marked as a blocker, but that has some sort of workaround, could be classified as critical.
 
-3. __Major:__ This is a defect which causes a relatively severe problem, although not so severe as to entirely hobble a system.  It has a good change of being noticed by any user using the feature where the defect exists.
+3. __Major:__ This is a defect which causes a relatively severe problem, although not so severe as to entirely hobble a system.  It has a good chance of being noticed by any user using the feature where the defect exists.
 
 4. __Normal:__ This is a defect which inconveniences the user, or a more severe defect with an easy and straightforward workaround.
 
