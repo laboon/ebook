@@ -455,7 +455,7 @@ public class ReflectionFun {
             ReflectionFun rf = new ReflectionFun();
             Object returnValue = method.invoke(rf);
         } catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException ex) {
-            System.err.println("No such method!");
+            System.err.println("Failure!");
         }
     }
 
@@ -514,6 +514,7 @@ printQuock
 We once again have a list of Method objects, and we can now invoke them.  There's only one small snag---we first need to set that method to "accessible" before calling it, using the `setAccessible()` method.  It accepts a Boolean parameter to determine whether or not the method should be accessible outside the class:
 
 ```java
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class ReflectionFun {
@@ -533,8 +534,8 @@ public class ReflectionFun {
             Method method2 = ReflectionFun.class.getDeclaredMethod("printQuock");
             method2.setAccessible(true);
             Object returnValue = method2.invoke(rf);
-        } catch (NoSuchMethodException nsmex) {
-            System.err.println("No such method!");
+        } catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException ex) {
+            System.err.println("Failure!");
         }
     }
 
@@ -564,7 +565,7 @@ public void testPrivateLaboonify() {
         Object returnValue = method.invoke(ls, 4);
         int foo = ((Integer) returnValue).intValue();
         assertEquals(foo, 4);
-    } catch (NoSuchMethodException nsmex) {
+    } catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException ex) {
         // The method does not exist
         fail();
     }
