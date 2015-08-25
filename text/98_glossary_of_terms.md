@@ -44,7 +44,7 @@ __Bounds checking__: Run-time checking that data is not being written outside of
 
 __Branch coverage__: What percentage of branches in the code are tested usually by unit tests.
 
-__Browfield development__: Writing software which must interact with already-existing software in production, thus limiting potential design, solutions, architecture, etc.
+__Brownfield development__: Writing software which must interact with already-existing software in production, thus limiting potential design, solutions, architecture, etc.
 
 __Buffer overrun__: A __vulnerability__ where more data can be written than has been allocated for it.  This can cause system crashes or unauthorized access.
 
@@ -316,7 +316,7 @@ __Quality assurance__: Ensuring the quality of software, by a variety of methods
 
 __Quality attribute__: Another (probably better) term for __non-functional requirement__.
 
-__Quantitative__: Able to be expressed numerically, such as "the system shall respond within 500 milliseconds".  Contrast with __qualititative__.
+__Quantitative__: Able to be expressed numerically, such as "the system shall respond within 500 milliseconds".  Contrast with __qualitative__.
 
 __Ransomware__: A kind of __malware__ which performs an unwanted action (e.g., encrypting your hard drive) and asks for money or other compensation in order to undo it.
 
@@ -388,7 +388,7 @@ __Stochastic testing__: Testing a system through the use of randomized inputs.  
 
 __Stress test__: A kind of __load test__ where a very high number of events are processed in a small amount of time, in order to determine how the system deals with periods of time where the system is "stressed".
 
-__Strict partioning__: Partitioning equivalence classes such that there is no overlap between the input values for any of them.
+__Strict partitioning__: Partitioning equivalence classes such that there is no overlap between the input values for any of them.
 
 __Stub__: A "fake method" which can be used in unit testing to limit dependencies on other methods and focus testing on the method under test.
 

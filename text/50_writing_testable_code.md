@@ -90,7 +90,7 @@ We have now reduced the number of dependencies to that single class `AnimalDatab
 
 The second concept is to ensure that everything you do is repeatable.  What you don't want is a test which works fine sometimes.  If there is a failure, you should know about it immediately.  If there is not a failure, you do not want to have to have false alarms.
 
-You can make a test repeatable by ensuring that all of the values that it depends on are able to be replicated.  This is one of the (many, many, many) reasons that global varibles are, in general, a Bad Idea.  Let's consider testing the following method:
+You can make a test repeatable by ensuring that all of the values that it depends on are able to be replicated.  This is one of the (many, many, many) reasons that global variables are, in general, a Bad Idea.  Let's consider testing the following method:
 
 ```java
 public int[] sortList() {

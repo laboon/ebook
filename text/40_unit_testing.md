@@ -25,7 +25,7 @@ We have seen earlier that the user will never directly see the aspects of the so
 
 1. __Problems are found earlier.__ Unit tests are normally written along with the code itself.  There's no need to wait for (usually longer-running) systems tests to run, or a manual test to be developed, or for a build to get into the hands of the testers.  The developer finds problems while still developing.  Like most things, the sooner a problem is found in a process, the cheaper, faster and easier it will be to fix.
 
-2. __Faster turnaround time.__ If a problem is found, there's no need for a build to occur, or to get into testers' hands.  The developer finds a problem when executing the unit test suite, and can immediately go back and start fixing it.  If the developer has to wait for a tester to look at the software, file a defect, and get assigned that defect, it may be quite a while before the developer actually fixes it.  In that time, he or she may have forgotten some implementation details, or at the very least will have probably swapped out some of the information and will require time for a context shift.  The faster a defect can be found, the faster it can be fixed.
+2. __Faster turnaround time.__ If a problem is found, there's no need for a build to occur, or to get into testers' hands.  The developer finds a problem when executing the unit test suite, and can immediately go back and start fixing it.  If the developer has to wait for a tea tester to look at the software, file a defect, and get assigned that defect, it may be quite a while before the developer actually fixes it.  In that time, he or she may have forgotten some implementation details, or at the very least will have probably swapped out some of the information and will require time for a context shift.  The faster a defect can be found, the faster it can be fixed.
 
 3. __Developers understand their code.__ Writing tests allows the developer to understand what the expected behavior of the function is.  It also allows the developer to add tests for things that he or she knows might be problematic for a specific function.  For example, a developer may know that a sort function may not sort numeric strings correctly, because certain flags need to be set to ensure that it treats them as numbers instead of strings (so that "1000" is bigger than "99", which it would not be if the function treated them as strings, since "9" is bigger than "1").  A black-box tester may not realize that this is what is happening "under the hood" and so not think to test this particular edge case.
 
@@ -70,7 +70,7 @@ public class LinkedListTest {
 
     @Test
     public void testEquals123() {
-        // Preconditions - a axnd b both have 1 -> 2 -> 3
+        // Preconditions - a and b both have 1 -> 2 -> 3
         LinkedList<Integer> a = new LinkedList<Integer>( [1,2,3] );
         LinkedList<Integer> b = new LinkedList<Integer>( [1,2,3] );
 
