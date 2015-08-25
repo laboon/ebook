@@ -75,11 +75,15 @@ The __summary__ is a one sentence or so summary of the defect found.  It's usefu
 3. System exits with `SEGFAULT` error when user selected
 4. Adding three or more items to a cart at the same time clears out other items
 
-All of these describe the problem succinctly, without going into much detail.  Remember that the summary will often be glanced at along with perhaps hundreds of other defect summaries, especially if you are presenting to management.  There is a reason why most books written today have snappy titles, as opposed to titles such as _The Egg, Or The Memoirs Of Gregory Giddy, Esq: With The Lucubrations Of Messrs. Francis Flimsy, Frederick Florid, And Ben Bombast. To Which Are Added, The Private Opinions Of Patty Pout, Lucy Luscious, And Priscilla Positive. Also The Memoirs Of A Right Honourable Puppy. Conceived By A Celebrated Hen, And Laid Before The Public By A Famous Cock-Feeder._  Yes, that is a real book, written by an anonymous author and published in 1772.
+All of these describe the problem succinctly but precisely, with only enough detail to indicate the problem.  Superfluous commentary does not belong in this section.  Remember that the summary will often be glanced at along with perhaps hundreds of other defect summaries, especially if you are presenting to management.  There is a reason why most books written today have snappy titles, as opposed to titles such as _The Egg, Or The Memoirs Of Gregory Giddy, Esq: With The Lucubrations Of Messrs. Francis Flimsy, Frederick Florid, And Ben Bombast. To Which Are Added, The Private Opinions Of Patty Pout, Lucy Luscious, And Priscilla Positive. Also The Memoirs Of A Right Honourable Puppy. Conceived By A Celebrated Hen, And Laid Before The Public By A Famous Cock-Feeder._  Yes, that is a real book, written by an anonymous author and published in 1772.
+
+You should be very careful not to overgeneralize in this section.  If the user cannot search on one particular page, then do not mark the summary as "Search is broken".  If one calculation reliably gives an incorrect answer, do not describe the defect as "Math is not working".  Before filing the defect, try to figure out how far the problem extends.  
 
 ### Description
 
-In the description, the defect is described in more detail.  The goal is to allow an in-depth understanding of what the issue and why the behavior is, in fact, a defect.  This is usually a few sentences long, although if the defect is more complicated or requires expository information to understand, it may be longer.  
+In the description, the defect is described in more detail.  The goal is to allow an in-depth understanding of what the issue and why the behavior is, in fact, a defect.  This is usually a few sentences long, although if the defect is more complicated or requires expository information to understand, it may be longer.
+
+In this section, you can also go more into detail about the boundaries of the issue than in the summary.  For example, you may have noted in the summary that "Taxes not calculated correctly with items which cost over $100.00".  In the description, you can note that you tested this with items costing $100.01, $200.00, and $1000.00, and in each case taxes were less than half of what they were supposed to be.  This will allow others to know what was tried and have a better idea of the boundaries of the defect.
 
 ### Reproduction Steps
 
