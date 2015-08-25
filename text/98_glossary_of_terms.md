@@ -344,10 +344,6 @@ __Running__: A status for a test case in a test run.  It indicates that the test
 
 __Sanitization__: "Cleaning up" user input so that it cannot be executed by the running program or otherwise cause harm to the system.
 
-__Sanity check__: Another term for __sanity test__.
-
-__Sanity test__: A very small set of tests which checks a very minimal amount of functionality, to ensure, for example, that a system was installed correctly.
-
 __Scripted testing__: Testing with a rigid script, such as a test plan, where steps are well-defined and ordered.
 
 __Seam__: A place in the codebase where you can modify behavior without modifying the code itself.
