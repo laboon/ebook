@@ -174,7 +174,7 @@ Depending on how much focus is spent on testing in an organization, some of the 
 
 In this section, several examples of defects will be provided.
 
-Note that a defect report provides a description of the defect, not what should be done to fix it.  In the first example, there are numerous ways that the defect could be resolved---the default error message for a 500 screen may be changed to include a message such as "Press the back button to retry", or a null check could be added to the code so that the exception is never thrown, or additional error handling could occur inside the exception handler.  From the point of view of someone filing a defect, it doesn't matter; the problem is that the defect exists, and it is the job of the filer to report it accurately, not to say how it should be fixed.  This is similar to writing requirements, which are supposed to say what should be done, not how to do it.
+Note that a defect report provides a description of the defect, not what should be done to fix it.  In the first example, there are numerous ways that the defect could be resolved---the default error message for an HTTP 500 Internal Server Error screen may be changed to include a message such as "Press the back button to retry", or a null check could be added to the code so that the exception is never thrown, or additional error handling could occur inside the exception handler.  From the point of view of someone filing a defect, it doesn't matter; the problem is that the defect exists, and it is the job of the filer to report it accurately, not to say how it should be fixed.  This is similar to writing requirements, which are supposed to say what should be done, not how to do it.
 
 ----
 
