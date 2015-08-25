@@ -191,7 +191,7 @@ public class DogTest {
 }
 ```
 
-Now when the `mockedDogFood` object has its `.eat()` method called, it will return the value 13.  Once again, we have quarantined the other methods by re-creating fakes of them that act as we think they should.  Note that we can even stub methods that don't exist, thus allowing us to not only test classes that have errors, but even ones that don't have all of their methods written yet.
+Now when the `mockedDogFood` object has its `.eat()` method called, it will return the value 13.  Once again, we have quarantined the other methods by re-creating fakes of them that act as we think they should.  In some languages, although not Java, we can even stub methods that don't exist.  This allowis us to not only test classes that have errors, but even ones that don't have all of their methods written yet.
 
 ## Mocks and Verification
 
