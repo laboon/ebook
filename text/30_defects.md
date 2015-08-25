@@ -105,7 +105,7 @@ The core concept behind testing, and one which we will refer to again and again 
 
 Once again, the more specific the behavior listed, the easier it will be for developers and other testers to reproduce the issue, and eventually fix it.  One should never write down that "the system should return the correct value"; instead, write that the "the system should return 6".
 
-Aside from saving people from calculating the correct value themselves, another benefit of writing down the expected behavior so precisely is that the tester or test case may not be expecting the correct behavior!  In this case, someone can view the defect and determine that it's actually invalid---the software is performing as intended.  This can happen when the requirements are ambiguous or the reporting tester simple makes a mistake.
+Aside from saving people from calculating the correct value themselves, another benefit of writing down the expected behavior so precisely is that the tester or test case may not be expecting the correct behavior!  In this case, someone can view the defect and determine that it's actually invalid---the software is performing as intended.  This can happen when the requirements are ambiguous or the reporting tester simply makes a mistake.
 
 ### Observed Behavior
 
