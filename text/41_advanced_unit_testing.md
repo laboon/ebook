@@ -439,6 +439,7 @@ Reviewing the code above, you can see that the `methods[]` array actually contai
 Now that we have this list of methods, we can actually invoke them by name, by passing in the name of the method to which we'd like to have a reference to the `getMethod()` method:
 
 ```java
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class ReflectionFun {
@@ -451,8 +452,9 @@ public class ReflectionFun {
         try {
             System.out.println("Call public method (printQuack):");
             Method method = ReflectionFun.class.getMethod("printQuack");
+            ReflectionFun rf = new ReflectionFun();
             Object returnValue = method.invoke(rf);
-        } catch (NoSuchMethodException nsmex) {
+        } catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException ex) {
             System.err.println("No such method!");
         }
     }
