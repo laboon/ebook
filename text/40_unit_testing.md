@@ -59,7 +59,7 @@ Fuddy-duddy rants aside, the JUnit test framework allows us to create unit tests
 
 Although we will be covering JUnit, as it is a popular and easy-to-understand testing framework, it is far from the only unit testing framework in existence.  Among many other Java testing frameworks, there is TestNG, a more fully-featured framework; JTest, which includes the ability to automatically generate unit tests; and cucumber-jvm, which helps to write tests in a more human-readable format.  All of these have their benefits and drawbacks.  If you're interested in finding more potential unit testing frameworks, just do a web search for "unit testing frameworks _your language of choice_".
 
-Keep in mind, though, that the particular implementation of testing framework you use isn't nearly as important as the concepts you learn and can apply.  When you are reading this chapter, worry less about the syntax, and more about understanding the concepts of unit testing.  Think about how aspects of unit unit testing is both similar and different to concepts that you have already learned in manual testing.
+Keep in mind, though, that the particular implementation of testing framework you use isn't nearly as important as the concepts you learn and can apply.  When you are reading this chapter, worry less about the syntax, and more about understanding the concepts of unit testing.  Think about how aspects of unit testing is both similar and different to concepts that you have already learned in manual testing.
 
 The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly.
 
