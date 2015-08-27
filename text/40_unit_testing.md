@@ -78,7 +78,7 @@ public class LinkedListTest {
         boolean result = a.equals(b);
 
         // Postconditions: Expected behavior - assert that result is true
-        assertEquals(result, true);
+        assertEquals(true, result);
     }
 
 }
@@ -106,7 +106,7 @@ assertTrue(result);
 
 A list of some of the most commonly-used assertions, along with some trivial examples of their usage, include:
 
-1. __assertEquals:__ Assert that two values are equal to each other, e.g. `assertEquals((2 * 2), 4)`.
+1. __assertEquals:__ Assert that two values are equal to each other, e.g. `assertEquals(4, (2 * 2))`.
 2. __assertTrue:__ Assert that the expression evaluates to true, e.g. `assertTrue(7 == 7)`.
 3. __assertFalse:__ Assert that the expression evaluates to false, e.g. `assertFalse(2 < 1)`.
 4. __assertNull:__ Assert that a value is null, e.g. `assertNull(uninitializedVariable)`.
@@ -120,14 +120,14 @@ assertSame(a, a); // True; both are the same reference to the same object
 assertSame(a, c); // True; these are different references to the same object
 ```
 
-Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17)`.  In my experience, these are used much less often.  You want to check for a specific _expected_ behavior, if at all possible, not that it's _not unexpected_ behavior.  Checking that something does not exist could be an indication that the test is fragile or not thought through.  Imagine that you have written a method which will generate 19th-century Romantic poems.  You know that these poems should never start with the word "homoiconicity", so you write a test to that effect:
+Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals(17, (1 + 1))`.  In my experience, these are used much less often.  You want to check for a specific _expected_ behavior, if at all possible, not that it's _not unexpected_ behavior.  Checking that something does not exist could be an indication that the test is fragile or not thought through.  Imagine that you have written a method which will generate 19th-century Romantic poems.  You know that these poems should never start with the word "homoiconicity", so you write a test to that effect:
 
 ```java
 @Test
 public void testNoLispStuff() {
     String poem = PoemGenerator.generate("19-th_Century_Romantic");
     String firstWord = poem.split(" ");
-    assertNotEquals(firstWord, "homoiconicity");
+    assertNotEquals("homoiconicity", firstWord);
 }
 ```
 
@@ -147,7 +147,7 @@ What if you changed the first linked list, _a_, to contain the data 1 &rarr; 2?
         LinkedList<Integer> a = new LinkedList<Integer>( [1, 2] );
         LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
         boolean result = a.equals(b);
-        assertEquals(result, true);
+        assertEquals(true, result);
     }
 ```
 
@@ -159,7 +159,7 @@ Or 7 &rarr; 8 &rarr; 9?
         LinkedList<Integer> a = new LinkedList<Integer>( [7, 8, 9] );
         LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
         boolean result = a.equals(b);
-        assertEquals(result, true);
+        assertEquals(true, result);
     }
 ```
 
@@ -171,7 +171,7 @@ Or you changed the equality check to an _inequality_ check?
         LinkedList<Integer> a = new LinkedList<Integer>( [1, 2, 3] );
         LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
         boolean result = !(a.equals(b);)
-        assertEquals(result, true);
+        assertEquals(true, result);
     }
 ```
 
