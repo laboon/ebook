@@ -170,7 +170,7 @@ Or you changed the equality check to an _inequality_ check?
     public void testEquals123() {
         LinkedList<Integer> a = new LinkedList<Integer>( [1, 2, 3] );
         LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
-        boolean result = !(a.equals(b);)
+        boolean result = !(a.equals(b));
         assertEquals(true, result);
     }
 ```
