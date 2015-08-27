@@ -11,7 +11,7 @@ Some examples of unit tests are checking that:
 1. A `.sort` method returns `[1, 2, 3]` when you pass in `[3, 2, 1]`
 2. Passing in a null reference as an argument to a function throws an exception
 3. A `.formatNumber` method returns a properly formatted number
-4. Passing in a string to a function that returns an integer does not crash the program
+4. Passing in a string to a function that takes an integer argument does not crash the program
 5. An object has `.send` and `.receive` methods
 6. Constructing an object with default parameters sets the `default` attribute to true
 
