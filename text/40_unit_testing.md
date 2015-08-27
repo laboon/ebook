@@ -135,7 +135,7 @@ When your poem starts with "Behold", "Darling", or "Limpid", this test will pass
 
 ### Ensuring that Tests are Testing What You Expect
 
-One of the simplest ways to do this is to first ensure that your tests fail!  While we'll go into detail on a development strategy that always calls for tests to fail first in the chapter on TDD, a quick change to a test can often prove that it's not just passing all the time because you're mistakenly asserting that `true == true`, for example.
+One of the simplest ways to do this is to first ensure that your tests fail!  While we'll go into detail on a development strategy that always calls for tests to fail first in the chapter on Test Driven Development, a quick change to a test can often prove that it's not just passing all the time because you're mistakenly asserting that `true == true`, for example.
 
 In the linked list equality test above, what could you change to ensure that your tests are testing what you think they are testing?
 
