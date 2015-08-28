@@ -11,7 +11,7 @@ Some examples of unit tests are checking that:
 1. A `.sort` method returns `[1, 2, 3]` when you pass in `[3, 2, 1]`
 2. Passing in a null reference as an argument to a function throws an exception
 3. A `.formatNumber` method returns a properly formatted number
-4. Passing in a string to a function that returns an integer does not crash the program
+4. Passing in a string to a function that takes an integer argument does not crash the program
 5. An object has `.send` and `.receive` methods
 6. Constructing an object with default parameters sets the `default` attribute to true
 
@@ -59,7 +59,7 @@ Fuddy-duddy rants aside, the JUnit test framework allows us to create unit tests
 
 Although we will be covering JUnit, as it is a popular and easy-to-understand testing framework, it is far from the only unit testing framework in existence.  Among many other Java testing frameworks, there is TestNG, a more fully-featured framework; JTest, which includes the ability to automatically generate unit tests; and cucumber-jvm, which helps to write tests in a more human-readable format.  All of these have their benefits and drawbacks.  If you're interested in finding more potential unit testing frameworks, just do a web search for "unit testing frameworks _your language of choice_".
 
-Keep in mind, though, that the particular implementation of testing framework you use isn't nearly as important as the concepts you learn and can apply.  When you are reading this chapter, worry less about the syntax, and more about understanding the concepts of unit testing.  Think about how aspects of unit unit testing is both similar and different to concepts that you have already learned in manual testing.
+Keep in mind, though, that the particular implementation of testing framework you use isn't nearly as important as the concepts you learn and can apply.  When you are reading this chapter, worry less about the syntax, and more about understanding the concepts of unit testing.  Think about how aspects of unit testing are both similar and different to concepts that you have already learned in manual testing.
 
 The following is an implementation of a unit test checking for linked list equality, as per above.  Don't worry if you don't understand all of the code; over the next few sections it will be explained thoroughly.
 
@@ -78,7 +78,7 @@ public class LinkedListTest {
         boolean result = a.equals(b);
 
         // Postconditions: Expected behavior - assert that result is true
-        assertEquals(result, true);
+        assertEquals(true, result);
     }
 
 }
@@ -106,7 +106,7 @@ assertTrue(result);
 
 A list of some of the most commonly-used assertions, along with some trivial examples of their usage, include:
 
-1. __assertEquals:__ Assert that two values are equal to each other, e.g. `assertEquals((2 * 2), 4)`.
+1. __assertEquals:__ Assert that two values are equal to each other, e.g. `assertEquals(4, (2 * 2))`.
 2. __assertTrue:__ Assert that the expression evaluates to true, e.g. `assertTrue(7 == 7)`.
 3. __assertFalse:__ Assert that the expression evaluates to false, e.g. `assertFalse(2 < 1)`.
 4. __assertNull:__ Assert that a value is null, e.g. `assertNull(uninitializedVariable)`.
@@ -120,14 +120,14 @@ assertSame(a, a); // True; both are the same reference to the same object
 assertSame(a, c); // True; these are different references to the same object
 ```
 
-Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals((1 + 1), 17)`.  In my experience, these are used much less often.  You want to check for a specific _expected_ behavior, if at all possible, not that it's _not unexpected_ behavior.  Checking that something does not exist could be an indication that the test is fragile or not thought through.  Imagine that you have written a method which will generate 19th-century Romantic poems.  You know that these poems should never start with the word "homoiconicity", so you write a test to that effect:
+Additionally, there are several "not" variants of these assertions, such `assertNotEquals`, which will check that the original assertion is not true.  For example, `assertNotEquals(17, (1 + 1))`.  In my experience, these are used much less often.  You want to check for a specific _expected_ behavior, if at all possible, not that it's _not unexpected_ behavior.  Checking that something does not exist could be an indication that the test is fragile or not thought through.  Imagine that you have written a method which will generate 19th-century Romantic poems.  You know that these poems should never start with the word "homoiconicity", so you write a test to that effect:
 
 ```java
 @Test
 public void testNoLispStuff() {
     String poem = PoemGenerator.generate("19-th_Century_Romantic");
     String firstWord = poem.split(" ");
-    assertNotEquals(firstWord, "homoiconicity");
+    assertNotEquals("homoiconicity", firstWord);
 }
 ```
 
@@ -135,7 +135,7 @@ When your poem starts with "Behold", "Darling", or "Limpid", this test will pass
 
 ### Ensuring that Tests are Testing What You Expect
 
-One of the simplest ways to do this is to first ensure that your tests fail!  While we'll go into detail on a development strategy that always calls for tests to fail first in the chapter on TDD, a quick change to a test can often prove that it's not just passing all the time because you're mistakenly asserting that `true == true`, for example.
+One of the simplest ways to do this is to first ensure that your tests fail!  While we'll go into detail on a development strategy that always calls for tests to fail first in the chapter on Test Driven Development, a quick change to a test can often prove that it's not just passing all the time because you're mistakenly asserting that `true == true`, for example.
 
 In the linked list equality test above, what could you change to ensure that your tests are testing what you think they are testing?
 
@@ -147,7 +147,7 @@ What if you changed the first linked list, _a_, to contain the data 1 &rarr; 2?
         LinkedList<Integer> a = new LinkedList<Integer>( [1, 2] );
         LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
         boolean result = a.equals(b);
-        assertEquals(result, true);
+        assertEquals(true, result);
     }
 ```
 
@@ -159,7 +159,7 @@ Or 7 &rarr; 8 &rarr; 9?
         LinkedList<Integer> a = new LinkedList<Integer>( [7, 8, 9] );
         LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
         boolean result = a.equals(b);
-        assertEquals(result, true);
+        assertEquals(true, result);
     }
 ```
 
@@ -170,8 +170,8 @@ Or you changed the equality check to an _inequality_ check?
     public void testEquals123() {
         LinkedList<Integer> a = new LinkedList<Integer>( [1, 2, 3] );
         LinkedList<Integer> b = new LinkedList<Integer>( [1, 2, 3] );
-        boolean result = !(a.equals(b);)
-        assertEquals(result, true);
+        boolean result = !(a.equals(b));
+        assertEquals(true, result);
     }
 ```
 
@@ -179,9 +179,9 @@ In all of these instances, the test should fail.  You can then rest a little eas
 
 ## Problems With Unit Testing
 
-Unit testing with the techniques we've learned so far will get us far, but won't get us all the way.  Just using the assertions and testing code that we've gone over so far, there's no way to check, for example, that a particular string will be printed out, or that a window will appear, or that another method is called... all very important things.  After all, if all methods did was return different values with different input, never displaying them to the user or interacting with the environment in any way, we'd have no way of knowing what was happening with our programs.  Our only output would be the generally increasing noisiness of the fan and heat of the CPU.
+Unit testing with the techniques we've learned up to this point will get us far, but won't get us all the way.  Just using the assertions and testing code that we've gone over, there's no way to check, for example, that a particular string will be printed out, or that a window will appear, or that another method is called... all very important things.  After all, if all methods did was return different values with different input, never displaying them to the user or interacting with the environment in any way, we'd have no way of knowing what was happening with our programs.  Our only output would be the generally increasing noisiness of the fan and heat of the CPU.
 
-Any behavior aside from returning a value is called a __side effect__.  Displaying a window, printing some text, connecting to another computer over the network---all of these are, from a terminological perspective, side effects of computation.  Even setting a variable or writing data to disk are side effects.  Functions and methods without side effects, that only receive input from parameters, are called __pure__.  Pure functions will always return the same result given the same input values, and may be called an infinite number of times without modifying any other aspects of the system.  Functions and method with side effects, or who may present different results based on something other than values passed in as parameters, are __impure__.  Some languages, such as Haskell, make a strong differentiation between pure and impure functions, but Java does not.
+Any behavior aside from returning a value is called a __side effect__.  Displaying a window, printing some text, connecting to another computer over the network---all of these are, from a terminological perspective, side effects of computation.  Even setting a variable or writing data to disk are side effects.  Functions and methods without side effects, that only receive input from parameters, are called __pure__.  Pure functions will always return the same result given the same input values, and may be called an infinite number of times without modifying any other aspects of the system.  Functions and methods with side effects, or that may present different results based on something other than values passed in as parameters, are __impure__.  Some languages, such as Haskell, make a strong differentiation between pure and impure functions, but Java does not.
 
 An example of a pure function would be a mathematical function, such as the square root function, as in the following Java code:
 
