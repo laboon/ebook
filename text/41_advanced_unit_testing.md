@@ -635,7 +635,7 @@ public class CatTest {
 }
 ```
 
-Now imagine that we run this JUnit, which executes test cases in a random order; sometimes the second test would pass, and sometimes it would fail!
+If we run this with JUnit, which executes test cases in a random order, sometimes the second test would pass, and sometimes it would fail!
 
 There is yet another benefit to creating tests which have no dependencies on other tests.  Independent tests can be run in parallel, possibly decreasing execution time dramatically.  On a modern multi-core machine, you may find yourself running tests many times more quickly if they can be run independently.
 
