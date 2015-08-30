@@ -578,7 +578,7 @@ It is plain to see that testing even simple private methods can include quite a 
 
 ### Basic Outline
 
-Unit tests in Java are usually grouped by class, and further by method; they mirror the structure of the program.  Since unit tests are white-box tests which interact closely with the code, this makes finding errors in the codebase based upon the particular failing test case much easier than with integration or manual tests.
+Unit tests in Java are usually grouped initially by class and further by method; they mirror the structure of the program.  Since unit tests are white-box tests which interact closely with the code, this makes finding errors in the codebase based upon the particular failing test case much easier than with integration or manual tests.
 
 ### What to Test?
 
