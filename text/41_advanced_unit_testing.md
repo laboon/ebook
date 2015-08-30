@@ -291,7 +291,7 @@ public class KangarooTest {
 
     @Before
     public void setUp() {
-    System.setOut(new PrintStream(out));
+        System.setOut(new PrintStream(out));
     }
 
     @After
