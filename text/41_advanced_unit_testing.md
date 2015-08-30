@@ -647,7 +647,7 @@ There is more discussion on writing testable code in the chapter Writing Testabl
 
 ## Code Coverage
 
-Code coverage tells you how much of the codebase is actually tested by the code.  Since defining exactly what is meant by "how much of the codebase" can be complex, there are numerous kinds of code coverage.  The simplest form of code coverage is method coverage; this measures what percentage of methods have any tests that call into them.  For example, imagine a class Turtle with two methods, `crawl()` and `eat()`:
+Code coverage tells you how much of the codebase is actually executed when running the test suite code.  Since defining exactly what is meant by "how much of the codebase" can be complex, there are numerous kinds of code coverage.  The simplest form of code coverage is method coverage; this measures what percentage of methods have any tests that call into them.  For example, imagine a class Turtle with two methods, `crawl()` and `eat()`:
 
 ```java
 public class Turtle {
