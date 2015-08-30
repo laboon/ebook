@@ -623,7 +623,7 @@ public class CatTest {
     public void testGrowWhiskers() {
        Cat c = new Cat(5);
        _whiskersLength = c.growWhiskers();
-       assertEquals(6, c.whiskersLength);
+       assertEquals(6, _whiskersLength);
     }
 
     @Test
