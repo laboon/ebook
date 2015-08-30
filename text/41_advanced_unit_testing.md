@@ -348,7 +348,7 @@ public class Picture {
 
 This code is relatively simple, and it's easy to see that all of the private methods will be called and tested by the public methods.  From the standpoint of a user of this class, it's easy to test that things work correctly---if a valid image is returned, then the method worked.
 
-Now let's imagine some code inside the image transformation library might be called from the above code:
+Now let's imagine in a different part of this service, we have an image transformation library that we also want to test:
 
 ```java
 public class ImageLibrary {
