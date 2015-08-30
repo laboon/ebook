@@ -55,7 +55,7 @@ public class HorseTest {
         // We are making a test double for water
         Water mockWater = Mockito.mock(Water.class);
         int returnVal = h.leadTo(mockWater);
-        assertEquals(returnVal, 1);
+        assertEquals(1, returnVal);
     }
 
 }
@@ -98,7 +98,7 @@ public class DogTest {
         Dog d = new Dog();
         d.setDogFood(Mockito.mock(DogFood.class));
         int returnVal = d.eatDinner();
-        assertEquals(returnVal, 1);
+        assertEquals(1, returnVal);
     }
 
 }
@@ -151,7 +151,7 @@ public class DogTest {
     public void testEatDinner() {
         Dog d = new Dog();
         int returnVal = d.eatDinner(Mockito.mock(DogFood.class));
-        assertEquals(returnVal, 1);
+        assertEquals(1, returnVal);
     }
 
 }
@@ -185,7 +185,7 @@ public class DogTest {
         DogFood mockedDogFood = Mockito.mock(DogFood.class);
         mockedDogFood.when(mockedDogFood.eat()).thenReturn(13);
         int returnVal = d.eatDinner(mockedDogFood);
-        assertEquals(returnVal, 13);
+        assertEquals(13, returnVal);
     }
 
 }
@@ -251,7 +251,7 @@ public class BirdTest {
     @Test
     public void testFluffyBird() {
         Bird b = new Bird(_dbc);
-        assertEquals(b.fluffinessLevel == 1);
+        assertEquals(1, b.fluffinessLevel);
     }
 
     // Tests that a newly created bird is pretty
@@ -564,7 +564,7 @@ public void testPrivateLaboonify() {
         LaboonStuff ls = new LaboonStuff();
         Object returnValue = method.invoke(ls, 4);
         int foo = ((Integer) returnValue).intValue();
-        assertEquals(foo, 4);
+        assertEquals(4, foo);
     } catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException ex) {
         // The method does not exist
         fail();
@@ -600,7 +600,7 @@ public class CatTest {
         Cat c = new Cat();
         c.setDefaults();
         assertTrue(c.isAGoodKitty());
-        assertEquals(c.numKittens() == 0);
+        assertEquals(0, c.numKittens());
         assertFalse(c.isUgly());
         assertNull(c.owner());
     }
@@ -623,7 +623,7 @@ public class CatTest {
     public void testGrowWhiskers() {
        Cat c = new Cat(5);
        _whiskersLength = c.growWhiskers();
-       assertEquals(c.whiskersLength, 6);
+       assertEquals(6, c.whiskersLength);
     }
 
     @Test
@@ -726,7 +726,7 @@ public class CowTest {
     public void mooTest() {
         Cow c = new Cow();
         int mooTimes = c.moo(20);
-        assertEquals(mooTimes, 5);
+        assertEquals(5, mooTimes);
     }
 
 }

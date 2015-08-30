@@ -14,7 +14,7 @@ __Alpha testing__: "Real-world" testing by a small group of test engineers or so
 
 __Application under test__: The system which the tester is testing.
 
-__Assertion__: In a unit test, a statement which states that a certain condition must hold.  If the condition does not hold, the test is considered to have failed.  For example, `assertEquals(Math.sqrt(4), 2);`.
+__Assertion__: In a unit test, a statement which states that a certain condition must hold.  If the condition does not hold, the test is considered to have failed.  For example, `assertEquals(2, Math.sqrt(4));`.
 
 __Availability__: In __performance testing__, what percentage of the time the system is available to the user (not in a failure mode, unresponsive, etc.)  In __security testing__, one of the elements of the __InfoSec Triad__, an attribute that refers to the ability of authorized users to access a system.
 
