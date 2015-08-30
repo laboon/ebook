@@ -332,13 +332,13 @@ public class Picture {
         // ...
     }
 
-    private Image takePicture() {
+    private Image captureImage() {
         // ...
     }
 
     public Image takePicture() {
         setupCamera();
-        Image i = takePicture();
+        Image i = captureImage();
         turnOffCamera();
         return i;
     }
