@@ -738,6 +738,6 @@ Code coverage is a powerful tool, but like anything else in software development
 
 ## Unit Testing as Part of a Complete Testing Plan
 
-Just like your favorite nutritionally-suspect cereals, unit testing should not be your entire breakfast, or your entire test plan.  Unit testing is great for checking individual methods and low-level functionality, but it is not good at seeing how everything fits together.  It's even worse when trying to determine what the end product will look like; all of the individual methods may work, but together they form something which doesn't meet any of the requirements.
+Just like your favorite nutritionally-suspect cereals, unit testing should not be your entire breakfast or your entire test plan.  Unit testing is great for checking individual methods and low-level functionality, but it is not good at seeing how everything fits together.  It's even worse when trying to determine what the end product will look like; all of the individual methods may work, but together they form something which doesn't meet any of the requirements.
 
 When you are testing, you should remember to perform some manual testing, integration testing, and depending upon your needs, other kinds of testing such as security testing or performance testing.  Relying heavily on one particular kind of testing is a recipe for missing important defects.
