@@ -471,7 +471,7 @@ Quack!
 
 Using this, you could add a way to manually test and call methods, by having the user enter a string and trying to call a method by that name on the object.  We now have run-time control of what methods to call.  This is very useful for metaprogramming and programmer interfaces such as REPLs (read-eval-print-loop systems, which let you enter some code, see the results, and repeat).  Now that you understand reflection, some minor tweaks to our existing code and we can access and test private methods easily.
 
-You can't use the `getMethod()` or `getMethods()` methods, as they only return publicly available methods.  Instead, you need to use either the `getDeclaredMethod()` or `getDeclaredMethods()` method.  These have have two key differences from the `getMethod()`-style methods listed above:
+You can't use the `getMethod()` or `getMethods()` methods, as they only return publicly available methods.  Instead, you need to use either the `getDeclaredMethod()` or `getDeclaredMethods()` methods.  These have have two key differences from the `getMethod()`-style methods listed above:
 
 1. They only return methods declared in that specific class.  They will not return methods defined in superclasses.
 2. They return public, private, and protected methods.
