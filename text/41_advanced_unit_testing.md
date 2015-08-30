@@ -378,7 +378,7 @@ One could argue that this isn't a well-designed piece of code and should be refa
 
 ### Using Reflection to Test Private Methods in Java
 
-In Java, there's no way to directly call private methods from a unit test, although this is definitely not the case in other languages (such as with Ruby's `.send(:method_name)` method, which bypasses the concept of "private" entirely).  However, using the reflection library, we can "reflect" what's the structure of the class is at runtime.  The reflection library is built in to the Java language, so you don't need to install anything else to use it.
+In Java, there's no way to directly call private methods from a unit test, although this is definitely not the case in other languages (such as with Ruby's `.send(:method_name)` method, which bypasses the concept of "private" entirely).  However, using the reflection library, we can "reflect" what the structure of the class is at runtime.  The reflection library is built in to the Java language, so you don't need to install anything else to use it.
 
 Let's give an example---if you've never worked with reflection before, it can be a bit strange.  Say we want to write a class which tells the user what methods are available in that class.  Without reflection, this is impossible in Java; how can you know what other methods exist without hard-coding them into a String or something along those lines?  It's actually relatively simple to do using reflection:
 
