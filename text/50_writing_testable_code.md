@@ -122,7 +122,7 @@ Programs which do not provide a method of scripting by virtue of their interface
 
 There are several downsides to adding hooks to your program, or any sort of scriptable interface.  It's a security risk, for one thing---if someone discovers how to access the test hooks, they may be able to determine hidden information, overwrite data, or perform other malicious actions (or simply be curious and make a mistake).  Adding a scriptable interface will require additional complexity in the program, as well as additional program length and size.  The interface may be a drag on performance.  Finally, time spent working on the interface means less time spent writing other features of the software, or improving its quality.
 
-You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  However, there are programs out there which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require manual verification of screenshots.  
+You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  There are programs out there which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require manual verification of screenshots.
 
 ## Write Tests Up-Front
 
