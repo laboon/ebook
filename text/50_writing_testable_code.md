@@ -114,7 +114,7 @@ In order to test effectively, code should be segmented, and written in such a wa
 
 ## Provide a Scriptable Interface
 
-While the previous section described how to ensure code that was testable from a white-box perspective, creating a program that is easily testable from a black-box, systems-level perspective can be even more difficult.  Methods, in general, are meant to be called---there's a built-in interface to do it, and the parameters for each method are generally specified.
+While the previous section described how to ensure code is testable from a white-box perspective, creating a program that is easily testable from a black-box, systems-level perspective can be even more difficult.  Methods, in general, are meant to be called---there's a built-in interface to do it, and the parameters for each method are generally specified.
 
 Some interfaces are "automatically" scriptable.  If you are writing a web app, for example, you can use a web testing framework such as Selenium or Capybara to access the various pages, click buttons, enter text, and do all of the other things you can do to a web page.  Text-based interfaces are also relatively easy to script, since they simply accept text and output it.  Output can be redirected to a file or otherwise checked for accuracy.  
 
