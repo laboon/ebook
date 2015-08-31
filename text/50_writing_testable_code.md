@@ -233,7 +233,7 @@ public class Pond {
 }
 ```
 
-Note that you are passing in the Duck and the Otter in the constructor, thus moving the responsibility for creating them outside of the Pond class.  Because of this, you don't have to send in actual ducks and otters, but mocks, which can then verify that the `say()` method was called with the parameter "Hi!"  Dependency injection will allow you to test your methods much more easily than having dependencies automatically created.
+Note that you are passing in the Duck and the Otter in the constructor, thus moving the responsibility for creating them outside of the Pond class.  Because of this, you don't have to send in actual ducks and otters. Instead you can send in mocks, which can then verify that the `say()` method was called with the parameter "Hi!"  Dependency injection will allow you to test your methods much more easily than having dependencies automatically created.
 
 ## TUFs and TUCs
 
