@@ -91,7 +91,7 @@ public class FizzBuzzTest {
     @Test
     public void test1Returns1() {
         String returnedVal = FizzBuzz.fizzbuzzify(1);
-        assertEquals(returnedVal, "1");
+        assertEquals("1", returnedVal);
     }
 
 }
@@ -123,12 +123,12 @@ public class FizzBuzzTest {
     @Test
     public void test1Returns1() {
         String returnedVal = FizzBuzz.fizzbuzzify(1);
-        assertEquals(returnedVal, "1");
+        assertEquals("1", returnedVal);
     }
 
     public void test2Returns2() {
         String returnedVal = FizzBuzz.fizzbuzzify(2);
-        assertEquals(returnedVal, "2");
+        assertEquals("2", returnedVal);
     }
 
 }
@@ -178,7 +178,7 @@ Much better!  Tests are still passing, so we can move on to the next cycle in th
     @Test
     public void test3ReturnsFizz() {
         String returnedVal = FizzBuzz.fizzbuzzify(3);
-        assertEquals(returnedVal, "Fizz");
+        assertEquals("Fizz", returnedVal);
     }
 ```
 
@@ -212,7 +212,7 @@ This also might give us more ideas for additional unit tests later---perhaps we 
     @Test
     public void test5ReturnsBuzz() {
         String returnedVal = FizzBuzz.fizzbuzzify(5);
-        assertEquals(returnedVal, "Buzz");
+        assertEquals("Buzz", returnedVal);
     }
 ```
 
@@ -236,7 +236,7 @@ Tests pass now, and there doesn't seem to be any refactoring to do.  Let's try o
     @Test
     public void test15ReturnsFizzBuzz() {
         String returnedVal = FizzBuzz.fizzbuzzify(15);
-        assertEquals(returnedVal, "FizzBuzz");
+        assertEquals("FizzBuzz", returnedVal);
     }
 ```
 
