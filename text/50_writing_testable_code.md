@@ -168,7 +168,7 @@ public int getNumberOfPigeons(String pigeonBreed) {
 }
 ```
 
-While the statements aren't exactly the same, they are similar enough that they are a target for the DRYing up the code.  After all, we can always pass in parameters to tweak the behavior to exactly what we want:
+While the statements aren't exactly the same, they are similar enough that they are a target for DRYing up the code.  After all, we can always pass in parameters to tweak the behavior to exactly what we want:
 
 ```java
 public int getNumAnimals(String animalType, String breed) {
