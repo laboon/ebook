@@ -192,7 +192,7 @@ The code is now going to be much more flexible and maintainable.  Supporting add
 
 ## Dependency Injection
 
-As we've seen, having dependencies hard-coded into your methods can make them difficult to test.  Lets assume you have a class-level reference to a `Duck` object that is created by a `Pond` object.  The `Pond` class has a `sayHi()` method which will say "Hi!" to all of the animals in the pond:
+As we've seen, having dependencies hard-coded into your methods can make them difficult to test.  Let's assume you have a class-level reference to a `Duck` object that is created by a `Pond` object.  The `Pond` class has a `sayHi()` method which will say "Hi!" to all of the animals in the pond:
 
 ```java
 public class Pond {
