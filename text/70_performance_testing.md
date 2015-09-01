@@ -117,7 +117,7 @@ As a final note, it is possible for response time to be too fast!  Think of a sc
 
 ## Testing Service-Oriented Indicators: Availability
 
-Availability, often referred to as uptime, refers to what percentage of the time that a user can access the system when they expect to be able to do so.  Thus, any time that a system is down for maintenance, or due to an uncaught exception crashing a process, or a hard drive blowing up, reduces availability.
+Availability, often referred to as uptime, refers to what percentage of the time that a user can access the system when they expect to be able to do so.  Thus, any time that a system spends being down reduces availability whether due to maintenance, an uncaught exception crashing a process, or a hard drive blowing up.
 
 Many cloud service providers provide a __service level agreement__ (SLA) which specifies the level of availability that they provide.  This is often specified in the __n nines__ format, which specifies "how many nines" of reliability they provide.  These "nines" refer to 99% (2 nines), 99.9% (3 nines), 99.99% (4 nines), etc.  At the time of this writing, for example, Amazon S3 promises to have 3 nines' availability (available 99.9% of time, meaning downtime of less than around 45 minutes per month).  For certain systems, such as autonomous vehicles and space probes, uptime requirements might be much higher.
 
