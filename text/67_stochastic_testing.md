@@ -59,7 +59,7 @@ Some invariants for a sort function would be:
 
 Now that we have some of the properties we expect from *any* output of the `billSort` method, we can let the computer do the grunt work of thinking up random arrays of data, passing them in to our method, and then checking that whatever output array is produced meets all of the properties that we set.  If an output array does not meet one of the invariants, we can then report the error to the tester.  Producing output that does not meet the specified invariant is called __falsifying the invariant__.
 
-There are multiple libraries for Java which perform property-based testing, but no standard.  Property-based testing is much more popular in the functional programming world, with programs like QuickCheck for Haskell being more used than standard unit tests.  In fact, the concept of automated property-based testing of this sort comes from the functional world, and from the Haskell community in particular.  For more information, see the paper _QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs_ by Koen Claessen and John Hughes.
+There are multiple libraries for Java which perform property-based testing but no standard.  Property-based testing is much more popular in the functional programming world, with programs like QuickCheck for Haskell being more used than standard unit tests.  In fact, the concept of automated property-based testing of this sort comes from the functional world and from the Haskell community in particular.  For more information, see the paper _QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs_ by Koen Claessen and John Hughes.
 
 ## Smart, Dumb, Evil, and Chaos Monkeys
 
