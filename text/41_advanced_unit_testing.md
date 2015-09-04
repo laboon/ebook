@@ -315,6 +315,8 @@ There's quite an argument on whether or not it makes sense to test private metho
 
 Those who argue that private methods should never be tested say that any calls from the rest of the program (i.e., the rest of the world from the class's standpoint) will have to come in through the public methods of the class.  Those public methods will themselves access private methods; if they don't, then what's the point of having those private methods?  By testing only the public interfaces of classes, you're minimizing the number of tests that you have and focusing on the tests and code that matter.
 
+Another reason for not testing private methods is that inhibits you from refactoring the code later.  If you test private methods, it is going to be more work to make changes to anything "behind the scenes".  In a sense, testing private methods means going against one of the key tenets of object-oriented programming, namely data hiding.  The system is going to be less flexible and more difficult to modify going forward.
+
 Those who argue that private methods should always be tested point to the fact that private methods are still code, even if they're not called directly from outside the class.  Unit testing is supposed to test functionality at the lowest levels possible, which is usually the method or function call.  If you're going to start testing higher up the abstraction ladder, then why not just do systems-level testing?
 
 My opinion is that, like most engineering questions, the correct answer depends on what you're trying to do and what the current codebase is like.  As a side note, with most technical questions, saying "it depends" is a great way to be right, no matter what.  Let's take a look at a few examples.
