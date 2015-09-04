@@ -67,17 +67,50 @@ Doubles can also be used to speed up the execution of tests.  Think of a Databas
 
 You should never, ever, ever use a double for the current class under test!  If you do this, you're no longer testing anything, really, as you are creating a fake object for the actual thing that you are testing.
 
-Test doubles should be used, as often as possible, when the code that you are unit testing uses a different class than the class under test.  Sometimes it will be difficult to do.  In order to minimize issues, you should pass in the object as a parameter whenever possible, as opposed to relying on class-level variables or even worse, global variables.
+Test doubles should be used, as often as possible, when the code that you are unit testing uses a different class than the class under test.  Sometimes it will be difficult to do.  In order to minimize issues, you should pass in the object as a parameter whenever possible, as opposed to relying on member variables or global variables.  Even worse, and more common, are methods that generate and use objects entirely internally.  It is often not possible to use test doubles for these methods.  Let's take a look at an example of this:
 
-For example, let's refactor the following class to make it more amenable to test doubles:
+```java
+public class Dog {
+
+    DogFood _df  = null;
+    DogDish _dd  = null;
+    DogWater _dw = null;
+
+    public void setUpDogStuff() {
+        _dd = new DogDish();
+        _df = new DogFood();
+        _dw = new DogWater();
+    }
+
+    public int eatDinner() {
+        _df.eat();
+        return 1;
+    }
+
+}
+```
+
+If we were to write a test, we have no way of making doubles for the objects!  Even if we then refactored `setUpDogStuff()` to accept `DogDish`, `DogFood`, and `DogWater` parameters, we would be forced to work with additional items when all we care about is `DogFood`.
+
+Let's refactor the method a bit to make it more amenable to test doubles:
 
 ```java
 public class Dog {
 
     DogFood _df = null;
+    DogDish _dd  = null;
+    DogWater _dw = null;
 
     public void setDogFood(DogFood df) {
         df = _df;
+    }
+
+    public void setDogDish(DogDish dd) {
+        dd = _dd;
+    }
+
+    public void setDogWater(DogWater dw) {
+        dw = _dw;
     }
 
     public int eatDinner() {
@@ -104,32 +137,7 @@ public class DogTest {
 }
 ```
 
-It would be even more difficult if `_df` did not have a nice setter function, but instead was created internally or only as a byproduct of an entirely different method.  For example:
-
-```java
-public class Dog {
-
-    DogFood _df  = null;
-    DogDish _dd  = null;
-    DogWater _dw = null;
-
-    public void setUpDogStuff() {
-        _dd = new DogDish();
-        _df = new DogFood();
-        _dw = new DogWater();
-    }
-
-    public int eatDinner() {
-        _df.eat();
-        return 1;
-    }
-
-}
-```
-
-If we were to write a test, we have no way of making doubles for the objects!  Even if we then refactored `setUpDogStuff()` to accept `DogDish`, `DogFood`, and `DogWater` parameters, we would be forced to work with additional items when all we care about is `DogFood`.
-
-However, if we just pass in `DogFood` as a parameter to the method, like so:
+This is better, but still not ideal.  Extra statements are still required to set up the test.  If we just pass in `DogFood` as a parameter to the method, like so:
 
 ```java
 public class Dog {
