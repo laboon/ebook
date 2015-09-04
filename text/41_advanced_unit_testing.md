@@ -195,15 +195,12 @@ Now when the `mockedDogFood` object has its `.eat()` method called, it will retu
 
 ## Mocks and Verification
 
-"Yes, yes, this is all fine," I can hear you saying, "but you didn't answer the original question!  We are still dependent on asserting on a value that is returned from a method, and thus won't be able to test methods without a return value!"  Remember the method that we wanted to test from earlier in the chapter:
+"Yes, yes, this is all fine," I can hear you saying, "but you didn't answer the original question!  We are still dependent on asserting on a value that is returned from a method, and thus won't be able to test methods without a return value!"  Remember the impure method `goToCatCafe` that we wanted to test from in the last chapter:
 
 ```java
-public class Person {
-
-    public void haveFunAtDuckPond(DuckPond duckPond) {
-        duckPond.haveFun();
-    }
-
+public void goToCatCafe(CatCafe catCafe) {
+    System.out.println("Petting cats at a Cat Cafe!");
+    catCafe.haveFun();
 }
 ```
 

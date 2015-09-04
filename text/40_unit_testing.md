@@ -193,12 +193,12 @@ public double getSquareRoot(double val) {
 
 Assuming no floating-point rounding errors or errors of that nature, the square root of 25 will always be 5, no matter what global variables are set, no matter what time or date it is, no matter what.  There are also no side effects from calling a square root function; it's not as though a window pops up every time your system calculates a square root.
 
-An example of an impure function would be printing out statistics from global variables, or any method which outputs something to the console or screen, or depends upon variables that are not specifically passed in.  In general, if you see a method with a void return, it's probably impure---a pure function with a void return type would be absolutely useless, since the returned value is its only way of communicating with the rest of the program.  Here is an example of an impure function:
+An example of an impure function would be printing out statistics from global variables, or any method which outputs something to the console or screen, or depends upon variables that are not specifically passed in.  In general, if you see a method with a void return, it's probably impure---a pure function with a void return type would be absolutely useless, since the returned value is its only way of communicating with the rest of the program.  Here is an example of an impure function, which allows users to go to a cat cafe (that is, a place where you can drink coffee and pet cats):
 
 ```java
-public void haveFunAtDuckPond(DuckPond duckPond) {
-    System.out.println("Having fun at the duck pond");
-    duckPond.haveFun();
+public void goToCatCafe(CatCafe catCafe) {
+    System.out.println("Petting cats at a Cat Cafe!");
+    catCafe.haveFun();
 }
 ```
 
