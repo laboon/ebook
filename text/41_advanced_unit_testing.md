@@ -263,7 +263,7 @@ public class BirdTest {
 
 Note that `@Before` and `@After` methods are called before __each__ test case, not one time before all of them and one time after all of them.  In the above instance, `setUp` will be called twice and `tearDown` will be called twice.
 
-Also note that while there is nothing stopping you from prefacing multiple methods with `@Before` or `@After` annotations, it's usually not necessary and will just make it more difficult to follow the code.  If you do make multiple methods with these annotations, they will run in a deterministic order (that is, if you run it again, they will run in the same order).  However, since tests should not depend upon each other, this ordering is not specified and is liable to change whenever you update your code and/or JUnit version.  It is possible to specify the order that tests will run in, using the `@FixMethodOrder` annotation, but you want to avoid doing that if at all possible.  Honestly, I feel a little guilty even writing down that it is possible.
+Also note that while there is nothing stopping you from prefacing multiple methods with `@Before` or `@After` annotations, it's usually not necessary and will just make it more difficult to follow the code.  If you do make multiple methods with these annotations, they will run in a deterministic order (that is, if you run it again, they will run in the same order).  However, since tests should not depend upon each other, this ordering is not specified and is liable to change whenever you update your code and/or JUnit version.  Thus, it's generally a good idea to just have one `@Before` and one `@After`, maximum, per test file.
 
 Getting back to setup and teardown procedures specifically, if you have complicated ones, using multiple annotations is usually unnecessary. You can still use a single method, but call out to other methods as helpers, instead of annotating numerous methods.
 
@@ -437,6 +437,8 @@ public class CatTest {
 ```
 
 If we run this with JUnit, which executes test cases in a random order, sometimes the second test would pass, and sometimes it would fail!
+
+Note that it in JUnit, it _is_ possible to specify the order that tests will run in, by using the `@FixMethodOrder` annotation.  However, you want to avoid doing that if at all possible.  It is all too easy to allow your tests to fall into the trap of depending on each other by ensuring that they always run in the same order.
 
 There is yet another benefit to creating tests which have no dependencies on other tests.  Independent tests can be run in parallel, possibly decreasing execution time dramatically.  On a modern multi-core machine, you may find yourself running tests many times more quickly if they can be run independently.
 
