@@ -1,10 +1,10 @@
 # Stochastic and Property-Based Testing
 
-The term "stochastic" comes from the Greek _stokhastikos_, which is a form of _stokhazesthai_, which means "aim at" or "guess".  It's a good etymology for __stochastic testing__, which uses random processes that can be analyzed using statistics, but not exactly predicted.  At first blush, it may seem ridiculous to use randomness in software testing; after all, isn't the fundamental concept of testing to determine what the observed behavior is and if it equal to the expected behavior?  If you don't know what the input is, how would you know what the expected output it?
+The term "stochastic" comes from the Greek _stokhastikos_, which is a form of _stokhazesthai_, which means "aim at" or "guess".  It's a good etymology for __stochastic testing__, which uses random processes that can be analyzed using statistics, but not exactly predicted.  At first blush, it may seem ridiculous to use randomness in software testing; after all, isn't the fundamental concept of testing to determine what the observed behavior is and if it is equal to the expected behavior?  If you don't know what the input is, how would you know what the expected output it?
 
 The answer is that there are expected behaviors and properties you expect from a system, no matter what the input.  For example, no matter what code is passed to a compiler, you will expect it not to crash.  It may generate an error message saying that the code is unparseable.  It may make an executable.  That executable may run, or it may not.  You do expect the system not to have a segmentation fault.  Thus, you can still run tests where the expected behavior for any input is  "does not crash the system".
 
-By providing a method for the system to use random data as an input, you also reduce the cost of testing.  No longer do you have to imagine lots of specific test cases, and then painstakingly program all of them in or write them down as test cases.  Instead, you just tie together some sort of random number generator and some way to generate data based on it, and your computer can do all the work of generating test cases.  Even though the random number generator may not be as good as a dedicated testing professional in coming up with edge cases, varying equivalence classes, etc., it will often find many problems simply by the sheer number of tests it can generate and how quickly it can do it.
+By providing a method for the system to use random data as an input, you also reduce the cost of testing.  No longer do you have to imagine lots of specific test cases and then painstakingly program all of them in or write them down as test cases.  Instead, you just tie together some sort of random number generator and some way to generate data based on it, and your computer can do all the work of generating test cases.  Even though the random number generator may not be as good as a dedicated testing professional in coming up with edge cases, varying equivalence classes, etc., it will often find many problems simply by the sheer number of tests it can generate and how quickly it can do it.
 
 Stochastic testing is also referred to as __monkey testing__, by analogy with a monkey banging on computer keys.  However, "stochastic testing" sounds much more impressive if you are talking to your manager, or writing a book on software testing.
 
@@ -16,7 +16,7 @@ Since you---or more precisely, the stochastic testing system---may not know exac
 
 ## Property-Based Testing
 
-Let's say once again that we are testing our sorting function, `billSort`.  As you'll recall, it's meant to be twenty times faster than any other sorting algorithm out there, but there are questions about its correctness, and so you have been tasked to test that it works in all cases.  What kind of input values would you test it with?  Assume the method signature looks like this:
+Let's say once again that we are testing our sorting function, `billSort`.  As you'll recall, it's meant to be twenty times faster than any other sorting algorithm out there. However, there are questions about its correctness, so you have been tasked to test that it works in all cases.  What kind of input values would you test it with?  Assume the method signature looks like this:
 
 ```java
 public int[] billSort(int[] arrToSort) {
@@ -59,7 +59,7 @@ Some invariants for a sort function would be:
 
 Now that we have some of the properties we expect from *any* output of the `billSort` method, we can let the computer do the grunt work of thinking up random arrays of data, passing them in to our method, and then checking that whatever output array is produced meets all of the properties that we set.  If an output array does not meet one of the invariants, we can then report the error to the tester.  Producing output that does not meet the specified invariant is called __falsifying the invariant__.
 
-There are multiple libraries for Java which perform property-based testing, but no standard.  Property-based testing is much more popular in the functional programming world, with programs like QuickCheck for Haskell being more used than standard unit tests.  In fact, the concept of automated property-based testing of this sort comes from the functional world, and from the Haskell community in particular.  For more information, see the paper _QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs_ by Koen Claessen and John Hughes.
+There are multiple libraries for Java which perform property-based testing but no standard.  Property-based testing is much more popular in the functional programming world, with programs like QuickCheck for Haskell being more used than standard unit tests.  In fact, the concept of automated property-based testing of this sort comes from the functional world and from the Haskell community in particular.  For more information, see the paper _QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs_ by Koen Claessen and John Hughes.
 
 ## Smart, Dumb, Evil, and Chaos Monkeys
 
