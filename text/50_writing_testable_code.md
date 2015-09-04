@@ -222,7 +222,7 @@ public class Pond {
 
     public Pond(Duck d, Otter o) {
         _d = d;
-	      _o = o;
+        _o = o;
     }
 
     public void sayHi() {
