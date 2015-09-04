@@ -108,13 +108,13 @@ public int[] sortList() {
 }
 ```
 
-What happens when we run this?  The execution flow first depends on two variables that were not passed in, so we'd need to add additional checks to make sure that they're the right value before testing if we want to make sure the test is repeatable.  Who knows what other code has modified `_list` and `_sortingAlgorithm`?  Even if ensure ahead of time that all the variables are set correctly, how can we test what happens when `_sortingAlgorithm` is set to something other than "MergeSort" or "QuickSort"?  The method will call either `bubbleSort()` or `bogoSort()`, and there is no (reasonable) way for us to tell which one will be called ahead of time.  If there is an error with `bubbleSort()` but not `bogoSort()`, then the test might randomly fail.
+What happens when we run this?  The execution flow first depends on two variables that were not passed in, so we'd need to add additional checks to make sure that they're the right value before testing if we want to make sure the test is repeatable.  Who knows what other code has modified `_list` and `_sortingAlgorithm`?  Even if we ensure ahead of time that all the variables are set correctly, how can we test what happens when `_sortingAlgorithm` is set to something other than "MergeSort" or "QuickSort"?  The method will call either `bubbleSort()` or `bogoSort()`, and there is no (reasonable) way for us to tell which one will be called ahead of time.  If there is an error with `bubbleSort()` but not `bogoSort()`, then the test might randomly fail.
 
 In order to test effectively, code should be segmented, and written in such a way that ensuring that the exact same code with the exact same values can be run multiple times.  If this is the case, then the exact output should occur each time, and tests will not randomly fail.  Write your code in such a way as to discourage random test failures, not encourage them.
 
 ## Provide a Scriptable Interface
 
-While the previous section described how to ensure code that was testable from a white-box perspective, creating a program that is easily testable from a black-box, systems-level perspective can be even more difficult.  Methods, in general, are meant to be called---there's a built-in interface to do it, and the parameters for each method are generally specified.
+While the previous section described how to ensure code is testable from a white-box perspective, creating a program that is easily testable from a black-box, systems-level perspective can be even more difficult.  Methods, in general, are meant to be called---there's a built-in interface to do it, and the parameters for each method are generally specified. Entire systems, however, may do many things on their own with only occasional outside influence.
 
 Some interfaces are "automatically" scriptable.  If you are writing a web app, for example, you can use a web testing framework such as Selenium or Capybara to access the various pages, click buttons, enter text, and do all of the other things you can do to a web page.  Text-based interfaces are also relatively easy to script, since they simply accept text and output it.  Output can be redirected to a file or otherwise checked for accuracy.  
 
@@ -122,7 +122,7 @@ Programs which do not provide a method of scripting by virtue of their interface
 
 There are several downsides to adding hooks to your program, or any sort of scriptable interface.  It's a security risk, for one thing---if someone discovers how to access the test hooks, they may be able to determine hidden information, overwrite data, or perform other malicious actions (or simply be curious and make a mistake).  Adding a scriptable interface will require additional complexity in the program, as well as additional program length and size.  The interface may be a drag on performance.  Finally, time spent working on the interface means less time spent writing other features of the software, or improving its quality.
 
-You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  However, there are programs out there which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require manual verification of screenshots.  
+You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  There are programs out there which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require manual verification of screenshots.
 
 ## Write Tests Up-Front
 
@@ -168,7 +168,7 @@ public int getNumberOfPigeons(String pigeonBreed) {
 }
 ```
 
-While the statements aren't exactly the same, they are similar enough that they are a target for the DRYing up the code.  After all, we can always pass in parameters to tweak the behavior to exactly what we want:
+While the statements aren't exactly the same, they are similar enough that they are a target for DRYing up the code.  After all, we can always pass in parameters to tweak the behavior to exactly what we want:
 
 ```java
 public int getNumAnimals(String animalType, String breed) {
@@ -192,7 +192,7 @@ The code is now going to be much more flexible and maintainable.  Supporting add
 
 ## Dependency Injection
 
-As we've seen, having dependencies hard-coded into your methods can make them difficult to test.  Lets assume you have a class-level reference to a `Duck` object that is created by a `Pond` object.  The `Pond` class has a `sayHi()` method which will say "Hi!" to all of the animals in the pond:
+As we've seen, having dependencies hard-coded into your methods can make them difficult to test.  Let's assume you have a class-level reference to a `Duck` object that is created by a `Pond` object.  The `Pond` class has a `sayHi()` method which will say "Hi!" to all of the animals in the pond:
 
 ```java
 public class Pond {
@@ -222,7 +222,7 @@ public class Pond {
 
     public Pond(Duck d, Otter o) {
         _d = d;
-	_o = o;
+	      _o = o;
     }
 
     public void sayHi() {
@@ -233,7 +233,7 @@ public class Pond {
 }
 ```
 
-Note that you are passing in the Duck and the Otter in the constructor, thus moving the responsibility for creating them outside of the Pond class.  Because of this, you don't have to send in actual ducks and otters, but mocks, which can then verify that the `say()` method was called with the parameter "Hi!"  Dependency injection will allow you to test your methods much more easily than having dependencies automatically created.
+Note that you are passing in the Duck and the Otter in the constructor, thus moving the responsibility for creating them outside of the Pond class.  Because of this, you don't have to send in actual ducks and otters. Instead you can send in mocks, which can then verify that the `say()` method was called with the parameter "Hi!"  Dependency injection will allow you to test your methods much more easily than having dependencies automatically created.
 
 ## TUFs and TUCs
 
@@ -245,19 +245,19 @@ One method for keeping the complexity of your tests to a reasonable level is to 
 
 ## Dealing with Legacy Code
 
-Not everybody has had the opportunity to read an excellent book with a chapter on writing testable code.  Much of the existing codebase out there was written by people who were not familiar with modern software engineering techniques, either through ignorance or because it was not common when it was written.  It would be foolishly optimistic to expect that people writing some FORTRAN IV code in 1966 would be using testing techniques which did not become common until the '90s.  Code that is already existing in production, but which does not follow modern software engineering best practices and often has substandard---or even no---automated test coverage, is known as __legacy code__.
+Not everybody has had the opportunity to read an excellent book with a chapter on writing testable code.  Many of the existing codebases out there were written by people who were not familiar with modern software engineering techniques, either through ignorance or because the techniques were not common when the code was written.  It would be foolishly optimistic to expect that people writing some FORTRAN IV code in 1966 would be using testing techniques which did not become common until the '90s.  Code that is already existing in production, but which does not follow modern software engineering best practices and often has substandard---or even no---automated test coverage, is known as __legacy code__.
 
 Long story short---working with legacy code is difficult.  There is no getting around it.  You will be missing many of the benefits of a good testing suite; you may not be able to interact with the original developers if there are issues, ambiguities, or undocumented code; and it may be difficult to understand outdated code written in an older style.  However, it is often necessary, especially when you are working for a company which has been writing code for a long time.  It wouldn't make sense to rewrite millions of lines of code every time you want to add a new feature to the software suite you are already using.
 
 When you find yourself having to work with legacy code, one of the most important things you can do is create some __pinning tests__.  Pinning tests are automated tests, usually unit tests, which check for the existing behavior of the system.  Note that the existing behavior is not always the expected, or correct, behavior.  The goal of a pinning test is to simply see how the program reacts before you make any changes to it.  Oftentimes, those weird, unexpected edge cases are actually used by users of the system.  You do not want to unintentionally modify them when adding a feature, unless it is something that you have explicitly set out to do.  Making unintentional changes to a program can be dangerous for yourself and for users of the program.  Note that this does not mean that you simply ignore the fact that the program is not working correctly.  However, fixing it should be seen as a different process than creating the pinning test.
 
-When working with legacy code, you want to be very explicit about the features you are introducing and defects you are fixing.  It's very easy to start fixing every error you see, but this can easily get you into trouble.  You start forgetting what you came in to fix in the first place, you aren't focused on one thing, you make changes in massive clumps instead of the "one step at a time" pace you should be going.
+When working with legacy code, you want to be very explicit about the features you are introducing and defects you are fixing.  It's very easy to start fixing every error you see, but this can easily get you into trouble.  You start forgetting what you came in to fix in the first place, you aren't focused on one thing, and you make changes in massive clumps instead of the "one step at a time" pace you should be going.
 
 Personally, I like to keep a little text file open which has changes that I would like to make in the future, but are beyond the scope of what I am fixing at the moment.  For example, I may be editing a class to add a new method.  I note that there are numerous magic numbers in the file, which are not defined anywhere.  I may make a note to refactor this class later.  This doesn't mean that I won't use appropriate, well-named constants in the method that I have added.  However, if I tried to fix everything in the file as I was going along, I may spend three times as long than if I just did the minimum of what I needed to do.  This may not be a good use of my time.
 
 Doing the minimum isn't normally considered a great way to go through life, but oftentimes when writing software it is.  You want to make small changes to the codebase, little incremental steps, because large changes are fraught with hard-to-find errors.  If you have a 10,000-line code change, and something goes wrong, trying to look through all of that will be a nightmare.  However, let's say you make a thousand 10-line code changes.  At each point, you can run all of the unit tests and see if the problem manifests itself.  Tracking problems down via tiny steps is much easier than tracking it down in one giant commit.
 
-Additionally, doing the minimum can ensure that you are using your time wisely.  It may not be worth your time to add documentation to every method in the class you're working on, especially if you don't think it will be modified again anytime in the near future.  It's not that it's not a good idea, but perhaps not a good prioritization of your time.  Remember that you have a limited amount of time available not just on this Earth, but for completing a project.  Spend too much time on the wrong things, and it doesn't get done.  While it's an honorable drive to want to fix all of the problems you see in the codebase, the dirty little secret of the software industry is that there is all sorts of ugly code running behind the scenes, and most of the time, it works.  Your favorite bank has thousands of `GOTO` statements in its transfer code.  Your favorite three-letter government agency has hundreds of thousands of lines of code that not unit test has ever laid eyes (or mocks or stubs) on.  It is okay to cry about the state of the world, but sometimes you just need to let it be.
+Additionally, doing the minimum can ensure that you are using your time wisely.  It may not be worth your time to add documentation to every method in the class you're working on, especially if you don't think it will be modified again anytime in the near future.  It's not that it's not a good idea, but perhaps not a good prioritization of your time.  Remember that you have a limited amount of time available not just on this Earth, but for completing a project.  Spend too much time on the wrong things, and it doesn't get done.  While it's an honorable drive to want to fix all of the problems you see in the codebase, the dirty little secret of the software industry is that there is all sorts of ugly code running behind the scenes, and most of the time, it works.  Your favorite bank has thousands of `GOTO` statements in its transfer code.  Your favorite three-letter government agency has hundreds of thousands of lines of code that no unit test has ever laid eyes (or mocks or stubs) on.  It is okay to cry about the state of the world, but sometimes you just need to let it be.
 
 If possible, you want to start your search for code to modify by looking for __seams__.  Seams are locations in code where you can modify _behavior_ without modifying _code_.  This is probably easiest to see with examples.  In this first method, there is no seam---there is no way to modify how the program behaves without modifying some code in the method:
 
@@ -281,7 +281,7 @@ If you want to use a doubled database connection, just pass it in when calling t
 
 Note that having a seam does not mean that the code is good in other ways.  After all, being able to pass in arbitrary SQL to be executed is a pretty big security risk if it hasn't been sanitized elsewhere.  Writing code with too many seams may be overkill, and will certainly make the codebase larger.  Seams are simply where you can start figuring out how the system currently responds to inputs.  Finding seams will allow you to easily start writing comprehensive pinning tests, to ensure that you are catching a variety of edge cases.
 
-Perhaps most importantly, it is important from a psychological point of view not to "give in" to the codebase, and sink to its level.  Just because there are no unit tests for a feature does not mean that it's fine to make some modifications without adding unit tests.  If the code for a particular class is uncommented, that shouldn't give you _carte blanche_ to not comment the code that you add.  As it evolves, code tends to sink towards the lowest common denominator.  You need to actively fight that de-evolution.  Write unit tests, fix things up as you find them, and document code and features appropriately.
+Perhaps most importantly, it is important from a psychological point of view not to "give in" to the codebase and sink to its level.  Just because there are no unit tests for a feature does not mean that it's fine to make some modifications without adding unit tests.  If the code for a particular class is uncommented, that shouldn't give you _carte blanche_ to not comment the code that you add.  As it evolves, code tends to sink towards the lowest common denominator.  You need to actively fight that de-evolution.  Write unit tests, fix things up as you find them, and document code and features appropriately.
 
 If you are interested in more details about how to work with legacy code, there are (at least) two great books on the topic.  The first is _Refactoring: Improving the Design of Existing Code_ by Martin Fowler, and the other is _Working Effectively with Legacy Code_ by Michael Feathers.  The latter is an especially valuable resource for working with code that does not already have a comprehensive test suite.
 
