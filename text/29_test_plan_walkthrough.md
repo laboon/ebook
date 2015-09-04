@@ -1,6 +1,6 @@
 # A Test Plan Walkthrough
 
-Let us walk through developing a test plan for a given list of requirements for a cat-weighing system called _catweigher_ (if you want clever names for programs, this is not the paragraph to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight:
+Let's walk through developing a test plan for a given list of requirements for a cat-weighing system called _catweigher_ (if you want clever names for programs, this is not the chapter to find them in).  This extremely useful program will accept one argument indicating the cat's weight in kilograms, and let us know if the cat is underweight, normal weight, or overweight:
 
 ```
 $ catweigher 1.7
