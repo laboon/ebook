@@ -734,7 +734,24 @@ public class CowTest {
 
 From a code coverage perspective, we have 100% code coverage and 100% method coverage---the only method in the class is called from a test, and every statement in the method is executed.  However, calling `moo()` with a `mooLevel` parameter of 0 will cause a `DivideByZeroException` to be thrown.  This defect will not be discovered by the test case, despite every statement being executed.  Although not foolproof, ensuring that you've checked every equivalence class will help to ameliorate situations like this.
 
-Code coverage is a powerful tool, but like anything else in software development, it is not a silver bullet.  It's an excellent way to see what areas of the codebase might need more testing, but it should not assure you that any code that has been covered is guaranteed free of defects.
+In fact, code coverage metrics can be even more misleading than this example.  As long as a statement is _executed_ by the test, that code is considered "covered".  Nothing verifies that the unit tests actually tests anything, though.  Consider this case:
+
+```java
+public class CowTest {
+
+    @Test
+    public void mooTest() {
+        Cow c = new Cow();
+        int mooTimes = c.moo(1);
+        assertTrue(true);
+    }
+
+}
+```
+
+This test results in 100% code coverage of the method, but tells you almost nothing about the code.  The only information you can get from this test passing is that calling `c.moo(1)` does not crash the program.
+
+Code coverage is a powerful tool, but like anything else in software development, it is not a silver bullet.  It's an excellent way to see what areas of the codebase might need more testing, but it should not assure you that any code that has been covered is guaranteed free of defects.  It should not even assure you that a particular piece of code has truly been tested.
 
 ## Unit Testing as Part of a Complete Testing Plan
 
