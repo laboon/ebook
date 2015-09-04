@@ -186,7 +186,7 @@ Throughput levels are very sensitive to what kind of hardware you are running th
 
 ## Testing Efficiency-Oriented Indicators: Utilization
 
-Testing __utilization__ means determining what amount of computing resources---on an absolute or relative basis---a particular system uses when performing some functionality.  Computing resources is a very broad term, covering anything that a program could be "using" on a machine. Common examples include:
+Testing __utilization__ means determining what amount of computing resources---on an absolute or relative basis---a particular system uses when performing some functionality.  "Computing resources" is a very broad term, covering anything that a program could be "using" on a machine. Common examples include:
 
 1. CPU
 3. Disk usage
