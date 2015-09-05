@@ -6,7 +6,7 @@ Humanity being what it is, of course, this idyllic state of affairs was not mean
 
 As the world became more and more networked, stories of software security failures became commonplace.  Among these were movies such as _WarGames_, which included an artificial intelligence in charge of the United States' nuclear arsenal being fooled by a teenage computer whiz, and books such as _The Cuckoo's Egg_, which detailed the true story of a former astronomer tracking down a West German computer cracker.  Real-life events, such as the Morris Worm, which shut down a large portion of the Internet in 1988, also helped to mark the introduction of security as a risk that programmers needed to concern themselves with.  The concept of __information security__ was born.  Software started to include features which would prevent unauthorized access or modification of data.
 
-Today, breaking computer security is big business, with many crackers infiltrating systems in order to blackmail companies, steal credit card information, or shut down websites which they find objectionable.  Conversely, protecting systems from unauthorized access, and helping to find weak points in a system before the "bad guys" do, is also big business.
+Today, breaking computer security is a big business, with many crackers infiltrating systems in order to blackmail companies, steal credit card information, or shut down websites which they find objectionable.  Conversely, protecting systems from unauthorized access, and helping to find weak points in a system before the "bad guys" do, is also a big business.
 
 ## Challenges in Security Testing
 
