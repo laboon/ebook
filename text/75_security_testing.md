@@ -125,7 +125,7 @@ How do you test for them, though?  Often, you will have to do some form of __use
 
 ### Insecure Storage
 
-Even if the code running your system is security itself---free from all known exploits, all input sanitized, formally verified to not contain any buffer overflows---this is of little consolation if its data is not stored properly!  Examples of insecure storage would be writing sensitive data to log files, allowing users direct access to a database, or storing private keys in your code which is stored in a publicly available repository.
+Even if the code running your system is secure itself---free from all known exploits, all input sanitized, formally verified to not contain any buffer overflows---this is of little consolation if its data is not stored properly!  Examples of insecure storage would be writing sensitive data to log files, allowing users direct access to a database, or storing private keys in your code which is stored in a publicly available repository.
 
 Note that this can be more tricky to verify than simply checking the log files or searching for passwords hard-coded into your program.  For example, under normal circumstances, only boring debug data may be sent to a log file, and so you think that that even though the log file is publicly accessible, it is not a large security risk.  However, if an error occurs when processing a credit card, an exception is thrown which includes debug data.  In this debug data is the credit card information that was attempted to be processed.  Under these circumstances, if this exception is written to the log file, the fact that the log file is publicly accessible is a very big problem.
 
