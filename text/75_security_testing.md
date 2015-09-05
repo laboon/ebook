@@ -52,7 +52,7 @@ There is a wide variety of these tools, which are known as __malware__.  Malware
 6. __Zombie:__ A computer with software installed which allows unauthorized users access to it to perform unauthorized functionality.  For example, a system might have a mailer program built in which will allow other users to send spam from your machine, so that the actual senders cannot be tracked.
 6. __Bot network:__ A collection of zombies controlled by a master.
 7. __Spyware:__ Software which surreptitiously monitors the actions of the user of the system.  For example, software may report back daily what all of the keystrokes of the user were.
-8. __DoS Tools:__ Tools which enable denial of service attacks
+8. __DoS Tools:__ Tools which enable denial of service attacks.
 9. __Ransomware:__ Software which performs an unwanted action (e.g., encrypting your hard drive) and asks for money or other compensation in order to undo it.  This money usually goes to the creators or users of the software, not the software itself (until artificial intelligences become more advanced).
 
 Malware may belong to more than one variety.  For example, a program could propagate like a computer worm, and once resident on a computer, report back the activities of the user, thus making it spyware.  Another possibility is that a program is offered for download which states that it will "clean your registry" but will actually make your computer a zombie and under the control of a bot network.
