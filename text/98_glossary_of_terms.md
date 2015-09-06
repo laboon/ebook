@@ -42,7 +42,7 @@ __Boundary value__: A value which is "on the boundary" between equivalence class
 
 __Bounds checking__: Run-time checking that data is not being written outside of a properly allocated array.
 
-__Branch coverage__: What percentage of branches in the code are tested usually by unit tests.
+__Branch coverage__: What percentage of branches in the code are tested, usually by unit tests.
 
 __Brownfield development__: Writing software which must interact with already-existing software in production, thus limiting potential design, solutions, architecture, etc.
 
