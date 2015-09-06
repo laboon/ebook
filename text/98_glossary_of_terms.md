@@ -66,7 +66,7 @@ __Configuration error__: An error resulting from a misconfiguration of the syste
 
 __Consistent (requirements)__: The property of having requirements which can all be followed without a paradox (e.g., "the system shall display the message 'Hello' upon startup" and "the system shall not display any message upon startup" are not consistent).
 
-__Corner case__: A test case for functionality of a system which is unlikely to occur, or is beyond the real where a user will likely reproduce it.  By analogy with __edge case__ (a corner is where multiple edges intersect).
+__Corner case__: A test case for functionality of a system which is unlikely to occur, or is beyond the realm where a user will likely reproduce it.  By analogy with __edge case__ (a corner is where multiple edges intersect).
 
 __Covering array__: An array which covers all possible combinations of variable values.
 
