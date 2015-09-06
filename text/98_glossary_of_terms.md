@@ -308,7 +308,7 @@ __Profiler__: A tool which allows you to measure the resource utilization and in
 
 __Pure__: A method or function which does not produce any __side effects__, but simply returns the result of a computation.
 
-_QA__: See __quality assurance__.
+__QA__: See __quality assurance__.
 
 __Qualitative__: Not able to be expressed numerically, such as "the system shall be _extremely_ cool".  Contrast with __qualitative__.
 
