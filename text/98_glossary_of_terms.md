@@ -336,8 +336,6 @@ __Requirements specification__: A list of requirements for a given system.  The 
 
 __Response time__: In __performance testing__, how quickly a system responds after user input or other event.
 
-__Role-Function-Reason Template__: Another term for the __Connextra Template__.
-
 __Rounding error__: An error in a program caused by the system rounding a number.
 
 __Running__: A status for a test case in a test run.  It indicates that the test is currently being executed, but has not yet completed.
