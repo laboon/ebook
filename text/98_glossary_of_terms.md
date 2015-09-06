@@ -118,7 +118,7 @@ __Execution steps__: The actual steps that the test will execute after ensuring 
 
 __Expected behavior__: What the system is expected to do under certain circumstances.  For example, after typing in "`2 + 2 =`" on a calculator, the expected behavior is that the system will display "`4`" on the screen.
 
-__Explicit boundary value__: A __boundary value__ explicitly called out by the system requirements.  For example, requirements for an automated thermometer may state the system will turn on the DANGER light when the registered temperature is 102 degrees or over.  The boundary values would be 101 and 102.
+__Explicit boundary value__: A __boundary value__ explicitly called out by the system requirements.  For example, requirements for an automated thermometer may state the system will turn on the DANGER light when the registered temperature is 102 degrees or over.  The explicit boundary values would be 101 and 102.
 
 __Exploit__: A program or piece of data which takes advantage of a vulnerability.  A vulnerability is "strictly theoretical" until somebody develops a way to exploit it.
 
