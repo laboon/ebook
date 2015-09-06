@@ -236,7 +236,7 @@ __MTBF__: An acronym  for __mean time between failures__.
 
 __MTTR__: An acronym for __mean time to repair__.
 
-__n nines__: A way of showing what percentage of the time the system is available, based on the number of nines in that number, and assuming nines are the only significant digit.  For example, a system that is available 99.9% of the time has 3 nines' availability, while a system that is available 99.999% of the time has 5 nines' availability.
+__n nines__: A way of showing what percentage of the time the system is available, based on the number of nines in that number, and assuming nines are the only significant digit.  For example, a system that is available 99.92% of the time has 3 nines' availability, while a system that is available 99.999% of the time has 5 nines' availability.
 
 __Negative test case__: See __failure case__.
 
