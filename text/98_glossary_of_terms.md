@@ -182,7 +182,7 @@ __Integration error__: A type of error resulting from incompatibilities or other
 
 __Interface error__: An error where the interface to another system is defined incorrectly, or the system accessing it does not do so correctly.
 
-__Integrity__: An attribute of a system, that only authorized users may write data.  An element of the InfoSec Triad.
+__Integrity__: An attribute of a system, that only authorized users may write data.  An element of the __InfoSec Triad__.
 
 __Interception__: In __security testing__, an attack on __confidentiality__, such as eavesdropping on a network with a __packet analyzer__ or on a computer with a __keylogger__.
 
