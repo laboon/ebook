@@ -444,7 +444,7 @@ __Triage__: A meeting or other way (e.g. email discussion) of prioritizing defec
 
 __Trivial__: A defect of a severity which is not noticeable, or hardly noticeable, and only causes the smallest of issues for a user of the system.
 
-__Trojan horse__: A kind of __malware__ which pretends to be another in order to trick users into installing and executing it.
+__Trojan horse__: A kind of __malware__ which pretends to be another kind of program in order to trick users into installing and executing it.
 
 __TUC__: See __Test-Unfriendly Construct__.
 
