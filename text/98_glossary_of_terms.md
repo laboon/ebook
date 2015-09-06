@@ -38,7 +38,7 @@ __Blocker__: A defect of the highest severity, where the system cannot reasonabl
 
 __Bot network__: A collection of __zombies__ controlled by a master.
 
-__Boundary value__: A value which is "one the boundary" between equivalence classes.  For example, a system that has two equivalence classes, between 0 and 19, and 20 or higher, would have boundary values at 19 and 20.
+__Boundary value__: A value which is "on the boundary" between equivalence classes.  For example, a system that has two equivalence classes, between 0 and 19, and 20 or higher, would have boundary values at 19 and 20.
 
 __Bounds checking__: Run-time checking that data is not being written outside of a properly allocated array.
 
