@@ -456,8 +456,6 @@ __Unit testing__: Testing the smallest individual units of code, such as methods
 
 __Unscripted testing__: Testing without a rigid script, where the tester has broad latitude to use their own volition and knowledge to determine the quality of the system or find defects. Contrast with __scripted testing__.
 
-__UPOD__: An acronym for "Under-Promise, Over-Deliver".  Refers to the fact that you should promise less than you think you can deliver, but then endeavor to deliver more.
-
 __User acceptance testing__: A particular kind of __acceptance testing__ where the tester is the user of the software.  It ensures that the system under test is acceptable to the user by meeting their needs.
 
 __User testing__: Having an actual user of the system attempt to perform tasks, often without instruction, in order to determine how users interact with the system.
