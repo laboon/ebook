@@ -368,8 +368,6 @@ __Social engineering__: Manipulating people to underhandedly cause them to perfo
 
 __Spear phishing__: A specific kind of __phishing__ which is aimed at highly targeted individuals and is customized for them.  For example, a regular phishing email may be "Dear user, please to reset your email password for linked here" whereas a spear phishing email would be "Dear Mr. Jones, please reset your SuperDuperEmail password here. Sincerely, Jane Smith, SuperDuperCo. Vice President of Security".
 
-__Sploit__: Another term for __exploit__.
-
 __Spyware__: A kind of __malware__  which surreptitiously monitors the actions of the user of the system.
 
 __SQL injection attack__: A specific, common kind of __injection attack__ where the malicious user attempts to have the victim's computer execute arbitrary SQL commands.
