@@ -122,7 +122,7 @@ __Explicit boundary value__: A __boundary value__ explicitly called out by the s
 
 __Exploit__: A program or piece of data which takes advantage of a vulnerability.  A vulnerability is "strictly theoretical" until somebody develops a way to exploit it.
 
-__Externally consistent (requirements)__: The property of having the system be consistent with requirements of other systems or of the Universe.  For example, having a system which mandates that the system will be able to communicate with a base on Pluto instantaneously would require faster-than-light communication, and would thus be inconsistent with the laws of this Universe.
+__Externally consistent (requirements)__: The property of having the system be consistent with requirements of other systems or of the universe.  For example, having a system which mandates that the system will be able to communicate with a base on Pluto instantaneously would require faster-than-light communication, and would thus be inconsistent with the laws of this universe.
 
 __Fabrication__:  In __security testing__, an attack on __integrity__, which deliberately adds data, such as an attack which allows a user to create an entirely new bank account.
 
