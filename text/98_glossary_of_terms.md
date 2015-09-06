@@ -466,7 +466,7 @@ __Utilization__: In __performance testing__, the relative or absolute amount of 
 
 __Validation__: Ensuring that the system meets the needs of the customer.  Checking that you built the right _system_.
 
-__Verification (category of testing)__: Ensuring that the system operates correctly, does not crash, provides correct answers, etc.  Checking that you build the system _right_.
+__Verification (category of testing)__: Ensuring that the system operates correctly, does not crash, provides correct answers, etc.  Checking that you built the system _right_.
 
 __Verification (in unit testing)__: Checking that a particular method was called on a __mock__ object.
 
