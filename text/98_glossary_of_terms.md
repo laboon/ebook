@@ -310,7 +310,7 @@ __Pure__: A method or function which does not produce any __side effects__, but 
 
 __QA__: See __quality assurance__.
 
-__Qualitative__: Not able to be expressed numerically, such as "the system shall be _extremely_ cool".  Contrast with __qualitative__.
+__Qualitative__: Not able to be expressed numerically, such as "the system shall be _extremely_ cool".  Contrast with __quantitative__.
 
 __Quality assurance__: Ensuring the quality of software, by a variety of methods.  Software testing is an important, but not the only, part of.
 
