@@ -370,7 +370,7 @@ __Spear phishing__: A specific kind of __phishing__ which is aimed at highly tar
 
 __Spyware__: A kind of __malware__  which surreptitiously monitors the actions of the user of the system.
 
-__SQL injection attack__: A specific, common kind of __injection attack__ where the malicious user attempts to have the victim's computer execute arbitrary SQL commands.
+__SQL injection attack__: A specific, common kind of __injection attack__ where the malicious user attempts to have the system execute arbitrary SQL commands.
 
 __Stability test__: A kind of __load test__ where a small number of events are processed, but over a long period of time, in order to determine how stable the system is for non-trivial time periods.
 
