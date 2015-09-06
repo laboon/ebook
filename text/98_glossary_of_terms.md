@@ -462,7 +462,7 @@ __User testing__: Having an actual user of the system attempt to perform tasks, 
 
 __User time__: The amount of time that user code executes while a system performs a task.
 
-__Utilization__: In __performance testing__, the relative or absolute amount of a given computing resource (e.g., RAM, processor instructions, disk space) is used under certain circumstances.
+__Utilization__: In __performance testing__, the relative or absolute amount of a given computing resource (e.g., RAM, processor instructions, disk space) that is used under certain circumstances.
 
 __Validation__: Ensuring that the system meets the needs of the customer.  Checking that you built the right _system_.
 
