@@ -342,7 +342,7 @@ __Running__: A status for a test case in a test run.  It indicates that the test
 
 __Sanitization__: "Cleaning up" user input so that it does not contain code that would be executed by the running program or other content that would cause harm to the system.
 
-__Scripted testing__: Testing with a rigid script, such as a test plan, where steps are well-defined and ordered.
+__Scripted testing__: Testing with a rigid script, such as a test plan, where steps are well-defined and ordered. Contrast with __unscripted testing__.
 
 __Seam__: A place in the codebase where you can modify behavior without modifying the code itself.
 
@@ -456,7 +456,7 @@ __Unambiguous (requirements)__: The property of having requirements which can be
 
 __Unit testing__: Testing the smallest individual units of code, such as methods or functions, in a white-box manner.
 
-__Unscripted testing__: Testing without a rigid script, where the tester has broad latitude to use their own volition and knowledge to determine the quality of the system or find defects.
+__Unscripted testing__: Testing without a rigid script, where the tester has broad latitude to use their own volition and knowledge to determine the quality of the system or find defects. Contrast with __scripted testing__.
 
 __UPOD__: An acronym for "Under-Promise, Over-Deliver".  Refers to the fact that you should promise less than you think you can deliver, but then endeavor to deliver more.
 
