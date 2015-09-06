@@ -108,7 +108,7 @@ __Equivalence class__: A group of input values which provide the same, or simila
 
 __Equivalence class partitioning__: Separating a specific functionality into distinct equivalence classes based on input values.
 
-__Error__: A status for a test case in a test run.  It indicates that there is an issue with the test case itself, and the test cannot be run.  For example, the preconditions indicate an impossible condition, which could simply be the result of a typo.
+__Error__: A status for a test case in a test run.  It indicates that there is an issue with the test case itself, and the test cannot be run.  For example, the preconditions indicate an impossible condition.
 
 __Error of assumption__: An error resulting from a developer or other person making an incorrect assumption about how the system should work.
 
