@@ -340,7 +340,7 @@ __Rounding error__: An error in a program caused by the system rounding a number
 
 __Running__: A status for a test case in a test run.  It indicates that the test is currently being executed, but has not yet completed.
 
-__Sanitization__: "Cleaning up" user input so that it cannot be executed by the running program or otherwise cause harm to the system.
+__Sanitization__: "Cleaning up" user input so that it does not contain code that would be executed by the running program or other content that would cause harm to the system.
 
 __Scripted testing__: Testing with a rigid script, such as a test plan, where steps are well-defined and ordered.
 
