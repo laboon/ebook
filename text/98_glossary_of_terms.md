@@ -168,7 +168,7 @@ __Impure__: The opposite of __pure__, a method or function which produces at lea
 
 __Information Security__: The field of ensuring that computer systems successfully exhibit all three aspects of the __InfoSec Triad__.
 
-__InfoSec Triad__: The three criteria that indicate a secure system---confidentiality, integrity, and availability.
+__InfoSec Triad__: The three criteria that indicate a secure system---__confidentiality__, __integrity__, and __availability__.
 
 __Injection attack__: A kind of attack where the malicious user tries to get the victim's computer to execute arbitrary code.
 
