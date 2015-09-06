@@ -88,7 +88,7 @@ In this first instance, we have a system which is going well.  There are no know
  Subsystem    Status   Notes
 ----------- ---------- ---------------------------------------------------------
  Database     Red      Database cannot store more than one customer's
-                       information at a time, and randomly deletes data every
+                       information at a time and randomly deletes data every
                        Thursday.
 
  Input API    Yellow   System takes several minutes to process each (one
