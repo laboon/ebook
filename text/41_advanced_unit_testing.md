@@ -430,15 +430,15 @@ public class CatTest {
 
     @Test
     public void testGrowWhiskers() {
-       Cat c = new Cat(5);
-       _whiskersLength = c.growWhiskers();
-       assertEquals(6, _whiskersLength);
+        Cat c = new Cat(5);
+        _whiskersLength = c.growWhiskers();
+        assertEquals(6, _whiskersLength);
     }
 
     @Test
     public void testWhiskersLength() {
-       Cat c = new Cat(5);
-       assertEquals(_whiskersLength, c.getWhiskersLength());
+        Cat c = new Cat(5);
+        assertEquals(_whiskersLength, c.getWhiskersLength());
     }
 
 }
@@ -495,18 +495,18 @@ public class Turtle {
     GroundType _g = World.getGroundType(_loc);
 
     public void crawl() {
-       if (_g == DIRT) {
-           move(SLOWLY);
-       } else if (_g == GRASS) {
-           eat();
-           move(MORE_SLOWLY);
-       } else {
-           move(EVEN_MORE_SLOWLY);
-       }
+        if (_g == DIRT) {
+            move(SLOWLY);
+        } else if (_g == GRASS) {
+            eat();
+            move(MORE_SLOWLY);
+        } else {
+            move(EVEN_MORE_SLOWLY);
+        }
     }
 
     public void eat() {
-       System.out.println("Yum yum");
+        System.out.println("Yum yum");
     }
 
 }

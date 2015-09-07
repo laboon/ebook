@@ -20,7 +20,7 @@ Let's say once again that we are testing our sorting function, `billSort`.  As y
 
 ```java
 public int[] billSort(int[] arrToSort) {
-  ...
+    ...
 }
 ```
 

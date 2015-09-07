@@ -94,17 +94,17 @@ You can make a test repeatable by ensuring that all of the values that it depend
 
 ```java
 public int[] sortList() {
-   if (_sortingAlgorithm == "MergeSort") {
-       return mergeSort(_list);
-   } else if (_sortingAlgorithm == "QuickSort") {
-       return quickSort(_list);
-   } else {
-       if (getRandomNumber() % 2 == 0) {
-           return bubbleSort(_list);
-       } else {
-           return bogoSort(_list);
-       }
-   }
+    if (_sortingAlgorithm == "MergeSort") {
+        return mergeSort(_list);
+    } else if (_sortingAlgorithm == "QuickSort") {
+        return quickSort(_list);
+    } else {
+        if (getRandomNumber() % 2 == 0) {
+            return bubbleSort(_list);
+        } else {
+            return bogoSort(_list);
+        }
+    }
 }
 ```
 
@@ -206,8 +206,8 @@ public class Pond {
     Otter _o = new Otter();
 
     public void sayHi() {
-       _d.say("Hi!");
-       _o.say("Hi!");
+        _d.say("Hi!");
+        _o.say("Hi!");
     }
     
 }
@@ -230,8 +230,8 @@ public class Pond {
     }
 
     public void sayHi() {
-       _d.say("Hi!");
-       _o.say("Hi!");
+        _d.say("Hi!");
+        _o.say("Hi!");
     }
     
 }

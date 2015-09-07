@@ -97,25 +97,25 @@ Another way to think of the difference between input values and preconditions is
 ```java
 public boolean testArraySort() {
 
-  // PRECONDITIONS
-  SORT_ASCENDING = true;
+    // PRECONDITIONS
+    SORT_ASCENDING = true;
 
-  // INPUT VALUES
-  int[] vals = [1, 2, 3];
+    // INPUT VALUES
+    int[] vals = [1, 2, 3];
 
-  // New, improved billSort method! :)
-  billSorted = billSort(vals);
+    // New, improved billSort method! :)
+    billSorted = billSort(vals);
 
-  // Old, busted built-in Java sort. :(
-  normalSorted = Arrays.sort(vals);
+    // Old, busted built-in Java sort. :(
+    normalSorted = Arrays.sort(vals);
 
-  if (Arrays.equals(billSorted, normalSorted)) {
-    // Our arrays are equal, test passes!
-    return true;
-  } else {
-    // Our arrays are not equal, test fails.
-    return false;
-  }
+    if (Arrays.equals(billSorted, normalSorted)) {
+        // Our arrays are equal, test passes!
+        return true;
+    } else {
+        // Our arrays are not equal, test fails.
+        return false;
+    }
 }
 ```
 
@@ -124,8 +124,8 @@ Note that because you aren't sending the `SORT_ASCENDING` flag in to the functio
 Isn't it possible to redesign the system so as to send in the flag as an argument to the `billSort()` method, though?
 
 ```java
-  // Arguments = values array, SORT_ASCENDING flag
-  billSorted = billSort(vals, true);
+    // Arguments = values array, SORT_ASCENDING flag
+    billSorted = billSort(vals, true);
 ```
 
 This is certainly possible, and in this case one could consider `SORT_ASCENDING` an input value as opposed to a precondition.  Whether something is a precondition or an input value often depends on the implementation of a program.  If we were writing this in a language such as Haskell, for example, where side effects are extremely limited, functions such as this would almost never have any preconditions other than 'the program is running'.

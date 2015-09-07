@@ -59,9 +59,9 @@ Now that we understand what boundary and interior values are, one might ask, why
 ```java
 public static int absoluteValue (int x) {
     if ( x > 1 ) {
-       return x;
+        return x;
     } else {
-      return -x;
+        return -x;
 }
 ```
 
@@ -70,9 +70,9 @@ Did you see the coding error?  There's a simple off-by-one error in the first li
 ```java
 public static int absoluteValue (int x) {
     if ( x >= 1 ) {
-       return x;
+        return x;
     } else {
-      return -x;
+        return -x;
 }
 ```
 

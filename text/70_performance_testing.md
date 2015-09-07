@@ -74,9 +74,9 @@ On most Unix-like systems (e.g. Linux or OS X), you can very easily get these va
 $ time wc -w * | tail -n 1
    66156 total
 
-real	0m0.028s
-user	0m0.009s
-sys	0m0.014s
+real    0m0.028s
+user    0m0.009s
+sys     0m0.014s
 $
 ```
 
