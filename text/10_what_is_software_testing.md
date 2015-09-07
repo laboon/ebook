@@ -65,7 +65,7 @@ For example, consider a company creating a brand-new Tic-Tac-Toe implementation.
 1. The game board shall be three squares by three squares, for a total of nine contiguous squares.
 2. The first player shall be allowed to mark an X in any one square.
 3. The second player shall then be allowed to mark an O in any one open (that is, not already marked by an X or O) square, following the completion of the first move by the first player.
-4. Players shall then take turns placing X's and O's (by the first and second player, respectively) in open squares, until there are no open squares and no row, column or diagonal is filled in with the same marker (in which case the game is a draw) or an entire row, column, or diagonal is filled in with the same marker, in which case the owner of that marker (X for first player, O for second player) shall be the winner and the other player shall be the loser.
+4. Players shall then take turns placing X's and O's (by the first and second player, respectively) in open squares, until there are no open squares and no row, column, or diagonal is filled in with the same marker, in which case the game is a draw; or until an entire row, column, or diagonal is filled in with the same marker, in which case the owner of that marker (X for first player, O for second player) shall be the winner and the other player shall be the loser.
 
 This sums up the game of Tic-Tac-Toe pretty nicely. Now let's consider an instance where the first player, who should only be able to mark squares with X's, can mark a square with an O.  This is a defect, because it violates Requirement 2.  Even if the game is perfectly playable (let's say that the second player's marks then become X's), it's still a defect because it violates a requirement.
 
