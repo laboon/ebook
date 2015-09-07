@@ -207,7 +207,7 @@ Now when the `mockedDogFood` object has its `.eat()` method called, it will retu
 
 ```java
 public void goToCatCafe(CatCafe catCafe) {
-    System.out.println("Petting cats at a Cat Cafe!");
+    System.out.println("Petting cats at a Cat Café!");
     catCafe.haveFun();
 }
 ```
