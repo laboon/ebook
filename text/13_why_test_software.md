@@ -17,7 +17,7 @@ As you're already reading a book on software testing, I'll assume that you will 
 
 Remember that a CEO is in charge of an entire corporation, not just engineering, IT or any other particular part.  Even for a tech company, software testing will be a relatively minuscule part of the company in most cases.  There are many other areas asking for resources, often with good reason.  The marketing department is asking for more marketers, and a company that doesn't come up with good ideas for products will fail.  Operations is asking for more help desk personnel; if people can't figure out how to use the product, they will stop buying it and the company will fail.  All of these other parts of the company could probably use some of the financial resources currently being used to pay for software testing personnel.
 
-All that being said, there are numerous reasons for that CEO to turn down the project manager's plan.
+All that being said, there are numerous reasons for you, as CEO, to turn down that project manager's plan.
 
 ## No Software Developer is Perfect
 
