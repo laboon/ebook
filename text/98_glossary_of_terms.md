@@ -38,11 +38,11 @@ __Blocker__: A defect of the highest severity, where the system cannot reasonabl
 
 __Bot network__: A collection of __zombies__ controlled by a master.
 
-__Boundary value__: A value which is "one the boundary" between equivalence classes.  For example, a system that has two equivalence classes, between 0 and 19, and 20 or higher, would have boundary values at 19 and 20.
+__Boundary value__: A value which is "on the boundary" between equivalence classes.  For example, a system that has two equivalence classes, between 0 and 19, and 20 or higher, would have boundary values at 19 and 20.
 
 __Bounds checking__: Run-time checking that data is not being written outside of a properly allocated array.
 
-__Branch coverage__: What percentage of branches in the code are tested usually by unit tests.
+__Branch coverage__: What percentage of branches in the code are tested, usually by unit tests.
 
 __Brownfield development__: Writing software which must interact with already-existing software in production, thus limiting potential design, solutions, architecture, etc.
 
@@ -54,7 +54,7 @@ __Chaos Monkey__: A __stochastic testing__ tool developed by Netflix which tests
 
 __CIA Triad__: Another term for the __InfoSec Triad__.
 
-__Code coverage__: How much of the codebase is actually tested, usually via unit tests.  Although there are different kinds of code coverage, the majority of time that non-specialists use it, they are referring to __statement coverage__.
+__Code coverage__: How much of the codebase is actually tested, usually via unit tests.  Although there are different kinds of code coverage, the majority of the time that non-specialists use it, they are referring to __statement coverage__.
 
 __Combinatorial testing__: Testing in such a way so as to ensure that various combinations of variables will work as expected.
 
@@ -66,7 +66,7 @@ __Configuration error__: An error resulting from a misconfiguration of the syste
 
 __Consistent (requirements)__: The property of having requirements which can all be followed without a paradox (e.g., "the system shall display the message 'Hello' upon startup" and "the system shall not display any message upon startup" are not consistent).
 
-__Corner case__: A test case for functionality of a system which is unlikely to occur, or is beyond the real where a user will likely reproduce it.  By analogy with __edge case__ (a corner is where multiple edges intersect).
+__Corner case__: A test case for functionality of a system which is unlikely to occur, or is beyond the realm where a user will likely reproduce it.  By analogy with __edge case__ (a corner is where multiple edges intersect).
 
 __Covering array__: An array which covers all possible combinations of variable values.
 
@@ -108,7 +108,7 @@ __Equivalence class__: A group of input values which provide the same, or simila
 
 __Equivalence class partitioning__: Separating a specific functionality into distinct equivalence classes based on input values.
 
-__Error__: A status for a test case in a test run.  It indicates that there is an issue with the test case itself, and the test cannot be run.  For example, the preconditions indicate an impossible condition, which could simply be the result of a typo.
+__Error__: A status for a test case in a test run.  It indicates that there is an issue with the test case itself, and the test cannot be run.  For example, the preconditions indicate an impossible condition.
 
 __Error of assumption__: An error resulting from a developer or other person making an incorrect assumption about how the system should work.
 
@@ -118,17 +118,17 @@ __Execution steps__: The actual steps that the test will execute after ensuring 
 
 __Expected behavior__: What the system is expected to do under certain circumstances.  For example, after typing in "`2 + 2 =`" on a calculator, the expected behavior is that the system will display "`4`" on the screen.
 
-__Explicit boundary value__: A __boundary value__ explicitly called out by the system requirements.  For example, requirements for an automated thermometer may state the system will turn on the DANGER light when the registered temperature is 102 degrees or over.  The boundary values would be 101 and 102.
+__Explicit boundary value__: A __boundary value__ explicitly called out by the system requirements.  For example, requirements for an automated thermometer may state the system will turn on the DANGER light when the registered temperature is 102 degrees or over.  The explicit boundary values would be 101 and 102. Contrast with __implicit boundary value__.
 
 __Exploit__: A program or piece of data which takes advantage of a vulnerability.  A vulnerability is "strictly theoretical" until somebody develops a way to exploit it.
 
-__Externally consistent (requirements)__: The property of having the system be consistent with requirements of other systems or of the Universe.  For example, having a system which mandates that the system will be able to communicate with a base on Pluto instantaneously would require faster-than-light communication, and would thus be inconsistent with the laws of this Universe.
+__Externally consistent (requirements)__: The property of having the system be consistent with requirements of other systems or of the universe.  For example, having a system which mandates that the system will be able to communicate with a base on Pluto instantaneously would require faster-than-light communication, and would thus be inconsistent with the laws of this universe.
 
 __Fabrication__:  In __security testing__, an attack on __integrity__, which deliberately adds data, such as an attack which allows a user to create an entirely new bank account.
 
 __Failed__: A status for a test case in a test run.  It indicates that, while the test itself was executed without error, the system has not met at least one postcondition or expected output value, or some other unexpected behavior has taken place.  In other words, the observed behavior was not the expected behavior.
 
-__Failure case__: A kind of test where the expected behavior of the system is to fail in a certain way.  For example, sending in a negative number to a square root function which does not support complex numbers may be expected to throw an exception.
+__Failure case__: A kind of test where the expected behavior of the system is to fail in a certain way.  For example, sending in a negative number to a square root function which does not support complex numbers may be expected to throw an exception. Compare to __success case__.
 
 __Falsifying the invariant__: Showing an example where an __invariant__ does not hold, such as an invariant for arithmetic method that adding two positive integers should always result in a number greater than one of the numbers, and showing that 1 + 1 = 0.
 
@@ -168,7 +168,7 @@ __Impure__: The opposite of __pure__, a method or function which produces at lea
 
 __Information Security__: The field of ensuring that computer systems successfully exhibit all three aspects of the __InfoSec Triad__.
 
-__InfoSec Triad__: The three criteria that indicate a secure system---confidentiality, integrity, and availability.
+__InfoSec Triad__: The three criteria that indicate a secure system---__confidentiality__, __integrity__, and __availability__.
 
 __Injection attack__: A kind of attack where the malicious user tries to get the victim's computer to execute arbitrary code.
 
@@ -182,7 +182,7 @@ __Integration error__: A type of error resulting from incompatibilities or other
 
 __Interface error__: An error where the interface to another system is defined incorrectly, or the system accessing it does not do so correctly.
 
-__Integrity__: An attribute of a system, that only authorized users may write data.  An element of the InfoSec Triad.
+__Integrity__: An attribute of a system, that only authorized users may write data.  An element of the __InfoSec Triad__.
 
 __Interception__: In __security testing__, an attack on __confidentiality__, such as eavesdropping on a network with a __packet analyzer__ or on a computer with a __keylogger__.
 
@@ -236,7 +236,7 @@ __MTBF__: An acronym  for __mean time between failures__.
 
 __MTTR__: An acronym for __mean time to repair__.
 
-__n nines__: A way of showing what percentage of the time the system is available, based on the number of nines in that number, and assuming nines are the only significant digit.  For example, a system that is available 99.9% of the time has 3 nines' availability, while a system that is available 99.999% of the time has 5 nines' availability.
+__n nines__: A way of showing what percentage of the time the system is available, based on the number of nines in that number, and assuming nines are the only significant digit.  For example, a system that is available 99.92% of the time has 3 nines' availability, while a system that is available 99.999% of the time has 5 nines' availability.
 
 __Negative test case__: See __failure case__.
 
@@ -308,11 +308,11 @@ __Profiler__: A tool which allows you to measure the resource utilization and in
 
 __Pure__: A method or function which does not produce any __side effects__, but simply returns the result of a computation.
 
-_QA__: See __quality assurance__.
+__QA__: See __quality assurance__.
 
-__Qualitative__: Not able to be expressed numerically, such as "the system shall be _extremely_ cool".  Contrast with __qualitative__.
+__Qualitative__: Not able to be expressed numerically, such as "the system shall be _extremely_ cool".  Contrast with __quantitative__.
 
-__Quality assurance__: Ensuring the quality of software, by a variety of methods.  Software testing is an important, but not the only, part of.
+__Quality assurance__: Ensuring the quality of software, by a variety of methods.  Software testing is an important, but not the only, part of quality assurance.
 
 __Quality attribute__: Another (probably better) term for __non-functional requirement__.
 
@@ -336,15 +336,13 @@ __Requirements specification__: A list of requirements for a given system.  The 
 
 __Response time__: In __performance testing__, how quickly a system responds after user input or other event.
 
-__Role-Function-Reason Template__: Another term for the __Connextra Template__.
-
 __Rounding error__: An error in a program caused by the system rounding a number.
 
 __Running__: A status for a test case in a test run.  It indicates that the test is currently being executed, but has not yet completed.
 
-__Sanitization__: "Cleaning up" user input so that it cannot be executed by the running program or otherwise cause harm to the system.
+__Sanitization__: "Cleaning up" user input so that it does not contain code that would be executed by the running program or other content that would cause harm to the system.
 
-__Scripted testing__: Testing with a rigid script, such as a test plan, where steps are well-defined and ordered.
+__Scripted testing__: Testing with a rigid script, such as a test plan, where steps are well-defined and ordered. Contrast with __unscripted testing__.
 
 __Seam__: A place in the codebase where you can modify behavior without modifying the code itself.
 
@@ -370,11 +368,9 @@ __Social engineering__: Manipulating people to underhandedly cause them to perfo
 
 __Spear phishing__: A specific kind of __phishing__ which is aimed at highly targeted individuals and is customized for them.  For example, a regular phishing email may be "Dear user, please to reset your email password for linked here" whereas a spear phishing email would be "Dear Mr. Jones, please reset your SuperDuperEmail password here. Sincerely, Jane Smith, SuperDuperCo. Vice President of Security".
 
-__Sploit__: Another term for __exploit__.
-
 __Spyware__: A kind of __malware__  which surreptitiously monitors the actions of the user of the system.
 
-__SQL injection attack__: A specific, common kind of __injection attack__ where the malicious user attempts to have the victim's computer execute arbitrary SQL commands.
+__SQL injection attack__: A specific, common kind of __injection attack__ where the malicious user attempts to have the system execute arbitrary SQL commands.
 
 __Stability test__: A kind of __load test__ where a small number of events are processed, but over a long period of time, in order to determine how stable the system is for non-trivial time periods.
 
@@ -410,7 +406,7 @@ __Test case__: The smallest unit of a test plan, these are the individual tests 
 
 __Test coverage__: A general term for which aspects or parts of the system are covered by tests.
 
-__Test double__: A "fake object" which can be used in unit testing to limit dependencies on other classes, which may have problems of their own, not yet developed, or simply be time- or resource-intensive to actually instantiate.
+__Test double__: A "fake object" which can be used in unit testing to limit dependencies on other classes, which may have problems of their own, not yet be developed, or simply be time- or resource-intensive to actually instantiate.
 
 __Test fixture__: A procedure or program which puts a system into a state ready for testing.
 
@@ -448,7 +444,7 @@ __Triage__: A meeting or other way (e.g. email discussion) of prioritizing defec
 
 __Trivial__: A defect of a severity which is not noticeable, or hardly noticeable, and only causes the smallest of issues for a user of the system.
 
-__Trojan horse__: A kind of __malware__ which pretends to be another in order to trick users into installing and executing it.
+__Trojan horse__: A kind of __malware__ which pretends to be another kind of program in order to trick users into installing and executing it.
 
 __TUC__: See __Test-Unfriendly Construct__.
 
@@ -458,9 +454,7 @@ __Unambiguous (requirements)__: The property of having requirements which can be
 
 __Unit testing__: Testing the smallest individual units of code, such as methods or functions, in a white-box manner.
 
-__Unscripted testing__: Testing without a rigid script, where the tester has broad latitude to use their own volition and knowledge to determine the quality of the system or find defects.
-
-__UPOD__: An acronym for "Under-Promise, Over-Deliver".  Refers to the fact that you should promise less than you think you can deliver, but then endeavor to deliver more.
+__Unscripted testing__: Testing without a rigid script, where the tester has broad latitude to use their own volition and knowledge to determine the quality of the system or find defects. Contrast with __scripted testing__.
 
 __User acceptance testing__: A particular kind of __acceptance testing__ where the tester is the user of the software.  It ensures that the system under test is acceptable to the user by meeting their needs.
 
@@ -468,11 +462,11 @@ __User testing__: Having an actual user of the system attempt to perform tasks, 
 
 __User time__: The amount of time that user code executes while a system performs a task.
 
-__Utilization__: In __performance testing__, the relative or absolute amount of a given computing resource (e.g., RAM, processor instructions, disk space) is used under certain circumstances.
+__Utilization__: In __performance testing__, the relative or absolute amount of a given computing resource (e.g., RAM, processor instructions, disk space) that is used under certain circumstances.
 
 __Validation__: Ensuring that the system meets the needs of the customer.  Checking that you built the right _system_.
 
-__Verification (category of testing)__: Ensuring that the system operates correctly, does not crash, provides correct answers, etc.  Checking that you build the system _right_.
+__Verification (category of testing)__: Ensuring that the system operates correctly, does not crash, provides correct answers, etc.  Checking that you built the system _right_.
 
 __Verification (in unit testing)__: Checking that a particular method was called on a __mock__ object.
 
