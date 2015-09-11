@@ -452,6 +452,8 @@ __TUF__: See __Test-Unfriendly Function__.
 
 __Unambiguous (requirements)__: The property of having requirements which can be read and understood in one and only one way.
 
+__Undefined__: In regards to a systems specification, any area where the behavior is not specified.  For example, if my entire systems specification is "The first light shall turn on if the input value is less than 4", the behavior for how the system should behave if the input value is 7 is undefined.
+
 __Unit testing__: Testing the smallest individual units of code, such as methods or functions, in a white-box manner.
 
 __Unscripted testing__: Testing without a rigid script, where the tester has broad latitude to use their own volition and knowledge to determine the quality of the system or find defects. Contrast with __scripted testing__.
