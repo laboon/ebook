@@ -126,7 +126,7 @@ Worse, scripts may give you a false sense of security.  Adding a separate way to
 
 Time spent working on a scripting interface also means less time spent writing other features of the software, or improving its quality.  This trade-off may be worthwhile, but it should be considered on a project-by-project basis.
 
-You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  There are programs out there which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require manual verification of screenshots.
+You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  There are programs which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require manual verification of screenshots.
 
 ## Write Tests Up-Front
 
@@ -249,7 +249,7 @@ One method for keeping the complexity of your tests to a reasonable level is to 
 
 ## Dealing with Legacy Code
 
-Not everybody has had the opportunity to read an excellent book with a chapter on writing testable code.  Many of the existing codebases out there were written by people who were not familiar with modern software engineering techniques, either through ignorance or because the techniques were not common when the code was written.  It would be foolishly optimistic to expect that people writing some FORTRAN IV code in 1966 would be using testing techniques which did not become common until the '90s.  Code that is already existing in production, but which does not follow modern software engineering best practices and often has substandard---or even no---automated test coverage, is known as __legacy code__.
+Not everybody has had the opportunity to read an excellent book with a chapter on writing testable code.  Many existing codebases were written by people who were not familiar with modern software engineering techniques, either through ignorance or because the techniques were not common when the code was written.  It would be foolishly optimistic to expect that people writing some FORTRAN IV code in 1966 would be using testing techniques which did not become common until the '90s.  Code that is already existing in production, but which does not follow modern software engineering best practices and often has substandard---or even no---automated test coverage, is known as __legacy code__.
 
 Long story short---working with legacy code is difficult.  There is no getting around it.  You will be missing many of the benefits of a good testing suite; you may not be able to interact with the original developers if there are issues, ambiguities, or undocumented code; and it may be difficult to understand outdated code written in an older style.  However, it is often necessary, especially when you are working for a company which has been writing code for a long time.  It wouldn't make sense to rewrite millions of lines of code every time you want to add a new feature to the software suite you are already using.
 
