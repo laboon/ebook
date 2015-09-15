@@ -70,7 +70,7 @@ This may work fine the first time you run the test case.  However, this test is 
 
 There is a drawback from a brevity standpoint, as well.  We have just added three execution steps where there was only one precondition.  Brevity, aside from being the soul of wit, is also helpful in ensuring that the important parts of a test are focused upon.  Boilerplate text is the enemy of attention and focus.
 
-The dividing line between preconditions and execution steps can sometimes be an art rather than a science.  In general, the more safety-critical the domain, the more precise the preconditions will be.  As an example, let's say that you are testing an image-sharing site, where all images are public and visible to any other users.  The test case involves checking that the correct image shows up on the screen when a user goes to the correct URL.   The following preconditions may be enough for this test case:
+The dividing line between preconditions and execution steps can sometimes be an art rather than a science.  In general, the more safety-critical the domain, the more precise the preconditions will be.  As an example, let's say that you are testing an image-sharing site, where all images are public and visible to any other users.  The test case involves checking that the correct image shows up on the screen when a user goes to the correct URL.  The following preconditions may be enough for this test case:
 
 1. The user has logged in
 2. The image has been posted to the URL `/pictures/foo`.

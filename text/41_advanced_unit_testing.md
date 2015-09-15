@@ -399,7 +399,7 @@ You don't want to create a test suite that takes so long to run that people don'
 
 ### Assert Less, Name Directly
 
-When unit tests fail, they should point you exactly what went wrong, and where.  They should not be large "one size fits all" tests.   It is so fast to run a properly-written unit test (rarely taking more than a few tens of milliseconds) that the extra execution time and work involved in writing more tests is absolutely dwarfed by the amount of time that you will save when unit tests tell you exactly what went wrong when it failed.  A unit test with lots of assertions shows a lack of thought towards what exactly the unit test was supposed to check for.  Consider the following example:
+When unit tests fail, they should point you exactly what went wrong, and where.  They should not be large "one size fits all" tests.  It is so fast to run a properly-written unit test (rarely taking more than a few tens of milliseconds) that the extra execution time and work involved in writing more tests is absolutely dwarfed by the amount of time that you will save when unit tests tell you exactly what went wrong when it failed.  A unit test with lots of assertions shows a lack of thought towards what exactly the unit test was supposed to check for.  Consider the following example:
 
 ```java
 public class CatTest {

@@ -204,7 +204,7 @@ public void goToCatCafe(CatCafe catCafe) {
 }
 ```
 
-Pure functions are usually easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against.   Additionally, they may depend upon or modify parts of the code outside of this particular method.  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with `_global` are defined and set external to the method:
+Pure functions are usually easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against.  Additionally, they may depend upon or modify parts of the code outside of this particular method.  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with `_global` are defined and set external to the method:
 
 ```java
 public void printAndSave() {

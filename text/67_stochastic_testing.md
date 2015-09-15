@@ -85,7 +85,7 @@ than:
 ```
 > jiwh0t34h803h8t32h8t3h8t23
 ERROR
-> aaaaaaaaaaaaa 
+> aaaaaaaaaaaaa
 ERROR
 > 084_==wjw2933
 ERROR
