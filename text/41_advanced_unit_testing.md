@@ -421,7 +421,7 @@ When this test fails, what is wrong?  It could be that a newly created cat is no
 
 ### Unit Tests Should Be Independent
 
-Unit tests should not be dependent on run order.  That is, Test-2 should not depend on any side effects or result from Test-1.  JUnit, and most other unit testing frameworks, will not run individual test cases in a predetermined order.  By avoiding dependencies on each other and allowing each test to run independently, failures are localized to a particular test.  Imagine a testing framework that is just like JUnit but runs tests sequentially.  Now imagine writing the following code:
+Unit tests should not be dependent on run order.  That is, Test 2 should not depend on any side effects or result from Test 1.  JUnit, and most other unit testing frameworks, will not run individual test cases in a predetermined order.  By avoiding dependencies on each other and allowing each test to run independently, failures are localized to a particular test.  Imagine a testing framework that is just like JUnit but runs tests sequentially.  Now imagine writing the following code:
 
 ```java
 public class CatTest {

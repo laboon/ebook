@@ -38,7 +38,7 @@ As explained above, checking that all pairs of variables are checked can help us
  true       | true
 ```
 
-Now we need to ensure that our tests cover every possibility of bold and italic.  We can see that test 1 provides false/false, test 4 provides false/true, test 5 provides true/false, and test 8 provides true/true:
+Now we need to ensure that our tests cover every possibility of bold and italic.  We can see that Test 1 provides false/false, Test 4 provides false/true, Test 5 provides true/false, and Test 8 provides true/true:
 
 ```
      BOLD       | ITALIC    | UNDERLINE
@@ -53,11 +53,11 @@ Now we need to ensure that our tests cover every possibility of bold and italic.
 8.   true       | true      | true        <--
 ```
 
-Note that when we test these tests, we're also checking other combinations and pairs at the same time!  For example, running test 1 also gives us the false/false combination for bold/underline, and the false/false combination for italic/underline.  We're literally getting multiple tests for the price of one.  Feel free to throw that in people's faces when they say that there's no such thing as a free lunch.
+Note that when we test these tests, we're also checking other combinations and pairs at the same time!  For example, running Test 1 also gives us the false/false combination for bold/underline, and the false/false combination for italic/underline.  We're literally getting multiple tests for the price of one.  Feel free to throw that in people's faces when they say that there's no such thing as a free lunch.
 
-The next step is to ensure that the other variable pairs have all their combinations covered, using a similar technique as the one we used for bold and italic.  As opposed to randomly selecting any test case which met our criteria as we did in the first selection, we will want to check that we're not already testing that combination in a test that we're already performing.  This is to avoid duplicating effort; if test 1 is already checking for false/false for bold/underline, why add test 3 as well?  Let's check for bold/underline at this point, keeping in mind that we want to use already-existing tests if at all possible.  Test 1 gives us the false/false combination; test 4 gives us false/true; test 5 gives us true/false, and test 8 gives us true/true.  Wow!  All of the combinations were already covered by test cases we were going to do anyway.  We've now tested all bold/italic and bold/underline combinations with only four tests!
+The next step is to ensure that the other variable pairs have all their combinations covered, using a similar technique as the one we used for bold and italic.  As opposed to randomly selecting any test case which met our criteria as we did in the first selection, we will want to check that we're not already testing that combination in a test that we're already performing.  This is to avoid duplicating effort; if Test 1 is already checking for false/false for bold/underline, why add Test 3 as well?  Let's check for bold/underline at this point, keeping in mind that we want to use already-existing tests if at all possible.  Test 1 gives us the false/false combination; Test 4 gives us false/true; Test 5 gives us true/false, and Test 8 gives us true/true.  Wow!  All of the combinations were already covered by test cases we were going to do anyway.  We've now tested all bold/italic and bold/underline combinations with only four tests!
 
-Finally, we should check the last variable combination, italic/underline.  Test 1 gives us false/false and test 4 gives us true/true.  Unfortunately, though, false/true and true/false are not yet covered by any tests that we're already planning on using, so we need to add some more.  In fact, since there are two different combinations, and these combinations are mutually exclusive, we will need to add two tests.  Let's add test 2 for false/true and test 3 for true/false.  Our final test plan is the following:
+Finally, we should check the last variable combination, italic/underline.  Test 1 gives us false/false and Test 4 gives us true/true.  Unfortunately, though, false/true and true/false are not yet covered by any tests that we're already planning on using, so we need to add some more.  In fact, since there are two different combinations, and these combinations are mutually exclusive, we will need to add two tests.  Let's add Test 2 for false/true and Test 3 for true/false.  Our final test plan is the following:
 
 ```
      BOLD       | ITALIC    | UNDERLINE
@@ -96,7 +96,7 @@ Although this example was done with Boolean variables, any kind of variable can 
 6.      "a"    | false      | false     | false
 ```
 
-Note that we are still checking all pairs.  Let's check the word/bold pair to verify that that is the case.  In test 1, we check for the word "a" with bold set to true.  In test 2, we check the word "a" with bold set to false.  In test 3 we check the word "bird" with bold set to true, and in test 4 we check the word "bird" with bold set to false.  What if we're worried that special characters may cause an issue when formatting?  We'd want to add a third possibility for the word variable, which is certainly allowed even though all of our possibilities so far have used only two possible values:
+Note that we are still checking all pairs.  Let's check the word/bold pair to verify that that is the case.  In Test 1, we check for the word "a" with bold set to true.  In Test 2, we check the word "a" with bold set to false.  In Test 3 we check the word "bird" with bold set to true, and in Test 4 we check the word "bird" with bold set to false.  What if we're worried that special characters may cause an issue when formatting?  We'd want to add a third possibility for the word variable, which is certainly allowed even though all of our possibilities so far have used only two possible values:
 
 ```
         WORD   | BOLD       | ITALIC    | UNDERLINE
@@ -147,7 +147,7 @@ Checking for every possible three-way interaction is going to involve more tests
 12.     false      | false     | false     | false       | false
 ```
 
-Let's examine a given three-way interaction, bold/italic/underline, and double-check that we are testing all of the possibilities.  False/false/false is covered by test 12; false/false/true is covered by test 9; false/true/false is covered by test 6; false/true/true is covered by test 5; true/false/false is covered by test 4; true/false/true is covered by test 3; true/true/false is covered by test 10; and true/true/true is covered by test 1.  Note that there are eight possible combinations and ten tests, so there is some repetition (for example, true/true/true is covered by both tests 1 and 11).
+Let's examine a given three-way interaction, bold/italic/underline, and double-check that we are testing all of the possibilities.  False/false/false is covered by Test 12; false/false/true is covered by Test 9; false/true/false is covered by Test 6; false/true/true is covered by Test 5; true/false/false is covered by Test 4; true/false/true is covered by Test 3; true/true/false is covered by Test 10; and true/true/true is covered by Test 1.  Note that there are eight possible combinations and ten tests, so there is some repetition (for example, true/true/true is covered by both Tests 1 and 11).
 
 The number of interactions can be tuned upwards as high as you would like, although if you are planning on testing n-way interactions where _n_ is the number of variables you have, you are just doing exhaustive testing.  According to empirical studies done by NIST, the maximum number of interactions that caused an error was six, so checking for more than that would be over-testing in many situations.
 
