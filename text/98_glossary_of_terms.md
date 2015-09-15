@@ -62,7 +62,7 @@ __Complete (requirements)__: The property of having the requirements specify the
 
 __Confidentiality__: An attribute of a system, that only authorized users may read data.  An element of the __InfoSec Triad__.
 
-__Configuration error__: An error resulting from a misconfiguration of the system, as opposed to an error in the code which comprises the system itself.
+__Configuration error__: An error resulting from a misconfiguration of the system, as opposed to an error in the code which composes the system itself.
 
 __Consistent (requirements)__: The property of having requirements which can all be followed without a paradox (e.g., "the system shall display the message 'Hello' upon startup" and "the system shall not display any message upon startup" are not consistent).
 
