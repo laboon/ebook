@@ -174,7 +174,7 @@ For some defects, fields may be intentionally left blank.  For example, the defe
 
 In other cases, the field may be marked by "Unknown" or a similar marker that indicates that the filer of the defect does not know what the field should be.  For example, if the system crashed randomly, with no error message or other output, and the tester is unable to reproduce it, the Reproduction Steps field may be marked "Unknown".  If requirements are ambiguous or contradictory, the expected behavior field may be marked "Unknown".  If the tester is not sure what impact the defect would have on the end user, e.g., because the problem is deep in the infrastructure of the system, the Impact field may be marked "Unknown".
 
-Depending on how much focus is spent on testing in an organization, some of the fields may be omitted, or some added.  For example, in some organizations, testers may not have the domain knowledge to be able to determine the impact or severity of a defect.  At a minimum, any defect report should at a minimum include reproduction steps, the expected behavior, and the observed behavior.  Anything beyond that is the icing on the defect cake.
+Depending on how much focus is spent on testing in an organization, some of the fields may be omitted, or some added.  For example, in some organizations, testers may not have the domain knowledge to be able to determine the impact or severity of a defect.  At a minimum, any defect report should include reproduction steps, the expected behavior, and the observed behavior.  Anything beyond that is the icing on the defect cake.
 
 ## Defect Examples
 
