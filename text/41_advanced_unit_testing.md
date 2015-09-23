@@ -90,9 +90,9 @@ public class Dog {
 }
 ```
 
-If we were to write a test, we have no way of making doubles for the objects!  Even if we then refactored `setUpDogStuff()` to accept `DogDish`, `DogFood`, and `DogWater` parameters, we would be forced to work with additional items when all we care about is `DogFood`.
+If we were to write a test for this class, we have no way of making doubles for the objects internal to the class!  Even if we then refactored `setUpDogStuff()` to accept `DogDish`, `DogFood`, and `DogWater` parameters, we would be forced to work with additional items when all we care about is `DogFood`.
 
-Let's refactor the method a bit to make it more amenable to test doubles:
+Let's refactor the method a bit to make it somewhat more amenable to test doubles:
 
 ```java
 public class Dog {
@@ -137,7 +137,7 @@ public class DogTest {
 }
 ```
 
-This is better, but still not ideal.  Extra statements are still required to set up the test.  If we just pass in `DogFood` as a parameter to the method, like so:
+This is better, but still not ideal, as extra statements are still required to set up the test.  If, instead, we just pass in `DogFood` as a parameter to the method, like so:
 
 ```java
 public class Dog {
