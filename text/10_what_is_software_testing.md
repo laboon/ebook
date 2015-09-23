@@ -8,7 +8,7 @@ Let's start with a few things that it is not:
 4. It's not something you do after all the programming is complete.
 5. It's really, REALLY not something you postpone until users start complaining.
 
-## What Is It?
+## What is It?
 
 At a high level, it's a way of providing an estimate of software quality to stakeholders (that is, people who have a direct interest in the system, such as customers, users, and managers).  While stakeholders may not directly care about the quality of software, they are interested in managing risk.  This risk can take many forms.  For customers, using software involves risks that they will lose data, risks that their operations will fail, risks that they will spend more money on the software than it will save them.  For internal stakeholders, risks may include not releasing a software system on time (or at all), losing customers by releasing a substandard product, or even facing a lawsuit.  By testing software, you can provide a better estimate of how much risk the stakeholders will have to take on.
 
@@ -67,7 +67,7 @@ For example, consider a company creating a brand-new Tic-Tac-Toe implementation.
 3. The second player shall then be allowed to mark an O in any one open (that is, not already marked by an X or O) square, following the completion of the first move by the first player.
 4. Players shall then take turns placing X's and O's (by the first and second player, respectively) in open squares, until there are no open squares and no row, column, or diagonal is filled in with the same marker, in which case the game is a draw; or until an entire row, column, or diagonal is filled in with the same marker, in which case the owner of that marker (X for first player, O for second player) shall be the winner and the other player shall be the loser.
 
-This sums up the game of Tic-Tac-Toe pretty nicely. Now let's consider an instance where the first player, who should only be able to mark squares with X's, can mark a square with an O.  This is a defect, because it violates Requirement 2.  Even if the game is perfectly playable (let's say that the second player's marks then become X's), it's still a defect because it violates a requirement.
+This sums up the game of Tic-Tac-Toe pretty nicely.  Now let's consider an instance where the first player, who should only be able to mark squares with X's, can mark a square with an O.  This is a defect, because it violates Requirement 2.  Even if the game is perfectly playable (let's say that the second player's marks then become X's), it's still a defect because it violates a requirement.
 
 Now let's say that after beta testing, a user says that the game is unfair, because it forces one player to use X's and that mark is ugly.  The user suggests changing the X's into W's, because W is a much more beautiful letter.  Is this a defect or enhancement?
 

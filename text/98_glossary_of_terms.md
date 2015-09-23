@@ -62,7 +62,7 @@ __Complete (requirements)__: The property of having the requirements specify the
 
 __Confidentiality__: An attribute of a system, that only authorized users may read data.  An element of the __InfoSec Triad__.
 
-__Configuration error__: An error resulting from a misconfiguration of the system, as opposed to an error in the code which composes the system itself.
+__Configuration error__: An error resulting from a misconfiguration of the system, as opposed to an error in the code which comprises the system itself.
 
 __Consistent (requirements)__: The property of having requirements which can all be followed without a paradox (e.g., "the system shall display the message 'Hello' upon startup" and "the system shall not display any message upon startup" are not consistent).
 
@@ -422,7 +422,7 @@ __Testability__: A quality of a system that specifies how easy it is to test---h
 
 __Testable code__: Code which can be easily tested in an automated fashion at multiple levels of abstraction.
 
-__Test-Driven Development (TDD)__: A particular software development methodology which embraces __test-first__ development along with several other tenets, such as continuous refactoring and expectation of change.
+__Test-Driven Development (TDD)__: A particular software development methodology which embraces __test-first development__ along with several other tenets, such as continuous refactoring and expectation of change.
 
 __Test-First Development__: Any software development methodology in which tests are written before the code that makes them pass.
 
@@ -452,7 +452,7 @@ __TUF__: See __Test-Unfriendly Function__.
 
 __Unambiguous (requirements)__: The property of having requirements which can be read and understood in one and only one way.
 
-__Undefined__: In regards to a systems specification, any area where the behavior is not specified.  For example, if my entire systems specification is "The first light shall turn on if the input value is less than 4", the behavior for how the system should behave if the input value is 7 is undefined.
+__Undefined__: In regards to a system specification, any area where the behavior is not specified.  For example, if my entire system specification is "The first light shall turn on if the input value is less than 4", the behavior for how the system should behave if the input value is 7 is undefined.
 
 __Unit testing__: Testing the smallest individual units of code, such as methods or functions, in a white-box manner.
 

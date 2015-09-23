@@ -265,7 +265,7 @@ POSTCONDITIONS: For each of the input values, the string "Cat is underweight"
     shall be displayed upon the console.
 ```
 
-## Test Cases For A Non-Functional Requirement
+## Test Cases for a Non-Functional Requirement
 
 There's an entire chapter on performance testing later, but for now, let's just go through a very simple performance test.  We want to check that the system completes calculation and information display within two seconds.  An easy way to verify this is by using the Unix tool `time`, which will tell you how long it took for a command to execute.  Although the standard tool will give you several different results, focus only on the "real" time which measures how long something actually took according to the clock on the wall (the other kinds of time that the tool measures will be discussed in the chapter on performance testing).
 
