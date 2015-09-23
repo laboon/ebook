@@ -126,7 +126,7 @@ Worse, scripts may give you a false sense of security.  Adding a separate way to
 
 Time spent working on a scripting interface also means less time spent writing other features of the software, or improving its quality.  This trade-off may be worthwhile, but it should be considered on a project-by-project basis.
 
-You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  There are programs which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require manual verification of screenshots.
+You can test graphical and other non-text interfaces without test hooks, but it will tend to be much more difficult.  Writing code to directly interface with something is often the easiest and most direct route.  There are programs which allow you to directly manipulate the cursor, take screenshots of the result, and perform other interface interaction which is not scripted.  However, these tools are often finicky and require some degree of manual verification.
 
 ## Write Tests Up-Front
 
