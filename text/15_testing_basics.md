@@ -23,12 +23,12 @@ What are the other equivalence classes here?  In order to answer this, think of 
 
 Mathematically, one could think of this as a mapping between a group of input values and expected output conditions:
 
-1. [-MAXINT, -MAXINT + 1, ... -2, -1] &rarr; `ERROR` light only
+1. [MININT, MININT + 1, ... -2, -1] &rarr; `ERROR` light only
 2. [0, 1, ... 19, 20] &rarr; `UNDERPRESSURE` light only
 3. [21, 22, ... 34, 35] &rarr; No lights
 4. [36, 37, ... MAXINT - 1, MAXINT] &rarr; `OVERPRESSURE` light only
 
-(where MAXINT and -MAXINT are the maximum and minimum 32-bit integers.)
+(where MAXINT and MININT are the maximum and minimum 32-bit integers.)
 
 We have now __partitioned__ our equivalence classes.  Equivalence class partitioning is the act of determining our equivalence classes and ensuring that they do not overlap at all, but do cover all possible input values.  In other words, they must maintain a __strict partitioning__.  For example, let's say that, due to bad or misread requirements, we had generated an equivalence class partitioning such as the following:
 
@@ -49,7 +49,7 @@ Now that our equivalence classes have been determined, it's possible to write te
 
 There's an axiom in testing that defects are more likely to be found near the boundaries of two equivalence classes.  These values---the "last" of one equivalence class and the "first" of a new equivalence class---are called __boundary values__.  Values which are not boundary values are called __interior values__.  For example, let's take a very simple mathematical function, the absolute value of an integer.  This has two equivalence classes:
 
-1. [-MAXINT, -MAXINT + 1, ... -2, -1] &rarr; For input x, outputs -(x)
+1. [MININT, MININT + 1, ... -2, -1] &rarr; For input x, outputs -(x)
 2. [0, 1, ... MAXINT - 1, MAXINT] &rarr; For input x, outputs x
 
 The boundary values are 0 and 1; they are the dividing line between the two equivalence classes.  Every other value (e.g., 7, 62, -190) is an interior value; it is in the "middle" of an equivalence class.
@@ -96,7 +96,7 @@ Values to Test:
 6. Boundary values, `NORMAL` / `OVERPRESSURE`: 35, 36
 7. Interior values, `OVERPRESSURE`: 40, 95
 
-One could also consider __implicit boundary values__.  In contrast to __explicit boundary values__, which are a natural outgrowth of requirements (such as the ones calculated above), implicit values grow out of the system under test or the environment under which the system operates.  For example, MAXINT and -MAXINT would both be implicit boundary values; adding one to MAXINT would cause an integer overflow and set the value to -MAXINT, and decrementing one from -MAXINT would lead to the value being MAXINT.  In each case, the equivalence class would change.
+One could also consider __implicit boundary values__.  In contrast to __explicit boundary values__, which are a natural outgrowth of requirements (such as the ones calculated above), implicit values grow out of the system under test or the environment under which the system operates.  For example, MAXINT and MININT would both be implicit boundary values; adding one to MAXINT would cause an integer overflow and set the value to MININT, and decrementing one from MININT would lead to the value being MAXINT.  In each case, the equivalence class would change.
 
 Implicit boundary values can also be runtime-dependent.  Suppose that we have a system with 2 gigabytes of memory free, and are running an in-memory database system.  The equivalence classes for testing a function which inserts a number of rows may be as follows:
 
