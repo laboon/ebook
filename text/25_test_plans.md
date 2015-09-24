@@ -16,7 +16,7 @@ A single input value and one of two possible output values is a simple case of e
 * __JUST-RIGHT:__ [-INF, -INF + 1, ... 173, 174] &rarr; `JUST RIGHT`
 * __TOO-HOT:__    [175, 176, ... INF - 1, INF] &rarr; `TOO HOT`
 
-Our boundary values are 174 and 175, as they mark the division between the two equivalence classes.  Let's also use two interior values, 135 for the JUST-RIGHT class and 200 for the TOO-HOT class.  For this particular sample test plan, we will ignore the implicit boundary values of infinity and negative infinity (or the system's concept of these, MAXINT and -MAXINT).
+Our boundary values are 174 and 175, as they mark the division between the two equivalence classes.  Let's also use two interior values, 135 for the JUST-RIGHT class and 200 for the TOO-HOT class.  For this particular sample test plan, we will ignore the implicit boundary values of infinity and negative infinity (or the system's concept of these, MAXINT and MININT).
 
 Using these values, and a general idea of what we would like to test, we can start to create test cases.  Although different tools and companies will have different templates for entering test cases, this is a relatively standard one that can be applied or modified for most software projects:
 
