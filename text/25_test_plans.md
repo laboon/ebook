@@ -138,7 +138,7 @@ Now that the preconditions and input values for a test case have been determined
 
 Let's start with a simple example.  We are testing an e-commerce software system and checking that adding one item to the cart, when the cart is already empty, will display "1" as the number of items in the cart.  The precondition is that the cart contains zero items.  This may have been accomplished in a variety of ways: the user has never logged in before; the user is already logged in and bought any items that were in the cart, resetting the counter; or any existing items that were in the cart have been removed without being bought.  From the point of view of this case, it does not matter how this point (i.e., the cart containing zero items) has been reached, only that it does.
 
-Conversely, the actual execution steps should be spelled out very clearly:
+On the other hand, the actual execution steps should be spelled out very clearly:
 
 1. Search for item "SAMPLE-BOX" by selecting the "Search" text box, entering `SAMPLE-BOX`, and hitting the "Search" button.
 2. An item labeled "SAMPLE-BOX" should be displayed.  Click on the button labeled  "Add Item to Cart" next to the picture of the SAMPLE-BOX.
@@ -247,7 +247,7 @@ Although there is no universal status repository, these are a representative sam
 
 A __passed__ test is one in which all of the expected behavior (i.e., the output values and postconditions) match the observed behavior.  Colloquially, one could say that it's a test where everything worked.
 
-Conversely, a __failed__ test in which at least one aspect of the observed behavior was not equal to the expected behavior.  This difference could be in either the output values or the postconditions.  For example, if a square root function returned that the square root of 4 was 322, then that test case would be marked "failed".  If a test case had a postcondition that a message `ERROR: ELEPHANTS CAN'T DANCE` appears on the screen, but the error message in fact reads `ERROR: ELEPHANTS CAN'T DEFENESTRATE`, then once again the test case has failed.  Whenever a test case is marked failed, there should be a corresponding defect filed.  This could be a new defect, or it could be that a known defect has caused multiple problems---for example, errors for all animals are saying that they can't defenestrate when the actual issue is that they can't dance.  If there is no defect associated with a failed test case, then either the test case wasn't important enough to test, or the defect found wasn't important enough to file.  If either is the case, you should rethink your test case!
+Inversely, a __failed__ test is one in which at least one aspect of the observed behavior was not equal to the expected behavior.  This difference could be in either the output values or the postconditions.  For example, if a square root function returned that the square root of 4 was 322, then that test case would be marked "failed".  If a test case had a postcondition that a message `ERROR: ELEPHANTS CAN'T DANCE` appears on the screen, but the error message in fact reads `ERROR: ELEPHANTS CAN'T DEFENESTRATE`, then once again the test case has failed.  Whenever a test case is marked failed, there should be a corresponding defect filed.  This could be a new defect, or it could be that a known defect has caused multiple problems---for example, errors for all animals are saying that they can't defenestrate when the actual issue is that they can't dance.  If there is no defect associated with a failed test case, then either the test case wasn't important enough to test, or the defect found wasn't important enough to file.  If either is the case, you should rethink your test case!
 
 A __paused__ test is one that has started, but had to be put on hold for some period of time.  This allows other testers and managers to know the status of a test and the progress a tester has been made.  It also ensures that another tester doesn't step in and start doing the test that has already been started by another tester.  A test case may be paused for quotidian reasons, like the tester going to lunch, or something directly related to the system under test, such as leaving the lab to get new test data.  In any case, the assumption is that the tester will get back to working on this test as soon as he or she returns, not that the test itself cannot be executed (that is covered by the "blocked" status, below).
 
@@ -298,7 +298,7 @@ If a test is blocked, then the reason that it is blocked should be noted.  This 
 
 Tests with the status `ERROR` should hopefully be a rarity.  If an erroneous test is found, however, it behooves the tester to note why he or she thinks that the test is in error.  An idea of how to rectify it---or at least on how to get more information on it---should be included as part of the result of that test case.
 
-Tracking your test runs allows you to see where tests are failing.  If you notice that one particular area of the software is failing more often than others, perhaps you should focus more on that area.  Conversely, running tests which always pass, and have been passing for years, may not be worth your time.  It can also allow you to see where there are intermittent failures, so that you know what test cases are not stable.  By looking over test runs over time, not only can you get a good idea of the progress and quality of the software over time, but the information you gain will allow you to generate better test plans going forward.
+Tracking your test runs allows you to see where tests are failing.  If you notice that one particular area of the software is failing more often than others, perhaps you should focus more on that area.  Inversely, running tests which always pass, and have been passing for years, may not be worth your time.  It can also allow you to see where there are intermittent failures, so that you know what test cases are not stable.  By looking over test runs over time, not only can you get a good idea of the progress and quality of the software over time, but the information you gain will allow you to generate better test plans going forward.
 
 ## Traceability Matrices
 
@@ -345,7 +345,7 @@ FUN-TEA-ERROR: 8
 FUN-COFFEE-FROZEN:
 ```
 
-Conversely, traceability matrices can allow us to determine if we have any "useless" tests which are not testing any specific requirements.  For example, let's say that we have created a "Test Case 9":
+Likewise, traceability matrices can allow us to determine if we have any "useless" tests which are not testing any specific requirements.  For example, let's say that we have created a "Test Case 9":
 
 ```
 IDENTIFIER: 9

@@ -139,7 +139,7 @@ __REQUIREMENTS:__
 3. The system shall do Z whenever event A occurs.
 ...
 
-This was simple enough for small projects.  As software projects became larger and more specified, however, some problems arose with this scheme.  For example, what happened if a requirement became irrelevant?  There are now "missing" requirements; the list of requirements may be 1, 2, 5, 7, 12, etc.  Conversely, what is software requirements needed to be added?  If the list of requirements is just a straight linear ordering, those new requirements need to be put in at the end, or squeezed in between existing requirements (Requirement-1.5).
+This was simple enough for small projects.  As software projects became larger and more specified, however, some problems arose with this scheme.  For example, what happened if a requirement became irrelevant?  There are now "missing" requirements; the list of requirements may be 1, 2, 5, 7, 12, etc.  Inversely, what if software requirements needed to be added?  If the list of requirements is just a straight linear ordering, those new requirements need to be put in at the end, or squeezed in between existing requirements (Requirement-1.5).
 
 Another problem was remembering what each requirement actually specified based solely on the number.  It is not very difficult for the average person to keep a list of a few requirements in their head, but this becomes untenable when there are hundreds, or even thousands, of software requirements.
 
