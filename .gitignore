@@ -1,3 +1,4 @@
 *.pdf
 compiled_tex/
+tex2pdf*/
 

@@ -4,7 +4,7 @@ Remember that validating software is ensuring that we are building the right sof
 
 One way of determining what software to build is to determine the __requirements__ of the software.  Requirements are statements specifying exactly what it is that a piece of software should do under certain conditions.  This is more or less popular depending on the domain and the kind of software being developed.  For example, when building software to monitor a nuclear reactor, there may be very specific and well-laid-out requirements.  If you are working for a social media startup (hopefully not one with "buying and selling, and you know, like hot dogs... for cats", because there is apparently competition), then your "requirements" may be something your CEO scribbled on a napkin after one too many bottles of wine and one too few meetings with actual investors.
 
-Requirements ensure that the developers know what to build, and the testers know what to test.  While requirements are important, they are not inviolable!  Common sense should be used when interpreting requirements, and requirements are often subject to change.   Note that there other methods of determining what software to build aside from traditional requirements, such as user stories.  
+Requirements ensure that the developers know what to build, and the testers know what to test.  While requirements are important, they are not inviolable!  Common sense should be used when interpreting requirements, and requirements are often subject to change.  Note that there other methods of determining what software to build aside from traditional requirements, such as user stories.
 
 In our tire air pressure example in the chapter on testing basics, we had some relatively simple requirements, although we did not mention at the time that that is what they were:
 
@@ -139,7 +139,7 @@ __REQUIREMENTS:__
 3. The system shall do Z whenever event A occurs.
 ...
 
-This was simple enough for small projects.  As software projects became larger and more specified, however, some problems arose with this scheme.  For example, what happened if a requirement became irrelevant?  There are now "missing" requirements; the list of requirements may be 1, 2, 5, 7, 12, etc.  Conversely, what is software requirements needed to be added?  If the list of requirements is just a straight linear ordering, those new requirements need to be put in at the end, or squeezed in between existing requirements (Requirement-1.5).
+This was simple enough for small projects.  As software projects became larger and more specified, however, some problems arose with this scheme.  For example, what happened if a requirement became irrelevant?  There are now "missing" requirements; the list of requirements may be 1, 2, 5, 7, 12, etc.  Inversely, what if software requirements needed to be added?  If the list of requirements is just a straight linear ordering, those new requirements need to be put in at the end, or squeezed in between existing requirements (Requirement-1.5).
 
 Another problem was remembering what each requirement actually specified based solely on the number.  It is not very difficult for the average person to keep a list of a few requirements in their head, but this becomes untenable when there are hundreds, or even thousands, of software requirements.
 

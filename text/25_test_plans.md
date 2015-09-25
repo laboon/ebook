@@ -70,7 +70,7 @@ This may work fine the first time you run the test case.  However, this test is 
 
 There is a drawback from a brevity standpoint, as well.  We have just added three execution steps where there was only one precondition.  Brevity, aside from being the soul of wit, is also helpful in ensuring that the important parts of a test are focused upon.  Boilerplate text is the enemy of attention and focus.
 
-The dividing line between preconditions and execution steps can sometimes be an art rather than a science.  In general, the more safety-critical the domain, the more precise the preconditions will be.  As an example, let's say that you are testing an image-sharing site, where all images are public and visible to any other users.  The test case involves checking that the correct image shows up on the screen when a user goes to the correct URL.   The following preconditions may be enough for this test case:
+The dividing line between preconditions and execution steps can sometimes be an art rather than a science.  In general, the more safety-critical the domain, the more precise the preconditions will be.  As an example, let's say that you are testing an image-sharing site, where all images are public and visible to any other users.  The test case involves checking that the correct image shows up on the screen when a user goes to the correct URL.  The following preconditions may be enough for this test case:
 
 1. The user has logged in
 2. The image has been posted to the URL `/pictures/foo`.
@@ -90,32 +90,32 @@ In both cases, the execution steps will be the same, or at least very similar---
 
 Whereas preconditions are aspects of the system that are set before the test is run, __input values__ are those values passed directly in to the functionality under test.  This difference can be a subtle one, so let's explore a few examples.
 
-Imagine we have a sorting routine, `billSort`, which is estimated to be twenty times faster than any other sorting algorithm.  Rather than taking at face value `billSort`'s assertion that it will always produce the correct result, we are developing tests for it.  Our particular implementation uses a global variable, `SORT_ASCENDING`.  Depending on whether `SORT_ASCENDING` (a boolean flag) is set to true or false, it will either sort ascending (from the lowest value to the highest---e.g., "a", "b", "c") or sort descending (from the highest value to the lowest---e.g., "c", "b"', "a").  If we are going to test this sorting routine, setting the flag would count as a precondition, as this is something which needs to be set up before the test.  The array `["a", "c", "b"]` would be the input values; these values are sent directly in for testing.
+Imagine we have a sorting routine, `billSort`, which is estimated to be twenty times faster than any other sorting algorithm.  Rather than taking at face value `billSort`'s assertion that it will always produce the correct result, we are developing tests for it.  Our particular implementation uses a global variable, `SORT_ASCENDING`.  Depending on whether `SORT_ASCENDING` (a Boolean flag) is set to true or false, it will either sort ascending (from the lowest value to the highest---e.g., "a", "b", "c") or sort descending (from the highest value to the lowest---e.g., "c", "b", "a").  If we are going to test this sorting routine, setting the flag would count as a precondition, as this is something which needs to be set up before the test.  The array `["a", "c", "b"]` would be the input values; these values are sent directly in for testing.
 
 Another way to think of the difference between input values and preconditions is thinking of the tests as methods.  This is probably a good exercise for you to do anyway---we'll definitely be doing more of it when we get to the chapter on unit tests!
 
 ```java
 public boolean testArraySort() {
 
-  // PRECONDITIONS
-  SORT_ASCENDING = true;
+    // PRECONDITIONS
+    SORT_ASCENDING = true;
 
-  // INPUT VALUES
-  int[] vals = [1, 2, 3];
+    // INPUT VALUES
+    int[] vals = [1, 2, 3];
 
-  // New, improved billSort method! :)
-  billSorted = billSort(vals);
+    // New, improved billSort method! :)
+    billSorted = billSort(vals);
 
-  // Old, busted built-in Java sort. :(
-  normalSorted = Arrays.sort(vals);
+    // Old, busted built-in Java sort. :(
+    normalSorted = Arrays.sort(vals);
 
-  if (Arrays.equals(billSorted, normalSorted)) {
-    // Our arrays are equal, test passes!
-    return true;
-  } else {
-    // Our arrays are not equal, test fails.
-    return false;
-  }
+    if (Arrays.equals(billSorted, normalSorted)) {
+        // Our arrays are equal, test passes!
+        return true;
+    } else {
+        // Our arrays are not equal, test fails.
+        return false;
+    }
 }
 ```
 
@@ -124,8 +124,8 @@ Note that because you aren't sending the `SORT_ASCENDING` flag in to the functio
 Isn't it possible to redesign the system so as to send in the flag as an argument to the `billSort()` method, though?
 
 ```java
-  // Arguments = values array, SORT_ASCENDING flag
-  billSorted = billSort(vals, true);
+    // Arguments = values array, SORT_ASCENDING flag
+    billSorted = billSort(vals, true);
 ```
 
 This is certainly possible, and in this case one could consider `SORT_ASCENDING` an input value as opposed to a precondition.  Whether something is a precondition or an input value often depends on the implementation of a program.  If we were writing this in a language such as Haskell, for example, where side effects are extremely limited, functions such as this would almost never have any preconditions other than 'the program is running'.
@@ -138,7 +138,7 @@ Now that the preconditions and input values for a test case have been determined
 
 Let's start with a simple example.  We are testing an e-commerce software system and checking that adding one item to the cart, when the cart is already empty, will display "1" as the number of items in the cart.  The precondition is that the cart contains zero items.  This may have been accomplished in a variety of ways: the user has never logged in before; the user is already logged in and bought any items that were in the cart, resetting the counter; or any existing items that were in the cart have been removed without being bought.  From the point of view of this case, it does not matter how this point (i.e., the cart containing zero items) has been reached, only that it does.
 
-Conversely, the actual execution steps should be spelled out very clearly:
+On the other hand, the actual execution steps should be spelled out very clearly:
 
 1. Search for item "SAMPLE-BOX" by selecting the "Search" text box, entering `SAMPLE-BOX`, and hitting the "Search" button.
 2. An item labeled "SAMPLE-BOX" should be displayed.  Click on the button labeled  "Add Item to Cart" next to the picture of the SAMPLE-BOX.
@@ -150,7 +150,7 @@ Note that these steps are relatively explicit.  It is important to write the ste
 2. Apply one pound of pressure for 200 milliseconds to the left button of the mouse, using your right index finger.
 3. After 200 milliseconds, quickly remove pressure from the left button of the mouse.  Ensure that a cursor now exists and is blinking at a rate of 2 Hz in the text box... (etc.)
 
-In general, it's best to set the level of specification to the ability and knowledge of the people who will actually be executing the tests (or, in the case of automated tests, of the programs that will actually be executing the execution steps).  If you have in-house testers that are very familiar with both the software and domain being tested, it may only be necessary to say "Set the _frobinator_ to 'FOO' using the primary dial."  This is specific enough that a user who is familiar with the system will unambiguously be able to follow the steps.  However, not everybody will be as familiar with the system as the writer of the tests.  Many times, the people who actually execute the tests are contractors, outsourced, or simply relatively new testers on the project.  For an outside tester who is not familiar with "frobinization" (and surprisingly, there are a few people out there who are not), it may be necessary to specify what needs to be done in much more detail:
+In general, it's best to set the level of specification to the ability and knowledge of the people who will actually be executing the tests (or, in the case of automated tests, of the programs that will actually be executing the execution steps).  If you have in-house testers that are very familiar with both the software and domain being tested, it may only be necessary to say "Set the _frobinator_ to 'FOO' using the primary dial."  This is specific enough that a user who is familiar with the system will unambiguously be able to follow the steps.  However, not everybody will be as familiar with the system as the writer of the tests.  Many times, the people who actually execute the tests are contractors, outsourced, or simply relatively new testers on the project.  For an outside tester who is not familiar with "frobinization" (and surprisingly, there are a few people who are not), it may be necessary to specify what needs to be done in much more detail:
 
 1. Open the "PRIMARY" control panel by selecting "Dials... Primary" from the menu at the top of the screen.
 2. Select the purple dial labeled "FROBINATOR".  Move the dial to the right from its initial position until the "STATUS" text box reads "FOO".
@@ -222,11 +222,11 @@ Dividing a positive value by zero returns `Infinity`, dividing by a negative num
 
 ## Test Fixtures
 
-As you write your a plan, you may find that you wish to test situations which are difficult to replicate.  For example, you may want to check that the coffee temperature app mentioned above works when changing time zones.  It would probably be prohibitively expensive to actually move the system from one time zone to another.  Remember that you are the master of this testing world!  You can simply change the time zone of the system the program is running on.  If you're testing that software will work in Russia, you can just change the locality settings to Russia instead of hopping on a flight.  If you require ten users in the database for a test, you can just add them manually to the database.  Although these fake situations may not catch all of the defects that may occur in reality under these conditions, they will tend to catch many of them.
+As you write your plan, you may find that you wish to test situations which are difficult to replicate.  For example, you may want to check that the coffee temperature app mentioned above works when changing time zones.  It would probably be prohibitively expensive to actually move the system from one time zone to another.  Remember that you are the master of this testing world!  You can simply change the time zone of the system the program is running on.  If you're testing that software will work in Russia, you can just change the locality settings to Russia instead of hopping on a flight.  If you require ten users in the database for a test, you can just add them manually to the database.  Although these fake situations may not catch all of the defects that may occur in reality under these conditions, they will tend to catch many of them.
 
 A script or program used to put the system under test into a state that is ready for testing is known as a __test fixture__.  Test fixtures can be as simple as a series of steps to type into the program, but there is no real limit to their complexity.  The Lunar Landing Training Vehicle was used by astronauts on Earth to practice for landing on the Moon, using a complex feedback mechanism to simulate lunar gravity.  For more examples of how testing and test fixtures helped astronauts reach the Moon, see _Digital Apollo: Human and Machine in Spaceflight_ by David Mindell.
 
-Test fixtures are often used to simulate external systems.  As a personal anecdote, I was testing a subsystem that communicated with several other subsystems via JSON.  At first, the other systems were manually configured at the beginning of each test case.  I soon realized that this was time-consuming and error-prone.  The result was `simple_respond`, a Ruby gem that would accept a given JSON file and always respond with the data in the file for any request.  Instead of setting up the other subsystems - which I was not testing - I could focus on what the subsystem I was testing would do given certain responses.  Not only did this save time and reduce human error, but the tests were no longer dependent on other parts of the system working correctly.  Test fixtures like this could also be re-used when interacting with external systems, when there is no way to modify their state for a given test case.
+Test fixtures are often used to simulate external systems.  As a personal anecdote, I was testing a subsystem that communicated with several other subsystems via JSON.  At first, the other systems were manually configured at the beginning of each test case.  I soon realized that this was time-consuming and error-prone.  The result was `simple_respond`, a Ruby gem that would accept a given JSON file and always respond with the data in the file for any request.  Instead of setting up the other subsystems---which I was not testing---I could focus on what the subsystem I _was_ testing would do given certain responses.  Not only did this save time and reduce human error, but the tests were no longer dependent on other parts of the system working correctly.  Test fixtures like this could also be re-used when interacting with external systems, when there is no way to modify their state for a given test case.
 
 ## Executing a Test Plan
 
@@ -247,7 +247,7 @@ Although there is no universal status repository, these are a representative sam
 
 A __passed__ test is one in which all of the expected behavior (i.e., the output values and postconditions) match the observed behavior.  Colloquially, one could say that it's a test where everything worked.
 
-Conversely, a __failed__ test in which at least one aspect of the observed behavior was not equal to the expected behavior.  This difference could be in either the output values or the postconditions.  For example, if a square root function returned that the square root of 4 was 322, then that test case would be marked "failed".  If a test case had a postcondition that a message `ERROR: ELEPHANTS CAN'T DANCE` appears on the screen, but the error message in fact reads `ERROR: ELEPHANTS CAN'T DEFENESTRATE`, then once again the test case has failed.  Whenever a test case is marked failed, there should be a corresponding defect filed.  This could be a new defect, or it could be that a known defect has caused multiple problems---for example, errors for all animals are saying that they can't defenestrate when the actual issue is that they can't dance.  If there is no defect associated with a failed test case, then either the test case wasn't important enough to test, or the defect found wasn't important enough to file.  If either is the case, you should rethink your test case!
+Inversely, a __failed__ test is one in which at least one aspect of the observed behavior was not equal to the expected behavior.  This difference could be in either the output values or the postconditions.  For example, if a square root function returned that the square root of 4 was 322, then that test case would be marked "failed".  If a test case had a postcondition that a message `ERROR: ELEPHANTS CAN'T DANCE` appears on the screen, but the error message in fact reads `ERROR: ELEPHANTS CAN'T DEFENESTRATE`, then once again the test case has failed.  Whenever a test case is marked failed, there should be a corresponding defect filed.  This could be a new defect, or it could be that a known defect has caused multiple problems---for example, errors for all animals are saying that they can't defenestrate when the actual issue is that they can't dance.  If there is no defect associated with a failed test case, then either the test case wasn't important enough to test, or the defect found wasn't important enough to file.  If either is the case, you should rethink your test case!
 
 A __paused__ test is one that has started, but had to be put on hold for some period of time.  This allows other testers and managers to know the status of a test and the progress a tester has been made.  It also ensures that another tester doesn't step in and start doing the test that has already been started by another tester.  A test case may be paused for quotidian reasons, like the tester going to lunch, or something directly related to the system under test, such as leaving the lab to get new test data.  In any case, the assumption is that the tester will get back to working on this test as soon as he or she returns, not that the test itself cannot be executed (that is covered by the "blocked" status, below).
 
@@ -298,7 +298,7 @@ If a test is blocked, then the reason that it is blocked should be noted.  This 
 
 Tests with the status `ERROR` should hopefully be a rarity.  If an erroneous test is found, however, it behooves the tester to note why he or she thinks that the test is in error.  An idea of how to rectify it---or at least on how to get more information on it---should be included as part of the result of that test case.
 
-Tracking your test runs allows you to see where tests are failing.  If you notice that one particular area of the software is failing more often than others, perhaps you should focus more on that area.  Conversely, running tests which always pass, and have been passing for years, may not be worth your time.  It can also allow you to see where there are intermittent failures, so that you know what test cases are not stable.  By looking over test runs over time, not only can you get a good idea of the progress and quality of the software over time, but the information you gain will allow you to generate better test plans going forward.
+Tracking your test runs allows you to see where tests are failing.  If you notice that one particular area of the software is failing more often than others, perhaps you should focus more on that area.  Inversely, running tests which always pass, and have been passing for years, may not be worth your time.  It can also allow you to see where there are intermittent failures, so that you know what test cases are not stable.  By looking over test runs over time, not only can you get a good idea of the progress and quality of the software over time, but the information you gain will allow you to generate better test plans going forward.
 
 ## Traceability Matrices
 
@@ -345,7 +345,7 @@ FUN-TEA-ERROR: 8
 FUN-COFFEE-FROZEN:
 ```
 
-Conversely, traceability matrices can allow us to determine if we have any "useless" tests which are not testing any specific requirements.  For example, let's say that we have created a "Test Case 9":
+Likewise, traceability matrices can allow us to determine if we have any "useless" tests which are not testing any specific requirements.  For example, let's say that we have created a "Test Case 9":
 
 ```
 IDENTIFIER: 9
@@ -368,7 +368,7 @@ FUN-TEA-ERROR: 8
 ???: 9
 ```
 
-Occasionally, in the "real world", there may be some sanity checks that may not officially line up with a specific requirement.  For example, if a systems engineer did not put in a specific requirement for reliability, but the test plan may include a test for ensuring that the system works even when running for an entire day.  This is certainly not a best practice, but it does happen occasionally.  If this occurs, the best course of action would be to create a requirement for reliability that it can be tested against.
+Occasionally, in the "real world", there may be some smoke tests that may not officially line up with a specific requirement.  For example, if a systems engineer did not put in a specific requirement for reliability, but the test plan may include a test for ensuring that the system works even when running for an entire day.  This is certainly not a best practice, but it does happen occasionally.  If this occurs, the best course of action would be to create a requirement for reliability that it can be tested against.
 
 Of course, a traceability matrix provides a very simple overview of the test coverage.  The fact that every requirement has been tested does not mean that each requirement has been tested thoroughly.  For example, what if the system has issues with extremely hot coffee?  The highest temperature we checked for was 200 degrees Fahrenheit, but it may fail at 201 degrees Fahrenheit.  There's no verification in the traceability matrix itself that the tests are good, either.  If we had tested whether or not the system was meeting the FUN-COFFEE-TOO-HOT requirement by dunking the system in ice water, but said that that test case lined up with the FUN-COFFEE-TOO-HOT requirement, there's no way tell just by looking at the traceability matrix.
 

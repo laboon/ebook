@@ -2,7 +2,7 @@
 
 The term "stochastic" comes from the Greek _stokhastikos_, which is a form of _stokhazesthai_, which means "aim at" or "guess".  It's a good etymology for __stochastic testing__, which uses random processes that can be analyzed using statistics, but not exactly predicted.  At first blush, it may seem ridiculous to use randomness in software testing; after all, isn't the fundamental concept of testing to determine what the observed behavior is and if it is equal to the expected behavior?  If you don't know what the input is, how would you know what the expected output it?
 
-The answer is that there are expected behaviors and properties you expect from a system, no matter what the input.  For example, no matter what code is passed to a compiler, you will expect it not to crash.  It may generate an error message saying that the code is unparseable.  It may make an executable.  That executable may run, or it may not.  You do expect the system not to have a segmentation fault.  Thus, you can still run tests where the expected behavior for any input is  "does not crash the system".
+The answer is that there are expected behaviors and properties you expect from a system, no matter what the input.  For example, no matter what code is passed to a compiler, you will expect it not to crash.  It may generate an error message saying that the code is unparseable.  It may make an executable.  That executable may run, or it may not.  You do expect the system not to have a segmentation fault.  Thus, you can still run tests where the expected behavior for any input is "does not crash the system".
 
 By providing a method for the system to use random data as an input, you also reduce the cost of testing.  No longer do you have to imagine lots of specific test cases and then painstakingly program all of them in or write them down as test cases.  Instead, you just tie together some sort of random number generator and some way to generate data based on it, and your computer can do all the work of generating test cases.  Even though the random number generator may not be as good as a dedicated testing professional in coming up with edge cases, varying equivalence classes, etc., it will often find many problems simply by the sheer number of tests it can generate and how quickly it can do it.
 
@@ -16,11 +16,11 @@ Since you---or more precisely, the stochastic testing system---may not know exac
 
 ## Property-Based Testing
 
-Let's say once again that we are testing our sorting function, `billSort`.  As you'll recall, it's meant to be twenty times faster than any other sorting algorithm out there. However, there are questions about its correctness, so you have been tasked to test that it works in all cases.  What kind of input values would you test it with?  Assume the method signature looks like this:
+Let's say once again that we are testing our sorting function, `billSort`.  As you'll recall, it's meant to be twenty times faster than any other sorting algorithm. However, there are questions about its correctness, so you have been tasked to test that it works in all cases.  What kind of input values would you test it with?  Assume the method signature looks like this:
 
 ```java
 public int[] billSort(int[] arrToSort) {
-  ...
+    ...
 }
 ```
 
@@ -63,7 +63,7 @@ There are multiple libraries for Java which perform property-based testing but n
 
 ## Smart, Dumb, Evil, and Chaos Monkeys
 
-As mentioned above, stochastic testing is often called monkey testing.  What is not as well known is that there are different kinds of monkeys out there doing our testing work for us.
+As mentioned above, stochastic testing is often called monkey testing.  What is not as well known is that there are different kinds of monkeys doing our testing work for us.
 
 __Dumb monkey__ testing is sending in just any old input you can think of.  "`Mfdsjbkfd`", "`1 + snorf`", and "`(*@()`" all seem like good inputs to the dumb monkey.  There is no rhyme or reason, just lots of different randomized input.  This can be helpful for catching edge cases, but it is not very focused.  Remember that the world of possible values is absolutely huge.  The chances of finding a specific defect might be minimal when using dumb monkey testing.
 
@@ -85,7 +85,7 @@ than:
 ```
 > jiwh0t34h803h8t32h8t3h8t23
 ERROR
-> aaaaaaaaaaaaa 
+> aaaaaaaaaaaaa
 ERROR
 > 084_==wjw2933
 ERROR

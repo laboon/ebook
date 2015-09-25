@@ -41,7 +41,7 @@ There are two problems here.  The first is that all values less than -2 and grea
 
 The second, and much worse, problem is that a contradiction has arisen for values 20, 21, and 22.  These belong to both the "`UNDERPRESSURE`" and "No lights" equivalence classes.  What is the expected behavior for an input value of 21?  Depending on which equivalence class you look at, it could be no lights or an `UNDERPRESSURE` light.  This is a violation of strict partitioning, and you can easily see how problematic it can be.
 
-It is important to note that equivalence classes do not have to be comprised of the exact same output value!  For example, let's say that you are testing an e-commerce site.  Sales of less than $100.00 get 10% off, and sales of $100.01 or greater get 20% off the final sale price.  Even though there are going to be a wide range of output values, the output behavior will be similar for all values of $100.00 or less and for all values of $100.01 or more.  Those would be the two equivalence classes; there won't be a separate equivalence class for each individual output value (e.g. $10.00 &rarr; $9.00, $10.10 &rarr; $9.01, etc.).
+It is important to note that equivalence classes do not have to be composed of cases which yield the exact same output value!  For example, let's say that you are testing an e-commerce site.  Sales of less than $100.00 get 10% off, and sales of $100.01 or greater get 20% off the final sale price.  Even though there are going to be a wide range of output values, the output behavior will be similar for all values of $100.00 or less and for all values of $100.01 or more.  Those would be the two equivalence classes; there won't be a separate equivalence class for each individual output value (e.g. $10.00 &rarr; $9.00, $10.10 &rarr; $9.01, etc.).
 
 Now that our equivalence classes have been determined, it's possible to write tests that cover all of the functionality of this display.  We may decide to send in a value of -2 to test the `ERROR` equivalence class, a value of 10 to test the `UNDERPRESSURE` equivalence class, a value of 30 to test the "No lights" equivalence class, and a value of 45 for the `OVERPRESSURE` equivalence class.  Of course, the values were picked rather arbitrarily.  In the next section, we'll see how one can choose specific values in order to maximize the chances of finding defects.
 
@@ -59,9 +59,9 @@ Now that we understand what boundary and interior values are, one might ask, why
 ```java
 public static int absoluteValue (int x) {
     if ( x > 1 ) {
-       return x;
+        return x;
     } else {
-      return -x;
+        return -x;
 }
 ```
 
@@ -70,9 +70,9 @@ Did you see the coding error?  There's a simple off-by-one error in the first li
 ```java
 public static int absoluteValue (int x) {
     if ( x >= 1 ) {
-       return x;
+        return x;
     } else {
-      return -x;
+        return -x;
 }
 ```
 
@@ -139,7 +139,7 @@ Corner cases often involve a catastrophic failure of some kind (loss of network 
 
 ## Success Cases and Failure Cases
 
-When discussing test cases, there are two kinds of output that one would expect from a given test.  First, there may be a __success case__ (also called a __positive test case__; that is, the case returns an expected result given the input given to it.  In general, tests following the happy path of what a user would normally do should be success cases.
+When discussing test cases, there are two kinds of output that one would expect from a given test.  First, there may be a __success case__ (also called a __positive test case__); that is, the case returns an expected result given the input given to it.  In general, tests following the happy path of what a user would normally do should be success cases.
 
 __Failure cases__ (also called __negative test cases__) are cases in which we expect the system to "fail" for some reason, such as attempting to write to a read-only disk, getting the square root of a negative number (in systems that don't work with imaginary/complex numbers), or attempting to add an invalid username to a system.  In failure cases, instead of returning a correct result, the system will do... something else.  What this "something else" is will vary from test to test, and with what kind of functionality is being tested.  Some examples might be returning an error code or default value, throwing an exception, shutting the system down, or simply logging the error to a log file or `stderr`.
 
@@ -149,11 +149,11 @@ There are various ways of testing a system, each of which has benefits and drawb
 
 Perhaps the easiest kind of testing to understand is __black-box testing__.  In black-box testing, the tester has no knowledge of the internal workings of the system, and accesses the system as a user would.  In other words, the tester does not know about what database is in use, what classes exist, or even what language the program is written in.  Instead, testing occurs as if the tester were an ordinary user of the software.
 
-Consider a desktop email application.  Tasked with testing this, a black-box tester would test whether or not it could retrieve and send email, whether the spell check worked, whether files could be saved, etc.  The tester would not check that a particular method on a class was called, or what objects are loaded into memory, or the actual calls to particular functions.  If the tester wanted to ensure that emails could be properly sorted alphabetically by sender, for instance, a proper black-box test would be to click on the "Sort Alphabetically by Sender" button or menu option.  A black-box tester would not know that the program was written in Java or Haskell, or whether merge sort, quicksort, or bubble sort was used.  The tester _would_ care about what results from those decisions, though. The black-box tester focuses on whether or not the system under test operates as expected from the user's point of view, and is free from user-facing defects.  
+Consider a desktop email application.  Tasked with testing this, a black-box tester would test whether or not it could retrieve and send email, whether the spell check worked, whether files could be saved, etc.  The tester would not check that a particular method on a class was called, or what objects are loaded into memory, or the actual calls to particular functions.  If the tester wanted to ensure that emails could be properly sorted alphabetically by sender, for instance, a proper black-box test would be to click on the "Sort Alphabetically by Sender" button or menu option.  A black-box tester would not know that the program was written in Java or Haskell, or whether merge sort, quicksort, or bubble sort was used.  The tester _would_ care about what results from those decisions, though. The black-box tester focuses on whether or not the system under test operates as expected from the user's point of view, and is free from user-facing defects.
 
-Aspects of the system, such as what algorithm was used or what kind of memory allocation scheme is used, can be inferred by the black-box tester, but their concern is focused on the results of the system running.  For example, a black-box tester might notice that the system gets extremely slow when sorting a user's inbox when the user has thousands of messages.  The black-box tester may be able to infer that O(n^2) algorithm used for sorting, and file it as a defect.  However, they will not know about which algorithm was used, or any other features of the code causing the slowdown. 
+Aspects of the system, such as what algorithm was used or what kind of memory allocation scheme is used, can be inferred by the black-box tester, but their concern is focused on the results of the system running.  For example, a black-box tester might notice that the system gets extremely slow when sorting a user's inbox when the user has thousands of messages.  The black-box tester may be able to infer that an O(n^2) algorithm is used for sorting, and file it as a defect.  However, they will not know about which algorithm was used, or any other features of the code causing the slowdown.
 
-In regards to knowledge of the system under test, __white-box testing__ is the opposite of black-box testing.  In white-box testing, the tester has intimate knowledge of the codebase and tests code itself.  White-box tests can test individual functions of the code, often looking at much more granular aspects of the system than black-box tests.
+In regards to knowledge of the system under test, __white-box testing__ is the opposite of black-box testing.  In white-box testing, the tester has intimate knowledge of the codebase and directly tests the code itself.  White-box tests can test individual functions of the code, often looking at much more granular aspects of the system than black-box tests.
 
 Continuing the example of a desktop email application, white-box tests might check the actual `sort(EmailEntry[] emails)` function, sending in various values to see what the function returns or does.  White-box testers would care about what happened specifically if a zero-length array or null reference were passed in, whereas a black-box tester would only care about what happens if they attempt to sort an empty list of emails in the application itself.  White-box tests access the code as code---checking that return values from functions are correct, ensuring that objects are instantiated properly, etc.---instead of looking at the system from a user's perspective.
 
@@ -165,7 +165,7 @@ Let us assume that our grey-box tester is looking at testing the email sorting f
 
 Another way of categorizing tests is to group them into __static tests__ and __dynamic tests__.  In dynamic tests, the system under test is actually running; the code is executed.  Virtually every test we have discussed so far has been a dynamic test.  Even if we don't see the code itself, the computer is running it, doing something with the input provided, and eventually providing some output.
 
-A static test, by contrast, does not execute the code.  Rather, it attempts to test aspects of the system without actually running the system.  Examples of static testing would be running a __linter__ (which flag code smells, such as trying to use a variable before any value is assigned to it), or having somebody review the code manually without actually running it.
+A static test, by contrast, does not execute the code.  Rather, it attempts to test aspects of the system without actually running the system.  Examples of static testing would be running a __linter__ (which flags "code smells" such as trying to use a variable before any value is assigned to it), or having somebody review the code manually without actually running it.
 
 At first glance, the benefit of static testing may not be obvious.  After all, how can testing software without executing it provide any additional benefits?  It's as though you're deliberately removing yourself from the direct effects and looking at it from "one step away".  However, since static analysis looks directly at the code, instead of at the results of the code executing, it can help to find issues of quality in the code itself.
 

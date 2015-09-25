@@ -34,6 +34,8 @@ compiled_tex/%.tex:	text/%.md
 
 clean:
 	rm -rf compiled_tex/
+	# Remove temporary compilation directories, if they still exist
+	rm -rf tex2pdf*/
 
 .PHONY: pdf tex_files clean
 

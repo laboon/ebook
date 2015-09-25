@@ -8,7 +8,7 @@ Let's start with a few things that it is not:
 4. It's not something you do after all the programming is complete.
 5. It's really, REALLY not something you postpone until users start complaining.
 
-## What Is It?
+## What is It?
 
 At a high level, it's a way of providing an estimate of software quality to stakeholders (that is, people who have a direct interest in the system, such as customers, users, and managers).  While stakeholders may not directly care about the quality of software, they are interested in managing risk.  This risk can take many forms.  For customers, using software involves risks that they will lose data, risks that their operations will fail, risks that they will spend more money on the software than it will save them.  For internal stakeholders, risks may include not releasing a software system on time (or at all), losing customers by releasing a substandard product, or even facing a lawsuit.  By testing software, you can provide a better estimate of how much risk the stakeholders will have to take on.
 
@@ -63,15 +63,15 @@ It's important to keep in mind that not every problem found with a system is a d
 For example, consider a company creating a brand-new Tic-Tac-Toe implementation.  The requirements are as follows:
 
 1. The game board shall be three squares by three squares, for a total of nine contiguous squares.
-2. The first player shall be allowed to mark an X in any square.
-3. The second player shall then be allowed to mark an O in any open (that is, not already marked by an X or O) square, following the completion of the first move by the first player.
-4. Players shall then take turns placing X's and O's (by the first and second player, respectively) in open squares, until there are no open squares and no row, column or diagonal is filled in with the same marker (in which case the game is a draw) or an entire row, column, or diagonal is filled in with the same marker, in which case the owner of that marker (X for first player, O for second player) shall be the winner and the other player shall be the loser.
+2. The first player shall be allowed to mark an X in any one square.
+3. The second player shall then be allowed to mark an O in any one open (that is, not already marked by an X or O) square, following the completion of the first move by the first player.
+4. Players shall then take turns placing X's and O's (by the first and second player, respectively) in open squares, until there are no open squares and no row, column, or diagonal is filled in with the same marker, in which case the game is a draw; or until an entire row, column, or diagonal is filled in with the same marker, in which case the owner of that marker (X for first player, O for second player) shall be the winner and the other player shall be the loser.
 
-This sums up the game of Tic-Tac-Toe pretty nicely. Now let's consider an instance where the first player, who should only be able to mark squares with X's, can mark a square with an O.  This is a defect, because it violates Requirement 2.  Even if the game is perfectly playable (let's say that the second player's marks then become X's), it's still a defect because it violates a requirement.
+This sums up the game of Tic-Tac-Toe pretty nicely.  Now let's consider an instance where the first player, who should only be able to mark squares with X's, can mark a square with an O.  This is a defect, because it violates Requirement 2.  Even if the game is perfectly playable (let's say that the second player's marks then become X's), it's still a defect because it violates a requirement.
 
 Now let's say that after beta testing, a user says that the game is unfair, because it forces one player to use X's and that mark is ugly.  The user suggests changing the X's into W's, because W is a much more beautiful letter.  Is this a defect or enhancement?
 
-It's an __enhancement__, because the system met all of the requirements and operates normally.  The fact that a user does not like it does not make it a defect!  It may be very important to make this change, perhaps even more important than fixing actual defects.  Enhancements are not bad, or useless, or a lesser class of complaint.  They just require modifying the requirements of the system.
+It's an __enhancement__, because the system met all of the requirements and operates normally.  The fact that a user does not like it does not make it a defect!  It may be very important to make this change, perhaps even more important than fixing actual defects.  Enhancements are not bad, or useless, or a lesser class of complaint; they just involve modifying the existing requirements of the system.
 
 Another example of a defect would be if the Tic-Tac-Toe board's display disappears after a player entered a mark in the center square.  There are no specific requirements against this happening, but there are varying "implicit requirements" to programs, such as not crashing, maintaining a display consistent with internal state, being responsive, etc.  These implicit requirements will vary based on the type of system; for example, a video game may need to be responsive 99% of the time, but a batch-processed weather forecasting program (where data is fed in, and the results returned 30 minutes later) may only need to be "responsive" in the sense that an answer will eventually come out.
 
@@ -105,13 +105,13 @@ Once you've established what the user wants, however, there's still work to be d
 
 For this example, a few ideas of possible input to test that it works under a variety of cases:
 
-1. A string of all capitalized letters, e.g., `ABCDEFG`
-2. A string of already lowercase letters, e.g., `lmnop`
-3. A string of non-alphabetic characters, e.g. `78 &^% 0() []`
-4. A string of mixed capital and lowercase letters, e.g. `VwXyZ`
-5. A string of special characters such a carriage returns and nulls, e.g. `\r\n\0`
+1. A string of all capitalized letters, e.g., "`ABCDEFG`"
+2. A string of already lowercase letters, e.g., "`lmnop`"
+3. A string of non-alphabetic characters, e.g., "`78 &^% 0() []`"
+4. A string of mixed capital and lowercase letters, e.g., "`VwXyZ`"
+5. A string of special characters such as carriage returns and nulls, e.g., "`\r\n\0`"
 6. An empty string
-7. A very long string, say the text of a long book from Project Gutenberg
+7. A very long string; say, the text of a long book from Project Gutenberg
 8. Executable code
 9. Binary input
 10. Strings with EOF markers buried inside

@@ -8,11 +8,11 @@ What are unit tests?  In a nutshell, they test the smallest "units" of functiona
 
 Some examples of unit tests are checking that:
 
-1. A `.sort` method returns `[1, 2, 3]` when you pass in `[3, 2, 1]`
+1. A `.sort()` method returns `[1, 2, 3]` when you pass in `[3, 2, 1]`
 2. Passing in a null reference as an argument to a function throws an exception
-3. A `.formatNumber` method returns a properly formatted number
+3. A `.formatNumber()` method returns a properly formatted number
 4. Passing in a string to a function that takes an integer argument does not crash the program
-5. An object has `.send` and `.receive` methods
+5. An object has `.send()` and `.receive()` methods
 6. Constructing an object with default parameters sets the `default` attribute to true
 
 As you can see, these functions are all testing aspects of the software which are not directly visible to the end user.  A user is never going to be in the position of looking at a particular method or object.  They won't care about what methods an object has, or what value variables are set to, or what happens when a null pointer is passed in as an argument.  They will be able to see the _results_ of those things happening, of course, but they won't be able to specifically see the code that caused it.
@@ -23,11 +23,11 @@ Despite this, it's very important to understand unit testing, even if you are no
 
 We have seen earlier that the user will never directly see the aspects of the software that unit tests are testing.  What's the point, then?  Wouldn't it make more sense to just test everything from a user perspective?  That way, we'd only catch defects that impact the user.  We wouldn't have to waste time worrying about things at a low level.  It would probably be more time efficient if we didn't have to write unit tests, right?  Unfortunately, that's not the case.  There are numerous reasons for writing unit tests in addition to systems-level tests.  Note, though, that there are many kinds of defects which unit tests are not very good at catching, which is why unit testing should be only part of your testing strategy.
 
-1. __Problems are found earlier.__ Unit tests are normally written along with the code itself.  There's no need to wait for (usually longer-running) systems tests to run, or a manual test to be developed, or for a build to get into the hands of the testers.  The developer finds problems while still developing.  Like most things, the sooner a problem is found in a process, the cheaper, faster and easier it will be to fix.
+1. __Problems are found earlier.__ Unit tests are normally written along with the code itself.  There's no need to wait for (usually longer-running) systems tests to run, for a manual test to be developed, or for a build to get into the hands of the testers.  The developer finds problems while still developing.  Like most things, the sooner a problem is found in a process, the cheaper, faster, and easier it will be to fix.
 
 2. __Faster turnaround time.__ If a problem is found, there's no need for a build to occur, or to get into testers' hands.  The developer finds a problem when executing the unit test suite, and can immediately go back and start fixing it.  If the developer has to wait for a tea tester to look at the software, file a defect, and get assigned that defect, it may be quite a while before the developer actually fixes it.  In that time, he or she may have forgotten some implementation details, or at the very least will have probably swapped out some of the information and will require time for a context shift.  The faster a defect can be found, the faster it can be fixed.
 
-2. _Faster runtime than systems-level tests.__ A well-designed unit test will have few to no dependencies on other libraries, classes, files, etc.  This means that they can be extremely fast, with many tests taking a few milliseconds or less to execute.  By focusing on very specific parts of the code, that part of the code can be tested numerous times without the extra setup and execution time caused by other aspects of the system.
+2. __Faster runtime than systems-level tests.__ A well-designed unit test will have few to no dependencies on other libraries, classes, files, etc.  This means that they can be extremely fast, with many tests taking a few milliseconds or less to execute.  By focusing on very specific parts of the code, that part of the code can be tested numerous times without the extra setup and execution time caused by other aspects of the system.
 
 3. __Developers understand their code.__ Writing tests allows the developer to understand what the expected behavior of the function is.  It also allows the developer to add tests for things that he or she knows might be problematic for a specific function.  For example, a developer may know that a sort function may not sort numeric strings correctly, because certain flags need to be set to ensure that it treats them as numbers instead of strings (so that "1000" is bigger than "99", which it would not be if the function treated them as strings, since "9" is bigger than "1").  A black-box tester may not realize that this is what is happening "under the hood" and so not think to test this particular edge case.
 
@@ -39,7 +39,7 @@ We have seen earlier that the user will never directly see the aspects of the so
 
 ## An Example in Natural Language
 
-Before diving into the code, let's examine a unit test in natural language.  Let's say that we're implementing a Linked List class, and we would like to test equality.  When we make two lists that have the same data in them, they will show as equal, even though they are not the exact same Linked List in object.  How could we specify a test for this case?
+Before diving into the code, let's examine a unit test in natural language.  Let's say that we're implementing a `LinkedList` class, and we would like to test equality.  When we make two lists that have the same data in them, they will show as equal, even though they are not the exact same `LinkedList` object.  How could we specify a test for this case?
 
 "Create two linked lists, _a_ and _b_, each with data for the nodes equal to 1 &rarr; 2 &rarr; 3.  When they are compared with the equality operator, they should be seen as equal."
 
@@ -59,7 +59,7 @@ For this book, we will be using the JUnit unit testing framework.  JUnit (http:/
 
 Fuddy-duddy rants aside, the JUnit test framework allows us to create unit tests that have much of the "behind-the-scenes" work taken care of.  The developer can then focus on generating the test logic and understanding what is being tested, and instead of wasting time writing out conditionals printing "yay, test passed" or "boo, test failed".
 
-Although we will be covering JUnit, as it is a popular and easy-to-understand testing framework, it is far from the only unit testing framework in existence.  Among many other Java testing frameworks, there is TestNG, a more fully-featured framework; JTest, which includes the ability to automatically generate unit tests; and cucumber-jvm, which helps to write tests in a more human-readable format.  All of these have their benefits and drawbacks.  If you're interested in finding more potential unit testing frameworks, just do a web search for "unit testing frameworks _your language of choice_".
+Although we will be covering JUnit, as it is a popular and easy-to-understand testing framework, it is far from the only unit testing framework in existence.  Among many other Java testing frameworks, there are TestNG, a more fully-featured framework; JTest, which includes the ability to automatically generate unit tests; and cucumber-jvm, which helps to write tests in a more human-readable format.  All of these have their benefits and drawbacks.  If you're interested in finding more potential unit testing frameworks, just do a web search for "unit testing frameworks _your language of choice_".
 
 Keep in mind, though, that the particular implementation of testing framework you use isn't nearly as important as the concepts you learn and can apply.  When you are reading this chapter, worry less about the syntax, and more about understanding the concepts of unit testing.  Think about how aspects of unit testing are both similar and different to concepts that you have already learned in manual testing.
 
@@ -79,7 +79,7 @@ public class LinkedListTest {
         // Execution steps - run equality operator
         boolean result = a.equals(b);
 
-        // Postconditions: Expected behavior - assert that result is true
+        // Postconditions / Expected behavior - assert that result is true
         assertEquals(true, result);
     }
 
@@ -127,13 +127,13 @@ Additionally, there are several "not" variants of these assertions, such `assert
 ```java
 @Test
 public void testNoLispStuff() {
-    String poem = PoemGenerator.generate("19-th_Century_Romantic");
+    String poem = PoemGenerator.generate("19th_Century_Romantic");
     String firstWord = poem.split(" ");
     assertNotEquals("homoiconicity", firstWord);
 }
 ```
 
-When your poem starts with "Behold", "Darling", or "Limpid", this test will pass.  However, it will also pass if the poem starts with "%&*()_" or "java.lang.StackOverflowError".  Test should, in general, look for _positive_ behavior as opposed to the absence of _negative_ behavior.  Imagine testing that a "welcome" box does _not_ show up on a web page.  If the URL for the page returns a `500 Internal Server Error`, the test will still pass.  Think very carefully about failure cases when testing for the absence of a particular behavior.
+When your poem starts with "Behold", "Darling", or "Limpid", this test will pass.  However, it will also pass if the poem starts with "`%&*()_`" or "`java.lang.StackOverflowError`".  Test should, in general, look for _positive_ behavior as opposed to the absence of _negative_ behavior.  Imagine testing that a "welcome" box does _not_ show up on a web page.  If the URL for the page returns a `500 Internal Server Error`, the test will still pass.  Think very carefully about failure cases when testing for the absence of a particular behavior.
 
 ### Ensuring that Tests are Testing What You Expect
 
@@ -183,7 +183,7 @@ In all of these instances, the test should fail.  You can then rest a little eas
 
 Unit testing with the techniques we've learned up to this point will get us far, but won't get us all the way.  Just using the assertions and testing code that we've gone over, there's no way to check, for example, that a particular string will be printed out, or that a window will appear, or that another method is called... all very important things.  After all, if all methods did was return different values with different input, never displaying them to the user or interacting with the environment in any way, we'd have no way of knowing what was happening with our programs.  Our only output would be the generally increasing noisiness of the fan and heat of the CPU.
 
-Any behavior aside from returning a value is called a __side effect__.  Displaying a window, printing some text, connecting to another computer over the network---all of these are, from a terminological perspective, side effects of computation.  Even setting a variable or writing data to disk are side effects.  Functions and methods without side effects, that only receive input from parameters, are called __pure__.  Pure functions will always return the same result given the same input values, and may be called an infinite number of times without modifying any other aspects of the system.  Functions and methods with side effects, or that may present different results based on something other than values passed in as parameters, are __impure__.  Some languages, such as Haskell, make a strong differentiation between pure and impure functions, but Java does not.
+Any behavior aside from returning a value is called a __side effect__.  Displaying a window, printing some text, connecting to another computer over the network---all of these are, from a terminological perspective, side effects of computation.  Even setting a variable or writing data to disk are side effects.  Functions and methods without side effects that only receive input from parameters are called __pure__.  Pure functions will always return the same result given the same input values, and may be called an infinite number of times without modifying any other aspects of the system.  Functions and methods that _have_ side effects, or that may present different results based on something other than values passed in as parameters, are __impure__.  Some languages, such as Haskell, make a strong differentiation between pure and impure functions, but Java does not.
 
 An example of a pure function would be a mathematical function, such as the square root function, as in the following Java code:
 
@@ -195,16 +195,16 @@ public double getSquareRoot(double val) {
 
 Assuming no floating-point rounding errors or errors of that nature, the square root of 25 will always be 5, no matter what global variables are set, no matter what time or date it is, no matter what.  There are also no side effects from calling a square root function; it's not as though a window pops up every time your system calculates a square root.
 
-An example of an impure function would be printing out statistics from global variables, or any method which outputs something to the console or screen, or depends upon variables that are not specifically passed in.  In general, if you see a method with a void return, it's probably impure---a pure function with a void return type would be absolutely useless, since the returned value is its only way of communicating with the rest of the program.  Here is an example of an impure function, which allows users to go to a cat cafe (that is, a place where you can drink coffee and pet cats):
+An example of an impure function would be printing out statistics from global variables, or any method which outputs something to the console or screen, or depends upon variables that are not specifically passed in.  In general, if you see a method with a void return, it's probably impure---a pure function with a void return type would be absolutely useless, since the returned value is its only way of communicating with the rest of the program.  Here is an example of an impure function, which allows users to go to a cat café (that is, a place where you can drink coffee and pet cats):
 
 ```java
 public void goToCatCafe(CatCafe catCafe) {
-    System.out.println("Petting cats at a Cat Cafe!");
+    System.out.println("Petting cats at a Cat Café!");
     catCafe.haveFun();
 }
 ```
 
-Pure functions are usually easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against.   Additionally, they may depend upon or modify parts of the code outside of this particular method.  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with `_global` are defined and set external to the method:
+Pure functions are usually easier to test, because passing in the same values will always return the same value, and it's easy to test for input and output with standard unit test procedures.  Impure functions are more difficult, since you may not have a return value to assert against.  Additionally, they may depend upon or modify parts of the code outside of this particular method.  Here's an example of an impure method which would be very difficult to test, since its dependencies and output are not localized.  In the following code, all variables prefixed with `_global` are defined and set external to the method:
 
 ```java
 public void printAndSave() {
@@ -215,7 +215,7 @@ public void printAndSave() {
 }
 ```
 
-Contrast this to the square root function, where we know what exactly we're passing in.   Since those are the only values the function has access to, and the only value we care about is the one that is returned, it is easy to check the results of specific calculations.  In the `printAndSave()` method, though, there are dependencies on several external variables.  Running this code once may cause everything to work properly; running it again, when those variables are set to different values, may cause everything to fail.  It's difficult to know where all to check for the expected behavior.  It's writing something to a file, it looks like, but we'll need to figure out the file name and location based on the value of the variable at a particular point in time.  We'll also need to figure out what the `_globalUserId` is to determine what the right values are, and how it will be displayed by looking at the value of `_globalScreenSetting`.  In any of these cases, they could be set by a large number of external factors, and the values of the output depend on things that we may not have direct control over.  All of these come together to make testing impure methods a much more difficult task.
+Contrast this to the square root function, where we know what exactly we're passing in.  Since those are the only values the function has access to, and the only value we care about is the one that is returned, it is easy to check the results of specific calculations.  In the `printAndSave()` method, though, there are dependencies on several external variables.  Running this code once may cause everything to work properly; running it again, when those variables are set to different values, may cause everything to fail.  It's difficult to know where all to check for the expected behavior.  It's writing something to a file, it looks like, but we'll need to figure out the file name and location based on the value of the variable at a particular point in time.  We'll also need to figure out what the `_globalUserId` is to determine what the right values are, and how it will be displayed by looking at the value of `_globalScreenSetting`.  In any of these cases, they could be set by a large number of external factors, and the values of the output depend on things that we may not have direct control over.  All of these come together to make testing impure methods a much more difficult task.
 
 This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary if you want to do anything other than make your processor warm.  After all, printing anything to the screen is technically a side effect.  However, by keeping as many functions pure as possible, and limiting impure functions to certain areas, you will make testing the system much easier.  You can think of this process as "quarantining" the impure functions, so that you know where difficulties in testing might lie.
 
