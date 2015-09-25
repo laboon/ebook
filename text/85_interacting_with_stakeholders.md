@@ -114,7 +114,7 @@ Overall, though, the goal of using this template is to report the status of a sy
 
 Although useful for providing the status of a system, the red-yellow-green template is less useful when describing the status of a tester.  In many places of employment, a daily status report is common.  I found these very useful when dealing with a geographically distributed team, especially if there is little communication during the day (for example, because parts of the team are in different time zones).  Many agile development shops will have daily stand-ups to discuss status, and so an additional email is superfluous.  In workplaces that do not have these or similar meetings, I have found that a quick email at the end of the day will allow managers to understand what all of their employees are doing.  It also allows managers to know if there are any problems, and to provide a check to ensure that their employees are working efficiently and on the correct problems.
 
-### Example
+### Example: Daily Status Report For A Software Tester
 
 **DAILY STATUS: 7 AUG 2015**
 

@@ -291,7 +291,7 @@ If you are interested in more details about how to work with legacy code, there 
 
 One of the things I find so interesting about software engineering is that it is a field which is changing extremely quickly.  Many of the techniques that I discuss will probably seem as quaint as `GOTO` statements and line numbers do at the time of the writing of this book.  If this is the case, then please be gentle in your criticism half a century hence.
 
-## Conclusion
+## Final Thoughts On Writing Testable Code
 
 Software testing is not only about writing the tests, but writing code which will enable the tests to be written easily and well.  In today's world of software engineering, writing code and writing tests are not mutually exclusive.  Many---I would daresay venture to say "most"---developers write their own unit tests along with their code, and many testers will have to write code to automate their tests or develop testing tools.  Even if you do not write code in your role as a tester, you may be asked to review it or to determine how to have more comprehensive automated testing for a software system.
 

@@ -8,7 +8,7 @@ Let's start with a few things that it is not:
 4. It's not something you do after all the programming is complete.
 5. It's really, REALLY not something you postpone until users start complaining.
 
-## What is It?
+## A Definition of Software Testing
 
 At a high level, it's a way of providing an estimate of software quality to stakeholders (that is, people who have a direct interest in the system, such as customers, users, and managers).  While stakeholders may not directly care about the quality of software, they are interested in managing risk.  This risk can take many forms.  For customers, using software involves risks that they will lose data, risks that their operations will fail, risks that they will spend more money on the software than it will save them.  For internal stakeholders, risks may include not releasing a software system on time (or at all), losing customers by releasing a substandard product, or even facing a lawsuit.  By testing software, you can provide a better estimate of how much risk the stakeholders will have to take on.
 
