@@ -92,7 +92,7 @@ Remember that once you have found a defect, that somebody is probably going to t
 When someone brings a problem to a developer to be fixed, the order of operations is as follows:
 
 1. Developer attempts to replicate defect.
-2. If developer cannot replicate defect, will write on defect report that "it works on my machine" and stop working on defect.
+2. If developer cannot replicate defect, they will write on the defect report that "it works on my machine" and stop working on defect.
 3. Otherwise, the developer will write some code hoping to fix it.
 4. Developer replicates original behavior that caused defect.
 5. If defect is fixed, write on defect report that it has been fixed.  Otherwise, go to step 3.
