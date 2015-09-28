@@ -12,7 +12,7 @@ A defect is any sort of error in a program which causes the system under test to
 
 The most obvious kind of defect is a system failing to meet requirements.  If the requirements state that the program should do something, and the program does not do it, then that is a defect.  As discussed in the chapter on requirements, though, anything written in natural language is bound to have some ambiguities.  The developer who implemented the feature may have had a different understanding of what the requirement actually meant than the tester.
 
-An example of a system returning an incorrect result would be a spreadsheet program showing that the value of 2 + 3 is 23, or a drawing program where every time the user clicks on the color red, the drawing tool starts drawing in blue.  These may or may not be specified by the requirements (and thus may or may not overlap with the second kind of defect).
+An example of a system returning an incorrect result would be a spreadsheet program showing that the value of 2 + 3 is 23, or a drawing program where every time the user clicks on the color red, the drawing tool starts drawing in blue.  These may or may not be specified by the requirements (and thus may or may not overlap with the first kind of defect).
 
 The last kind of defect is one common to all programs---a program should not cease execution ("die") unexpectedly.  That is, if the intent of the user or the original writer or installer of the program is that the system should be running at some point in time, that program should be running at that point in time.
 
