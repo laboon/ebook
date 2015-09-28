@@ -165,7 +165,7 @@ Once again, though, computer programs don't consist solely of mathematical funct
 
 ### Postconditions
 
-Any side effects or other state of the system that are either caused by the functionality, or should be in effect some other way after the execution steps have been completed, but are not output values,  are __postconditions__.  Postconditions may be directly caused by the functionality under test, such as a warning message being displayed, or some data written to the database, or a global variable being set.  However, a postcondition is any condition which needs to be in place after the execution steps are complete, and may not be directly impacted by the functionality.  For example, a postcondition may be that a global variable was set, or that the system is still running, or that a thread was not killed.
+A __postcondition__ is any condition which needs to be in place after the execution steps are complete but is not an output value. Postconditions may not be directly impacted by the functionality, but may be directly caused by the functionality under test. A warning message being displayed, some data written to the database, a global variable being set, the system is still running, or that a thread was not killed are all examples of postconditions.
 
 ### Expected Behavior versus Observed Behavior
 
