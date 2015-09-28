@@ -1,6 +1,6 @@
 # Defects
 
-We've spent quite a bit of time up to this point learning how to find defects.  This makes sense, since one of the key goals of testing is to do exactly that.  However, what we have not yet done is to define what a defect is and to discuss what to do about them once they are found.
+We've spent quite a bit of time up to this point learning how to find defects.  This makes sense, since one of the key goals of testing is to do exactly that.  However, we have not yet completely defined what a defect is or discussed what to do about them once they are found.
 
 ## What is a Defect?
 
