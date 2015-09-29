@@ -169,7 +169,7 @@ Any side effects or other state of the system that are either caused by the func
 
 ### Expected Behavior versus Observed Behavior
 
-Although we've discussed the difference between output values and postconditions at length, the fact is that in many cases the difference doesn't really matter, or is too academic to make much fuss about.  A similar argument could be made on preconditions and input values.
+Although we've discussed the difference between output values and postconditions, the fact is that in many cases the difference doesn't really matter, or is too academic to make much fuss about.  A similar argument could be made on preconditions and input values.
 
 The principle idea to keep in mind when writing a test case is that the point of the test case is that:
 
