@@ -63,7 +63,7 @@ While quality does not only mean "reducing the number of defects", it is certain
 
 Allowing a proper amount of time for testing, development, and other aspects of the software development life cycle can also improve quality.  Very few pieces of software are written perfectly, and software written under a crushing deadline may not be of acceptable quality.  By providing adequate time and resources for engineers to develop the software, the level of quality will generally improve.
 
-The choice of language, framework, and design of the program can also make a big difference in the quality of the program.  While every language has its partisans, there is definitely a reason that most web applications are not written in Assembly language, or that most embedded real-time software is not written with Ruby.  Different languages, libraries, etc. have different benefits, and using one that is appropriate for the system you are designing will pay dividends in terms of quality.
+The choice of language, framework, and design of the program can also make a big difference in the quality of the program.  While every language has its partisans, there is definitely a reason that most web applications are not written in assembly language, or that most embedded real-time software is not written with Ruby.  Different languages, libraries, etc. have different benefits, and using one that is appropriate for the system you are designing will pay dividends in terms of quality.
 
 While this book focuses on testing, it should be recognized that it is only one part of producing quality software.  Quality on a modern software project is the responsibility of everybody on the team, not just the testers.
 
