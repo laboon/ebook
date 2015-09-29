@@ -93,7 +93,7 @@ public String lowerify(String s)
 
 The customer insists that there is nothing else that you need to know to start testing.  If you were tasked with testing this, though, what kinds of questions would you ask in order to develop a testing plan?  In other words, what other kinds of requirements would you try to elicit from the customer?
 
-1. What kind of character encoding will this be in---Unicode, ASCII, EBCDIC, something else?
+1. What kind of character encoding will this be in---UTF-8, ASCII, EBCDIC, something else?
 2. What's the expected maximum character length?  Something that works well for a few words may not work so well if it's fed in ten terabytes of text.
 3. What is the expected behavior if the input text is in a language other than English?  Especially, what if it's a language that doesn't have the concept of uppercase and lowercase letters?
 4. What should the program do if a Control-C or other cancel command occurs midway through?
