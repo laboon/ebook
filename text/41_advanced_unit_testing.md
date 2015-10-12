@@ -191,7 +191,7 @@ public class DogTest {
     public void testEatDinner() {
         Dog d = new Dog();
         DogFood mockedDogFood = Mockito.mock(DogFood.class);
-        mockedDogFood.when(mockedDogFood.eat()).thenReturn(13);
+        when(mockedDogFood.eat()).thenReturn(13);
         int returnVal = d.eatDinner(mockedDogFood);
         assertEquals(13, returnVal);
     }
@@ -220,7 +220,7 @@ public void testHaveFunAtDuckPond() {
     Person p = new Person();
     DuckPond dp = Mockito.mock(DuckPond.class);
     p.haveFunAtDuckPond();
-    Mockito.verify(duckPond.haveFun(), times(1));
+    verify(duckPond.haveFun(), times(1));
 
 }
 ```
