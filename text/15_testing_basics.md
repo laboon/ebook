@@ -52,7 +52,7 @@ There's an axiom in testing that defects are more likely to be found near the bo
 1. [MININT, MININT + 1, ... -2, -1] &rarr; For input x, outputs -(x)
 2. [0, 1, ... MAXINT - 1, MAXINT] &rarr; For input x, outputs x
 
-The boundary values are 0 and 1; they are the dividing line between the two equivalence classes.  Every other value (e.g., 7, 62, -190) is an interior value; it is in the "middle" of an equivalence class.
+The boundary values are -1 and 0; they are the dividing line between the two equivalence classes.  Every other value (e.g., 7, 62, -190) is an interior value; it is in the "middle" of an equivalence class.
 
 Now that we understand what boundary and interior values are, one might ask, why is it the case that the boundaries are more likely to be defective?  The reason is that it is much more likely for code to have an error near a boundary because equivalence classes are so close.  Let's consider an example of the absolute value function:
 
