@@ -141,6 +141,32 @@ When your poem starts with "Behold", "Darling", or "Limpid", this test will pass
 
 One of the simplest ways to do this is to first ensure that your tests fail!  While we'll go into detail on a development strategy that always calls for tests to fail first in the chapter on Test Driven Development, a quick change to a test can often prove that it's not just passing all the time because you're mistakenly asserting that `true == true`, for example.
 
+Perhaps even worse, you may be testing something entirely different than what you think you are testing.  For example, let's assume that you are testing to ensure that negative values work in your brand-new absoluteValue() method.  You write a test:
+
+```java
+@Test
+public void testAbsoluteValueNegatives() {
+   int result = absoluteValue(7);
+   assertEquals(result, 7);
+}
+```
+
+This is a perfect valid and passing test.  However, due to a typo, it's not actually testing anything about negative numbers.  There is nothing which will check that you entered what you thought you entered; the computer always does what it is told, not what you _meant_ to tell it.
+
+You also need to ensure that you understand what the method is supposed to do, or you may be testing for behavior that is expected by you (as a developer/tester), but it is not expected by the user (or the requirements of the software).  For example, let us consider the following test, which is a rewritten version of the one above.
+
+```java
+@Test
+public void testAbsoluteValueNegatives() {
+   int result = absoluteValue(-7);
+   assertEquals(result, -7);
+}
+```
+
+If you don't understand what should happen when the method accepts a negative value (in this case, that it should return the value without the negative sign), then you'll write a perfectly incorrect method which returns a perfectly incorrect value, but your tests will all pass because you are checking to see if it will return an incorrect value.  Remember that tests are not magical; they need to be told what the expected value is.  If you are expecting the wrong value, then when the observed value matches that wrong value, the test will pass.  Tests are not infallible.  You still need to use your own wits to ensure that they are checking everything correctly.
+
+In some cases, you may not be testing anything at all!  A JUnit test only fails if an assertion fails.  If you forget to add an assertion, then the test will always pass, no matter what sort of execution steps you add to it.
+
 In the linked list equality test above, what could you change to ensure that your tests are testing what you think they are testing?
 
 What if you changed the first linked list, _a_, to contain the data 1 &rarr; 2?
@@ -179,7 +205,9 @@ Or you changed the equality check to an _inequality_ check?
     }
 ```
 
-In all of these instances, the test should fail.  You can then rest a little easier, knowing that your test isn't tautological (always passing, no matter what the code does).
+In all of these instances, the test should fail.  You can then rest a little easier, knowing that your test isn't tautological (always passing, no matter what the code does) or testing something other than what you think it is testing.
+
+You want your test to fail at first, so you know that when it passes, you have actually fixed the issue which you are testing.  There's still no guarantee that your changes fixed it - after all, your assertion itself may be incorrect! - but it is much more likely.
 
 ## Problems With Unit Testing
 
