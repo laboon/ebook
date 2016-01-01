@@ -130,6 +130,8 @@ __Failed__: A status for a test case in a test run.  It indicates that, while th
 
 __Failure case__: A kind of test where the expected behavior of the system is to fail in a certain way.  For example, sending in a negative number to a square root function which does not support complex numbers may be expected to throw an exception. Compare to __success case__.
 
+__Fake__: A kind of __test double__ in which the behavior of the double is handled by the object itself, as opposed to being referenced by stub methods.  These act as simpler, faster versions of the actual object, in order to make tests run faster or reduce dependencies.
+
 __Falsifying the invariant__: Showing an example where an __invariant__ does not hold, such as an invariant for arithmetic method that adding two positive integers should always result in a number greater than one of the numbers, and showing that 1 + 1 = 0.
 
 __Feasible__: In regard to requirements, possible to test with a realistic timeframe and allocation of resources.

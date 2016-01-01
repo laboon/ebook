@@ -227,6 +227,62 @@ public void testHaveFunAtDuckPond() {
 
 Note, in this case, that there is no traditional assertion.  The test case ends with the execution steps, viz., calling `.haveFunAtDuckPond()`.  The assertion is actually set when you verify that `.haveFun()` will be called one time on the mocked `DuckPond` object.
 
+## Fakes
+
+Sometimes, you need to want to have a test which depends on an object, and will require complex or non-performant behavior.  In this case, you can use a __fake__.  A fake is a special kind of test double which acts similarly to the regular object.  However, it is written to be a part of the test, meaning that it runs faster and simpler.  For example, you may remove any parts of the code which write to disk (always a slowdown when writing tests).  You may have it perform a simpler calculation than a very time-consuming one.  You may reduce that object's dependencies on other objects.
+
+Fakes require more work to create than a simple test double, since they are a "lite" version of an object instead of simply specifying its external behavior.  However, this allows you to perform more intricate tests than the relatively simple ones possible with test doubles.  Suppose your DuckPond class is as follows:
+
+```java
+public class DuckPond extends Pond {
+
+   private int _funLevel = 0;
+
+   public void haveFun() {
+      _funLevel++;
+   }
+
+   public void haveUltraFun() {
+      int funMultiplier = super.retrieveUltraLevelFromDatabase();
+      _funLevel += funMultiplier * _funLevel;
+   }
+
+   public int getFunLevel() {
+      return _funLevel;
+   }
+   
+}
+```
+
+Let's set aside any issues one might have about how this code is written, and how it might be refactored to make it more testable.  In this case, calling haveUltraFun() requires querying the database, which is called from a method from DuckPond's superclass.  However, this also modifies the _funLevel variable, based on the value it received from the `retrieveUltraLevelFromDatabase()` call.  The value of the variable `_funLevel` is going to depend both on that call to the database as well as how many times `haveFun()` and `haveUltraFun()` have been called.  While it would be possible to just make a test double that returns specific values, adding in this behavior for a test which called multiple methods on a DuckPond object might add up to lots of extra work.  Even worse, this work might have to be replicated in multiple tests.
+
+Using DuckPond as-is also means that every call to `haveUltraFun()` will result in a dramatic slowdown in tests.  Remember that calls to the disk or network, since they make take an order of magnitude or longer in time than the test would take otherwise, are discouraged in unit testing.  
+
+To get around this performance issue, let's create a fake version of the object, which we can use in our tests later.  This fake version will be a "stripped-down" version of DuckPond, but will keep the general behavior.
+
+```java
+public class FakeDuckPond extends Pond {
+
+   private int _funLevel = 0;
+
+   public void haveFun() {
+      _funLevel++;
+   }
+
+   public void haveUltraFun() {
+      // REMOVED DATABASE CALL
+      _funLevel += 5 * _funLevel;
+   }
+
+   public int getFunLevel() {
+      return _funLevel;
+   }
+   
+}
+```
+
+We are now assuming that the `funMultiplier` variable retrieved from the database will always be 5.  This will both speed up tests (by removing the database read) and simplify calculations (as well as help us understand what the expected behavior should be).  However, unlike with a traditional test double or mock, we don't have to specify what the behavior should be externally.  The class itself will determine the (simplified) behavior.
+
 ## Setup and Teardown
 
 Oftentimes, there are particular things that you want the tests for a particular class to do before each of the tests start, and after each of the tests end.  For example, you may set up a mocked database connection, and want to use it as a precondition for all of the tests, instead of repeating the same line of code to create it in each individual test case.  JUnit provides annotations for creating `setUp()` and `tearDown()` methods for cases such as this.  Specifically, you can add an `@Before` annotation for any methods you want to have run before each individual test case, and an `@After` annotation for any methods you want to run after.  Although you could theoretically name these methods something other than `setUp()` and `tearDown()`, these are common terms that you will see very often.
