@@ -168,7 +168,7 @@ Similarly, a tester should stand up when the situation demands it.  If you have 
 
 This is a tough line to walk, and there are no easy answers.  If you wait until you have determined that there are absolutely no defects in the software being produced which might cause an issue, then the software will never be released.  If you act solely as a dispassionate observer, drily noting in a footnote that the product could easily cause loss of life, then you are not acting in an ethical manner - even if you followed the letter of the rules.  
 
-What you cannot do is ignore the ethical quandaries which come with being a software tester.  Aside from facing mundane software development ethical issues - such as entering time correctly, not falsifying test reports, etc. - you will, in all likelihood, encounter these less tractable issues.  I recommend you at least think about developing a code of ethics before you encounter such situations in reality.
+What you cannot do is ignore the ethical quandaries which come with being a software tester.  Aside from facing mundane software development ethical issues - such as entering time correctly, not falsifying test reports, etc. - you will, in all likelihood, encounter these less tractable issues.  I recommend you at least think about what your code of ethics is before you encounter such situations in reality.
 
 ## Respect
 
