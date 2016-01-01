@@ -12,7 +12,7 @@ Testing software is a big part of the software development process, and useful n
 
 ## What This Book Covers
 
-This book is intended to provide a relatively comprehensive overview of software testing.  By the end, my expectation is that the reader will have all the skills necessary to enter the workforce as a quality analyst, although I feel that managers, developers, and others involved in the software development process may also find it very useful.
+This book is intended to provide a relatively comprehensive overview of software testing.  By the end, my expectation is that the reader will have all the skills necessary to enter the workforce in the quality assurance, although I feel that managers, developers, and others involved in the software development process may also find it very useful.
 
 To that end, the book starts with a generalized overview of the field---what is software testing, anyway?  It's difficult to study something without understanding what it is!  We'll then move on to going over some of the theory and terminology used by those in the software testing industry.  I'll let you in on a little secret---this is probably the least interesting part of the book.  However, we really should be speaking the same language when we talk about concepts.  It would be difficult to explain concepts in plumbing if I were forced to avoid using the word "pipe" for fear of someone not understanding it.
 
