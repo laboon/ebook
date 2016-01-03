@@ -6,27 +6,27 @@ Now that you understand requirements, and the basic theory and terminology of so
 
 A test plan is, at its core, simply a collection of __test cases__.  Test cases are the individual tests that make up a test plan.  Let's assume that you are creating a test plan for testing a new app that tells you if a cup of coffee is too hot to drink.  Our hypothetical app marketers really like cold coffee, and decided not to implement any functionality about reporting the coffee temperature being too low.  There are two requirements:
 
-* __FUN-COFFEE-TOO-HOT:__ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
-* __FUN-COFFEE-JUST-RIGHT:__ If the coffee temperature is measured at less than 175 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
+* _FUN-COFFEE-TOO-HOT:_ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
+* _FUN-COFFEE-JUST-RIGHT:_ If the coffee temperature is measured at less than 175 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
 
 How would we develop a test plan for our coffee temperature app?  There is one input---the coffee temperature measured---and two possible outputs, one of the set `["TOO HOT", "JUST RIGHT"]`.  We can ignore for now that I think most people would find coffee at 45 degrees Fahrenheit to definitely not be "JUST RIGHT".
 
 A single input value and one of two possible output values is a simple case of equivalence class partitioning, so let's partition up those equivalence classes.
 
-* __JUST-RIGHT:__ [-INF, -INF + 1, ... 173, 174] &rarr; `JUST RIGHT`
-* __TOO-HOT:__    [175, 176, ... INF - 1, INF] &rarr; `TOO HOT`
+* _JUST-RIGHT:_ [-INF, -INF + 1, ... 173, 174] &rarr; `JUST RIGHT`
+* _TOO-HOT:_    [175, 176, ... INF - 1, INF] &rarr; `TOO HOT`
 
 Our boundary values are 174 and 175, as they mark the division between the two equivalence classes.  Let's also use two interior values, 135 for the JUST-RIGHT class and 200 for the TOO-HOT class.  For this particular sample test plan, we will ignore the implicit boundary values of infinity and negative infinity (or the system's concept of these, MAXINT and MININT).
 
 Using these values, and a general idea of what we would like to test, we can start to create test cases.  Although different tools and companies will have different templates for entering test cases, this is a relatively standard one that can be applied or modified for most software projects:
 
-1. __Identifier:__ An identifier, such as "16", "DB-7", or "DATABASE-TABLE-DROP-TEST", which uniquely identifies the test case.
-2. __Test Case:__ A description of the test case and what it is testing.
-3. __Preconditions:__ Any preconditions for the state of the system or world before the test begins.
-4. __Input Values:__ Any values input directly to the test.
-5. __Execution Steps:__ The actual steps of the test, to be executed by the tester.
-6. __Output Values:__ Any values output directly by the test.
-7. __Postconditions:__ Any postconditions of the state of the system or world which should hold true after the test has been executed.
+1. __Identifier__: An identifier, such as "16", "DB-7", or "DATABASE-TABLE-DROP-TEST", which uniquely identifies the test case.
+2. __Test Case__: A description of the test case and what it is testing.
+3. __Preconditions__: Any preconditions for the state of the system or world before the test begins.
+4. __Input Values__: Any values input directly to the test.
+5. __Execution Steps__: The actual steps of the test, to be executed by the tester.
+6. __Output Values__: Any values output directly by the test.
+7. __Postconditions__: Any postconditions of the state of the system or world which should hold true after the test has been executed.
 
 Don't worry if you still have some questions on these definitions.  In the following sections, we will go more deeply into all of them and provide examples.
 
@@ -40,7 +40,7 @@ Test plans are usually not as large as all of the requirements for a program; on
 
 In this section, a summary of what the test case is supposed to test, and how, is provided.  In this way, someone reviewing the test case can tell at a glance what the test is for, and why it is included.  It is usually possible to determine this by a careful examination of the preconditions, input values, and execution steps, but it is usually easier for a human to just read what the test is supposed to do.
 
-__Examples:__
+_Examples:_
 
 1. Ensure that on-sale items can be added to the cart and will have their price automatically reduced.
 2. Ensure that passing a non-numeric string will result in the square root function throwing an `InvalidNumber` exception.
@@ -308,10 +308,10 @@ A traceability matrix is simply a way of determining which requirements match up
 
 As an example, let's return to the requirements specification for the coffee temperature sensing application.  You will note that the requirements list has changed a bit---this is not uncommon when developing software!
 
-* __FUN-COFFEE-TOO-HOT.__ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
-* __FUN-COFFEE-JUST-RIGHT.__ If the coffee temperature is measured at less than 175 degrees Fahrenheit, but more than 130 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
-* __FUN-COFFEE-TOO-COLD.__ If the coffee temperature is measured at 130 degrees Fahrenheit or less, the app shall display the `TOO COLD` message.
-* __FUN-TEA-ERROR.__ If the liquid being measured is actually tea, the app shall display the `SORRY, THIS APP DOES NOT SUPPORT TEA` message.
+* _FUN-COFFEE-TOO-HOT._ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
+* _FUN-COFFEE-JUST-RIGHT._ If the coffee temperature is measured at less than 175 degrees Fahrenheit, but more than 130 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
+* _FUN-COFFEE-TOO-COLD._ If the coffee temperature is measured at 130 degrees Fahrenheit or less, the app shall display the `TOO COLD` message.
+* _FUN-TEA-ERROR._ If the liquid being measured is actually tea, the app shall display the `SORRY, THIS APP DOES NOT SUPPORT TEA` message.
 
 We write down the identifiers of the requirements, and leave a space for the test plan identifiers:
 
@@ -333,7 +333,7 @@ FUN-TEA-ERROR: 8
 
 It's easy to see that for each requirement, there is at least one test covering it.  If there were another requirement, say,
 
-* __FUN-COFFEE-FROZEN.__ If the coffee is in a solid and not a liquid state, then the app shall display `THIS COFFEE CAN ONLY BE EATEN, NOT DRUNK` message.
+* _FUN-COFFEE-FROZEN._ If the coffee is in a solid and not a liquid state, then the app shall display `THIS COFFEE CAN ONLY BE EATEN, NOT DRUNK` message.
 
 and we tried to create a traceability matrix, it would be very easy to see that there were no tests checking for this requirement:
 

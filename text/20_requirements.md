@@ -15,10 +15,10 @@ In our tire air pressure example in the chapter on testing basics, we had some r
 
 These "informal requirements" show what should happen to the system under certain input values.  The classic way of writing requirements is to say that the system "shall" do something.  When testing, you can mentally translate the "shall" to a "must".  That is, if the requirement says that the system shall do something, then the system must do it in order for you as a tester to say that the system has met the requirement.  Requirements are written to be exact and should avoid ambiguity at almost all costs.  Let us translate these informal requirements to something a little more in line with how requirements are written in the real world.
 
-* __REQ-1.__ If an air pressure value of -1 or lower is received by the display sensor, then the `ERROR` light _shall_ be enabled, and all other lights _shall_ be disabled.
-* __REQ-2.__ If an air pressure value between 0 and 20 (inclusive) is received by the display sensor, then the `UNDERPRESSURE` light _shall_ be enabled, and all other lights _shall_ be disabled.
-* __REQ-3.__ If an air pressure value between 21 and 35 (inclusive) is received by the display sensor, then all lights _shall_ be disabled.
-* __REQ-4.__ If an air pressure value of 36 or greater is received by the display sensor, then the `OVERPRESSURE` light _shall_ be enabled, and all other lights _shall_ be disabled.
+* _REQ-1._ If an air pressure value of -1 or lower is received by the display sensor, then the `ERROR` light _shall_ be enabled, and all other lights _shall_ be disabled.
+* _REQ-2._ If an air pressure value between 0 and 20 (inclusive) is received by the display sensor, then the `UNDERPRESSURE` light _shall_ be enabled, and all other lights _shall_ be disabled.
+* _REQ-3._ If an air pressure value between 21 and 35 (inclusive) is received by the display sensor, then all lights _shall_ be disabled.
+* _REQ-4._ If an air pressure value of 36 or greater is received by the display sensor, then the `OVERPRESSURE` light _shall_ be enabled, and all other lights _shall_ be disabled.
 
 Note how much more specific this has become compared to our informal requirements listed above.  Requirements engineering is a true engineering discipline, and it can be very difficult to specify a large and/or complex system.  Note also how much denser and how much more text is created in an attempt to remove ambiguity.  It will definitely take much more time to write down formal requirements than to scribble down a general outline of the program on a napkin.  Changes are also much more difficult to make.  The trade-off may or may not be worth it, depending on the domain and the system under test.  Ensuring that avionics software controls the plane correctly under all conditions would probably warrant a very thorough and detailed __requirements specification__ (a listing of all the requirements of a system), whereas our social media site mentioned above may not.  Rigidity can provide a very good definition of a system, but at the price of flexibility.
 
@@ -29,23 +29,23 @@ On a side note, if you ever wonder why lawyers are paid so much, this is similar
 
 In both the law and in software testing, it's possible to "go down a rabbit hole" trying to determine exactly what the text means.  The English language is full of ambiguities.  For example, let's take a perfectly reasonable requirement which can be read multiple ways:
 
-* __UNCLEARREQ-1.__ The primary alarm system shall sound if it detects an intruder with a visual display unit.
+* _UNCLEARREQ-1._ The primary alarm system shall sound if it detects an intruder with a visual display unit.
 
 Does this mean that the primary alarm should sound if the intruder is holding a visual display unit?  Alternatively, does it mean that if the intruder is detected by using the system's visual display unit, the primary alarm should sound?  Be sure to avoid as much ambiguity as possible when writing requirements.  Although testers don't often write requirements themselves, they are often asked to review them.  Ensuring that you understand a requirement and that the requirement is clearly testable will save time and headaches later on in the development process.
 
 When writing requirements, it's important to keep in mind that requirements state what the system should do, not how it should do it.  In other words, it should not specify the implementation details, but only how that system or subsystem interacts and interfaces with the world around it.  This may be easier to understand with some examples from a new interstellar spaceship game:
 
-__GOOD REQUIREMENTS:__
+_GOOD REQUIREMENTS:_
 
-* __GOOD-REQ-1.__ When the user presses the "velocity" button, the current velocity of the spaceship shall be displayed on the main screen.
-* __GOOD-REQ-2.__ The system shall be able to support a velocity of 0.8c (80% of the speed of light) for at least three hundred days (7,200 hours) without requiring maintenance.
-* __GOOD-REQ-3.__ The system shall store the last 100 coordinates of locations that it has sampled.
+* _GOOD-REQ-1._ When the user presses the "velocity" button, the current velocity of the spaceship shall be displayed on the main screen.
+* _GOOD-REQ-2._ The system shall be able to support a velocity of 0.8c (80% of the speed of light) for at least three hundred days (7,200 hours) without requiring maintenance.
+* _GOOD-REQ-3._ The system shall store the last 100 coordinates of locations that it has sampled.
 
-__BAD REQUIREMENTS:__
+_BAD REQUIREMENTS:_
 
-* __BAD-REQ-1.__ When the user presses the "velocity" button, the system shall access memory location 0x0894BC40 and display it on the main screen.
-* __BAD-REQ-2.__ The system shall use a simulated antimatter-matter reaction in order to propel it to 0.8c.
-* __BAD-REQ-3.__ The system shall use a relational database to store the last 100 coordinates it has sampled.
+* _BAD-REQ-1._ When the user presses the "velocity" button, the system shall access memory location 0x0894BC40 and display it on the main screen.
+* _BAD-REQ-2._ The system shall use a simulated antimatter-matter reaction in order to propel it to 0.8c.
+* _BAD-REQ-3._ The system shall use a relational database to store the last 100 coordinates it has sampled.
 
 Note that the bad requirements all state _how_ something should be done, not _what_ the system needs to do.  What happens if the memory layout on the system is changed?  BAD-REQ-1 would have to be changed, as well as any other requirements that may have depended on data being in a specific memory location.  Why is it important to use an antimatter-matter reactor, specifically?  After all, the key thing is that the spaceship can move at a specific velocity.  Finally, why is it important that a relational database is used to store coordinates?  From the user's perspective, all that they care about is that the coordinates are stored.
 
@@ -78,8 +78,8 @@ The requirements should be __consistent__.  That is, they should not contradict 
 
 Here is an example of a group of requirements that is not internally consistent:
 
-* __INCONSISTENT-REQ-1.__ The system shall display "WARNING: `OVERPRESSURE`" on the console whenever the pressure is 100 PSI or greater.
-* __INCONSISTENT-REQ-2.__ The system shall turn off the console and display no further information as long as the pressure is less than 200 PSI.
+* _INCONSISTENT-REQ-1._ The system shall display "WARNING: `OVERPRESSURE`" on the console whenever the pressure is 100 PSI or greater.
+* _INCONSISTENT-REQ-2._ The system shall turn off the console and display no further information as long as the pressure is less than 200 PSI.
 
 What should the system do if the pressure is between 100 and 200 PSI?  You can use equivalence class partitioning here to determine that the requirements are not internally consistent.
 
@@ -87,20 +87,20 @@ The requirements should be __unambiguous__.  That is, they should specify things
 
 That being said, be careful not to paint yourself into a corner with too-restrictive requirements.  If your requirements state that a particular page needs to be a certain number of pixels, you may have difficulties converting to mobile devices, for example.  However, requirements certainly should not be of the form:
 
-* __AMBIGUOUS-REQ-1.__ The system shall do all of the shutdown stuff whenever the "shutdown" button is pressed.
+* _AMBIGUOUS-REQ-1._ The system shall do all of the shutdown stuff whenever the "shutdown" button is pressed.
 
 What is the "shutdown stuff"?  Speaking to our friends, or amongst co-workers, we may use relatively ambiguous terms like that because the human brain is remarkably good at filling in ambiguity.  However, ambiguous requirements can lead to different developers or other stakeholders interpreting them in different ways.  The classic example of this is the Mars Climate Orbiter mishap, where one group of software engineers used Imperial measures and another group used metric measures.  Both groups thought the correct way to return results was obvious, but they came up with different implementations.
 
 If at all possible, the requirements should be __quantitative__ (as opposed to qualitative).  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.
 
-* __QUALITATIVE-REQ-1.__ The system shall return results extremely quickly.
+* _QUALITATIVE-REQ-1._ The system shall return results extremely quickly.
 
 What do we mean by this?  It's impossible to test without defining what we mean by "extremely quickly", or what kind of results need to be returned quickly.
 
 Finally, some common sense needs to be applied to the requirements writing.  It's possible to write a requirement which may be theoretically possible to test, but for various reasons, impossible to test in the real world.  A requirement like this is not __feasible__ to test.  Let's say that we have the following requirements for testing our air pressure sensor:
 
-* __INFEASIBLE-REQ-1.__ The system shall be able to endure pressures of up to 9.5 x 10^11 pounds per square inch.
-* __INFEASIBLE-REQ-2.__ Under normal operating procedures (defined elsewhere), the system shall remain usable for two hundred years of continuous use.
+* _INFEASIBLE-REQ-1._ The system shall be able to endure pressures of up to 9.5 x 10^11 pounds per square inch.
+* _INFEASIBLE-REQ-2._ Under normal operating procedures (defined elsewhere), the system shall remain usable for two hundred years of continuous use.
 
 Both of these requirements are, in fact, possible to test.  In order to test the first, simply place the system at ground zero of a relatively powerful thermonuclear explosion, and determine if system quality degrades after detonation.  The second requirement is even easier to meet; simply drive around with the pressure sensor for two hundred years.  Since the human lifespan is noticeably shorter than that, you'll probably need a few generations of testers.  Whether you make "pressure sensor tester" a hereditary position, or use a "master/apprentice" style system, is entirely up to you.
 
@@ -132,7 +132,7 @@ One of the key ways to clearly define non-functional requirements is to quantify
 
 Back in the days of yore, when primitive software engineers chiseled binary trees with stone axes, there was only one way to write requirements.  It was the way that their forefathers had written requirements, and their forefathers before them, unto the dawn of civilization.  This sacred method of requirements naming was as follows:
 
-__REQUIREMENTS:__
+_REQUIREMENTS:_
 
 1. The system shall do X.
 2. The system shall do Y.

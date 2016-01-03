@@ -16,14 +16,14 @@ As the test cases are developed, take note of the trade-offs that are made, and 
 
 ## Examining The Requirements
 
-1. __FUN-PARAMETER:__ The system shall accept a single parameter, `CATWEIGHT`, which can only be a single positive floating-point value or positive integer.  If the parameter is not one of these two kinds of values, or if there is not exactly one parameter, the system shall immediately shut down with only the message "Please enter a valid parameter."
-2. __FUN-STARTUP-MESSAGE:__ Upon startup, the system shall display "Cat Weighing System" upon the console.
-3. __FUN-UNDERWEIGHT:__ If `CATWEIGHT` is less than 3 kilograms, then the message "Cat is underweight" shall be displayed upon the console.
-4. __FUN-NORMALWEIGHT:__ If `CATWEIGHT` is equal to or greater than 3 kilograms and less than 6 kilograms, then "Cat is normal weight" shall be displayed upon the console.
-5. __FUN-OVERWEIGHT:__ If `CATWEIGHT` is greater than or equal to 6 kilograms, then "Cat is overweight" shall be displayed upon the console.
-6. __NF-PERF-TIME:__ The system shall display the appropriate message within two seconds of the program being executed.
+1. _FUN-PARAMETER:_ The system shall accept a single parameter, `CATWEIGHT`, which can only be a single positive floating-point value or positive integer.  If the parameter is not one of these two kinds of values, or if there is not exactly one parameter, the system shall immediately shut down with only the message "Please enter a valid parameter."
+2. _FUN-STARTUP-MESSAGE:_ Upon startup, the system shall display "Cat Weighing System" upon the console.
+3. _FUN-UNDERWEIGHT:_ If `CATWEIGHT` is less than 3 kilograms, then the message "Cat is underweight" shall be displayed upon the console.
+4. _FUN-NORMALWEIGHT:_ If `CATWEIGHT` is equal to or greater than 3 kilograms and less than 6 kilograms, then "Cat is normal weight" shall be displayed upon the console.
+5. _FUN-OVERWEIGHT:_ If `CATWEIGHT` is greater than or equal to 6 kilograms, then "Cat is overweight" shall be displayed upon the console.
+6. _NF-PERF-TIME:_ The system shall display the appropriate message within two seconds of the program being executed.
 
-Although this is a relatively simple program, with only a small set of requirements, there is already some ambiguity.  In real-world applications, you can expect much more.  This will often necessitate discussions with systems engineers, requirements analysts, and/or customers to resolve the various ambiguities.  The particular ambiguity in this case is that in FUN-PARAMETER, it says that the system should immediately shut down with __only__ the message "Please enter a valid parameter" if an invalid parameter is entered.  The next requirement, FUN-STARTUP-MESSAGE, says that the message "Cat Weighing System" should be displayed upon startup; it does not mention whether or not this includes times when invalid parameters were entered.  In other words, should the expected behavior be:
+Although this is a relatively simple program, with only a small set of requirements, there is already some ambiguity.  In real-world applications, you can expect much more.  This will often necessitate discussions with systems engineers, requirements analysts, and/or customers to resolve the various ambiguities.  The particular ambiguity in this case is that in FUN-PARAMETER, it says that the system should immediately shut down with _only_ the message "Please enter a valid parameter" if an invalid parameter is entered.  The next requirement, FUN-STARTUP-MESSAGE, says that the message "Cat Weighing System" should be displayed upon startup; it does not mention whether or not this includes times when invalid parameters were entered.  In other words, should the expected behavior be:
 
 ```
 $ catweigher meow
