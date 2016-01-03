@@ -40,7 +40,7 @@ This could all be re-written as a very simple algorithm.  By doing so, we can se
 6. Run test suite---if any tests fail, go back to step 5.  If all tests pass, continue.
 7. If there is any more functionality to add, go to step 1.  If there is no more functionality to add, the application is complete!
 
-## Concepts
+## Principles of Test-Driven Development
 
 There are several principles to keep in mind when writing in a TDD manner.
 

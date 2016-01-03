@@ -4,7 +4,7 @@ We've determined how to understand requirements, develop a test plan, and find d
 
 Under such circumstances, you will want to use __exploratory testing__.  This is defined as testing without a specified test plan, where the main goal is to learn about and influence the development of the system, as opposed to specifically determining whether the observed behavior is equal to the expected behavior.  Exploratory testing allows the tester to follow their own path, thinking of edge cases on the fly or following leads if something seems like it may cause a problem.  It also allows the tester to learn by doing, instead of reading design documentation or code, which is often a much more effective way to understand a system.
 
-## Concepts, Benefits, and Drawbacks
+## Benefits and Drawbacks of Exploratory Testing
 
 Exploratory testing is sometimes referred to as _ad hoc_ testing, but that term can imply carelessness and sloppy work.  However, exploratory testing isn't careless, it's just less rigid.  There is often much thought put into determining whether exploratory testing is appropriate and even more thought put into determining the next things to explore.
 

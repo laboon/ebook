@@ -6,9 +6,7 @@ If you're testing software, then chances are very good that you have a computer 
 
 With automated testing, you write the tests, using some sort of programming or scripting language or tool, which are then executed by the computer.  These tests can check aspects of the program as specific as individual return values from methods all the way up to how an entire graphical interface should look on a screen.
 
-## A Comparison
-
-For your software project, should you use manual testing or automatic testing?  There are benefits and drawbacks of each form of testing.
+## Benefits and Drawbacks of Manual Testing
 
 ### Benefits of Manual Testing
 
@@ -28,6 +26,8 @@ For your software project, should you use manual testing or automatic testing?  
 4. __Human error is a possibility.__ Every time you have a person do something, there is a chance that that person will make a mistake.  In the case of executing a test case, a human being could read the instructions incorrectly, misunderstand them, write the test status down in the wrong place, or otherwise run the test incorrectly.  The longer that you have somebody performing manual testing, the more likely that an error like this will occur.  Other organizations have figured this out long ago---truck drivers and airplane pilots, for example, have limitations on how long they can operate their vehicles without taking a break.  While an automated test could theoretically perform different execution steps than the ones it is programmed to do, the chances of it doing so are extremely remote.  Computers are very good at doing exactly what you tell them to do, and doing it over and over again.
 5. __It is extremely time- and resource-intensive.__ Testing personnel manually pressing keys, clicking buttons, or doing anything else with the software limits them to the speed that an ordinary user would do those things.  Even that is a theoretical maximum, as testers must also read and follow the test plan, double-check that they performed the steps correctly, mark down statuses, and perform overhead work when they manually test. Running manual tests can be multiple orders of magnitude slower than well-written automated tests, even performing the same actions.  Running 1,000 test cases manually may take a week for a team of testers to do; it may take less than 10 minutes on a desktop computer.  This means that either much of testers' time will be spent on monotonous tasks, or others will have to be hired to run the tests.
 6. __It limits you to black-box and grey-box testing.__ It is essentially impossible to do white-box testing manually.  You will not be able to test individual methods or functions, but only in how they interact with the rest of the system.  Depending on how complex the program is, this may make it much more difficult to find defects, since you will not be able to operate on nearly as granular a level.
+
+## Benefits and Drawbacks of Automated Testing
 
 ### Benefits of Automated Testing
 
