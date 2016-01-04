@@ -129,19 +129,19 @@ Related to the Impact field is the __Severity__ field, which contains the defect
 
 An example rating system is explained below:
 
-1. __Blocker:__ This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker defects would be the system not allowing any user to log in, or a system that crashes whenever somebody presses the "A" key.
+1. __Blocker__: This is a defect so severe that the system cannot reasonably be released without either fixing it or devising a workaround.  Examples of blocker defects would be the system not allowing any user to log in, or a system that crashes whenever somebody presses the "A" key.
 
-2. __Critical:__ Although the system could still be released with a defect of this magnitude, it severely impacts the core functionality of the program or makes it almost unusable.  Alternatively, a defect that normally would be marked as a blocker, but that has some sort of workaround, could be classified as critical.
+2. __Critical__: Although the system could still be released with a defect of this magnitude, it severely impacts the core functionality of the program or makes it almost unusable.  Alternatively, a defect that normally would be marked as a blocker, but that has some sort of workaround, could be classified as critical.
 
-3. __Major:__ This is a defect which causes a relatively severe problem, although not so severe as to entirely hobble a system.  It has a good chance of being noticed by any user using the feature where the defect exists.
+3. __Major__: This is a defect which causes a relatively severe problem, although not so severe as to entirely hobble a system.  It has a good chance of being noticed by any user using the feature where the defect exists.
 
-4. __Normal:__ This is a defect which inconveniences the user, or a more severe defect with an easy and straightforward workaround.
+4. __Normal__: This is a defect which inconveniences the user, or a more severe defect with an easy and straightforward workaround.
 
-5. __Minor:__ The defect might or might not be be noticed, but does not cause much issue for the user, or has a simple and straightforward workaround.
+5. __Minor__: The defect might or might not be be noticed, but does not cause much issue for the user, or has a simple and straightforward workaround.
 
-6. __Trivial:__ The defect would probably not even be noticed, unless someone is looking specifically for it.  An example would be a small typo, such as a transposition of letters, in a large block of text.
+6. __Trivial__: The defect would probably not even be noticed, unless someone is looking specifically for it.  An example would be a small typo, such as a transposition of letters, in a large block of text.
 
-7. __Enhancement:__ Sometimes a defect isn't really a defect; it's something that the users want, but is not specified by the requirements or is otherwise not in the scope of the current project.  In such a case, the defect can be filed as an enhancement.  Alternatively, a tester may think that a problem is a defect, but management may overrule them and mark it as an enhancement.
+7. __Enhancement__: Sometimes a defect isn't really a defect; it's something that the users want, but is not specified by the requirements or is otherwise not in the scope of the current project.  In such a case, the defect can be filed as an enhancement.  Alternatively, a tester may think that a problem is a defect, but management may overrule them and mark it as an enhancement.
 
 Grading the severity of defects is often more of an art than a science, although there are some heuristics for determining how severe an issue is.  Depending on the domain of software in which the tester is working, as well as the organization's own rules for testing, the severity of a defect may be marked dramatically differently.  Even within organizations, there can be conflicts between engineers, managers, testers, and other stakeholders on exactly how severe a defect is.
 

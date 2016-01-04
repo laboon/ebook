@@ -8,6 +8,8 @@ __Accessibility error__: An error resulting from a user employing a non-standard
 
 __Active attack__: In __security testing__, an attack on a system which causes some changes to the system, such as adding a program or modifying data in a database.
 
+__Ad hoc testing__: A (sometimes considered pejorative) term for __exploratory testing__.
+
 __All-pairs testing__: Another term for __pairwise testing__.
 
 __Alpha testing__: "Real-world" testing by a small group of test engineers or some other small group of technically proficient personnel.  Often succeeded by beta testing.
@@ -74,15 +76,21 @@ __Cracker__: An unauthorized person attempting to access and/or modify a system 
 
 __Critical__: A defect of the second-highest level of severity, which severely impacts how a user could use the system.
 
+__DDos__: See __Distributed Denial of Service__.
+
 __Defect__: A flaw in a system which causes it to behave in an unexpected or incorrect manner, or does not meet the requirements of the system.  Much of software testing is involved in finding defects in a system.
 
 __Denial of Service__: A method of attacking __availability__ by sending so many unauthorized packets or other events to a computing resource that no authorized users have access to it.
 
+__Dependency injection__: Passing dependencies of a method in as parameters, as opposed to having them be hard-coded.  This helps with testing as they can easily be replaced with test doubles or fakes.
+
 __Deterministic__: Something for which the causal behaviors are entirely known and reproducible.
+
+__Disk I/O Error__: An error resulting from a fault in reading or writing to long-term local storage (usually, but not always, a disk).
 
 __Display error__: An error where the correct value was computed, but it was not displayed correctly.
 
-__Distributed Denial of Service__: A __denial of service__ attack which consists of many different sources of the unauthorized packets, so as to increase the number of events the system must process as well as help disguise the ultimate source.
+__Distributed Denial of Service__: A __denial of service__ attack which consists of many different sources of the unauthorized packets, so as to increase the number of events the system must process as well as help disguise the ultimate source.  Often abbreviated as __DDos__.
 
 __Distributed system error__: An error arising as a consequence of the system being distributed, as opposed to running entirely on one computer.
 
@@ -96,11 +104,13 @@ __DoS tools__: Tools which enable denial of service attacks.
 
 __DRY__: Don't Repeat Yourself.  A tenet of writing good, testable code which states that code should not be repeated, for example by having two different methods which do the same thing, or copy/pasting code from one part of the codebase to another instead of making it into a callable method.
 
+__Dumb monkey__: A __stochastic testing__ method in which random data is sent in to a system.
+
 __Dynamic testing__: Testing the system by executing it.  Examples would be unit testing or black-box testing.
 
 __Edge case__: A test case for functionality of a system which can be expected to happen, but will be rare and may require special work to handle appropriately from a development point of view.  For example, when testing a calculator, an edge case might be ensuring that trying to divide by zero provides a correct error message.
 
-__Efficiency-based performance__: Performance on metrics related to the efficiency of use of the computational resources available to the system.
+__Efficiency-oriented indicator__: A performance metric related to the efficiency of use of the computational resources available to the system.
 
 __Enhancement__: A requested modification or additional functionality which was not originally specified in the requirements.
 
@@ -121,6 +131,8 @@ __Expected behavior__: What the system is expected to do under certain circumsta
 __Explicit boundary value__: A __boundary value__ explicitly called out by the system requirements.  For example, requirements for an automated thermometer may state the system will turn on the DANGER light when the registered temperature is 102 degrees or over.  The explicit boundary values would be 101 and 102. Contrast with __implicit boundary value__.
 
 __Exploit__: A program or piece of data which takes advantage of a vulnerability.  A vulnerability is "strictly theoretical" until somebody develops a way to exploit it.
+
+__Exploratory testing__: An informal style of testing, where the goal is often both to learn about the system by testing it as well as find defects.
 
 __Externally consistent (requirements)__: The property of having the system be consistent with requirements of other systems or of the universe.  For example, having a system which mandates that the system will be able to communicate with a base on Pluto instantaneously would require faster-than-light communication, and would thus be inconsistent with the laws of this universe.
 
@@ -242,6 +254,8 @@ __n nines__: A way of showing what percentage of the time the system is availabl
 
 __Negative test case__: See __failure case__.
 
+__Network error__: An error which results when network connectivity is suboptimal or missing altogether.  For example, an application which freezes if Internet connectivity is lost in the middle of a transaction.
+
 __Nines__: See __n nines__.
 
 __Non-deterministic__: A test failure which does not occur all of the time, but only on certain runs, and for unknown reasons.
@@ -308,6 +322,8 @@ __Principle of Least Privilege__: The principle that states that users should ha
 
 __Profiler__: A tool which allows you to measure the resource utilization and internal events (such as method calls or instantiation of objects) of a running program.
 
+__Property-based testing__: A method of testing, usually automated, where many values, often pseudorandomly generated, are given as inputs, and properties of the output are tested as opposed to checking for specific values or behavior.
+
 __Pure__: A method or function which does not produce any __side effects__, but simply returns the result of a computation.
 
 __QA__: See __quality assurance__.
@@ -329,6 +345,8 @@ __Reflection__: A way to determine class and method structure at run-time.
 __Regression failure__: A failure of a previously-working piece of functionality that is caused by (seemingly) unrelated additional functionality or defect fixes.
 
 __Regulation acceptance testing__: Testing that a system meets legal or other regulatory requirements.
+
+__Report__: The act of filing a defect according to the agreed-upon system for the project.
 
 __Reproduction steps__: The steps necessary for reproducing a defect.  Often included in defect reports so that readers of the defect will understand what causes the defect and how to reproduce it.
 
@@ -352,9 +370,11 @@ __"Seat of your pants" testing__: Testing where the expected behavior is known t
 
 __Security testing__: Testing that the system meets the criteria of the InfoSec Triad, that the system is safe from unauthorized tampering and/or access.
 
-__Service-based performance__: Performance on metrics related to how the user will interact with the system.
+__Service-oriented indicator__: A performance metric related to how the user will interact with the system.
 
 __Service Level Agreement__: An agreement by a service provider, which often includes a guarantee of __availability__.
+
+__Severity__: The degree to which a particular __defect__ is of concern to system designers, developers, and other stakeholders.
 
 __Side effect__: Anything which is not strictly the returned result of a computation, such as displaying a message or setting a variable value.
 
@@ -391,6 +411,8 @@ __Strict partitioning__: Partitioning equivalence classes such that there is no 
 __Stub__: A "fake method" which can be used in unit testing to limit dependencies on other methods and focus testing on the method under test.
 
 __Success case__: A kind of test case where the expected behavior of the system is to return the correct result or do the correct thing.  Compare to __failure case__.
+
+__Summary (defect reporting)__: A brief description of the __defect__ when filing a defect report.
 
 __System testing__: Testing the system as a whole, as the user (as opposed to a developer) would interact with it.  Usually done in a black-box or grey-box manner.
 

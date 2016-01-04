@@ -90,6 +90,9 @@ public class LinkedListTest {
 
 Looking over this test, it is easy to see the parallels with a manual test.  There are some preconditions to set up the test, some execution steps to run the test, and some postconditions, where we can check the observed behavior against the expected behavior.  As mentioned in an earlier chapter, the key concept to keep in mind when software testing is that some behavior is expected under some circumstances, and when those circumstances are reached, a test should check that the observed behavior is in fact the expected behavior.  While unit tests check smaller units of functionality than most black-box tests, the core concept remains the same.
 
+Whenever a test fails, the particular test failure will be displayed on the screen.  We expect that tests should normally pass, so they are usually indicated with just a ".".  For example, here is a 
+
+
 ### Preconditions
 
 Before the test can be run, you need to set up the necessary preconditions for the test.  These are similar to preconditions in a manual test, only instead of focusing on the system as a whole, you focus on setting things up for the particular method to be called.  In the example above, the unit test is going to check that two linked lists with equal values (specifically 1 &rarr; 2 &rarr; 3) will be regarded as equal by the .equals method of a linked list object.  In order to test that two linked lists are equal, first we must created the two linked lists, and set their nodes to the same set of values.  This code simply creates them and puts them into variables `a` and `b`.  We will use these two linked lists in the next phase of the unit test.
@@ -110,11 +113,11 @@ assertTrue(result);
 
 A list of some of the most commonly-used assertions, along with some trivial examples of their usage, include:
 
-1. __assertEquals__: Assert that two values are equal to each other, e.g. `assertEquals(4, (2 * 2))`.
-2. __assertTrue__: Assert that the expression evaluates to true, e.g. `assertTrue(7 == 7)`.
-3. __assertFalse__: Assert that the expression evaluates to false, e.g. `assertFalse(2 < 1)`.
-4. __assertNull__: Assert that a value is null, e.g. `assertNull(uninitializedVariable)`.
-5. __assertSame__: Assert not only that the two values are equal, but that they point to the exact same object.  Example:
+1. _assertEquals_: Assert that two values are equal to each other, e.g. `assertEquals(4, (2 * 2))`.
+2. _assertTrue_: Assert that the expression evaluates to true, e.g. `assertTrue(7 == 7)`.
+3. _assertFalse_: Assert that the expression evaluates to false, e.g. `assertFalse(2 < 1)`.
+4. _assertNull_: Assert that a value is null, e.g. `assertNull(uninitializedVariable)`.
+5. _assertSame_: Assert not only that the two values are equal, but that they point to the exact same object.  Example:
 ```java
 Integer a = Integer(7);
 Integer b = Integer(7);

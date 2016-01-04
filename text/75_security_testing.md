@@ -32,7 +32,7 @@ The key element of security is the __InfoSec Triad__, also called the __CIA Tria
 
 Of course, no authorized users would be able to use it, either, and few customers would be willing to pay for a system that nobody can access.  In order to prevent such a trivial but non-useful solution for creating secure systems, the final element of the InfoSec Triad is necessary: availability.  That is, the system must be available to authorized users to read and write data.  A system which has all the elements of the InfoSec Triad under all circumstances is considered secure.  In practice, for most software there will often be particular circumstances where one or more of the elements is not met.
 
-Attacks on the security of a system can be either __active__ or __passive__ attacks.  Active attacks actually change the system under attack somehow, such as by adding an additional program that runs in the background, changing users' passwords, or modifying data stored on the system.  Passive attacks do not cause any changes to the system.  Examples of passive attacks would be eavesdropping on network traffic or monitoring an area for unsecured wireless networks.  While active attacks often cause more damage, they are also much easier to spot, whereas passive attacks can be very difficult to observe.
+Attacks on the security of a system can be either __active attacks__ or __passive attacks__.  Active attacks actually change the system under attack somehow, such as by adding an additional program that runs in the background, changing users' passwords, or modifying data stored on the system.  Passive attacks do not cause any changes to the system.  Examples of passive attacks would be eavesdropping on network traffic or monitoring an area for unsecured wireless networks.  While active attacks often cause more damage, they are also much easier to spot, whereas passive attacks can be very difficult to observe.
 
 There are several kinds of attacks, both passive and active, possible on elements of the InfoSec Triad.  An __interruption__ attack is an attack on availability.  It reduces or eliminates the availability of a given system.  Perhaps the simplest version of this attack would be somebody sneaking into a building and unplugging all servers from the network.  More advanced attacks would include sending so many unauthorized requests that authorized ones cannot get through (referred to as a __denial of service__ attack) or changing all users' passwords.
 
@@ -44,18 +44,18 @@ If a system has a way that one of the attacks can be utilized against it, that s
 
 There is a wide variety of these tools, which are known as __malware__.  Malware is any software which is deliberately designed to have an undesired effect on a computer system, generally unbeknownst to the authorized user of the system.  An incomplete list of the kinds of malware includes:
 
-1. __Bacteria:__ A program which consumes an excess amount of system resources, perhaps taking up all file descriptors or disk space.
-2. __Fork bomb:__ A special kind of __bacteria__ which continually forks itself, causing all CPU resources to be used up creating more copies of the fork bomb.
-2. __Logic bomb:__ Code within a program which executes an unauthorized function, such as deleting all data on the first day of the month.
-4. __Trapdoor:__ A program or piece of a program which provides secret access to a system or application.
-4. __Trojan Horse:__ A piece of software which pretends to be another in order to trick users into installing and executing it.  For example, a Trojan Horse may state that it contains different funny mouse cursors, but after installing it, it deletes everything on your hard drive.
-5. __Virus:__ A computer program, often small, that replicates itself with human intervention.  This intervention could be something such as clicking on a link or running a program sent to you as an attachment.
-5. __Worm:__ A computer program, often small, that replicates itself without human intervention.  For example, once installed on a machine, it may have that machine try to break into other machines and copy the code of the worm over to others.
-6. __Zombie:__ A computer with software installed which allows unauthorized users access to it to perform unauthorized functionality.  For example, a system might have a mailer program built in which will allow other users to send spam from your machine, so that the actual senders cannot be tracked.
-6. __Bot network:__ A collection of zombies controlled by a master.
-7. __Spyware:__ Software which surreptitiously monitors the actions of the user of the system.  For example, software may report back daily what all of the keystrokes of the user were.
-8. __DoS Tools:__ Tools which enable denial of service attacks.
-9. __Ransomware:__ Software which performs an unwanted action (e.g., encrypting your hard drive) and asks for money or other compensation in order to undo it.  This money usually goes to the creators or users of the software, not the software itself (until artificial intelligences become more advanced).
+1. __Bacteria__: A program which consumes an excess amount of system resources, perhaps taking up all file descriptors or disk space.
+2. __Fork bomb__: A special kind of __bacteria__ which continually forks itself, causing all CPU resources to be used up creating more copies of the fork bomb.
+2. __Logic bomb__: Code within a program which executes an unauthorized function, such as deleting all data on the first day of the month.
+4. __Trapdoor__: A program or piece of a program which provides secret access to a system or application.
+4. __Trojan Horse__: A piece of software which pretends to be another in order to trick users into installing and executing it.  For example, a Trojan Horse may state that it contains different funny mouse cursors, but after installing it, it deletes everything on your hard drive.
+5. __Virus__: A computer program, often small, that replicates itself with human intervention.  This intervention could be something such as clicking on a link or running a program sent to you as an attachment.
+5. __Worm__: A computer program, often small, that replicates itself without human intervention.  For example, once installed on a machine, it may have that machine try to break into other machines and copy the code of the worm over to others.
+6. __Zombie__: A computer with software installed which allows unauthorized users access to it to perform unauthorized functionality.  For example, a system might have a mailer program built in which will allow other users to send spam from your machine, so that the actual senders cannot be tracked.
+6. __Bot network__: A collection of zombies controlled by a master.
+7. __Spyware__: Software which surreptitiously monitors the actions of the user of the system.  For example, software may report back daily what all of the keystrokes of the user were.
+8. __DoS Tools__: Tools which enable denial of service attacks.
+9. __Ransomware__: Software which performs an unwanted action (e.g., encrypting your hard drive) and asks for money or other compensation in order to undo it.  This money usually goes to the creators or users of the software, not the software itself (until artificial intelligences become more advanced).
 
 Malware may belong to more than one variety.  For example, a program could propagate like a computer worm, and once resident on a computer, report back the activities of the user, thus making it spyware.  Another possibility is that a program is offered for download which states that it will "clean your registry" but will actually make your computer a zombie and under the control of a bot network.
 
