@@ -4,7 +4,7 @@ This section contains a selection of books on various topics which you may find 
 
 ## Exploratory Testing
 
-Hendrickson, Elisabeth. _Explore It! Reduce Risk and Increase Confidence with Exploratory Testing_. Dallas, TX: The Pragmtic Bookshelf, 2013.
+Hendrickson, Elisabeth. _Explore It! Reduce Risk and Increase Confidence with Exploratory Testing_. Dallas, TX: The Pragmatic Bookshelf, 2013.
 
 ## General Testing
 
@@ -72,7 +72,7 @@ Stone, Douglas, Bruce Patton and Sheila Heen. _Difficult Conversations: How To D
 
 Beck, Kent. _Test-Driven Development: By Example_. Boston: Addison-Wesley, 2003.
 
-Chelimsky, David and Aslak Hellsoy. _The RSpec Book: Behaviour-Driven Development with RSpec, Cucumber, and Friends_. Dallas, TX: The Pragmtic Bookshelf, 2010.
+Chelimsky, David and Aslak Hellsoy. _The RSpec Book: Behaviour-Driven Development with RSpec, Cucumber, and Friends_. Dallas, TX: The Pragmatic Bookshelf, 2010.
 
 Freeman, Steve and Nat Pryce. _Growing Object-Oriented Software, Guided by Tests_. Boston: Addison-Wesley, 2009.
 
@@ -82,4 +82,4 @@ Krug, Steve. _Don't Make Me Think: A Common Sense Approach to Web Usability_. Be
 
 ## Web Testing
 
-Rappin, Noel. _Rails 4 Test Prescriptions: Build a Healthy Codebase_. Dallas, TX: The Pragmtic Bookshelf, 2014.
+Rappin, Noel. _Rails 4 Test Prescriptions: Build a Healthy Codebase_. Dallas, TX: The Pragmatic Bookshelf, 2014.
