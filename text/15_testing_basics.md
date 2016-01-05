@@ -17,8 +17,8 @@ An __equivalence class__ (also called an equivalence partition) is one set of in
 What are the other equivalence classes here?  In order to answer this, think of all of the different kinds of output you would expect:
 
 1. The `ERROR` light comes on for PSIs of -1 or less
-2. The `UNDERPRESSURE` light comes for PSIs between 0 and 20
-3. No light comes on for PSIs between 21 and 35 (normal operating conditions)
+2. The `UNDERPRESSURE` light comes for PSIs between 0 and 20 (inclusive)
+3. No light comes on for PSIs between 21 and 35 (inclusive) - normal operating conditions
 4. The `OVERPRESSURE` light comes on for PSIs of 36 or greater
 
 Mathematically, one could think of this as a mapping between a group of input values and expected output conditions:
@@ -28,7 +28,7 @@ Mathematically, one could think of this as a mapping between a group of input va
 3. [21, 22, ... 34, 35] &rarr; No lights
 4. [36, 37, ... MAXINT - 1, MAXINT] &rarr; `OVERPRESSURE` light only
 
-(where MAXINT and MININT are the maximum and minimum 32-bit integers.)
+(where MAXINT and MININT are the maximum and minimum 32-bit integers, respectively.)
 
 We have now __partitioned__ our equivalence classes.  Equivalence class partitioning is the act of determining our equivalence classes and ensuring that they do not overlap at all, but do cover all possible input values.  In other words, they must maintain a __strict partitioning__.  For example, let's say that, due to bad or misread requirements, we had generated an equivalence class partitioning such as the following:
 
@@ -112,7 +112,7 @@ Let us continue our exploration of the pressure sensor display.  Going over our 
 
 When input values are outside normal operating parameter or are approaching the limits of what the system can handle, this is called an __edge case__.  An edge case may be the tire popping and air pressure dropping to zero.  Another case would be someone forgetting that they had the air hose attached to the tire, and pumping in air up to a pressure of 200 PSI, the absolute limit to which the tire is rated.
 
-__Corner cases__ (often also called __pathological cases__) refer to situations where multiple things go wrong at the same time, or where a value is, to put it bluntly, ridiculously out of range from what is expected.  An example would be a tire pressure sensor receiving a value of 2,000,000,000 (2 billion) PSI, which is quite a bit higher than pressure in the core of the Earth.  Another example would be the tire popping at the same time that the sensor fails and attempts to send an error code.
+__Corner cases__ (often also called __pathological cases__) refer to situations where multiple things go wrong at the same time, or where a value is, to put it bluntly, ridiculously out of range from what is expected.  An example would be a tire pressure sensor receiving a value of 2,000,000,000 (2 billion) PSI, which is quite a bit higher than the pressure in the core of the Earth.  Another example would be the tire popping at the same time that the sensor fails and attempts to send an error code.
 
 Although I have been using a simple function with relatively well-defined inputs and outputs, base cases, edge cases, and corner cases can also be specified and thought about in other kinds of operations.  Consider an e-commerce site.  Some base cases for testing the shopping cart might be:
 
@@ -192,4 +192,4 @@ public String chirpify(String toChirp) {
 }
 ```
 
-The output of both can be observed via dynamic tests, and checked against expected values.  However, would anyone argue that the second method is superior?  It's overly complex; it's difficult to understand what it does; the variable names are meaningless.  Finding all that is wrong with the code is left as an exercise for the reader.  With dynamic tests, it may be difficult or impossible to determine any difference between the two methods.  However, using static testing methods such as code review, it's trivial to find issues in the second method.
+Both of these will return the same result for a given input.  The output of both can be observed via dynamic tests, and checked against expected values.  However, would anyone argue that the second method is superior?  It's overly complex; it's difficult to understand what it does; the variable names are meaningless.  Finding all that is wrong with the code is left as an exercise for the reader.  With dynamic tests, it may be difficult or impossible to determine any difference between the two methods.  However, using static testing methods such as code review, it's trivial to find issues in the second method.
