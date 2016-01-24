@@ -622,8 +622,6 @@ This test results in 100% code coverage of the method, but tells you almost noth
 
 Code coverage is a powerful tool, but like anything else in software development, it is not a silver bullet.  It's an excellent way to see what areas of the codebase might need more testing, but it should not assure you that any code that has been covered is guaranteed free of defects.  It should not even assure you that a particular piece of code has truly been tested.
 
-## Unit Testing as Part of a Complete Testing Plan
-
 Just like your favorite nutritionally-suspect cereals, unit testing should not be your complete breakfast nor your entire test plan.  Unit testing is great for checking individual methods and low-level functionality, but it is not good at seeing how everything fits together.  It's even worse when trying to determine what the end product will look like; all of the individual methods may work, but together they form something which doesn't meet any of the requirements.
 
 When you are testing, you should remember to perform some manual testing, integration testing, and depending upon your needs, other kinds of testing such as security testing or performance testing.  Relying heavily on one particular kind of testing is a recipe for missing important defects.
