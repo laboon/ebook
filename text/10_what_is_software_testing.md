@@ -99,7 +99,7 @@ The customer insists that there is nothing else that you need to know to start t
 4. What should the program do if a Control-C or other cancel command occurs midway through?
 5. Will this system be required to read data off the network?  If so, what should occur if there is a network failure---retry, shut down, show an error message, something else?
 
-Ensuring that you have the correct answers to these questions is part of validation of the program.  You want to test against what the user wants the program to do.
+Ensuring that you have the correct answers to these questions is part of the validation of the program.  You want to test against what the user wants the program to do.
 
 Once you've established what the user wants, however, there's still work to be done.  You will need to verify that the program works under normal conditions and with a wide variety of input.
 

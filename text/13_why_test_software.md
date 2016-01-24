@@ -4,7 +4,7 @@ Now that we know what software testing is, it makes sense to ask why one would w
 
 ## To Test Or Not To Test
 
-Let's imagine that you're put into the role of CEO of Rent-A-Cat.  A promising young project manager runs up to you in the halls, sweat dripping off of perfectly coiffed hair, clutching a printout of an Excel spreadsheet.
+Let's imagine that you're put into the role of CEO of Rent-A-Cat, Inc.  A promising young project manager runs up to you in the halls, sweat dripping off of perfectly coiffed hair, clutching a printout of an Excel spreadsheet.
 
 "Ma'am! (or sir)!" the project manager cries.  "I've discovered a way to reduce our project expenses by tens of thousands of dollars!  All we have to do is remove all testing resources from the team.  I've got some good software developers; there's no way they'd ever make a mistake.  This way, we can finally buy that gold-plated sink for the executive washroom!"
 
@@ -21,7 +21,7 @@ All that being said, there are numerous reasons for you, as CEO, to turn down th
 
 ## No Software Developer is Perfect
 
-Hands up if you've never written a piece of incorrect code before.  If you don't have your hand up, then you should already see why you need to test your software.  (If your hand _is_ up, then I can assume that you've never written any code before.)  It's a good thing to remember that software development is one of the most intellectually complicated things that human beings do, stretching the very limits of what the human mind is capable of.  Thinking in those terms, that off-by-one error you made retrieving an index doesn't seem like so much of a big deal.
+Hands up if you've ever written a piece of incorrect code before.  If you have your hand up, then you should already see why you need to test your software.  (If your hand is _not_ up, then I can only assume that you've never written any code before.)  It's a good thing to remember that software development is one of the most intellectually complicated things that human beings do, stretching the very limits of what the human mind is capable of.  Thinking in those terms, that off-by-one error you made retrieving an index doesn't seem like so much of a big deal.
 
 According to the National Institute of Standards and Technology, software defects cost the US economy almost $60 billion in 2002.[^nist2002]  That's approximately 0.6% of the country's gross domestic product.  As more and more software is written, and our daily lives become more and more connected with software, this figure has probably increased dramatically by now.  Even going with the low 2002 number, however, this means that software defects have caused problems worth the same as about one-third of all US agricultural output.
 
@@ -35,7 +35,7 @@ Software testing allows you to find these errors before users see them, when you
 
 ## Stability
 
-Developing software is a complex process.  At times, on some teams, it can even devolve into chaos.  A testing team can help alleviate this by providing stability.  By ensuring that developers continue to work on software that contains fewer defects, the software can stay on a more stable footing.  Additional functionality is less likely to be built on top of a shaky foundation.
+Developing software is a complex process.  At some times, on some teams, it can even devolve into chaos.  A testing team can help alleviate this by providing stability.  By ensuring that developers continue to work on software that contains fewer defects, the software can stay on a more stable footing.  Additional functionality is less likely to be built on top of a shaky foundation.
 
 A quality assurance team can also keep track of known existing defects, and allow prioritization to take place.  Instead of developers and managers dropping everything and working on every recently-found defect, or ignoring any new ones while they work on old ones, a test team can help determine what is worth working on at any given time.  This leads to a more rigorous and smoothly-flowing software development process.
 
