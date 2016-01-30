@@ -2,7 +2,7 @@
 
 Remember that validating software is ensuring that we are building the right software; in other words, ensuring that what we are creating is what the users and/or customers want.  In order to validate software, we need to know what it is that users want the software to do, which can be a much more difficult task than you may think.  Users often aren't able to specify exactly what they are looking for.  They may think that they know exactly what they want, but when they see the implementation, immediately know that it is not.  Or they may have no idea---they just want your team to build something "like a social media site, but with buying and selling, and you know, like, hot dogs?  But for cats?"
 
-One way of determining what software to build is to determine the __requirements__ of the software.  Requirements are statements specifying exactly what it is that a piece of software should do under certain conditions.  This is more or less popular depending on the domain and the kind of software being developed.  For example, when building software to monitor a nuclear reactor, there may be very specific and well-laid-out requirements.  If you are working for a social media startup (hopefully not one with "buying and selling, and you know, like hot dogs... for cats", because there is apparently competition), then your "requirements" may be something your CEO scribbled on a napkin after one too many bottles of wine and one too few meetings with actual customers.
+One way of determining what software to build is to determine the __requirements__ of the software.  Requirements are statements specifying exactly what it is that a piece of software should do under certain conditions.  This is more or less popular depending on the domain and the kind of software being developed.  For example, when building software to monitor a nuclear reactor, there may be very specific and well-laid-out requirements.  If you are working for a social media startup (hopefully not one with "buying and selling, and you know, like hot dogs... for cats", because apparently there is competition), then your "requirements" may be something your CEO scribbled on a napkin after one too many bottles of wine and one too few meetings with actual customers.
 
 Requirements ensure that the developers know what to build, and the testers know what to test.  While requirements are important, they are not inviolable!  Common sense should be used when interpreting requirements, and requirements are often subject to change.  Note that there other methods of determining what software to build aside from traditional requirements, such as user stories.
 
@@ -57,7 +57,7 @@ By requiring implementation details, you remove the possibility of black-box tes
 
 From a tester's perspective, one of the most important aspects of requirements is whether or not they are testable.  From a software development life cycle perspective, "testable requirements" is another term for "good requirements".  A requirement that cannot be tested cannot be shown to have been met.  Let's take an example of two requirements, and try to determine which is better.  Note that both are semantically and syntactically valid, and contain that all-important "shall":
 
-1. The system shall increment the PATRONS counter upon every time the TURNSTILE sensor is activated without error.
+1. The system shall increment the PATRONS counter by one every time the TURNSTILE sensor is activated without error.
 2. The system shall do the things with the counter every time someone walks through.
 
 Note that the first requirement is very unambiguous; it states what should be done, what input to monitor, and what behavior to expect.  Specifically, whenever the TURNSTILE sensor is activated, we expect the PATRONS counter (which may be a variable, a display, or something else---it should be specified elsewhere in a complete requirements specification) to be incremented by one.  The second requirement is ambiguous in several ways.  What shall it do with the counter?  How can it tell when someone walks through?  What is it referring to that someone can walk through?  It would be impossible to set up a test for this requirement.
@@ -83,15 +83,15 @@ Here is an example of a group of requirements that is not internally consistent:
 
 What should the system do if the pressure is between 100 and 200 PSI?  You can use equivalence class partitioning here to determine that the requirements are not internally consistent.
 
-The requirements should be __unambiguous__.  That is, they should specify things as precisely as possible for working in the particular domain the software is for.  The acceptable level of ambiguity will vary dramatically depending on what kind of software you are developing.  For example, if you are writing software for a children's game, it may be sufficient to state that a particular square should be "red".  If you are describing the requirements for an interface to a nuclear reactor, the exact PANTONE® shade of red that a warning light may need to be specified.
+The requirements should be __unambiguous__.  That is, they should specify things as precisely as possible for working in the particular domain the software is for.  The acceptable level of ambiguity will vary dramatically depending on what kind of software you are developing.  For example, if you are writing software for a children's game, it may be sufficient to state that a particular square should be "red".  If you are describing the requirements for an interface to a nuclear reactor, the exact PANTONE® shade of red of the warning light may need to be specified.
 
 That being said, be careful not to paint yourself into a corner with too-restrictive requirements.  If your requirements state that a particular page needs to be a certain number of pixels, you may have difficulties converting to mobile devices, for example.  However, requirements certainly should not be of the form:
 
 * _AMBIGUOUS-REQ-1._ The system shall do all of the shutdown stuff whenever the "shutdown" button is pressed.
 
-What is the "shutdown stuff"?  Speaking to our friends, or amongst co-workers, we may use relatively ambiguous terms like that because the human brain is remarkably good at filling in ambiguity.  However, ambiguous requirements can lead to different developers or other stakeholders interpreting them in different ways.  The classic example of this is the Mars Climate Orbiter mishap, where one group of software engineers used Imperial measures and another group used metric measures.  Both groups thought the correct way to return results was obvious, but they came up with different implementations.
+What is the "shutdown stuff"?  Speaking to our friends, or amongst co-workers, we may use such ambiguous terms because the human brain is remarkably good at filling in ambiguity.  However, ambiguous requirements can lead to different developers or other stakeholders interpreting them in different ways.  The classic example of this is the Mars Climate Orbiter mishap, where one group of software engineers used Imperial measures and another group used metric measures.  Both groups thought the correct way to return results was obvious, but they came up with different implementations.
 
-If at all possible, the requirements should be __quantitative__ (as opposed to qualitative).  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.
+If at all possible, the requirements should be __quantitative__ (as opposed to qualitative).  That is, if you can apply numbers to a requirement, you should.  You should avoid using any sort of subjective terms such as "fast", "responsive", "usable", or "scrumdiddlyumptious."  If you can specifically state what the system is required to do, then do so.  For example, the following requirement is qualitative, and not quantitative.
 
 * _QUALITATIVE-REQ-1._ The system shall return results extremely quickly.
 
@@ -118,7 +118,7 @@ The requirements that we have discussed so far are functional requirements; that
 
 Functional requirements are (relatively) simple to test; they say that a specific behavior should occur under certain circumstances.  There are obviously going to be complexities and variations involved in testing some of them, but the general idea is straightforward.  For example, for the second requirement, tests might check for each of the various fields of the database, and different kinds of invalid values.  This may be quite an involved process, but there is a plan that can be followed to develop the tests that directly grows out of the requirements.
 
-Non-functional requirements describe overall characteristics of the system, as opposed to specific actions that are taken under specific circumstances.  Non-functional requirements are often called quality attributes, because they describe qualities of the system as opposed to what it should do specifically.  Some examples of non-functional attributes include:
+Non-functional requirements describe overall characteristics of the system, as opposed to specific actions that are taken under specific circumstances.  Non-functional requirements are often called __quality attributes__, because they describe qualities of the system as opposed to what it should do specifically.  Some examples of non-functional attributes include:
 
 1. The system shall be usable by an experienced computer user with less than three hours' training.
 2. The system shall be able to support one hundred simultaneous users.
@@ -130,7 +130,7 @@ One of the key ways to clearly define non-functional requirements is to quantify
 
 ## A Note on Naming Requirements
 
-Back in the days of yore, when primitive software engineers chiseled binary trees with stone axes, there was only one way to write requirements.  It was the way that their forefathers had written requirements, and their forefathers before them, unto the dawn of civilization.  This sacred method of requirements naming was as follows:
+Back in the days of yore, when primitive engineers chiseled binary trees with stone axes, there was only one way to write requirements.  It was the way that their forefathers had written requirements, and their forefathers before them, unto the dawn of civilization.  This sacred method of requirements naming was as follows:
 
 _REQUIREMENTS:_
 

@@ -9,7 +9,7 @@ A test plan is, at its core, simply a collection of __test cases__.  Test cases 
 * _FUN-COFFEE-TOO-HOT:_ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
 * _FUN-COFFEE-JUST-RIGHT:_ If the coffee temperature is measured at less than 175 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
 
-How would we develop a test plan for our coffee temperature app?  There is one input---the coffee temperature measured---and two possible outputs, one of the set `["TOO HOT", "JUST RIGHT"]`.  We can ignore for now that I think most people would find coffee at 45 degrees Fahrenheit to definitely not be "JUST RIGHT".
+How would we develop a test plan for our coffee temperature app?  There is one input---the coffee temperature measured---and two possible outputs, one of the set `["TOO HOT", "JUST RIGHT"]`.  We can ignore for now that most people would find coffee at 45 degrees Fahrenheit to definitely not be "JUST RIGHT".
 
 A single input value and one of two possible output values is a simple case of equivalence class partitioning, so let's partition up those equivalence classes.
 
@@ -191,9 +191,9 @@ For each requirement, you should think of at least the "happy path" for that req
 
 You will also want to think of cases that test the various boundaries, as well as all the equivalence classes.  Continuing the above example, let us assume that you have a test case for the value 5 and a test case for the value 15, thus ensuring that you have at least one value for each equivalence class.  You might also want to add test cases to check the boundary between the two equivalence classes, so you add test cases for 9 and 10.
 
-How many of these edge cases and corner cases you'd like to add, as well as how extensively you test interior and boundary values, will vary depending on the amount of time and resources that you have available for testing, the software domain, and the level of risk that your organization is comfortable taking.  Remember that testing exhaustively is, for all intents and purposes, impossible.  There is a sliding scale of how much time and energy one wants to put in to writing and executing tests, and no right answer.  Determining a compromise between speed of development and ensuring quality is a key part of the job for a software tester.
+How many of these edge cases and corner cases you'd like to add, as well as how extensively you test interior and boundary values, will vary depending on the amount of time and resources that you have available for testing, the software domain, and the level of risk that your organization is comfortable taking.  Remember that testing exhaustively is, for all intents and purposes, impossible.  There is a sliding scale of how much time and energy one wants to put in to writing and executing tests, and no right answer.  Determining a compromise between speed of development and ensuring quality is a key part of being a software tester.
 
-Determining test cases for non-functional requirements (quality attributes) of the system can often be difficult.  You should try to ensure that the requirements themselves are testable, and think of ways to quantify any test cases that you can think of for those requirements.
+Developing test cases for non-functional requirements (quality attributes) of the system can often be difficult.  You should try to ensure that the requirements themselves are testable, and think of ways to quantify any test cases that you can think of for those requirements.
 
 Unfortunately, simply having a correspondence between all requirements and a test case for each does not always mean that you have developed a good test plan.  You may have to add additional tests to ensure that requirements work together in tandem, or check for cases from the user's point of view that may not map directly to requirements or flow directly from them.  Even more importantly, you will need to gain an understanding of the context that the software exists in.  Having domain knowledge of the field can help you understand basic use cases, how the system interacts with the environment, possible failure modes, and how users would expect the system to recover from those failure modes.  If nobody on the team understands the domain of the software, it may be worthwhile to discuss the software with a subject matter expert (SME) before writing a test plan.
 
@@ -255,7 +255,7 @@ A __running__ test is one which has started, but has not yet completed, and thus
 
 In some cases, a test cannot be executed at the present time.  This can be due to external factors (such as a piece of testing equipment not being available) or internal factors (such as a piece of functionality not being completed, or impossible to test due to other defects present in the system).  In such cases, the test can be marked as __blocked__.  This indicates that the test cannot currently be run, although it may be run in a future test run when the issues blocking its execution have been removed.
 
-Finally, in some cases a test case simply cannot be executed, either now or in the future, due to a problem with the test case itself.  In such cases, the test status can be marked as "__error__".  Tests marked as in error could have an issue with the test contradicting the requirements, such as a requirement saying that the background color of a web page should be blue, but the system under test is actually a command-line application.  It could be a problem with the expected behavior of a program, for example, saying that the square root of 25 should result in "poodle".  Oftentimes, a test marked "error" may be the result of a simple typo, but it could point to a fundamental problem with the development team's or testing team's understanding of the software.  Test cases marked "error", unlike those marked "blocked", are not expected to be run again until the error is resolved.
+Finally, in some cases a test case simply cannot be executed, either now or in the future, due to a problem with the test case itself.  In such cases, the test status can be marked as being in __error__.  Tests marked as in error could have an issue with the test contradicting the requirements, such as a requirement saying that the background color of a web page should be blue, but the system under test is actually a command-line application.  It could be a problem with the expected behavior of a program, for example, saying that the square root of 25 should result in "poodle".  Oftentimes, a test marked "error" may be the result of a simple typo, but it could point to a fundamental problem with the development team's or testing team's understanding of the software.  Test cases marked "error", unlike those marked "blocked", are not expected to be run again until the error is resolved.
 
 ## Test Run Tracking
 
@@ -311,7 +311,7 @@ As an example, let's return to the requirements specification for the coffee tem
 * _FUN-COFFEE-TOO-HOT._ If the coffee temperature is measured at 175 degrees Fahrenheit or higher, the app shall display the `TOO HOT` message.
 * _FUN-COFFEE-JUST-RIGHT._ If the coffee temperature is measured at less than 175 degrees Fahrenheit, but more than 130 degrees Fahrenheit, the app shall display the `JUST RIGHT` message.
 * _FUN-COFFEE-TOO-COLD._ If the coffee temperature is measured at 130 degrees Fahrenheit or less, the app shall display the `TOO COLD` message.
-* _FUN-TEA-ERROR._ If the liquid being measured is actually tea, the app shall display the `SORRY, THIS APP DOES NOT SUPPORT TEA` message.
+* _FUN-TEA-ERROR._ If the liquid being measured is actually tea, the app shall display the message `SORRY, THIS APP DOES NOT SUPPORT TEA`.
 
 We write down the identifiers of the requirements, and leave a space for the test plan identifiers:
 
@@ -333,7 +333,7 @@ FUN-TEA-ERROR: 8
 
 It's easy to see that for each requirement, there is at least one test covering it.  If there were another requirement, say,
 
-* _FUN-COFFEE-FROZEN._ If the coffee is in a solid and not a liquid state, then the app shall display `THIS COFFEE CAN ONLY BE EATEN, NOT DRUNK` message.
+* _FUN-COFFEE-FROZEN._ If the coffee is in a solid and not a liquid state, then the app shall display the message `THIS COFFEE CAN ONLY BE EATEN, NOT DRUNK`.
 
 and we tried to create a traceability matrix, it would be very easy to see that there were no tests checking for this requirement:
 

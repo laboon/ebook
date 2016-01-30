@@ -26,7 +26,7 @@ Maybe not that last one. However, you will have to think of ways to test for the
     }
     ```
 
-    Did you spot the error?  At least in the United States at the time of this writing, you are no longer considered a minor once you reach 18.  By using `<=` instead of `<`, the method will return that the person is still a minor when they turn 18.  This minor mistake can happen in all sorts of ways---thinking that an array is 1-indexed instead of 0-indexed, confusing a "greater than or equal to" sign with "greater than", using `++i` when you should `i++`, etc.  These are also often less visible than other errors, since they will only show up for specific values.
+    Did you spot the error?  At least in the United States at the time of this writing, you are no longer considered a minor once you reach 18.  By using `<=` instead of `<`, the method will return that the person is still a minor when they turn 18.  This minor mistake can happen in all sorts of ways---thinking that an array is 1-indexed instead of 0-indexed, confusing a "greater than or equal to" sign with "greater than", using `++i` when you should have used `i++`, etc.  These are also often less visible than other errors, since they will only show up for specific values.
 
     When testing, check the boundary values and you are likely to run across some off-by-one errors.
 
