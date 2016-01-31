@@ -46,7 +46,7 @@ Even without any additional wrinkles, there's an absolutely huge number of possi
 
 Why not hop up a rung on the abstraction ladder and instead of thinking about the specific values that you want as input and output, you think about the *properties* you'd expect of your input and output?  That way, you don't have to consider each individual test.  You can let the computer know that you expect all of the output to have certain properties, and what kind of values you expect as input, and let the computer write and execute the tests for you.
 
-For example, what kinds of properties did all of the correct output values of the `billSort` method have, in relationship to the input values?  There are quite a few.  These properties should hold for all sorted lists.  Thus, they are called *invariants*.
+For example, what kinds of properties did all of the correct output values of the `billSort` method have, in relationship to the input values?  There are quite a few.  These properties should hold for all sorted lists.  Thus, they are called __invariants__.
 
 Some invariants for a sort function would be:
 
