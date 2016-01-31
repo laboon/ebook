@@ -90,8 +90,7 @@ public class LinkedListTest {
 
 Looking over this test, it is easy to see the parallels with a manual test.  There are some preconditions to set up the test, some execution steps to run the test, and some postconditions, where we can check the observed behavior against the expected behavior.  As mentioned in an earlier chapter, the key concept to keep in mind when software testing is that some behavior is expected under some circumstances, and when those circumstances are reached, a test should check that the observed behavior is in fact the expected behavior.  While unit tests check smaller units of functionality than most black-box tests, the core concept remains the same.
 
-Whenever a test fails, the particular test failure will be displayed on the screen.  We expect that tests should normally pass, so they are usually indicated with just a ".".  For example, here is a 
-
+Whenever a test fails, the particular test failure will be displayed on the screen.  We expect that tests should normally pass, so they are usually indicated with just a ".".  If you are using an IDE or other graphical representation of the test, failing tests will often be colored red and passing tests will be colored green.
 
 ### Preconditions
 

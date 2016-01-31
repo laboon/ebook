@@ -52,7 +52,7 @@ Weidman, Georgia. _Penetration Testing: A Hands-On Introduction to Hacking_. San
 
 _Quality-Focused Software Engineering_
 
-Brooks, Frederick P. _The Mythical Man-Months: Essays on Software Engineering, 2nd Edition_. Boston: Addison-Wesley, 1995.
+Brooks, Frederick P. _The Mythical Man-Month: Essays on Software Engineering, 2nd Edition_. Boston: Addison-Wesley, 1995.
 
 Feathers, Michael C. _Working Effectively with Legacy Code_. Upper Saddle River, NJ: Prentice Hall, 2004.
 

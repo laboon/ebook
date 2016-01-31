@@ -72,7 +72,7 @@ public int getNumGiraffesInZoo(DatabaseWorker dbw, SqlGenerator sqlg) {
 }
 ```
 
-While this is still suboptimal, it is at least possible to override all of the dependencies with doubles.  There's less concern in the method on items that are unrelated to the method itself (e.g., connecting network connections to the database worker, which probably belongs in the `DatabaseConnectionPool` or the `DatabaseWorker` class itself, certainly not in the `getNumGiraffesInZoo` method.  We could go a bit further and move all of the database workings to their own class, wrapping them all up so that only the important parts are visible to this method:
+While this is still suboptimal, it is at least possible to override all of the dependencies with doubles.  There's less concern in the method on items that are unrelated to the method itself (e.g., connecting network connections to the database worker, which probably belongs in the `DatabaseConnectionPool` or the `DatabaseWorker` class itself, certainly not in the `getNumGiraffesInZoo` method).  We could go a bit further and move all of the database workings to their own class, wrapping them all up so that only the important parts are visible to this method:
 
 ```java
 public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
@@ -88,7 +88,7 @@ public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
 
 We have now reduced the number of dependencies to that single class `AnimalDatabaseWorker`, and only call one method on it.
 
-The second concept is to ensure that everything you do is repeatable.  What you don't want is a test which works fine sometimes.  If there is a failure, you should know about it immediately.  If there is not a failure, you do not want to have to have false alarms.
+The second concept is to ensure that everything you do is repeatable.  What you don't want is a test which only works fine sometimes.  If there is a failure, you should know about it immediately.  If there is not a failure, you do not want to have to have false alarms.
 
 You can make a test repeatable by ensuring that all of the values that it depends on are able to be replicated.  This is one of the (many, many, many) reasons that global variables are, in general, a Bad Idea.  Let's consider testing the following method:
 

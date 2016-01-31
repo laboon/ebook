@@ -27,7 +27,7 @@ I wouldn't have asked the question if I didn't have an answer---__test doubles__
 
 JUnit does not support test doubles directly, but there are libraries that you can install alongside JUnit that do.  For the next few sections, we will use Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
 
-Here is an example of using a test double with JUnit and Mockito to test a method which relies on a test double object.  Note that the Mockito calls all test doubles "mocks", even if they don't use the capabilities of a mock object (described later in the chapter):
+Here is an example of using a test double with JUnit and Mockito to test a method which relies on a test double object.  Note that Mockito calls all test doubles "mocks", even if they don't use the capabilities of a mock object (described later in the chapter):
 
 ```java
 // Class to test
@@ -63,7 +63,7 @@ public class HorseTest {
 
 We have now created a "fake" object instead of passing in an actual instantiation of the Water class.  Water is now "quarantined" and cannot cause a failure in our code.  If the test fails, it's the fault of this particular method.  Therefore, whenever there is a failure, we'll know exactly where to look in the codebase to determine the issue.  Whenever you use doubles, however, you are also dependent upon your assumptions of how the code you depend upon is supposed to work in the actual program.  There is nothing stopping you from, say, creating test doubles that have a method that the actual class does not.  In this case, your tests will work fine but the actual program will not.
 
-Doubles can also be used to speed up the execution of tests.  Think of a Database object which writes information to out to a database and returns the status code.  Under ordinary circumstances, the program needs to write out to disk and perhaps even access the network.  Let's say that this takes one second.  This may not seem like an incredibly long time to wait, but multiply it by all the tests that access the database.  Even a relatively small program may have hundreds or even thousands of unit tests, adding minutes or hours to the amount of time each test run takes.
+Doubles can also be used to speed up the execution of tests.  Think of a Database object which writes information out to a database and returns the status code.  Under ordinary circumstances, the program needs to write out to disk and perhaps even access the network.  Let's say that this takes one second.  This may not seem like an incredibly long time to wait, but multiply it by all the tests that access the database.  Even a relatively small program may have hundreds or even thousands of unit tests, adding minutes or hours to the amount of time each test run takes.
 
 You should never, ever, ever use a double for the current class under test!  If you do this, you're no longer testing anything, really, as you are creating a fake object for the actual thing that you are testing.
 
@@ -439,7 +439,7 @@ public class ImageLibrary {
 
 Think of all the complicated tests that would be needed for this one method!  Even then, you're not focusing on the actual image transformations.  Many of your tests would just be focused on ensuring that the right method was called!
 
-One could argue that this isn't a well-designed piece of code and should be refactored, ideally with the private methods put into, say, an `ImageTransformer` class, where the methods would be public and could easily be unit tested.  I wouldn't disagree.  However, the fact of the matter is that in the real world, there is often code like this lying around, and the tester is not always in a position to tell management that the company needs to spend a few months burning off technical debt instead of adding new features.  If your goal is to test the software, and test it well, you'll probably have to test the occasional private method.  For specific information on how to do this in Java, please see the supplemental chapter on Using Reflection to Test Private Methods in Java at the end of this book.
+One could argue that this isn't a well-designed piece of code and should be refactored, ideally with the private methods put into, say, an `ImageTransformer` class, where the methods would be public and could easily be unit tested.  I wouldn't disagree.  However, the fact of the matter is that in the real world, there is often code like this lying around, and the tester is not always in a position to tell management that the company needs to spend a few months burning off technical debt instead of adding new features.  If your goal is to test the software, and test it well, you'll probably have to test the occasional private method.  For specific information on how to do this in Java, please see the supplemental chapter on _Using Reflection to Test Private Methods in Java_ at the end of this book.
 
 ## Unit Test Structure
 
@@ -512,7 +512,7 @@ There is yet another benefit to creating tests which have no dependencies on oth
 
 Oftentimes, you will need to work with legacy code, including code which was poorly written or does not have good test coverage.  Although it may be tempting to simply continue working in the same manner that the code was originally written, you should try to do what you can to make the testing of the code better.  Keep your code easily testable, and if necessary, build wrappers around code that is difficult to test.
 
-There is more discussion on writing testable code in the chapter Writing Testable Code (with a title like that, what else did you expect to find in it?)
+There is more discussion on writing testable code in the chapter _Writing Testable Code_ (with a title like that, what else did you expect to find in it?)
 
 ## Code Coverage
 
