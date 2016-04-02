@@ -181,7 +181,7 @@ public class LaboonStuff {
 @Test
 public void testPrivateLaboonify() {
     try {
-        Method method = MathStuff.class.getDeclaredMethod("laboonify");
+        Method method = LaboonStuff.class.getDeclaredMethod("laboonify");
         method.setAccessible(true);
         LaboonStuff ls = new LaboonStuff();
         Object returnValue = method.invoke(ls, 4);
