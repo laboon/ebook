@@ -109,7 +109,7 @@ public class ReflectionFun {
         System.out.println("Quack!");
     }
 
-    public void printQuock() {
+    private void printQuock() {
         System.out.println("Quock!");
     }
 
