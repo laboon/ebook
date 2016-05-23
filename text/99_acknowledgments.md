@@ -2,7 +2,7 @@
 
 Thanks to everybody who has helped make this book a reality or made it into a better reality, especially:
 
-_Ross Acheson, Will Engler, Jake Goulding, Brandon Hang, Joel McCracken, Robbie McKinstry, Ryan Rahuba, Steve Robbibaro, Nich Treu, Ed Wiancko, and Sheridan Zivanovich._
+_Ross Acheson, Will Engler, Jake Goulding, Brandon Hang, Joel McCracken, Robbie McKinstry, Ryan Rahuba, Steve Robbibaro, Nick Treu, Ed Wiancko, and Sheridan Zivanovich._
 
 Special thanks go to:
 
