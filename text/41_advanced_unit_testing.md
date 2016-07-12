@@ -102,19 +102,19 @@ public class Dog {
     DogWater _dw = null;
 
     public void setDogFood(DogFood df) {
-        df = _df;
+        _df = df;
     }
 
     public void setDogDish(DogDish dd) {
-        dd = _dd;
+        _dd = dd;
     }
 
     public void setDogWater(DogWater dw) {
-        dw = _dw;
+        _dw = dw;
     }
 
     public int eatDinner() {
-        _df.eat();
+        _df.eatDinner();
         return 1;
     }
 
