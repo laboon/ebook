@@ -109,13 +109,11 @@ public boolean testArraySort() {
     // Old, busted built-in Java sort. :(
     normalSorted = Arrays.sort(vals);
 
-    if (Arrays.equals(billSorted, normalSorted)) {
-        // Our arrays are equal, test passes!
-        return true;
-    } else {
-        // Our arrays are not equal, test fails.
-        return false;
-    }
+    // If the arrays are equal, then true is returned and the test passes
+    // Otherwise, false is returned, and the test fails
+    
+    return Arrays.equals(billSorted, normalSorted));
+    
 }
 ```
 
@@ -128,7 +126,7 @@ Isn't it possible to redesign the system so as to send in the flag as an argumen
     billSorted = billSort(vals, true);
 ```
 
-This is certainly possible, and in this case one could consider `SORT_ASCENDING` an input value as opposed to a precondition.  Whether something is a precondition or an input value often depends on the implementation of a program.  If we were writing this in a language such as Haskell, for example, where side effects are extremely limited, functions such as this would almost never have any preconditions other than 'the program is running'.
+This is certainly possible, and in this case one could consider `SORT_ASCENDING` an input value as opposed to a precondition.  Whether something is a precondition or an input value often depends on the implementation of a program.  If we were writing this in a language such as Haskell, for example, where side effects for most functions are extremely limited, functions such as this would almost never have any preconditions other than 'the program is running'.
 
 Sorting is a mathematically pure concept, but much of what a tester tests is not so straightforward.  In such cases, it can often be difficult to determine what counts as input values and what counts as preconditions.  As a heuristic, if someone selects or enters a value, as part of the execution of the test case, it should be considered an input value, otherwise it is a precondition.  For example, if the test case checks for a user logging in as different names, then the login name would be an input value.  If the test is checking for the ability to add items to a cart when logged in as a certain user, the login name would be a precondition, as it is not entered directly in the test case, but should be done before the test even starts.
 
