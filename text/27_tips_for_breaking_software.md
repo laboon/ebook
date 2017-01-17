@@ -16,15 +16,11 @@ Maybe not that last one. However, you will have to think of ways to test for the
 
 2. __Off-By-One Errors__: Although technically a logic error, these are so common that they will be addressed separately.  An off-by-one error is when a program does something wrong because a value is off by just one unit.  This is the reason that there was a focus on determining boundary values in a previous chapter---boundary values are a focused way of looking for off-by-one errors.  Why are these so common?  Let's imagine a very simple method which returns whether or not a person is a minor or not:
 
-    ```java
-    public boolean isMinor(int personAge) {
-        if (personAge <= 18) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    ```
+```java
+public boolean isMinor(int personAge) {
+    return personAge <= 18;
+}
+```
 
     Did you spot the error?  At least in the United States at the time of this writing, you are no longer considered a minor once you reach 18.  By using `<=` instead of `<`, the method will return that the person is still a minor when they turn 18.  This minor mistake can happen in all sorts of ways---thinking that an array is 1-indexed instead of 0-indexed, confusing a "greater than or equal to" sign with "greater than", using `++i` when you should have used `i++`, etc.  These are also often less visible than other errors, since they will only show up for specific values.
 
@@ -106,11 +102,7 @@ Maybe not that last one. However, you will have to think of ways to test for the
 
     ```java
     public boolean greaterThanTen(int a, int b) {
-        if ((a + b) > 10) {
-            return true;
-        } else {
-            return false;
-        }
+        return (a + b) > 10;
     }
     ```
 
