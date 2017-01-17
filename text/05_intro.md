@@ -1,18 +1,18 @@
-# Introduction
-
-_Let me say that I rarely ever read introductions to technical books; I won't be offended if you don't read this one._
+# Introduction to the Second Edition
 
 ## The Story So Far
 
-A long time ago, in a company far, far away, I was a test lead.  One of my responsibilities was to interview potential test engineers for our team, and I found that many candidates did not have a background in testing.  Those who did well in their career often picked things up as they went.  Even those who had degrees in computer science (or a related field) had often not learned about software testing.  Developers had to learn how to properly test their own code, often following the old "apprentice" model by asking more senior developers what needed to be tested.
+A long time ago, in a company far, far away, I was a test lead.  One of my responsibilities was to interview potential test engineers for our team, and I found that many candidates did not have a background in testing.  Those who did well in their career often picked things up as they went.  Even those who had degrees in computer science (or a related field) had often not learned about software testing.  Developers had to learn how to properly test their own code, often following the "apprentice" model by asking more senior developers what needed to be tested.
 
 I figured that I could complain about it, or do something about it.  I was able to convince the Computer Science department at the University of Pittsburgh to allow me to develop and teach a class on software testing.  This small class has grown to cover many different aspects of software quality, and become a popular, ongoing course (CS 1632: Software Quality Assurance, if you're interested in taking it!).  I developed my own curriculum, as I couldn't find a good book or syllabus on the subject that struck the right balance between theory and application.  Finding a good book to use was even more difficult than finding a good Quality Assurance (QA) Engineer to interview!  Once again, I figured I could either complain about it, or do something about it, and once again, I chose the latter.
 
 After a few semesters of teaching the course, I've added some additional material, and thought of different ways to explain concepts.  I also wanted to add some more examples and sample code.  I also saw that others out there were looking for what this book provided - an understandable and reasonably comprehensive guide to modern software testing.  Therefore, less than a year after the first edition came out, I started working on this second edition.
 
-## Testing and Quality Assurance
+If you have read the first edition, you'll notice that there have been quite a few typos fixed, examples added, and explanations expanded.  More significantly, there are several new chapters.  These include a chapters on automating systems testing, testing web applications using Selenium, fuzz testing, developing an overarching test strategy, and using static analysis.  I have also added a chapter with miscellaneous testing tips that did not fit in elsewhere in the book.  This edition should provide much broader coverage of the field of modern software testing, while still being readable and filled with the jokes that my readers expect.
 
-Testing software is a big part of the software development process, and useful not just for those looking specifically for a career in QA.  A developer who doesn't care about software quality is not a good developer.  This book is targeted to those interested in software testing or writing tests as a developer.
+## Who This Book Is For
+
+Testing software is a big part of the software development process, and useful not just for those looking specifically for a career in QA.  A developer who doesn't care about software quality is not a good developer.  This book is targeted to anybody who is interested in ensuring that they develop high-quality, no matter what their particular role on the team is.
 
 ## What This Book Covers
 
