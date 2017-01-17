@@ -218,7 +218,7 @@ Infinity
 NaN
 ```
 
-Dividing a positive value by zero returns `Infinity`, dividing by a negative number returns `-Infinity`, and dividing zero by zero returns `NaN` (Not a Number).  This means that dividing by zero, despite being one "internal equivalence class" in Java programs, is three different ones in JavaScript programs.  Knowing this, you would want to test that the program can handle all of these return values, and not assume that you had checked all edge cases simply because you had checked for dividing one by zero.  This is an actual example from a test plan that I wrote, and it was used to find several defects.
+Dividing a positive value by zero returns `Infinity`, dividing a negative number by zero returns `-Infinity`, and dividing zero by zero returns `NaN` (Not a Number).  This means that dividing by zero, despite being one "internal equivalence class" in Java programs, is three different ones in JavaScript programs.  Knowing this, you would want to test that the program can handle all of these return values, and not assume that you had checked all edge cases simply because you had checked for dividing one by zero.  This is an actual example from a test plan that I wrote, and it was used to find several defects.
 
 ## Test Fixtures
 
