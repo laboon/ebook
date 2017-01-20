@@ -102,7 +102,7 @@ One could also consider __implicit boundary values__.  In contrast to __explicit
 Implicit boundary values can also be runtime-dependent.  Suppose that we have a system with 2 gigabytes of memory free, and are running an in-memory database system.  The equivalence classes for testing a function which inserts a number of rows may be as follows:
 
 1. Negative number of rows &rarr; Error condition
-2. 0 rows or tables does not exist &rarr; Returns NULL
+2. 0 rows or table does not exist &rarr; Returns NULL
 3. One or more rows &rarr; Returns number of rows inserted
 
 There's an implicit boundary between the number of rows which fit into memory and that which don't.  Whoever wrote the requirements may not have thought about this, but as a tester, you should keep implicit boundary values in mind.
