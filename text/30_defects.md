@@ -94,7 +94,7 @@ When someone brings a problem to a developer to be fixed, the order of operation
 1. The developer attempts to replicate defect.
 2. If the developer cannot replicate the defect, they will write on the defect report that "it works on my machine" and stop working on defect.
 3. Otherwise, the developer will write some code hoping to fix it.
-4. The eveloper replicates original behavior that caused defect.
+4. The developer replicates original behavior that caused defect.
 5. If defect is fixed, write on the defect report that it has been fixed.  Otherwise, go to step 3.
 
 You will notice that there is a bit of a premature exit at line 2 if the developer cannot replicate the defect.  You will also note the first appearance of the bane of many testers, the excuse that "it works on my machine!"  Development and production machines are often very different---in installed programs, libraries, perhaps even operating systems.  A defect appearing in production or in a test environment but not a developer's system is a very real and very common problem.  Just as often, though, the tester has simply not specified the reproduction steps as precisely as possible.  As a tester, you can help minimize the problem of hearing "it works on my machine!" by writing down reproduction steps in a detailed and unambiguous way.
