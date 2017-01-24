@@ -67,13 +67,14 @@ Let's start with the first section, Input.  I notice that there are several poss
 1. The user enters one valid parameter
 2. The user enters no parameters
 3. The user enters one parameter, but it is invalid
-4. The user enters more than one parameter
+4. The user enters two parameters (one extra)
+4. The user enters many more parameters than 
 
-In the last three use cases, the expected behavior is the same; the system shuts down and the message "Please enter a valid parameter" is displayed.  In the first use case, the system will continue on and have behavior governed by other requirements.  You can already see here that it's important to have a view of the entire system, instead of looking at requirements solely in and of themselves.  This becomes more and more difficult as the number of requirements grows and the system under test becomes more complex.
+In the last four cases, the expected behavior is the same; the system shuts down and the message "Please enter a valid parameter" is displayed.  In the first use case, the system will continue on and have behavior governed by other requirements.  You can already see here that it's important to have a view of the entire system, instead of looking at requirements solely in and of themselves.  This becomes more and more difficult as the number of requirements grows and the system under test becomes more complex.
 
-Use cases 1, 3, and 4 all have variants which could be tested.  There are numerous values for valid parameters, in the first case, which will have different behaviors as enumerated in the other requirements.  There are an essentially infinite number of single invalid parameters, anything from negative values, to imaginary numbers, to random strings of any length.  For the fourth use case, the only limit to how many parameters the user can enter is up to the operating system; he or she can enter two, three, four or more.  The second use case has no variants; there are no different ways to enter no parameters; there are no different flavors of null.
+Use cases 1, 3, 4, and 5 all have multiple variants which could be tested.  There are numerous values for valid parameters, in the first case, which will have different behaviors as enumerated in the other requirements.  There are an essentially infinite number of single invalid parameters, anything from negative values, to imaginary numbers, to random strings of any length.  For the fourth use case, there could be two valid parameters, or two invalid parameters, or one valid and one invalid.  For the fifth use case, the only limit to how many parameters the user can enter is up to the operating system; he or she can enter two, three, four or more.  The second use case has no variants; there are no different ways to enter no parameters; there are no different flavors of null.
 
-Depending on the importance of the cat-weighing program, we can decide if we want to test all possible use cases, and how many variants of the particular use case we want to test.  At a bare minimum, you probably want to test the happy path, that is, the expected use case that a user will follow, which in our case is the user entering one valid parameter.  Other use cases can be considered failure cases, since the expected behavior is to cease execution as an invalid value or set of values has been entered:
+Depending on the importance of the cat-weighing program, we can decide if we want to test all possible use cases, and how many variants of the particular use case we want to test.  At a bare minimum, you probably want to test the happy path, that is, the expected use case that a user will follow, which in our case is the user entering one valid parameter.  Since users often forget the format of arguments, we should also check for invalid input with the correct number of arguments.  We will probably also want to test the boundary values around the proper number of arguments, since those will be the most common failure mode for this requirement.  Users may forget to enter an argument, or they may type on extra one in.  Less often, the user may think that many more arguments are required.  All of these cases besides the happy path can be considered failure cases, since the expected behavior is to cease execution as an invalid value or set of values has been entered:
 
 ```
 IDENTIFIER: VALID-PARAMETER-TEST
@@ -86,7 +87,7 @@ POSTCONDITIONS: The program exits and displays normal output for a 5 kilogram ca
     The program does not display "Please enter a valid parameter".
 ```
 
-The FUN-PARAMETER requirement has three failure cases which I'd also like to add tests for.  These are outside the happy path, as they indicate that the user is not using the program correctly.  However, in such cases, we still need to ensure that the system is following the requirements.  Let's add additional test cases for the three failure modes:
+The FUN-PARAMETER requirement has four failure cases which I'd also like to add tests for.  These are outside the happy path, as they indicate that the user is not using the program correctly.  However, in such cases, we still need to ensure that the system is following the requirements.  Let's add additional test cases for the three failure modes:
 
 ```
 IDENTIFIER: INVALID-PARAMETER-TEST
@@ -103,6 +104,15 @@ TEST CASE: Run the program without passing in a parameter.
 PRECONDITIONS: None
 INPUT VALUES: None
 EXECUTION STEPS: At the command line, run "catweigher"
+OUTPUT VALUES: N/A
+POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
+    without further output.
+
+IDENTIFIER: TWO-PARAMETERS-TEST
+TEST CASE: Run the program with two parameters).
+PRECONDITIONS: None
+INPUT VALUES: 1 2
+EXECUTION STEPS: At the command line, run "catweigher 1 2"
 OUTPUT VALUES: N/A
 POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
     without further output.
