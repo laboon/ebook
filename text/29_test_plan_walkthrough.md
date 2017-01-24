@@ -56,9 +56,9 @@ Looking at the requirements, I can mentally divide them into three sections:
 3. Performance:
     1. NF-PERF-TIME
 
-How did I determine how to sort these out?  I looked for requirements which were related to each other and put each in a "cluster".  The program you're working will probably not have these exact same clusters (unless you also happen to be working on a cat-weighing program... in which case, lucky you).  For larger programs, these clusters will often revolve around specific features (e.g., shopping cart, item display, and checkout in an online shopping application) or different sub-systems (e.g., user interface, enemy artificial intelligence, and graphics for a video game).  There is really no "right answer" as to how to cluster requirements together for testing, and as you understand the system better, the clustering may change.  However, by providing a general outline, you can start to get a handle on testing the system holistically.
+How did I determine how to sort these out?  I looked for requirements which were related to each other and put each in a "cluster".  The program you are testing will probably not have these exact same clusters (unless you also happen to be working on a cat-weighing program... in which case, lucky you).  For larger programs, these clusters will often revolve around specific features (e.g., shopping cart, item display, and checkout in an online shopping application) or different sub-systems (e.g., user interface, enemy artificial intelligence, and graphics for a video game).  There is really no "right answer" as to how to cluster requirements together for testing, and as you understand the system better, the clustering may change.  However, by providing a general outline, you can start to get a handle on testing the system holistically.
 
-Looking specifically at the test plan outline we developed here, it is apparent that the second section, Output, has by far the most requirements listed, this does not necessarily mean that it will take the longest amount of time to test, or involve the most work.  In fact, as FUN-STARTUP-MESSAGE is very simple and unchanging, and the three other requirements involve mathematically pure functions, the tests themselves will probably be relatively easy to write.  In real-world instances, some requirements may take orders of magnitude longer to test than others!  Performance and security requirements, among others, can be much more difficult to test than the length of their requirements would suggest.
+Looking specifically at the test plan outline we developed here, it is apparent that the second section, Output, has - by far - the most requirements listed.  This does not necessarily mean that it will take the longest amount of time to test, or involve the most work.  In fact, as FUN-STARTUP-MESSAGE is very simple and unchanging, and the three other requirements involve mathematically pure functions, the tests themselves will probably be relatively easy to write.  In real-world instances, some requirements may take orders of magnitude longer to test than others!  Performance and security requirements, among others, can be much more difficult to test than the length of their requirements would suggest.
 
 ## Filling Out the Test Plan
 
@@ -107,7 +107,7 @@ OUTPUT VALUES: N/A
 POSTCONDITIONS: The program displays "Please enter a valid parameter" and exits
     without further output.
 
-IDENTIFIER: TOO-MANY-PARAMETER-TEST
+IDENTIFIER: TOO-MANY-PARAMETERS-TEST
 TEST CASE: Run the program with too many parameters (specifically, four parameters).
 PRECONDITIONS: None
 INPUT VALUES: 5 6 7 8
