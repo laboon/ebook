@@ -10,7 +10,7 @@ Test-Driven Development is a software development methodology that comprises sev
 
 1. _Writing tests first, before code:_ Before you even start thinking of _how_ to do something, this forces you to think of _what_ is to be done.  Since your code has not been written, you can check that the test initially fails (in order to avoid tautological tests which always pass), and have a specific goal that you are reaching toward (getting the test you just wrote to pass).
 
-2. _Writing only code that makes the test pass:_ This ensures that you focus on writing relevant code, instead of spending time working on possibly superfluous frameworking or other code.  One of the key benefits of TDD is that allows you to focus, by training you to keep your eye on the one goal of the cycle instead of thinking of all the other possible bits of code that you could be writing.
+2. _Writing only code that makes the test pass:_ This ensures that you focus on writing relevant code, instead of spending time working on possibly superfluous frameworking or other code.  One of the key benefits of TDD is that it allows you to focus, by training you to keep your eye on the one goal of the cycle instead of thinking of all the other possible bits of code that you could be writing.
 
 3. _Writing only tests that test the code:_ It's tempting to write tests for the sake of writing them; this will help to keep tests only being written for the functionality being written.
 
@@ -22,7 +22,7 @@ Test-Driven Development is a software development methodology that comprises sev
 
 We work within these constraints by using the "red-green-refactor" loop.  A single cycle in TDD involves the following three steps:
 
-1. _Red:_ TDD is a form of __test-first development__ (TFD), so the first thing to do is write a test.  The developer writes a failing test for a new piece of piece of functionality or an edge case that should be checked.  The newly written test---and only that test---should fail.  If the newly written test does not fail, that means that the code has already been written for that functionality.  If other tests fail, this means that there is a problem with the test suite---perhaps an intermittent or non-deterministic failure of a test---that should be fixed before moving on.  This phase is called "red" because many unit testing frameworks will display failing tests in red.  Since red-green colorblindness affects a good portion of the human population, and humans are by far the most likely animal to program, this may not be the best color selection.  Regardless, we will follow this standardized naming convention.
+1. _Red:_ TDD is a form of __test-first development__ (TFD), so the first thing to do is write a test.  The developer writes a failing test for a new piece of functionality or an edge case that should be checked.  The newly written test---and only that test---should fail.  If the newly written test does not fail, that means that the code has already been written for that functionality.  If other tests fail, this means that there is a problem with the test suite---perhaps an intermittent or non-deterministic failure of a test---that should be fixed before moving on.  This phase is called "red" because many unit testing frameworks will display failing tests in red.  Since red-green colorblindness affects a good portion of the human population, and humans are by far the most likely animal to program, this may not be the best color selection.  Regardless, we will follow this standardized naming convention.
 
 2. _Green:_ The developer now writes code to make this test pass. This work will focus only on making this test pass, while not causing any other tests to fail.  At this point, some "ugly" code is to be expected; the focus is on making it work as opposed to making it pretty.  If other tests fail, then the developer has inadvertently caused a regression and should work on fixing that.  At the end of this phase, all tests should be passing ("green").
 
@@ -44,7 +44,7 @@ This could all be re-written as a very simple algorithm.  By doing so, we can se
 
 There are several principles to keep in mind when writing in a TDD manner.
 
-* _YAGNI (You Ain't Gonna Need It):_ Don't write any code that you don't need to in order to make the tests pass!  It's always tempting to make a nice abstract system which can handle all sorts of different future variations on whatever it is you're doing now, but you will also make the code more complex.  What's worse, you will be making it more complex in ways that may not ever help the system's future development.  Avoid complexity until it's absolutely necessary.  If there are more edge cases or equivalence classes that need to be dealt with, add more tests first.
+* _YAGNI (You Ain't Gonna Need It):_ Don't write any code that you don't need in order to make the tests pass!  It's always tempting to make a nice abstract system which can handle all sorts of different future variations on whatever it is you're doing now, but you will also make the code more complex.  What's worse, you will be making it more complex in ways that may not ever help the system's future development.  Avoid complexity until it's absolutely necessary.  If there are more edge cases or equivalence classes that need to be dealt with, add more tests first.
 
 * _KISS (Keep It Simple, Stupid):_ One of the goals of TDD is to ensure that the codebase is flexible and extensible, and one of the greatest enemies of those two goals is complexity.  Complex systems are difficult to understand and thus modify; complex systems tend to be overfit to the specific problem they were developed for, and it's difficult to add new features or functionality.  Keep your code simple and your design simple, and consciously avoid adding additional complexity.
 
@@ -52,11 +52,16 @@ There are several principles to keep in mind when writing in a TDD manner.
 
 * _Avoid Slow Running Tests:_ If you are working with TDD, you are running at least three full test runs each iteration through the red-green-refactor loop.  That's a minimum and assuming that your code never causes problems in other tests or has any defects of its own.  If running your test suite takes two or three seconds, this is a minor price to pay for the extra quality that TDD provides; if it takes several hours, how long before developers are going to start ignoring the process in order to actually get some work done?
 
-* _Remember That These Are Principles, Not Laws:_ It would be counterproductive to entirely ignore what else the software needs to do in the next few iterations of the red-green-refactor loop.  Occasionally, a test may be slow but necessary, or adding a fake version of a method would be just as simple as actually making the method.  Although you should endeavor to follow the principles of TDD, I know of nobody who has never violated one of the principles (although perhaps that speaks more to the type of people with whom I spend time).
+* _Remember That These Are Principles, Not Laws:_ It would be counterproductive to entirely ignore what else the software needs to do in the next few iterations of the red-green-refactor loop.  Occasionally, a test may be slow but necessary, or actually making a method would be just as simple as adding a fake version of it.  Although you should endeavor to follow the principles of TDD, I know of nobody who has never violated one of the principles (although perhaps that speaks more to the type of people with whom I spend time).
 
 ## Example: Building FizzBuzz via TDD
 
-In order to understand how TDD works, let's write a simple `FizzBuzz` program using it.  Remember that `FizzBuzz` consists of printing every number from 1 to 100, except if the number is evenly divisible by three, then the word "Fizz" should be printed instead of the number, if the number is evenly divisible by five, then the word "Buzz" should be printed instead of the number, and if the number is evenly divisible by both three and five, then "FizzBuzz" should be printed instead of the number.
+In order to understand how TDD works, let's write a simple `FizzBuzz` program using it.  Recall that `FizzBuzz` consists of:
+
+1. Printing every number from 1 to 100, with the following exceptions.
+2. If the number is evenly divisible by both three and five, then the word "FizzBuzz" should be printed instead of the number.
+2. If the number is evenly divisible by three, then the word "Fizz" should be printed instead of the number.
+3. If the number is evenly divisible by five, then the word "Buzz" should be printed instead of the number.
 
 First, let's build a "walking skeleton" of the application.  Assuming we already have JUnit or a similar testing framework installed, and we aren't deploying it anywhere, all we have to do is generate our initial `FizzBuzz` class.  Since we're iterating through a range of values, each of which is entirely decidable based on its value, let's create a class that has a main method and a `fizzbuzzify` method, which will return the correct string for a given value.
 
@@ -113,7 +118,7 @@ public class FizzBuzz {
 }
 ```
 
-When we run the test again, it passes!  Let's move on to the next phase and look for any refactoring opportunities.  In this case, I don't think there are; sure, there's a magic number (well, technically a magic string consisting of a number), but what can you do, replace it with a constant `NUMBER_ONE`?  That's not any more understandable.
+When we run the test again, it passes!  Let's move on to the next phase and look for refactoring opportunities.  In this case, I don't think there are any; sure, there's a magic number (well, technically a magic string consisting of a number), but what can you do, replace it with a constant `NUMBER_ONE`?  That's not any more understandable.
 
 Let's add another test, for 2, which should return a non-fizzy, non-buzzy string, "2":
 
