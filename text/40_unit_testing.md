@@ -230,9 +230,13 @@ Assuming no floating-point rounding errors or errors of that nature, the square 
 An example of an impure function would be printing out statistics from global variables, or any method which outputs something to the console or screen, or depends upon variables that are not specifically passed in.  In general, if you see a method with a void return, it's probably impure---a pure function with a void return type would be absolutely useless, since the returned value is its only way of communicating with the rest of the program.  Here is an example of an impure function, which allows users to go to a cat café (that is, a place where you can drink coffee and pet cats):
 
 ```java
-public void goToCatCafe(CatCafe catCafe) {
-    System.out.println("Petting cats at a Cat Café!");
-    catCafe.haveFun();
+public class World {
+
+    public void goToCatCafe(CatCafe catCafe) {
+        System.out.println("Petting cats at a Cat Café!");
+        catCafe.arrive();
+        catCafe.haveFun();
+    }
 }
 ```
 

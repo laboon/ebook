@@ -23,7 +23,7 @@ public int haveFunAtDuckPond(Duck d, int numFeedings) {
 
 Even though the code in this method works perfectly for all inputs, it requires that a working duck be present.  Otherwise, any non-negative number of feedings with a valid duck will cause an exception to be thrown.  If we see a unit test for this particular method failing, we will naturally think that the problem is in this method.  Only after examining it will we understand that the problem actually lies elsewhere.  How can we test this code when the code it depends upon doesn't work?
 
-I wouldn't have asked the question if I didn't have an answer---__test doubles__.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to localize the source of errors.  If our tests for `haveFunAtTheDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that the method depends upon.
+I wouldn't have asked the question if I didn't have an answer---__test doubles__.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to localize the source of errors.  If our tests for `haveFunAtDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that the method depends upon.
 
 JUnit does not support test doubles directly, but there are libraries that you can install alongside JUnit that do.  For the next few sections, we will use Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
 
@@ -48,13 +48,13 @@ import org.junit.*;
 
 public class HorseTest {
 
-    // Test that a leading a horse to water will return 1
+    // Test that leading a horse to water will return 1
     @Test
     public void testWaterDrinkReturnVal() {
         Horse horse = new Horse();
         // We are making a test double for water
         Water mockWater = Mockito.mock(Water.class);
-        int returnVal = h.leadTo(mockWater);
+        int returnVal = horse.leadTo(mockWater);
         assertEquals(1, returnVal);
     }
 
@@ -114,7 +114,7 @@ public class Dog {
     }
 
     public int eatDinner() {
-        _df.eatDinner();
+        _df.eat();
         return 1;
     }
 
@@ -175,7 +175,7 @@ If doubles are fake objects, stubs are fake methods.  In the above examples, we 
 public class Dog {
 
     public int eatDinner(DogFood df) {
-        int tastiness = df.eatDinner();
+        int tastiness = df.eat();
         return tastiness;
     }
 
@@ -203,33 +203,120 @@ Now when the `mockedDogFood` object has its `.eat()` method called, it will retu
 
 ## Mocks and Verification
 
-"Yes, yes, this is all fine," I can hear you saying, "but you didn't answer the original question!  We are still dependent on asserting on a value that is returned from a method, and thus won't be able to test methods without a return value!"  Remember the impure method `goToCatCafe` that we wanted to test from in the last chapter:
+"Yes, yes, this is all fine," I can hear you saying, "but you didn't answer the original question!  We are still dependent on asserting on a value that is returned from a method, and thus won't be able to test methods without a return value!"  Remember the impure method `goToCatCafe` that we wanted to test in the last chapter:
 
 ```java
-public void goToCatCafe(CatCafe catCafe) {
-    System.out.println("Petting cats at a Cat Café!");
-    catCafe.haveFun();
+public class World {
+
+    public void goToCatCafe(CatCafe catCafe) {
+        System.out.println("Petting cats at a Cat Café!");
+        catCafe.arrive();
+        catCafe.haveFun();
+    }
+    
 }
 ```
 
-There is no return value and thus nothing on which to assert.  The only way to test this method is to ensure that the `.haveFun()` method on the `duckPond` object was called.  We can do this using a special kind of test double called a __mock__.  A mock object will allow you to assert that a particular method was called on the mocked object.  In the above instance, instead of asserting that a particular value is returned (since no value is ever returned), you instead can make a "meta-assertion" that `.haveFun()` is called.  This is called __verification__ since you are _verifying_ that a method has been called.  Note that this kind of verification has nothing to do with the kind of verification that means "checking that the software is right".  They are two different concepts that happen to share the same word.
+There is no return value and thus nothing on which to assert.  The only way to test this method is to ensure that the `.arrive()` and `.haveFun()` methods on the `catCafe` object were called.  We can do this using a special kind of test double called a __mock__.  A mock object will allow you to assert that a particular method was called on the mocked object.  In the above instance, instead of asserting that a particular value is returned (since no value is ever returned), you instead can make "meta-assertions" that `.haveFun()` and `.arrive()` are called.  This is called __verification__ since you are _verifying_ that a method has been called.  Note that this kind of verification has nothing to do with the kind of verification that means "checking that the software is right".  They are two different concepts that happen to share the same word.
+
+Here is how we might test that method using verification.
 
 ```java
-public void testHaveFunAtDuckPond() {
-
-    Person p = new Person();
-    DuckPond dp = Mockito.mock(DuckPond.class);
-    p.haveFunAtDuckPond(dp);
-    verify(dp.haveFun(), times(1));
+@Test
+public void testGoToCatCafe() {
+    CatCafe cc = mock(CatCafe.class);
+    World w = new World();
+    w.goToCatCafe(cc);
+    verify(cc.arrive());
+    verify(cc.haveFun());
 
 }
 ```
 
-Note, in this case, that there is no traditional assertion.  The test case ends with the execution steps, viz., calling `.haveFunAtDuckPond()`.  The assertion is actually set when you verify that `.haveFun()` will be called one time on the mocked `DuckPond` object.
+Note, in this case, that there is no traditional assertion (e.g., `assertEquals`).  The assertions are "hidden" inside the `verify()` call.  If verification fails, the test case will fail just as it would with a simple assertion.
+
+You may want to check that is called a certain number of times.  Let's assume that we have a method `.multiPet()` which will allow you to easily pet the same cat numerous times, based on a passed-in integer.
+
+```java
+public void multiPet(Cat c, int numTimes) {
+    for (int j = 0; j < numTimes; j++) {
+        c.pet();
+    }
+}
+```
+
+Using the `times()` method along with verification, you can check that if you call `multiPet(c, 5)`, that the cat C will be petted 5 times, or if you call it with the numTimes argument equal to 900 that cat will be petted 900 times (lucky cat!).
+
+```java
+
+/**
+ * Check that if we call multiPet with a valid cat and a numTimes
+ * argument of 5, that cat will be petted 5 times.
+ */
+ 
+@Test
+public void testMultiPet5() {
+    World w = new World();
+    Cat c = mock(Cat.class);
+    w.multiPet(c, 5);
+    verify(c.pet(), times(5));
+}
+```
+
+Conversely, you may also want to check that a method is never called.  Let's imagine another CatCafe-related method in our `World` class, `.petCat()`.
+
+```java
+public void petCat(Cat c, boolean gentle) {
+    if (gentle) {
+        c.pet();
+    } else {
+        // Do nothing - don't pet cats without being gentle!        
+    }
+}
+```
+
+In this case, we want to test that if the `gentle` variable is true, `.petCat()` will be called, otherwise it will not be called.  We can create two unit tests for each of these equivalence classes.
+
+```java
+
+/**
+ * Check that attempting to pet a cat while being gentle will
+ * cause the cat to be petted one time.  This is done by verifying
+ * that c.pet() is called one time.
+ */
+ 
+@Test
+public void testPetCatGently() {
+    World w = new World();
+    Cat c = mock(Cat.class);
+    w.petCat(c, true);
+    verify(c.pet(), times(1));
+}
+
+/**
+ * Check that attempting to pet a cat without being gentle will
+ * not cause the cat to be petted.  This is done by verifying
+ * that c.pet() is never called.
+ */
+ 
+@Test
+public void testPetCatNotGently() {
+    World w = new World();
+    Cat c = mock(Cat.class);
+    w.petCat(c, false);
+    verify(c.pet(), never());
+}
+```
+
+We could also replace the `never()` method call with `times(0)`, as they are equivalent.
+
+In summary, verify is used to make an assertion on the executed code.  That is, unlike a traditional assertion which checks that a value is correct, a `verify` call asserts that a method was called (or not).
+
+Note that we did not test whether or not the `System.out.println()` call worked.  We will see how to do this later in this chapter, in the section _Testing System Output_.
 
 ## Fakes
 
-Sometimes, you need to want to have a test which depends on an object, and will require complex or non-performant behavior.  In this case, you can use a __fake__.  A fake is a special kind of test double which acts similarly to the regular object.  However, it is written to be a part of the test, meaning that it runs faster and simpler.  For example, you may remove any parts of the code which write to disk (always a slowdown when writing tests).  You may have it perform a simpler calculation than a very time-consuming one.  You may reduce that object's dependencies on other objects.
+Sometimes, you need to have a test which depends on an object, and will require complex or non-performant behavior.  In this case, you can use a __fake__.  A fake is a special kind of test double which acts similarly to the regular object.  However, it is written to be a part of the test, meaning that it runs faster and simpler.  For example, you may remove any parts of the code which write to disk (always a slowdown when writing tests).  You may have it perform a simpler calculation rather than a very time-consuming one.  You may reduce that object's dependencies on other objects.
 
 Fakes require more work to create than a simple test double, since they are a "lite" version of an object instead of simply specifying its external behavior.  However, this allows you to perform more intricate tests than the relatively simple ones possible with test doubles.  Suppose your DuckPond class is as follows:
 
@@ -333,7 +420,7 @@ Getting back to setup and teardown procedures specifically, if you have complica
 
 ## Testing System Output
 
-One particular use case that `@After` and `@Before` annotations can help you with is checking for system output.  Console output is a very common item to check for, but testing for it in Java is non-intuitive.  Although it's possible to just pass in a System object with each method, which you could then mock and stub, this is not idiomatic Java code and will add lots of additional code (and most likely complexity) to your codebase.  The best solution that I have seen for checking it involves using the `setOut()` methods of `System` to put the output of `System.out` and `System.err` in `ByteArrayOutputStream`.[^disclosure]
+One particular use case that `@After` and `@Before` annotations can help you with is checking for system output.  Console output is a very common item to check for, but testing for it in Java is non-intuitive.  Although it's possible to just pass in a System object with each method, which you could then mock and stub, this is not idiomatic Java code and will add lots of additional code (and most likely complexity) to your codebase.  The best solution that I have seen for checking it involves using the `setOut()` method of `System` to put the output of `System.out` and `System.err` in `ByteArrayOutputStream`.[^disclosure]
 
 [^disclosure]: Full disclosure: I saw this on Stack Overflow at [http://stackoverflow.com/q/1119385](http://stackoverflow.com/q/1119385).  (Yes, even authors of books go online to look for answers sometimes.)
 
@@ -378,7 +465,7 @@ There's quite an argument on whether or not it makes sense to test private metho
 
 Those who argue that private methods should _never_ be tested say that any calls from the rest of the program (i.e., the rest of the world from the class's standpoint) will have to come in through the public methods of the class.  Those public methods will themselves access private methods; if they don't, then what's the point of having those private methods?  By testing only the public interfaces of classes, you're minimizing the number of tests that you have and focusing on the tests and code that matter.
 
-Another reason for not testing private methods is that inhibits you from refactoring the code later.  If you have already written tests for private methods, it is going to be more work to make changes to anything "behind the scenes".  In a sense, testing private methods means going against one of the key tenets of object-oriented programming, namely data hiding.  The system is going to be less flexible and more difficult to modify going forward.
+Another reason for not testing private methods is that it inhibits you from refactoring the code later.  If you have already written tests for private methods, it is going to be more work to make changes to anything "behind the scenes".  In a sense, testing private methods means going against one of the key tenets of object-oriented programming, namely data hiding.  The system is going to be less flexible and more difficult to modify going forward.
 
 Those who argue that private methods should _always_ be tested point to the fact that private methods are still code, even if they're not called directly from outside the class.  Unit testing is supposed to test functionality at the lowest levels possible, which is usually the method or function call.  If you're going to start testing higher up the abstraction ladder, then why not just do systems-level testing?
 
@@ -451,13 +538,13 @@ Unit tests in Java are usually grouped initially by class and further by method;
 
 Exactly what you test will vary based upon the domain of software you are testing and the amount of time you have for testing, as well as organizational standards and other external factors.  Of course, stating this doesn't give you any direction at all, and similar caveats could probably be put in front of every paragraph of this book.  There are some heuristics to follow, many of which directly mirror some of the items discussed when developing a test plan.
 
-Ideally, you should look at the method and think of the various success and failure cases, determine the equivalence classes, and think about what some good boundary and interior values might be to test from those equivalence classes.  You want to also focus on testing common use cases over use cases which rarely occur, at least at first.  If you are writing more safety-critical software, often it makes sense to focus on testing for failure before checking the happy path.  Personally, I often work on a base case first, and then think of possible failure cases after that.  Oftentimes, I will go back, sometimes with a profiler, and see what code is executed is most often and add extra test cases for that.  I may try to construct a mental model of what is called often instead of using a profiler.  I will definitely think of from where the inputs to the method are coming.  If they are from a system that I have no control over (including users, the ultimate example of systems I have no control over) and may be sending unanticipated values, I will definitely spend more time thinking of possible failure cases and checking for edge cases.
+Ideally, you should look at the method and think of the various success and failure cases, determine the equivalence classes, and think about what some good boundary and interior values might be to test from those equivalence classes.  You want to also focus on testing common use cases over use cases which rarely occur, at least at first.  If you are writing more safety-critical software, often it makes sense to focus on testing for failure before checking the happy path.  Personally, I often work on a base case first, and then think of possible failure cases after that.  Oftentimes, I will go back, sometimes with a profiler, and see what code is executed most often and add extra test cases for that.  I may try to construct a mental model of what is called often instead of using a profiler.  I will definitely think of from where the inputs to the method are coming.  If they are from a system that I have no control over (including users, the ultimate example of systems I have no control over) and may be sending unanticipated values, I will definitely spend more time thinking of possible failure cases and checking for edge cases.
 
 You don't want to create a test suite that takes so long to run that people don't run it often, but a well-designed unit test suite with appropriate doubles, mocks, stubs, and the like should run very fast even when there are many tests.  I would err on the side of creating too many tests rather than too few, at first.  As you determine how many tests are necessary for the particular piece of software you're working on, you can start making trade-offs between the amount of time for development and for testing.
 
 ### Assert Less, Name Directly
 
-When unit tests fail, they should point you exactly what went wrong, and where.  They should not be large "one size fits all" tests.  It is so fast to run a properly-written unit test (rarely taking more than a few tens of milliseconds) that the extra execution time and work involved in writing more tests is absolutely dwarfed by the amount of time that you will save when unit tests tell you exactly what went wrong when it failed.  A unit test with lots of assertions shows a lack of thought towards what exactly the unit test was supposed to check for.  Consider the following example:
+When unit tests fail, they should point you to exactly what went wrong, and where.  They should not be large "one size fits all" tests.  It is so fast to run a properly-written unit test (rarely taking more than a few tens of milliseconds) that the extra execution time and work involved in writing more tests is absolutely dwarfed by the amount of time that you will save when unit tests tell you exactly what went wrong when they failed.  A unit test with lots of assertions shows a lack of thought towards what exactly the unit test was supposed to check for.  Consider the following example:
 
 ```java
 public class CatTest {
@@ -479,12 +566,37 @@ When this test fails, what is wrong?  It could be that a newly created cat is no
 
 ### Unit Tests Should Be Independent
 
-Unit tests should not be dependent on run order.  That is, Test 2 should not depend on any side effects or result from Test 1.  JUnit, and most other unit testing frameworks, will not run individual test cases in a predetermined order.  By avoiding dependencies on each other and allowing each test to run independently, failures are localized to a particular test.  Imagine a testing framework that is just like JUnit but runs tests sequentially.  Now imagine writing the following code:
+Unit tests should not be dependent on run order.  That is, Test 2 should not depend on any side effects or result from Test 1.  JUnit, and most other unit testing frameworks, will not run individual test cases in a predetermined order.  By avoiding dependencies on each other and allowing each test to run independently, failures are localized to a particular test.   Now imagine writing the following code:
 
 ```java
+public class Cat {
+
+    private int _length;
+
+    public Cat(int length) {
+        _length = length;
+    }
+
+    public int getWhiskersLength() {
+        return _length;
+    }
+
+    public int growWhiskers() {
+        _length++;
+        return _length;
+    }
+}
+
+
 public class CatTest {
 
     int _whiskersLength = 5;
+
+    @Test
+    public void testWhiskersLength() {
+        Cat c = new Cat(5);
+        assertEquals(_whiskersLength, c.getWhiskersLength());
+    }
 
     @Test
     public void testGrowWhiskers() {
@@ -493,20 +605,41 @@ public class CatTest {
         assertEquals(6, _whiskersLength);
     }
 
+}
+```
+
+If we run these tests with JUnit, which executes test cases in a random order, sometimes the second test would pass, and sometimes it would fail!  Why?
+
+Let's assume that the tests are run in the order that they are listed - that is, with `testWhiskersLength()` executed first.  The variable `_whiskersLength`, which is set to its default value of 5, will be equal to the starting whiskers length in the constructed Cat object.  Thus, our assertion that the length of the whiskers is 5 will be correct.  When `testGrowWhiskers()` is called, the whiskers are grown by one unit, and the return value (i.e., the new length of the whiskers) is placed into the `_whiskersLength` variable, changing it to 6.  Since `_whiskersLength` is equal to 6, the assertion is also correct.  Congratulations, all of the tests pass!
+
+Now let's see what happens when the tests are run in the opposite order, with `testGrowWhiskers()` executed first, then `testWhiskersLength()`.  At the end of the `testGrowWhiskers()` test, `_whiskersLength` (which is a class level variable, and thus shared by all methods) is equal to 6.  Now `testWhiskersLength()` is executed, but the new Cat object's whiskers length is 5, which is not equal to `_whiskersLength`, which is 6.  Now we have a failing test - but one that only intermittently fails, depending in which order the test are executed.
+
+We can fix this by ensuring that the tests are not dependent on each other.  The easiest and best way to do this is to eliminate any shared data between tests.  In this case, it means not depending on the class-level variable `_whiskersLength`.  Let's rewrite the tests so that they can be run independently.
+
+```java
+public class CatTest {
+
     @Test
     public void testWhiskersLength() {
         Cat c = new Cat(5);
-        assertEquals(_whiskersLength, c.getWhiskersLength());
+        assertEquals(5, c.getWhiskersLength());
+    }
+
+    @Test
+    public void testGrowWhiskers() {
+        Cat c = new Cat(5);
+        int whiskersLength = c.growWhiskers();
+        assertEquals(6, whiskersLength);
     }
 
 }
 ```
 
-If we run this with JUnit, which executes test cases in a random order, sometimes the second test would pass, and sometimes it would fail!
+While this example has a relatively simple solution, there may be cases where the dependencies are more difficult to determine or fix.  Whenever you find that a test only passes sometimes, you may want to first investigate if there are any "hidden" dependencies betweent tests.  These hidden dependencies may be objects or variables shared between methods, static variables on a class, or other external data on which your tests rely.
 
-Note that it in JUnit, it _is_ possible to specify the order that tests will run in, by using the `@FixMethodOrder` annotation.  However, you want to avoid doing that if at all possible.  It is all too easy to allow your tests to fall into the trap of depending on each other by ensuring that they always run in the same order.
+Note that in JUnit, it _is_ possible to specify the order that tests will run in, by using the `@FixMethodOrder` annotation.  However, you want to avoid doing that if at all possible.  It is all too easy to allow your tests to fall into the trap of depending on each other by ensuring that they always run in the same order.
 
-There is yet another benefit to creating tests which have no dependencies on other tests.  Independent tests can be run in parallel, possibly decreasing execution time dramatically.  On a modern multi-core machine, you may find yourself running tests many times more quickly if they can be run independently.
+There is yet another benefit to creating tests which have no dependencies on other tests.  Independent tests can be run in parallel, on different cores of a CPU or even on different machines entirely.  If test execution depends on running sequentially, then you will not be able to run them in parallel.  On a modern multi-core machine, you may find yourself running tests many times more quickly if they can be run independently.  While the precise speed-up will depend on the particular tests you are running, what your computer hardware is like, and other factors, you can easily see test execution times reduced by 50% or more.
 
 ### Try to Make Tests Better Every Time You Touch Them
 
