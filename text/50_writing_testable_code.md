@@ -55,14 +55,15 @@ public int getNumGiraffesInZoo() {
 }
 ```
 
-At first glance, this looks easy to test---after all, you just need to assert that the number of giraffes is the number you expect---but this code is not well-segmented.  Not only does it depend on the `DatabaseWorker`, `NetworkConnection`, `DatabaseConnectionPool`, `NetworkConnectionFactory`, and `SqlGenerator` classes to work correctly, along with all of their assorted methods, there is no way to double them since they are all constructed inside of the method.  A problem in any of these will cause your test to fail, and it can be difficult to know why the test failed.  Was it in the actual method you are testing, or one of the numerous dependencies?
+At first glance, this looks easy to test---after all, you just need to assert that the number of giraffes is the number you expect---but this code is not well-segmented.  Not only does it depend on the `DatabaseWorker`, `NetworkConnection`, `DatabaseConnectionPool`, `NetworkConnectionFactory`, and `SqlGenerator` classes to work correctly, along with all of their assorted methods, but there is no way to double them since they are all constructed inside of the method.  A problem in any of these will cause your test to fail, and it can be difficult to know why the test failed.  Was it in the actual method you are testing, or one of the numerous dependencies?
 
 Let's restructure this so that the method is well-segmented:
 
 ```java
 public int getNumGiraffesInZoo(DatabaseWorker dbw, SqlGenerator sqlg) {
+    String animalToGet = "Giraffe";
     int numGiraffes = 0;
-    String sql = sqlg.generate("numberQuery", "giraffe");
+    String sql = sqlg.generate("numberQuery", animalToGet);
     try {
         numGiraffes = (int) dbw.runSql(sql);
     } catch (DatabaseException dbex) {
@@ -76,9 +77,10 @@ While this is still suboptimal, it is at least possible to override all of the d
 
 ```java
 public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
+    String animalToGet = "Giraffe";
     int numGiraffes = 0;
     try {
-        numGiraffes = adbw.getNumAnimals("giraffe");
+        numGiraffes = adbw.getNumAnimals(animalToGet);
     } catch (DatabaseException dbex) {
         numGiraffes = -1;
     }
@@ -88,7 +90,7 @@ public int getNumGiraffesInZoo(AnimalDatabaseWorker adbw) {
 
 We have now reduced the number of dependencies to that single class `AnimalDatabaseWorker`, and only call one method on it.
 
-The second concept is to ensure that everything you do is repeatable.  What you don't want is a test which only works fine sometimes.  If there is a failure, you should know about it immediately.  If there is not a failure, you do not want to have to have false alarms.
+The second concept is to ensure that everything you do is repeatable.  What you don't want is a test which only works fine sometimes.  If there is a failure, you should know about it immediately.  If there is not a failure, you do not want to have false alarms.
 
 You can make a test repeatable by ensuring that all of the values that it depends on are able to be replicated.  This is one of the (many, many, many) reasons that global variables are, in general, a Bad Idea.  Let's consider testing the following method:
 
