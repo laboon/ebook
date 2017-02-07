@@ -271,9 +271,6 @@ public void petCat(Cat c, boolean gentle) {
         c.pet();
     } else {
         // Do nothing - don't pet cats without being gentle!        
-    }
-}
-```
 
 In this case, we want to test that if the `gentle` variable is true, `.petCat()` will be called, otherwise it will not be called.  We can create two unit tests for each of these equivalence classes.
 
