@@ -25,7 +25,11 @@ Even though the code in this method works perfectly for all inputs, it requires 
 
 I wouldn't have asked the question if I didn't have an answer---__test doubles__.  Test doubles are "fake" objects which you can use in your tests to "stand in" for other objects in the codebase.  This has numerous benefits aside from hiding pieces of the codebase that don't work.  Test doubles also allow you to localize the source of errors.  If our tests for `haveFunAtDuckPond()` fail, then the problem should lie in that particular method, not in one of the classes or methods that the method depends upon.
 
-JUnit does not support test doubles directly, but there are libraries that you can install alongside JUnit that do.  For the next few sections, we will use Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
+JUnit does not support test doubles directly, but there are libraries that you can install alongside JUnit that do.  For the next few sections, we will use a library called  Mockito to enable doubles, mocks, verification, and stubbing.  I know we haven't defined these terms yet, but isn't it exciting to know what's coming next?
+
+In order to use Mockito, you will need to ensure that you have both the mockito and objenesis jars in your classpath, along with any required JUnit jars.  If you use the Makefile from the previous chapter, and have downloaded the appropriate jar files, this should work for you automatically.  If you are using an IDE or a build tool (such as Gradle or Maven), this may also already have been taken care of.  If you are not using the test runner from the last chapter, you should review the documentation for your build tool to ensure that you have set it up correctly.
+
+You should then add the line `import static org.mockito.*` to your test class files in order to access all of the tools in the libraries.  As a reminder, using `import static` instead of `import` will allow us to access the static members of the mockito classes without explicitly referring to them.  If you like, you can use a regular `import` statement, but this will mean that you will need to preface all of your 
 
 Here is an example of using a test double with JUnit and Mockito to test a method which relies on a test double object.  Note that Mockito calls all test doubles "mocks", even if they don't use the capabilities of a mock object (described later in the chapter):
 
@@ -44,6 +48,7 @@ public class Horse {
 ```java
 // Unit test for class
 import static org.junit.Assert.*;
+import static org.mockito.*;
 import org.junit.*;
 
 public class HorseTest {
@@ -53,7 +58,7 @@ public class HorseTest {
     public void testWaterDrinkReturnVal() {
         Horse horse = new Horse();
         // We are making a test double for water
-        Water mockWater = Mockito.mock(Water.class);
+        Water mockWater = mock(Water.class);
         int returnVal = horse.leadTo(mockWater);
         assertEquals(1, returnVal);
     }
@@ -129,7 +134,7 @@ public class DogTest {
     @Test
     public void eatDinnerTest() {
         Dog d = new Dog();
-        d.setDogFood(Mockito.mock(DogFood.class));
+        d.setDogFood(mock(DogFood.class));
         int returnVal = d.eatDinner();
         assertEquals(1, returnVal);
     }
@@ -158,7 +163,7 @@ public class DogTest {
     @Test
     public void testEatDinner() {
         Dog d = new Dog();
-        int returnVal = d.eatDinner(Mockito.mock(DogFood.class));
+        int returnVal = d.eatDinner(mock(DogFood.class));
         assertEquals(1, returnVal);
     }
 
@@ -190,7 +195,7 @@ public class DogTest {
     @Test
     public void testEatDinner() {
         Dog d = new Dog();
-        DogFood mockedDogFood = Mockito.mock(DogFood.class);
+        DogFood mockedDogFood = mock(DogFood.class);
         when(mockedDogFood.eat()).thenReturn(13);
         int returnVal = d.eatDinner(mockedDogFood);
         assertEquals(13, returnVal);
@@ -381,7 +386,7 @@ public class BirdTest {
     // Set up a mocked database connection
     @Before
     public void setUp() throws Exception {
-        mockedDbc = Mockito.mock(DatabaseConnection.class);
+        mockedDbc = mock(DatabaseConnection.class);
         _dbc = setupFakeDbConnection(mockedDbc);
     }
 

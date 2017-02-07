@@ -255,3 +255,80 @@ Contrast this to the square root function, where we know what exactly we're pass
 
 This does not mean that impure functions are bad!  As we've seen, they're absolutely necessary if you want to do anything other than make your processor warm.  After all, printing anything to the screen is technically a side effect.  However, by keeping as many functions pure as possible, and limiting impure functions to certain areas, you will make testing the system much easier.  You can think of this process as "quarantining" the impure functions, so that you know where difficulties in testing might lie.
 
+## Creating a Test Runner
+
+Assuming we have the correct jar files downloaded, it possible to manually compile individual unit test classes, as in the command below.  Note that the particular version and location of the jar files may differ on your system.
+
+Compilation:
+
+```
+javac -cp .:./hamcrest-core-1.3.jar:./junit-4.12.jar FooTest.java
+```
+
+Note that this works with OS X and Unix systems.  Replace ":" with ";" on Windows machines ( `java -cp .;./junit-4.12.jar;./hamcrest-core-1.3.jar TestRunner` ) .  If you are using Windows 7, you will also need to put the classpath argument entirely in quotes ( `java -cp ".;./junit-4.12.jar;./hamcrest-core-1.3.jar" TestRunner` ).  Don't use "~" or other shortcuts when referring to the path that the `junit` and `hamcrest` jar files live.  Your Java files may compile but then won't run - apparently the `-cp` option in `javac` parses paths different than `java`.
+
+You can then add your own `public static void main` to each individual class to run each individual test, and specify each test method to run.
+
+However, you can imagine that this would get tedious as we add additional tests, and adding a `public static void main` method to each of these files to run all of the individual unit tests.  What you will find is that a better solution is to create a __test runner__.  A test runner will set up an environment and execute a selection of unit tests.  If you are using a build system or an IDE, this test runner will usually be created and updated for you automatically.  However, I believe it is useful to show how to create one's own test runner, as you may be in charge of creating a new one, or you may work on a system which is not being developed with an IDE, or a customized build tool which does not include automatically running tests.
+
+Here is an example of a simple test runner program which will execute all methods with an `@Test` annotation in any of the specified classes.  If there is any failure, it will display which tests failed; otherwise, it will let the user know that all of the tests have passed.
+
+```java
+import java.util.ArrayList;
+
+import org.junit.runner.*;
+import org.junit.runner.notification.*;
+
+public class TestRunner {
+    public static void main(String[] args) {
+
+	ArrayList<Class> classesToTest = new ArrayList<Class>();
+	boolean anyFailures = false;
+
+	// ADD ANY MORE CLASSES YOU WISH TO TEST HERE
+	
+	classesToTest.add(FooTest.class);
+	
+	// For all test classes added, loop through and use JUnit
+	// to run them.
+	
+	for (Class c: classesToTest) {
+	    Result r = JUnitCore.runClasses(c);
+
+	    // Print out any failures for this class.
+      
+	    for (Failure f : r.getFailures()) {
+		System.out.println(f.toString());
+	    }
+
+	    // If r is not successful, there was at least one
+	    // failure.  Thus, set anyFailures to true - this
+	    // can never be set back to false (no amount of
+	    // successes will ever eclipse the fact that there
+	    // was at least one failure.
+	    
+	    if (!r.wasSuccessful()) {
+		anyFailures = true;
+	    }
+	    
+	}
+	
+	// After completion, notify user if all tests passed or any failed.
+	
+	if (anyFailures) {
+	    System.out.println("\n!!! - At least one failure, see above.");
+	} else {
+	    System.out.println("\nALL TESTS PASSED");
+	} 
+    }
+} 
+```
+
+This simple test runner will execute all tests in any classes added to the `classesToTest` list.  If you would like to add additional test classes, just follow the template above and add them to the list of classes to test.  You can then compile and execute your test suite with the following commands:
+
+```
+javac -cp .:./hamcrest-core-1.3.jar:./junit-4.12.jar *.java
+
+java -cp .:./hamcrest-core-1.3.jar:./junit-4.12.jar TestRunner
+
+```

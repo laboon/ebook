@@ -458,6 +458,8 @@ __Test plan__: A list of related test cases that are run together.
 
 __Test run__: An actual iteration (run-through) of a test plan.
 
+__Test runner__: A program which will automatically execute a suite of tests.
+
 __Test suite__: A grouping of related test plans.
 
 __Testability__: A quality of a system that specifies how easy it is to test---having well-designed and coherent methods, pure functions where possible, allowance for dependency injection, etc.
