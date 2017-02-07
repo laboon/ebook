@@ -16,7 +16,78 @@ Test-Driven Development is a software development methodology that comprises sev
 
 4. _A short turnaround cycle:_ TDD emphasizes quick cycles, which work to keep the developer on track and focused on a short, specific goal.
 
-5. _Refactoring early and often:_ Refactoring is often held off until later in the development process, when it is much more difficult to do, especially if there has not been much time spent on doing it earlier.  That becomes all the more reason not to do it later.  By refactoring often, it becomes a part of the development process and a habit, instead of something that will be done "if there's enough time" (note: there is never enough time).
+5. _Refactoring early and often:_ __Refactoring__ is the process of changing code without changing its external functionality.  This may include actions as simple as changing a variable name or adding a comment, all the way to modifying key architectures or algorithms.  What differentiates from refactoring from just "writing code" is that refactoring improves the internal quality of the codebase without having a direct effect on the external quality.  While refactoring does not have an immediate effect on the external quality of the system under test, however, it will often have an indirect effect.  This is because refactoring can make the code easier to read, understand, maintain, and modify.  As the process of development continues, refactoring will make it easier for developers to continue to do their work.
+
+Here is an example of a poorly-written program.  We will refactor it to be easier to read, without modifying any of its actual functionality.
+
+```java
+public class Hours {
+
+    public static void main(String[] args) {
+	double chikChirik = 792.34;
+	try {
+	    chikChirik = Double.parseDouble(args[40 / 3 - 13]);
+	} catch (Exception ex) {
+	    System.exit(1 * 1 * 1);
+	}
+	int kukurigu = 160 % 100;
+	int gruhGruh = (2 * 2 * 2 * 2 * 2 * 2) - 4;
+	System.out.println((chikChirik * kukurigu * gruhGruh) + " seconds");
+	
+    }
+    
+}
+```
+
+The first thing that we notice is that there are absolutely no comments.  This will make it difficult to read.  Also, the use of Bulgarian animal noise onomatopoeias for variable names, while perhaps interesting from a linguistic standpoint, does not give you much information on what those variables are supposed to represent (_chik-chirik_ is the noise that Bulgarian birds make, _kukurigu_ what Bulgarian roosters make, and _gruh-gruh_ what Bulgarian pigs make).  There is also unnecessary variable setting and complication.  For example, both `kukurigu` and `gruhGruh` variables are set to 60 after the computations take place.  Variable `chikChirik` will never actually be used with its default value of 792.34; why is it set to this very particular value?  All exceptions are caught from the line where  `chikChirik` is set; we should check for very discrete possible failure modes.  Several of our variables are never modified - these should be constants (in Java, `final` variables).  Finally, there is most likely the opportunity to partition some of this computation into separate methods instead of doing everything in the main method.
+
+All of these are problems that can be fixed without modifying how the program actually behaves.  This is what makes this process _refactoring_ instead of fixing defects.  The code itself works as advertised, it just does not do it in a way which will make further development easy.  Let's fix some of these problems and see how the refactored code looks.  Software development is a very complicated process, one which often stretches the minds of even the best programmers, testers, and managers.  Whatever we can do to reduce the cognitive burden on ourselves and future team members will certainly be appreciated!
+
+
+```java
+public class Hours {
+
+    final static int MINUTES_PER_HOUR = 60;
+    final static int SECONDS_PER_MINUTE = 60;
+
+    /**
+     * Given a number of hours, return the number of seconds that
+     * would be equivalent to that number of hours.
+     */
+    
+    public static double calculateSeconds(double hours) {
+	return hours * MINUTES_PER_HOUR * SECONDS_PER_MINUTE;
+    }
+
+    /**
+     * Given a double representing the number of hours as the first
+     * argument on the command line, this will print out the number
+     * of seconds in that number of hours.  
+     * For example, 1 hour = 3600.0 seconds.
+     * Additional arguments from the command line are ignored.
+     */
+    
+    public static void main(String[] args) {
+	double numHours = -1;
+	try {
+	    numHours = Double.parseDouble(args[0]);
+	} catch (NumberFormatException nfex) {
+	    // The argument passed in could not be parsed
+	    System.exit(1);
+	} catch (ArrayIndexOutOfBoundsException oobex) {
+	    // No argument was passed in
+	    System.exit(1);
+	}
+	System.out.println(calculateSeconds(numHours) + " seconds");
+	
+    }
+    
+}
+```
+
+This is much easier to read and understand, even though its behavior is exactly the same as the original, unrefactored code.  This will also allow us to more easily make modifications.  Let's say that we wanted to display an error message instead of silently exiting if an argument could not be read or parsed.  With the refactored code, we can see the various failure modes and easily add appropriate error messages based on the problem (e.g., "Argument could not be parsed as a double." or "At least one argument must be passed in.").  Perhaps we want to modify our program to calculate French Revolutionary Time, which had 100 seconds per minute and 100 minutes per hour (and 10 hours in a day).  It is very simple for me to see the constants indicating values for `SECONDS_PER_MINUTE` and `MINUTES_PER_HOUR` and modify them to the appropriate values.  It would have been much more difficult with the original code.
+
+Sadly, refactoring is often held off until later in the development process, when it is much more difficult to do.  This is especially the case if there has not been much time spent on refactoring earlier, or if the development team has little experience in refactoring code.  The difficulties encountered in refactoring then becomes an excuse to continue to avoid doing it.  It becomes a self-fulfilling prophecy; avoiding refactoring of code makes it even more difficult to refactor!  By refactoring often, it becomes a part of the development process and a habit, instead of something that will be done "if there's enough time" (note: there is never enough time).
 
 ## The Red-Green-Refactor Loop
 

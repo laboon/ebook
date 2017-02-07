@@ -126,6 +126,8 @@ __Evil monkey__: A __stochastic testing__ method whereby malicious code or data 
 
 __Execution steps__: The actual steps that the test will execute after ensuring that all preconditions hold.
 
+__expect__: A program which allows you to automate interactions with command-line programs.
+
 __Expected behavior__: What the system is expected to do under certain circumstances.  For example, after typing in "`2 + 2 =`" on a calculator, the expected behavior is that the system will display "`4`" on the screen.
 
 __Explicit boundary value__: A __boundary value__ explicitly called out by the system requirements.  For example, requirements for an automated thermometer may state the system will turn on the DANGER light when the registered temperature is 102 degrees or over.  The explicit boundary values would be 101 and 102. Contrast with __implicit boundary value__.
@@ -133,6 +135,8 @@ __Explicit boundary value__: A __boundary value__ explicitly called out by the s
 __Exploit__: A program or piece of data which takes advantage of a vulnerability.  A vulnerability is "strictly theoretical" until somebody develops a way to exploit it.
 
 __Exploratory testing__: An informal style of testing, where the goal is often both to learn about the system by testing it as well as find defects.
+
+__External quality__: The quality of the system from a user's perspective - that is, does it meet the requirements, perform as expected, produce correct results, etc.
 
 __Externally consistent (requirements)__: The property of having the system be consistent with requirements of other systems or of the universe.  For example, having a system which mandates that the system will be able to communicate with a base on Pluto instantaneously would require faster-than-light communication, and would thus be inconsistent with the laws of this universe.
 
@@ -170,6 +174,8 @@ __Hacker__: According to the Jargon File, "[a] person who enjoys exploring the d
 
 __Happy path__: The easiest path a user will take through the system, when the system is operating properly, without attempting to perform anything that is an __edge case__ or __corner case__.
 
+__IDE__: Integrated Development Environment.  A single tool which unifies much of the functionality allowing a developer to write, such as running tests, compiling, and configuring dependencies.
+
 __Identifier__: A number or string which uniquely identifies a test case, defect, or anything else.
 
 __-ility requirement__: Another term for __non-functional requirement__, so named because many of these requirements use words ending in "-ility" to describe them (e.g., usability, scalability, maintainability).
@@ -194,15 +200,17 @@ __Integration__: Connecting multiple systems or subsystems to work together.
 
 __Integration error__: A type of error resulting from incompatibilities or other problems at the boundary between different systems or subsystems.
 
-__Interface error__: An error where the interface to another system is defined incorrectly, or the system accessing it does not do so correctly.
-
 __Integrity__: An attribute of a system, that only authorized users may write data.  An element of the __InfoSec Triad__.
 
 __Interception__: In __security testing__, an attack on __confidentiality__, such as eavesdropping on a network with a __packet analyzer__ or on a computer with a __keylogger__.
 
+__Interface error__: An error where the interface to another system is defined incorrectly, or the system accessing it does not do so correctly.
+
 __Interior value__: A value which is not a boundary value in its equivalence class.
 
 __Intermittent failure__: A test failure which does not occur all of the time, but only on certain runs.  Often, the reason for the intermittent failure is unknown, or it would have been fixed already.
+
+__Internal quality__: The quality of the codebase as seen from the developers' perspective - that is, is the code readable, understandable, maintainable, extensible, etc.
 
 __Internally consistent (requirements)__: The property of having no requirements contradict each other.  For example, a requirements specification which has a requirement which states "The system shall always leave the red light on" and another requirement which states that "The system shall turn off the red light if `SWITCH1` is enabled" would not be internally consistent.
 
@@ -340,6 +348,8 @@ __Ransomware__: A kind of __malware__ which performs an unwanted action (e.g., e
 
 __Real time__: The actual amount of time (the same kind of time as measured by a clock) taken for a process to perform some task.  Also referred to as __wall clock time__.  Not to be confused with "real-time system".
 
+__Refactoring__: Modifying code without changing its functionality, so as to improve the program's internal quality (e.g., making the code easier to read, more understandable, or more maintainable).
+
 __Reflection__: A way to determine class and method structure at run-time.
 
 __Regression failure__: A failure of a previously-working piece of functionality that is caused by (seemingly) unrelated additional functionality or defect fixes.
@@ -369,6 +379,12 @@ __Seam__: A place in the codebase where you can modify behavior without modifyin
 __"Seat of your pants" testing__: Testing where the expected behavior is known to the tester through experience with the software or its domain, instead of being formally specified.
 
 __Security testing__: Testing that the system meets the criteria of the InfoSec Triad, that the system is safe from unauthorized tampering and/or access.
+
+__Selenese__: An intermediary language used by Selenium for controlling its behavior.
+
+__Selenium__: A framework which allows automated testing and scripting of web site interactions.
+
+__Selenium WebDriver__: An API which allows a tester to automate a web browser so that it is controlled just as if an actual user were using it.
 
 __Service-oriented indicator__: A performance metric related to how the user will interact with the system.
 
@@ -423,6 +439,8 @@ __System under test__: The system that is actually being tested.
 __Target__: In __performance testing__, another term for __performance target__.
 
 __Tautological test case__: A test case which was written so that it will always pass, for example `boolean foo = true; assertTrue(foo);`.  This is usually done inadvertently.
+
+_Tcl_: _Tool Command Language_, a programming language used to control the __expect__ program which is used in the book for automating system tests.
 
 __Test artifact__: A document or other byproduct of the testing process, such as test plans or results.
 
@@ -501,6 +519,8 @@ __Virus__: A kind of __malware__, often small, that replicates itself with human
 __Vulnerability__: A potential defect that would allow a user to compromise or otherwise gain unauthorized access to a system.
 
 __Wall clock time__: Another term for __real time__.
+
+__WebDriver__: See __Selenium WebDriver__.
 
 __White-box testing__: Testing the code directly and with full knowledge of the code under test.  __Unit testing__ is an example of white-box testing.
 
