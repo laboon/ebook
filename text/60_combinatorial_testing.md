@@ -79,9 +79,15 @@ Using NIST ACTS with the IPOG algorithm, I was able to generate the following op
     ------------+-----------+------------
 1.   false      | false     | false
 4.   false      | true      | true
-5.   true       | false     | false
+6.   true       | false     | true
 7.   true       | true      | false
 ```
+
+Let's verify that all possible pairs exist in this test plan.
+
+1. _BOLD/ITALIC_ : False/False is handled in test case 1, False/True in test case 4, True/False in test case 6, and True/True in test case 7.
+2. _ITALIC/UNDERLINE_ : False/False is handled in test case 1, False/True in test case 6, True/False in test case 7, and True/True in test case 4.
+3. _BOLD/UNDERLINE_ : False/False is handled in test case 1, False/True in test case 4, True/False in test case 7, and True/True in test case 6.
 
 Although this example was done with Boolean variables, any kind of variable can be used as long as it's finite.  If it's a variable with infinite possibilities---say, an arbitrary length string---you can map to a certain number of possibilities (e.g., "`a`", "`abcde`", and "`abcdefghijklmnop`").  When doing so, you should first think of the different equivalence classes, if any, and ensure that you have a value from each equivalence class.  You should also try to check several different edge cases, especially those which may cause problems when interacting in combination with other variables.  Suppose in our previous example that instead of checking a character, we wanted to check a word.  We may add different possibilities for the word to be tested.  Let's start with "`a`" (a single character) and "`bird`", a simple word.  Our generated covering array will look similar to the previous one, just using "`a`" and "`bird`" as the values for the word variable, instead of true and false as for all of the other variables:
 
