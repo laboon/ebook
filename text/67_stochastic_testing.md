@@ -37,7 +37,6 @@ We'd definitely want to pass in a wide variety of values that hit different base
 [3, 3, 3, 2, 1, 1, 1] => [1, 1, 1, 2, 3, 3, 3]
 [-1, -2, -3] => [-3, -2, -1]
 [1000000, 10000, 100, 10, 1] => [1, 10, 100, 10000, 1000000]
-[2, 8, ... (many ints) ... -3, 7] => [-900, -874, ... (many ints) ... 989, 991]
 ```
 
 Even without any additional wrinkles, there's an absolutely huge number of possible combinations of numbers to test.  That was just a taste.  There's even a huge number of equivalence cases to test, ignoring the fact there could be a problem with, say, a specific number; maybe only sorts with the number 5 don't work, for example.  Writing tests for all of these various kinds of input would be extremely tedious and error-prone.  How can we avoid having to write such a large number of tests?
@@ -54,8 +53,8 @@ Some invariants for a sort function would be:
 2. Every value in the output array corresponds to one in the input array
 3. The value of each successive element in the output array is greater than or equal to the previous value
 4. No element not in the input array is found in the output array
-5. The function is idempotent; that is, running the sort method on a list, and then running the sort again on the output, should produce the same output array as just running it once
-6. The function is pure; running it two times on the same input array should always produce the same output array
+5. The function is __idempotent__; that is, no matter how many times the function is is called, the same output should always be returned.  If I run the sort method on a list, and then run the sort again on the output of that first sort, the second sort call should produce the same output array as just running it once.  Note that it would be harder to test the opposite of an idempotent function (a __non-idempotent__ function), since in that case, the output may or may not be changed (for example, assume a function which increments a value and returns that value modulo 6; any time you call that function some factor of six times, it will return the same value).
+6. The function is pure; running it two times on the same input array should always produce the same output array.  Any time I call sort on the list `[3, 2, 1]`, it will return `[1, 2, 3]`.  It does not matter if the moon is waxing gibbous or waning crescent, or what the value of any global variables are, it will always return the same value if given the same input array.
 
 Now that we have some of the properties we expect from *any* output of the `billSort` method, we can let the computer do the grunt work of thinking up random arrays of data, passing them in to our method, and then checking that whatever output array is produced meets all of the properties that we set.  If an output array does not meet one of the invariants, we can then report the error to the tester.  Producing output that does not meet the specified invariant is called __falsifying the invariant__.
 
@@ -65,9 +64,13 @@ There are multiple libraries for Java which perform property-based testing but n
 
 As mentioned above, stochastic testing is often called monkey testing.  What is not as well known is that there are different kinds of monkeys doing our testing work for us.
 
-__Dumb monkey__ testing is sending in just any old input you can think of.  "`Mfdsjbkfd`", "`1 + snorf`", and "`(*@()`" all seem like good inputs to the dumb monkey.  There is no rhyme or reason, just lots of different randomized input.  This can be helpful for catching edge cases, but it is not very focused.  Remember that the world of possible values is absolutely huge.  The chances of finding a specific defect might be minimal when using dumb monkey testing.
+Let's imagine a simple program which accepts a string argument from the user, and attempts to read that string as an arithmetic expression and display its result.  For example, "`5 + 6`" would display "`11`" and "`5 - (2 * 1) + 10`" would display "`13`".  If the program cannot parse the string because it is not a valid arithmetic expression (e.g., "`$%--0`"), then the program will print "ERROR".
 
-As an example, let us assume that you have a defect where arbitrary JavaScript code can be executed by entering it into a text box on your web application.  However, if the JavaScript code is not syntactically correct, nothing bad happens.  Think of how long it would take for a dumb monkey to randomly generate a valid JavaScript string that would take advantage of this obvious vulnerability!  It may be years.  Even then, it may be some JavaScript code which does not cause any problems, or even any noticeable output, such as a comment or logging a message to the console.  Meanwhile, even a novice tester is going to try to enter some JavaScript on any text box they can find.
+__Dumb monkey__ testing is sending in just any old input you can think of (or, as it happens more often, that your input generation program creates).  "`Mfdsjbkfd`", "`1 + 2`", and "`(*@()`" all seem like good inputs to the dumb monkey.  There is no rhyme or reason, just lots of different randomized input.  This can be helpful for catching edge cases, but it is not very focused.  Remember that the world of possible values is absolutely huge.  The chances of finding a specific defect might be minimal when using dumb monkey testing.  By chance, we happened to find at least one valid arithmetic expression, but what are the odds of that occurring on a regular basis?  The vast majority of randomly generated inputs will cause the same behavior: simply printing ERROR.  The chance of it catching well-known and easy-to-test-for errors such as integer overflow or underflow, or floating-point rounding issues, is minuscule.
+
+As a more real-life example, let us assume that you have a defect where arbitrary JavaScript code can be executed by entering it into a text box on your web application.  However, if the JavaScript code is not syntactically correct, nothing bad happens.  Think of how long it would take for a dumb monkey to randomly generate a valid JavaScript string that would take advantage of this obvious vulnerability!  It may be years.  Even then, it may be some JavaScript code which does not cause any problems, or even any noticeable output, such as a comment or logging a message to the console.  Meanwhile, even a novice tester is going to try to enter some JavaScript on any text box they can find.
+
+Dumb monkey testing has some very obvious drawbacks, chief among them that without direction, most inputs are invalid and uninteresting.  However, implementing it can be done very quickly, and a large number of tests can be performed very quickly.
 
 __Smart monkey__ testing involves using input which a user might conceivably enter, as opposed to being strictly random.  For example, suppose you are testing a calculator program, which accepts a string of numbers and arithmetic operators and displays a result.  It is rational to assume that an ordinary user is much more likely to enter the following input:
 
@@ -93,9 +96,22 @@ ERROR
 
 While this assumption may not hold when it comes to toddlers, in general it is most likely true.  Thus, in order to focus our testing resources on finding defects which are more likely to occur, we can use smart monkey testing to act as a user.  Since the smart monkey test is automated, however, it will be able to operate much more quickly and on many more possible inputs than manual testing by an actual user.
 
-Creating a smart monkey test can be difficult, because not only do you have to first understand what users would likely do with the application, but then develop a model for it.  However, the smart monkey is much more likely to discover a defect in the system under test.
+Creating a smart monkey test can be difficult, because not only do you have to first understand what users would likely do with the application, but then also develop a model and a generator for it.  However, the smart monkey is much more likely to discover a defect in the system under test.
 
-__Evil monkey__ testing simulates a malicious user who is actively trying to hurt your system.  This can be through sending very long strings, potential injection attacks, malformed data, or other inputs which are designed to cause havoc in your system.  In today's networked world, systems are almost always under attack if they are connected to the Internet for more than a few milliseconds.  It is much better to have an evil monkey under our control determine that the system is vulnerable than let some actual malicious user figure it out!
+__Evil monkey__ testing simulates a malicious user who is actively trying to hurt your system.  This can be through sending very long strings, potential injection attacks, malformed data, unsupported characters, or other inputs which are designed to cause havoc in your system.  In today's networked world, systems are almost always under attack if they are connected to the Internet for more than a few milliseconds.  It is much better to have an evil monkey under our control determine that the system is vulnerable than let some actual malicious user figure it out!
+
+Let us assume that we are storing all of the entered data for our arithmetic program in a database.  An evil monkey test may check to see if it can cause the program to somehow write
+
+```
+> '); DELETE FROM entries; --"
+ERROR
+> \000\000\000
+ERROR
+> Well, Prince, so Genoa and Lucca are now just family estates of the Buonapartes. But I warn you ...
+ERROR
+```
+
+FOr that final liie, you may assume that the entire text of _War and Peace_ by Leo Tolstory was actuall entered by the evil monkey.  I considered adding the whole thing in to inflate the word count of my book, but decided against it to help reduce the weight of the printed version.  These are only a few examples of how evil monkey testing might look for defects in a system.  For more examples of testing the security of systems, see the chapter in this book entitled _Security Testing_.
 
 Perhaps the best-named kind of monkey is the __Chaos Monkey__.  Chaos Monkey is a tool developed by Netflix which randomly shuts down servers that their system is running on, in order to simulate random outages.  For any large system, servers will go down on a regular basis, and at any given time some percentage of systems will be unavailable.  Chaos monkey testing ensures that the system as a whole will be able to operate effectively even when individual machines are not responding.
 
