@@ -32,6 +32,8 @@ __Bathtub curve__: A generalized function of failure rates, which start out high
 
 __Beta testing__: "Real-world" testing by a subset of the actual user base prior to release of the system.  Often preceded by alpha testing.
 
+__Binomial coefficient__: The number of __r-combinations__ of a given __set__ of size _n_.  It is determined by the formula `C(n, r) = n! / (r! * (n - r)!)`.
+
 __Black-box testing__: Testing the code as a user would, with no knowledge of the codebase.  Most manual tests are black-box tests.
 
 __Blocked__: A status for a test case in a test run.  It indicates that the test case cannot be executed at this time, for reasons outside the tester's control.  For example, the functionality it tests is not yet at a testable state, perhaps because it has not yet been developed.
@@ -54,9 +56,13 @@ __Bug__: Another term for __defect__.
 
 __Chaos Monkey__: A __stochastic testing__ tool developed by Netflix which tests distributed systems by shutting off random servers in the system.
 
+__choose__: When used in combinatorics, a way of expressing the __binomial coefficient__ of a set of size _n_ and r-combinations of size _r_.  For example, "5 choose 3" means the number of 3-combinations possible in a set of 5 elements.
+
 __CIA Triad__: Another term for the __InfoSec Triad__.
 
 __Code coverage__: How much of the codebase is actually tested, usually via unit tests.  Although there are different kinds of code coverage, the majority of the time that non-specialists use it, they are referring to __statement coverage__.
+
+__Combination__: A selection of elements from a __set__, in which order does not matter.  
 
 __Combinatorial testing__: Testing in such a way so as to ensure that various combinations of variables will work as expected.
 
@@ -126,6 +132,8 @@ __Evil monkey__: A __stochastic testing__ method whereby malicious code or data 
 
 __Execution steps__: The actual steps that the test will execute after ensuring that all preconditions hold.
 
+__Exhaustive testing__: Testing every single possibility of input, environment, and other relevant factors for a given system under test.  For example, if testing a `int max(int a, int b)` Java method which returns the greater of the two values `a` and `b`, ensuring that it worked for every single combination of values a (MININT..MAXINT) and b (MININT..MAXINT), or 18,446,744,073,709,551,616 test cases.  Exhaustive testing is often not feasible in practice.
+
 __expect__: A program which allows you to automate interactions with command-line programs.
 
 __Expected behavior__: What the system is expected to do under certain circumstances.  For example, after typing in "`2 + 2 =`" on a calculator, the expected behavior is that the system will display "`4`" on the screen.
@@ -175,6 +183,8 @@ __Hacker__: According to the Jargon File, "[a] person who enjoys exploring the d
 __Happy path__: The easiest path a user will take through the system, when the system is operating properly, without attempting to perform anything that is an __edge case__ or __corner case__.
 
 __IDE__: Integrated Development Environment.  A single tool which unifies much of the functionality allowing a developer to write, such as running tests, compiling, and configuring dependencies.
+
+__Idempotent__: A quality of a function or request where the same result will be returned no matter how many times it is called.  For example, multiplying a number by one is an idemepotent operation (5 * 1 = 5, 5 * 1 * 1 = 5, 5 * 1 * 1 * 1 = 5, etc.), but adding one two a number is a __non-idempotent__ operation (5 + 1 = 6, 5 + 1 + 1 = 7, 5 + 1 + 1 + 1 = 8, etc.).
 
 __Identifier__: A number or string which uniquely identifies a test case, defect, or anything else.
 
@@ -270,6 +280,8 @@ __Non-deterministic__: A test failure which does not occur all of the time, but 
 
 __Non-functional requirement__: A requirement that specifies how the system should operate, without specifying specific behavior.  For example, "the system shall be extensible, allowing for the addition of plug-ins" or "the system shall be usable by personnel with less than one hour of training".  Contrast with __functional requirement__.
 
+__Non-idempotent__: A quality of a function or request where the same result may or may not be returned, depending on how many times that function is called.  For example, multiplying a number by one is an __idempotent__ operation (5 * 1 = 5, 5 * 1 * 1 = 5, 5 * 1 * 1 * 1 = 5, etc.), but adding one two a number is a non-idempotent operation (5 + 1 = 6, 5 + 1 + 1 = 7, 5 + 1 + 1 + 1 = 8, etc.)
+
 __Normal__: A defect of a severity which is noticeable but does not strongly hamper the user's use of the system.
 
 __Null pointer error__: An error resulting from the code trying to dereference a null pointer, or access a null object.
@@ -312,6 +324,8 @@ __Performance threshold__: In __performance testing__, an absolutely minimal val
 
 __Performant__: A program which provides a high level of performance, which is usually measured by it meeting or exceeding its __KPIs__.
 
+__Permutation__: An arrangement of a __set__, in which order matters.  For example, the possible permutations of the set `[1, 2]` are `[1, 2]` and `[2, 1]`.  The possible permutations of the set `[1, 2, 3]` are `[1, 2, 3]`, `[1, 3, 2]`, `[2, 1, 3]`, `[2, 3, 1]`, `[3, 1, 2]`, and `[3, 2, 1]`.
+
 __Phishing__: A common __attack__ which attempts to get personal or other sensitive information via email or other communications.
 
 __Phone phreak__: A person who explores the telephone system, usually without the permission of relevant authorities.  Famous phone phreaks include John Draper and Joe Engressia.
@@ -343,6 +357,10 @@ __Quality assurance__: Ensuring the quality of software, by a variety of methods
 __Quality attribute__: Another (probably better) term for __non-functional requirement__.
 
 __Quantitative__: Able to be expressed numerically, such as "the system shall respond within 500 milliseconds".  Contrast with __qualitative__.
+
+__r-combination__: A __subset__ of _r_ elements from a __set__, in which order does not matter.  The value _r_ can be replaced with a specific value, such as 2 or 3, to indicate the number of elements in the subset.  For example, `[2, 3, 1]` is a 3-combination of the set `[1, 2, 3, 4]`, and is equivalent to `[1, 2, 3]`.
+
+__r-permutation__: A __subset__ of _r_ elements from a __set__, in which order matters.  The value _r_ can be replaced with a specific value, such as 2 or 3, to indicate the number of elements in the subset.  For example, `[2, 3, 1]` and `[1, 2, 3]` are two different 3-permutations of the set `[1, 2, 3, 4]`.
 
 __Ransomware__: A kind of __malware__ which performs an unwanted action (e.g., encrypting your hard drive) and asks for money or other compensation in order to undo it.
 
@@ -385,6 +403,8 @@ __Selenese__: An intermediary language used by Selenium for controlling its beha
 __Selenium__: A framework which allows automated testing and scripting of web site interactions.
 
 __Selenium WebDriver__: An API which allows a tester to automate a web browser so that it is controlled just as if an actual user were using it.
+
+__Set__: A group of unique elements.  For example, `[1, 2, 3]` is a set, but `[1, 1, 2, 3]` is not because there are multiple instances of the element `1`.
 
 __Service-oriented indicator__: A performance metric related to how the user will interact with the system.
 
@@ -489,6 +509,8 @@ __Triage__: A meeting or other way (e.g. email discussion) of prioritizing defec
 __Trivial__: A defect of a severity which is not noticeable, or hardly noticeable, and only causes the smallest of issues for a user of the system.
 
 __Trojan horse__: A kind of __malware__ which pretends to be another kind of program in order to trick users into installing and executing it.
+
+__Truth table__: A table which shows all possible values of a group of Boolean (true/false) variables.
 
 __TUC__: See __Test-Unfriendly Construct__.
 
