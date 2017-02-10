@@ -150,6 +150,8 @@ __Externally consistent (requirements)__: The property of having the system be c
 
 __Fabrication__:  In __security testing__, an attack on __integrity__, which deliberately adds data, such as an attack which allows a user to create an entirely new bank account.
 
+__Factorial__: A mathematical function which calculates the result of an integer n multipled by n - 1, n - 2, etc. all the way until 1.  For example, 5! = 5 * 4 * 3 * 2 * 1, or 120.
+
 __Failed__: A status for a test case in a test run.  It indicates that, while the test itself was executed without error, the system has not met at least one postcondition or expected output value, or some other unexpected behavior has taken place.  In other words, the observed behavior was not the expected behavior.
 
 __Failure case__: A kind of test where the expected behavior of the system is to fail in a certain way.  For example, sending in a negative number to a square root function which does not support complex numbers may be expected to throw an exception. Compare to __success case__.
