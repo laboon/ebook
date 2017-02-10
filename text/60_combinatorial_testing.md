@@ -81,7 +81,7 @@ P(4, 2)
 
 Remember, since we are looking at permutations, each turtle must be checked against every other turtle.
 
-As you may have already guessed from the name, when we discuss combinatorial testing, we will be interested in checking __combinations__ of a set of elements.  A combination is some _unordered_ subset of a set.  Using similar nomenclature as with permutations, we can also refer to an __r-combination__ of a set to indicate combinations of subsets.  Ordinarily, we are interested in combinations of a smaller size than the original set, as an _r_-combination of a set where _r_ is the same size of the set is just the set itself.
+As you may have already guessed from the name, when we discuss combinatorial testing, we will be interested in checking __combinations__ of a set of elements, not permutations.  A combination is some _unordered_ subset of a set.  Using similar nomenclature as with permutations, we can also refer to an __r-combination__ of a set to indicate combinations of subsets.  Ordinarily, we are interested in combinations of a smaller size than the original set, as an _r_-combination of a set where _r_ is the same size of the set is just the set itself.
 
 The number of _r_-combinations of a given set of size _n_ is called the __binomial coefficient__.  It is determined by the following formula:
 
