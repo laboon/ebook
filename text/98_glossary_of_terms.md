@@ -270,6 +270,8 @@ __MTBF__: An acronym  for __mean time between failures__.
 
 __MTTR__: An acronym for __mean time to repair__.
 
+__Mutation testing__: A means of "testing the tests" of a system by __seeding__ the system under test with defects by randomly modifying code.
+
 __n nines__: A way of showing what percentage of the time the system is available, based on the number of nines in that number, and assuming nines are the only significant digit.  For example, a system that is available 99.92% of the time has 3 nines' availability, while a system that is available 99.999% of the time has 5 nines' availability.
 
 __Negative test case__: See __failure case__.
@@ -399,6 +401,8 @@ __Seam__: A place in the codebase where you can modify behavior without modifyin
 __"Seat of your pants" testing__: Testing where the expected behavior is known to the tester through experience with the software or its domain, instead of being formally specified.
 
 __Security testing__: Testing that the system meets the criteria of the InfoSec Triad, that the system is safe from unauthorized tampering and/or access.
+
+__Seeding__: Deliberately adding defects to a program in order to determine if the testing strategy will find them.
 
 __Selenese__: An intermediary language used by Selenium for controlling its behavior.
 

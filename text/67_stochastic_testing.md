@@ -100,7 +100,7 @@ Creating a smart monkey test can be difficult, because not only do you have to f
 
 __Evil monkey__ testing simulates a malicious user who is actively trying to hurt your system.  This can be through sending very long strings, potential injection attacks, malformed data, unsupported characters, or other inputs which are designed to cause havoc in your system.  In today's networked world, systems are almost always under attack if they are connected to the Internet for more than a few milliseconds.  It is much better to have an evil monkey under our control determine that the system is vulnerable than let some actual malicious user figure it out!
 
-Let us assume that we are storing all of the entered data for our arithmetic program in a database.  An evil monkey test may check to see if it can cause the program to somehow write
+Let us assume that we are storing all of the entered data for our arithmetic program in a database.  An evil monkey test may check to see if it can cause the program to somehow overwrite or modify that data by passing in a malicious SQL command, or some characters which may be interpreted as nulls, or an extremely long string to try to overflow a buffer.
 
 ```
 > '); DELETE FROM entries; --"
@@ -111,9 +111,176 @@ ERROR
 ERROR
 ```
 
-FOr that final liie, you may assume that the entire text of _War and Peace_ by Leo Tolstory was actuall entered by the evil monkey.  I considered adding the whole thing in to inflate the word count of my book, but decided against it to help reduce the weight of the printed version.  These are only a few examples of how evil monkey testing might look for defects in a system.  For more examples of testing the security of systems, see the chapter in this book entitled _Security Testing_.
+For that final line, you may assume that the entire text of _War and Peace_ by Leo Tolstoy was actually entered by the evil monkey.  I considered adding the whole thing in to inflate the word count of my book, but decided against it to help reduce the weight of the printed version.  These are only a few examples of how evil monkey testing might look for defects in a system.  For more examples of testing the security of systems, see the chapter in this book entitled _Security Testing_.
 
 Perhaps the best-named kind of monkey is the __Chaos Monkey__.  Chaos Monkey is a tool developed by Netflix which randomly shuts down servers that their system is running on, in order to simulate random outages.  For any large system, servers will go down on a regular basis, and at any given time some percentage of systems will be unavailable.  Chaos monkey testing ensures that the system as a whole will be able to operate effectively even when individual machines are not responding.
 
 You do not have to use the official Chaos Monkey tool to do this kind of testing, however.  Think of all the things that can go wrong with a multiple-server system, and simulate them.  What happens when the network topography changes?  Does the system stay active when somebody pulls out some power or networking cables?  What happens if latency is increased to several seconds?  A distributed system is ripe for problems.  Testing that it can handle them now will allow you to prepare for when they happen in reality.  After all, the best way to avoid a problem is to induce it repeatedly; soon, you will have automated procedures to ameliorate it or ensure that it doesn't happen.
 
+## Mutation Testing
+
+Yet another usage of randomness in testing will allow us to test our tests!  In __mutation testing__, we modify the code itself in random ways (keeping a copy of the original code to which we will eventually revert back, of course).  We are thus __seeding__ the system under test with defects.  Seeding is deliberately adding defects to a system in order to determine whether or not our testing process is capable of catching them.  This can provide us a general idea of the quality of our tests.  For example, if ten different defects are deliberately added to a system, and the quality assurance team catches all ten of them, then their other assessments of quality are more likely to be accurate.  If the quality assurance team catches only one or none of the ten seeded defects, then we would be justified in thinking that there are many _actual_ defects which are not being caught.  This would certainly call into question any guarantees that the team has made regarding the quality of the system uder test.
+
+After each random modification of code, the test suite, or the subset of it associated with the code that was modified, is then run.  If our test suite has full coverage of the code that was modified, at least one test should fail.  If none fail, there is a very good chance that our test coverage is incomplete.  There exists the possibility that the mutation was completely benign; say, it modified the default value of a variable which gets immediately overwritten.  Another possibility is that the modification made a change that would never be seen in practice, such as 
+
+Let's work through an example of mutation testing.  Assume we have a method which calculates what kind of animal something might be based on the length of its neck.
+
+```java
+public class Guess {
+    public static String animalType(int neckLength) {
+        String toReturn = "UNKNOWN";
+        if (neckLength < 10) {
+            toReturn = "Rhinoceros";
+        } else if (neckLength < 20) {
+            toReturn = "Hippopotamus";
+        } else {
+            toReturn = "Giraffe";
+        }
+        return toReturn;
+    }
+}
+```
+
+Our test cases check one value from each of the equivalence classes.
+
+```java
+@Test
+public void animalTypeRhinoceros() {
+   assertEquals("Rhinoceros", Guess.animalType(5);
+}
+
+@Test
+public void animalTypeHippopotamus() {
+   assertEquals("Hippopotamus", Guess.animalType(15);
+}
+
+@Test
+public void animalTypeGiraffe() {
+   assertEquals("Giraffe", Guess.animalType(25);
+}
+```
+
+Now, if you recall from our chapter on unit testing, this is not providing very good coverage.  Of course, it's also not the worst case of unit testing a method that I have seen.  Mutation testing can give us a better idea of the overall quality of our tests than a simple code coverage metric.  Let's see a few mutations which will cause a failure, showing us first the strengths of the unit tests and how they can be made to fail.
+
+```java
+public class Guess {
+    public static String animalType(int neckLength) {
+        String toReturn = "UNKNOWN";
+        // Value was changed from 10 to 1
+        if (neckLength < 1) {
+            toReturn = "Rhinoceros";
+        } else if (neckLength < 20) {
+            toReturn = "Hippopotamus";
+        } else {
+            toReturn = "Giraffe";
+        }
+        return toReturn;
+    }
+}
+```
+
+In this case, we modified the conditional checking to see if `neckLength < 10` to `neckLength < 1`.  This will rightly cause the test `animalTypeRhinoceros` to fail, since our mutated version of the method will return "Hippopotamus" for a `neckLength` argument of 5.
+
+```java
+public class Guess {
+    public static String animalType(int neckLength) {
+        String toReturn = "UNKNOWN";
+        // Less-than sign changed to greater-than sign
+        if (neckLength > 10) {
+            toReturn = "Rhinoceros";
+        } else if (neckLength < 20) {
+            toReturn = "Hippopotamus";
+        } else {
+            toReturn = "Giraffe";
+        }
+        return toReturn;
+    }
+}
+```
+
+In this case, _all_ of the unit tests fail: the first will show that what should be a "Rhinoceros" is listed as a "Giraffe", and both of the other tests will return that the animal is a "Rhinoceros".  Good job, unit tests!
+
+The more interesting cases which can help our codebase is when mutations do _not_ cause the tests to fail.  This generally means that our tests are not providing as much coverage of the method as we think.  Various errors in the method could slip through the test suite, now or in the future.  Remember, the failure of a unit test to catch a mutation does not mean there is a problem with the code now.  The code could have been implemented perfectly correctly.  It is a failure of the _unit tests_ to catch a possible issue.  We will just have no way of knowing, from a testing perspective, if the method fails under certain circumstances.
+
+Let's take a look at an example of a mutation which will not cause any unit tests to fail, but has an impact on the execution of the code.
+
+```java
+public class Guess {
+    public static String animalType(int neckLength) {
+        String toReturn = "UNKNOWN";
+        // Value was changed from 10 to 8
+        if (neckLength < 8) {
+            toReturn = "Rhinoceros";
+        } else if (neckLength < 20) {
+            toReturn = "Hippopotamus";
+        } else {
+            toReturn = "Giraffe";
+        }
+        return toReturn;
+    }
+}
+```
+
+In this case, all of our unit tests will pass: an animal with a neck length of 5 will be seen as a rhinoceros, one with a neck length of 15 will be seen as a hippopotamus, and one with a neck length of 25 will be seen as a giraffe.   Sadly, though, the functionality of our method has definitely changed!  If somebody calls this mutated method with a `neckLength` argument of 9, that animal will be seen as a hippopotamus when it should be seen as a rhinoceros.  This shows us the importance of checking for boundary values between equivalence classes.  If we had checked for all of the boundaries, then one of our unit tests would have failed whenever these values were changed.
+
+As we mentioned, some mutations may not cause any tests to fail, but are generally benign.  This often means that the code that it modified is superfluous, or that the code is implemented improperly but it does not matter during normal execution.  
+
+```java
+public class Guess {
+    public static String animalType(int neckLength) {
+        // String value changed from "UNKNOWN" to "AMBER"
+        String toReturn = "AMBER";
+        if (neckLength > 10) {
+            toReturn = "Rhinoceros";
+        } else if (neckLength < 20) {
+            toReturn = "Hippopotamus";
+        } else {
+            toReturn = "Giraffe";
+        }
+        return toReturn;
+    }
+}
+```
+
+This will not cause any failures in our unit tests, since the "UNKNOWN" value was just a placeholder and never actually used for anything.  It does tell us that perhaps we don't need to set a default value here, or that there is a better way to implement the method.  For example, this is a slightly more efficient way to implement the same method:
+
+```java
+public class Guess {
+    public static String animalType(int neckLength) {
+        // Default value is now a giraffe, no need for final else
+        String toReturn = "Giraffe";
+        if (neckLength > 10) {
+            toReturn = "Rhinoceros";
+        } else if (neckLength < 20) {
+            toReturn = "Hippopotamus";
+        } 
+        return toReturn;
+    }
+}
+```
+
+However, this could also be a code spell that we forgot to implement some functionality.  Perhaps we meant to return that default value if an animal with a negative-length neck was passed in, but never got around to actually coding that!
+
+```java
+public class Guess {
+    public static String animalType(int neckLength) {
+        String toReturn = "UNKNOWN";
+
+        // If invalid neckLength value passed in, return default
+        if (neckLength < 0) {
+            return toReturn;
+        }
+
+        if (neckLength < 10) {
+            toReturn = "Rhinoceros";
+        } else if (neckLength < 20) {
+            toReturn = "Hippopotamus";
+        } else {
+            toReturn = "Giraffe";
+        }
+        return toReturn;
+    }
+}
+```
+
+Mutation testing is a valuable way to determine how well your tests are testing your code.  It is very easy for a tester to miss an equivalence class, or a boundary value, or a failure mode.  When a mutation which cannot be caught by your tests shows up, though, you can see not only that there is a hole in your testing strategy, but also see how a coding mistake would cause it.
