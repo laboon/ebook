@@ -73,3 +73,4 @@ As a side note, if you're wondering why the tool is called Selenium, an early co
 
 ## Using Selenium With The IDE
 
+You can install the Selenium as an add-on to Firefox or other web browsers.  Later, we'll see how we can directly 
