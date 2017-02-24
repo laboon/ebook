@@ -8,8 +8,6 @@ A long time ago, in a company far, far away, I was a test lead.  One of my respo
 
 I figured that I could complain about it, or do something about it.  I was able to convince the Computer Science department at the University of Pittsburgh to allow me to develop and teach a class on software testing.  This small class has grown to cover many different aspects of software quality, and become a popular, ongoing course (CS 1632: Software Quality Assurance, if you're interested in taking it!).  I developed my own curriculum, as I couldn't find a good book or syllabus on the subject that struck the right balance between theory and application.  Finding a good book to use was even more difficult than finding a good Quality Assurance (QA) Engineer to interview!  Once again, I figured I could either complain about it, or do something about it, and once again, I chose the latter.
 
-After a few semesters of teaching the course, I've added some additional material, and thought of different ways to explain concepts.  I also wanted to add some more examples and sample code.  I also saw that others out there were looking for what this book provided - an understandable and reasonably comprehensive guide to modern software testing.  Therefore, less than a year after the first edition came out, I started working on this second edition.
-
 ## Testing and Quality Assurance
 
 Testing software is a big part of the software development process, and useful not just for those looking specifically for a career in QA.  A developer who doesn't care about software quality is not a good developer.  This book is targeted to those interested in software testing or writing tests as a developer.
@@ -32,4 +30,4 @@ This book is an introductory text to the world of software testing; there's defi
 
 ## A Note on Language Choice
 
-The examples I give are in Java and use much of the Java tool chain (e.g., JUnit and Selenium).  This is not due to some particular love of Java.  There are certainly other languages which have a good claim on being easier to use or more helpful in avoiding defects.  However, Java does serve as a _lingua franca_ amongst developers nowadays.  It is a standard, popular, ALGOL-derived programming language, so even if you're not familiar with it, you can probably reason out what's happening.
+The examples I give are in Java and use much of the Java tool chain (e.g., JUnit).  This is not due to some particular love of Java.  There are certainly other languages which have a good claim on being easier to use or more helpful in avoiding defects.  However, Java does serve as a _lingua franca_ amongst developers nowadays.  It is a standard, popular, ALGOL-derived programming language, so even if you're not familiar with it, you can probably reason out what's happening.

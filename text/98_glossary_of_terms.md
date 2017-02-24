@@ -404,12 +404,6 @@ __Security testing__: Testing that the system meets the criteria of the InfoSec 
 
 __Seeding__: Deliberately adding defects to a program in order to determine if the testing strategy will find them.
 
-__Selenese__: An intermediary language used by Selenium for controlling its behavior.
-
-__Selenium__: A framework which allows automated testing and scripting of web site interactions.
-
-__Selenium WebDriver__: An API which allows a tester to automate a web browser so that it is controlled just as if an actual user were using it.
-
 __Set__: A group of unique elements.  For example, `[1, 2, 3]` is a set, but `[1, 1, 2, 3]` is not because there are multiple instances of the element `1`.
 
 __Service-oriented indicator__: A performance metric related to how the user will interact with the system.
@@ -549,8 +543,6 @@ __Virus__: A kind of __malware__, often small, that replicates itself with human
 __Vulnerability__: A potential defect that would allow a user to compromise or otherwise gain unauthorized access to a system.
 
 __Wall clock time__: Another term for __real time__.
-
-__WebDriver__: See __Selenium WebDriver__.
 
 __White-box testing__: Testing the code directly and with full knowledge of the code under test.  __Unit testing__ is an example of white-box testing.
 
