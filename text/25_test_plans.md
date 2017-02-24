@@ -201,6 +201,18 @@ Understanding the programming environment that the software is written in can al
 int a = 7 / 0;
 ```
 
+No matter what the dividend is, if the divisor is 0, a  `java.lang.ArithmeticException` is throw.
+
+```java
+// All of these statements cause the same exception to be thrown
+
+int b = -1 / 0;
+
+int c = 0 / 0;
+
+int d = 999999 / 0;
+```
+
 Therefore, when testing a program written in Java, you can assume that dividing by zero is essentially one equivalence class; if it occurs, then the same event should happen afterwards, whatever that event happens to be (e.g., perhaps the exception is caught and the message "Error Divide by Zero" is printed to the console).
 
 JavaScript (yes, technically I mean ECMAScript 5, for anyone who wants to know the particulars) does not throw an exception when dividing by zero.  However, depending on the numerator, when the denominator is zero, you may get different results!

@@ -24,18 +24,16 @@ Here is an example of a poorly-written program.  We will refactor it to be easie
 public class Hours {
 
     public static void main(String[] args) {
-	double chikChirik = 792.34;
-	try {
-	    chikChirik = Double.parseDouble(args[40 / 3 - 13]);
-	} catch (Exception ex) {
-	    System.exit(1 * 1 * 1);
-	}
-	int kukurigu = 160 % 100;
-	int gruhGruh = (2 * 2 * 2 * 2 * 2 * 2) - 4;
-	System.out.println((chikChirik * kukurigu * gruhGruh) + " seconds");
-	
+        double chikChirik = 792.34;
+        try {
+            chikChirik = Double.parseDouble(args[40 / 3 - 13]);
+        } catch (Exception ex) {
+            System.exit(1 * 1 * 1);
+        }
+        int kukurigu = 160 % 100;
+        int gruhGruh = (2 * 2 * 2 * 2 * 2 * 2) - 4;
+        System.out.println((chikChirik * kukurigu * gruhGruh) + " seconds");
     }
-    
 }
 ```
 
@@ -56,7 +54,7 @@ public class Hours {
      */
     
     public static double calculateSeconds(double hours) {
-	return hours * MINUTES_PER_HOUR * SECONDS_PER_MINUTE;
+        return hours * MINUTES_PER_HOUR * SECONDS_PER_MINUTE;
     }
 
     /**
@@ -68,18 +66,18 @@ public class Hours {
      */
     
     public static void main(String[] args) {
-	double numHours = -1;
-	try {
-	    numHours = Double.parseDouble(args[0]);
-	} catch (NumberFormatException nfex) {
-	    // The argument passed in could not be parsed
-	    System.exit(1);
-	} catch (ArrayIndexOutOfBoundsException oobex) {
-	    // No argument was passed in
-	    System.exit(1);
-	}
-	System.out.println(calculateSeconds(numHours) + " seconds");
-	
+        double numHours = -1;
+        try {
+            numHours = Double.parseDouble(args[0]);
+        } catch (NumberFormatException nfex) {
+            // The argument passed in could not be parsed
+            System.exit(1);
+        } catch (ArrayIndexOutOfBoundsException oobex) {
+            // No argument was passed in
+            System.exit(1);
+        }
+        System.out.println(calculateSeconds(numHours) + " seconds");
+        
     }
     
 }

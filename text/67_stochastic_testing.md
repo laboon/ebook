@@ -107,7 +107,7 @@ Let us assume that we are storing all of the entered data for our arithmetic pro
 ERROR
 > \000\000\000
 ERROR
-> Well, Prince, so Genoa and Lucca are now just family estates of the Buonapartes. But I warn you ...
+> Well, Prince, so Genoa and Lucca are now just family estates of the Buonapartes...
 ERROR
 ```
 
