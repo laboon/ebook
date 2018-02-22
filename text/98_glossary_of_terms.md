@@ -154,7 +154,7 @@ __Factorial__: A mathematical function which calculates the result of an integer
 
 __Failed__: A status for a test case in a test run.  It indicates that, while the test itself was executed without error, the system has not met at least one postcondition or expected output value, or some other unexpected behavior has taken place.  In other words, the observed behavior was not the expected behavior.
 
-__Failure case__: A kind of test where the expected behavior of the system is to fail in a certain way.  For example, sending in a negative number to a square root function which does not support complex numbers may be expected to throw an exception. Compare to __success case__.
+__Failure case__: A kind of test where the expected behavior of the system is to fail in a certain way.  For example, sending in a negative number to a square root function which does not support imaginary numbers may be expected to throw an exception. Compare to __success case__.
 
 __Fake__: A kind of __test double__ in which the behavior of the double is handled by the object itself, as opposed to being referenced by stub methods.  These act as simpler, faster versions of the actual object, in order to make tests run faster or reduce dependencies.
 
