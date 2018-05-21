@@ -9,7 +9,7 @@ This textbook is comprised of a series of Markdown files, compiled into PDF
 format via PDF\LaTeX.  Required dependencies, available through most package
 managers, include:
 
-* [`pandoc`](http://johnmacfarlane.net/pandoc/)
+* [`pandoc`](http://johnmacfarlane.net/pandoc/), at least version 2.0
 * [`pdflatex`](http://www.tug.org/applications/pdftex/)
 * `xelatex` --- available in [TeX Live](http://tug.org/texlive/)
 
