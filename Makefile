@@ -13,7 +13,7 @@ MD_FILES=	$(wildcard text/*.md)
 pdf:	main.tex tex_files
 # Uses date of most recent commit in repo
 	$(PANDOC) main.tex -o software-testing-laboon-ebook.pdf \
-		--pdf-engine $(XELATEX) \
+		--latex-engine $(XELATEX) \
 		--top-level-division=chapter -N --toc --toc-depth=2 \
 		-M documentclass="book" \
 		-M classoption="twoside" \
