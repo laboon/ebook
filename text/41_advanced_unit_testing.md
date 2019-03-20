@@ -29,7 +29,7 @@ JUnit does not support test doubles directly, but there are libraries that you c
 
 In order to use Mockito, you will need to ensure that you have both the mockito and objenesis jars in your classpath, along with any required JUnit jars.  If you use the Makefile from the previous chapter, and have downloaded the appropriate jar files, this should work for you automatically.  If you are using an IDE or a build tool (such as Gradle or Maven), this may also already have been taken care of.  If you are not using the test runner from the last chapter, you should review the documentation for your build tool to ensure that you have set it up correctly.
 
-You should then add the line `import static org.mockito.*` to your test class files in order to access all of the tools in the libraries.  As a reminder, using `import static` instead of `import` will allow us to access the static members of the mockito classes without explicitly referring to them.  If you like, you can use a regular `import` statement, but this will mean that you will need to preface all of your 
+You should then add the line `import static org.mockito.*` to your test class files in order to access all of the tools in the libraries.  As a reminder, using `import static` instead of `import` will allow us to access the static members of the mockito classes without explicitly referring to them.
 
 Here is an example of using a test double with JUnit and Mockito to test a method which relies on a test double object.  Note that Mockito calls all test doubles "mocks", even if they don't use the capabilities of a mock object (described later in the chapter):
 
@@ -218,7 +218,7 @@ public class World {
         catCafe.arrive();
         catCafe.haveFun();
     }
-    
+
 }
 ```
 
@@ -258,7 +258,7 @@ Using the `times()` method along with verification, you can check that if you ca
  * Check that if we call multiPet with a valid cat and a numTimes
  * argument of 5, that cat will be petted 5 times.
  */
- 
+
 @Test
 public void testMultiPet5() {
     World w = new World();
@@ -271,12 +271,13 @@ public void testMultiPet5() {
 Conversely, you may also want to check that a method is never called.  Let's imagine another CatCafe-related method in our `World` class, `.petCat()`.
 
 ```java
+
 public void petCat(Cat c, boolean gentle) {
     if (gentle) {
         c.pet();
     } else {
-        // Do nothing - don't pet cats without being gentle!        
-```java
+        // Do nothing - don't pet cats without being gentle!
+```
 
 In this case, we want to test that if the `gentle` variable is true, `.petCat()` will be called, otherwise it will not be called.  We can create two unit tests for each of these equivalence classes.
 
@@ -286,7 +287,7 @@ In this case, we want to test that if the `gentle` variable is true, `.petCat()`
  * cause the cat to be petted one time.  This is done by verifying
  * that c.pet() is called one time.
  */
- 
+
 @Test
 public void testPetCatGently() {
     World w = new World();
@@ -300,7 +301,7 @@ public void testPetCatGently() {
  * not cause the cat to be petted.  This is done by verifying
  * that c.pet() is never called.
  */
- 
+
 @Test
 public void testPetCatNotGently() {
     World w = new World();
@@ -339,13 +340,13 @@ public class DuckPond extends Pond {
    public int getFunLevel() {
       return _funLevel;
    }
-   
+
 }
 ```
 
 Let's set aside any issues one might have about how this code is written, and how it might be refactored to make it more testable.  In this case, calling haveUltraFun() requires querying the database, which is called from a method from DuckPond's superclass.  However, this also modifies the `_funLevel` variable, based on the value it received from the `retrieveUltraLevelFromDatabase()` call.  The value of the variable `_funLevel` is going to depend both on that call to the database as well as how many times `haveFun()` and `haveUltraFun()` have been called.  While it would be possible to just make a test double that returns specific values, adding in this behavior for a test which called multiple methods on a DuckPond object might add up to lots of extra work.  Even worse, this work might have to be replicated in multiple tests.
 
-Using DuckPond as-is also means that every call to `haveUltraFun()` will result in a dramatic slowdown in tests.  Remember that calls to the disk or network, since they make take an order of magnitude or longer in time than the test would take otherwise, are discouraged in unit testing.  
+Using DuckPond as-is also means that every call to `haveUltraFun()` will result in a dramatic slowdown in tests.  Remember that calls to the disk or network, since they make take an order of magnitude or longer in time than the test would take otherwise, are discouraged in unit testing.
 
 To get around this performance issue, let's create a fake version of the object, which we can use in our tests later.  This fake version will be a "stripped-down" version of DuckPond, but will keep the general behavior.
 
@@ -366,7 +367,7 @@ public class FakeDuckPond extends Pond {
    public int getFunLevel() {
       return _funLevel;
    }
-   
+
 }
 ```
 
