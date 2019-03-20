@@ -68,7 +68,7 @@ Let's start with the first section, Input.  I notice that there are several poss
 2. The user enters no parameters
 3. The user enters one parameter, but it is invalid
 4. The user enters two parameters (one extra)
-4. The user enters many more parameters than 
+4. The user enters many more parameters than two
 
 In the last four cases, the expected behavior is the same; the system shuts down and the message "Please enter a valid parameter" is displayed.  In the first use case, the system will continue on and have behavior governed by other requirements.  You can already see here that it's important to have a view of the entire system, instead of looking at requirements solely in and of themselves.  This becomes more and more difficult as the number of requirements grows and the system under test becomes more complex.
 
@@ -297,4 +297,3 @@ POSTCONDITIONS: For each of the input values, the real time measurement as
 ```
 
 Note the addition of a precondition here.  This test case will not be considered valid unless all of the functional defects have already been fixed.  After all, it does not matter how long a program takes to run if it won't give you the correct cat weight status!  This does not mean that the test case cannot be executed ahead of time, but that the results should not be considered valid unless the software is functionally correct.  This is one of the big problems with performance testing; it is often difficult to do until the program is functionally complete, or at least close to it.
-
