@@ -84,7 +84,7 @@ However, if we were testing banking software and were using that image display t
 5. User X has no accounts with the bank other than savings and checking accounts.
 6. User X has attempted to withdraw $50.01 from the user's checking account.
 
-In both cases, the execution steps will be the same, or at least very similar---go to a URL and check that a particular image shows up.  However, the state of the system would have been much more detailed in the case of the banking software.  This is not only because the system itself is much more complex, but also because a failure would be much significant for the bank system than the image-sharing system.  In such a case, it makes sense to specify exactly what should happen and what should be in place before the execution steps.  The more exactly you write the preconditions, the easier it will be to reproduce the same situation exactly, and as we have discussed, reproducibility is the key to fixing a problem.
+In both cases, the execution steps will be the same, or at least very similar---go to a URL and check that a particular image shows up.  However, the state of the system would have been much more detailed in the case of the banking software.  This is not only because the system itself is much more complex, but also because a failure would be much more significant for the bank system than the image-sharing system.  In such a case, it makes sense to specify exactly what should happen and what should be in place before the execution steps.  The more exactly you write the preconditions, the easier it will be to reproduce the same situation exactly, and as we have discussed, reproducibility is the key to fixing a problem.
 
 ### Input Values
 
@@ -111,9 +111,9 @@ public boolean testArraySort() {
 
     // If the arrays are equal, then true is returned and the test passes
     // Otherwise, false is returned, and the test fails
-    
+
     return Arrays.equals(billSorted, normalSorted));
-    
+
 }
 ```
 
