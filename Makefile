@@ -9,17 +9,11 @@ XELATEX= xelatex
 
 MD_FILES=	$(wildcard text/*.md)
 
-PANDOC_VERSION=$(shell pandoc --version | grep -o -e 'pandoc [0-9]' | cut -d ' ' -f 2 -)
-ENGINE_FLAG=--pdf-engine
-ifeq ($(PANDOC_VERSION),1)
-	ENGINE_FLAG=--latex-engine
-endif
-
 
 pdf:	main.tex tex_files
 # Uses date of most recent commit in repo
 	$(PANDOC) main.tex -o software-testing-laboon-ebook.pdf \
-		$(ENGINE_FLAG) $(XELATEX) \
+		--pdf-engine $(XELATEX) \
 		--top-level-division=chapter -N --toc --toc-depth=2 \
 		-M documentclass="book" \
 		-M classoption="twoside" \
