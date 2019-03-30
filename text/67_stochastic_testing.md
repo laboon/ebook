@@ -119,7 +119,7 @@ You do not have to use the official Chaos Monkey tool to do this kind of testing
 
 ## Mutation Testing
 
-Yet another usage of randomness in testing will allow us to test our tests!  In __mutation testing__, we modify the code itself in random ways (keeping a copy of the original code to which we will eventually revert back, of course).  We are thus __seeding__ the system under test with defects.  Seeding is deliberately adding defects to a system in order to determine whether or not our testing process is capable of catching them.  This can provide us a general idea of the quality of our tests.  For example, if ten different defects are deliberately added to a system, and the quality assurance team catches all ten of them, then their other assessments of quality are more likely to be accurate.  If the quality assurance team catches only one or none of the ten seeded defects, then we would be justified in thinking that there are many _actual_ defects which are not being caught.  This would certainly call into question any guarantees that the team has made regarding the quality of the system uder test.
+Yet another usage of randomness in testing will allow us to test our tests!  In __mutation testing__, we modify the code itself in random ways (keeping a copy of the original code to which we will eventually revert back, of course).  We are thus __seeding__ the system under test with defects.  Seeding is deliberately adding defects to a system in order to determine whether or not our testing process is capable of catching them.  This can provide us a general idea of the quality of our tests.  For example, if ten different defects are deliberately added to a system, and the quality assurance team catches all ten of them, then their other assessments of quality are more likely to be accurate.  If the quality assurance team catches only one or none of the ten seeded defects, then we would be justified in thinking that there are many _actual_ defects which are not being caught.  This would certainly call into question any guarantees that the team has made regarding the quality of the system under test.
 
 After each random modification of code, the test suite, or the subset of it associated with the code that was modified, is then run.  If our test suite has full coverage of the code that was modified, at least one test should fail.  If none fail, there is a very good chance that our test coverage is incomplete.  There exists the possibility that the mutation was completely benign; say, it modified the default value of a variable which gets immediately overwritten.  Another possibility is that the modification made a change that would never be seen in practice, such as 
 
@@ -259,7 +259,7 @@ public class Guess {
 }
 ```
 
-However, this could also be a code spell that we forgot to implement some functionality.  Perhaps we meant to return that default value if an animal with a negative-length neck was passed in, but never got around to actually coding that!
+However, this could also be a code smell that we forgot to implement some functionality.  Perhaps we meant to return that default value if an animal with a negative-length neck was passed in, but never got around to actually coding that!
 
 ```java
 public class Guess {
