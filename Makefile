@@ -19,9 +19,9 @@ pdf:	main.tex tex_files
 		-M classoption="twoside" \
 		-M classoption="letterpaper" \
 		-M geometry="margin=1.25in" \
-		-M title="\Huge{\textbf{${TITLE}}}" \
-		-M author="\LARGE{${AUTHOR}}" \
-		-M date="{\Large\textcopyright~\textbf{$(shell git log -1 --date=iso --format='%ai' | cut -c-10 )}}\\\\Compiled in PDF\LaTeX{}\endgraf\textit{${DEDICATION}}"
+		-V title="\Huge{\textbf{${TITLE}}}" \
+		-V author="\LARGE{${AUTHOR}}" \
+		-V date="{\Large\textcopyright~\textbf{$(shell git log -1 --date=iso --format='%ai' | cut -c-10 )}}\\\\Compiled in PDF\LaTeX{}\endgraf\textit{${DEDICATION}}"
 
 tex_files:	compiled_tex/ $(patsubst text/%.md,compiled_tex/%.tex,$(MD_FILES))
 compiled_tex/:
